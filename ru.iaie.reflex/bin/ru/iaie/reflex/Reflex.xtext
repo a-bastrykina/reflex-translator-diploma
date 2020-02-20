@@ -1,0 +1,178 @@
+grammar ru.iaie.reflex.Reflex with org.eclipse.xtext.common.Terminals
+
+generate reflex "http://www.iaie.ru/reflex/Reflex"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Program:
+	"program" name=ID "{"
+	(ticks?=TACT)?
+	(consts+=Const |
+	enums+=Enum |
+	functions+=Function |
+	registers+=Register |
+	processes+=Process)*
+	"}";
+
+Process:
+	"proc" name=ID "{"
+	variable+=Variable*
+	states+=State*
+	"}";
+
+Variable:
+	ImportedVariable | DeclaredVariable ";" ;
+
+ImportedVariable:
+	"from" "proc" procId=ID varNames+=ID*;
+
+DeclaredVariable:
+	(PhysicalVariable | ProgramVariable) visibility=Visibility;
+
+PhysicalVariable:
+	type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}";
+
+RegisterPort:
+	regName=ID "[" port=Integer "]";
+
+ProgramVariable:
+	type=ReflexType name=ID;
+
+Visibility:
+	LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID*;
+
+State:
+	"state" name=ID "{"
+	(stateFunction?=StateFunction)?
+	(timeoutFunction?=TimeoutFunction)?
+	"}";
+
+StateFunction:
+	body=Body;
+
+TimeoutFunction:
+	"timeout" time=Time body=Body;
+
+Body:
+	{Body} ";" | ("{" sub+=Body* "}") | AssignStat | IfElseStat | 
+	SwitchStat | StartProcStat | StopProcStat | 
+	ErrorStat | {Body} LoopStat |
+	{Body} RestartStat | SetStateStat;
+
+AssignStat:
+	varId=ID "=" expr=Expression ";";
+
+IfElseStat:
+	"if" "(" cond=Condition ")"
+	then=Body
+	(=> "else" else=Body)?
+;
+
+SwitchStat:
+	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
+
+//TODO: add flag for break statement absence
+CaseStat:
+	"case" option=Integer ":" body=Body ("break" ";");
+
+StartProcStat:
+	"start" procId=ID ";";
+
+StopProcStat:
+	{StopProcStat} "stop" (procId?=ID)? ";";
+
+ErrorStat:
+	{ErrorStat} "error" (procId?=ID)? ";";
+
+LoopStat:
+	"loop" ";";
+
+RestartStat:
+	"restart" ";";
+
+	//TODO: add flag to identify if next
+SetStateStat:
+	{SetStateStat} "set" (("state" stateId=ID) | "next") ";";
+
+Function:
+	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
+
+enum RegisterType:
+	INPUT='input' | OUTPUT='output';
+
+Register:
+	type=RegisterType name=ID addr1=Integer addr2=Integer regSize=REG_SIZE ";";
+
+Const:
+	"const" constId=ID constValue=Expression ";";
+
+Enum:
+	"enum" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* ";";
+
+EnumMember:
+	name=ID "=" value=Expression;
+
+// TODO
+Expression:
+	Integer | ID
+;
+
+Condition:
+	Integer | ID
+;
+
+CType:
+	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE |
+	{CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE | INT_C_TYPE | LONG_C_TYPE);
+
+enum CTypeSignSpec:
+	SIGNED="signed" | UNSIGNED="unsigned";
+
+IntegerType:
+	BOOL_TYPE | INT_C_TYPE | SHORT_C_TYPE | LONG_C_TYPE;
+
+ReflexType:
+	CType | {ReflexType} BOOL_TYPE;
+
+// TODO: move to another file
+terminal VOID_C_TYPE:
+	"void";
+
+terminal FLOAT_C_TYPE:
+	"float";
+
+terminal DOUBLE_C_TYPE:
+	"double";
+
+terminal SHORT_C_TYPE:
+	"short";
+
+terminal INT_C_TYPE:
+	"int";
+
+terminal LONG_C_TYPE:
+	"long";
+
+terminal BOOL_TYPE:
+	"bool";
+
+// TODO
+Time:
+	Integer;
+
+terminal TACT:
+	"tact";
+
+Integer:
+	value=(DECIMAL | OCTAL | HEX);
+
+terminal REG_SIZE returns ecore::EInt:
+	("8" | "16");
+
+terminal DECIMAL:
+	('1'..'9') ('0'..'9')*;
+
+terminal OCTAL:
+	'0' ('0'..'7')*;
+
+terminal HEX:
+	'0' ('x' | 'X') ('0'..'9' | 'a'..'f' | 'A'..'F')+;

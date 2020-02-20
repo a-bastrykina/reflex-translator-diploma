@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: ru.iaie.reflex.tests
+Bundle-ManifestVersion: 2
+Bundle-Name: ru.iaie.reflex.tests
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ru.iaie.reflex.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: ru.iaie.reflex,
+ org.junit.jupiter.api;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.xtext.testing,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: ru.iaie.reflex.tests;x-internal=true
