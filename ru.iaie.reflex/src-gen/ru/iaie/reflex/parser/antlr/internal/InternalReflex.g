@@ -2404,31 +2404,6 @@ ruleReflexType returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTime
-entryRuleTime returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTimeRule()); }
-	iv_ruleTime=ruleTime
-	{ $current=$iv_ruleTime.current; }
-	EOF;
-
-// Rule Time
-ruleTime returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getTimeAccess().getIntegerParserRuleCall());
-	}
-	this_Integer_0=ruleInteger
-	{
-		$current = $this_Integer_0.current;
-		afterParserOrEnumRuleCall();
-	}
-;
-
 // Entry rule entryRuleInteger
 entryRuleInteger returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getIntegerRule()); }
@@ -2447,52 +2422,287 @@ ruleInteger returns [EObject current=null]
 	(
 		(
 			(
-				lv_value_0_1=RULE_DECIMAL
-				{
-					newLeafNode(lv_value_0_1, grammarAccess.getIntegerAccess().getValueDECIMALTerminalRuleCall_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getIntegerRule());
+				(
+					lv_value_0_1=RULE_DECIMAL
+					{
+						newLeafNode(lv_value_0_1, grammarAccess.getIntegerAccess().getValueDECIMALTerminalRuleCall_0_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"value",
-						lv_value_0_1,
-						"ru.iaie.reflex.Reflex.DECIMAL");
-				}
-				    |
-				lv_value_0_2=RULE_OCTAL
-				{
-					newLeafNode(lv_value_0_2, grammarAccess.getIntegerAccess().getValueOCTALTerminalRuleCall_0_1());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getIntegerRule());
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getIntegerRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_0_1,
+							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
-					setWithLastConsumed(
-						$current,
-						"value",
-						lv_value_0_2,
-						"ru.iaie.reflex.Reflex.OCTAL");
-				}
-				    |
-				lv_value_0_3=RULE_HEX
-				{
-					newLeafNode(lv_value_0_3, grammarAccess.getIntegerAccess().getValueHEXTerminalRuleCall_0_2());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getIntegerRule());
+					    |
+					lv_value_0_2=RULE_OCTAL
+					{
+						newLeafNode(lv_value_0_2, grammarAccess.getIntegerAccess().getValueOCTALTerminalRuleCall_0_0_1());
 					}
-					setWithLastConsumed(
-						$current,
-						"value",
-						lv_value_0_3,
-						"ru.iaie.reflex.Reflex.HEX");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getIntegerRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_0_2,
+							"ru.iaie.reflex.Reflex.OCTAL");
+					}
+					    |
+					lv_value_0_3=RULE_HEX
+					{
+						newLeafNode(lv_value_0_3, grammarAccess.getIntegerAccess().getValueHEXTerminalRuleCall_0_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getIntegerRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_0_3,
+							"ru.iaie.reflex.Reflex.HEX");
+					}
+				)
 			)
 		)
+		(
+			(
+				(
+					lv_qualfier_1_1=RULE_LONG
+					{
+						newLeafNode(lv_qualfier_1_1, grammarAccess.getIntegerAccess().getQualfierLONGTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getIntegerRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"qualfier",
+							true,
+							"ru.iaie.reflex.Reflex.LONG");
+					}
+					    |
+					lv_qualfier_1_2=RULE_UNSIGNED
+					{
+						newLeafNode(lv_qualfier_1_2, grammarAccess.getIntegerAccess().getQualfierUNSIGNEDTerminalRuleCall_1_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getIntegerRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"qualfier",
+							true,
+							"ru.iaie.reflex.Reflex.UNSIGNED");
+					}
+				)
+			)
+		)?
+	)
+;
+
+// Entry rule entryRuleTime
+entryRuleTime returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimeRule()); }
+	iv_ruleTime=ruleTime
+	{ $current=$iv_ruleTime.current; }
+	EOF;
+
+// Rule Time
+ruleTime returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='0t'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getTimeAccess().getTKeyword_0_0());
+			}
+			    |
+			otherlv_1='0T'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getTimeAccess().getTKeyword_0_1());
+			}
+		)
+		(
+			this_DAY_2=RULE_DAY
+			{
+				newLeafNode(this_DAY_2, grammarAccess.getTimeAccess().getDAYTerminalRuleCall_1_0());
+			}
+			(
+				(
+					lv_days_3_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_days_3_0, grammarAccess.getTimeAccess().getDaysDECIMALTerminalRuleCall_1_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"days",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_HOUR_4=RULE_HOUR
+			{
+				newLeafNode(this_HOUR_4, grammarAccess.getTimeAccess().getHOURTerminalRuleCall_2_0());
+			}
+			(
+				(
+					lv_hours_5_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_hours_5_0, grammarAccess.getTimeAccess().getHoursDECIMALTerminalRuleCall_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"hours",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_MINUTE_6=RULE_MINUTE
+			{
+				newLeafNode(this_MINUTE_6, grammarAccess.getTimeAccess().getMINUTETerminalRuleCall_3_0());
+			}
+			(
+				(
+					lv_minutes_7_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_minutes_7_0, grammarAccess.getTimeAccess().getMinutesDECIMALTerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"minutes",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_SECOND_8=RULE_SECOND
+			{
+				newLeafNode(this_SECOND_8, grammarAccess.getTimeAccess().getSECONDTerminalRuleCall_4_0());
+			}
+			(
+				(
+					lv_seconds_9_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_seconds_9_0, grammarAccess.getTimeAccess().getSecondsDECIMALTerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"seconds",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_MILISECOND_10=RULE_MILISECOND
+			{
+				newLeafNode(this_MILISECOND_10, grammarAccess.getTimeAccess().getMILISECONDTerminalRuleCall_5_0());
+			}
+			(
+				(
+					lv_milis_11_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_milis_11_0, grammarAccess.getTimeAccess().getMilisDECIMALTerminalRuleCall_5_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"milis",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_MICROSECOND_12=RULE_MICROSECOND
+			{
+				newLeafNode(this_MICROSECOND_12, grammarAccess.getTimeAccess().getMICROSECONDTerminalRuleCall_6_0());
+			}
+			(
+				(
+					lv_micros_13_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_micros_13_0, grammarAccess.getTimeAccess().getMicrosDECIMALTerminalRuleCall_6_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"micros",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
+		(
+			this_NANOSECOND_14=RULE_NANOSECOND
+			{
+				newLeafNode(this_NANOSECOND_14, grammarAccess.getTimeAccess().getNANOSECONDTerminalRuleCall_7_0());
+			}
+			(
+				(
+					lv_nanos_15_0=RULE_DECIMAL
+					{
+						newLeafNode(lv_nanos_15_0, grammarAccess.getTimeAccess().getNanosDECIMALTerminalRuleCall_7_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTimeRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"nanos",
+							true,
+							"ru.iaie.reflex.Reflex.DECIMAL");
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -2573,6 +2783,24 @@ RULE_DECIMAL : '1'..'9' ('0'..'9')*;
 RULE_OCTAL : '0' ('0'..'7')*;
 
 RULE_HEX : '0' ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+;
+
+RULE_LONG : ('L'|'l');
+
+RULE_UNSIGNED : ('U'|'u');
+
+RULE_DAY : ('D'|'d');
+
+RULE_HOUR : ('H'|'h');
+
+RULE_MINUTE : ('M'|'m');
+
+RULE_SECOND : ('S'|'s');
+
+RULE_MILISECOND : ('MS'|'ms');
+
+RULE_MICROSECOND : ('US'|'us');
+
+RULE_NANOSECOND : ('NS'|'ns');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

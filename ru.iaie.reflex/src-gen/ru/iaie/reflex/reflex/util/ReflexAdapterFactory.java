@@ -255,14 +255,14 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createReflexTypeAdapter();
       }
       @Override
-      public Adapter caseTime(Time object)
-      {
-        return createTimeAdapter();
-      }
-      @Override
       public Adapter caseInteger(ru.iaie.reflex.reflex.Integer object)
       {
         return createIntegerAdapter();
+      }
+      @Override
+      public Adapter caseTime(Time object)
+      {
+        return createTimeAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -737,21 +737,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Time
-   * @generated
-   */
-  public Adapter createTimeAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Integer <em>Integer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -762,6 +747,21 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIntegerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Time
+   * @generated
+   */
+  public Adapter createTimeAdapter()
   {
     return null;
   }

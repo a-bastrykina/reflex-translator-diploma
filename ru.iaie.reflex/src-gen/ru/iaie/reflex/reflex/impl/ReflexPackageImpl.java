@@ -268,14 +268,14 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass timeEClass = null;
+  private EClass integerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass integerEClass = null;
+  private EClass timeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1317,17 +1317,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getTime()
-  {
-    return timeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getInteger()
   {
     return integerEClass;
@@ -1342,6 +1331,105 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   public EAttribute getInteger_Value()
   {
     return (EAttribute)integerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInteger_Qualfier()
+  {
+    return (EAttribute)integerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTime()
+  {
+    return timeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Days()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Hours()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Minutes()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Seconds()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Milis()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Micros()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTime_Nanos()
+  {
+    return (EAttribute)timeEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1514,10 +1602,18 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     reflexTypeEClass = createEClass(REFLEX_TYPE);
 
-    timeEClass = createEClass(TIME);
-
     integerEClass = createEClass(INTEGER);
     createEAttribute(integerEClass, INTEGER__VALUE);
+    createEAttribute(integerEClass, INTEGER__QUALFIER);
+
+    timeEClass = createEClass(TIME);
+    createEAttribute(timeEClass, TIME__DAYS);
+    createEAttribute(timeEClass, TIME__HOURS);
+    createEAttribute(timeEClass, TIME__MINUTES);
+    createEAttribute(timeEClass, TIME__SECONDS);
+    createEAttribute(timeEClass, TIME__MILIS);
+    createEAttribute(timeEClass, TIME__MICROS);
+    createEAttribute(timeEClass, TIME__NANOS);
 
     // Create enums
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
@@ -1567,7 +1663,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     cTypeEClass.getESuperTypes().add(this.getReflexType());
     integerEClass.getESuperTypes().add(this.getExpression());
     integerEClass.getESuperTypes().add(this.getCondition());
-    integerEClass.getESuperTypes().add(this.getTime());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1687,10 +1782,18 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(reflexTypeEClass, ReflexType.class, "ReflexType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(timeEClass, Time.class, "Time", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
     initEClass(integerEClass, ru.iaie.reflex.reflex.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getInteger_Value(), ecorePackage.getEString(), "value", null, 0, 1, ru.iaie.reflex.reflex.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInteger_Qualfier(), ecorePackage.getEBoolean(), "qualfier", null, 0, 1, ru.iaie.reflex.reflex.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(timeEClass, Time.class, "Time", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTime_Days(), ecorePackage.getEBoolean(), "days", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Hours(), ecorePackage.getEBoolean(), "hours", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Minutes(), ecorePackage.getEBoolean(), "minutes", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Seconds(), ecorePackage.getEBoolean(), "seconds", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Milis(), ecorePackage.getEBoolean(), "milis", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Micros(), ecorePackage.getEBoolean(), "micros", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Nanos(), ecorePackage.getEBoolean(), "nanos", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");

@@ -326,20 +326,19 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.TIME:
-      {
-        Time time = (Time)theEObject;
-        T result = caseTime(time);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ReflexPackage.INTEGER:
       {
         ru.iaie.reflex.reflex.Integer integer = (ru.iaie.reflex.reflex.Integer)theEObject;
         T result = caseInteger(integer);
         if (result == null) result = caseExpression(integer);
         if (result == null) result = caseCondition(integer);
-        if (result == null) result = caseTime(integer);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.TIME:
+      {
+        Time time = (Time)theEObject;
+        T result = caseTime(time);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -828,22 +827,6 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Time</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Time</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTime(Time object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Integer</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -855,6 +838,22 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInteger(ru.iaie.reflex.reflex.Integer object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Time</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Time</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTime(Time object)
   {
     return null;
   }

@@ -294,15 +294,6 @@ public interface ReflexFactory extends EFactory
   ReflexType createReflexType();
 
   /**
-   * Returns a new object of class '<em>Time</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Time</em>'.
-   * @generated
-   */
-  Time createTime();
-
-  /**
    * Returns a new object of class '<em>Integer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -310,6 +301,15 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   Integer createInteger();
+
+  /**
+   * Returns a new object of class '<em>Time</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Time</em>'.
+   * @generated
+   */
+  Time createTime();
 
   /**
    * Returns the package supported by this factory.

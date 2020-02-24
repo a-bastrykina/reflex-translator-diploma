@@ -3,8 +3,11 @@
  */
 package ru.iaie.reflex.reflex.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -14,11 +17,163 @@ import ru.iaie.reflex.reflex.Time;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Time</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isDays <em>Days</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isHours <em>Hours</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isMinutes <em>Minutes</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isSeconds <em>Seconds</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isMilis <em>Milis</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isMicros <em>Micros</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isNanos <em>Nanos</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class TimeImpl extends MinimalEObjectImpl.Container implements Time
 {
+  /**
+   * The default value of the '{@link #isDays() <em>Days</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDays()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DAYS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDays() <em>Days</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDays()
+   * @generated
+   * @ordered
+   */
+  protected boolean days = DAYS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isHours() <em>Hours</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHours()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean HOURS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isHours() <em>Hours</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHours()
+   * @generated
+   * @ordered
+   */
+  protected boolean hours = HOURS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isMinutes() <em>Minutes</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMinutes()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MINUTES_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMinutes() <em>Minutes</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMinutes()
+   * @generated
+   * @ordered
+   */
+  protected boolean minutes = MINUTES_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isSeconds() <em>Seconds</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isSeconds()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean SECONDS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isSeconds() <em>Seconds</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isSeconds()
+   * @generated
+   * @ordered
+   */
+  protected boolean seconds = SECONDS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isMilis() <em>Milis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMilis()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MILIS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMilis() <em>Milis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMilis()
+   * @generated
+   * @ordered
+   */
+  protected boolean milis = MILIS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isMicros() <em>Micros</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMicros()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MICROS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMicros() <em>Micros</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMicros()
+   * @generated
+   * @ordered
+   */
+  protected boolean micros = MICROS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isNanos() <em>Nanos</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNanos()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean NANOS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isNanos() <em>Nanos</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNanos()
+   * @generated
+   * @ordered
+   */
+  protected boolean nanos = NANOS_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -38,6 +193,336 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.TIME;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isDays()
+  {
+    return days;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDays(boolean newDays)
+  {
+    boolean oldDays = days;
+    days = newDays;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__DAYS, oldDays, days));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isHours()
+  {
+    return hours;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setHours(boolean newHours)
+  {
+    boolean oldHours = hours;
+    hours = newHours;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__HOURS, oldHours, hours));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isMinutes()
+  {
+    return minutes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMinutes(boolean newMinutes)
+  {
+    boolean oldMinutes = minutes;
+    minutes = newMinutes;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__MINUTES, oldMinutes, minutes));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isSeconds()
+  {
+    return seconds;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSeconds(boolean newSeconds)
+  {
+    boolean oldSeconds = seconds;
+    seconds = newSeconds;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__SECONDS, oldSeconds, seconds));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isMilis()
+  {
+    return milis;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMilis(boolean newMilis)
+  {
+    boolean oldMilis = milis;
+    milis = newMilis;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__MILIS, oldMilis, milis));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isMicros()
+  {
+    return micros;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMicros(boolean newMicros)
+  {
+    boolean oldMicros = micros;
+    micros = newMicros;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__MICROS, oldMicros, micros));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isNanos()
+  {
+    return nanos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNanos(boolean newNanos)
+  {
+    boolean oldNanos = nanos;
+    nanos = newNanos;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__NANOS, oldNanos, nanos));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.TIME__DAYS:
+        return isDays();
+      case ReflexPackage.TIME__HOURS:
+        return isHours();
+      case ReflexPackage.TIME__MINUTES:
+        return isMinutes();
+      case ReflexPackage.TIME__SECONDS:
+        return isSeconds();
+      case ReflexPackage.TIME__MILIS:
+        return isMilis();
+      case ReflexPackage.TIME__MICROS:
+        return isMicros();
+      case ReflexPackage.TIME__NANOS:
+        return isNanos();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.TIME__DAYS:
+        setDays((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__HOURS:
+        setHours((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__MINUTES:
+        setMinutes((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__SECONDS:
+        setSeconds((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__MILIS:
+        setMilis((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__MICROS:
+        setMicros((Boolean)newValue);
+        return;
+      case ReflexPackage.TIME__NANOS:
+        setNanos((Boolean)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.TIME__DAYS:
+        setDays(DAYS_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__HOURS:
+        setHours(HOURS_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__MINUTES:
+        setMinutes(MINUTES_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__SECONDS:
+        setSeconds(SECONDS_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__MILIS:
+        setMilis(MILIS_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__MICROS:
+        setMicros(MICROS_EDEFAULT);
+        return;
+      case ReflexPackage.TIME__NANOS:
+        setNanos(NANOS_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.TIME__DAYS:
+        return days != DAYS_EDEFAULT;
+      case ReflexPackage.TIME__HOURS:
+        return hours != HOURS_EDEFAULT;
+      case ReflexPackage.TIME__MINUTES:
+        return minutes != MINUTES_EDEFAULT;
+      case ReflexPackage.TIME__SECONDS:
+        return seconds != SECONDS_EDEFAULT;
+      case ReflexPackage.TIME__MILIS:
+        return milis != MILIS_EDEFAULT;
+      case ReflexPackage.TIME__MICROS:
+        return micros != MICROS_EDEFAULT;
+      case ReflexPackage.TIME__NANOS:
+        return nanos != NANOS_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (days: ");
+    result.append(days);
+    result.append(", hours: ");
+    result.append(hours);
+    result.append(", minutes: ");
+    result.append(minutes);
+    result.append(", seconds: ");
+    result.append(seconds);
+    result.append(", milis: ");
+    result.append(milis);
+    result.append(", micros: ");
+    result.append(micros);
+    result.append(", nanos: ");
+    result.append(nanos);
+    result.append(')');
+    return result.toString();
   }
 
 } //TimeImpl

@@ -37,6 +37,7 @@ import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
+import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Visibility;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
@@ -145,6 +146,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.SWITCH_STAT:
 				sequence_SwitchStat(context, (SwitchStat) semanticObject); 
+				return; 
+			case ReflexPackage.TIME:
+				sequence_Time(context, (Time) semanticObject); 
 				return; 
 			case ReflexPackage.TIMEOUT_FUNCTION:
 				sequence_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
@@ -372,11 +376,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     Expression returns Integer
 	 *     Condition returns Integer
-	 *     Time returns Integer
 	 *     Integer returns Integer
 	 *
 	 * Constraint:
-	 *     (value=DECIMAL | value=OCTAL | value=HEX)
+	 *     ((value=DECIMAL | value=OCTAL | value=HEX) (qualfier?=LONG | qualfier?=UNSIGNED)?)
 	 */
 	protected void sequence_Integer(ISerializationContext context, ru.iaie.reflex.reflex.Integer semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -587,6 +590,50 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (expr=Expression options+=CaseStat*)
 	 */
 	protected void sequence_SwitchStat(ISerializationContext context, SwitchStat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Time returns Time
+	 *
+	 * Constraint:
+	 *     (
+	 *         (days?=DECIMAL? ((milis?=DECIMAL nanos?=DECIMAL) | nanos?=DECIMAL)) | 
+	 *         (days?=DECIMAL? hours?=DECIMAL ((milis?=DECIMAL nanos?=DECIMAL) | nanos?=DECIMAL)) | 
+	 *         (
+	 *             ((days?=DECIMAL? minutes?=DECIMAL) | (days?=DECIMAL? hours?=DECIMAL minutes?=DECIMAL) | minutes?=DECIMAL) 
+	 *             ((milis?=DECIMAL nanos?=DECIMAL) | nanos?=DECIMAL)
+	 *         ) | 
+	 *         (
+	 *             (
+	 *                 (days?=DECIMAL? ((minutes?=DECIMAL seconds?=DECIMAL) | seconds?=DECIMAL)) | 
+	 *                 (days?=DECIMAL? hours?=DECIMAL ((minutes?=DECIMAL seconds?=DECIMAL) | seconds?=DECIMAL)) | 
+	 *                 (minutes?=DECIMAL seconds?=DECIMAL) | 
+	 *                 seconds?=DECIMAL
+	 *             ) 
+	 *             ((milis?=DECIMAL nanos?=DECIMAL) | nanos?=DECIMAL)
+	 *         ) | 
+	 *         (
+	 *             (
+	 *                 (days?=DECIMAL? ((seconds?=DECIMAL milis?=DECIMAL) | milis?=DECIMAL)) | 
+	 *                 (days?=DECIMAL? hours?=DECIMAL ((seconds?=DECIMAL milis?=DECIMAL) | milis?=DECIMAL)) | 
+	 *                 (
+	 *                     ((days?=DECIMAL? minutes?=DECIMAL) | (days?=DECIMAL? hours?=DECIMAL minutes?=DECIMAL) | minutes?=DECIMAL) 
+	 *                     ((seconds?=DECIMAL milis?=DECIMAL) | milis?=DECIMAL)
+	 *                 ) | 
+	 *                 (seconds?=DECIMAL milis?=DECIMAL) | 
+	 *                 milis?=DECIMAL
+	 *             )? 
+	 *             micros?=DECIMAL 
+	 *             nanos?=DECIMAL
+	 *         ) | 
+	 *         (milis?=DECIMAL nanos?=DECIMAL) | 
+	 *         nanos?=DECIMAL
+	 *     )?
+	 */
+	protected void sequence_Time(ISerializationContext context, Time semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

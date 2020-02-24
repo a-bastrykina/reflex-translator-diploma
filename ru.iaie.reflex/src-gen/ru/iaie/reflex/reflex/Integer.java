@@ -14,13 +14,14 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Integer#getValue <em>Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Integer#isQualfier <em>Qualfier</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getInteger()
  * @model
  * @generated
  */
-public interface Integer extends Expression, Condition, Time
+public interface Integer extends Expression, Condition
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -43,5 +44,27 @@ public interface Integer extends Expression, Condition, Time
    * @generated
    */
   void setValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Qualfier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Qualfier</em>' attribute.
+   * @see #setQualfier(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getInteger_Qualfier()
+   * @model
+   * @generated
+   */
+  boolean isQualfier();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Integer#isQualfier <em>Qualfier</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Qualfier</em>' attribute.
+   * @see #isQualfier()
+   * @generated
+   */
+  void setQualfier(boolean value);
 
 } // Integer

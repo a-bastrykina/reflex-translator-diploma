@@ -170,6 +170,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDeclaredVariableParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		
+		//// Variables
 		//Variable:
 		//	ImportedVariable | DeclaredVariable ";";
 		@Override public ParserRule getRule() { return rule; }
@@ -933,6 +934,29 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
+	public class ResetStatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ResetStat");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cResetKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cTimeoutKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//ResetStat:
+		//	"reset" "timeout" ";";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"reset" "timeout" ";"
+		public Group getGroup() { return cGroup; }
+		
+		//"reset"
+		public Keyword getResetKeyword_0() { return cResetKeyword_0; }
+		
+		//"timeout"
+		public Keyword getTimeoutKeyword_1() { return cTimeoutKeyword_1; }
+		
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
 	public class SetStateStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.SetStateStat");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1382,44 +1406,191 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//BOOL_TYPE
 		public RuleCall getBOOL_TYPETerminalRuleCall_1_1() { return cBOOL_TYPETerminalRuleCall_1_1; }
 	}
-	public class TimeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Time");
-		private final RuleCall cIntegerParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//// TODO
-		//Time:
-		//	Integer;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Integer
-		public RuleCall getIntegerParserRuleCall() { return cIntegerParserRuleCall; }
-	}
 	public class IntegerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Integer");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cValueAlternatives_0 = (Alternatives)cValueAssignment.eContents().get(0);
-		private final RuleCall cValueDECIMALTerminalRuleCall_0_0 = (RuleCall)cValueAlternatives_0.eContents().get(0);
-		private final RuleCall cValueOCTALTerminalRuleCall_0_1 = (RuleCall)cValueAlternatives_0.eContents().get(1);
-		private final RuleCall cValueHEXTerminalRuleCall_0_2 = (RuleCall)cValueAlternatives_0.eContents().get(2);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cValueAlternatives_0_0 = (Alternatives)cValueAssignment_0.eContents().get(0);
+		private final RuleCall cValueDECIMALTerminalRuleCall_0_0_0 = (RuleCall)cValueAlternatives_0_0.eContents().get(0);
+		private final RuleCall cValueOCTALTerminalRuleCall_0_0_1 = (RuleCall)cValueAlternatives_0_0.eContents().get(1);
+		private final RuleCall cValueHEXTerminalRuleCall_0_0_2 = (RuleCall)cValueAlternatives_0_0.eContents().get(2);
+		private final Assignment cQualfierAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cQualfierAlternatives_1_0 = (Alternatives)cQualfierAssignment_1.eContents().get(0);
+		private final RuleCall cQualfierLONGTerminalRuleCall_1_0_0 = (RuleCall)cQualfierAlternatives_1_0.eContents().get(0);
+		private final RuleCall cQualfierUNSIGNEDTerminalRuleCall_1_0_1 = (RuleCall)cQualfierAlternatives_1_0.eContents().get(1);
 		
+		//// LITERALS
 		//Integer:
-		//	value=(DECIMAL | OCTAL | HEX);
+		//	value=(DECIMAL | OCTAL | HEX) qualfier?=(LONG | UNSIGNED)?;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//value=(DECIMAL | OCTAL | HEX) qualfier?=(LONG | UNSIGNED)?
+		public Group getGroup() { return cGroup; }
+		
 		//value=(DECIMAL | OCTAL | HEX)
-		public Assignment getValueAssignment() { return cValueAssignment; }
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 		
 		//(DECIMAL | OCTAL | HEX)
-		public Alternatives getValueAlternatives_0() { return cValueAlternatives_0; }
+		public Alternatives getValueAlternatives_0_0() { return cValueAlternatives_0_0; }
 		
 		//DECIMAL
-		public RuleCall getValueDECIMALTerminalRuleCall_0_0() { return cValueDECIMALTerminalRuleCall_0_0; }
+		public RuleCall getValueDECIMALTerminalRuleCall_0_0_0() { return cValueDECIMALTerminalRuleCall_0_0_0; }
 		
 		//OCTAL
-		public RuleCall getValueOCTALTerminalRuleCall_0_1() { return cValueOCTALTerminalRuleCall_0_1; }
+		public RuleCall getValueOCTALTerminalRuleCall_0_0_1() { return cValueOCTALTerminalRuleCall_0_0_1; }
 		
 		//HEX
-		public RuleCall getValueHEXTerminalRuleCall_0_2() { return cValueHEXTerminalRuleCall_0_2; }
+		public RuleCall getValueHEXTerminalRuleCall_0_0_2() { return cValueHEXTerminalRuleCall_0_0_2; }
+		
+		//qualfier?=(LONG | UNSIGNED)?
+		public Assignment getQualfierAssignment_1() { return cQualfierAssignment_1; }
+		
+		//(LONG | UNSIGNED)
+		public Alternatives getQualfierAlternatives_1_0() { return cQualfierAlternatives_1_0; }
+		
+		//LONG
+		public RuleCall getQualfierLONGTerminalRuleCall_1_0_0() { return cQualfierLONGTerminalRuleCall_1_0_0; }
+		
+		//UNSIGNED
+		public RuleCall getQualfierUNSIGNEDTerminalRuleCall_1_0_1() { return cQualfierUNSIGNEDTerminalRuleCall_1_0_1; }
+	}
+	public class TimeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Time");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cTKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cTKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cDAYTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cDaysAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDaysDECIMALTerminalRuleCall_1_1_0 = (RuleCall)cDaysAssignment_1_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final RuleCall cHOURTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cHoursAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cHoursDECIMALTerminalRuleCall_2_1_0 = (RuleCall)cHoursAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cMINUTETerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cMinutesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cMinutesDECIMALTerminalRuleCall_3_1_0 = (RuleCall)cMinutesAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cSECONDTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cSecondsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSecondsDECIMALTerminalRuleCall_4_1_0 = (RuleCall)cSecondsAssignment_4_1.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final RuleCall cMILISECONDTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cMilisAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMilisDECIMALTerminalRuleCall_5_1_0 = (RuleCall)cMilisAssignment_5_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final RuleCall cMICROSECONDTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Assignment cMicrosAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cMicrosDECIMALTerminalRuleCall_6_1_0 = (RuleCall)cMicrosAssignment_6_1.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final RuleCall cNANOSECONDTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cNanosAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cNanosDECIMALTerminalRuleCall_7_1_0 = (RuleCall)cNanosAssignment_7_1.eContents().get(0);
+		
+		//// Time
+		//Time:
+		//	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+		//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+		//(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?
+		public Group getGroup() { return cGroup; }
+		
+		//("0t" | "0T")
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//"0t"
+		public Keyword getTKeyword_0_0() { return cTKeyword_0_0; }
+		
+		//"0T"
+		public Keyword getTKeyword_0_1() { return cTKeyword_0_1; }
+		
+		//(DAY days?=DECIMAL)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//DAY
+		public RuleCall getDAYTerminalRuleCall_1_0() { return cDAYTerminalRuleCall_1_0; }
+		
+		//days?=DECIMAL
+		public Assignment getDaysAssignment_1_1() { return cDaysAssignment_1_1; }
+		
+		//DECIMAL
+		public RuleCall getDaysDECIMALTerminalRuleCall_1_1_0() { return cDaysDECIMALTerminalRuleCall_1_1_0; }
+		
+		//(HOUR hours?=DECIMAL)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//HOUR
+		public RuleCall getHOURTerminalRuleCall_2_0() { return cHOURTerminalRuleCall_2_0; }
+		
+		//hours?=DECIMAL
+		public Assignment getHoursAssignment_2_1() { return cHoursAssignment_2_1; }
+		
+		//DECIMAL
+		public RuleCall getHoursDECIMALTerminalRuleCall_2_1_0() { return cHoursDECIMALTerminalRuleCall_2_1_0; }
+		
+		//(MINUTE minutes?=DECIMAL)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//MINUTE
+		public RuleCall getMINUTETerminalRuleCall_3_0() { return cMINUTETerminalRuleCall_3_0; }
+		
+		//minutes?=DECIMAL
+		public Assignment getMinutesAssignment_3_1() { return cMinutesAssignment_3_1; }
+		
+		//DECIMAL
+		public RuleCall getMinutesDECIMALTerminalRuleCall_3_1_0() { return cMinutesDECIMALTerminalRuleCall_3_1_0; }
+		
+		//(SECOND seconds?=DECIMAL)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//SECOND
+		public RuleCall getSECONDTerminalRuleCall_4_0() { return cSECONDTerminalRuleCall_4_0; }
+		
+		//seconds?=DECIMAL
+		public Assignment getSecondsAssignment_4_1() { return cSecondsAssignment_4_1; }
+		
+		//DECIMAL
+		public RuleCall getSecondsDECIMALTerminalRuleCall_4_1_0() { return cSecondsDECIMALTerminalRuleCall_4_1_0; }
+		
+		//(MILISECOND milis?=DECIMAL)?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//MILISECOND
+		public RuleCall getMILISECONDTerminalRuleCall_5_0() { return cMILISECONDTerminalRuleCall_5_0; }
+		
+		//milis?=DECIMAL
+		public Assignment getMilisAssignment_5_1() { return cMilisAssignment_5_1; }
+		
+		//DECIMAL
+		public RuleCall getMilisDECIMALTerminalRuleCall_5_1_0() { return cMilisDECIMALTerminalRuleCall_5_1_0; }
+		
+		//(MICROSECOND micros?=DECIMAL)?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//MICROSECOND
+		public RuleCall getMICROSECONDTerminalRuleCall_6_0() { return cMICROSECONDTerminalRuleCall_6_0; }
+		
+		//micros?=DECIMAL
+		public Assignment getMicrosAssignment_6_1() { return cMicrosAssignment_6_1; }
+		
+		//DECIMAL
+		public RuleCall getMicrosDECIMALTerminalRuleCall_6_1_0() { return cMicrosDECIMALTerminalRuleCall_6_1_0; }
+		
+		//(NANOSECOND nanos?=DECIMAL)?
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//NANOSECOND
+		public RuleCall getNANOSECONDTerminalRuleCall_7_0() { return cNANOSECONDTerminalRuleCall_7_0; }
+		
+		//nanos?=DECIMAL
+		public Assignment getNanosAssignment_7_1() { return cNanosAssignment_7_1; }
+		
+		//DECIMAL
+		public RuleCall getNanosDECIMALTerminalRuleCall_7_1_0() { return cNanosDECIMALTerminalRuleCall_7_1_0; }
 	}
 	
 	public class RegisterTypeElements extends AbstractEnumRuleElementFinder {
@@ -1499,6 +1670,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ErrorStatElements pErrorStat;
 	private final LoopStatElements pLoopStat;
 	private final RestartStatElements pRestartStat;
+	private final ResetStatElements pResetStat;
 	private final SetStateStatElements pSetStateStat;
 	private final FunctionElements pFunction;
 	private final RegisterTypeElements eRegisterType;
@@ -1519,13 +1691,22 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tINT_C_TYPE;
 	private final TerminalRule tLONG_C_TYPE;
 	private final TerminalRule tBOOL_TYPE;
-	private final TimeElements pTime;
 	private final TerminalRule tTACT;
 	private final IntegerElements pInteger;
 	private final TerminalRule tREG_SIZE;
 	private final TerminalRule tDECIMAL;
 	private final TerminalRule tOCTAL;
 	private final TerminalRule tHEX;
+	private final TimeElements pTime;
+	private final TerminalRule tLONG;
+	private final TerminalRule tUNSIGNED;
+	private final TerminalRule tDAY;
+	private final TerminalRule tHOUR;
+	private final TerminalRule tMINUTE;
+	private final TerminalRule tSECOND;
+	private final TerminalRule tMILISECOND;
+	private final TerminalRule tMICROSECOND;
+	private final TerminalRule tNANOSECOND;
 	
 	private final Grammar grammar;
 	
@@ -1558,6 +1739,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pErrorStat = new ErrorStatElements();
 		this.pLoopStat = new LoopStatElements();
 		this.pRestartStat = new RestartStatElements();
+		this.pResetStat = new ResetStatElements();
 		this.pSetStateStat = new SetStateStatElements();
 		this.pFunction = new FunctionElements();
 		this.eRegisterType = new RegisterTypeElements();
@@ -1578,13 +1760,22 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.tINT_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.INT_C_TYPE");
 		this.tLONG_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LONG_C_TYPE");
 		this.tBOOL_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BOOL_TYPE");
-		this.pTime = new TimeElements();
 		this.tTACT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.TACT");
 		this.pInteger = new IntegerElements();
 		this.tREG_SIZE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.REG_SIZE");
 		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.DECIMAL");
 		this.tOCTAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.OCTAL");
 		this.tHEX = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.HEX");
+		this.pTime = new TimeElements();
+		this.tLONG = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LONG");
+		this.tUNSIGNED = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.UNSIGNED");
+		this.tDAY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.DAY");
+		this.tHOUR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.HOUR");
+		this.tMINUTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.MINUTE");
+		this.tSECOND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.SECOND");
+		this.tMILISECOND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.MILISECOND");
+		this.tMICROSECOND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.MICROSECOND");
+		this.tNANOSECOND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.NANOSECOND");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1639,6 +1830,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getProcessAccess().getRule();
 	}
 	
+	//// Variables
 	//Variable:
 	//	ImportedVariable | DeclaredVariable ";";
 	public VariableElements getVariableAccess() {
@@ -1845,6 +2037,16 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getRestartStatAccess().getRule();
 	}
 	
+	//ResetStat:
+	//	"reset" "timeout" ";";
+	public ResetStatElements getResetStatAccess() {
+		return pResetStat;
+	}
+	
+	public ParserRule getResetStatRule() {
+		return getResetStatAccess().getRule();
+	}
+	
 	////TODO: add flag to identify if next
 	//SetStateStat:
 	//	{SetStateStat} "set" ("state" stateId=ID | "next") ";";
@@ -2020,25 +2222,15 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return tBOOL_TYPE;
 	}
 	
-	//// TODO
-	//Time:
-	//	Integer;
-	public TimeElements getTimeAccess() {
-		return pTime;
-	}
-	
-	public ParserRule getTimeRule() {
-		return getTimeAccess().getRule();
-	}
-	
 	//terminal TACT:
 	//	"tact";
 	public TerminalRule getTACTRule() {
 		return tTACT;
 	}
 	
+	//// LITERALS
 	//Integer:
-	//	value=(DECIMAL | OCTAL | HEX);
+	//	value=(DECIMAL | OCTAL | HEX) qualfier?=(LONG | UNSIGNED)?;
 	public IntegerElements getIntegerAccess() {
 		return pInteger;
 	}
@@ -2069,6 +2261,72 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	//	'0' ('x' | 'X') ('0'..'9' | 'a'..'f' | 'A'..'F')+;
 	public TerminalRule getHEXRule() {
 		return tHEX;
+	}
+	
+	//// Time
+	//Time:
+	//	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+	//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+	public TimeElements getTimeAccess() {
+		return pTime;
+	}
+	
+	public ParserRule getTimeRule() {
+		return getTimeAccess().getRule();
+	}
+	
+	//terminal LONG:
+	//	"L" | "l";
+	public TerminalRule getLONGRule() {
+		return tLONG;
+	}
+	
+	//terminal UNSIGNED:
+	//	"U" | "u";
+	public TerminalRule getUNSIGNEDRule() {
+		return tUNSIGNED;
+	}
+	
+	//terminal DAY:
+	//	"D" | "d";
+	public TerminalRule getDAYRule() {
+		return tDAY;
+	}
+	
+	//terminal HOUR:
+	//	"H" | "h";
+	public TerminalRule getHOURRule() {
+		return tHOUR;
+	}
+	
+	//terminal MINUTE:
+	//	"M" | "m";
+	public TerminalRule getMINUTERule() {
+		return tMINUTE;
+	}
+	
+	//terminal SECOND:
+	//	"S" | "s";
+	public TerminalRule getSECONDRule() {
+		return tSECOND;
+	}
+	
+	//terminal MILISECOND:
+	//	"MS" | "ms";
+	public TerminalRule getMILISECONDRule() {
+		return tMILISECOND;
+	}
+	
+	//terminal MICROSECOND:
+	//	"US" | "us";
+	public TerminalRule getMICROSECONDRule() {
+		return tMICROSECOND;
+	}
+	
+	//terminal NANOSECOND:
+	//	"NS" | "ns";
+	public TerminalRule getNANOSECONDRule() {
+		return tNANOSECOND;
 	}
 	
 	//terminal ID:

@@ -128,8 +128,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.CONDITION: return createCondition();
       case ReflexPackage.CTYPE: return createCType();
       case ReflexPackage.REFLEX_TYPE: return createReflexType();
-      case ReflexPackage.TIME: return createTime();
       case ReflexPackage.INTEGER: return createInteger();
+      case ReflexPackage.TIME: return createTime();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -539,10 +539,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Time createTime()
+  public ru.iaie.reflex.reflex.Integer createInteger()
   {
-    TimeImpl time = new TimeImpl();
-    return time;
+    IntegerImpl integer = new IntegerImpl();
+    return integer;
   }
 
   /**
@@ -551,10 +551,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public ru.iaie.reflex.reflex.Integer createInteger()
+  public Time createTime()
   {
-    IntegerImpl integer = new IntegerImpl();
-    return integer;
+    TimeImpl time = new TimeImpl();
+    return time;
   }
 
   /**

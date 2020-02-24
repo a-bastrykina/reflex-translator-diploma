@@ -127,9 +127,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CType/signSpec"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ReflexType"/>
-    <genClasses ecoreClass="Reflex.ecore#//Time"/>
     <genClasses ecoreClass="Reflex.ecore#//Integer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Integer/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Integer/qualfier"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//Time">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/days"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/hours"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/minutes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/seconds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/milis"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/micros"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/nanos"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

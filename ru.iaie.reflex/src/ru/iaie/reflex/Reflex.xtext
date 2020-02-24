@@ -19,8 +19,9 @@ Process:
 	states+=State*
 	"}";
 
+	// Variables
 Variable:
-	ImportedVariable | DeclaredVariable ";" ;
+	ImportedVariable | DeclaredVariable ";";
 
 ImportedVariable:
 	"from" "proc" procId=ID varNames+=ID*;
@@ -53,8 +54,8 @@ TimeoutFunction:
 	"timeout" time=Time body=Body;
 
 Body:
-	{Body} ";" | ("{" sub+=Body* "}") | AssignStat | IfElseStat | 
-	SwitchStat | StartProcStat | StopProcStat | 
+	{Body} ";" | ("{" sub+=Body* "}") | AssignStat | IfElseStat |
+	SwitchStat | StartProcStat | StopProcStat |
 	ErrorStat | {Body} LoopStat |
 	{Body} RestartStat | SetStateStat;
 
@@ -64,13 +65,12 @@ AssignStat:
 IfElseStat:
 	"if" "(" cond=Condition ")"
 	then=Body
-	(=> "else" else=Body)?
-;
+	(=> "else" else=Body)?;
 
 SwitchStat:
 	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
 
-//TODO: add flag for break statement absence
+	//TODO: add flag for break statement absence
 CaseStat:
 	"case" option=Integer ":" body=Body ("break" ";");
 
@@ -89,6 +89,8 @@ LoopStat:
 RestartStat:
 	"restart" ";";
 
+ResetStat:
+	"reset" "timeout" ";";
 	//TODO: add flag to identify if next
 SetStateStat:
 	{SetStateStat} "set" (("state" stateId=ID) | "next") ";";
@@ -111,14 +113,12 @@ Enum:
 EnumMember:
 	name=ID "=" value=Expression;
 
-// TODO
+	// TODO
 Expression:
-	Integer | ID
-;
+	Integer | ID;
 
 Condition:
-	Integer | ID
-;
+	Integer | ID;
 
 CType:
 	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE |
@@ -133,7 +133,7 @@ IntegerType:
 ReflexType:
 	CType | {ReflexType} BOOL_TYPE;
 
-// TODO: move to another file
+	// TODO: move to another file
 terminal VOID_C_TYPE:
 	"void";
 
@@ -155,15 +155,13 @@ terminal LONG_C_TYPE:
 terminal BOOL_TYPE:
 	"bool";
 
-// TODO
-Time:
-	Integer;
-
 terminal TACT:
 	"tact";
 
+// LITERALS
+
 Integer:
-	value=(DECIMAL | OCTAL | HEX);
+	value=(DECIMAL | OCTAL | HEX) qualfier?=(LONG | UNSIGNED)?;
 
 terminal REG_SIZE returns ecore::EInt:
 	("8" | "16");
@@ -176,3 +174,35 @@ terminal OCTAL:
 
 terminal HEX:
 	'0' ('x' | 'X') ('0'..'9' | 'a'..'f' | 'A'..'F')+;
+
+	// Time
+Time:
+	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+
+terminal LONG:
+	"L" | "l";
+
+terminal UNSIGNED:
+	"U" | "u";
+
+terminal DAY:
+	"D" | "d";
+
+terminal HOUR:
+	"H" | "h";
+
+terminal MINUTE:
+	"M" | "m";
+
+terminal SECOND:
+	"S" | "s";
+
+terminal MILISECOND:
+	"MS" | "ms";
+
+terminal MICROSECOND:
+	"US" | "us";
+
+terminal NANOSECOND:
+	"NS" | "ns";

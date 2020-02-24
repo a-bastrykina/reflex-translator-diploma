@@ -1241,25 +1241,6 @@ public interface ReflexPackage extends EPackage
   int CTYPE_FEATURE_COUNT = REFLEX_TYPE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.TimeImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
-   * @generated
-   */
-  int TIME = 30;
-
-  /**
-   * The number of structural features of the '<em>Time</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IntegerImpl <em>Integer</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1267,7 +1248,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInteger()
    * @generated
    */
-  int INTEGER = 31;
+  int INTEGER = 30;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1279,13 +1260,104 @@ public interface ReflexPackage extends EPackage
   int INTEGER__VALUE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Qualfier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__QUALFIER = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Integer</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INTEGER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+  int INTEGER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.TimeImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
+   * @generated
+   */
+  int TIME = 31;
+
+  /**
+   * The feature id for the '<em><b>Days</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__DAYS = 0;
+
+  /**
+   * The feature id for the '<em><b>Hours</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__HOURS = 1;
+
+  /**
+   * The feature id for the '<em><b>Minutes</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__MINUTES = 2;
+
+  /**
+   * The feature id for the '<em><b>Seconds</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__SECONDS = 3;
+
+  /**
+   * The feature id for the '<em><b>Milis</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__MILIS = 4;
+
+  /**
+   * The feature id for the '<em><b>Micros</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__MICROS = 5;
+
+  /**
+   * The feature id for the '<em><b>Nanos</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__NANOS = 6;
+
+  /**
+   * The number of structural features of the '<em>Time</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.
@@ -2236,16 +2308,6 @@ public interface ReflexPackage extends EPackage
   EClass getReflexType();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Time</em>'.
-   * @see ru.iaie.reflex.reflex.Time
-   * @generated
-   */
-  EClass getTime();
-
-  /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Integer <em>Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2265,6 +2327,104 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getInteger_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Integer#isQualfier <em>Qualfier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Qualfier</em>'.
+   * @see ru.iaie.reflex.reflex.Integer#isQualfier()
+   * @see #getInteger()
+   * @generated
+   */
+  EAttribute getInteger_Qualfier();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Time</em>'.
+   * @see ru.iaie.reflex.reflex.Time
+   * @generated
+   */
+  EClass getTime();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isDays <em>Days</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Days</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isDays()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Days();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isHours <em>Hours</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Hours</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isHours()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Hours();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isMinutes <em>Minutes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Minutes</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isMinutes()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Minutes();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isSeconds <em>Seconds</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Seconds</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isSeconds()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Seconds();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isMilis <em>Milis</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Milis</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isMilis()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Milis();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isMicros <em>Micros</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Micros</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isMicros()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Micros();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isNanos <em>Nanos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nanos</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isNanos()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_Nanos();
 
   /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}'.
@@ -3066,16 +3226,6 @@ public interface ReflexPackage extends EPackage
     EClass REFLEX_TYPE = eINSTANCE.getReflexType();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.TimeImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
-     * @generated
-     */
-    EClass TIME = eINSTANCE.getTime();
-
-    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.IntegerImpl <em>Integer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3092,6 +3242,80 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute INTEGER__VALUE = eINSTANCE.getInteger_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Qualfier</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INTEGER__QUALFIER = eINSTANCE.getInteger_Qualfier();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.TimeImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
+     * @generated
+     */
+    EClass TIME = eINSTANCE.getTime();
+
+    /**
+     * The meta object literal for the '<em><b>Days</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__DAYS = eINSTANCE.getTime_Days();
+
+    /**
+     * The meta object literal for the '<em><b>Hours</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__HOURS = eINSTANCE.getTime_Hours();
+
+    /**
+     * The meta object literal for the '<em><b>Minutes</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__MINUTES = eINSTANCE.getTime_Minutes();
+
+    /**
+     * The meta object literal for the '<em><b>Seconds</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__SECONDS = eINSTANCE.getTime_Seconds();
+
+    /**
+     * The meta object literal for the '<em><b>Milis</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__MILIS = eINSTANCE.getTime_Milis();
+
+    /**
+     * The meta object literal for the '<em><b>Micros</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__MICROS = eINSTANCE.getTime_Micros();
+
+    /**
+     * The meta object literal for the '<em><b>Nanos</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__NANOS = eINSTANCE.getTime_Nanos();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.
