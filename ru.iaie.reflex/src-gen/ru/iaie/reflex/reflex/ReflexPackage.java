@@ -622,22 +622,13 @@ public interface ReflexPackage extends EPackage
   int ASSIGN_STAT = 13;
 
   /**
-   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSIGN_STAT__SUB = BODY__SUB;
-
-  /**
    * The feature id for the '<em><b>Var Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSIGN_STAT__VAR_ID = BODY_FEATURE_COUNT + 0;
+  int ASSIGN_STAT__VAR_ID = 0;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -646,7 +637,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSIGN_STAT__EXPR = BODY_FEATURE_COUNT + 1;
+  int ASSIGN_STAT__EXPR = 1;
 
   /**
    * The number of structural features of the '<em>Assign Stat</em>' class.
@@ -655,7 +646,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSIGN_STAT_FEATURE_COUNT = BODY_FEATURE_COUNT + 2;
+  int ASSIGN_STAT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IfElseStatImpl <em>If Else Stat</em>}' class.
@@ -1166,13 +1157,22 @@ public interface ReflexPackage extends EPackage
   int EXPRESSION = 43;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__SUB = BODY__SUB;
+
+  /**
    * The number of structural features of the '<em>Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 0;
+  int EXPRESSION_FEATURE_COUNT = BODY_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
@@ -1183,6 +1183,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int ASSIGNMENT_EXPRESSION = 42;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION__SUB = EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1229,6 +1238,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int LOGICAL_OR_EXPRESSION = 41;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGICAL_OR_EXPRESSION__SUB = ASSIGNMENT_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1295,6 +1313,15 @@ public interface ReflexPackage extends EPackage
   int LOGICAL_AND_EXPRESSION = 40;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGICAL_AND_EXPRESSION__SUB = LOGICAL_OR_EXPRESSION__SUB;
+
+  /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1357,6 +1384,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int BIT_OR_EXPRESSION = 39;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIT_OR_EXPRESSION__SUB = LOGICAL_AND_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1423,6 +1459,15 @@ public interface ReflexPackage extends EPackage
   int BIT_XOR_EXPRESSION = 38;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIT_XOR_EXPRESSION__SUB = BIT_OR_EXPRESSION__SUB;
+
+  /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1487,6 +1532,15 @@ public interface ReflexPackage extends EPackage
   int BIT_AND_EXPRESSION = 37;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIT_AND_EXPRESSION__SUB = BIT_XOR_EXPRESSION__SUB;
+
+  /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1549,6 +1603,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int EQUALITY_EXPRESSION = 36;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALITY_EXPRESSION__SUB = BIT_AND_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1622,6 +1685,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int COMPARE_EXPRESSION = 35;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARE_EXPRESSION__SUB = EQUALITY_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1704,6 +1776,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int SHIFT_EXPRESSION = 34;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SHIFT_EXPRESSION__SUB = COMPARE_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1795,6 +1876,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int ADDITIVE_EXPRESSION = 33;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITIVE_EXPRESSION__SUB = SHIFT_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1904,6 +1994,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int MULTIPLICATIVE_EXPRESSION = 32;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATIVE_EXPRESSION__SUB = ADDITIVE_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2022,6 +2121,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int CAST_EXPRESSION = 31;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAST_EXPRESSION__SUB = MULTIPLICATIVE_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2149,6 +2257,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int UNARY_EXPRESSION = 30;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY_EXPRESSION__SUB = CAST_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2294,6 +2411,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int INFIX_OP = 26;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INFIX_OP__SUB = UNARY_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2459,6 +2585,15 @@ public interface ReflexPackage extends EPackage
   int POSTFIX_OP = 27;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POSTFIX_OP__SUB = UNARY_EXPRESSION__SUB;
+
+  /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2622,6 +2757,15 @@ public interface ReflexPackage extends EPackage
   int FUNCTION_CALL = 28;
 
   /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL__SUB = UNARY_EXPRESSION__SUB;
+
+  /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2783,6 +2927,15 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int PRIMARY_EXPRESSION = 29;
+
+  /**
+   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__SUB = UNARY_EXPRESSION__SUB;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.

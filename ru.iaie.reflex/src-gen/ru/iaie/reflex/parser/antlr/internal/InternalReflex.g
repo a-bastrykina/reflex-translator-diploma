@@ -1008,46 +1008,46 @@ ruleBody returns [EObject current=null]
 		)
 		    |
 		(
-			otherlv_2='{'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getBodyAccess().getLeftCurlyBracketKeyword_1_0());
-			}
 			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getBodyAccess().getBodyAction_1_0(),
+						$current);
+				}
+			)
+			(
+				otherlv_3='{'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getBodyAccess().getLeftCurlyBracketKeyword_1_1_0());
+				}
 				(
-					{
-						newCompositeNode(grammarAccess.getBodyAccess().getSubBodyParserRuleCall_1_1_0());
-					}
-					lv_sub_3_0=ruleBody
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getBodyRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getBodyAccess().getSubBodyParserRuleCall_1_1_1_0());
 						}
-						add(
-							$current,
-							"sub",
-							lv_sub_3_0,
-							"ru.iaie.reflex.Reflex.Body");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-			otherlv_4='}'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getBodyAccess().getRightCurlyBracketKeyword_1_2());
-			}
+						lv_sub_4_0=ruleBody
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getBodyRule());
+							}
+							add(
+								$current,
+								"sub",
+								lv_sub_4_0,
+								"ru.iaie.reflex.Reflex.Body");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_5='}'
+				{
+					newLeafNode(otherlv_5, grammarAccess.getBodyAccess().getRightCurlyBracketKeyword_1_1_2());
+				}
+			)
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getAssignStatParserRuleCall_2());
-		}
-		this_AssignStat_5=ruleAssignStat
-		{
-			$current = $this_AssignStat_5.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getIfElseStatParserRuleCall_3());
+			newCompositeNode(grammarAccess.getBodyAccess().getIfElseStatParserRuleCall_2());
 		}
 		this_IfElseStat_6=ruleIfElseStat
 		{
@@ -1056,7 +1056,7 @@ ruleBody returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getSwitchStatParserRuleCall_4());
+			newCompositeNode(grammarAccess.getBodyAccess().getSwitchStatParserRuleCall_3());
 		}
 		this_SwitchStat_7=ruleSwitchStat
 		{
@@ -1065,7 +1065,7 @@ ruleBody returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getStartProcStatParserRuleCall_5());
+			newCompositeNode(grammarAccess.getBodyAccess().getStartProcStatParserRuleCall_4());
 		}
 		this_StartProcStat_8=ruleStartProcStat
 		{
@@ -1074,7 +1074,7 @@ ruleBody returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getStopProcStatParserRuleCall_6());
+			newCompositeNode(grammarAccess.getBodyAccess().getStopProcStatParserRuleCall_5());
 		}
 		this_StopProcStat_9=ruleStopProcStat
 		{
@@ -1083,7 +1083,7 @@ ruleBody returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getErrorStatParserRuleCall_7());
+			newCompositeNode(grammarAccess.getBodyAccess().getErrorStatParserRuleCall_6());
 		}
 		this_ErrorStat_10=ruleErrorStat
 		{
@@ -1095,12 +1095,12 @@ ruleBody returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getBodyAccess().getBodyAction_8_0(),
+						grammarAccess.getBodyAccess().getBodyAction_7_0(),
 						$current);
 				}
 			)
 			{
-				newCompositeNode(grammarAccess.getBodyAccess().getLoopStatParserRuleCall_8_1());
+				newCompositeNode(grammarAccess.getBodyAccess().getLoopStatParserRuleCall_7_1());
 			}
 			ruleLoopStat
 			{
@@ -1112,12 +1112,12 @@ ruleBody returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getBodyAccess().getBodyAction_9_0(),
+						grammarAccess.getBodyAccess().getBodyAction_8_0(),
 						$current);
 				}
 			)
 			{
-				newCompositeNode(grammarAccess.getBodyAccess().getRestartStatParserRuleCall_9_1());
+				newCompositeNode(grammarAccess.getBodyAccess().getRestartStatParserRuleCall_8_1());
 			}
 			ruleRestartStat
 			{
@@ -1126,77 +1126,28 @@ ruleBody returns [EObject current=null]
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getBodyAccess().getSetStateStatParserRuleCall_10());
+			newCompositeNode(grammarAccess.getBodyAccess().getSetStateStatParserRuleCall_9());
 		}
 		this_SetStateStat_15=ruleSetStateStat
 		{
 			$current = $this_SetStateStat_15.current;
 			afterParserOrEnumRuleCall();
 		}
-	)
-;
-
-// Entry rule entryRuleAssignStat
-entryRuleAssignStat returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getAssignStatRule()); }
-	iv_ruleAssignStat=ruleAssignStat
-	{ $current=$iv_ruleAssignStat.current; }
-	EOF;
-
-// Rule AssignStat
-ruleAssignStat returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
+		    |
 		(
-			(
-				lv_varId_0_0=RULE_ID
-				{
-					newLeafNode(lv_varId_0_0, grammarAccess.getAssignStatAccess().getVarIdIDTerminalRuleCall_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAssignStatRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"varId",
-						lv_varId_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
+			{
+				newCompositeNode(grammarAccess.getBodyAccess().getExpressionParserRuleCall_10_0());
+			}
+			this_Expression_16=ruleExpression
+			{
+				$current = $this_Expression_16.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_17=';'
+			{
+				newLeafNode(otherlv_17, grammarAccess.getBodyAccess().getSemicolonKeyword_10_1());
+			}
 		)
-		otherlv_1='='
-		{
-			newLeafNode(otherlv_1, grammarAccess.getAssignStatAccess().getEqualsSignKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAssignStatAccess().getExprExpressionParserRuleCall_2_0());
-				}
-				lv_expr_2_0=ruleExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAssignStatRule());
-					}
-					set(
-						$current,
-						"expr",
-						lv_expr_2_0,
-						"ru.iaie.reflex.Reflex.Expression");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3=';'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getAssignStatAccess().getSemicolonKeyword_3());
-		}
 	)
 ;
 
@@ -3696,26 +3647,33 @@ ruleTime returns [EObject current=null]
 }:
 	(
 		(
-			otherlv_0='0t'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getTimeAccess().getTKeyword_0_0());
-			}
-			    |
-			otherlv_1='0T'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getTimeAccess().getTKeyword_0_1());
+				$current = forceCreateModelElement(
+					grammarAccess.getTimeAccess().getTimeAction_0(),
+					$current);
 			}
 		)
 		(
-			this_DAY_2=RULE_DAY
+			otherlv_1='0t'
 			{
-				newLeafNode(this_DAY_2, grammarAccess.getTimeAccess().getDAYTerminalRuleCall_1_0());
+				newLeafNode(otherlv_1, grammarAccess.getTimeAccess().getTKeyword_1_0());
+			}
+			    |
+			otherlv_2='0T'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getTimeAccess().getTKeyword_1_1());
+			}
+		)
+		(
+			this_DAY_3=RULE_DAY
+			{
+				newLeafNode(this_DAY_3, grammarAccess.getTimeAccess().getDAYTerminalRuleCall_2_0());
 			}
 			(
 				(
-					lv_days_3_0=RULE_DECIMAL
+					lv_days_4_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_days_3_0, grammarAccess.getTimeAccess().getDaysDECIMALTerminalRuleCall_1_1_0());
+						newLeafNode(lv_days_4_0, grammarAccess.getTimeAccess().getDaysDECIMALTerminalRuleCall_2_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3731,15 +3689,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_HOUR_4=RULE_HOUR
+			this_HOUR_5=RULE_HOUR
 			{
-				newLeafNode(this_HOUR_4, grammarAccess.getTimeAccess().getHOURTerminalRuleCall_2_0());
+				newLeafNode(this_HOUR_5, grammarAccess.getTimeAccess().getHOURTerminalRuleCall_3_0());
 			}
 			(
 				(
-					lv_hours_5_0=RULE_DECIMAL
+					lv_hours_6_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_hours_5_0, grammarAccess.getTimeAccess().getHoursDECIMALTerminalRuleCall_2_1_0());
+						newLeafNode(lv_hours_6_0, grammarAccess.getTimeAccess().getHoursDECIMALTerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3755,15 +3713,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_MINUTE_6=RULE_MINUTE
+			this_MINUTE_7=RULE_MINUTE
 			{
-				newLeafNode(this_MINUTE_6, grammarAccess.getTimeAccess().getMINUTETerminalRuleCall_3_0());
+				newLeafNode(this_MINUTE_7, grammarAccess.getTimeAccess().getMINUTETerminalRuleCall_4_0());
 			}
 			(
 				(
-					lv_minutes_7_0=RULE_DECIMAL
+					lv_minutes_8_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_minutes_7_0, grammarAccess.getTimeAccess().getMinutesDECIMALTerminalRuleCall_3_1_0());
+						newLeafNode(lv_minutes_8_0, grammarAccess.getTimeAccess().getMinutesDECIMALTerminalRuleCall_4_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3779,15 +3737,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_SECOND_8=RULE_SECOND
+			this_SECOND_9=RULE_SECOND
 			{
-				newLeafNode(this_SECOND_8, grammarAccess.getTimeAccess().getSECONDTerminalRuleCall_4_0());
+				newLeafNode(this_SECOND_9, grammarAccess.getTimeAccess().getSECONDTerminalRuleCall_5_0());
 			}
 			(
 				(
-					lv_seconds_9_0=RULE_DECIMAL
+					lv_seconds_10_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_seconds_9_0, grammarAccess.getTimeAccess().getSecondsDECIMALTerminalRuleCall_4_1_0());
+						newLeafNode(lv_seconds_10_0, grammarAccess.getTimeAccess().getSecondsDECIMALTerminalRuleCall_5_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3803,15 +3761,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_MILISECOND_10=RULE_MILISECOND
+			this_MILISECOND_11=RULE_MILISECOND
 			{
-				newLeafNode(this_MILISECOND_10, grammarAccess.getTimeAccess().getMILISECONDTerminalRuleCall_5_0());
+				newLeafNode(this_MILISECOND_11, grammarAccess.getTimeAccess().getMILISECONDTerminalRuleCall_6_0());
 			}
 			(
 				(
-					lv_milis_11_0=RULE_DECIMAL
+					lv_milis_12_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_milis_11_0, grammarAccess.getTimeAccess().getMilisDECIMALTerminalRuleCall_5_1_0());
+						newLeafNode(lv_milis_12_0, grammarAccess.getTimeAccess().getMilisDECIMALTerminalRuleCall_6_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3827,15 +3785,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_MICROSECOND_12=RULE_MICROSECOND
+			this_MICROSECOND_13=RULE_MICROSECOND
 			{
-				newLeafNode(this_MICROSECOND_12, grammarAccess.getTimeAccess().getMICROSECONDTerminalRuleCall_6_0());
+				newLeafNode(this_MICROSECOND_13, grammarAccess.getTimeAccess().getMICROSECONDTerminalRuleCall_7_0());
 			}
 			(
 				(
-					lv_micros_13_0=RULE_DECIMAL
+					lv_micros_14_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_micros_13_0, grammarAccess.getTimeAccess().getMicrosDECIMALTerminalRuleCall_6_1_0());
+						newLeafNode(lv_micros_14_0, grammarAccess.getTimeAccess().getMicrosDECIMALTerminalRuleCall_7_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3851,15 +3809,15 @@ ruleTime returns [EObject current=null]
 			)
 		)?
 		(
-			this_NANOSECOND_14=RULE_NANOSECOND
+			this_NANOSECOND_15=RULE_NANOSECOND
 			{
-				newLeafNode(this_NANOSECOND_14, grammarAccess.getTimeAccess().getNANOSECONDTerminalRuleCall_7_0());
+				newLeafNode(this_NANOSECOND_15, grammarAccess.getTimeAccess().getNANOSECONDTerminalRuleCall_8_0());
 			}
 			(
 				(
-					lv_nanos_15_0=RULE_DECIMAL
+					lv_nanos_16_0=RULE_DECIMAL
 					{
-						newLeafNode(lv_nanos_15_0, grammarAccess.getTimeAccess().getNanosDECIMALTerminalRuleCall_7_1_0());
+						newLeafNode(lv_nanos_16_0, grammarAccess.getTimeAccess().getNanosDECIMALTerminalRuleCall_8_1_0());
 					}
 					{
 						if ($current==null) {

@@ -531,31 +531,35 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cBodyAction_0_0 = (Action)cGroup_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cSubAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSubBodyParserRuleCall_1_1_0 = (RuleCall)cSubAssignment_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final RuleCall cAssignStatParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cIfElseStatParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cSwitchStatParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cStartProcStatParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cStopProcStatParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cErrorStatParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final Action cBodyAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cSubAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cSubBodyParserRuleCall_1_1_1_0 = (RuleCall)cSubAssignment_1_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final RuleCall cIfElseStatParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSwitchStatParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cStartProcStatParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cStopProcStatParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cErrorStatParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Action cBodyAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final RuleCall cLoopStatParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Action cBodyAction_8_0 = (Action)cGroup_8.eContents().get(0);
-		private final RuleCall cLoopStatParserRuleCall_8_1 = (RuleCall)cGroup_8.eContents().get(1);
-		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
-		private final Action cBodyAction_9_0 = (Action)cGroup_9.eContents().get(0);
-		private final RuleCall cRestartStatParserRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
-		private final RuleCall cSetStateStatParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cRestartStatParserRuleCall_8_1 = (RuleCall)cGroup_8.eContents().get(1);
+		private final RuleCall cSetStateStatParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final RuleCall cExpressionParserRuleCall_10_0 = (RuleCall)cGroup_10.eContents().get(0);
+		private final Keyword cSemicolonKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//Body:
-		//	{Body} ";" | "{" sub+=Body* "}" | AssignStat | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat |
-		//	{Body} LoopStat | {Body} RestartStat | SetStateStat;
+		//	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
+		//	LoopStat | {Body} RestartStat | SetStateStat | Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Body} ";" | "{" sub+=Body* "}" | AssignStat | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat |
-		//{Body} LoopStat | {Body} RestartStat | SetStateStat
+		//{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
+		//LoopStat | {Body} RestartStat | SetStateStat | Expression ";"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{Body} ";"
@@ -567,59 +571,71 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_0_1() { return cSemicolonKeyword_0_1; }
 		
-		//"{" sub+=Body* "}"
+		//{Body} ("{" sub+=Body* "}")
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//{Body}
+		public Action getBodyAction_1_0() { return cBodyAction_1_0; }
+		
+		//("{" sub+=Body* "}")
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 		
 		//sub+=Body*
-		public Assignment getSubAssignment_1_1() { return cSubAssignment_1_1; }
+		public Assignment getSubAssignment_1_1_1() { return cSubAssignment_1_1_1; }
 		
 		//Body
-		public RuleCall getSubBodyParserRuleCall_1_1_0() { return cSubBodyParserRuleCall_1_1_0; }
+		public RuleCall getSubBodyParserRuleCall_1_1_1_0() { return cSubBodyParserRuleCall_1_1_1_0; }
 		
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
-		
-		//AssignStat
-		public RuleCall getAssignStatParserRuleCall_2() { return cAssignStatParserRuleCall_2; }
+		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 		
 		//IfElseStat
-		public RuleCall getIfElseStatParserRuleCall_3() { return cIfElseStatParserRuleCall_3; }
+		public RuleCall getIfElseStatParserRuleCall_2() { return cIfElseStatParserRuleCall_2; }
 		
 		//SwitchStat
-		public RuleCall getSwitchStatParserRuleCall_4() { return cSwitchStatParserRuleCall_4; }
+		public RuleCall getSwitchStatParserRuleCall_3() { return cSwitchStatParserRuleCall_3; }
 		
 		//StartProcStat
-		public RuleCall getStartProcStatParserRuleCall_5() { return cStartProcStatParserRuleCall_5; }
+		public RuleCall getStartProcStatParserRuleCall_4() { return cStartProcStatParserRuleCall_4; }
 		
 		//StopProcStat
-		public RuleCall getStopProcStatParserRuleCall_6() { return cStopProcStatParserRuleCall_6; }
+		public RuleCall getStopProcStatParserRuleCall_5() { return cStopProcStatParserRuleCall_5; }
 		
 		//ErrorStat
-		public RuleCall getErrorStatParserRuleCall_7() { return cErrorStatParserRuleCall_7; }
+		public RuleCall getErrorStatParserRuleCall_6() { return cErrorStatParserRuleCall_6; }
 		
 		//{Body} LoopStat
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//{Body}
+		public Action getBodyAction_7_0() { return cBodyAction_7_0; }
+		
+		//LoopStat
+		public RuleCall getLoopStatParserRuleCall_7_1() { return cLoopStatParserRuleCall_7_1; }
+		
+		//{Body} RestartStat
 		public Group getGroup_8() { return cGroup_8; }
 		
 		//{Body}
 		public Action getBodyAction_8_0() { return cBodyAction_8_0; }
 		
-		//LoopStat
-		public RuleCall getLoopStatParserRuleCall_8_1() { return cLoopStatParserRuleCall_8_1; }
-		
-		//{Body} RestartStat
-		public Group getGroup_9() { return cGroup_9; }
-		
-		//{Body}
-		public Action getBodyAction_9_0() { return cBodyAction_9_0; }
-		
 		//RestartStat
-		public RuleCall getRestartStatParserRuleCall_9_1() { return cRestartStatParserRuleCall_9_1; }
+		public RuleCall getRestartStatParserRuleCall_8_1() { return cRestartStatParserRuleCall_8_1; }
 		
 		//SetStateStat
-		public RuleCall getSetStateStatParserRuleCall_10() { return cSetStateStatParserRuleCall_10; }
+		public RuleCall getSetStateStatParserRuleCall_9() { return cSetStateStatParserRuleCall_9; }
+		
+		//Expression ";"
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//Expression
+		public RuleCall getExpressionParserRuleCall_10_0() { return cExpressionParserRuleCall_10_0; }
+		
+		//";"
+		public Keyword getSemicolonKeyword_10_1() { return cSemicolonKeyword_10_1; }
 	}
 	public class AssignStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.AssignStat");
@@ -2086,140 +2102,144 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	public class TimeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Time");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Keyword cTKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
-		private final Keyword cTKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cDAYTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cDaysAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cDaysDECIMALTerminalRuleCall_1_1_0 = (RuleCall)cDaysAssignment_1_1.eContents().get(0);
+		private final Action cTimeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cTKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Keyword cTKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cHOURTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cHoursAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cHoursDECIMALTerminalRuleCall_2_1_0 = (RuleCall)cHoursAssignment_2_1.eContents().get(0);
+		private final RuleCall cDAYTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cDaysAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDaysDECIMALTerminalRuleCall_2_1_0 = (RuleCall)cDaysAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cMINUTETerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cMinutesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMinutesDECIMALTerminalRuleCall_3_1_0 = (RuleCall)cMinutesAssignment_3_1.eContents().get(0);
+		private final RuleCall cHOURTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cHoursAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cHoursDECIMALTerminalRuleCall_3_1_0 = (RuleCall)cHoursAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cSECONDTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cSecondsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cSecondsDECIMALTerminalRuleCall_4_1_0 = (RuleCall)cSecondsAssignment_4_1.eContents().get(0);
+		private final RuleCall cMINUTETerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cMinutesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cMinutesDECIMALTerminalRuleCall_4_1_0 = (RuleCall)cMinutesAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cMILISECONDTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cMilisAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cMilisDECIMALTerminalRuleCall_5_1_0 = (RuleCall)cMilisAssignment_5_1.eContents().get(0);
+		private final RuleCall cSECONDTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cSecondsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cSecondsDECIMALTerminalRuleCall_5_1_0 = (RuleCall)cSecondsAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final RuleCall cMICROSECONDTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
-		private final Assignment cMicrosAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cMicrosDECIMALTerminalRuleCall_6_1_0 = (RuleCall)cMicrosAssignment_6_1.eContents().get(0);
+		private final RuleCall cMILISECONDTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Assignment cMilisAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cMilisDECIMALTerminalRuleCall_6_1_0 = (RuleCall)cMilisAssignment_6_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final RuleCall cNANOSECONDTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
-		private final Assignment cNanosAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cNanosDECIMALTerminalRuleCall_7_1_0 = (RuleCall)cNanosAssignment_7_1.eContents().get(0);
+		private final RuleCall cMICROSECONDTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cMicrosAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cMicrosDECIMALTerminalRuleCall_7_1_0 = (RuleCall)cMicrosAssignment_7_1.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final RuleCall cNANOSECONDTerminalRuleCall_8_0 = (RuleCall)cGroup_8.eContents().get(0);
+		private final Assignment cNanosAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cNanosDECIMALTerminalRuleCall_8_1_0 = (RuleCall)cNanosAssignment_8_1.eContents().get(0);
 		
 		//// Time
 		//Time:
-		//	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+		//	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
 		//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+		//{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
 		//(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?
 		public Group getGroup() { return cGroup; }
 		
+		//{Time}
+		public Action getTimeAction_0() { return cTimeAction_0; }
+		
 		//("0t" | "0T")
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//"0t"
-		public Keyword getTKeyword_0_0() { return cTKeyword_0_0; }
+		public Keyword getTKeyword_1_0() { return cTKeyword_1_0; }
 		
 		//"0T"
-		public Keyword getTKeyword_0_1() { return cTKeyword_0_1; }
+		public Keyword getTKeyword_1_1() { return cTKeyword_1_1; }
 		
 		//(DAY days?=DECIMAL)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//DAY
-		public RuleCall getDAYTerminalRuleCall_1_0() { return cDAYTerminalRuleCall_1_0; }
-		
-		//days?=DECIMAL
-		public Assignment getDaysAssignment_1_1() { return cDaysAssignment_1_1; }
-		
-		//DECIMAL
-		public RuleCall getDaysDECIMALTerminalRuleCall_1_1_0() { return cDaysDECIMALTerminalRuleCall_1_1_0; }
-		
-		//(HOUR hours?=DECIMAL)?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//HOUR
-		public RuleCall getHOURTerminalRuleCall_2_0() { return cHOURTerminalRuleCall_2_0; }
+		//DAY
+		public RuleCall getDAYTerminalRuleCall_2_0() { return cDAYTerminalRuleCall_2_0; }
 		
-		//hours?=DECIMAL
-		public Assignment getHoursAssignment_2_1() { return cHoursAssignment_2_1; }
+		//days?=DECIMAL
+		public Assignment getDaysAssignment_2_1() { return cDaysAssignment_2_1; }
 		
 		//DECIMAL
-		public RuleCall getHoursDECIMALTerminalRuleCall_2_1_0() { return cHoursDECIMALTerminalRuleCall_2_1_0; }
+		public RuleCall getDaysDECIMALTerminalRuleCall_2_1_0() { return cDaysDECIMALTerminalRuleCall_2_1_0; }
 		
-		//(MINUTE minutes?=DECIMAL)?
+		//(HOUR hours?=DECIMAL)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//MINUTE
-		public RuleCall getMINUTETerminalRuleCall_3_0() { return cMINUTETerminalRuleCall_3_0; }
+		//HOUR
+		public RuleCall getHOURTerminalRuleCall_3_0() { return cHOURTerminalRuleCall_3_0; }
 		
-		//minutes?=DECIMAL
-		public Assignment getMinutesAssignment_3_1() { return cMinutesAssignment_3_1; }
+		//hours?=DECIMAL
+		public Assignment getHoursAssignment_3_1() { return cHoursAssignment_3_1; }
 		
 		//DECIMAL
-		public RuleCall getMinutesDECIMALTerminalRuleCall_3_1_0() { return cMinutesDECIMALTerminalRuleCall_3_1_0; }
+		public RuleCall getHoursDECIMALTerminalRuleCall_3_1_0() { return cHoursDECIMALTerminalRuleCall_3_1_0; }
 		
-		//(SECOND seconds?=DECIMAL)?
+		//(MINUTE minutes?=DECIMAL)?
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//SECOND
-		public RuleCall getSECONDTerminalRuleCall_4_0() { return cSECONDTerminalRuleCall_4_0; }
+		//MINUTE
+		public RuleCall getMINUTETerminalRuleCall_4_0() { return cMINUTETerminalRuleCall_4_0; }
 		
-		//seconds?=DECIMAL
-		public Assignment getSecondsAssignment_4_1() { return cSecondsAssignment_4_1; }
+		//minutes?=DECIMAL
+		public Assignment getMinutesAssignment_4_1() { return cMinutesAssignment_4_1; }
 		
 		//DECIMAL
-		public RuleCall getSecondsDECIMALTerminalRuleCall_4_1_0() { return cSecondsDECIMALTerminalRuleCall_4_1_0; }
+		public RuleCall getMinutesDECIMALTerminalRuleCall_4_1_0() { return cMinutesDECIMALTerminalRuleCall_4_1_0; }
 		
-		//(MILISECOND milis?=DECIMAL)?
+		//(SECOND seconds?=DECIMAL)?
 		public Group getGroup_5() { return cGroup_5; }
 		
-		//MILISECOND
-		public RuleCall getMILISECONDTerminalRuleCall_5_0() { return cMILISECONDTerminalRuleCall_5_0; }
+		//SECOND
+		public RuleCall getSECONDTerminalRuleCall_5_0() { return cSECONDTerminalRuleCall_5_0; }
 		
-		//milis?=DECIMAL
-		public Assignment getMilisAssignment_5_1() { return cMilisAssignment_5_1; }
+		//seconds?=DECIMAL
+		public Assignment getSecondsAssignment_5_1() { return cSecondsAssignment_5_1; }
 		
 		//DECIMAL
-		public RuleCall getMilisDECIMALTerminalRuleCall_5_1_0() { return cMilisDECIMALTerminalRuleCall_5_1_0; }
+		public RuleCall getSecondsDECIMALTerminalRuleCall_5_1_0() { return cSecondsDECIMALTerminalRuleCall_5_1_0; }
 		
-		//(MICROSECOND micros?=DECIMAL)?
+		//(MILISECOND milis?=DECIMAL)?
 		public Group getGroup_6() { return cGroup_6; }
 		
-		//MICROSECOND
-		public RuleCall getMICROSECONDTerminalRuleCall_6_0() { return cMICROSECONDTerminalRuleCall_6_0; }
+		//MILISECOND
+		public RuleCall getMILISECONDTerminalRuleCall_6_0() { return cMILISECONDTerminalRuleCall_6_0; }
 		
-		//micros?=DECIMAL
-		public Assignment getMicrosAssignment_6_1() { return cMicrosAssignment_6_1; }
+		//milis?=DECIMAL
+		public Assignment getMilisAssignment_6_1() { return cMilisAssignment_6_1; }
 		
 		//DECIMAL
-		public RuleCall getMicrosDECIMALTerminalRuleCall_6_1_0() { return cMicrosDECIMALTerminalRuleCall_6_1_0; }
+		public RuleCall getMilisDECIMALTerminalRuleCall_6_1_0() { return cMilisDECIMALTerminalRuleCall_6_1_0; }
 		
-		//(NANOSECOND nanos?=DECIMAL)?
+		//(MICROSECOND micros?=DECIMAL)?
 		public Group getGroup_7() { return cGroup_7; }
 		
-		//NANOSECOND
-		public RuleCall getNANOSECONDTerminalRuleCall_7_0() { return cNANOSECONDTerminalRuleCall_7_0; }
+		//MICROSECOND
+		public RuleCall getMICROSECONDTerminalRuleCall_7_0() { return cMICROSECONDTerminalRuleCall_7_0; }
 		
-		//nanos?=DECIMAL
-		public Assignment getNanosAssignment_7_1() { return cNanosAssignment_7_1; }
+		//micros?=DECIMAL
+		public Assignment getMicrosAssignment_7_1() { return cMicrosAssignment_7_1; }
 		
 		//DECIMAL
-		public RuleCall getNanosDECIMALTerminalRuleCall_7_1_0() { return cNanosDECIMALTerminalRuleCall_7_1_0; }
+		public RuleCall getMicrosDECIMALTerminalRuleCall_7_1_0() { return cMicrosDECIMALTerminalRuleCall_7_1_0; }
+		
+		//(NANOSECOND nanos?=DECIMAL)?
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//NANOSECOND
+		public RuleCall getNANOSECONDTerminalRuleCall_8_0() { return cNANOSECONDTerminalRuleCall_8_0; }
+		
+		//nanos?=DECIMAL
+		public Assignment getNanosAssignment_8_1() { return cNanosAssignment_8_1; }
+		
+		//DECIMAL
+		public RuleCall getNanosDECIMALTerminalRuleCall_8_1_0() { return cNanosDECIMALTerminalRuleCall_8_1_0; }
 	}
 	
 	public class RegisterTypeElements extends AbstractEnumRuleElementFinder {
@@ -2944,8 +2964,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Body:
-	//	{Body} ";" | "{" sub+=Body* "}" | AssignStat | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat |
-	//	{Body} LoopStat | {Body} RestartStat | SetStateStat;
+	//	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
+	//	LoopStat | {Body} RestartStat | SetStateStat | Expression ";";
 	public BodyElements getBodyAccess() {
 		return pBody;
 	}
@@ -3546,7 +3566,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Time
 	//Time:
-	//	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+	//	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
 	//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
 	public TimeElements getTimeAccess() {
 		return pTime;

@@ -54,10 +54,10 @@ TimeoutFunction:
 	"timeout" time=Time body=Body;
 
 Body:
-	{Body} ";" | ("{" sub+=Body* "}") | AssignStat | IfElseStat |
+	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat |
 	SwitchStat | StartProcStat | StopProcStat |
 	ErrorStat | {Body} LoopStat |
-	{Body} RestartStat | SetStateStat;
+	{Body} RestartStat | SetStateStat | Expression ";";
 
 AssignStat:
 	varId=ID "=" expr=Expression ";";
@@ -175,12 +175,6 @@ Expression:
 	AssignmentExpression
 ;
 
-	// Highest priority
-//HighestPriorityExpression:
-//	TypeCast | PostfixOp | FunctionCall;
-//
-//TypeCast:
-//	"(" type=ReflexType ")" expr=Expression;
 enum InfixPostfixOp:
 	INC="++" | DEC="--";
 
@@ -234,12 +228,6 @@ terminal BIT_XOR:
 terminal BIT_AND:
 	"&";
 
-//terminal BIT_NOT:
-//	"~";
-//
-//terminal LOGICAL_NOT:
-//	"!";
-
 	// TODO: move to another file
 terminal VOID_C_TYPE:
 	"void";
@@ -283,7 +271,7 @@ terminal HEX:
 
 	// Time
 Time:
-	("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
+	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
 	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
 
 terminal LONG:

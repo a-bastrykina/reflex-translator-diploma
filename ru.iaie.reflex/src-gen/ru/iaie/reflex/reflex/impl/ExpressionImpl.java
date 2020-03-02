@@ -5,8 +5,6 @@ package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -17,7 +15,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
+public class ExpressionImpl extends BodyImpl implements Expression
 {
   /**
    * <!-- begin-user-doc -->

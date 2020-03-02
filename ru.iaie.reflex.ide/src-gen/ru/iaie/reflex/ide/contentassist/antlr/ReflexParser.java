@@ -47,7 +47,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getReflexTypeAccess().getAlternatives(), "rule__ReflexType__Alternatives");
 			builder.put(grammarAccess.getIntegerAccess().getValueAlternatives_0_0(), "rule__Integer__ValueAlternatives_0_0");
 			builder.put(grammarAccess.getIntegerAccess().getQualfierAlternatives_1_0(), "rule__Integer__QualfierAlternatives_1_0");
-			builder.put(grammarAccess.getTimeAccess().getAlternatives_0(), "rule__Time__Alternatives_0");
+			builder.put(grammarAccess.getTimeAccess().getAlternatives_1(), "rule__Time__Alternatives_1");
 			builder.put(grammarAccess.getRegisterTypeAccess().getAlternatives(), "rule__RegisterType__Alternatives");
 			builder.put(grammarAccess.getInfixPostfixOpAccess().getAlternatives(), "rule__InfixPostfixOp__Alternatives");
 			builder.put(grammarAccess.getAssignOperatorAccess().getAlternatives(), "rule__AssignOperator__Alternatives");
@@ -72,8 +72,10 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getGroup(), "rule__TimeoutFunction__Group__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_0(), "rule__Body__Group_0__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_1(), "rule__Body__Group_1__0");
+			builder.put(grammarAccess.getBodyAccess().getGroup_1_1(), "rule__Body__Group_1_1__0");
+			builder.put(grammarAccess.getBodyAccess().getGroup_7(), "rule__Body__Group_7__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_8(), "rule__Body__Group_8__0");
-			builder.put(grammarAccess.getBodyAccess().getGroup_9(), "rule__Body__Group_9__0");
+			builder.put(grammarAccess.getBodyAccess().getGroup_10(), "rule__Body__Group_10__0");
 			builder.put(grammarAccess.getAssignStatAccess().getGroup(), "rule__AssignStat__Group__0");
 			builder.put(grammarAccess.getIfElseStatAccess().getGroup(), "rule__IfElseStat__Group__0");
 			builder.put(grammarAccess.getIfElseStatAccess().getGroup_5(), "rule__IfElseStat__Group_5__0");
@@ -130,13 +132,13 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getReflexTypeAccess().getGroup_1(), "rule__ReflexType__Group_1__0");
 			builder.put(grammarAccess.getIntegerAccess().getGroup(), "rule__Integer__Group__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup(), "rule__Time__Group__0");
-			builder.put(grammarAccess.getTimeAccess().getGroup_1(), "rule__Time__Group_1__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_2(), "rule__Time__Group_2__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_3(), "rule__Time__Group_3__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_4(), "rule__Time__Group_4__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_5(), "rule__Time__Group_5__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_6(), "rule__Time__Group_6__0");
 			builder.put(grammarAccess.getTimeAccess().getGroup_7(), "rule__Time__Group_7__0");
+			builder.put(grammarAccess.getTimeAccess().getGroup_8(), "rule__Time__Group_8__0");
 			builder.put(grammarAccess.getProgramAccess().getNameAssignment_1(), "rule__Program__NameAssignment_1");
 			builder.put(grammarAccess.getProgramAccess().getTicksAssignment_3(), "rule__Program__TicksAssignment_3");
 			builder.put(grammarAccess.getProgramAccess().getConstsAssignment_4_0(), "rule__Program__ConstsAssignment_4_0");
@@ -168,7 +170,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateFunctionAccess().getBodyAssignment(), "rule__StateFunction__BodyAssignment");
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getTimeAssignment_1(), "rule__TimeoutFunction__TimeAssignment_1");
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getBodyAssignment_2(), "rule__TimeoutFunction__BodyAssignment_2");
-			builder.put(grammarAccess.getBodyAccess().getSubAssignment_1_1(), "rule__Body__SubAssignment_1_1");
+			builder.put(grammarAccess.getBodyAccess().getSubAssignment_1_1_1(), "rule__Body__SubAssignment_1_1_1");
 			builder.put(grammarAccess.getAssignStatAccess().getVarIdAssignment_0(), "rule__AssignStat__VarIdAssignment_0");
 			builder.put(grammarAccess.getAssignStatAccess().getExprAssignment_2(), "rule__AssignStat__ExprAssignment_2");
 			builder.put(grammarAccess.getIfElseStatAccess().getCondAssignment_2(), "rule__IfElseStat__CondAssignment_2");
@@ -232,13 +234,13 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCTypeAccess().getSignSpecAssignment_3_1(), "rule__CType__SignSpecAssignment_3_1");
 			builder.put(grammarAccess.getIntegerAccess().getValueAssignment_0(), "rule__Integer__ValueAssignment_0");
 			builder.put(grammarAccess.getIntegerAccess().getQualfierAssignment_1(), "rule__Integer__QualfierAssignment_1");
-			builder.put(grammarAccess.getTimeAccess().getDaysAssignment_1_1(), "rule__Time__DaysAssignment_1_1");
-			builder.put(grammarAccess.getTimeAccess().getHoursAssignment_2_1(), "rule__Time__HoursAssignment_2_1");
-			builder.put(grammarAccess.getTimeAccess().getMinutesAssignment_3_1(), "rule__Time__MinutesAssignment_3_1");
-			builder.put(grammarAccess.getTimeAccess().getSecondsAssignment_4_1(), "rule__Time__SecondsAssignment_4_1");
-			builder.put(grammarAccess.getTimeAccess().getMilisAssignment_5_1(), "rule__Time__MilisAssignment_5_1");
-			builder.put(grammarAccess.getTimeAccess().getMicrosAssignment_6_1(), "rule__Time__MicrosAssignment_6_1");
-			builder.put(grammarAccess.getTimeAccess().getNanosAssignment_7_1(), "rule__Time__NanosAssignment_7_1");
+			builder.put(grammarAccess.getTimeAccess().getDaysAssignment_2_1(), "rule__Time__DaysAssignment_2_1");
+			builder.put(grammarAccess.getTimeAccess().getHoursAssignment_3_1(), "rule__Time__HoursAssignment_3_1");
+			builder.put(grammarAccess.getTimeAccess().getMinutesAssignment_4_1(), "rule__Time__MinutesAssignment_4_1");
+			builder.put(grammarAccess.getTimeAccess().getSecondsAssignment_5_1(), "rule__Time__SecondsAssignment_5_1");
+			builder.put(grammarAccess.getTimeAccess().getMilisAssignment_6_1(), "rule__Time__MilisAssignment_6_1");
+			builder.put(grammarAccess.getTimeAccess().getMicrosAssignment_7_1(), "rule__Time__MicrosAssignment_7_1");
+			builder.put(grammarAccess.getTimeAccess().getNanosAssignment_8_1(), "rule__Time__NanosAssignment_8_1");
 		}
 	}
 	

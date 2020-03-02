@@ -70,7 +70,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sub" upperBound="-1" eType="#//Body"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssignStat" eSuperTypes="#//Body">
+  <eClassifiers xsi:type="ecore:EClass" name="AssignStat">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="varId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
@@ -198,7 +198,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Body"/>
   <eClassifiers xsi:type="ecore:EEnum" name="InfixPostfixOp">
     <eLiterals name="INC" literal="++"/>
     <eLiterals name="DEC" value="1" literal="--"/>

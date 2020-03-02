@@ -7,6 +7,11 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import ru.iaie.reflex.reflex.Program
+import ru.iaie.reflex.reflex.Process
+import java.util.HashMap
+import java.util.Map
+import ru.iaie.reflex.reflex.State
 
 /**
  * Generates code from your model files on save.
@@ -15,11 +20,77 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class ReflexGenerator extends AbstractGenerator {
 
+	private Map<String, String> procIdentifiers = new HashMap
+	private Map<String, String> stateIdentifiers = new HashMap
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		val program = resource.allContents.toIterable.filter(Program).get(0)
+		val fileContent = translateProgram(program)
+		fsa.generateFile('''«program.name.toLowerCase».c''', fileContent)
 	}
+
+	def generateProcessId(Process proc) {
+		val id = proc.name.toUpperCase
+		procIdentifiers.put(proc.name, id)
+		return id
+	}
+
+	def generateProcessesEnum(Program prog) {
+		return '''
+			enum «ReflexIdentifiers.PROC_ENUM_ID» {
+				«FOR proc : prog.processes»
+					«generateProcessId(proc)» ,
+				«ENDFOR»
+			}
+		'''
+	}
+
+	def generateStateId(Process proc, State state) {
+		val id = '''«proc.name.toUpperCase»_«state.name.toUpperCase»'''
+		stateIdentifiers.put('''«proc.name».«state.name»''', id)
+		return id
+	}
+
+	def generateStateEnum(Process proc) {
+		return '''
+			enum «proc.name»_STATES {
+				«FOR state : proc.states»
+					«generateStateId(proc, state)» ,
+				«ENDFOR»
+			}
+		'''
+	}
+
+	def generateTimers(Program prog) {
+		return '''
+			int «ReflexIdentifiers.TIMER_ARRAY_NAME»[«prog.processes.length»];
+		'''
+	}
+
+	def translateProgram(Program prog) {
+		return '''
+			#include <stdio.h>
+			#include <stdlib.h>
+			«translateProgramInfo(prog)»
+			int main() {
+				«FOR proc : prog.processes»
+					«translateProcess(proc)»
+				«ENDFOR»
+			}
+		'''
+	}
+
+	def translateProgramInfo(Program prog) {
+		return '''
+			«generateTimers(prog)»
+			«generateProcessesEnum(prog)»
+			«FOR proc : prog.processes»
+				«generateStateEnum(proc)»
+			«ENDFOR»
+		'''
+	}
+
+	def translateProcess(Process proc) {
+	}
+
 }

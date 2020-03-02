@@ -2413,7 +2413,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     declaredVariableEClass.getESuperTypes().add(this.getVariable());
     physicalVariableEClass.getESuperTypes().add(this.getDeclaredVariable());
     programVariableEClass.getESuperTypes().add(this.getDeclaredVariable());
-    assignStatEClass.getESuperTypes().add(this.getBody());
     ifElseStatEClass.getESuperTypes().add(this.getBody());
     switchStatEClass.getESuperTypes().add(this.getBody());
     startProcStatEClass.getESuperTypes().add(this.getBody());
@@ -2437,6 +2436,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     logicalAndExpressionEClass.getESuperTypes().add(this.getLogicalOrExpression());
     logicalOrExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
+    expressionEClass.getESuperTypes().add(this.getBody());
     cTypeEClass.getESuperTypes().add(this.getReflexType());
 
     // Initialize classes and features; add operations and parameters

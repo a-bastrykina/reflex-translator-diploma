@@ -17,25 +17,11 @@ import java.util.List;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class ReflexValidator extends AbstractReflexValidator {
-	private List<String> declaredProcesses = new ArrayList<>();
-//	public static final INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					ReflexPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
+
 	
 //	@Check
-//	public void checkIfProcessUnique(Process process) {
-//		if (!declaredProcesses.contains(process.getName())) {
-//			declaredProcesses.add(process.getName());
-//		} else {
+//	public void checkIdentifiers(Process process) {
 //			error("Process is already declared", ReflexPackage.Literals.PROCESS__NAME, process.getName());
-//		}
 //	}
 	
 }

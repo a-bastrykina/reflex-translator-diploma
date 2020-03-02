@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface AssignStat extends Body
+public interface AssignStat extends EObject
 {
   /**
    * Returns the value of the '<em><b>Var Id</b></em>' attribute.
