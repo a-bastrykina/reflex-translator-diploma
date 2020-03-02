@@ -10,20 +10,34 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AssignStat;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
+import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -31,6 +45,7 @@ import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
@@ -38,6 +53,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.reflex.Visibility;
 
@@ -235,14 +251,94 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createEnumMemberAdapter();
       }
       @Override
+      public Adapter caseInfixOp(InfixOp object)
+      {
+        return createInfixOpAdapter();
+      }
+      @Override
+      public Adapter casePostfixOp(PostfixOp object)
+      {
+        return createPostfixOpAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCall(FunctionCall object)
+      {
+        return createFunctionCallAdapter();
+      }
+      @Override
+      public Adapter casePrimaryExpression(PrimaryExpression object)
+      {
+        return createPrimaryExpressionAdapter();
+      }
+      @Override
+      public Adapter caseUnaryExpression(UnaryExpression object)
+      {
+        return createUnaryExpressionAdapter();
+      }
+      @Override
+      public Adapter caseCastExpression(CastExpression object)
+      {
+        return createCastExpressionAdapter();
+      }
+      @Override
+      public Adapter caseMultiplicativeExpression(MultiplicativeExpression object)
+      {
+        return createMultiplicativeExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAdditiveExpression(AdditiveExpression object)
+      {
+        return createAdditiveExpressionAdapter();
+      }
+      @Override
+      public Adapter caseShiftExpression(ShiftExpression object)
+      {
+        return createShiftExpressionAdapter();
+      }
+      @Override
+      public Adapter caseCompareExpression(CompareExpression object)
+      {
+        return createCompareExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEqualityExpression(EqualityExpression object)
+      {
+        return createEqualityExpressionAdapter();
+      }
+      @Override
+      public Adapter caseBitAndExpression(BitAndExpression object)
+      {
+        return createBitAndExpressionAdapter();
+      }
+      @Override
+      public Adapter caseBitXorExpression(BitXorExpression object)
+      {
+        return createBitXorExpressionAdapter();
+      }
+      @Override
+      public Adapter caseBitOrExpression(BitOrExpression object)
+      {
+        return createBitOrExpressionAdapter();
+      }
+      @Override
+      public Adapter caseLogicalAndExpression(LogicalAndExpression object)
+      {
+        return createLogicalAndExpressionAdapter();
+      }
+      @Override
+      public Adapter caseLogicalOrExpression(LogicalOrExpression object)
+      {
+        return createLogicalOrExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAssignmentExpression(AssignmentExpression object)
+      {
+        return createAssignmentExpressionAdapter();
+      }
+      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
-      }
-      @Override
-      public Adapter caseCondition(Condition object)
-      {
-        return createConditionAdapter();
       }
       @Override
       public Adapter caseCType(CType object)
@@ -677,6 +773,261 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.InfixOp <em>Infix Op</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.InfixOp
+   * @generated
+   */
+  public Adapter createInfixOpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.PostfixOp <em>Postfix Op</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.PostfixOp
+   * @generated
+   */
+  public Adapter createPostfixOpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.FunctionCall <em>Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.FunctionCall
+   * @generated
+   */
+  public Adapter createFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.PrimaryExpression <em>Primary Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.PrimaryExpression
+   * @generated
+   */
+  public Adapter createPrimaryExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.UnaryExpression <em>Unary Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.UnaryExpression
+   * @generated
+   */
+  public Adapter createUnaryExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.CastExpression <em>Cast Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.CastExpression
+   * @generated
+   */
+  public Adapter createCastExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.MultiplicativeExpression <em>Multiplicative Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.MultiplicativeExpression
+   * @generated
+   */
+  public Adapter createMultiplicativeExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.AdditiveExpression <em>Additive Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.AdditiveExpression
+   * @generated
+   */
+  public Adapter createAdditiveExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ShiftExpression <em>Shift Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.ShiftExpression
+   * @generated
+   */
+  public Adapter createShiftExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.CompareExpression <em>Compare Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.CompareExpression
+   * @generated
+   */
+  public Adapter createCompareExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.EqualityExpression <em>Equality Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.EqualityExpression
+   * @generated
+   */
+  public Adapter createEqualityExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.BitAndExpression <em>Bit And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.BitAndExpression
+   * @generated
+   */
+  public Adapter createBitAndExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.BitXorExpression <em>Bit Xor Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.BitXorExpression
+   * @generated
+   */
+  public Adapter createBitXorExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.BitOrExpression <em>Bit Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.BitOrExpression
+   * @generated
+   */
+  public Adapter createBitOrExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.LogicalAndExpression <em>Logical And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.LogicalAndExpression
+   * @generated
+   */
+  public Adapter createLogicalAndExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.LogicalOrExpression <em>Logical Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.LogicalOrExpression
+   * @generated
+   */
+  public Adapter createLogicalOrExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.AssignmentExpression <em>Assignment Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.AssignmentExpression
+   * @generated
+   */
+  public Adapter createAssignmentExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -687,21 +1038,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Condition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Condition
-   * @generated
-   */
-  public Adapter createConditionAdapter()
   {
     return null;
   }

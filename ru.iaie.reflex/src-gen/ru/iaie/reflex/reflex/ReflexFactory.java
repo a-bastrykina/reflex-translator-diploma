@@ -258,6 +258,159 @@ public interface ReflexFactory extends EFactory
   EnumMember createEnumMember();
 
   /**
+   * Returns a new object of class '<em>Infix Op</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Infix Op</em>'.
+   * @generated
+   */
+  InfixOp createInfixOp();
+
+  /**
+   * Returns a new object of class '<em>Postfix Op</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Postfix Op</em>'.
+   * @generated
+   */
+  PostfixOp createPostfixOp();
+
+  /**
+   * Returns a new object of class '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call</em>'.
+   * @generated
+   */
+  FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Primary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primary Expression</em>'.
+   * @generated
+   */
+  PrimaryExpression createPrimaryExpression();
+
+  /**
+   * Returns a new object of class '<em>Unary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unary Expression</em>'.
+   * @generated
+   */
+  UnaryExpression createUnaryExpression();
+
+  /**
+   * Returns a new object of class '<em>Cast Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cast Expression</em>'.
+   * @generated
+   */
+  CastExpression createCastExpression();
+
+  /**
+   * Returns a new object of class '<em>Multiplicative Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multiplicative Expression</em>'.
+   * @generated
+   */
+  MultiplicativeExpression createMultiplicativeExpression();
+
+  /**
+   * Returns a new object of class '<em>Additive Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Additive Expression</em>'.
+   * @generated
+   */
+  AdditiveExpression createAdditiveExpression();
+
+  /**
+   * Returns a new object of class '<em>Shift Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Shift Expression</em>'.
+   * @generated
+   */
+  ShiftExpression createShiftExpression();
+
+  /**
+   * Returns a new object of class '<em>Compare Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Compare Expression</em>'.
+   * @generated
+   */
+  CompareExpression createCompareExpression();
+
+  /**
+   * Returns a new object of class '<em>Equality Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equality Expression</em>'.
+   * @generated
+   */
+  EqualityExpression createEqualityExpression();
+
+  /**
+   * Returns a new object of class '<em>Bit And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bit And Expression</em>'.
+   * @generated
+   */
+  BitAndExpression createBitAndExpression();
+
+  /**
+   * Returns a new object of class '<em>Bit Xor Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bit Xor Expression</em>'.
+   * @generated
+   */
+  BitXorExpression createBitXorExpression();
+
+  /**
+   * Returns a new object of class '<em>Bit Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bit Or Expression</em>'.
+   * @generated
+   */
+  BitOrExpression createBitOrExpression();
+
+  /**
+   * Returns a new object of class '<em>Logical And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logical And Expression</em>'.
+   * @generated
+   */
+  LogicalAndExpression createLogicalAndExpression();
+
+  /**
+   * Returns a new object of class '<em>Logical Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logical Or Expression</em>'.
+   * @generated
+   */
+  LogicalOrExpression createLogicalOrExpression();
+
+  /**
+   * Returns a new object of class '<em>Assignment Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assignment Expression</em>'.
+   * @generated
+   */
+  AssignmentExpression createAssignmentExpression();
+
+  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -265,15 +418,6 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   Expression createExpression();
-
-  /**
-   * Returns a new object of class '<em>Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Condition</em>'.
-   * @generated
-   */
-  Condition createCondition();
 
   /**
    * Returns a new object of class '<em>CType</em>'.

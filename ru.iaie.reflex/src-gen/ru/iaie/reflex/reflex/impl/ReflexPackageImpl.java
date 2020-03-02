@@ -11,21 +11,41 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import ru.iaie.reflex.reflex.AdditiveExpression;
+import ru.iaie.reflex.reflex.AdditiveOp;
+import ru.iaie.reflex.reflex.AssignOperator;
 import ru.iaie.reflex.reflex.AssignStat;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareEqOp;
+import ru.iaie.reflex.reflex.CompareExpression;
+import ru.iaie.reflex.reflex.CompareOp;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.InfixPostfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
+import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
+import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
@@ -35,6 +55,8 @@ import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
+import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
@@ -42,6 +64,8 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
+import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.reflex.Visibility;
 
@@ -240,14 +264,126 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass expressionEClass = null;
+  private EClass infixOpEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass conditionEClass = null;
+  private EClass postfixOpEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass primaryExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unaryExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass castExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiplicativeExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass additiveExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass shiftExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass compareExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equalityExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bitAndExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bitXorExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bitOrExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass logicalAndExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass logicalOrExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignmentExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -283,6 +419,62 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EEnum registerTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum infixPostfixOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum assignOperatorEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum unaryOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum compareOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum compareEqOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum shiftOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum additiveOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum multiplicativeOpEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1262,9 +1454,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getExpression()
+  public EClass getInfixOp()
   {
-    return expressionEClass;
+    return infixOpEClass;
   }
 
   /**
@@ -1273,9 +1465,427 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getCondition()
+  public EAttribute getInfixOp_Op()
   {
-    return conditionEClass;
+    return (EAttribute)infixOpEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInfixOp_VarId()
+  {
+    return (EAttribute)infixOpEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPostfixOp()
+  {
+    return postfixOpEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPostfixOp_VarId()
+  {
+    return (EAttribute)postfixOpEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPostfixOp_Op()
+  {
+    return (EAttribute)postfixOpEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFunctionCall()
+  {
+    return functionCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFunctionCall_FuncId()
+  {
+    return (EAttribute)functionCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCall_Args()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPrimaryExpression()
+  {
+    return primaryExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPrimaryExpression_VarId()
+  {
+    return (EAttribute)primaryExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPrimaryExpression_Literal()
+  {
+    return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getUnaryExpression()
+  {
+    return unaryExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getUnaryExpression_UnaryOp()
+  {
+    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getUnaryExpression_Rest()
+  {
+    return (EReference)unaryExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCastExpression()
+  {
+    return castExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCastExpression_Type()
+  {
+    return (EReference)castExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMultiplicativeExpression()
+  {
+    return multiplicativeExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMultiplicativeExpression_MulOp()
+  {
+    return (EAttribute)multiplicativeExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAdditiveExpression()
+  {
+    return additiveExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAdditiveExpression_AddOp()
+  {
+    return (EAttribute)additiveExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAdditiveExpression_Rightt()
+  {
+    return (EReference)additiveExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getShiftExpression()
+  {
+    return shiftExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getShiftExpression_ShiftOp()
+  {
+    return (EAttribute)shiftExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCompareExpression()
+  {
+    return compareExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCompareExpression_CmpOp()
+  {
+    return (EAttribute)compareExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEqualityExpression()
+  {
+    return equalityExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEqualityExpression_EqCmpOp()
+  {
+    return (EAttribute)equalityExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getBitAndExpression()
+  {
+    return bitAndExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getBitXorExpression()
+  {
+    return bitXorExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getBitOrExpression()
+  {
+    return bitOrExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLogicalAndExpression()
+  {
+    return logicalAndExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLogicalOrExpression()
+  {
+    return logicalOrExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLogicalOrExpression_Left()
+  {
+    return (EReference)logicalOrExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLogicalOrExpression_Right()
+  {
+    return (EReference)logicalOrExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAssignmentExpression()
+  {
+    return assignmentExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAssignmentExpression_AssignVar()
+  {
+    return (EAttribute)assignmentExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAssignmentExpression_AssignOp()
+  {
+    return (EAttribute)assignmentExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAssignmentExpression_Expr()
+  {
+    return (EReference)assignmentExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExpression()
+  {
+    return expressionEClass;
   }
 
   /**
@@ -1449,6 +2059,94 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EEnum getInfixPostfixOp()
+  {
+    return infixPostfixOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getAssignOperator()
+  {
+    return assignOperatorEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getUnaryOp()
+  {
+    return unaryOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getCompareOp()
+  {
+    return compareOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getCompareEqOp()
+  {
+    return compareEqOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getShiftOp()
+  {
+    return shiftOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getAdditiveOp()
+  {
+    return additiveOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getMultiplicativeOp()
+  {
+    return multiplicativeOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getCTypeSignSpec()
   {
     return cTypeSignSpecEEnum;
@@ -1593,9 +2291,63 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(enumMemberEClass, ENUM_MEMBER__NAME);
     createEReference(enumMemberEClass, ENUM_MEMBER__VALUE);
 
-    expressionEClass = createEClass(EXPRESSION);
+    infixOpEClass = createEClass(INFIX_OP);
+    createEAttribute(infixOpEClass, INFIX_OP__OP);
+    createEAttribute(infixOpEClass, INFIX_OP__VAR_ID);
 
-    conditionEClass = createEClass(CONDITION);
+    postfixOpEClass = createEClass(POSTFIX_OP);
+    createEAttribute(postfixOpEClass, POSTFIX_OP__VAR_ID);
+    createEAttribute(postfixOpEClass, POSTFIX_OP__OP);
+
+    functionCallEClass = createEClass(FUNCTION_CALL);
+    createEAttribute(functionCallEClass, FUNCTION_CALL__FUNC_ID);
+    createEReference(functionCallEClass, FUNCTION_CALL__ARGS);
+
+    primaryExpressionEClass = createEClass(PRIMARY_EXPRESSION);
+    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__VAR_ID);
+    createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__LITERAL);
+
+    unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
+    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__UNARY_OP);
+    createEReference(unaryExpressionEClass, UNARY_EXPRESSION__REST);
+
+    castExpressionEClass = createEClass(CAST_EXPRESSION);
+    createEReference(castExpressionEClass, CAST_EXPRESSION__TYPE);
+
+    multiplicativeExpressionEClass = createEClass(MULTIPLICATIVE_EXPRESSION);
+    createEAttribute(multiplicativeExpressionEClass, MULTIPLICATIVE_EXPRESSION__MUL_OP);
+
+    additiveExpressionEClass = createEClass(ADDITIVE_EXPRESSION);
+    createEAttribute(additiveExpressionEClass, ADDITIVE_EXPRESSION__ADD_OP);
+    createEReference(additiveExpressionEClass, ADDITIVE_EXPRESSION__RIGHTT);
+
+    shiftExpressionEClass = createEClass(SHIFT_EXPRESSION);
+    createEAttribute(shiftExpressionEClass, SHIFT_EXPRESSION__SHIFT_OP);
+
+    compareExpressionEClass = createEClass(COMPARE_EXPRESSION);
+    createEAttribute(compareExpressionEClass, COMPARE_EXPRESSION__CMP_OP);
+
+    equalityExpressionEClass = createEClass(EQUALITY_EXPRESSION);
+    createEAttribute(equalityExpressionEClass, EQUALITY_EXPRESSION__EQ_CMP_OP);
+
+    bitAndExpressionEClass = createEClass(BIT_AND_EXPRESSION);
+
+    bitXorExpressionEClass = createEClass(BIT_XOR_EXPRESSION);
+
+    bitOrExpressionEClass = createEClass(BIT_OR_EXPRESSION);
+
+    logicalAndExpressionEClass = createEClass(LOGICAL_AND_EXPRESSION);
+
+    logicalOrExpressionEClass = createEClass(LOGICAL_OR_EXPRESSION);
+    createEReference(logicalOrExpressionEClass, LOGICAL_OR_EXPRESSION__LEFT);
+    createEReference(logicalOrExpressionEClass, LOGICAL_OR_EXPRESSION__RIGHT);
+
+    assignmentExpressionEClass = createEClass(ASSIGNMENT_EXPRESSION);
+    createEAttribute(assignmentExpressionEClass, ASSIGNMENT_EXPRESSION__ASSIGN_VAR);
+    createEAttribute(assignmentExpressionEClass, ASSIGNMENT_EXPRESSION__ASSIGN_OP);
+    createEReference(assignmentExpressionEClass, ASSIGNMENT_EXPRESSION__EXPR);
+
+    expressionEClass = createEClass(EXPRESSION);
 
     cTypeEClass = createEClass(CTYPE);
     createEAttribute(cTypeEClass, CTYPE__SIGN_SPEC);
@@ -1617,6 +2369,14 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     // Create enums
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
+    infixPostfixOpEEnum = createEEnum(INFIX_POSTFIX_OP);
+    assignOperatorEEnum = createEEnum(ASSIGN_OPERATOR);
+    unaryOpEEnum = createEEnum(UNARY_OP);
+    compareOpEEnum = createEEnum(COMPARE_OP);
+    compareEqOpEEnum = createEEnum(COMPARE_EQ_OP);
+    shiftOpEEnum = createEEnum(SHIFT_OP);
+    additiveOpEEnum = createEEnum(ADDITIVE_OP);
+    multiplicativeOpEEnum = createEEnum(MULTIPLICATIVE_OP);
     cTypeSignSpecEEnum = createEEnum(CTYPE_SIGN_SPEC);
   }
 
@@ -1660,9 +2420,24 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     stopProcStatEClass.getESuperTypes().add(this.getBody());
     errorStatEClass.getESuperTypes().add(this.getBody());
     setStateStatEClass.getESuperTypes().add(this.getBody());
+    infixOpEClass.getESuperTypes().add(this.getUnaryExpression());
+    postfixOpEClass.getESuperTypes().add(this.getUnaryExpression());
+    functionCallEClass.getESuperTypes().add(this.getUnaryExpression());
+    primaryExpressionEClass.getESuperTypes().add(this.getUnaryExpression());
+    unaryExpressionEClass.getESuperTypes().add(this.getCastExpression());
+    castExpressionEClass.getESuperTypes().add(this.getMultiplicativeExpression());
+    multiplicativeExpressionEClass.getESuperTypes().add(this.getAdditiveExpression());
+    additiveExpressionEClass.getESuperTypes().add(this.getShiftExpression());
+    shiftExpressionEClass.getESuperTypes().add(this.getCompareExpression());
+    compareExpressionEClass.getESuperTypes().add(this.getEqualityExpression());
+    equalityExpressionEClass.getESuperTypes().add(this.getBitAndExpression());
+    bitAndExpressionEClass.getESuperTypes().add(this.getBitXorExpression());
+    bitXorExpressionEClass.getESuperTypes().add(this.getBitOrExpression());
+    bitOrExpressionEClass.getESuperTypes().add(this.getLogicalAndExpression());
+    logicalAndExpressionEClass.getESuperTypes().add(this.getLogicalOrExpression());
+    logicalOrExpressionEClass.getESuperTypes().add(this.getAssignmentExpression());
+    assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
     cTypeEClass.getESuperTypes().add(this.getReflexType());
-    integerEClass.getESuperTypes().add(this.getExpression());
-    integerEClass.getESuperTypes().add(this.getCondition());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1726,7 +2501,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getAssignStat_Expr(), this.getExpression(), null, "expr", null, 0, 1, AssignStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifElseStatEClass, IfElseStat.class, "IfElseStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIfElseStat_Cond(), this.getCondition(), null, "cond", null, 0, 1, IfElseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfElseStat_Cond(), this.getExpression(), null, "cond", null, 0, 1, IfElseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfElseStat_Then(), this.getBody(), null, "then", null, 0, 1, IfElseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfElseStat_Else(), this.getBody(), null, "else", null, 0, 1, IfElseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1773,9 +2548,63 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getEnumMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumMember_Value(), this.getExpression(), null, "value", null, 0, 1, EnumMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(infixOpEClass, InfixOp.class, "InfixOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInfixOp_Op(), this.getInfixPostfixOp(), "op", null, 0, 1, InfixOp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInfixOp_VarId(), ecorePackage.getEString(), "varId", null, 0, 1, InfixOp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(postfixOpEClass, PostfixOp.class, "PostfixOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPostfixOp_VarId(), ecorePackage.getEString(), "varId", null, 0, 1, PostfixOp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPostfixOp_Op(), this.getInfixPostfixOp(), "op", null, 0, 1, PostfixOp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFunctionCall_FuncId(), ecorePackage.getEString(), "funcId", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionCall_Args(), this.getExpression(), null, "args", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(primaryExpressionEClass, PrimaryExpression.class, "PrimaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPrimaryExpression_VarId(), ecorePackage.getEString(), "varId", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPrimaryExpression_Literal(), this.getInteger(), null, "literal", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnaryExpression_UnaryOp(), this.getUnaryOp(), "unaryOp", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnaryExpression_Rest(), this.getCastExpression(), null, "rest", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(castExpressionEClass, CastExpression.class, "CastExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCastExpression_Type(), this.getReflexType(), null, "type", null, 0, 1, CastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(multiplicativeExpressionEClass, MultiplicativeExpression.class, "MultiplicativeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMultiplicativeExpression_MulOp(), this.getMultiplicativeOp(), "mulOp", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(additiveExpressionEClass, AdditiveExpression.class, "AdditiveExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAdditiveExpression_AddOp(), this.getAdditiveOp(), "addOp", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAdditiveExpression_Rightt(), this.getAdditiveExpression(), null, "rightt", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(shiftExpressionEClass, ShiftExpression.class, "ShiftExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getShiftExpression_ShiftOp(), this.getShiftOp(), "shiftOp", null, 0, 1, ShiftExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(compareExpressionEClass, CompareExpression.class, "CompareExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCompareExpression_CmpOp(), this.getCompareOp(), "cmpOp", null, 0, 1, CompareExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equalityExpressionEClass, EqualityExpression.class, "EqualityExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEqualityExpression_EqCmpOp(), this.getCompareEqOp(), "eqCmpOp", null, 0, 1, EqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(bitAndExpressionEClass, BitAndExpression.class, "BitAndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(bitXorExpressionEClass, BitXorExpression.class, "BitXorExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(bitOrExpressionEClass, BitOrExpression.class, "BitOrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(logicalAndExpressionEClass, LogicalAndExpression.class, "LogicalAndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(logicalOrExpressionEClass, LogicalOrExpression.class, "LogicalOrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLogicalOrExpression_Left(), this.getLogicalOrExpression(), null, "left", null, 0, 1, LogicalOrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLogicalOrExpression_Right(), this.getLogicalOrExpression(), null, "right", null, 0, 1, LogicalOrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(assignmentExpressionEClass, AssignmentExpression.class, "AssignmentExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAssignmentExpression_AssignVar(), ecorePackage.getEBoolean(), "assignVar", null, 0, 1, AssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssignmentExpression_AssignOp(), ecorePackage.getEBoolean(), "assignOp", null, 0, 1, AssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignmentExpression_Expr(), this.getExpression(), null, "expr", null, 0, 1, AssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(cTypeEClass, CType.class, "CType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCType_SignSpec(), ecorePackage.getEBoolean(), "signSpec", null, 0, 1, CType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1799,6 +2628,51 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");
     addEEnumLiteral(registerTypeEEnum, RegisterType.INPUT);
     addEEnumLiteral(registerTypeEEnum, RegisterType.OUTPUT);
+
+    initEEnum(infixPostfixOpEEnum, InfixPostfixOp.class, "InfixPostfixOp");
+    addEEnumLiteral(infixPostfixOpEEnum, InfixPostfixOp.INC);
+    addEEnumLiteral(infixPostfixOpEEnum, InfixPostfixOp.DEC);
+
+    initEEnum(assignOperatorEEnum, AssignOperator.class, "AssignOperator");
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.ASSIGN);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.MUL);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.DIV);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.MOD);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.SUB);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.CIN);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.COUT);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.BIT_AND);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.BIT_XOR);
+    addEEnumLiteral(assignOperatorEEnum, AssignOperator.BIT_OR);
+
+    initEEnum(unaryOpEEnum, UnaryOp.class, "UnaryOp");
+    addEEnumLiteral(unaryOpEEnum, UnaryOp.PLUS);
+    addEEnumLiteral(unaryOpEEnum, UnaryOp.MINUS);
+    addEEnumLiteral(unaryOpEEnum, UnaryOp.BIT_NOT);
+    addEEnumLiteral(unaryOpEEnum, UnaryOp.LOGICAL_NOT);
+
+    initEEnum(compareOpEEnum, CompareOp.class, "CompareOp");
+    addEEnumLiteral(compareOpEEnum, CompareOp.LESS);
+    addEEnumLiteral(compareOpEEnum, CompareOp.GREATER);
+    addEEnumLiteral(compareOpEEnum, CompareOp.LESS_EQ);
+    addEEnumLiteral(compareOpEEnum, CompareOp.GREATER_EQ);
+
+    initEEnum(compareEqOpEEnum, CompareEqOp.class, "CompareEqOp");
+    addEEnumLiteral(compareEqOpEEnum, CompareEqOp.EQ);
+    addEEnumLiteral(compareEqOpEEnum, CompareEqOp.NOT_EQ);
+
+    initEEnum(shiftOpEEnum, ShiftOp.class, "ShiftOp");
+    addEEnumLiteral(shiftOpEEnum, ShiftOp.LEFT_SHIFT);
+    addEEnumLiteral(shiftOpEEnum, ShiftOp.RIGHT_SHIFT);
+
+    initEEnum(additiveOpEEnum, AdditiveOp.class, "AdditiveOp");
+    addEEnumLiteral(additiveOpEEnum, AdditiveOp.PLUS);
+    addEEnumLiteral(additiveOpEEnum, AdditiveOp.MINUS);
+
+    initEEnum(multiplicativeOpEEnum, MultiplicativeOp.class, "MultiplicativeOp");
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MUL);
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.DIV);
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MOD);
 
     initEEnum(cTypeSignSpecEEnum, CTypeSignSpec.class, "CTypeSignSpec");
     addEEnumLiteral(cTypeSignSpecEEnum, CTypeSignSpec.SIGNED);

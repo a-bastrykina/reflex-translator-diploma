@@ -63,7 +63,7 @@ AssignStat:
 	varId=ID "=" expr=Expression ";";
 
 IfElseStat:
-	"if" "(" cond=Condition ")"
+	"if" "(" cond=Expression ")"
 	then=Body
 	(=> "else" else=Body)?;
 
@@ -113,16 +113,102 @@ Enum:
 EnumMember:
 	name=ID "=" value=Expression;
 
-	// TODO
-Expression:
-	Integer | ID;
+	// Expression	
+InfixOp:
+	op=InfixPostfixOp varId=ID;
 
-Condition:
-	Integer | ID;
+PostfixOp:
+	varId=ID op=InfixPostfixOp;
+
+FunctionCall:
+	funcId=ID "(" args+=Expression ("," args+=Expression)* ")";
+
+PrimaryExpression:
+	varId=ID | literal=Integer | "(" expr=Expression ")";
+
+UnaryExpression:
+	PrimaryExpression |
+	FunctionCall |
+	PostfixOp |
+	InfixOp |
+	unaryOp=UnaryOp rest=CastExpression;
+
+CastExpression:
+	UnaryExpression |
+	"(" type=ReflexType ")" right=CastExpression;
+
+MultiplicativeExpression:
+	CastExpression ({MultiplicativeExpression.left=current} mulOp=MultiplicativeOp right=CastExpression)*;
+
+AdditiveExpression:
+	MultiplicativeExpression ({AdditiveExpression.left=current} addOp=AdditiveOp rightt=AdditiveExpression)*;
+
+ShiftExpression:
+	AdditiveExpression ({ShiftExpression.left=current} shiftOp=ShiftOp right=ShiftExpression)*;
+
+CompareExpression:
+	ShiftExpression ({CompareExpression.left=current} cmpOp=CompareOp right=CompareExpression)*;
+
+EqualityExpression:
+	CompareExpression ({EqualityExpression.left=current} eqCmpOp=CompareEqOp right=EqualityExpression)*;
+
+BitAndExpression:
+	EqualityExpression ({BitAndExpression.left=current} BIT_AND right=BitAndExpression)*;
+
+BitXorExpression:
+	BitAndExpression ({BitXorExpression.left=current} BIT_XOR right=BitXorExpression)*;
+
+BitOrExpression:
+	BitXorExpression ({BitOrExpression.left=current} BIT_OR right=BitOrExpression)*;
+
+LogicalAndExpression:
+	BitOrExpression ({LogicalAndExpression.left=current} LOGICAL_AND right=LogicalAndExpression)*;
+
+LogicalOrExpression:
+	LogicalAndExpression ({LogicalOrExpression.left=current} LOGICAL_OR right=LogicalOrExpression)*;
+
+AssignmentExpression:
+	LogicalOrExpression |
+	assignVar?=ID assignOp?=AssignOperator expr=LogicalOrExpression;
+	
+Expression:
+	AssignmentExpression
+;
+
+	// Highest priority
+//HighestPriorityExpression:
+//	TypeCast | PostfixOp | FunctionCall;
+//
+//TypeCast:
+//	"(" type=ReflexType ")" expr=Expression;
+enum InfixPostfixOp:
+	INC="++" | DEC="--";
+
+enum AssignOperator:
+	ASSIGN="=" | MUL='*=' | DIV="/=" | MOD="+=" | SUB="-=" | CIN="<<=" | COUT=">>=" | BIT_AND="&=" | BIT_XOR="^=" |
+	BIT_OR="|=";
+
+enum UnaryOp:
+	PLUS="+" | MINUS="-" | BIT_NOT="~" | LOGICAL_NOT="!";
+
+enum CompareOp:
+	LESS="<" | GREATER=">" | LESS_EQ="=<" | GREATER_EQ=">=";
+
+enum CompareEqOp:
+	EQ="==" | NOT_EQ="!=";
+
+enum ShiftOp:
+	LEFT_SHIFT=">>" | RIGHT_SHIFT="<<";
+
+enum AdditiveOp:
+	PLUS="+" | MINUS="-";
+
+enum MultiplicativeOp:
+	MUL="*" | DIV="/" | MOD="%";
 
 CType:
-	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE |
-	{CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE | INT_C_TYPE | LONG_C_TYPE);
+	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE
+	| INT_C_TYPE | LONG_C_TYPE);
 
 enum CTypeSignSpec:
 	SIGNED="signed" | UNSIGNED="unsigned";
@@ -132,6 +218,27 @@ IntegerType:
 
 ReflexType:
 	CType | {ReflexType} BOOL_TYPE;
+
+terminal LOGICAL_OR:
+	"||";
+
+terminal LOGICAL_AND:
+	"&&";
+
+terminal BIT_OR:
+	"|";
+
+terminal BIT_XOR:
+	"^";
+
+terminal BIT_AND:
+	"&";
+
+//terminal BIT_NOT:
+//	"~";
+//
+//terminal LOGICAL_NOT:
+//	"!";
 
 	// TODO: move to another file
 terminal VOID_C_TYPE:
@@ -158,8 +265,7 @@ terminal BOOL_TYPE:
 terminal TACT:
 	"tact";
 
-// LITERALS
-
+	// LITERALS
 Integer:
 	value=(DECIMAL | OCTAL | HEX) qualfier?=(LONG | UNSIGNED)?;
 

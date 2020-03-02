@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.Body;
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -41,7 +41,7 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
    * @generated
    * @ordered
    */
-  protected Condition cond;
+  protected Expression cond;
 
   /**
    * The cached value of the '{@link #getThen() <em>Then</em>}' containment reference.
@@ -90,7 +90,7 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
    * @generated
    */
   @Override
-  public Condition getCond()
+  public Expression getCond()
   {
     return cond;
   }
@@ -100,9 +100,9 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCond(Condition newCond, NotificationChain msgs)
+  public NotificationChain basicSetCond(Expression newCond, NotificationChain msgs)
   {
-    Condition oldCond = cond;
+    Expression oldCond = cond;
     cond = newCond;
     if (eNotificationRequired())
     {
@@ -118,7 +118,7 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
    * @generated
    */
   @Override
-  public void setCond(Condition newCond)
+  public void setCond(Expression newCond)
   {
     if (newCond != cond)
     {
@@ -285,7 +285,7 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
     switch (featureID)
     {
       case ReflexPackage.IF_ELSE_STAT__COND:
-        setCond((Condition)newValue);
+        setCond((Expression)newValue);
         return;
       case ReflexPackage.IF_ELSE_STAT__THEN:
         setThen((Body)newValue);
@@ -308,7 +308,7 @@ public class IfElseStatImpl extends BodyImpl implements IfElseStat
     switch (featureID)
     {
       case ReflexPackage.IF_ELSE_STAT__COND:
-        setCond((Condition)null);
+        setCond((Expression)null);
         return;
       case ReflexPackage.IF_ELSE_STAT__THEN:
         setThen((Body)null);

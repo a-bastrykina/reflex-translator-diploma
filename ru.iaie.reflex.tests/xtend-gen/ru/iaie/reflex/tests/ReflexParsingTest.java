@@ -25,8 +25,11 @@ public class ReflexParsingTest {
   @Inject
   private ParseHelper<Program> parseHelper;
   
+  public void wrapInputToProgramDeclaration() {
+  }
+  
   @Test
-  public void loadModel() {
+  public void parseProgram() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Hello Xtext!");
@@ -43,5 +46,9 @@ public class ReflexParsingTest {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  @Test
+  public void parseProcess() {
   }
 }

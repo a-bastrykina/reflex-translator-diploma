@@ -29,12 +29,12 @@ public interface IfElseStat extends Body
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Cond</em>' containment reference.
-   * @see #setCond(Condition)
+   * @see #setCond(Expression)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getIfElseStat_Cond()
    * @model containment="true"
    * @generated
    */
-  Condition getCond();
+  Expression getCond();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.IfElseStat#getCond <em>Cond</em>}' containment reference.
@@ -44,7 +44,7 @@ public interface IfElseStat extends Body
    * @see #getCond()
    * @generated
    */
-  void setCond(Condition value);
+  void setCond(Expression value);
 
   /**
    * Returns the value of the '<em><b>Then</b></em>' containment reference.

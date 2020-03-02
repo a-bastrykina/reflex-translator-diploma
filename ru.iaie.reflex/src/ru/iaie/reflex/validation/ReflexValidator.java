@@ -6,7 +6,7 @@ package ru.iaie.reflex.validation;
 import org.eclipse.xtext.validation.Check;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.impl.ProcessImpl;
+import ru.iaie.reflex.reflex.Process;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +29,13 @@ public class ReflexValidator extends AbstractReflexValidator {
 //		}
 //	}
 	
-	@Check
-	public void checkIfProcessUnique(ProcessImpl process) {
-		if (!declaredProcesses.contains(process.getName())) {
-			declaredProcesses.add(process.getName());
-		} else {
-			error("Process is already declared", ReflexPackage.Literals.PROCESS__NAME, process.getName());
-		}
-	}
+//	@Check
+//	public void checkIfProcessUnique(Process process) {
+//		if (!declaredProcesses.contains(process.getName())) {
+//			declaredProcesses.add(process.getName());
+//		} else {
+//			error("Process is already declared", ReflexPackage.Literals.PROCESS__NAME, process.getName());
+//		}
+//	}
 	
 }

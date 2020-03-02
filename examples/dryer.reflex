@@ -1,0 +1,25 @@
+program Dryer {
+	input in 0x01 0x02 8;
+  	output out 0x03 0x04 16;
+	proc Dryer {
+		bool hands_under_dryer = {in[0]} local;
+		bool dryer_on = {out[0]} local;
+		state Wait {
+			if (hands_under_dryer) {
+				dryer_on = true;
+				set state Work;
+			} else {
+				set next;
+			}
+		}
+		state Work {
+			if (!hands_under_dryer) {
+				loop;
+			}
+			timeout 0t {
+				dryer_on = false;
+				set state Wait;
+			}
+		}
+	} 
+}

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -25,7 +26,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class IntegerImpl extends ExpressionImpl implements ru.iaie.reflex.reflex.Integer
+public class IntegerImpl extends MinimalEObjectImpl.Container implements ru.iaie.reflex.reflex.Integer
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

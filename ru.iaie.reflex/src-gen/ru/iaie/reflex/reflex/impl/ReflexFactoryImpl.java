@@ -12,21 +12,41 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import ru.iaie.reflex.reflex.AdditiveExpression;
+import ru.iaie.reflex.reflex.AdditiveOp;
+import ru.iaie.reflex.reflex.AssignOperator;
 import ru.iaie.reflex.reflex.AssignStat;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareEqOp;
+import ru.iaie.reflex.reflex.CompareExpression;
+import ru.iaie.reflex.reflex.CompareOp;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.InfixPostfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
+import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
+import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
@@ -36,6 +56,8 @@ import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
+import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
@@ -43,6 +65,8 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
+import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.reflex.Visibility;
 
@@ -124,8 +148,24 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.CONST: return createConst();
       case ReflexPackage.ENUM: return createEnum();
       case ReflexPackage.ENUM_MEMBER: return createEnumMember();
+      case ReflexPackage.INFIX_OP: return createInfixOp();
+      case ReflexPackage.POSTFIX_OP: return createPostfixOp();
+      case ReflexPackage.FUNCTION_CALL: return createFunctionCall();
+      case ReflexPackage.PRIMARY_EXPRESSION: return createPrimaryExpression();
+      case ReflexPackage.UNARY_EXPRESSION: return createUnaryExpression();
+      case ReflexPackage.CAST_EXPRESSION: return createCastExpression();
+      case ReflexPackage.MULTIPLICATIVE_EXPRESSION: return createMultiplicativeExpression();
+      case ReflexPackage.ADDITIVE_EXPRESSION: return createAdditiveExpression();
+      case ReflexPackage.SHIFT_EXPRESSION: return createShiftExpression();
+      case ReflexPackage.COMPARE_EXPRESSION: return createCompareExpression();
+      case ReflexPackage.EQUALITY_EXPRESSION: return createEqualityExpression();
+      case ReflexPackage.BIT_AND_EXPRESSION: return createBitAndExpression();
+      case ReflexPackage.BIT_XOR_EXPRESSION: return createBitXorExpression();
+      case ReflexPackage.BIT_OR_EXPRESSION: return createBitOrExpression();
+      case ReflexPackage.LOGICAL_AND_EXPRESSION: return createLogicalAndExpression();
+      case ReflexPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
+      case ReflexPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case ReflexPackage.EXPRESSION: return createExpression();
-      case ReflexPackage.CONDITION: return createCondition();
       case ReflexPackage.CTYPE: return createCType();
       case ReflexPackage.REFLEX_TYPE: return createReflexType();
       case ReflexPackage.INTEGER: return createInteger();
@@ -147,6 +187,22 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     {
       case ReflexPackage.REGISTER_TYPE:
         return createRegisterTypeFromString(eDataType, initialValue);
+      case ReflexPackage.INFIX_POSTFIX_OP:
+        return createInfixPostfixOpFromString(eDataType, initialValue);
+      case ReflexPackage.ASSIGN_OPERATOR:
+        return createAssignOperatorFromString(eDataType, initialValue);
+      case ReflexPackage.UNARY_OP:
+        return createUnaryOpFromString(eDataType, initialValue);
+      case ReflexPackage.COMPARE_OP:
+        return createCompareOpFromString(eDataType, initialValue);
+      case ReflexPackage.COMPARE_EQ_OP:
+        return createCompareEqOpFromString(eDataType, initialValue);
+      case ReflexPackage.SHIFT_OP:
+        return createShiftOpFromString(eDataType, initialValue);
+      case ReflexPackage.ADDITIVE_OP:
+        return createAdditiveOpFromString(eDataType, initialValue);
+      case ReflexPackage.MULTIPLICATIVE_OP:
+        return createMultiplicativeOpFromString(eDataType, initialValue);
       case ReflexPackage.CTYPE_SIGN_SPEC:
         return createCTypeSignSpecFromString(eDataType, initialValue);
       default:
@@ -166,6 +222,22 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     {
       case ReflexPackage.REGISTER_TYPE:
         return convertRegisterTypeToString(eDataType, instanceValue);
+      case ReflexPackage.INFIX_POSTFIX_OP:
+        return convertInfixPostfixOpToString(eDataType, instanceValue);
+      case ReflexPackage.ASSIGN_OPERATOR:
+        return convertAssignOperatorToString(eDataType, instanceValue);
+      case ReflexPackage.UNARY_OP:
+        return convertUnaryOpToString(eDataType, instanceValue);
+      case ReflexPackage.COMPARE_OP:
+        return convertCompareOpToString(eDataType, instanceValue);
+      case ReflexPackage.COMPARE_EQ_OP:
+        return convertCompareEqOpToString(eDataType, instanceValue);
+      case ReflexPackage.SHIFT_OP:
+        return convertShiftOpToString(eDataType, instanceValue);
+      case ReflexPackage.ADDITIVE_OP:
+        return convertAdditiveOpToString(eDataType, instanceValue);
+      case ReflexPackage.MULTIPLICATIVE_OP:
+        return convertMultiplicativeOpToString(eDataType, instanceValue);
       case ReflexPackage.CTYPE_SIGN_SPEC:
         return convertCTypeSignSpecToString(eDataType, instanceValue);
       default:
@@ -491,10 +563,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Expression createExpression()
+  public InfixOp createInfixOp()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    InfixOpImpl infixOp = new InfixOpImpl();
+    return infixOp;
   }
 
   /**
@@ -503,10 +575,202 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Condition createCondition()
+  public PostfixOp createPostfixOp()
   {
-    ConditionImpl condition = new ConditionImpl();
-    return condition;
+    PostfixOpImpl postfixOp = new PostfixOpImpl();
+    return postfixOp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PrimaryExpression createPrimaryExpression()
+  {
+    PrimaryExpressionImpl primaryExpression = new PrimaryExpressionImpl();
+    return primaryExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public UnaryExpression createUnaryExpression()
+  {
+    UnaryExpressionImpl unaryExpression = new UnaryExpressionImpl();
+    return unaryExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CastExpression createCastExpression()
+  {
+    CastExpressionImpl castExpression = new CastExpressionImpl();
+    return castExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MultiplicativeExpression createMultiplicativeExpression()
+  {
+    MultiplicativeExpressionImpl multiplicativeExpression = new MultiplicativeExpressionImpl();
+    return multiplicativeExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AdditiveExpression createAdditiveExpression()
+  {
+    AdditiveExpressionImpl additiveExpression = new AdditiveExpressionImpl();
+    return additiveExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ShiftExpression createShiftExpression()
+  {
+    ShiftExpressionImpl shiftExpression = new ShiftExpressionImpl();
+    return shiftExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CompareExpression createCompareExpression()
+  {
+    CompareExpressionImpl compareExpression = new CompareExpressionImpl();
+    return compareExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EqualityExpression createEqualityExpression()
+  {
+    EqualityExpressionImpl equalityExpression = new EqualityExpressionImpl();
+    return equalityExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BitAndExpression createBitAndExpression()
+  {
+    BitAndExpressionImpl bitAndExpression = new BitAndExpressionImpl();
+    return bitAndExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BitXorExpression createBitXorExpression()
+  {
+    BitXorExpressionImpl bitXorExpression = new BitXorExpressionImpl();
+    return bitXorExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BitOrExpression createBitOrExpression()
+  {
+    BitOrExpressionImpl bitOrExpression = new BitOrExpressionImpl();
+    return bitOrExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LogicalAndExpression createLogicalAndExpression()
+  {
+    LogicalAndExpressionImpl logicalAndExpression = new LogicalAndExpressionImpl();
+    return logicalAndExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LogicalOrExpression createLogicalOrExpression()
+  {
+    LogicalOrExpressionImpl logicalOrExpression = new LogicalOrExpressionImpl();
+    return logicalOrExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AssignmentExpression createAssignmentExpression()
+  {
+    AssignmentExpressionImpl assignmentExpression = new AssignmentExpressionImpl();
+    return assignmentExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -575,6 +839,182 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   public String convertRegisterTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InfixPostfixOp createInfixPostfixOpFromString(EDataType eDataType, String initialValue)
+  {
+    InfixPostfixOp result = InfixPostfixOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertInfixPostfixOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignOperator createAssignOperatorFromString(EDataType eDataType, String initialValue)
+  {
+    AssignOperator result = AssignOperator.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAssignOperatorToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UnaryOp createUnaryOpFromString(EDataType eDataType, String initialValue)
+  {
+    UnaryOp result = UnaryOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertUnaryOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CompareOp createCompareOpFromString(EDataType eDataType, String initialValue)
+  {
+    CompareOp result = CompareOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCompareOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CompareEqOp createCompareEqOpFromString(EDataType eDataType, String initialValue)
+  {
+    CompareEqOp result = CompareEqOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCompareEqOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ShiftOp createShiftOpFromString(EDataType eDataType, String initialValue)
+  {
+    ShiftOp result = ShiftOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertShiftOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditiveOp createAdditiveOpFromString(EDataType eDataType, String initialValue)
+  {
+    AdditiveOp result = AdditiveOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAdditiveOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MultiplicativeOp createMultiplicativeOpFromString(EDataType eDataType, String initialValue)
+  {
+    MultiplicativeOp result = MultiplicativeOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertMultiplicativeOpToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

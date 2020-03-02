@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface Integer extends Expression, Condition
+public interface Integer extends EObject
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

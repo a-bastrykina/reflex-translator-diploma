@@ -5,26 +5,24 @@ package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Condition</b></em>'.
+ * An implementation of the model object '<em><b>Bit And Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ConditionImpl extends MinimalEObjectImpl.Container implements Condition
+public class BitAndExpressionImpl extends BitXorExpressionImpl implements BitAndExpression
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ConditionImpl()
+  protected BitAndExpressionImpl()
   {
     super();
   }
@@ -37,7 +35,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.CONDITION;
+    return ReflexPackage.Literals.BIT_AND_EXPRESSION;
   }
 
-} //ConditionImpl
+} //BitAndExpressionImpl

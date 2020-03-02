@@ -8,20 +8,34 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AssignStat;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
-import ru.iaie.reflex.reflex.Condition;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
+import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -29,6 +43,7 @@ import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
@@ -36,6 +51,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.reflex.Visibility;
 
@@ -297,17 +313,276 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReflexPackage.INFIX_OP:
+      {
+        InfixOp infixOp = (InfixOp)theEObject;
+        T result = caseInfixOp(infixOp);
+        if (result == null) result = caseUnaryExpression(infixOp);
+        if (result == null) result = caseCastExpression(infixOp);
+        if (result == null) result = caseMultiplicativeExpression(infixOp);
+        if (result == null) result = caseAdditiveExpression(infixOp);
+        if (result == null) result = caseShiftExpression(infixOp);
+        if (result == null) result = caseCompareExpression(infixOp);
+        if (result == null) result = caseEqualityExpression(infixOp);
+        if (result == null) result = caseBitAndExpression(infixOp);
+        if (result == null) result = caseBitXorExpression(infixOp);
+        if (result == null) result = caseBitOrExpression(infixOp);
+        if (result == null) result = caseLogicalAndExpression(infixOp);
+        if (result == null) result = caseLogicalOrExpression(infixOp);
+        if (result == null) result = caseAssignmentExpression(infixOp);
+        if (result == null) result = caseExpression(infixOp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.POSTFIX_OP:
+      {
+        PostfixOp postfixOp = (PostfixOp)theEObject;
+        T result = casePostfixOp(postfixOp);
+        if (result == null) result = caseUnaryExpression(postfixOp);
+        if (result == null) result = caseCastExpression(postfixOp);
+        if (result == null) result = caseMultiplicativeExpression(postfixOp);
+        if (result == null) result = caseAdditiveExpression(postfixOp);
+        if (result == null) result = caseShiftExpression(postfixOp);
+        if (result == null) result = caseCompareExpression(postfixOp);
+        if (result == null) result = caseEqualityExpression(postfixOp);
+        if (result == null) result = caseBitAndExpression(postfixOp);
+        if (result == null) result = caseBitXorExpression(postfixOp);
+        if (result == null) result = caseBitOrExpression(postfixOp);
+        if (result == null) result = caseLogicalAndExpression(postfixOp);
+        if (result == null) result = caseLogicalOrExpression(postfixOp);
+        if (result == null) result = caseAssignmentExpression(postfixOp);
+        if (result == null) result = caseExpression(postfixOp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.FUNCTION_CALL:
+      {
+        FunctionCall functionCall = (FunctionCall)theEObject;
+        T result = caseFunctionCall(functionCall);
+        if (result == null) result = caseUnaryExpression(functionCall);
+        if (result == null) result = caseCastExpression(functionCall);
+        if (result == null) result = caseMultiplicativeExpression(functionCall);
+        if (result == null) result = caseAdditiveExpression(functionCall);
+        if (result == null) result = caseShiftExpression(functionCall);
+        if (result == null) result = caseCompareExpression(functionCall);
+        if (result == null) result = caseEqualityExpression(functionCall);
+        if (result == null) result = caseBitAndExpression(functionCall);
+        if (result == null) result = caseBitXorExpression(functionCall);
+        if (result == null) result = caseBitOrExpression(functionCall);
+        if (result == null) result = caseLogicalAndExpression(functionCall);
+        if (result == null) result = caseLogicalOrExpression(functionCall);
+        if (result == null) result = caseAssignmentExpression(functionCall);
+        if (result == null) result = caseExpression(functionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.PRIMARY_EXPRESSION:
+      {
+        PrimaryExpression primaryExpression = (PrimaryExpression)theEObject;
+        T result = casePrimaryExpression(primaryExpression);
+        if (result == null) result = caseUnaryExpression(primaryExpression);
+        if (result == null) result = caseCastExpression(primaryExpression);
+        if (result == null) result = caseMultiplicativeExpression(primaryExpression);
+        if (result == null) result = caseAdditiveExpression(primaryExpression);
+        if (result == null) result = caseShiftExpression(primaryExpression);
+        if (result == null) result = caseCompareExpression(primaryExpression);
+        if (result == null) result = caseEqualityExpression(primaryExpression);
+        if (result == null) result = caseBitAndExpression(primaryExpression);
+        if (result == null) result = caseBitXorExpression(primaryExpression);
+        if (result == null) result = caseBitOrExpression(primaryExpression);
+        if (result == null) result = caseLogicalAndExpression(primaryExpression);
+        if (result == null) result = caseLogicalOrExpression(primaryExpression);
+        if (result == null) result = caseAssignmentExpression(primaryExpression);
+        if (result == null) result = caseExpression(primaryExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.UNARY_EXPRESSION:
+      {
+        UnaryExpression unaryExpression = (UnaryExpression)theEObject;
+        T result = caseUnaryExpression(unaryExpression);
+        if (result == null) result = caseCastExpression(unaryExpression);
+        if (result == null) result = caseMultiplicativeExpression(unaryExpression);
+        if (result == null) result = caseAdditiveExpression(unaryExpression);
+        if (result == null) result = caseShiftExpression(unaryExpression);
+        if (result == null) result = caseCompareExpression(unaryExpression);
+        if (result == null) result = caseEqualityExpression(unaryExpression);
+        if (result == null) result = caseBitAndExpression(unaryExpression);
+        if (result == null) result = caseBitXorExpression(unaryExpression);
+        if (result == null) result = caseBitOrExpression(unaryExpression);
+        if (result == null) result = caseLogicalAndExpression(unaryExpression);
+        if (result == null) result = caseLogicalOrExpression(unaryExpression);
+        if (result == null) result = caseAssignmentExpression(unaryExpression);
+        if (result == null) result = caseExpression(unaryExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.CAST_EXPRESSION:
+      {
+        CastExpression castExpression = (CastExpression)theEObject;
+        T result = caseCastExpression(castExpression);
+        if (result == null) result = caseMultiplicativeExpression(castExpression);
+        if (result == null) result = caseAdditiveExpression(castExpression);
+        if (result == null) result = caseShiftExpression(castExpression);
+        if (result == null) result = caseCompareExpression(castExpression);
+        if (result == null) result = caseEqualityExpression(castExpression);
+        if (result == null) result = caseBitAndExpression(castExpression);
+        if (result == null) result = caseBitXorExpression(castExpression);
+        if (result == null) result = caseBitOrExpression(castExpression);
+        if (result == null) result = caseLogicalAndExpression(castExpression);
+        if (result == null) result = caseLogicalOrExpression(castExpression);
+        if (result == null) result = caseAssignmentExpression(castExpression);
+        if (result == null) result = caseExpression(castExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.MULTIPLICATIVE_EXPRESSION:
+      {
+        MultiplicativeExpression multiplicativeExpression = (MultiplicativeExpression)theEObject;
+        T result = caseMultiplicativeExpression(multiplicativeExpression);
+        if (result == null) result = caseAdditiveExpression(multiplicativeExpression);
+        if (result == null) result = caseShiftExpression(multiplicativeExpression);
+        if (result == null) result = caseCompareExpression(multiplicativeExpression);
+        if (result == null) result = caseEqualityExpression(multiplicativeExpression);
+        if (result == null) result = caseBitAndExpression(multiplicativeExpression);
+        if (result == null) result = caseBitXorExpression(multiplicativeExpression);
+        if (result == null) result = caseBitOrExpression(multiplicativeExpression);
+        if (result == null) result = caseLogicalAndExpression(multiplicativeExpression);
+        if (result == null) result = caseLogicalOrExpression(multiplicativeExpression);
+        if (result == null) result = caseAssignmentExpression(multiplicativeExpression);
+        if (result == null) result = caseExpression(multiplicativeExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.ADDITIVE_EXPRESSION:
+      {
+        AdditiveExpression additiveExpression = (AdditiveExpression)theEObject;
+        T result = caseAdditiveExpression(additiveExpression);
+        if (result == null) result = caseShiftExpression(additiveExpression);
+        if (result == null) result = caseCompareExpression(additiveExpression);
+        if (result == null) result = caseEqualityExpression(additiveExpression);
+        if (result == null) result = caseBitAndExpression(additiveExpression);
+        if (result == null) result = caseBitXorExpression(additiveExpression);
+        if (result == null) result = caseBitOrExpression(additiveExpression);
+        if (result == null) result = caseLogicalAndExpression(additiveExpression);
+        if (result == null) result = caseLogicalOrExpression(additiveExpression);
+        if (result == null) result = caseAssignmentExpression(additiveExpression);
+        if (result == null) result = caseExpression(additiveExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.SHIFT_EXPRESSION:
+      {
+        ShiftExpression shiftExpression = (ShiftExpression)theEObject;
+        T result = caseShiftExpression(shiftExpression);
+        if (result == null) result = caseCompareExpression(shiftExpression);
+        if (result == null) result = caseEqualityExpression(shiftExpression);
+        if (result == null) result = caseBitAndExpression(shiftExpression);
+        if (result == null) result = caseBitXorExpression(shiftExpression);
+        if (result == null) result = caseBitOrExpression(shiftExpression);
+        if (result == null) result = caseLogicalAndExpression(shiftExpression);
+        if (result == null) result = caseLogicalOrExpression(shiftExpression);
+        if (result == null) result = caseAssignmentExpression(shiftExpression);
+        if (result == null) result = caseExpression(shiftExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.COMPARE_EXPRESSION:
+      {
+        CompareExpression compareExpression = (CompareExpression)theEObject;
+        T result = caseCompareExpression(compareExpression);
+        if (result == null) result = caseEqualityExpression(compareExpression);
+        if (result == null) result = caseBitAndExpression(compareExpression);
+        if (result == null) result = caseBitXorExpression(compareExpression);
+        if (result == null) result = caseBitOrExpression(compareExpression);
+        if (result == null) result = caseLogicalAndExpression(compareExpression);
+        if (result == null) result = caseLogicalOrExpression(compareExpression);
+        if (result == null) result = caseAssignmentExpression(compareExpression);
+        if (result == null) result = caseExpression(compareExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.EQUALITY_EXPRESSION:
+      {
+        EqualityExpression equalityExpression = (EqualityExpression)theEObject;
+        T result = caseEqualityExpression(equalityExpression);
+        if (result == null) result = caseBitAndExpression(equalityExpression);
+        if (result == null) result = caseBitXorExpression(equalityExpression);
+        if (result == null) result = caseBitOrExpression(equalityExpression);
+        if (result == null) result = caseLogicalAndExpression(equalityExpression);
+        if (result == null) result = caseLogicalOrExpression(equalityExpression);
+        if (result == null) result = caseAssignmentExpression(equalityExpression);
+        if (result == null) result = caseExpression(equalityExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.BIT_AND_EXPRESSION:
+      {
+        BitAndExpression bitAndExpression = (BitAndExpression)theEObject;
+        T result = caseBitAndExpression(bitAndExpression);
+        if (result == null) result = caseBitXorExpression(bitAndExpression);
+        if (result == null) result = caseBitOrExpression(bitAndExpression);
+        if (result == null) result = caseLogicalAndExpression(bitAndExpression);
+        if (result == null) result = caseLogicalOrExpression(bitAndExpression);
+        if (result == null) result = caseAssignmentExpression(bitAndExpression);
+        if (result == null) result = caseExpression(bitAndExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.BIT_XOR_EXPRESSION:
+      {
+        BitXorExpression bitXorExpression = (BitXorExpression)theEObject;
+        T result = caseBitXorExpression(bitXorExpression);
+        if (result == null) result = caseBitOrExpression(bitXorExpression);
+        if (result == null) result = caseLogicalAndExpression(bitXorExpression);
+        if (result == null) result = caseLogicalOrExpression(bitXorExpression);
+        if (result == null) result = caseAssignmentExpression(bitXorExpression);
+        if (result == null) result = caseExpression(bitXorExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.BIT_OR_EXPRESSION:
+      {
+        BitOrExpression bitOrExpression = (BitOrExpression)theEObject;
+        T result = caseBitOrExpression(bitOrExpression);
+        if (result == null) result = caseLogicalAndExpression(bitOrExpression);
+        if (result == null) result = caseLogicalOrExpression(bitOrExpression);
+        if (result == null) result = caseAssignmentExpression(bitOrExpression);
+        if (result == null) result = caseExpression(bitOrExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.LOGICAL_AND_EXPRESSION:
+      {
+        LogicalAndExpression logicalAndExpression = (LogicalAndExpression)theEObject;
+        T result = caseLogicalAndExpression(logicalAndExpression);
+        if (result == null) result = caseLogicalOrExpression(logicalAndExpression);
+        if (result == null) result = caseAssignmentExpression(logicalAndExpression);
+        if (result == null) result = caseExpression(logicalAndExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.LOGICAL_OR_EXPRESSION:
+      {
+        LogicalOrExpression logicalOrExpression = (LogicalOrExpression)theEObject;
+        T result = caseLogicalOrExpression(logicalOrExpression);
+        if (result == null) result = caseAssignmentExpression(logicalOrExpression);
+        if (result == null) result = caseExpression(logicalOrExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.ASSIGNMENT_EXPRESSION:
+      {
+        AssignmentExpression assignmentExpression = (AssignmentExpression)theEObject;
+        T result = caseAssignmentExpression(assignmentExpression);
+        if (result == null) result = caseExpression(assignmentExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReflexPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.CONDITION:
-      {
-        Condition condition = (Condition)theEObject;
-        T result = caseCondition(condition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -330,8 +605,6 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ru.iaie.reflex.reflex.Integer integer = (ru.iaie.reflex.reflex.Integer)theEObject;
         T result = caseInteger(integer);
-        if (result == null) result = caseExpression(integer);
-        if (result == null) result = caseCondition(integer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -763,6 +1036,278 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Infix Op</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Infix Op</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInfixOp(InfixOp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Postfix Op</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Postfix Op</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePostfixOp(PostfixOp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCall(FunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primary Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimaryExpression(PrimaryExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unary Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnaryExpression(UnaryExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cast Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cast Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCastExpression(CastExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Multiplicative Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multiplicative Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiplicativeExpression(MultiplicativeExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Additive Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Additive Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdditiveExpression(AdditiveExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Shift Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Shift Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseShiftExpression(ShiftExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Compare Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Compare Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCompareExpression(CompareExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equality Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equality Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEqualityExpression(EqualityExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bit And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bit And Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBitAndExpression(BitAndExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bit Xor Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bit Xor Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBitXorExpression(BitXorExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bit Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bit Or Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBitOrExpression(BitOrExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logical And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logical And Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicalAndExpression(LogicalAndExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logical Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logical Or Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicalOrExpression(LogicalOrExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssignmentExpression(AssignmentExpression object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -774,22 +1319,6 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCondition(Condition object)
   {
     return null;
   }

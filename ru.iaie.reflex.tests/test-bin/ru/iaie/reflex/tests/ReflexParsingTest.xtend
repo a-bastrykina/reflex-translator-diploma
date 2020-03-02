@@ -18,8 +18,12 @@ class ReflexParsingTest {
 	@Inject
 	ParseHelper<Program> parseHelper
 	
+	def void wrapInputToProgramDeclaration() {
+		
+	}
+	
 	@Test
-	def void loadModel() {
+	def void parseProgram() {
 		val result = parseHelper.parse('''
 			Hello Xtext!
 		''')
@@ -27,4 +31,10 @@ class ReflexParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 	}
+	
+	@Test
+	def void parseProcess() {
+		
+	}
+	
 }

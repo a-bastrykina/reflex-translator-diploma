@@ -37,7 +37,15 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getBOOL_TYPERule())
+		if (ruleCall.getRule() == grammarAccess.getAssignOperatorRule())
+			return getAssignOperatorToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBIT_ANDRule())
+			return getBIT_ANDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBIT_ORRule())
+			return getBIT_ORToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBIT_XORRule())
+			return getBIT_XORToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBOOL_TYPERule())
 			return getBOOL_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCTypeSignSpecRule())
 			return getCTypeSignSpecToken(semanticObject, ruleCall, node);
@@ -55,6 +63,10 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getIDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINT_C_TYPERule())
 			return getINT_C_TYPEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ANDRule())
+			return getLOGICAL_ANDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ORRule())
+			return getLOGICAL_ORToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLONGRule())
 			return getLONGToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLONG_C_TYPERule())
@@ -82,6 +94,47 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		else if (ruleCall.getRule() == grammarAccess.getVOID_C_TYPERule())
 			return getVOID_C_TYPEToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * enum AssignOperator:
+	 * 	ASSIGN="=" | MUL='*=' | DIV="/=" | MOD="+=" | SUB="-=" | CIN="<<=" | COUT=">>=" | BIT_AND="&=" | BIT_XOR="^=" |
+	 * 	BIT_OR="|=";
+	 */
+	protected String getAssignOperatorToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "";
+	}
+	
+	/**
+	 * terminal BIT_AND:
+	 * 	"&";
+	 */
+	protected String getBIT_ANDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "&";
+	}
+	
+	/**
+	 * terminal BIT_OR:
+	 * 	"|";
+	 */
+	protected String getBIT_ORToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "|";
+	}
+	
+	/**
+	 * terminal BIT_XOR:
+	 * 	"^";
+	 */
+	protected String getBIT_XORToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "^";
 	}
 	
 	/**
@@ -171,6 +224,26 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "int";
+	}
+	
+	/**
+	 * terminal LOGICAL_AND:
+	 * 	"&&";
+	 */
+	protected String getLOGICAL_ANDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "&&";
+	}
+	
+	/**
+	 * terminal LOGICAL_OR:
+	 * 	"||";
+	 */
+	protected String getLOGICAL_ORToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "||";
 	}
 	
 	/**

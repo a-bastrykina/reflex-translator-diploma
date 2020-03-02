@@ -10,6 +10,51 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/INPUT"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/OUTPUT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//InfixPostfixOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//InfixPostfixOp/INC"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//InfixPostfixOp/DEC"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//AssignOperator">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/ASSIGN"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/MUL"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/DIV"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/MOD"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/SUB"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/CIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/COUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/BIT_AND"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/BIT_XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AssignOperator/BIT_OR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//UnaryOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//UnaryOp/PLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//UnaryOp/MINUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//UnaryOp/BIT_NOT"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//UnaryOp/LOGICAL_NOT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//CompareOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareOp/LESS"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareOp/GREATER"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareOp/LESS_EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareOp/GREATER_EQ"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//CompareEqOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareEqOp/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CompareEqOp/NOT_EQ"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//ShiftOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//ShiftOp/LEFT_SHIFT"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//ShiftOp/RIGHT_SHIFT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//AdditiveOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AdditiveOp/PLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//AdditiveOp/MINUS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//MultiplicativeOp">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/MUL"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/DIV"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/MOD"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//CTypeSignSpec">
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/SIGNED"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/UNSIGNED"/>
@@ -121,8 +166,59 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//EnumMember/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//EnumMember/value"/>
     </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//InfixOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//InfixOp/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//InfixOp/varId"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//PostfixOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PostfixOp/varId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PostfixOp/op"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//FunctionCall">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//FunctionCall/funcId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//FunctionCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//PrimaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/varId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/literal"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//UnaryExpression/unaryOp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//UnaryExpression/rest"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//CastExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CastExpression/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//MultiplicativeExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//MultiplicativeExpression/mulOp"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//AdditiveExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AdditiveExpression/addOp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AdditiveExpression/rightt"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//ShiftExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ShiftExpression/shiftOp"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//CompareExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CompareExpression/cmpOp"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//EqualityExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//EqualityExpression/eqCmpOp"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//BitAndExpression"/>
+    <genClasses ecoreClass="Reflex.ecore#//BitXorExpression"/>
+    <genClasses ecoreClass="Reflex.ecore#//BitOrExpression"/>
+    <genClasses ecoreClass="Reflex.ecore#//LogicalAndExpression"/>
+    <genClasses ecoreClass="Reflex.ecore#//LogicalOrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//LogicalOrExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//LogicalOrExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//AssignmentExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignmentExpression/assignVar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignmentExpression/assignOp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AssignmentExpression/expr"/>
+    </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Expression"/>
-    <genClasses ecoreClass="Reflex.ecore#//Condition"/>
     <genClasses ecoreClass="Reflex.ecore#//CType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CType/signSpec"/>
     </genClasses>

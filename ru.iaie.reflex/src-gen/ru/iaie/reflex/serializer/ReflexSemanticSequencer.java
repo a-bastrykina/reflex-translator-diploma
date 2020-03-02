@@ -14,17 +14,32 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AssignStat;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
+import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -32,6 +47,7 @@ import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateFunction;
@@ -39,6 +55,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.Visibility;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
 
@@ -56,8 +73,23 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ReflexPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case ReflexPackage.ADDITIVE_EXPRESSION:
+				sequence_AdditiveExpression(context, (AdditiveExpression) semanticObject); 
+				return; 
 			case ReflexPackage.ASSIGN_STAT:
 				sequence_AssignStat(context, (AssignStat) semanticObject); 
+				return; 
+			case ReflexPackage.ASSIGNMENT_EXPRESSION:
+				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
+				return; 
+			case ReflexPackage.BIT_AND_EXPRESSION:
+				sequence_BitAndExpression(context, (BitAndExpression) semanticObject); 
+				return; 
+			case ReflexPackage.BIT_OR_EXPRESSION:
+				sequence_BitOrExpression(context, (BitOrExpression) semanticObject); 
+				return; 
+			case ReflexPackage.BIT_XOR_EXPRESSION:
+				sequence_BitXorExpression(context, (BitXorExpression) semanticObject); 
 				return; 
 			case ReflexPackage.BODY:
 				sequence_Body(context, (Body) semanticObject); 
@@ -68,6 +100,12 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.CASE_STAT:
 				sequence_CaseStat(context, (CaseStat) semanticObject); 
 				return; 
+			case ReflexPackage.CAST_EXPRESSION:
+				sequence_CastExpression(context, (CastExpression) semanticObject); 
+				return; 
+			case ReflexPackage.COMPARE_EXPRESSION:
+				sequence_CompareExpression(context, (CompareExpression) semanticObject); 
+				return; 
 			case ReflexPackage.CONST:
 				sequence_Const(context, (Const) semanticObject); 
 				return; 
@@ -77,11 +115,17 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.ENUM_MEMBER:
 				sequence_EnumMember(context, (EnumMember) semanticObject); 
 				return; 
+			case ReflexPackage.EQUALITY_EXPRESSION:
+				sequence_EqualityExpression(context, (EqualityExpression) semanticObject); 
+				return; 
 			case ReflexPackage.ERROR_STAT:
 				sequence_ErrorStat(context, (ErrorStat) semanticObject); 
 				return; 
 			case ReflexPackage.FUNCTION:
 				sequence_Function(context, (Function) semanticObject); 
+				return; 
+			case ReflexPackage.FUNCTION_CALL:
+				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
 				return; 
 			case ReflexPackage.IF_ELSE_STAT:
 				sequence_IfElseStat(context, (IfElseStat) semanticObject); 
@@ -89,8 +133,20 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.IMPORTED_VARIABLE:
 				sequence_ImportedVariable(context, (ImportedVariable) semanticObject); 
 				return; 
+			case ReflexPackage.INFIX_OP:
+				sequence_InfixOp(context, (InfixOp) semanticObject); 
+				return; 
 			case ReflexPackage.INTEGER:
 				sequence_Integer(context, (ru.iaie.reflex.reflex.Integer) semanticObject); 
+				return; 
+			case ReflexPackage.LOGICAL_AND_EXPRESSION:
+				sequence_LogicalAndExpression(context, (LogicalAndExpression) semanticObject); 
+				return; 
+			case ReflexPackage.LOGICAL_OR_EXPRESSION:
+				sequence_LogicalOrExpression(context, (LogicalOrExpression) semanticObject); 
+				return; 
+			case ReflexPackage.MULTIPLICATIVE_EXPRESSION:
+				sequence_MultiplicativeExpression(context, (MultiplicativeExpression) semanticObject); 
 				return; 
 			case ReflexPackage.PHYSICAL_VARIABLE:
 				if (rule == grammarAccess.getVariableRule()
@@ -103,6 +159,12 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case ReflexPackage.POSTFIX_OP:
+				sequence_PostfixOp(context, (PostfixOp) semanticObject); 
+				return; 
+			case ReflexPackage.PRIMARY_EXPRESSION:
+				sequence_PrimaryExpression(context, (PrimaryExpression) semanticObject); 
+				return; 
 			case ReflexPackage.PROCESS:
 				sequence_Process(context, (ru.iaie.reflex.reflex.Process) semanticObject); 
 				return; 
@@ -132,6 +194,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.SET_STATE_STAT:
 				sequence_SetStateStat(context, (SetStateStat) semanticObject); 
 				return; 
+			case ReflexPackage.SHIFT_EXPRESSION:
+				sequence_ShiftExpression(context, (ShiftExpression) semanticObject); 
+				return; 
 			case ReflexPackage.START_PROC_STAT:
 				sequence_StartProcStat(context, (StartProcStat) semanticObject); 
 				return; 
@@ -153,6 +218,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.TIMEOUT_FUNCTION:
 				sequence_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
 				return; 
+			case ReflexPackage.UNARY_EXPRESSION:
+				sequence_UnaryExpression(context, (UnaryExpression) semanticObject); 
+				return; 
 			case ReflexPackage.VISIBILITY:
 				sequence_Visibility(context, (Visibility) semanticObject); 
 				return; 
@@ -160,6 +228,49 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AdditiveExpression returns AdditiveExpression
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns AdditiveExpression
+	 *     ShiftExpression returns AdditiveExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns AdditiveExpression
+	 *     CompareExpression returns AdditiveExpression
+	 *     CompareExpression.CompareExpression_1_0 returns AdditiveExpression
+	 *     EqualityExpression returns AdditiveExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns AdditiveExpression
+	 *     BitAndExpression returns AdditiveExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns AdditiveExpression
+	 *     BitXorExpression returns AdditiveExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns AdditiveExpression
+	 *     BitOrExpression returns AdditiveExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns AdditiveExpression
+	 *     LogicalAndExpression returns AdditiveExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns AdditiveExpression
+	 *     LogicalOrExpression returns AdditiveExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns AdditiveExpression
+	 *     AssignmentExpression returns AdditiveExpression
+	 *     Expression returns AdditiveExpression
+	 *
+	 * Constraint:
+	 *     (left=AdditiveExpression_AdditiveExpression_1_0 addOp=AdditiveOp rightt=AdditiveExpression)
+	 */
+	protected void sequence_AdditiveExpression(ISerializationContext context, AdditiveExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ADDITIVE_EXPRESSION__ADD_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ADDITIVE_EXPRESSION__ADD_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ADDITIVE_EXPRESSION__RIGHTT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ADDITIVE_EXPRESSION__RIGHTT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAdditiveExpressionAccess().getAdditiveExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAdditiveExpressionAccess().getAddOpAdditiveOpEnumRuleCall_1_1_0(), semanticObject.getAddOp());
+		feeder.accept(grammarAccess.getAdditiveExpressionAccess().getRighttAdditiveExpressionParserRuleCall_1_2_0(), semanticObject.getRightt());
+		feeder.finish();
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -179,6 +290,121 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAssignStatAccess().getVarIdIDTerminalRuleCall_0_0(), semanticObject.getVarId());
 		feeder.accept(grammarAccess.getAssignStatAccess().getExprExpressionParserRuleCall_2_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AssignmentExpression returns AssignmentExpression
+	 *     Expression returns AssignmentExpression
+	 *
+	 * Constraint:
+	 *     (assignVar?=ID assignOp?=AssignOperator expr=LogicalOrExpression)
+	 */
+	protected void sequence_AssignmentExpression(ISerializationContext context, AssignmentExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__ASSIGN_VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__ASSIGN_VAR));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__ASSIGN_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__ASSIGN_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ASSIGNMENT_EXPRESSION__EXPR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getAssignVarIDTerminalRuleCall_1_0_0(), semanticObject.isAssignVar());
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getAssignOpAssignOperatorEnumRuleCall_1_1_0(), semanticObject.isAssignOp());
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getExprLogicalOrExpressionParserRuleCall_1_2_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BitAndExpression returns BitAndExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns BitAndExpression
+	 *     BitXorExpression returns BitAndExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns BitAndExpression
+	 *     BitOrExpression returns BitAndExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns BitAndExpression
+	 *     LogicalAndExpression returns BitAndExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns BitAndExpression
+	 *     LogicalOrExpression returns BitAndExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns BitAndExpression
+	 *     AssignmentExpression returns BitAndExpression
+	 *     Expression returns BitAndExpression
+	 *
+	 * Constraint:
+	 *     (left=BitAndExpression_BitAndExpression_1_0 right=BitAndExpression)
+	 */
+	protected void sequence_BitAndExpression(ISerializationContext context, BitAndExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBitAndExpressionAccess().getBitAndExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBitAndExpressionAccess().getRightBitAndExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BitOrExpression returns BitOrExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns BitOrExpression
+	 *     LogicalAndExpression returns BitOrExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns BitOrExpression
+	 *     LogicalOrExpression returns BitOrExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns BitOrExpression
+	 *     AssignmentExpression returns BitOrExpression
+	 *     Expression returns BitOrExpression
+	 *
+	 * Constraint:
+	 *     (left=BitOrExpression_BitOrExpression_1_0 right=BitOrExpression)
+	 */
+	protected void sequence_BitOrExpression(ISerializationContext context, BitOrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBitOrExpressionAccess().getBitOrExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBitOrExpressionAccess().getRightBitOrExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BitXorExpression returns BitXorExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns BitXorExpression
+	 *     BitOrExpression returns BitXorExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns BitXorExpression
+	 *     LogicalAndExpression returns BitXorExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns BitXorExpression
+	 *     LogicalOrExpression returns BitXorExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns BitXorExpression
+	 *     AssignmentExpression returns BitXorExpression
+	 *     Expression returns BitXorExpression
+	 *
+	 * Constraint:
+	 *     (left=BitXorExpression_BitXorExpression_1_0 right=BitXorExpression)
+	 */
+	protected void sequence_BitXorExpression(ISerializationContext context, BitXorExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBitXorExpressionAccess().getBitXorExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBitXorExpressionAccess().getRightBitXorExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -225,6 +451,88 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCaseStatAccess().getOptionIntegerParserRuleCall_1_0(), semanticObject.getOption());
 		feeder.accept(grammarAccess.getCaseStatAccess().getBodyBodyParserRuleCall_3_0(), semanticObject.getBody());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     CastExpression returns CastExpression
+	 *     MultiplicativeExpression returns CastExpression
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns CastExpression
+	 *     AdditiveExpression returns CastExpression
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns CastExpression
+	 *     ShiftExpression returns CastExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns CastExpression
+	 *     CompareExpression returns CastExpression
+	 *     CompareExpression.CompareExpression_1_0 returns CastExpression
+	 *     EqualityExpression returns CastExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns CastExpression
+	 *     BitAndExpression returns CastExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns CastExpression
+	 *     BitXorExpression returns CastExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns CastExpression
+	 *     BitOrExpression returns CastExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns CastExpression
+	 *     LogicalAndExpression returns CastExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns CastExpression
+	 *     LogicalOrExpression returns CastExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CastExpression
+	 *     AssignmentExpression returns CastExpression
+	 *     Expression returns CastExpression
+	 *
+	 * Constraint:
+	 *     (type=ReflexType right=CastExpression)
+	 */
+	protected void sequence_CastExpression(ISerializationContext context, CastExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CAST_EXPRESSION__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CAST_EXPRESSION__TYPE));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCastExpressionAccess().getTypeReflexTypeParserRuleCall_1_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getCastExpressionAccess().getRightCastExpressionParserRuleCall_1_3_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     CompareExpression returns CompareExpression
+	 *     CompareExpression.CompareExpression_1_0 returns CompareExpression
+	 *     EqualityExpression returns CompareExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns CompareExpression
+	 *     BitAndExpression returns CompareExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns CompareExpression
+	 *     BitXorExpression returns CompareExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns CompareExpression
+	 *     BitOrExpression returns CompareExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns CompareExpression
+	 *     LogicalAndExpression returns CompareExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns CompareExpression
+	 *     LogicalOrExpression returns CompareExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CompareExpression
+	 *     AssignmentExpression returns CompareExpression
+	 *     Expression returns CompareExpression
+	 *
+	 * Constraint:
+	 *     (left=CompareExpression_CompareExpression_1_0 cmpOp=CompareOp right=CompareExpression)
+	 */
+	protected void sequence_CompareExpression(ISerializationContext context, CompareExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.COMPARE_EXPRESSION__CMP_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.COMPARE_EXPRESSION__CMP_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getCompareExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getCmpOpCompareOpEnumRuleCall_1_1_0(), semanticObject.getCmpOp());
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getRightCompareExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -323,6 +631,43 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     EqualityExpression returns EqualityExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns EqualityExpression
+	 *     BitAndExpression returns EqualityExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns EqualityExpression
+	 *     BitXorExpression returns EqualityExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns EqualityExpression
+	 *     BitOrExpression returns EqualityExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns EqualityExpression
+	 *     LogicalAndExpression returns EqualityExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns EqualityExpression
+	 *     LogicalOrExpression returns EqualityExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns EqualityExpression
+	 *     AssignmentExpression returns EqualityExpression
+	 *     Expression returns EqualityExpression
+	 *
+	 * Constraint:
+	 *     (left=EqualityExpression_EqualityExpression_1_0 eqCmpOp=CompareEqOp right=EqualityExpression)
+	 */
+	protected void sequence_EqualityExpression(ISerializationContext context, EqualityExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.EQUALITY_EXPRESSION__EQ_CMP_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.EQUALITY_EXPRESSION__EQ_CMP_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getEqualityExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getEqCmpOpCompareEqOpEnumRuleCall_1_1_0(), semanticObject.getEqCmpOp());
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getRightEqualityExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Body returns ErrorStat
 	 *     ErrorStat returns ErrorStat
 	 *
@@ -330,6 +675,42 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     procId?=ID?
 	 */
 	protected void sequence_ErrorStat(ISerializationContext context, ErrorStat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FunctionCall returns FunctionCall
+	 *     UnaryExpression returns FunctionCall
+	 *     CastExpression returns FunctionCall
+	 *     MultiplicativeExpression returns FunctionCall
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns FunctionCall
+	 *     AdditiveExpression returns FunctionCall
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns FunctionCall
+	 *     ShiftExpression returns FunctionCall
+	 *     ShiftExpression.ShiftExpression_1_0 returns FunctionCall
+	 *     CompareExpression returns FunctionCall
+	 *     CompareExpression.CompareExpression_1_0 returns FunctionCall
+	 *     EqualityExpression returns FunctionCall
+	 *     EqualityExpression.EqualityExpression_1_0 returns FunctionCall
+	 *     BitAndExpression returns FunctionCall
+	 *     BitAndExpression.BitAndExpression_1_0 returns FunctionCall
+	 *     BitXorExpression returns FunctionCall
+	 *     BitXorExpression.BitXorExpression_1_0 returns FunctionCall
+	 *     BitOrExpression returns FunctionCall
+	 *     BitOrExpression.BitOrExpression_1_0 returns FunctionCall
+	 *     LogicalAndExpression returns FunctionCall
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns FunctionCall
+	 *     LogicalOrExpression returns FunctionCall
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns FunctionCall
+	 *     AssignmentExpression returns FunctionCall
+	 *     Expression returns FunctionCall
+	 *
+	 * Constraint:
+	 *     (funcId=ID args+=Expression args+=Expression*)
+	 */
+	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -352,7 +733,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IfElseStat returns IfElseStat
 	 *
 	 * Constraint:
-	 *     (cond=Condition then=Body else=Body?)
+	 *     (cond=Expression then=Body else=Body?)
 	 */
 	protected void sequence_IfElseStat(ISerializationContext context, IfElseStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -374,8 +755,51 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Expression returns Integer
-	 *     Condition returns Integer
+	 *     InfixOp returns InfixOp
+	 *     UnaryExpression returns InfixOp
+	 *     CastExpression returns InfixOp
+	 *     MultiplicativeExpression returns InfixOp
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns InfixOp
+	 *     AdditiveExpression returns InfixOp
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns InfixOp
+	 *     ShiftExpression returns InfixOp
+	 *     ShiftExpression.ShiftExpression_1_0 returns InfixOp
+	 *     CompareExpression returns InfixOp
+	 *     CompareExpression.CompareExpression_1_0 returns InfixOp
+	 *     EqualityExpression returns InfixOp
+	 *     EqualityExpression.EqualityExpression_1_0 returns InfixOp
+	 *     BitAndExpression returns InfixOp
+	 *     BitAndExpression.BitAndExpression_1_0 returns InfixOp
+	 *     BitXorExpression returns InfixOp
+	 *     BitXorExpression.BitXorExpression_1_0 returns InfixOp
+	 *     BitOrExpression returns InfixOp
+	 *     BitOrExpression.BitOrExpression_1_0 returns InfixOp
+	 *     LogicalAndExpression returns InfixOp
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns InfixOp
+	 *     LogicalOrExpression returns InfixOp
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns InfixOp
+	 *     AssignmentExpression returns InfixOp
+	 *     Expression returns InfixOp
+	 *
+	 * Constraint:
+	 *     (op=InfixPostfixOp varId=ID)
+	 */
+	protected void sequence_InfixOp(ISerializationContext context, InfixOp semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.INFIX_OP__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.INFIX_OP__OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.INFIX_OP__VAR_ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.INFIX_OP__VAR_ID));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInfixOpAccess().getOpInfixPostfixOpEnumRuleCall_0_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getInfixOpAccess().getVarIdIDTerminalRuleCall_1_0(), semanticObject.getVarId());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Integer returns Integer
 	 *
 	 * Constraint:
@@ -388,12 +812,188 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     LogicalAndExpression returns LogicalAndExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns LogicalAndExpression
+	 *     LogicalOrExpression returns LogicalAndExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns LogicalAndExpression
+	 *     AssignmentExpression returns LogicalAndExpression
+	 *     Expression returns LogicalAndExpression
+	 *
+	 * Constraint:
+	 *     (left=LogicalAndExpression_LogicalAndExpression_1_0 right=LogicalAndExpression)
+	 */
+	protected void sequence_LogicalAndExpression(ISerializationContext context, LogicalAndExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLogicalAndExpressionAccess().getLogicalAndExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getLogicalAndExpressionAccess().getRightLogicalAndExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LogicalOrExpression returns LogicalOrExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns LogicalOrExpression
+	 *     AssignmentExpression returns LogicalOrExpression
+	 *     Expression returns LogicalOrExpression
+	 *
+	 * Constraint:
+	 *     (left=LogicalOrExpression_LogicalOrExpression_1_0 right=LogicalOrExpression)
+	 */
+	protected void sequence_LogicalOrExpression(ISerializationContext context, LogicalOrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLogicalOrExpressionAccess().getLogicalOrExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getLogicalOrExpressionAccess().getRightLogicalOrExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MultiplicativeExpression returns MultiplicativeExpression
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns MultiplicativeExpression
+	 *     AdditiveExpression returns MultiplicativeExpression
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns MultiplicativeExpression
+	 *     ShiftExpression returns MultiplicativeExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns MultiplicativeExpression
+	 *     CompareExpression returns MultiplicativeExpression
+	 *     CompareExpression.CompareExpression_1_0 returns MultiplicativeExpression
+	 *     EqualityExpression returns MultiplicativeExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns MultiplicativeExpression
+	 *     BitAndExpression returns MultiplicativeExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns MultiplicativeExpression
+	 *     BitXorExpression returns MultiplicativeExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns MultiplicativeExpression
+	 *     BitOrExpression returns MultiplicativeExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns MultiplicativeExpression
+	 *     LogicalAndExpression returns MultiplicativeExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns MultiplicativeExpression
+	 *     LogicalOrExpression returns MultiplicativeExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns MultiplicativeExpression
+	 *     AssignmentExpression returns MultiplicativeExpression
+	 *     Expression returns MultiplicativeExpression
+	 *
+	 * Constraint:
+	 *     (left=MultiplicativeExpression_MultiplicativeExpression_1_0 mulOp=MultiplicativeOp right=CastExpression)
+	 */
+	protected void sequence_MultiplicativeExpression(ISerializationContext context, MultiplicativeExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.MULTIPLICATIVE_EXPRESSION__MUL_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.MULTIPLICATIVE_EXPRESSION__MUL_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMultiplicativeExpressionAccess().getMultiplicativeExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getMultiplicativeExpressionAccess().getMulOpMultiplicativeOpEnumRuleCall_1_1_0(), semanticObject.getMulOp());
+		feeder.accept(grammarAccess.getMultiplicativeExpressionAccess().getRightCastExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PhysicalVariable returns PhysicalVariable
 	 *
 	 * Constraint:
 	 *     (type=IntegerType name=ID ports+=RegisterPort ports+=RegisterPort*)
 	 */
 	protected void sequence_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PostfixOp returns PostfixOp
+	 *     UnaryExpression returns PostfixOp
+	 *     CastExpression returns PostfixOp
+	 *     MultiplicativeExpression returns PostfixOp
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns PostfixOp
+	 *     AdditiveExpression returns PostfixOp
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns PostfixOp
+	 *     ShiftExpression returns PostfixOp
+	 *     ShiftExpression.ShiftExpression_1_0 returns PostfixOp
+	 *     CompareExpression returns PostfixOp
+	 *     CompareExpression.CompareExpression_1_0 returns PostfixOp
+	 *     EqualityExpression returns PostfixOp
+	 *     EqualityExpression.EqualityExpression_1_0 returns PostfixOp
+	 *     BitAndExpression returns PostfixOp
+	 *     BitAndExpression.BitAndExpression_1_0 returns PostfixOp
+	 *     BitXorExpression returns PostfixOp
+	 *     BitXorExpression.BitXorExpression_1_0 returns PostfixOp
+	 *     BitOrExpression returns PostfixOp
+	 *     BitOrExpression.BitOrExpression_1_0 returns PostfixOp
+	 *     LogicalAndExpression returns PostfixOp
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns PostfixOp
+	 *     LogicalOrExpression returns PostfixOp
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PostfixOp
+	 *     AssignmentExpression returns PostfixOp
+	 *     Expression returns PostfixOp
+	 *
+	 * Constraint:
+	 *     (varId=ID op=InfixPostfixOp)
+	 */
+	protected void sequence_PostfixOp(ISerializationContext context, PostfixOp semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.POSTFIX_OP__VAR_ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.POSTFIX_OP__VAR_ID));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.POSTFIX_OP__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.POSTFIX_OP__OP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPostfixOpAccess().getVarIdIDTerminalRuleCall_0_0(), semanticObject.getVarId());
+		feeder.accept(grammarAccess.getPostfixOpAccess().getOpInfixPostfixOpEnumRuleCall_1_0(), semanticObject.getOp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimaryExpression returns PrimaryExpression
+	 *     UnaryExpression returns PrimaryExpression
+	 *     CastExpression returns PrimaryExpression
+	 *     MultiplicativeExpression returns PrimaryExpression
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns PrimaryExpression
+	 *     AdditiveExpression returns PrimaryExpression
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns PrimaryExpression
+	 *     ShiftExpression returns PrimaryExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns PrimaryExpression
+	 *     CompareExpression returns PrimaryExpression
+	 *     CompareExpression.CompareExpression_1_0 returns PrimaryExpression
+	 *     EqualityExpression returns PrimaryExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns PrimaryExpression
+	 *     BitAndExpression returns PrimaryExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns PrimaryExpression
+	 *     BitXorExpression returns PrimaryExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns PrimaryExpression
+	 *     BitOrExpression returns PrimaryExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns PrimaryExpression
+	 *     LogicalAndExpression returns PrimaryExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns PrimaryExpression
+	 *     LogicalOrExpression returns PrimaryExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
+	 *     AssignmentExpression returns PrimaryExpression
+	 *     Expression returns PrimaryExpression
+	 *
+	 * Constraint:
+	 *     (varId=ID | literal=Integer | expr=Expression)
+	 */
+	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -516,6 +1116,47 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_SetStateStat(ISerializationContext context, SetStateStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ShiftExpression returns ShiftExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ShiftExpression
+	 *     CompareExpression returns ShiftExpression
+	 *     CompareExpression.CompareExpression_1_0 returns ShiftExpression
+	 *     EqualityExpression returns ShiftExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ShiftExpression
+	 *     BitAndExpression returns ShiftExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns ShiftExpression
+	 *     BitXorExpression returns ShiftExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns ShiftExpression
+	 *     BitOrExpression returns ShiftExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns ShiftExpression
+	 *     LogicalAndExpression returns ShiftExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns ShiftExpression
+	 *     LogicalOrExpression returns ShiftExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns ShiftExpression
+	 *     AssignmentExpression returns ShiftExpression
+	 *     Expression returns ShiftExpression
+	 *
+	 * Constraint:
+	 *     (left=ShiftExpression_ShiftExpression_1_0 shiftOp=ShiftOp right=ShiftExpression)
+	 */
+	protected void sequence_ShiftExpression(ISerializationContext context, ShiftExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.SHIFT_EXPRESSION__SHIFT_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.SHIFT_EXPRESSION__SHIFT_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getShiftExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getShiftOpShiftOpEnumRuleCall_1_1_0(), semanticObject.getShiftOp());
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getRightShiftExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -655,6 +1296,50 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTimeoutFunctionAccess().getTimeTimeParserRuleCall_1_0(), semanticObject.getTime());
 		feeder.accept(grammarAccess.getTimeoutFunctionAccess().getBodyBodyParserRuleCall_2_0(), semanticObject.getBody());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnaryExpression returns UnaryExpression
+	 *     CastExpression returns UnaryExpression
+	 *     MultiplicativeExpression returns UnaryExpression
+	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns UnaryExpression
+	 *     AdditiveExpression returns UnaryExpression
+	 *     AdditiveExpression.AdditiveExpression_1_0 returns UnaryExpression
+	 *     ShiftExpression returns UnaryExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns UnaryExpression
+	 *     CompareExpression returns UnaryExpression
+	 *     CompareExpression.CompareExpression_1_0 returns UnaryExpression
+	 *     EqualityExpression returns UnaryExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns UnaryExpression
+	 *     BitAndExpression returns UnaryExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns UnaryExpression
+	 *     BitXorExpression returns UnaryExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns UnaryExpression
+	 *     BitOrExpression returns UnaryExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns UnaryExpression
+	 *     LogicalAndExpression returns UnaryExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns UnaryExpression
+	 *     LogicalOrExpression returns UnaryExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns UnaryExpression
+	 *     AssignmentExpression returns UnaryExpression
+	 *     Expression returns UnaryExpression
+	 *
+	 * Constraint:
+	 *     (unaryOp=UnaryOp rest=CastExpression)
+	 */
+	protected void sequence_UnaryExpression(ISerializationContext context, UnaryExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.UNARY_EXPRESSION__UNARY_OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.UNARY_EXPRESSION__UNARY_OP));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.UNARY_EXPRESSION__REST) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.UNARY_EXPRESSION__REST));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUnaryExpressionAccess().getUnaryOpUnaryOpEnumRuleCall_4_0_0(), semanticObject.getUnaryOp());
+		feeder.accept(grammarAccess.getUnaryExpressionAccess().getRestCastExpressionParserRuleCall_4_1_0(), semanticObject.getRest());
 		feeder.finish();
 	}
 	
