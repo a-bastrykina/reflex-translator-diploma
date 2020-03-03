@@ -594,22 +594,13 @@ public interface ReflexPackage extends EPackage
   int BODY = 12;
 
   /**
-   * The feature id for the '<em><b>Sub</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY__SUB = 0;
-
-  /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BODY__STATEMENTS = 1;
+  int BODY__STATEMENTS = 0;
 
   /**
    * The feature id for the '<em><b>Loop</b></em>' attribute.
@@ -618,7 +609,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BODY__LOOP = 2;
+  int BODY__LOOP = 1;
 
   /**
    * The feature id for the '<em><b>Restart</b></em>' attribute.
@@ -627,7 +618,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BODY__RESTART = 3;
+  int BODY__RESTART = 2;
 
   /**
    * The number of structural features of the '<em>Body</em>' class.
@@ -636,7 +627,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BODY_FEATURE_COUNT = 4;
+  int BODY_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.AssignStatImpl <em>Assign Stat</em>}' class.
@@ -3618,17 +3609,6 @@ public interface ReflexPackage extends EPackage
   EClass getBody();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Body#getSub <em>Sub</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Sub</em>'.
-   * @see ru.iaie.reflex.reflex.Body#getSub()
-   * @see #getBody()
-   * @generated
-   */
-  EReference getBody_Sub();
-
-  /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Body#getStatements <em>Statements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3832,11 +3812,11 @@ public interface ReflexPackage extends EPackage
   EClass getStopProcStat();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.StopProcStat#isProcId <em>Proc Id</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.StopProcStat#getProcId <em>Proc Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Proc Id</em>'.
-   * @see ru.iaie.reflex.reflex.StopProcStat#isProcId()
+   * @see ru.iaie.reflex.reflex.StopProcStat#getProcId()
    * @see #getStopProcStat()
    * @generated
    */
@@ -3853,11 +3833,11 @@ public interface ReflexPackage extends EPackage
   EClass getErrorStat();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ErrorStat#isProcId <em>Proc Id</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ErrorStat#getProcId <em>Proc Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Proc Id</em>'.
-   * @see ru.iaie.reflex.reflex.ErrorStat#isProcId()
+   * @see ru.iaie.reflex.reflex.ErrorStat#getProcId()
    * @see #getErrorStat()
    * @generated
    */
@@ -5133,14 +5113,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EClass BODY = eINSTANCE.getBody();
-
-    /**
-     * The meta object literal for the '<em><b>Sub</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BODY__SUB = eINSTANCE.getBody_Sub();
 
     /**
      * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.

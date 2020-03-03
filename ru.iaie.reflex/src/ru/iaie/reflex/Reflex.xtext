@@ -54,10 +54,9 @@ TimeoutFunction:
 	"timeout" time=Time body=Body;
 
 Body:
-	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat |
-	statements+=SwitchStat | statements+=StartProcStat | statements+=StopProcStat |
-	statements+=ErrorStat | loop?=LoopStat |
-	restart?=RestartStat | statements+=SetStateStat | statements+=Expression ";";
+	{Body} ";" | statements+=StartProcStat | statements+=StopProcStat |
+	statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat | {Body} "{" statements+=Body* "}" |
+	statements+=IfElseStat | statements+=SwitchStat | statements+=Expression ";";
 
 AssignStat:
 	varId=ID "=" expr=Expression ";";
@@ -78,10 +77,10 @@ StartProcStat:
 	"start" procId=ID ";";
 
 StopProcStat:
-	{StopProcStat} "stop" (procId?=ID)? ";";
+	{StopProcStat} "stop" (procId=ID)? ";";
 
 ErrorStat:
-	{ErrorStat} "error" (procId?=ID)? ";";
+	{ErrorStat} "error" (procId=ID)? ";";
 
 LoopStat:
 	"loop" ";";
@@ -170,10 +169,9 @@ LogicalOrExpression:
 AssignmentExpression:
 	LogicalOrExpression |
 	assignVar?=ID assignOp?=AssignOperator expr=LogicalOrExpression;
-	
+
 Expression:
-	AssignmentExpression
-;
+	AssignmentExpression;
 
 enum InfixPostfixOp:
 	INC="++" | DEC="--";

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ErrorStat#isProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ErrorStat#getProcId <em>Proc Id</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getErrorStat()
@@ -28,21 +28,21 @@ public interface ErrorStat extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Proc Id</em>' attribute.
-   * @see #setProcId(boolean)
+   * @see #setProcId(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getErrorStat_ProcId()
    * @model
    * @generated
    */
-  boolean isProcId();
+  String getProcId();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ErrorStat#isProcId <em>Proc Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ErrorStat#getProcId <em>Proc Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Proc Id</em>' attribute.
-   * @see #isProcId()
+   * @see #getProcId()
    * @generated
    */
-  void setProcId(boolean value);
+  void setProcId(String value);
 
 } // ErrorStat

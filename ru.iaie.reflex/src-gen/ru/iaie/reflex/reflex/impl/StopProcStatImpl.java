@@ -21,7 +21,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StopProcStatImpl#isProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StopProcStatImpl#getProcId <em>Proc Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +29,24 @@ import ru.iaie.reflex.reflex.StopProcStat;
 public class StopProcStatImpl extends MinimalEObjectImpl.Container implements StopProcStat
 {
   /**
-   * The default value of the '{@link #isProcId() <em>Proc Id</em>}' attribute.
+   * The default value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isProcId()
+   * @see #getProcId()
    * @generated
    * @ordered
    */
-  protected static final boolean PROC_ID_EDEFAULT = false;
+  protected static final String PROC_ID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isProcId() <em>Proc Id</em>}' attribute.
+   * The cached value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isProcId()
+   * @see #getProcId()
    * @generated
    * @ordered
    */
-  protected boolean procId = PROC_ID_EDEFAULT;
+  protected String procId = PROC_ID_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class StopProcStatImpl extends MinimalEObjectImpl.Container implements St
    * @generated
    */
   @Override
-  public boolean isProcId()
+  public String getProcId()
   {
     return procId;
   }
@@ -86,9 +86,9 @@ public class StopProcStatImpl extends MinimalEObjectImpl.Container implements St
    * @generated
    */
   @Override
-  public void setProcId(boolean newProcId)
+  public void setProcId(String newProcId)
   {
-    boolean oldProcId = procId;
+    String oldProcId = procId;
     procId = newProcId;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STOP_PROC_STAT__PROC_ID, oldProcId, procId));
@@ -105,7 +105,7 @@ public class StopProcStatImpl extends MinimalEObjectImpl.Container implements St
     switch (featureID)
     {
       case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        return isProcId();
+        return getProcId();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,7 +121,7 @@ public class StopProcStatImpl extends MinimalEObjectImpl.Container implements St
     switch (featureID)
     {
       case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        setProcId((Boolean)newValue);
+        setProcId((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -155,7 +155,7 @@ public class StopProcStatImpl extends MinimalEObjectImpl.Container implements St
     switch (featureID)
     {
       case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        return procId != PROC_ID_EDEFAULT;
+        return PROC_ID_EDEFAULT == null ? procId != null : !PROC_ID_EDEFAULT.equals(procId);
     }
     return super.eIsSet(featureID);
   }

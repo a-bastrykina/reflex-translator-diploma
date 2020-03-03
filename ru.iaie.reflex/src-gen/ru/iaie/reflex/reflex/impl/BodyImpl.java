@@ -31,7 +31,6 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#getSub <em>Sub</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#getStatements <em>Statements</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isLoop <em>Loop</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isRestart <em>Restart</em>}</li>
@@ -41,16 +40,6 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  */
 public class BodyImpl extends MinimalEObjectImpl.Container implements Body
 {
-  /**
-   * The cached value of the '{@link #getSub() <em>Sub</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSub()
-   * @generated
-   * @ordered
-   */
-  protected EList<Body> sub;
-
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -128,21 +117,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
    * @generated
    */
   @Override
-  public EList<Body> getSub()
-  {
-    if (sub == null)
-    {
-      sub = new EObjectContainmentEList<Body>(Body.class, this, ReflexPackage.BODY__SUB);
-    }
-    return sub;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EList<EObject> getStatements()
   {
     if (statements == null)
@@ -212,8 +186,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
   {
     switch (featureID)
     {
-      case ReflexPackage.BODY__SUB:
-        return ((InternalEList<?>)getSub()).basicRemove(otherEnd, msgs);
       case ReflexPackage.BODY__STATEMENTS:
         return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
@@ -230,8 +202,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
   {
     switch (featureID)
     {
-      case ReflexPackage.BODY__SUB:
-        return getSub();
       case ReflexPackage.BODY__STATEMENTS:
         return getStatements();
       case ReflexPackage.BODY__LOOP:
@@ -253,10 +223,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
   {
     switch (featureID)
     {
-      case ReflexPackage.BODY__SUB:
-        getSub().clear();
-        getSub().addAll((Collection<? extends Body>)newValue);
-        return;
       case ReflexPackage.BODY__STATEMENTS:
         getStatements().clear();
         getStatements().addAll((Collection<? extends EObject>)newValue);
@@ -281,9 +247,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
   {
     switch (featureID)
     {
-      case ReflexPackage.BODY__SUB:
-        getSub().clear();
-        return;
       case ReflexPackage.BODY__STATEMENTS:
         getStatements().clear();
         return;
@@ -307,8 +270,6 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
   {
     switch (featureID)
     {
-      case ReflexPackage.BODY__SUB:
-        return sub != null && !sub.isEmpty();
       case ReflexPackage.BODY__STATEMENTS:
         return statements != null && !statements.isEmpty();
       case ReflexPackage.BODY__LOOP:

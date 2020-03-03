@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.StopProcStat#isProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.StopProcStat#getProcId <em>Proc Id</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getStopProcStat()
@@ -28,21 +28,21 @@ public interface StopProcStat extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Proc Id</em>' attribute.
-   * @see #setProcId(boolean)
+   * @see #setProcId(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getStopProcStat_ProcId()
    * @model
    * @generated
    */
-  boolean isProcId();
+  String getProcId();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.StopProcStat#isProcId <em>Proc Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.StopProcStat#getProcId <em>Proc Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Proc Id</em>' attribute.
-   * @see #isProcId()
+   * @see #getProcId()
    * @generated
    */
-  void setProcId(boolean value);
+  void setProcId(String value);
 
 } // StopProcStat

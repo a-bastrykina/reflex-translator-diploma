@@ -414,15 +414,15 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         sub+=Body+ | 
-	 *         statements+=IfElseStat | 
-	 *         statements+=SwitchStat | 
 	 *         statements+=StartProcStat | 
 	 *         statements+=StopProcStat | 
 	 *         statements+=ErrorStat | 
 	 *         loop?=LoopStat | 
 	 *         restart?=RestartStat | 
 	 *         statements+=SetStateStat | 
+	 *         statements+=Body+ | 
+	 *         statements+=IfElseStat | 
+	 *         statements+=SwitchStat | 
 	 *         statements+=Expression
 	 *     )?
 	 */
@@ -681,7 +681,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ErrorStat returns ErrorStat
 	 *
 	 * Constraint:
-	 *     procId?=ID?
+	 *     procId=ID?
 	 */
 	protected void sequence_ErrorStat(ISerializationContext context, ErrorStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1220,7 +1220,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     StopProcStat returns StopProcStat
 	 *
 	 * Constraint:
-	 *     procId?=ID?
+	 *     procId=ID?
 	 */
 	protected void sequence_StopProcStat(ISerializationContext context, StopProcStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

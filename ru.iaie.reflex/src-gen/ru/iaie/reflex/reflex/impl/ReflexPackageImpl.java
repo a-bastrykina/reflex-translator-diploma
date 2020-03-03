@@ -1014,7 +1014,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getBody_Sub()
+  public EReference getBody_Statements()
   {
     return (EReference)bodyEClass.getEStructuralFeatures().get(0);
   }
@@ -1025,20 +1025,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getBody_Statements()
-  {
-    return (EReference)bodyEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getBody_Loop()
   {
-    return (EAttribute)bodyEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)bodyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1049,7 +1038,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   @Override
   public EAttribute getBody_Restart()
   {
-    return (EAttribute)bodyEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)bodyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2270,7 +2259,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(timeoutFunctionEClass, TIMEOUT_FUNCTION__BODY);
 
     bodyEClass = createEClass(BODY);
-    createEReference(bodyEClass, BODY__SUB);
     createEReference(bodyEClass, BODY__STATEMENTS);
     createEAttribute(bodyEClass, BODY__LOOP);
     createEAttribute(bodyEClass, BODY__RESTART);
@@ -2523,7 +2511,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getTimeoutFunction_Body(), this.getBody(), null, "body", null, 0, 1, TimeoutFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bodyEClass, Body.class, "Body", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBody_Sub(), this.getBody(), null, "sub", null, 0, -1, Body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBody_Statements(), ecorePackage.getEObject(), null, "statements", null, 0, -1, Body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBody_Loop(), ecorePackage.getEBoolean(), "loop", null, 0, 1, Body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBody_Restart(), ecorePackage.getEBoolean(), "restart", null, 0, 1, Body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2549,10 +2536,10 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getStartProcStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, StartProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stopProcStatEClass, StopProcStat.class, "StopProcStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStopProcStat_ProcId(), ecorePackage.getEBoolean(), "procId", null, 0, 1, StopProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStopProcStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, StopProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(errorStatEClass, ErrorStat.class, "ErrorStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getErrorStat_ProcId(), ecorePackage.getEBoolean(), "procId", null, 0, 1, ErrorStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getErrorStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, ErrorStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setStateStatEClass, SetStateStat.class, "SetStateStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSetStateStat_StateId(), ecorePackage.getEString(), "stateId", null, 0, 1, SetStateStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

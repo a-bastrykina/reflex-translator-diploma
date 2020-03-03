@@ -22,7 +22,7 @@ import ru.iaie.reflex.services.ReflexGrammarAccess;
 public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ReflexGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__;
+	protected AbstractElementAlias match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__;
 	protected AbstractElementAlias match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1;
 	protected AbstractElementAlias match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0;
 	protected AbstractElementAlias match_Time_TKeyword_1_0_or_TKeyword_1_1;
@@ -30,7 +30,7 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ReflexGrammarAccess) access;
-		match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBodyAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getBodyAccess().getRightCurlyBracketKeyword_1_1_2())), new TokenAlias(false, false, grammarAccess.getBodyAccess().getSemicolonKeyword_0_1()));
+		match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBodyAccess().getLeftCurlyBracketKeyword_7_1()), new TokenAlias(false, false, grammarAccess.getBodyAccess().getRightCurlyBracketKeyword_7_3())), new TokenAlias(false, false, grammarAccess.getBodyAccess().getSemicolonKeyword_0_1()));
 		match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getDOUBLE_C_TYPETerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getFLOAT_C_TYPETerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getVOID_C_TYPETerminalRuleCall_0_1()));
 		match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()));
 		match_Time_TKeyword_1_0_or_TKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_1()));
@@ -371,8 +371,8 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__.equals(syntax))
-				emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__.equals(syntax))
+				emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1.equals(syntax))
 				emit_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0.equals(syntax))
@@ -390,7 +390,7 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
 	 */
-	protected void emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

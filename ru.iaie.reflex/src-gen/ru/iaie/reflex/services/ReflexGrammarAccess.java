@@ -530,43 +530,42 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cBodyAction_0_0 = (Action)cGroup_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cBodyAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cSubAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cSubBodyParserRuleCall_1_1_1_0 = (RuleCall)cSubAssignment_1_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Assignment cStatementsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cStatementsStartProcStatParserRuleCall_1_0 = (RuleCall)cStatementsAssignment_1.eContents().get(0);
 		private final Assignment cStatementsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cStatementsIfElseStatParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
+		private final RuleCall cStatementsStopProcStatParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cStatementsSwitchStatParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
-		private final Assignment cStatementsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cStatementsStartProcStatParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
-		private final Assignment cStatementsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cStatementsStopProcStatParserRuleCall_5_0 = (RuleCall)cStatementsAssignment_5.eContents().get(0);
+		private final RuleCall cStatementsErrorStatParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final Assignment cLoopAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cLoopLoopStatParserRuleCall_4_0 = (RuleCall)cLoopAssignment_4.eContents().get(0);
+		private final Assignment cRestartAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cRestartRestartStatParserRuleCall_5_0 = (RuleCall)cRestartAssignment_5.eContents().get(0);
 		private final Assignment cStatementsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cStatementsErrorStatParserRuleCall_6_0 = (RuleCall)cStatementsAssignment_6.eContents().get(0);
-		private final Assignment cLoopAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cLoopLoopStatParserRuleCall_7_0 = (RuleCall)cLoopAssignment_7.eContents().get(0);
-		private final Assignment cRestartAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
-		private final RuleCall cRestartRestartStatParserRuleCall_8_0 = (RuleCall)cRestartAssignment_8.eContents().get(0);
+		private final RuleCall cStatementsSetStateStatParserRuleCall_6_0 = (RuleCall)cStatementsAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Action cBodyAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Assignment cStatementsAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cStatementsBodyParserRuleCall_7_2_0 = (RuleCall)cStatementsAssignment_7_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
+		private final Assignment cStatementsAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
+		private final RuleCall cStatementsIfElseStatParserRuleCall_8_0 = (RuleCall)cStatementsAssignment_8.eContents().get(0);
 		private final Assignment cStatementsAssignment_9 = (Assignment)cAlternatives.eContents().get(9);
-		private final RuleCall cStatementsSetStateStatParserRuleCall_9_0 = (RuleCall)cStatementsAssignment_9.eContents().get(0);
+		private final RuleCall cStatementsSwitchStatParserRuleCall_9_0 = (RuleCall)cStatementsAssignment_9.eContents().get(0);
 		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
 		private final Assignment cStatementsAssignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
 		private final RuleCall cStatementsExpressionParserRuleCall_10_0_0 = (RuleCall)cStatementsAssignment_10_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//Body:
-		//	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat
-		//	| statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat
-		//	| statements+=Expression ";";
+		//	{Body} ";" | statements+=StartProcStat | statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat |
+		//	restart?=RestartStat | statements+=SetStateStat | {Body} "{" statements+=Body* "}" | statements+=IfElseStat |
+		//	statements+=SwitchStat | statements+=Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat |
-		//statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat |
-		//statements+=Expression ";"
+		//{Body} ";" | statements+=StartProcStat | statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat |
+		//restart?=RestartStat | statements+=SetStateStat | {Body} "{" statements+=Body* "}" | statements+=IfElseStat |
+		//statements+=SwitchStat | statements+=Expression ";"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{Body} ";"
@@ -578,74 +577,71 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_0_1() { return cSemicolonKeyword_0_1; }
 		
-		//{Body} ("{" sub+=Body* "}")
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Body}
-		public Action getBodyAction_1_0() { return cBodyAction_1_0; }
-		
-		//("{" sub+=Body* "}")
-		public Group getGroup_1_1() { return cGroup_1_1; }
-		
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
-		
-		//sub+=Body*
-		public Assignment getSubAssignment_1_1_1() { return cSubAssignment_1_1_1; }
-		
-		//Body
-		public RuleCall getSubBodyParserRuleCall_1_1_1_0() { return cSubBodyParserRuleCall_1_1_1_0; }
-		
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
-		
-		//statements+=IfElseStat
-		public Assignment getStatementsAssignment_2() { return cStatementsAssignment_2; }
-		
-		//IfElseStat
-		public RuleCall getStatementsIfElseStatParserRuleCall_2_0() { return cStatementsIfElseStatParserRuleCall_2_0; }
-		
-		//statements+=SwitchStat
-		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
-		
-		//SwitchStat
-		public RuleCall getStatementsSwitchStatParserRuleCall_3_0() { return cStatementsSwitchStatParserRuleCall_3_0; }
-		
 		//statements+=StartProcStat
-		public Assignment getStatementsAssignment_4() { return cStatementsAssignment_4; }
+		public Assignment getStatementsAssignment_1() { return cStatementsAssignment_1; }
 		
 		//StartProcStat
-		public RuleCall getStatementsStartProcStatParserRuleCall_4_0() { return cStatementsStartProcStatParserRuleCall_4_0; }
+		public RuleCall getStatementsStartProcStatParserRuleCall_1_0() { return cStatementsStartProcStatParserRuleCall_1_0; }
 		
 		//statements+=StopProcStat
-		public Assignment getStatementsAssignment_5() { return cStatementsAssignment_5; }
+		public Assignment getStatementsAssignment_2() { return cStatementsAssignment_2; }
 		
 		//StopProcStat
-		public RuleCall getStatementsStopProcStatParserRuleCall_5_0() { return cStatementsStopProcStatParserRuleCall_5_0; }
+		public RuleCall getStatementsStopProcStatParserRuleCall_2_0() { return cStatementsStopProcStatParserRuleCall_2_0; }
 		
 		//statements+=ErrorStat
-		public Assignment getStatementsAssignment_6() { return cStatementsAssignment_6; }
+		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
 		//ErrorStat
-		public RuleCall getStatementsErrorStatParserRuleCall_6_0() { return cStatementsErrorStatParserRuleCall_6_0; }
+		public RuleCall getStatementsErrorStatParserRuleCall_3_0() { return cStatementsErrorStatParserRuleCall_3_0; }
 		
 		//loop?=LoopStat
-		public Assignment getLoopAssignment_7() { return cLoopAssignment_7; }
+		public Assignment getLoopAssignment_4() { return cLoopAssignment_4; }
 		
 		//LoopStat
-		public RuleCall getLoopLoopStatParserRuleCall_7_0() { return cLoopLoopStatParserRuleCall_7_0; }
+		public RuleCall getLoopLoopStatParserRuleCall_4_0() { return cLoopLoopStatParserRuleCall_4_0; }
 		
 		//restart?=RestartStat
-		public Assignment getRestartAssignment_8() { return cRestartAssignment_8; }
+		public Assignment getRestartAssignment_5() { return cRestartAssignment_5; }
 		
 		//RestartStat
-		public RuleCall getRestartRestartStatParserRuleCall_8_0() { return cRestartRestartStatParserRuleCall_8_0; }
+		public RuleCall getRestartRestartStatParserRuleCall_5_0() { return cRestartRestartStatParserRuleCall_5_0; }
 		
 		//statements+=SetStateStat
-		public Assignment getStatementsAssignment_9() { return cStatementsAssignment_9; }
+		public Assignment getStatementsAssignment_6() { return cStatementsAssignment_6; }
 		
 		//SetStateStat
-		public RuleCall getStatementsSetStateStatParserRuleCall_9_0() { return cStatementsSetStateStatParserRuleCall_9_0; }
+		public RuleCall getStatementsSetStateStatParserRuleCall_6_0() { return cStatementsSetStateStatParserRuleCall_6_0; }
+		
+		//{Body} "{" statements+=Body* "}"
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//{Body}
+		public Action getBodyAction_7_0() { return cBodyAction_7_0; }
+		
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_7_1() { return cLeftCurlyBracketKeyword_7_1; }
+		
+		//statements+=Body*
+		public Assignment getStatementsAssignment_7_2() { return cStatementsAssignment_7_2; }
+		
+		//Body
+		public RuleCall getStatementsBodyParserRuleCall_7_2_0() { return cStatementsBodyParserRuleCall_7_2_0; }
+		
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7_3() { return cRightCurlyBracketKeyword_7_3; }
+		
+		//statements+=IfElseStat
+		public Assignment getStatementsAssignment_8() { return cStatementsAssignment_8; }
+		
+		//IfElseStat
+		public RuleCall getStatementsIfElseStatParserRuleCall_8_0() { return cStatementsIfElseStatParserRuleCall_8_0; }
+		
+		//statements+=SwitchStat
+		public Assignment getStatementsAssignment_9() { return cStatementsAssignment_9; }
+		
+		//SwitchStat
+		public RuleCall getStatementsSwitchStatParserRuleCall_9_0() { return cStatementsSwitchStatParserRuleCall_9_0; }
 		
 		//statements+=Expression ";"
 		public Group getGroup_10() { return cGroup_10; }
@@ -882,10 +878,10 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//StopProcStat:
-		//	{StopProcStat} "stop" procId?=ID? ";";
+		//	{StopProcStat} "stop" procId=ID? ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{StopProcStat} "stop" procId?=ID? ";"
+		//{StopProcStat} "stop" procId=ID? ";"
 		public Group getGroup() { return cGroup; }
 		
 		//{StopProcStat}
@@ -894,7 +890,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"stop"
 		public Keyword getStopKeyword_1() { return cStopKeyword_1; }
 		
-		//procId?=ID?
+		//procId=ID?
 		public Assignment getProcIdAssignment_2() { return cProcIdAssignment_2; }
 		
 		//ID
@@ -913,10 +909,10 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ErrorStat:
-		//	{ErrorStat} "error" procId?=ID? ";";
+		//	{ErrorStat} "error" procId=ID? ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ErrorStat} "error" procId?=ID? ";"
+		//{ErrorStat} "error" procId=ID? ";"
 		public Group getGroup() { return cGroup; }
 		
 		//{ErrorStat}
@@ -925,7 +921,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"error"
 		public Keyword getErrorKeyword_1() { return cErrorKeyword_1; }
 		
-		//procId?=ID?
+		//procId=ID?
 		public Assignment getProcIdAssignment_2() { return cProcIdAssignment_2; }
 		
 		//ID
@@ -2986,9 +2982,9 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Body:
-	//	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat
-	//	| statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat
-	//	| statements+=Expression ";";
+	//	{Body} ";" | statements+=StartProcStat | statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat |
+	//	restart?=RestartStat | statements+=SetStateStat | {Body} "{" statements+=Body* "}" | statements+=IfElseStat |
+	//	statements+=SwitchStat | statements+=Expression ";";
 	public BodyElements getBodyAccess() {
 		return pBody;
 	}
@@ -3050,7 +3046,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//StopProcStat:
-	//	{StopProcStat} "stop" procId?=ID? ";";
+	//	{StopProcStat} "stop" procId=ID? ";";
 	public StopProcStatElements getStopProcStatAccess() {
 		return pStopProcStat;
 	}
@@ -3060,7 +3056,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ErrorStat:
-	//	{ErrorStat} "error" procId?=ID? ";";
+	//	{ErrorStat} "error" procId=ID? ";";
 	public ErrorStatElements getErrorStatAccess() {
 		return pErrorStat;
 	}

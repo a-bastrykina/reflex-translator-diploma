@@ -66,6 +66,7 @@ class ReflexGenerator extends AbstractGenerator {
 			int «ReflexIdentifiers.TIMER_ARRAY_NAME»[«prog.processes.length»];
 		'''
 	}
+	
 
 	def translateProgram(Program prog) {
 		return '''

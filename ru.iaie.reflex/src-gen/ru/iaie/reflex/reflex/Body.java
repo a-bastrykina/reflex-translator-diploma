@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Body#getSub <em>Sub</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Body#getStatements <em>Statements</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Body#isLoop <em>Loop</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Body#isRestart <em>Restart</em>}</li>
@@ -28,18 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Body extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Sub</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.Body}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Sub</em>' containment reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getBody_Sub()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Body> getSub();
-
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
