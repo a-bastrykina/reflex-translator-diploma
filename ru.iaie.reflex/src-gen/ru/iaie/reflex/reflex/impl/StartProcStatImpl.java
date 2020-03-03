@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.StartProcStat;
@@ -25,7 +26,7 @@ import ru.iaie.reflex.reflex.StartProcStat;
  *
  * @generated
  */
-public class StartProcStatImpl extends BodyImpl implements StartProcStat
+public class StartProcStatImpl extends MinimalEObjectImpl.Container implements StartProcStat
 {
   /**
    * The default value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.

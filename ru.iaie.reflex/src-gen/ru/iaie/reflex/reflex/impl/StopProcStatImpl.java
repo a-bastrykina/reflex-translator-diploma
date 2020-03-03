@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.StopProcStat;
@@ -25,7 +26,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
  *
  * @generated
  */
-public class StopProcStatImpl extends BodyImpl implements StopProcStat
+public class StopProcStatImpl extends MinimalEObjectImpl.Container implements StopProcStat
 {
   /**
    * The default value of the '{@link #isProcId() <em>Proc Id</em>}' attribute.

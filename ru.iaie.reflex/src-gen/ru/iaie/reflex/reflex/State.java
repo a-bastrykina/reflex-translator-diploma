@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.State#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.State#isStateFunction <em>State Function</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.State#isTimeoutFunction <em>Timeout Function</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.State#getTimeoutFunction <em>Timeout Function</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getState()
@@ -48,47 +48,47 @@ public interface State extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>State Function</b></em>' attribute.
+   * Returns the value of the '<em><b>State Function</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State Function</em>' attribute.
-   * @see #setStateFunction(boolean)
+   * @return the value of the '<em>State Function</em>' containment reference.
+   * @see #setStateFunction(StateFunction)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getState_StateFunction()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  boolean isStateFunction();
+  StateFunction getStateFunction();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.State#isStateFunction <em>State Function</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State Function</em>' attribute.
-   * @see #isStateFunction()
+   * @param value the new value of the '<em>State Function</em>' containment reference.
+   * @see #getStateFunction()
    * @generated
    */
-  void setStateFunction(boolean value);
+  void setStateFunction(StateFunction value);
 
   /**
-   * Returns the value of the '<em><b>Timeout Function</b></em>' attribute.
+   * Returns the value of the '<em><b>Timeout Function</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Timeout Function</em>' attribute.
-   * @see #setTimeoutFunction(boolean)
+   * @return the value of the '<em>Timeout Function</em>' containment reference.
+   * @see #setTimeoutFunction(TimeoutFunction)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getState_TimeoutFunction()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  boolean isTimeoutFunction();
+  TimeoutFunction getTimeoutFunction();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.State#isTimeoutFunction <em>Timeout Function</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.State#getTimeoutFunction <em>Timeout Function</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Timeout Function</em>' attribute.
-   * @see #isTimeoutFunction()
+   * @param value the new value of the '<em>Timeout Function</em>' containment reference.
+   * @see #getTimeoutFunction()
    * @generated
    */
-  void setTimeoutFunction(boolean value);
+  void setTimeoutFunction(TimeoutFunction value);
 
 } // State

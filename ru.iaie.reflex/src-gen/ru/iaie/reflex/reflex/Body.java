@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Body#getSub <em>Sub</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Body#getStatements <em>Statements</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Body#isLoop <em>Loop</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Body#isRestart <em>Restart</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getBody()
@@ -36,5 +39,61 @@ public interface Body extends EObject
    * @generated
    */
   EList<Body> getSub();
+
+  /**
+   * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Statements</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getBody_Statements()
+   * @model containment="true"
+   * @generated
+   */
+  EList<EObject> getStatements();
+
+  /**
+   * Returns the value of the '<em><b>Loop</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Loop</em>' attribute.
+   * @see #setLoop(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getBody_Loop()
+   * @model
+   * @generated
+   */
+  boolean isLoop();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Body#isLoop <em>Loop</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Loop</em>' attribute.
+   * @see #isLoop()
+   * @generated
+   */
+  void setLoop(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Restart</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Restart</em>' attribute.
+   * @see #setRestart(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getBody_Restart()
+   * @model
+   * @generated
+   */
+  boolean isRestart();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Body#isRestart <em>Restart</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Restart</em>' attribute.
+   * @see #isRestart()
+   * @generated
+   */
+  void setRestart(boolean value);
 
 } // Body

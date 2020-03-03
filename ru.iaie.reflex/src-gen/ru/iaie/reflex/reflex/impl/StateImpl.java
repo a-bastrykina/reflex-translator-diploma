@@ -4,14 +4,18 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.TimeoutFunction;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,8 +26,8 @@ import ru.iaie.reflex.reflex.State;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#isStateFunction <em>State Function</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#isTimeoutFunction <em>Timeout Function</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getStateFunction <em>State Function</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getTimeoutFunction <em>Timeout Function</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,44 +55,24 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isStateFunction() <em>State Function</em>}' attribute.
+   * The cached value of the '{@link #getStateFunction() <em>State Function</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStateFunction()
+   * @see #getStateFunction()
    * @generated
    * @ordered
    */
-  protected static final boolean STATE_FUNCTION_EDEFAULT = false;
+  protected StateFunction stateFunction;
 
   /**
-   * The cached value of the '{@link #isStateFunction() <em>State Function</em>}' attribute.
+   * The cached value of the '{@link #getTimeoutFunction() <em>Timeout Function</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStateFunction()
+   * @see #getTimeoutFunction()
    * @generated
    * @ordered
    */
-  protected boolean stateFunction = STATE_FUNCTION_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isTimeoutFunction() <em>Timeout Function</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isTimeoutFunction()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean TIMEOUT_FUNCTION_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isTimeoutFunction() <em>Timeout Function</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isTimeoutFunction()
-   * @generated
-   * @ordered
-   */
-  protected boolean timeoutFunction = TIMEOUT_FUNCTION_EDEFAULT;
+  protected TimeoutFunction timeoutFunction;
 
   /**
    * <!-- begin-user-doc -->
@@ -142,7 +126,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    */
   @Override
-  public boolean isStateFunction()
+  public StateFunction getStateFunction()
   {
     return stateFunction;
   }
@@ -152,13 +136,16 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setStateFunction(boolean newStateFunction)
+  public NotificationChain basicSetStateFunction(StateFunction newStateFunction, NotificationChain msgs)
   {
-    boolean oldStateFunction = stateFunction;
+    StateFunction oldStateFunction = stateFunction;
     stateFunction = newStateFunction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__STATE_FUNCTION, oldStateFunction, stateFunction));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__STATE_FUNCTION, oldStateFunction, newStateFunction);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -167,7 +154,29 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    */
   @Override
-  public boolean isTimeoutFunction()
+  public void setStateFunction(StateFunction newStateFunction)
+  {
+    if (newStateFunction != stateFunction)
+    {
+      NotificationChain msgs = null;
+      if (stateFunction != null)
+        msgs = ((InternalEObject)stateFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE__STATE_FUNCTION, null, msgs);
+      if (newStateFunction != null)
+        msgs = ((InternalEObject)newStateFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE__STATE_FUNCTION, null, msgs);
+      msgs = basicSetStateFunction(newStateFunction, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__STATE_FUNCTION, newStateFunction, newStateFunction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TimeoutFunction getTimeoutFunction()
   {
     return timeoutFunction;
   }
@@ -177,13 +186,56 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setTimeoutFunction(boolean newTimeoutFunction)
+  public NotificationChain basicSetTimeoutFunction(TimeoutFunction newTimeoutFunction, NotificationChain msgs)
   {
-    boolean oldTimeoutFunction = timeoutFunction;
+    TimeoutFunction oldTimeoutFunction = timeoutFunction;
     timeoutFunction = newTimeoutFunction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__TIMEOUT_FUNCTION, oldTimeoutFunction, timeoutFunction));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__TIMEOUT_FUNCTION, oldTimeoutFunction, newTimeoutFunction);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTimeoutFunction(TimeoutFunction newTimeoutFunction)
+  {
+    if (newTimeoutFunction != timeoutFunction)
+    {
+      NotificationChain msgs = null;
+      if (timeoutFunction != null)
+        msgs = ((InternalEObject)timeoutFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE__TIMEOUT_FUNCTION, null, msgs);
+      if (newTimeoutFunction != null)
+        msgs = ((InternalEObject)newTimeoutFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE__TIMEOUT_FUNCTION, null, msgs);
+      msgs = basicSetTimeoutFunction(newTimeoutFunction, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__TIMEOUT_FUNCTION, newTimeoutFunction, newTimeoutFunction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.STATE__STATE_FUNCTION:
+        return basicSetStateFunction(null, msgs);
+      case ReflexPackage.STATE__TIMEOUT_FUNCTION:
+        return basicSetTimeoutFunction(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -199,9 +251,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
       case ReflexPackage.STATE__NAME:
         return getName();
       case ReflexPackage.STATE__STATE_FUNCTION:
-        return isStateFunction();
+        return getStateFunction();
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
-        return isTimeoutFunction();
+        return getTimeoutFunction();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -220,10 +272,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setName((String)newValue);
         return;
       case ReflexPackage.STATE__STATE_FUNCTION:
-        setStateFunction((Boolean)newValue);
+        setStateFunction((StateFunction)newValue);
         return;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
-        setTimeoutFunction((Boolean)newValue);
+        setTimeoutFunction((TimeoutFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -243,10 +295,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setName(NAME_EDEFAULT);
         return;
       case ReflexPackage.STATE__STATE_FUNCTION:
-        setStateFunction(STATE_FUNCTION_EDEFAULT);
+        setStateFunction((StateFunction)null);
         return;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
-        setTimeoutFunction(TIMEOUT_FUNCTION_EDEFAULT);
+        setTimeoutFunction((TimeoutFunction)null);
         return;
     }
     super.eUnset(featureID);
@@ -265,9 +317,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
       case ReflexPackage.STATE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.STATE__STATE_FUNCTION:
-        return stateFunction != STATE_FUNCTION_EDEFAULT;
+        return stateFunction != null;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
-        return timeoutFunction != TIMEOUT_FUNCTION_EDEFAULT;
+        return timeoutFunction != null;
     }
     return super.eIsSet(featureID);
   }
@@ -285,10 +337,6 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", stateFunction: ");
-    result.append(stateFunction);
-    result.append(", timeoutFunction: ");
-    result.append(timeoutFunction);
     result.append(')');
     return result.toString();
   }

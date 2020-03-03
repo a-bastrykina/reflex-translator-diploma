@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface SetStateStat extends Body
+public interface SetStateStat extends EObject
 {
   /**
    * Returns the value of the '<em><b>State Id</b></em>' attribute.

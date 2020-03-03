@@ -231,7 +231,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns AdditiveExpression
 	 *     AdditiveExpression returns AdditiveExpression
 	 *     AdditiveExpression.AdditiveExpression_1_0 returns AdditiveExpression
 	 *     ShiftExpression returns AdditiveExpression
@@ -296,7 +295,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns AssignmentExpression
 	 *     AssignmentExpression returns AssignmentExpression
 	 *     Expression returns AssignmentExpression
 	 *
@@ -322,7 +320,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns BitAndExpression
 	 *     BitAndExpression returns BitAndExpression
 	 *     BitAndExpression.BitAndExpression_1_0 returns BitAndExpression
 	 *     BitXorExpression returns BitAndExpression
@@ -355,7 +352,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns BitOrExpression
 	 *     BitOrExpression returns BitOrExpression
 	 *     BitOrExpression.BitOrExpression_1_0 returns BitOrExpression
 	 *     LogicalAndExpression returns BitOrExpression
@@ -384,7 +380,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns BitXorExpression
 	 *     BitXorExpression returns BitXorExpression
 	 *     BitXorExpression.BitXorExpression_1_0 returns BitXorExpression
 	 *     BitOrExpression returns BitXorExpression
@@ -418,7 +413,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Body returns Body
 	 *
 	 * Constraint:
-	 *     sub+=Body*
+	 *     (
+	 *         sub+=Body+ | 
+	 *         statements+=IfElseStat | 
+	 *         statements+=SwitchStat | 
+	 *         statements+=StartProcStat | 
+	 *         statements+=StopProcStat | 
+	 *         statements+=ErrorStat | 
+	 *         loop?=LoopStat | 
+	 *         restart?=RestartStat | 
+	 *         statements+=SetStateStat | 
+	 *         statements+=Expression
+	 *     )?
 	 */
 	protected void sequence_Body(ISerializationContext context, Body semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -461,7 +467,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns CastExpression
 	 *     CastExpression returns CastExpression
 	 *     MultiplicativeExpression returns CastExpression
 	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns CastExpression
@@ -505,7 +510,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns CompareExpression
 	 *     CompareExpression returns CompareExpression
 	 *     CompareExpression.CompareExpression_1_0 returns CompareExpression
 	 *     EqualityExpression returns CompareExpression
@@ -637,7 +641,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns EqualityExpression
 	 *     EqualityExpression returns EqualityExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns EqualityExpression
 	 *     BitAndExpression returns EqualityExpression
@@ -675,7 +678,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns ErrorStat
 	 *     ErrorStat returns ErrorStat
 	 *
 	 * Constraint:
@@ -688,7 +690,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns FunctionCall
 	 *     FunctionCall returns FunctionCall
 	 *     UnaryExpression returns FunctionCall
 	 *     CastExpression returns FunctionCall
@@ -737,7 +738,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns IfElseStat
 	 *     IfElseStat returns IfElseStat
 	 *
 	 * Constraint:
@@ -763,7 +763,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns InfixOp
 	 *     InfixOp returns InfixOp
 	 *     UnaryExpression returns InfixOp
 	 *     CastExpression returns InfixOp
@@ -821,7 +820,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns LogicalAndExpression
 	 *     LogicalAndExpression returns LogicalAndExpression
 	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns LogicalAndExpression
 	 *     LogicalOrExpression returns LogicalAndExpression
@@ -848,7 +846,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns LogicalOrExpression
 	 *     LogicalOrExpression returns LogicalOrExpression
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns LogicalOrExpression
 	 *     AssignmentExpression returns LogicalOrExpression
@@ -873,7 +870,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns MultiplicativeExpression
 	 *     MultiplicativeExpression returns MultiplicativeExpression
 	 *     MultiplicativeExpression.MultiplicativeExpression_1_0 returns MultiplicativeExpression
 	 *     AdditiveExpression returns MultiplicativeExpression
@@ -931,7 +927,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns PostfixOp
 	 *     PostfixOp returns PostfixOp
 	 *     UnaryExpression returns PostfixOp
 	 *     CastExpression returns PostfixOp
@@ -977,7 +972,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns PrimaryExpression
 	 *     PrimaryExpression returns PrimaryExpression
 	 *     UnaryExpression returns PrimaryExpression
 	 *     CastExpression returns PrimaryExpression
@@ -1122,7 +1116,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns SetStateStat
 	 *     SetStateStat returns SetStateStat
 	 *
 	 * Constraint:
@@ -1135,7 +1128,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns ShiftExpression
 	 *     ShiftExpression returns ShiftExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns ShiftExpression
 	 *     CompareExpression returns ShiftExpression
@@ -1177,7 +1169,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns StartProcStat
 	 *     StartProcStat returns StartProcStat
 	 *
 	 * Constraint:
@@ -1217,7 +1208,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     State returns State
 	 *
 	 * Constraint:
-	 *     (name=ID stateFunction?=StateFunction? timeoutFunction?=TimeoutFunction?)
+	 *     (name=ID stateFunction=StateFunction? timeoutFunction=TimeoutFunction?)
 	 */
 	protected void sequence_State(ISerializationContext context, State semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1226,7 +1217,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns StopProcStat
 	 *     StopProcStat returns StopProcStat
 	 *
 	 * Constraint:
@@ -1239,7 +1229,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns SwitchStat
 	 *     SwitchStat returns SwitchStat
 	 *
 	 * Constraint:
@@ -1256,13 +1245,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         days?=DECIMAL? 
-	 *         hours?=DECIMAL? 
-	 *         minutes?=DECIMAL? 
-	 *         seconds?=DECIMAL? 
-	 *         milis?=DECIMAL? 
-	 *         micros?=DECIMAL? 
-	 *         nanos?=DECIMAL?
+	 *         days=DECIMAL? 
+	 *         hours=DECIMAL? 
+	 *         minutes=DECIMAL? 
+	 *         seconds=DECIMAL? 
+	 *         milis=DECIMAL? 
+	 *         micros=DECIMAL? 
+	 *         nanos=DECIMAL?
 	 *     )
 	 */
 	protected void sequence_Time(ISerializationContext context, Time semanticObject) {
@@ -1293,7 +1282,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Body returns UnaryExpression
 	 *     UnaryExpression returns UnaryExpression
 	 *     CastExpression returns UnaryExpression
 	 *     MultiplicativeExpression returns UnaryExpression

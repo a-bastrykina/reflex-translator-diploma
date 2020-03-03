@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -25,7 +26,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class ErrorStatImpl extends BodyImpl implements ErrorStat
+public class ErrorStatImpl extends MinimalEObjectImpl.Container implements ErrorStat
 {
   /**
    * The default value of the '{@link #isProcId() <em>Proc Id</em>}' attribute.

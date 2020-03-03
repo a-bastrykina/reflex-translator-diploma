@@ -5,13 +5,16 @@ package ru.iaie.reflex.reflex.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,6 +32,9 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#getSub <em>Sub</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isLoop <em>Loop</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isRestart <em>Restart</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +50,56 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
    * @ordered
    */
   protected EList<Body> sub;
+
+  /**
+   * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStatements()
+   * @generated
+   * @ordered
+   */
+  protected EList<EObject> statements;
+
+  /**
+   * The default value of the '{@link #isLoop() <em>Loop</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLoop()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean LOOP_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isLoop() <em>Loop</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLoop()
+   * @generated
+   * @ordered
+   */
+  protected boolean loop = LOOP_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isRestart() <em>Restart</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isRestart()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean RESTART_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isRestart() <em>Restart</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isRestart()
+   * @generated
+   * @ordered
+   */
+  protected boolean restart = RESTART_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,12 +143,79 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
    * @generated
    */
   @Override
+  public EList<EObject> getStatements()
+  {
+    if (statements == null)
+    {
+      statements = new EObjectContainmentEList<EObject>(EObject.class, this, ReflexPackage.BODY__STATEMENTS);
+    }
+    return statements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isLoop()
+  {
+    return loop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLoop(boolean newLoop)
+  {
+    boolean oldLoop = loop;
+    loop = newLoop;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.BODY__LOOP, oldLoop, loop));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isRestart()
+  {
+    return restart;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setRestart(boolean newRestart)
+  {
+    boolean oldRestart = restart;
+    restart = newRestart;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.BODY__RESTART, oldRestart, restart));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
       case ReflexPackage.BODY__SUB:
         return ((InternalEList<?>)getSub()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.BODY__STATEMENTS:
+        return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -109,6 +232,12 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
     {
       case ReflexPackage.BODY__SUB:
         return getSub();
+      case ReflexPackage.BODY__STATEMENTS:
+        return getStatements();
+      case ReflexPackage.BODY__LOOP:
+        return isLoop();
+      case ReflexPackage.BODY__RESTART:
+        return isRestart();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -128,6 +257,16 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
         getSub().clear();
         getSub().addAll((Collection<? extends Body>)newValue);
         return;
+      case ReflexPackage.BODY__STATEMENTS:
+        getStatements().clear();
+        getStatements().addAll((Collection<? extends EObject>)newValue);
+        return;
+      case ReflexPackage.BODY__LOOP:
+        setLoop((Boolean)newValue);
+        return;
+      case ReflexPackage.BODY__RESTART:
+        setRestart((Boolean)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -145,6 +284,15 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
       case ReflexPackage.BODY__SUB:
         getSub().clear();
         return;
+      case ReflexPackage.BODY__STATEMENTS:
+        getStatements().clear();
+        return;
+      case ReflexPackage.BODY__LOOP:
+        setLoop(LOOP_EDEFAULT);
+        return;
+      case ReflexPackage.BODY__RESTART:
+        setRestart(RESTART_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -161,8 +309,33 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
     {
       case ReflexPackage.BODY__SUB:
         return sub != null && !sub.isEmpty();
+      case ReflexPackage.BODY__STATEMENTS:
+        return statements != null && !statements.isEmpty();
+      case ReflexPackage.BODY__LOOP:
+        return loop != LOOP_EDEFAULT;
+      case ReflexPackage.BODY__RESTART:
+        return restart != RESTART_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (loop: ");
+    result.append(loop);
+    result.append(", restart: ");
+    result.append(restart);
+    result.append(')');
+    return result.toString();
   }
 
 } //BodyImpl

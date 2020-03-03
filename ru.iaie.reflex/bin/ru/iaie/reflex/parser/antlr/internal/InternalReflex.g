@@ -848,7 +848,7 @@ ruleState returns [EObject current=null]
 					set(
 						$current,
 						"stateFunction",
-						true,
+						lv_stateFunction_3_0,
 						"ru.iaie.reflex.Reflex.StateFunction");
 					afterParserOrEnumRuleCall();
 				}
@@ -867,7 +867,7 @@ ruleState returns [EObject current=null]
 					set(
 						$current,
 						"timeoutFunction",
-						true,
+						lv_timeoutFunction_4_0,
 						"ru.iaie.reflex.Reflex.TimeoutFunction");
 					afterParserOrEnumRuleCall();
 				}
@@ -1046,106 +1046,189 @@ ruleBody returns [EObject current=null]
 			)
 		)
 		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getIfElseStatParserRuleCall_2());
-		}
-		this_IfElseStat_6=ruleIfElseStat
-		{
-			$current = $this_IfElseStat_6.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getSwitchStatParserRuleCall_3());
-		}
-		this_SwitchStat_7=ruleSwitchStat
-		{
-			$current = $this_SwitchStat_7.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getStartProcStatParserRuleCall_4());
-		}
-		this_StartProcStat_8=ruleStartProcStat
-		{
-			$current = $this_StartProcStat_8.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getStopProcStatParserRuleCall_5());
-		}
-		this_StopProcStat_9=ruleStopProcStat
-		{
-			$current = $this_StopProcStat_9.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getErrorStatParserRuleCall_6());
-		}
-		this_ErrorStat_10=ruleErrorStat
-		{
-			$current = $this_ErrorStat_10.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
 		(
 			(
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getBodyAccess().getBodyAction_7_0(),
-						$current);
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsIfElseStatParserRuleCall_2_0());
+				}
+				lv_statements_6_0=ruleIfElseStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_6_0,
+						"ru.iaie.reflex.Reflex.IfElseStat");
+					afterParserOrEnumRuleCall();
 				}
 			)
-			{
-				newCompositeNode(grammarAccess.getBodyAccess().getLoopStatParserRuleCall_7_1());
-			}
-			ruleLoopStat
-			{
-				afterParserOrEnumRuleCall();
-			}
 		)
 		    |
 		(
 			(
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getBodyAccess().getBodyAction_8_0(),
-						$current);
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsSwitchStatParserRuleCall_3_0());
+				}
+				lv_statements_7_0=ruleSwitchStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_7_0,
+						"ru.iaie.reflex.Reflex.SwitchStat");
+					afterParserOrEnumRuleCall();
 				}
 			)
-			{
-				newCompositeNode(grammarAccess.getBodyAccess().getRestartStatParserRuleCall_8_1());
-			}
-			ruleRestartStat
-			{
-				afterParserOrEnumRuleCall();
-			}
 		)
 		    |
-		{
-			newCompositeNode(grammarAccess.getBodyAccess().getSetStateStatParserRuleCall_9());
-		}
-		this_SetStateStat_15=ruleSetStateStat
-		{
-			$current = $this_SetStateStat_15.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsStartProcStatParserRuleCall_4_0());
+				}
+				lv_statements_8_0=ruleStartProcStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_8_0,
+						"ru.iaie.reflex.Reflex.StartProcStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		    |
 		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsStopProcStatParserRuleCall_5_0());
+				}
+				lv_statements_9_0=ruleStopProcStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_9_0,
+						"ru.iaie.reflex.Reflex.StopProcStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsErrorStatParserRuleCall_6_0());
+				}
+				lv_statements_10_0=ruleErrorStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_10_0,
+						"ru.iaie.reflex.Reflex.ErrorStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getLoopLoopStatParserRuleCall_7_0());
+				}
+				lv_loop_11_0=ruleLoopStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					set(
+						$current,
+						"loop",
+						true,
+						"ru.iaie.reflex.Reflex.LoopStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getRestartRestartStatParserRuleCall_8_0());
+				}
+				lv_restart_12_0=ruleRestartStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					set(
+						$current,
+						"restart",
+						true,
+						"ru.iaie.reflex.Reflex.RestartStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyAccess().getStatementsSetStateStatParserRuleCall_9_0());
+				}
+				lv_statements_13_0=ruleSetStateStat
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_13_0,
+						"ru.iaie.reflex.Reflex.SetStateStat");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getBodyAccess().getStatementsExpressionParserRuleCall_10_0_0());
+					}
+					lv_statements_14_0=ruleExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getBodyRule());
+						}
+						add(
+							$current,
+							"statements",
+							lv_statements_14_0,
+							"ru.iaie.reflex.Reflex.Expression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_15=';'
 			{
-				newCompositeNode(grammarAccess.getBodyAccess().getExpressionParserRuleCall_10_0());
-			}
-			this_Expression_16=ruleExpression
-			{
-				$current = $this_Expression_16.current;
-				afterParserOrEnumRuleCall();
-			}
-			otherlv_17=';'
-			{
-				newLeafNode(otherlv_17, grammarAccess.getBodyAccess().getSemicolonKeyword_10_1());
+				newLeafNode(otherlv_15, grammarAccess.getBodyAccess().getSemicolonKeyword_10_1());
 			}
 		)
 	)
@@ -3682,7 +3765,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"days",
-							true,
+							lv_days_4_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3706,7 +3789,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"hours",
-							true,
+							lv_hours_6_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3730,7 +3813,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"minutes",
-							true,
+							lv_minutes_8_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3754,7 +3837,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"seconds",
-							true,
+							lv_seconds_10_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3778,7 +3861,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"milis",
-							true,
+							lv_milis_12_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3802,7 +3885,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"micros",
-							true,
+							lv_micros_14_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)
@@ -3826,7 +3909,7 @@ ruleTime returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"nanos",
-							true,
+							lv_nanos_16_0,
 							"ru.iaie.reflex.Reflex.DECIMAL");
 					}
 				)

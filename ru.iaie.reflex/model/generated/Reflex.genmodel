@@ -101,8 +101,8 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/stateFunction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/timeoutFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/stateFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//StateFunction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StateFunction/body"/>
@@ -113,6 +113,9 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Body">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Body/sub"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Body/statements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Body/loop"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Body/restart"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//AssignStat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignStat/varId"/>

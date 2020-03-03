@@ -43,8 +43,8 @@ Visibility:
 
 State:
 	"state" name=ID "{"
-	(stateFunction?=StateFunction)?
-	(timeoutFunction?=TimeoutFunction)?
+	(stateFunction=StateFunction)?
+	(timeoutFunction=TimeoutFunction)?
 	"}";
 
 StateFunction:
@@ -54,10 +54,10 @@ TimeoutFunction:
 	"timeout" time=Time body=Body;
 
 Body:
-	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat |
-	SwitchStat | StartProcStat | StopProcStat |
-	ErrorStat | {Body} LoopStat |
-	{Body} RestartStat | SetStateStat | Expression ";";
+	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat |
+	statements+=SwitchStat | statements+=StartProcStat | statements+=StopProcStat |
+	statements+=ErrorStat | loop?=LoopStat |
+	restart?=RestartStat | statements+=SetStateStat | statements+=Expression ";";
 
 AssignStat:
 	varId=ID "=" expr=Expression ";";
@@ -271,8 +271,8 @@ terminal HEX:
 
 	// Time
 Time:
-	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
-	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+	{Time} ("0t" | "0T") (DAY days=DECIMAL)? (HOUR hours=DECIMAL)? (MINUTE minutes=DECIMAL)? (SECOND seconds=DECIMAL)?
+	(MILISECOND milis=DECIMAL)? (MICROSECOND micros=DECIMAL)? (NANOSECOND nanos=DECIMAL)?;
 
 terminal LONG:
 	"L" | "l";

@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface IfElseStat extends Body
+public interface IfElseStat extends EObject
 {
   /**
    * Returns the value of the '<em><b>Cond</b></em>' containment reference.

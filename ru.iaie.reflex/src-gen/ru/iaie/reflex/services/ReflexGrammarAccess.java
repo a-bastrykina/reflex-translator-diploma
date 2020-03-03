@@ -443,12 +443,12 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//State:
 		//	"state" name=ID "{"
-		//	stateFunction?=StateFunction?
-		//	timeoutFunction?=TimeoutFunction?
+		//	stateFunction=StateFunction?
+		//	timeoutFunction=TimeoutFunction?
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"state" name=ID "{" stateFunction?=StateFunction? timeoutFunction?=TimeoutFunction? "}"
+		//"state" name=ID "{" stateFunction=StateFunction? timeoutFunction=TimeoutFunction? "}"
 		public Group getGroup() { return cGroup; }
 		
 		//"state"
@@ -463,13 +463,13 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//stateFunction?=StateFunction?
+		//stateFunction=StateFunction?
 		public Assignment getStateFunctionAssignment_3() { return cStateFunctionAssignment_3; }
 		
 		//StateFunction
 		public RuleCall getStateFunctionStateFunctionParserRuleCall_3_0() { return cStateFunctionStateFunctionParserRuleCall_3_0; }
 		
-		//timeoutFunction?=TimeoutFunction?
+		//timeoutFunction=TimeoutFunction?
 		public Assignment getTimeoutFunctionAssignment_4() { return cTimeoutFunctionAssignment_4; }
 		
 		//TimeoutFunction
@@ -537,29 +537,36 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSubAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
 		private final RuleCall cSubBodyParserRuleCall_1_1_1_0 = (RuleCall)cSubAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
-		private final RuleCall cIfElseStatParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cSwitchStatParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cStartProcStatParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cStopProcStatParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cErrorStatParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Action cBodyAction_7_0 = (Action)cGroup_7.eContents().get(0);
-		private final RuleCall cLoopStatParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
-		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Action cBodyAction_8_0 = (Action)cGroup_8.eContents().get(0);
-		private final RuleCall cRestartStatParserRuleCall_8_1 = (RuleCall)cGroup_8.eContents().get(1);
-		private final RuleCall cSetStateStatParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final Assignment cStatementsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cStatementsIfElseStatParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
+		private final Assignment cStatementsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cStatementsSwitchStatParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final Assignment cStatementsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cStatementsStartProcStatParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
+		private final Assignment cStatementsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cStatementsStopProcStatParserRuleCall_5_0 = (RuleCall)cStatementsAssignment_5.eContents().get(0);
+		private final Assignment cStatementsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
+		private final RuleCall cStatementsErrorStatParserRuleCall_6_0 = (RuleCall)cStatementsAssignment_6.eContents().get(0);
+		private final Assignment cLoopAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
+		private final RuleCall cLoopLoopStatParserRuleCall_7_0 = (RuleCall)cLoopAssignment_7.eContents().get(0);
+		private final Assignment cRestartAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
+		private final RuleCall cRestartRestartStatParserRuleCall_8_0 = (RuleCall)cRestartAssignment_8.eContents().get(0);
+		private final Assignment cStatementsAssignment_9 = (Assignment)cAlternatives.eContents().get(9);
+		private final RuleCall cStatementsSetStateStatParserRuleCall_9_0 = (RuleCall)cStatementsAssignment_9.eContents().get(0);
 		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
-		private final RuleCall cExpressionParserRuleCall_10_0 = (RuleCall)cGroup_10.eContents().get(0);
+		private final Assignment cStatementsAssignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
+		private final RuleCall cStatementsExpressionParserRuleCall_10_0_0 = (RuleCall)cStatementsAssignment_10_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//Body:
-		//	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
-		//	LoopStat | {Body} RestartStat | SetStateStat | Expression ";";
+		//	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat
+		//	| statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat
+		//	| statements+=Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
-		//LoopStat | {Body} RestartStat | SetStateStat | Expression ";"
+		//{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat |
+		//statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat |
+		//statements+=Expression ";"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{Body} ";"
@@ -592,47 +599,62 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 		
+		//statements+=IfElseStat
+		public Assignment getStatementsAssignment_2() { return cStatementsAssignment_2; }
+		
 		//IfElseStat
-		public RuleCall getIfElseStatParserRuleCall_2() { return cIfElseStatParserRuleCall_2; }
+		public RuleCall getStatementsIfElseStatParserRuleCall_2_0() { return cStatementsIfElseStatParserRuleCall_2_0; }
+		
+		//statements+=SwitchStat
+		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
 		//SwitchStat
-		public RuleCall getSwitchStatParserRuleCall_3() { return cSwitchStatParserRuleCall_3; }
+		public RuleCall getStatementsSwitchStatParserRuleCall_3_0() { return cStatementsSwitchStatParserRuleCall_3_0; }
+		
+		//statements+=StartProcStat
+		public Assignment getStatementsAssignment_4() { return cStatementsAssignment_4; }
 		
 		//StartProcStat
-		public RuleCall getStartProcStatParserRuleCall_4() { return cStartProcStatParserRuleCall_4; }
+		public RuleCall getStatementsStartProcStatParserRuleCall_4_0() { return cStatementsStartProcStatParserRuleCall_4_0; }
+		
+		//statements+=StopProcStat
+		public Assignment getStatementsAssignment_5() { return cStatementsAssignment_5; }
 		
 		//StopProcStat
-		public RuleCall getStopProcStatParserRuleCall_5() { return cStopProcStatParserRuleCall_5; }
+		public RuleCall getStatementsStopProcStatParserRuleCall_5_0() { return cStatementsStopProcStatParserRuleCall_5_0; }
+		
+		//statements+=ErrorStat
+		public Assignment getStatementsAssignment_6() { return cStatementsAssignment_6; }
 		
 		//ErrorStat
-		public RuleCall getErrorStatParserRuleCall_6() { return cErrorStatParserRuleCall_6; }
+		public RuleCall getStatementsErrorStatParserRuleCall_6_0() { return cStatementsErrorStatParserRuleCall_6_0; }
 		
-		//{Body} LoopStat
-		public Group getGroup_7() { return cGroup_7; }
-		
-		//{Body}
-		public Action getBodyAction_7_0() { return cBodyAction_7_0; }
+		//loop?=LoopStat
+		public Assignment getLoopAssignment_7() { return cLoopAssignment_7; }
 		
 		//LoopStat
-		public RuleCall getLoopStatParserRuleCall_7_1() { return cLoopStatParserRuleCall_7_1; }
+		public RuleCall getLoopLoopStatParserRuleCall_7_0() { return cLoopLoopStatParserRuleCall_7_0; }
 		
-		//{Body} RestartStat
-		public Group getGroup_8() { return cGroup_8; }
-		
-		//{Body}
-		public Action getBodyAction_8_0() { return cBodyAction_8_0; }
+		//restart?=RestartStat
+		public Assignment getRestartAssignment_8() { return cRestartAssignment_8; }
 		
 		//RestartStat
-		public RuleCall getRestartStatParserRuleCall_8_1() { return cRestartStatParserRuleCall_8_1; }
+		public RuleCall getRestartRestartStatParserRuleCall_8_0() { return cRestartRestartStatParserRuleCall_8_0; }
+		
+		//statements+=SetStateStat
+		public Assignment getStatementsAssignment_9() { return cStatementsAssignment_9; }
 		
 		//SetStateStat
-		public RuleCall getSetStateStatParserRuleCall_9() { return cSetStateStatParserRuleCall_9; }
+		public RuleCall getStatementsSetStateStatParserRuleCall_9_0() { return cStatementsSetStateStatParserRuleCall_9_0; }
 		
-		//Expression ";"
+		//statements+=Expression ";"
 		public Group getGroup_10() { return cGroup_10; }
 		
+		//statements+=Expression
+		public Assignment getStatementsAssignment_10_0() { return cStatementsAssignment_10_0; }
+		
 		//Expression
-		public RuleCall getExpressionParserRuleCall_10_0() { return cExpressionParserRuleCall_10_0; }
+		public RuleCall getStatementsExpressionParserRuleCall_10_0_0() { return cStatementsExpressionParserRuleCall_10_0_0; }
 		
 		//";"
 		public Keyword getSemicolonKeyword_10_1() { return cSemicolonKeyword_10_1; }
@@ -2137,12 +2159,12 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Time
 		//Time:
-		//	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
-		//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+		//	{Time} ("0t" | "0T") (DAY days=DECIMAL)? (HOUR hours=DECIMAL)? (MINUTE minutes=DECIMAL)? (SECOND seconds=DECIMAL)?
+		//	(MILISECOND milis=DECIMAL)? (MICROSECOND micros=DECIMAL)? (NANOSECOND nanos=DECIMAL)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
-		//(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?
+		//{Time} ("0t" | "0T") (DAY days=DECIMAL)? (HOUR hours=DECIMAL)? (MINUTE minutes=DECIMAL)? (SECOND seconds=DECIMAL)?
+		//(MILISECOND milis=DECIMAL)? (MICROSECOND micros=DECIMAL)? (NANOSECOND nanos=DECIMAL)?
 		public Group getGroup() { return cGroup; }
 		
 		//{Time}
@@ -2157,85 +2179,85 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"0T"
 		public Keyword getTKeyword_1_1() { return cTKeyword_1_1; }
 		
-		//(DAY days?=DECIMAL)?
+		//(DAY days=DECIMAL)?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//DAY
 		public RuleCall getDAYTerminalRuleCall_2_0() { return cDAYTerminalRuleCall_2_0; }
 		
-		//days?=DECIMAL
+		//days=DECIMAL
 		public Assignment getDaysAssignment_2_1() { return cDaysAssignment_2_1; }
 		
 		//DECIMAL
 		public RuleCall getDaysDECIMALTerminalRuleCall_2_1_0() { return cDaysDECIMALTerminalRuleCall_2_1_0; }
 		
-		//(HOUR hours?=DECIMAL)?
+		//(HOUR hours=DECIMAL)?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//HOUR
 		public RuleCall getHOURTerminalRuleCall_3_0() { return cHOURTerminalRuleCall_3_0; }
 		
-		//hours?=DECIMAL
+		//hours=DECIMAL
 		public Assignment getHoursAssignment_3_1() { return cHoursAssignment_3_1; }
 		
 		//DECIMAL
 		public RuleCall getHoursDECIMALTerminalRuleCall_3_1_0() { return cHoursDECIMALTerminalRuleCall_3_1_0; }
 		
-		//(MINUTE minutes?=DECIMAL)?
+		//(MINUTE minutes=DECIMAL)?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//MINUTE
 		public RuleCall getMINUTETerminalRuleCall_4_0() { return cMINUTETerminalRuleCall_4_0; }
 		
-		//minutes?=DECIMAL
+		//minutes=DECIMAL
 		public Assignment getMinutesAssignment_4_1() { return cMinutesAssignment_4_1; }
 		
 		//DECIMAL
 		public RuleCall getMinutesDECIMALTerminalRuleCall_4_1_0() { return cMinutesDECIMALTerminalRuleCall_4_1_0; }
 		
-		//(SECOND seconds?=DECIMAL)?
+		//(SECOND seconds=DECIMAL)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//SECOND
 		public RuleCall getSECONDTerminalRuleCall_5_0() { return cSECONDTerminalRuleCall_5_0; }
 		
-		//seconds?=DECIMAL
+		//seconds=DECIMAL
 		public Assignment getSecondsAssignment_5_1() { return cSecondsAssignment_5_1; }
 		
 		//DECIMAL
 		public RuleCall getSecondsDECIMALTerminalRuleCall_5_1_0() { return cSecondsDECIMALTerminalRuleCall_5_1_0; }
 		
-		//(MILISECOND milis?=DECIMAL)?
+		//(MILISECOND milis=DECIMAL)?
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//MILISECOND
 		public RuleCall getMILISECONDTerminalRuleCall_6_0() { return cMILISECONDTerminalRuleCall_6_0; }
 		
-		//milis?=DECIMAL
+		//milis=DECIMAL
 		public Assignment getMilisAssignment_6_1() { return cMilisAssignment_6_1; }
 		
 		//DECIMAL
 		public RuleCall getMilisDECIMALTerminalRuleCall_6_1_0() { return cMilisDECIMALTerminalRuleCall_6_1_0; }
 		
-		//(MICROSECOND micros?=DECIMAL)?
+		//(MICROSECOND micros=DECIMAL)?
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//MICROSECOND
 		public RuleCall getMICROSECONDTerminalRuleCall_7_0() { return cMICROSECONDTerminalRuleCall_7_0; }
 		
-		//micros?=DECIMAL
+		//micros=DECIMAL
 		public Assignment getMicrosAssignment_7_1() { return cMicrosAssignment_7_1; }
 		
 		//DECIMAL
 		public RuleCall getMicrosDECIMALTerminalRuleCall_7_1_0() { return cMicrosDECIMALTerminalRuleCall_7_1_0; }
 		
-		//(NANOSECOND nanos?=DECIMAL)?
+		//(NANOSECOND nanos=DECIMAL)?
 		public Group getGroup_8() { return cGroup_8; }
 		
 		//NANOSECOND
 		public RuleCall getNANOSECONDTerminalRuleCall_8_0() { return cNANOSECONDTerminalRuleCall_8_0; }
 		
-		//nanos?=DECIMAL
+		//nanos=DECIMAL
 		public Assignment getNanosAssignment_8_1() { return cNanosAssignment_8_1; }
 		
 		//DECIMAL
@@ -2932,8 +2954,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//State:
 	//	"state" name=ID "{"
-	//	stateFunction?=StateFunction?
-	//	timeoutFunction?=TimeoutFunction?
+	//	stateFunction=StateFunction?
+	//	timeoutFunction=TimeoutFunction?
 	//	"}";
 	public StateElements getStateAccess() {
 		return pState;
@@ -2964,8 +2986,9 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Body:
-	//	{Body} ";" | {Body} ("{" sub+=Body* "}") | IfElseStat | SwitchStat | StartProcStat | StopProcStat | ErrorStat | {Body}
-	//	LoopStat | {Body} RestartStat | SetStateStat | Expression ";";
+	//	{Body} ";" | {Body} ("{" sub+=Body* "}") | statements+=IfElseStat | statements+=SwitchStat | statements+=StartProcStat
+	//	| statements+=StopProcStat | statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat
+	//	| statements+=Expression ";";
 	public BodyElements getBodyAccess() {
 		return pBody;
 	}
@@ -3566,8 +3589,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Time
 	//Time:
-	//	{Time} ("0t" | "0T") (DAY days?=DECIMAL)? (HOUR hours?=DECIMAL)? (MINUTE minutes?=DECIMAL)? (SECOND seconds?=DECIMAL)?
-	//	(MILISECOND milis?=DECIMAL)? (MICROSECOND micros?=DECIMAL)? (NANOSECOND nanos?=DECIMAL)?;
+	//	{Time} ("0t" | "0T") (DAY days=DECIMAL)? (HOUR hours=DECIMAL)? (MINUTE minutes=DECIMAL)? (SECOND seconds=DECIMAL)?
+	//	(MILISECOND milis=DECIMAL)? (MICROSECOND micros=DECIMAL)? (NANOSECOND nanos=DECIMAL)?;
 	public TimeElements getTimeAccess() {
 		return pTime;
 	}

@@ -39,7 +39,7 @@ class ReflexGenerator extends AbstractGenerator {
 		return '''
 			enum «ReflexIdentifiers.PROC_ENUM_ID» {
 				«FOR proc : prog.processes»
-					«generateProcessId(proc)» ,
+					«generateProcessId(proc)»,
 				«ENDFOR»
 			}
 		'''
@@ -55,7 +55,7 @@ class ReflexGenerator extends AbstractGenerator {
 		return '''
 			enum «proc.name»_STATES {
 				«FOR state : proc.states»
-					«generateStateId(proc, state)» ,
+					«generateStateId(proc, state)»,
 				«ENDFOR»
 			}
 		'''

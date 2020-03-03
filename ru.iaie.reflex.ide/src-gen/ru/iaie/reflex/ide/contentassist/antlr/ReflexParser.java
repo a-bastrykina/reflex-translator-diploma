@@ -73,8 +73,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyAccess().getGroup_0(), "rule__Body__Group_0__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_1(), "rule__Body__Group_1__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_1_1(), "rule__Body__Group_1_1__0");
-			builder.put(grammarAccess.getBodyAccess().getGroup_7(), "rule__Body__Group_7__0");
-			builder.put(grammarAccess.getBodyAccess().getGroup_8(), "rule__Body__Group_8__0");
 			builder.put(grammarAccess.getBodyAccess().getGroup_10(), "rule__Body__Group_10__0");
 			builder.put(grammarAccess.getAssignStatAccess().getGroup(), "rule__AssignStat__Group__0");
 			builder.put(grammarAccess.getIfElseStatAccess().getGroup(), "rule__IfElseStat__Group__0");
@@ -171,6 +169,15 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getTimeAssignment_1(), "rule__TimeoutFunction__TimeAssignment_1");
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getBodyAssignment_2(), "rule__TimeoutFunction__BodyAssignment_2");
 			builder.put(grammarAccess.getBodyAccess().getSubAssignment_1_1_1(), "rule__Body__SubAssignment_1_1_1");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_2(), "rule__Body__StatementsAssignment_2");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_3(), "rule__Body__StatementsAssignment_3");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_4(), "rule__Body__StatementsAssignment_4");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_5(), "rule__Body__StatementsAssignment_5");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_6(), "rule__Body__StatementsAssignment_6");
+			builder.put(grammarAccess.getBodyAccess().getLoopAssignment_7(), "rule__Body__LoopAssignment_7");
+			builder.put(grammarAccess.getBodyAccess().getRestartAssignment_8(), "rule__Body__RestartAssignment_8");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_9(), "rule__Body__StatementsAssignment_9");
+			builder.put(grammarAccess.getBodyAccess().getStatementsAssignment_10_0(), "rule__Body__StatementsAssignment_10_0");
 			builder.put(grammarAccess.getAssignStatAccess().getVarIdAssignment_0(), "rule__AssignStat__VarIdAssignment_0");
 			builder.put(grammarAccess.getAssignStatAccess().getExprAssignment_2(), "rule__AssignStat__ExprAssignment_2");
 			builder.put(grammarAccess.getIfElseStatAccess().getCondAssignment_2(), "rule__IfElseStat__CondAssignment_2");

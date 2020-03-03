@@ -59,7 +59,7 @@ public class ReflexGenerator extends AbstractGenerator {
         _builder.append("\t");
         String _generateProcessId = this.generateProcessId(proc);
         _builder.append(_generateProcessId, "\t");
-        _builder.append(" ,");
+        _builder.append(",");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -99,7 +99,7 @@ public class ReflexGenerator extends AbstractGenerator {
         _builder.append("\t");
         String _generateStateId = this.generateStateId(proc, state);
         _builder.append(_generateStateId, "\t");
-        _builder.append(" ,");
+        _builder.append(",");
         _builder.newLineIfNotEmpty();
       }
     }
