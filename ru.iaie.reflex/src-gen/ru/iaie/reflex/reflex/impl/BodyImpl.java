@@ -34,6 +34,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#getStatements <em>Statements</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isLoop <em>Loop</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isRestart <em>Restart</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.BodyImpl#isReset <em>Reset</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +90,26 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
    * @ordered
    */
   protected boolean restart = RESTART_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isReset() <em>Reset</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReset()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean RESET_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isReset() <em>Reset</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReset()
+   * @generated
+   * @ordered
+   */
+  protected boolean reset = RESET_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -182,6 +203,31 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
    * @generated
    */
   @Override
+  public boolean isReset()
+  {
+    return reset;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setReset(boolean newReset)
+  {
+    boolean oldReset = reset;
+    reset = newReset;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.BODY__RESET, oldReset, reset));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -208,6 +254,8 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
         return isLoop();
       case ReflexPackage.BODY__RESTART:
         return isRestart();
+      case ReflexPackage.BODY__RESET:
+        return isReset();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -233,6 +281,9 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
       case ReflexPackage.BODY__RESTART:
         setRestart((Boolean)newValue);
         return;
+      case ReflexPackage.BODY__RESET:
+        setReset((Boolean)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -256,6 +307,9 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
       case ReflexPackage.BODY__RESTART:
         setRestart(RESTART_EDEFAULT);
         return;
+      case ReflexPackage.BODY__RESET:
+        setReset(RESET_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -276,6 +330,8 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
         return loop != LOOP_EDEFAULT;
       case ReflexPackage.BODY__RESTART:
         return restart != RESTART_EDEFAULT;
+      case ReflexPackage.BODY__RESET:
+        return reset != RESET_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -295,6 +351,8 @@ public class BodyImpl extends MinimalEObjectImpl.Container implements Body
     result.append(loop);
     result.append(", restart: ");
     result.append(restart);
+    result.append(", reset: ");
+    result.append(reset);
     result.append(')');
     return result.toString();
   }

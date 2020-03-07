@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AdditiveOp;
 import ru.iaie.reflex.reflex.AssignOperator;
-import ru.iaie.reflex.reflex.AssignStat;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
@@ -135,7 +134,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.STATE_FUNCTION: return createStateFunction();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
       case ReflexPackage.BODY: return createBody();
-      case ReflexPackage.ASSIGN_STAT: return createAssignStat();
       case ReflexPackage.IF_ELSE_STAT: return createIfElseStat();
       case ReflexPackage.SWITCH_STAT: return createSwitchStat();
       case ReflexPackage.CASE_STAT: return createCaseStat();
@@ -399,18 +397,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     BodyImpl body = new BodyImpl();
     return body;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public AssignStat createAssignStat()
-  {
-    AssignStatImpl assignStat = new AssignStatImpl();
-    return assignStat;
   }
 
   /**

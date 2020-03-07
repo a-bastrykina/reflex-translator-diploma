@@ -3,14 +3,19 @@
  */
 package ru.iaie.reflex.reflex.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -24,7 +29,7 @@ import ru.iaie.reflex.reflex.StateFunction;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StateFunctionImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StateFunctionImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +37,14 @@ import ru.iaie.reflex.reflex.StateFunction;
 public class StateFunctionImpl extends MinimalEObjectImpl.Container implements StateFunction
 {
   /**
-   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+   * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBody()
+   * @see #getStatements()
    * @generated
    * @ordered
    */
-  protected Body body;
+  protected EList<Body> statements;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,48 +73,13 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public Body getBody()
+  public EList<Body> getStatements()
   {
-    return body;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetBody(Body newBody, NotificationChain msgs)
-  {
-    Body oldBody = body;
-    body = newBody;
-    if (eNotificationRequired())
+    if (statements == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE_FUNCTION__BODY, oldBody, newBody);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      statements = new EObjectContainmentEList<Body>(Body.class, this, ReflexPackage.STATE_FUNCTION__STATEMENTS);
     }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setBody(Body newBody)
-  {
-    if (newBody != body)
-    {
-      NotificationChain msgs = null;
-      if (body != null)
-        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE_FUNCTION__BODY, null, msgs);
-      if (newBody != null)
-        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.STATE_FUNCTION__BODY, null, msgs);
-      msgs = basicSetBody(newBody, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE_FUNCTION__BODY, newBody, newBody));
+    return statements;
   }
 
   /**
@@ -122,8 +92,8 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__BODY:
-        return basicSetBody(null, msgs);
+      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+        return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +108,8 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__BODY:
-        return getBody();
+      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+        return getStatements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -149,13 +119,15 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__BODY:
-        setBody((Body)newValue);
+      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+        getStatements().clear();
+        getStatements().addAll((Collection<? extends Body>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +143,8 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__BODY:
-        setBody((Body)null);
+      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+        getStatements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -188,8 +160,8 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__BODY:
-        return body != null;
+      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+        return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
   }

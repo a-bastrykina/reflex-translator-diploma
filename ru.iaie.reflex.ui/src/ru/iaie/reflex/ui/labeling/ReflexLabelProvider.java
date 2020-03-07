@@ -4,13 +4,15 @@
 package ru.iaie.reflex.ui.labeling;
 
 import com.google.inject.Inject;
+import ru.iaie.reflex.reflex.Body;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 /**
  * Provides labels for EObjects.
  * 
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#label-provider
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#label-provider
  */
 public class ReflexLabelProvider extends DefaultEObjectLabelProvider {
 
@@ -20,12 +22,13 @@ public class ReflexLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	// Labels and icons can be computed like this:
-	
-//	String text(Greeting ele) {
-//		return "A greeting to " + ele.getName();
-//	}
-//
-//	String image(Greeting ele) {
-//		return "Greeting.gif";
-//	}
+
+	String text(Body b) {
+		if (b.getStatements().size() == 1) {
+			return b.getStatements().get(0).getClass().getSimpleName().replace("Impl", "");
+		} else {
+			return "Statement list";
+		}
+	}
+
 }

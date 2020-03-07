@@ -43,23 +43,21 @@ Visibility:
 
 State:
 	"state" name=ID "{"
-	(stateFunction=StateFunction)?
+	stateFunction=StateFunction
 	(timeoutFunction=TimeoutFunction)?
 	"}";
 
 StateFunction:
-	body=Body;
+	{StateFunction} (statements+=Body)*;
 
 TimeoutFunction:
 	"timeout" time=Time body=Body;
 
 Body:
-	{Body} ";" | statements+=StartProcStat | statements+=StopProcStat |
-	statements+=ErrorStat | loop?=LoopStat | restart?=RestartStat | statements+=SetStateStat | {Body} "{" statements+=Body* "}" |
-	statements+=IfElseStat | statements+=SwitchStat | statements+=Expression ";";
-
-AssignStat:
-	varId=ID "=" expr=Expression ";";
+	{Body} ";" | {Body} "{" statements+=Body* "}" |
+	statements+=StartProcStat | statements+=StopProcStat | statements+=ErrorStat |
+	loop?=LoopStat | restart?=RestartStat | reset?=ResetStat
+	| statements+=SetStateStat | statements+=IfElseStat | statements+=SwitchStat | statements+=Expression ";";
 
 IfElseStat:
 	"if" "(" cond=Expression ")"
@@ -90,9 +88,9 @@ RestartStat:
 
 ResetStat:
 	"reset" "timeout" ";";
-	//TODO: add flag to identify if next
+
 SetStateStat:
-	{SetStateStat} "set" (("state" stateId=ID) | "next") ";";
+	{SetStateStat} "set" (("state" stateId=ID) | next?="next") ";";
 
 Function:
 	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";

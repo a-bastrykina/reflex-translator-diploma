@@ -16,8 +16,10 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import ru.iaie.reflex.generator.ReflexIdentifiers;
+import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StopProcStat;
 
 /**
  * Generates code from your model files on save.
@@ -41,10 +43,14 @@ public class ReflexGenerator extends AbstractGenerator {
     fsa.generateFile(_builder.toString(), fileContent);
   }
   
-  public String generateProcessId(final ru.iaie.reflex.reflex.Process proc) {
-    final String id = proc.getName().toUpperCase();
-    this.procIdentifiers.put(proc.getName(), id);
-    return id;
+  public String getProcessId(final ru.iaie.reflex.reflex.Process proc) {
+    boolean _containsKey = this.procIdentifiers.containsKey(proc.getName());
+    boolean _not = (!_containsKey);
+    if (_not) {
+      final String id = proc.getName().toUpperCase();
+      this.procIdentifiers.put(proc.getName(), id);
+    }
+    return this.procIdentifiers.get(proc.getName());
   }
   
   public String generateProcessesEnum(final Program prog) {
@@ -57,8 +63,8 @@ public class ReflexGenerator extends AbstractGenerator {
       EList<ru.iaie.reflex.reflex.Process> _processes = prog.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         _builder.append("\t");
-        String _generateProcessId = this.generateProcessId(proc);
-        _builder.append(_generateProcessId, "\t");
+        String _processId = this.getProcessId(proc);
+        _builder.append(_processId, "\t");
         _builder.append(",");
         _builder.newLineIfNotEmpty();
       }
@@ -68,22 +74,27 @@ public class ReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateStateId(final ru.iaie.reflex.reflex.Process proc, final State state) {
+  public String getStateId(final ru.iaie.reflex.reflex.Process proc, final State state) {
     StringConcatenation _builder = new StringConcatenation();
-    String _upperCase = proc.getName().toUpperCase();
-    _builder.append(_upperCase);
-    _builder.append("_");
-    String _upperCase_1 = state.getName().toUpperCase();
-    _builder.append(_upperCase_1);
-    final String id = _builder.toString();
-    StringConcatenation _builder_1 = new StringConcatenation();
     String _name = proc.getName();
-    _builder_1.append(_name);
-    _builder_1.append(".");
+    _builder.append(_name);
+    _builder.append(".");
     String _name_1 = state.getName();
-    _builder_1.append(_name_1);
-    this.stateIdentifiers.put(_builder_1.toString(), id);
-    return id;
+    _builder.append(_name_1);
+    final String key = _builder.toString();
+    boolean _containsKey = this.stateIdentifiers.containsKey(key);
+    boolean _not = (!_containsKey);
+    if (_not) {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      String _upperCase = proc.getName().toUpperCase();
+      _builder_1.append(_upperCase);
+      _builder_1.append("_");
+      String _upperCase_1 = state.getName().toUpperCase();
+      _builder_1.append(_upperCase_1);
+      final String id = _builder_1.toString();
+      this.stateIdentifiers.put(key, id);
+    }
+    return this.stateIdentifiers.get(key);
   }
   
   public String generateStateEnum(final ru.iaie.reflex.reflex.Process proc) {
@@ -97,12 +108,24 @@ public class ReflexGenerator extends AbstractGenerator {
       EList<State> _states = proc.getStates();
       for(final State state : _states) {
         _builder.append("\t");
-        String _generateStateId = this.generateStateId(proc, state);
-        _builder.append(_generateStateId, "\t");
+        String _stateId = this.getStateId(proc, state);
+        _builder.append(_stateId, "\t");
         _builder.append(",");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    String _name_1 = proc.getName();
+    _builder.append(_name_1, "\t");
+    _builder.append(ReflexIdentifiers.STOP_STATE_ID_SUFFIX, "\t");
+    _builder.append(",");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    String _name_2 = proc.getName();
+    _builder.append(_name_2, "\t");
+    _builder.append(ReflexIdentifiers.ERR_STATE_ID_SUFFIX, "\t");
+    _builder.append("\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     return _builder.toString();
@@ -113,8 +136,18 @@ public class ReflexGenerator extends AbstractGenerator {
     _builder.append("int ");
     _builder.append(ReflexIdentifiers.TIMER_ARRAY_NAME);
     _builder.append("[");
-    int _length = ((Object[])Conversions.unwrapArray(prog.getProcesses(), Object.class)).length;
-    _builder.append(_length);
+    _builder.append(ReflexIdentifiers.PROC_COUNT_VAR);
+    _builder.append("];");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
+  }
+  
+  public String generateStatesArray(final Program prog) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("int ");
+    _builder.append(ReflexIdentifiers.PROC_STATES_ARRAY_NAME);
+    _builder.append("[");
+    _builder.append(ReflexIdentifiers.PROC_COUNT_VAR);
     _builder.append("];");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
@@ -126,29 +159,56 @@ public class ReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include <stdlib.h>");
     _builder.newLine();
-    String _translateProgramInfo = this.translateProgramInfo(prog);
-    _builder.append(_translateProgramInfo);
+    String _generateProgramInfo = this.generateProgramInfo(prog);
+    _builder.append(_generateProgramInfo);
     _builder.newLineIfNotEmpty();
     _builder.append("int main() {");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("while (1) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("int i = 0;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("for (; i < ");
+    _builder.append(ReflexIdentifiers.PROC_COUNT_VAR, "\t\t");
+    _builder.append("; i++) {");
+    _builder.newLineIfNotEmpty();
     {
       EList<ru.iaie.reflex.reflex.Process> _processes = prog.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
-        _builder.append("\t");
-        Object _translateProcess = this.translateProcess(proc);
-        _builder.append(_translateProcess, "\t");
+        _builder.append("\t\t");
+        String _translateProcess = this.translateProcess(proc);
+        _builder.append(_translateProcess, "\t\t");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder.toString();
   }
   
-  public String translateProgramInfo(final Program prog) {
+  public String generateProgramInfo(final Program prog) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("int ");
+    _builder.append(ReflexIdentifiers.PROC_COUNT_VAR);
+    _builder.append(" = ");
+    int _length = ((Object[])Conversions.unwrapArray(prog.getProcesses(), Object.class)).length;
+    _builder.append(_length);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     String _generateTimers = this.generateTimers(prog);
     _builder.append(_generateTimers);
+    _builder.newLineIfNotEmpty();
+    String _generateStatesArray = this.generateStatesArray(prog);
+    _builder.append(_generateStatesArray);
     _builder.newLineIfNotEmpty();
     String _generateProcessesEnum = this.generateProcessesEnum(prog);
     _builder.append(_generateProcessesEnum);
@@ -164,7 +224,81 @@ public class ReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public Object translateProcess(final ru.iaie.reflex.reflex.Process proc) {
+  public String translateProcess(final ru.iaie.reflex.reflex.Process proc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("switch (");
+    _builder.append(ReflexIdentifiers.PROC_STATES_ARRAY_NAME);
+    _builder.append("[");
+    String _processId = this.getProcessId(proc);
+    _builder.append(_processId);
+    _builder.append("]) {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<State> _states = proc.getStates();
+      for(final State state : _states) {
+        _builder.append("\t");
+        String _translateState = this.translateState(proc, state);
+        _builder.append(_translateState, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  public String translateState(final ru.iaie.reflex.reflex.Process proc, final State state) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("case ");
+    String _stateId = this.getStateId(proc, state);
+    _builder.append(_stateId);
+    _builder.append(": {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Body> _statements = state.getStateFunction().getStatements();
+      for(final Body stat : _statements) {
+        String _translateStatement = this.translateStatement(proc, state, stat);
+        _builder.append(_translateStatement);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  public String translateStatement(final ru.iaie.reflex.reflex.Process proc, final State state, final EObject statement) {
+    if ((statement instanceof StopProcStat)) {
+      return this.translateStopProcStat(proc, state, ((StopProcStat)statement));
+    } else {
+      if ((statement instanceof Body)) {
+        StringConcatenation _builder = new StringConcatenation();
+        {
+          EList<EObject> _statements = ((Body)statement).getStatements();
+          for(final EObject stat : _statements) {
+            Object _translateStatement = this.translateStatement(proc, state, stat);
+            _builder.append(_translateStatement);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        return _builder.toString();
+      }
+    }
     return null;
+  }
+  
+  public String translateStopProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StopProcStat sps) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(ReflexIdentifiers.PROC_STATES_ARRAY_NAME);
+    _builder.append("[");
+    String _processId = this.getProcessId(proc);
+    _builder.append(_processId);
+    _builder.append("] =  ");
+    String _name = proc.getName();
+    _builder.append(_name);
+    _builder.append(ReflexIdentifiers.STOP_STATE_ID_SUFFIX);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
   }
 }

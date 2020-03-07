@@ -15,7 +15,6 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import ru.iaie.reflex.reflex.AdditiveExpression;
-import ru.iaie.reflex.reflex.AssignStat;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
@@ -75,9 +74,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			switch (semanticObject.eClass().getClassifierID()) {
 			case ReflexPackage.ADDITIVE_EXPRESSION:
 				sequence_AdditiveExpression(context, (AdditiveExpression) semanticObject); 
-				return; 
-			case ReflexPackage.ASSIGN_STAT:
-				sequence_AssignStat(context, (AssignStat) semanticObject); 
 				return; 
 			case ReflexPackage.ASSIGNMENT_EXPRESSION:
 				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
@@ -274,27 +270,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     AssignStat returns AssignStat
-	 *
-	 * Constraint:
-	 *     (varId=ID expr=Expression)
-	 */
-	protected void sequence_AssignStat(ISerializationContext context, AssignStat semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ASSIGN_STAT__VAR_ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ASSIGN_STAT__VAR_ID));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.ASSIGN_STAT__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.ASSIGN_STAT__EXPR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssignStatAccess().getVarIdIDTerminalRuleCall_0_0(), semanticObject.getVarId());
-		feeder.accept(grammarAccess.getAssignStatAccess().getExprExpressionParserRuleCall_2_0(), semanticObject.getExpr());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     AssignmentExpression returns AssignmentExpression
 	 *     Expression returns AssignmentExpression
 	 *
@@ -414,13 +389,14 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
+	 *         statements+=Body+ | 
 	 *         statements+=StartProcStat | 
 	 *         statements+=StopProcStat | 
 	 *         statements+=ErrorStat | 
 	 *         loop?=LoopStat | 
 	 *         restart?=RestartStat | 
+	 *         reset?=ResetStat | 
 	 *         statements+=SetStateStat | 
-	 *         statements+=Body+ | 
 	 *         statements+=IfElseStat | 
 	 *         statements+=SwitchStat | 
 	 *         statements+=Expression
@@ -1119,7 +1095,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     SetStateStat returns SetStateStat
 	 *
 	 * Constraint:
-	 *     stateId=ID?
+	 *     (stateId=ID | next?='next')
 	 */
 	protected void sequence_SetStateStat(ISerializationContext context, SetStateStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1190,16 +1166,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     StateFunction returns StateFunction
 	 *
 	 * Constraint:
-	 *     body=Body
+	 *     statements+=Body*
 	 */
 	protected void sequence_StateFunction(ISerializationContext context, StateFunction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.STATE_FUNCTION__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.STATE_FUNCTION__BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStateFunctionAccess().getBodyBodyParserRuleCall_0(), semanticObject.getBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1208,7 +1178,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     State returns State
 	 *
 	 * Constraint:
-	 *     (name=ID stateFunction=StateFunction? timeoutFunction=TimeoutFunction?)
+	 *     (name=ID stateFunction=StateFunction timeoutFunction=TimeoutFunction?)
 	 */
 	protected void sequence_State(ISerializationContext context, State semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

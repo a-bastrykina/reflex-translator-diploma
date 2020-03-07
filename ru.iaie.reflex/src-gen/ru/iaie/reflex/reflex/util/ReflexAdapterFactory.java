@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import ru.iaie.reflex.reflex.AdditiveExpression;
-import ru.iaie.reflex.reflex.AssignStat;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
@@ -184,11 +183,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseBody(Body object)
       {
         return createBodyAdapter();
-      }
-      @Override
-      public Adapter caseAssignStat(AssignStat object)
-      {
-        return createAssignStatAdapter();
       }
       @Override
       public Adapter caseIfElseStat(IfElseStat object)
@@ -573,21 +567,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBodyAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.AssignStat <em>Assign Stat</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.AssignStat
-   * @generated
-   */
-  public Adapter createAssignStatAdapter()
   {
     return null;
   }

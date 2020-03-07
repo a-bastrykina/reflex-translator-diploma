@@ -105,7 +105,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//StateFunction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StateFunction/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StateFunction/statements"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//TimeoutFunction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeoutFunction/time"/>
@@ -115,10 +115,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Body/statements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Body/loop"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Body/restart"/>
-    </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//AssignStat">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignStat/varId"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AssignStat/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Body/reset"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//IfElseStat">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//IfElseStat/cond"/>
@@ -144,6 +141,7 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//SetStateStat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//SetStateStat/stateId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//SetStateStat/next"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Function">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Function/returnType"/>

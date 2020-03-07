@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.ui.labeling;
 
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
 
 /**
@@ -14,9 +15,9 @@ public class ReflexDescriptionLabelProvider extends DefaultDescriptionLabelProvi
 
 	// Labels and icons can be computed like this:
 	
-//	String text(IEObjectDescription ele) {
-//		return ele.getName().toString();
-//	}
+	public String text(IEObjectDescription obj) {
+		return obj.getEClass().getName();
+	}
 //	 
 //	String image(IEObjectDescription ele) {
 //		return ele.getEClass().getName() + ".gif";

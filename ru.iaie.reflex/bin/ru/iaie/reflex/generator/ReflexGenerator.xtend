@@ -12,6 +12,9 @@ import ru.iaie.reflex.reflex.Process
 import java.util.HashMap
 import java.util.Map
 import ru.iaie.reflex.reflex.State
+import org.eclipse.emf.ecore.EObject
+import ru.iaie.reflex.reflex.StopProcStat
+import ru.iaie.reflex.reflex.Body
 
 /**
  * Generates code from your model files on save.
@@ -29,61 +32,80 @@ class ReflexGenerator extends AbstractGenerator {
 		fsa.generateFile('''«program.name.toLowerCase».c''', fileContent)
 	}
 
-	def generateProcessId(Process proc) {
-		val id = proc.name.toUpperCase
-		procIdentifiers.put(proc.name, id)
-		return id
+	def getProcessId(Process proc) {
+		if (!procIdentifiers.containsKey(proc.name)) {
+			val id = proc.name.toUpperCase
+			procIdentifiers.put(proc.name, id)
+		}
+		return procIdentifiers.get(proc.name)
 	}
 
 	def generateProcessesEnum(Program prog) {
 		return '''
 			enum «ReflexIdentifiers.PROC_ENUM_ID» {
 				«FOR proc : prog.processes»
-					«generateProcessId(proc)»,
+					«getProcessId(proc)»,
 				«ENDFOR»
 			}
 		'''
 	}
 
-	def generateStateId(Process proc, State state) {
-		val id = '''«proc.name.toUpperCase»_«state.name.toUpperCase»'''
-		stateIdentifiers.put('''«proc.name».«state.name»''', id)
-		return id
+	def getStateId(Process proc, State state) {
+		val key = '''«proc.name».«state.name»'''
+		if (!stateIdentifiers.containsKey(key)) {
+			val id = '''«proc.name.toUpperCase»_«state.name.toUpperCase»'''
+			stateIdentifiers.put(key, id)
+		}
+		return stateIdentifiers.get(key)
 	}
 
 	def generateStateEnum(Process proc) {
 		return '''
 			enum «proc.name»_STATES {
 				«FOR state : proc.states»
-					«generateStateId(proc, state)»,
+					«getStateId(proc, state)»,
 				«ENDFOR»
+				«proc.name»«ReflexIdentifiers.STOP_STATE_ID_SUFFIX»,
+				«proc.name»«ReflexIdentifiers.ERR_STATE_ID_SUFFIX»	
 			}
 		'''
 	}
 
 	def generateTimers(Program prog) {
 		return '''
-			int «ReflexIdentifiers.TIMER_ARRAY_NAME»[«prog.processes.length»];
+			int «ReflexIdentifiers.TIMER_ARRAY_NAME»[«ReflexIdentifiers.PROC_COUNT_VAR»];
 		'''
 	}
-	
+
+	def generateStatesArray(Program prog) {
+		return '''
+			int «ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«ReflexIdentifiers.PROC_COUNT_VAR»];
+		'''
+	}
 
 	def translateProgram(Program prog) {
 		return '''
 			#include <stdio.h>
 			#include <stdlib.h>
-			«translateProgramInfo(prog)»
+			«generateProgramInfo(prog)»
 			int main() {
-				«FOR proc : prog.processes»
-					«translateProcess(proc)»
-				«ENDFOR»
+				while (1) {
+					int i = 0;
+					for (; i < «ReflexIdentifiers.PROC_COUNT_VAR»; i++) {
+					«FOR proc : prog.processes»
+						«translateProcess(proc)»
+					«ENDFOR»
+					}
+				}
 			}
 		'''
 	}
 
-	def translateProgramInfo(Program prog) {
+	def generateProgramInfo(Program prog) {
 		return '''
+			int «ReflexIdentifiers.PROC_COUNT_VAR» = «prog.processes.length»;
 			«generateTimers(prog)»
+			«generateStatesArray(prog)»
 			«generateProcessesEnum(prog)»
 			«FOR proc : prog.processes»
 				«generateStateEnum(proc)»
@@ -92,6 +114,40 @@ class ReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateProcess(Process proc) {
+		return '''
+			switch («ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»]) {
+				«FOR state : proc.states»
+					«translateState(proc, state)»
+				«ENDFOR»
+			}
+		'''
 	}
 
+	def translateState(Process proc, State state) {
+		return '''
+			case «getStateId(proc, state)»: {
+			«FOR stat : state.stateFunction.statements»
+				«translateStatement(proc, state, stat)»
+			«ENDFOR»
+			}
+		'''
+	}
+
+	def translateStatement(Process proc, State state, EObject statement) {
+		if (statement instanceof StopProcStat) {
+			return translateStopProcStat(proc, state, statement);
+		} else if (statement instanceof Body) {
+			return '''
+				«FOR stat : statement.statements»
+				«translateStatement(proc, state, stat)»
+				«ENDFOR»
+			'''
+		}
+	}
+
+	def translateStopProcStat(Process proc, State state, StopProcStat sps) {
+		return '''
+			«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»] =  «proc.name»«ReflexIdentifiers.STOP_STATE_ID_SUFFIX»;
+		'''
+	}
 }

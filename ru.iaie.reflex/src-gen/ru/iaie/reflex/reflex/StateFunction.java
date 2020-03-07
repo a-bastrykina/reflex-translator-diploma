@@ -3,6 +3,8 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.StateFunction#getBody <em>Body</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.StateFunction#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getStateFunction()
@@ -24,25 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface StateFunction extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Body</b></em>' containment reference.
+   * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Body}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Body</em>' containment reference.
-   * @see #setBody(Body)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getStateFunction_Body()
+   * @return the value of the '<em>Statements</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getStateFunction_Statements()
    * @model containment="true"
    * @generated
    */
-  Body getBody();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.StateFunction#getBody <em>Body</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Body</em>' containment reference.
-   * @see #getBody()
-   * @generated
-   */
-  void setBody(Body value);
+  EList<Body> getStatements();
 
 } // StateFunction

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ru.iaie.reflex.reflex.Body#getStatements <em>Statements</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Body#isLoop <em>Loop</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Body#isRestart <em>Restart</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Body#isReset <em>Reset</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getBody()
@@ -82,5 +83,27 @@ public interface Body extends EObject
    * @generated
    */
   void setRestart(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Reset</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reset</em>' attribute.
+   * @see #setReset(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getBody_Reset()
+   * @model
+   * @generated
+   */
+  boolean isReset();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Body#isReset <em>Reset</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Reset</em>' attribute.
+   * @see #isReset()
+   * @generated
+   */
+  void setReset(boolean value);
 
 } // Body

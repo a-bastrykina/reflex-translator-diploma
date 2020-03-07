@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import ru.iaie.reflex.reflex.AdditiveExpression;
-import ru.iaie.reflex.reflex.AssignStat;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
@@ -212,13 +211,6 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         Body body = (Body)theEObject;
         T result = caseBody(body);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.ASSIGN_STAT:
-      {
-        AssignStat assignStat = (AssignStat)theEObject;
-        T result = caseAssignStat(assignStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -816,22 +808,6 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBody(Body object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Assign Stat</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Assign Stat</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAssignStat(AssignStat object)
   {
     return null;
   }

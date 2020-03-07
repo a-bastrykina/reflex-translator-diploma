@@ -141,15 +141,6 @@ public interface ReflexFactory extends EFactory
   Body createBody();
 
   /**
-   * Returns a new object of class '<em>Assign Stat</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Assign Stat</em>'.
-   * @generated
-   */
-  AssignStat createAssignStat();
-
-  /**
    * Returns a new object of class '<em>If Else Stat</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
