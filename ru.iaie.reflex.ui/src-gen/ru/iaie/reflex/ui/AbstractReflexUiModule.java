@@ -68,7 +68,6 @@ import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
-import org.eclipse.xtext.ui.validation.AbstractValidatorConfigurationBlock;
 import ru.iaie.reflex.ide.contentassist.antlr.PartialReflexContentAssistParser;
 import ru.iaie.reflex.ide.contentassist.antlr.ReflexParser;
 import ru.iaie.reflex.ide.contentassist.antlr.internal.InternalReflexLexer;
@@ -77,7 +76,6 @@ import ru.iaie.reflex.ui.labeling.ReflexDescriptionLabelProvider;
 import ru.iaie.reflex.ui.labeling.ReflexLabelProvider;
 import ru.iaie.reflex.ui.outline.ReflexOutlineTreeProvider;
 import ru.iaie.reflex.ui.quickfix.ReflexQuickfixProvider;
-import ru.iaie.reflex.validation.ReflexValidatorConfigurationBlock;
 
 /**
  * Manual modifications go to {@link ReflexUiModule}.
@@ -133,11 +131,6 @@ public abstract class AbstractReflexUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
 	public void configureContentAssistLexerProvider(Binder binder) {
 		binder.bind(InternalReflexLexer.class).toProvider(LexerProvider.create(InternalReflexLexer.class));
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
-	public Class<? extends AbstractValidatorConfigurationBlock> bindAbstractValidatorConfigurationBlock() {
-		return ReflexValidatorConfigurationBlock.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2

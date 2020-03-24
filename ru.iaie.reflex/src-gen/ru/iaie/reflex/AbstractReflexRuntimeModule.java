@@ -40,7 +40,6 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
-import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
 import ru.iaie.reflex.generator.ReflexGenerator;
 import ru.iaie.reflex.parser.antlr.ReflexAntlrTokenFileProvider;
 import ru.iaie.reflex.parser.antlr.ReflexParser;
@@ -49,7 +48,6 @@ import ru.iaie.reflex.scoping.ReflexScopeProvider;
 import ru.iaie.reflex.serializer.ReflexSemanticSequencer;
 import ru.iaie.reflex.serializer.ReflexSyntacticSequencer;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
-import ru.iaie.reflex.validation.ReflexConfigurableIssueCodesProvider;
 import ru.iaie.reflex.validation.ReflexValidator;
 
 /**
@@ -72,7 +70,7 @@ public abstract class AbstractReflexRuntimeModule extends DefaultRuntimeModule {
 	
 	public void configureFileExtensions(Binder binder) {
 		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
-			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("reflex");
+			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("rcs");
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
@@ -141,11 +139,6 @@ public abstract class AbstractReflexRuntimeModule extends DefaultRuntimeModule {
 	@SingletonBinding(eager=true)
 	public Class<? extends ReflexValidator> bindReflexValidator() {
 		return ReflexValidator.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
-	public Class<? extends ConfigurableIssueCodesProvider> bindConfigurableIssueCodesProvider() {
-		return ReflexConfigurableIssueCodesProvider.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2

@@ -13,7 +13,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
@@ -31,6 +30,7 @@ import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
@@ -41,11 +41,15 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.ResetStat;
+import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.Statement;
+import ru.iaie.reflex.reflex.StatementBlock;
+import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
@@ -193,10 +197,18 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.STATE_FUNCTION:
+      case ReflexPackage.STATEMENT_SEQUENCE:
       {
-        StateFunction stateFunction = (StateFunction)theEObject;
-        T result = caseStateFunction(stateFunction);
+        StatementSequence statementSequence = (StatementSequence)theEObject;
+        T result = caseStatementSequence(statementSequence);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.STATEMENT_BLOCK:
+      {
+        StatementBlock statementBlock = (StatementBlock)theEObject;
+        T result = caseStatementBlock(statementBlock);
+        if (result == null) result = caseStatement(statementBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -207,10 +219,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.BODY:
+      case ReflexPackage.STATEMENT:
       {
-        Body body = (Body)theEObject;
-        T result = caseBody(body);
+        Statement statement = (Statement)theEObject;
+        T result = caseStatement(statement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -218,6 +230,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         IfElseStat ifElseStat = (IfElseStat)theEObject;
         T result = caseIfElseStat(ifElseStat);
+        if (result == null) result = caseStatement(ifElseStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -225,6 +238,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         SwitchStat switchStat = (SwitchStat)theEObject;
         T result = caseSwitchStat(switchStat);
+        if (result == null) result = caseStatement(switchStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -239,6 +253,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         StartProcStat startProcStat = (StartProcStat)theEObject;
         T result = caseStartProcStat(startProcStat);
+        if (result == null) result = caseStatement(startProcStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -246,6 +261,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         StopProcStat stopProcStat = (StopProcStat)theEObject;
         T result = caseStopProcStat(stopProcStat);
+        if (result == null) result = caseStatement(stopProcStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -253,6 +269,31 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ErrorStat errorStat = (ErrorStat)theEObject;
         T result = caseErrorStat(errorStat);
+        if (result == null) result = caseStatement(errorStat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.LOOP_STAT:
+      {
+        LoopStat loopStat = (LoopStat)theEObject;
+        T result = caseLoopStat(loopStat);
+        if (result == null) result = caseStatement(loopStat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.RESTART_STAT:
+      {
+        RestartStat restartStat = (RestartStat)theEObject;
+        T result = caseRestartStat(restartStat);
+        if (result == null) result = caseStatement(restartStat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.RESET_STAT:
+      {
+        ResetStat resetStat = (ResetStat)theEObject;
+        T result = caseResetStat(resetStat);
+        if (result == null) result = caseStatement(resetStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -260,6 +301,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         SetStateStat setStateStat = (SetStateStat)theEObject;
         T result = caseSetStateStat(setStateStat);
+        if (result == null) result = caseStatement(setStateStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -316,6 +358,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(infixOp);
         if (result == null) result = caseAssignmentExpression(infixOp);
         if (result == null) result = caseExpression(infixOp);
+        if (result == null) result = caseStatement(infixOp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -337,6 +380,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(postfixOp);
         if (result == null) result = caseAssignmentExpression(postfixOp);
         if (result == null) result = caseExpression(postfixOp);
+        if (result == null) result = caseStatement(postfixOp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -358,6 +402,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(functionCall);
         if (result == null) result = caseAssignmentExpression(functionCall);
         if (result == null) result = caseExpression(functionCall);
+        if (result == null) result = caseStatement(functionCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -379,6 +424,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(primaryExpression);
         if (result == null) result = caseAssignmentExpression(primaryExpression);
         if (result == null) result = caseExpression(primaryExpression);
+        if (result == null) result = caseStatement(primaryExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -399,6 +445,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(unaryExpression);
         if (result == null) result = caseAssignmentExpression(unaryExpression);
         if (result == null) result = caseExpression(unaryExpression);
+        if (result == null) result = caseStatement(unaryExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -418,6 +465,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(castExpression);
         if (result == null) result = caseAssignmentExpression(castExpression);
         if (result == null) result = caseExpression(castExpression);
+        if (result == null) result = caseStatement(castExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -436,6 +484,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(multiplicativeExpression);
         if (result == null) result = caseAssignmentExpression(multiplicativeExpression);
         if (result == null) result = caseExpression(multiplicativeExpression);
+        if (result == null) result = caseStatement(multiplicativeExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -453,6 +502,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(additiveExpression);
         if (result == null) result = caseAssignmentExpression(additiveExpression);
         if (result == null) result = caseExpression(additiveExpression);
+        if (result == null) result = caseStatement(additiveExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -469,6 +519,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(shiftExpression);
         if (result == null) result = caseAssignmentExpression(shiftExpression);
         if (result == null) result = caseExpression(shiftExpression);
+        if (result == null) result = caseStatement(shiftExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -484,6 +535,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(compareExpression);
         if (result == null) result = caseAssignmentExpression(compareExpression);
         if (result == null) result = caseExpression(compareExpression);
+        if (result == null) result = caseStatement(compareExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -498,6 +550,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(equalityExpression);
         if (result == null) result = caseAssignmentExpression(equalityExpression);
         if (result == null) result = caseExpression(equalityExpression);
+        if (result == null) result = caseStatement(equalityExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -511,6 +564,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(bitAndExpression);
         if (result == null) result = caseAssignmentExpression(bitAndExpression);
         if (result == null) result = caseExpression(bitAndExpression);
+        if (result == null) result = caseStatement(bitAndExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -523,6 +577,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(bitXorExpression);
         if (result == null) result = caseAssignmentExpression(bitXorExpression);
         if (result == null) result = caseExpression(bitXorExpression);
+        if (result == null) result = caseStatement(bitXorExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -534,6 +589,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(bitOrExpression);
         if (result == null) result = caseAssignmentExpression(bitOrExpression);
         if (result == null) result = caseExpression(bitOrExpression);
+        if (result == null) result = caseStatement(bitOrExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -544,6 +600,7 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = caseLogicalOrExpression(logicalAndExpression);
         if (result == null) result = caseAssignmentExpression(logicalAndExpression);
         if (result == null) result = caseExpression(logicalAndExpression);
+        if (result == null) result = caseStatement(logicalAndExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -553,6 +610,7 @@ public class ReflexSwitch<T> extends Switch<T>
         T result = caseLogicalOrExpression(logicalOrExpression);
         if (result == null) result = caseAssignmentExpression(logicalOrExpression);
         if (result == null) result = caseExpression(logicalOrExpression);
+        if (result == null) result = caseStatement(logicalOrExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -561,6 +619,7 @@ public class ReflexSwitch<T> extends Switch<T>
         AssignmentExpression assignmentExpression = (AssignmentExpression)theEObject;
         T result = caseAssignmentExpression(assignmentExpression);
         if (result == null) result = caseExpression(assignmentExpression);
+        if (result == null) result = caseStatement(assignmentExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -568,6 +627,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = caseStatement(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -590,6 +650,22 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ru.iaie.reflex.reflex.Integer integer = (ru.iaie.reflex.reflex.Integer)theEObject;
         T result = caseInteger(integer);
+        if (result == null) result = casePrimaryExpression(integer);
+        if (result == null) result = caseUnaryExpression(integer);
+        if (result == null) result = caseCastExpression(integer);
+        if (result == null) result = caseMultiplicativeExpression(integer);
+        if (result == null) result = caseAdditiveExpression(integer);
+        if (result == null) result = caseShiftExpression(integer);
+        if (result == null) result = caseCompareExpression(integer);
+        if (result == null) result = caseEqualityExpression(integer);
+        if (result == null) result = caseBitAndExpression(integer);
+        if (result == null) result = caseBitXorExpression(integer);
+        if (result == null) result = caseBitOrExpression(integer);
+        if (result == null) result = caseLogicalAndExpression(integer);
+        if (result == null) result = caseLogicalOrExpression(integer);
+        if (result == null) result = caseAssignmentExpression(integer);
+        if (result == null) result = caseExpression(integer);
+        if (result == null) result = caseStatement(integer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -765,17 +841,33 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>State Function</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Statement Sequence</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>State Function</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Statement Sequence</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStateFunction(StateFunction object)
+  public T caseStatementSequence(StatementSequence object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Statement Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Statement Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStatementBlock(StatementBlock object)
   {
     return null;
   }
@@ -797,17 +889,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Body</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Body</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBody(Body object)
+  public T caseStatement(Statement object)
   {
     return null;
   }
@@ -904,6 +996,54 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseErrorStat(ErrorStat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop Stat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop Stat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoopStat(LoopStat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Restart Stat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Restart Stat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRestartStat(RestartStat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Reset Stat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Reset Stat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseResetStat(ResetStat object)
   {
     return null;
   }

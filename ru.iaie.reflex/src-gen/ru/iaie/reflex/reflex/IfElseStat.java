@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface IfElseStat extends EObject
+public interface IfElseStat extends Statement
 {
   /**
    * Returns the value of the '<em><b>Cond</b></em>' containment reference.
@@ -52,12 +51,12 @@ public interface IfElseStat extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Then</em>' containment reference.
-   * @see #setThen(Body)
+   * @see #setThen(Statement)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getIfElseStat_Then()
    * @model containment="true"
    * @generated
    */
-  Body getThen();
+  Statement getThen();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.IfElseStat#getThen <em>Then</em>}' containment reference.
@@ -67,19 +66,19 @@ public interface IfElseStat extends EObject
    * @see #getThen()
    * @generated
    */
-  void setThen(Body value);
+  void setThen(Statement value);
 
   /**
    * Returns the value of the '<em><b>Else</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Else</em>' containment reference.
-   * @see #setElse(Body)
+   * @see #setElse(Statement)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getIfElseStat_Else()
    * @model containment="true"
    * @generated
    */
-  Body getElse();
+  Statement getElse();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.IfElseStat#getElse <em>Else</em>}' containment reference.
@@ -89,6 +88,6 @@ public interface IfElseStat extends EObject
    * @see #getElse()
    * @generated
    */
-  void setElse(Body value);
+  void setElse(Statement value);
 
 } // IfElseStat

@@ -5,8 +5,6 @@ package ru.iaie.reflex.reflex;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Switch Stat</b></em>'.
@@ -24,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SwitchStat extends EObject
+public interface SwitchStat extends Statement
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

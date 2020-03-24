@@ -51,12 +51,12 @@ public interface TimeoutFunction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Body</em>' containment reference.
-   * @see #setBody(Body)
+   * @see #setBody(Statement)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getTimeoutFunction_Body()
    * @model containment="true"
    * @generated
    */
-  Body getBody();
+  Statement getBody();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.TimeoutFunction#getBody <em>Body</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface TimeoutFunction extends EObject
    * @see #getBody()
    * @generated
    */
-  void setBody(Body value);
+  void setBody(Statement value);
 
 } // TimeoutFunction

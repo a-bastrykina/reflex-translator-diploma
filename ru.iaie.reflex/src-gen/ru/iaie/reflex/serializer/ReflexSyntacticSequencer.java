@@ -11,7 +11,6 @@ import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -22,7 +21,6 @@ import ru.iaie.reflex.services.ReflexGrammarAccess;
 public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ReflexGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1;
 	protected AbstractElementAlias match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0;
 	protected AbstractElementAlias match_Time_TKeyword_1_0_or_TKeyword_1_1;
@@ -30,7 +28,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ReflexGrammarAccess) access;
-		match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBodyAccess().getLeftCurlyBracketKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getBodyAccess().getSemicolonKeyword_0_1()));
 		match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getDOUBLE_C_TYPETerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getFLOAT_C_TYPETerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getVOID_C_TYPETerminalRuleCall_0_1()));
 		match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()));
 		match_Time_TKeyword_1_0_or_TKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_1()));
@@ -48,6 +45,8 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getBIT_XORToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getBOOL_TYPERule())
 			return getBOOL_TYPEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBreakStatRule())
+			return getBreakStatToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCTypeSignSpecRule())
 			return getCTypeSignSpecToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDAYRule())
@@ -56,6 +55,8 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getDOUBLE_C_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getFLOAT_C_TYPERule())
 			return getFLOAT_C_TYPEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFloatRule())
+			return getFloatToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getHOURRule())
 			return getHOURToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getIDRule())
@@ -70,22 +71,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getLONGToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLONG_C_TYPERule())
 			return getLONG_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getLoopStatRule())
-			return getLoopStatToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getMICROSECONDRule())
-			return getMICROSECONDToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getMILISECONDRule())
-			return getMILISECONDToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getMINUTERule())
-			return getMINUTEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getNANOSECONDRule())
-			return getNANOSECONDToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getResetStatRule())
-			return getResetStatToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getRestartStatRule())
-			return getRestartStatToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getSECONDRule())
-			return getSECONDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSHORT_C_TYPERule())
 			return getSHORT_C_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTACTRule())
@@ -149,6 +134,16 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * BreakStat:
+	 * 	"break" ";";
+	 */
+	protected String getBreakStatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "break ;";
+	}
+	
+	/**
 	 * enum CTypeSignSpec:
 	 * 	SIGNED="signed" | UNSIGNED="unsigned";
 	 */
@@ -186,6 +181,16 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "float";
+	}
+	
+	/**
+	 * Float:
+	 * 	DEC_FLOAT | HEX_FLOAT;
+	 */
+	protected String getFloatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ".";
 	}
 	
 	/**
@@ -258,86 +263,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * LoopStat:
-	 * 	"loop" ";";
-	 */
-	protected String getLoopStatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "loop ;";
-	}
-	
-	/**
-	 * terminal MICROSECOND:
-	 * 	"US" | "us";
-	 */
-	protected String getMICROSECONDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "US";
-	}
-	
-	/**
-	 * terminal MILISECOND:
-	 * 	"MS" | "ms";
-	 */
-	protected String getMILISECONDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "MS";
-	}
-	
-	/**
-	 * terminal MINUTE:
-	 * 	"M" | "m";
-	 */
-	protected String getMINUTEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "M";
-	}
-	
-	/**
-	 * terminal NANOSECOND:
-	 * 	"NS" | "ns";
-	 */
-	protected String getNANOSECONDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "NS";
-	}
-	
-	/**
-	 * ResetStat:
-	 * 	"reset" "timeout" ";";
-	 */
-	protected String getResetStatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "reset timeout ;";
-	}
-	
-	/**
-	 * RestartStat:
-	 * 	"restart" ";";
-	 */
-	protected String getRestartStatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "restart ;";
-	}
-	
-	/**
-	 * terminal SECOND:
-	 * 	"S" | "s";
-	 */
-	protected String getSECONDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "S";
-	}
-	
-	/**
 	 * terminal SHORT_C_TYPE:
 	 * 	"short";
 	 */
@@ -383,9 +308,7 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_RightCurlyBracketKeyword_1_3__.equals(syntax))
-				emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1.equals(syntax))
+			if (match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1.equals(syntax))
 				emit_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0.equals(syntax))
 				emit_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -395,17 +318,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_Body_SemicolonKeyword_0_1_or___LeftCurlyBracketKeyword_1_1_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     (
@@ -441,13 +353,8 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) DAY days=DECIMAL
-	 *     (rule start) (ambiguity) HOUR hours=DECIMAL
-	 *     (rule start) (ambiguity) MICROSECOND micros=DECIMAL
-	 *     (rule start) (ambiguity) MILISECOND milis=DECIMAL
-	 *     (rule start) (ambiguity) MINUTE minutes=DECIMAL
-	 *     (rule start) (ambiguity) NANOSECOND nanos=DECIMAL
-	 *     (rule start) (ambiguity) SECOND seconds=DECIMAL
+	 *     (rule start) (ambiguity) isDay?=DAY
+	 *     (rule start) (ambiguity) isHour?=HOUR
 	 */
 	protected void emit_Time_TKeyword_1_0_or_TKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

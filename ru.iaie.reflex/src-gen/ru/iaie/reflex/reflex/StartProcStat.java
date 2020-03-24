@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StartProcStat extends EObject
+public interface StartProcStat extends Statement
 {
   /**
    * Returns the value of the '<em><b>Proc Id</b></em>' attribute.

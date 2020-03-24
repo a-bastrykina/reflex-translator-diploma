@@ -519,14 +519,14 @@ public interface ReflexPackage extends EPackage
   int STATE_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StateFunctionImpl <em>State Function</em>}' class.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StatementSequenceImpl <em>Statement Sequence</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.StateFunctionImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateFunction()
+   * @see ru.iaie.reflex.reflex.impl.StatementSequenceImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatementSequence()
    * @generated
    */
-  int STATE_FUNCTION = 10;
+  int STATEMENT_SEQUENCE = 10;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -535,16 +535,63 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE_FUNCTION__STATEMENTS = 0;
+  int STATEMENT_SEQUENCE__STATEMENTS = 0;
 
   /**
-   * The number of structural features of the '<em>State Function</em>' class.
+   * The number of structural features of the '<em>Statement Sequence</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATE_FUNCTION_FEATURE_COUNT = 1;
+  int STATEMENT_SEQUENCE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StatementImpl <em>Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.StatementImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatement()
+   * @generated
+   */
+  int STATEMENT = 13;
+
+  /**
+   * The number of structural features of the '<em>Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATEMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StatementBlockImpl <em>Statement Block</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.StatementBlockImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatementBlock()
+   * @generated
+   */
+  int STATEMENT_BLOCK = 11;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATEMENT_BLOCK__STATEMENTS = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Statement Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATEMENT_BLOCK_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TimeoutFunctionImpl <em>Timeout Function</em>}' class.
@@ -554,7 +601,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTimeoutFunction()
    * @generated
    */
-  int TIMEOUT_FUNCTION = 11;
+  int TIMEOUT_FUNCTION = 12;
 
   /**
    * The feature id for the '<em><b>Time</b></em>' containment reference.
@@ -584,61 +631,6 @@ public interface ReflexPackage extends EPackage
   int TIMEOUT_FUNCTION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.BodyImpl <em>Body</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.BodyImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBody()
-   * @generated
-   */
-  int BODY = 12;
-
-  /**
-   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY__STATEMENTS = 0;
-
-  /**
-   * The feature id for the '<em><b>Loop</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY__LOOP = 1;
-
-  /**
-   * The feature id for the '<em><b>Restart</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY__RESTART = 2;
-
-  /**
-   * The feature id for the '<em><b>Reset</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY__RESET = 3;
-
-  /**
-   * The number of structural features of the '<em>Body</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BODY_FEATURE_COUNT = 4;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IfElseStatImpl <em>If Else Stat</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -646,7 +638,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getIfElseStat()
    * @generated
    */
-  int IF_ELSE_STAT = 13;
+  int IF_ELSE_STAT = 14;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -655,7 +647,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_ELSE_STAT__COND = 0;
+  int IF_ELSE_STAT__COND = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Then</b></em>' containment reference.
@@ -664,7 +656,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_ELSE_STAT__THEN = 1;
+  int IF_ELSE_STAT__THEN = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Else</b></em>' containment reference.
@@ -673,7 +665,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_ELSE_STAT__ELSE = 2;
+  int IF_ELSE_STAT__ELSE = STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>If Else Stat</em>' class.
@@ -682,7 +674,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_ELSE_STAT_FEATURE_COUNT = 3;
+  int IF_ELSE_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.SwitchStatImpl <em>Switch Stat</em>}' class.
@@ -692,7 +684,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getSwitchStat()
    * @generated
    */
-  int SWITCH_STAT = 14;
+  int SWITCH_STAT = 15;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -701,7 +693,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SWITCH_STAT__EXPR = 0;
+  int SWITCH_STAT__EXPR = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Options</b></em>' containment reference list.
@@ -710,7 +702,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SWITCH_STAT__OPTIONS = 1;
+  int SWITCH_STAT__OPTIONS = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Switch Stat</em>' class.
@@ -719,7 +711,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SWITCH_STAT_FEATURE_COUNT = 2;
+  int SWITCH_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.CaseStatImpl <em>Case Stat</em>}' class.
@@ -729,7 +721,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCaseStat()
    * @generated
    */
-  int CASE_STAT = 15;
+  int CASE_STAT = 16;
 
   /**
    * The feature id for the '<em><b>Option</b></em>' containment reference.
@@ -750,13 +742,22 @@ public interface ReflexPackage extends EPackage
   int CASE_STAT__BODY = 1;
 
   /**
+   * The feature id for the '<em><b>Has Break</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASE_STAT__HAS_BREAK = 2;
+
+  /**
    * The number of structural features of the '<em>Case Stat</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CASE_STAT_FEATURE_COUNT = 2;
+  int CASE_STAT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StartProcStatImpl <em>Start Proc Stat</em>}' class.
@@ -766,7 +767,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStartProcStat()
    * @generated
    */
-  int START_PROC_STAT = 16;
+  int START_PROC_STAT = 17;
 
   /**
    * The feature id for the '<em><b>Proc Id</b></em>' attribute.
@@ -775,7 +776,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int START_PROC_STAT__PROC_ID = 0;
+  int START_PROC_STAT__PROC_ID = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Start Proc Stat</em>' class.
@@ -784,7 +785,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int START_PROC_STAT_FEATURE_COUNT = 1;
+  int START_PROC_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StopProcStatImpl <em>Stop Proc Stat</em>}' class.
@@ -794,7 +795,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStopProcStat()
    * @generated
    */
-  int STOP_PROC_STAT = 17;
+  int STOP_PROC_STAT = 18;
 
   /**
    * The feature id for the '<em><b>Proc Id</b></em>' attribute.
@@ -803,7 +804,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STOP_PROC_STAT__PROC_ID = 0;
+  int STOP_PROC_STAT__PROC_ID = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Stop Proc Stat</em>' class.
@@ -812,7 +813,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STOP_PROC_STAT_FEATURE_COUNT = 1;
+  int STOP_PROC_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ErrorStatImpl <em>Error Stat</em>}' class.
@@ -822,7 +823,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getErrorStat()
    * @generated
    */
-  int ERROR_STAT = 18;
+  int ERROR_STAT = 19;
 
   /**
    * The feature id for the '<em><b>Proc Id</b></em>' attribute.
@@ -831,7 +832,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ERROR_STAT__PROC_ID = 0;
+  int ERROR_STAT__PROC_ID = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Error Stat</em>' class.
@@ -840,7 +841,64 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ERROR_STAT_FEATURE_COUNT = 1;
+  int ERROR_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.LoopStatImpl <em>Loop Stat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.LoopStatImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLoopStat()
+   * @generated
+   */
+  int LOOP_STAT = 20;
+
+  /**
+   * The number of structural features of the '<em>Loop Stat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.RestartStatImpl <em>Restart Stat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.RestartStatImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRestartStat()
+   * @generated
+   */
+  int RESTART_STAT = 21;
+
+  /**
+   * The number of structural features of the '<em>Restart Stat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESTART_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ResetStatImpl <em>Reset Stat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.ResetStatImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getResetStat()
+   * @generated
+   */
+  int RESET_STAT = 22;
+
+  /**
+   * The number of structural features of the '<em>Reset Stat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESET_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl <em>Set State Stat</em>}' class.
@@ -850,7 +908,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getSetStateStat()
    * @generated
    */
-  int SET_STATE_STAT = 19;
+  int SET_STATE_STAT = 23;
 
   /**
    * The feature id for the '<em><b>State Id</b></em>' attribute.
@@ -859,7 +917,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_STATE_STAT__STATE_ID = 0;
+  int SET_STATE_STAT__STATE_ID = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Next</b></em>' attribute.
@@ -868,7 +926,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_STATE_STAT__NEXT = 1;
+  int SET_STATE_STAT__NEXT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Set State Stat</em>' class.
@@ -877,7 +935,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_STATE_STAT_FEATURE_COUNT = 2;
+  int SET_STATE_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.FunctionImpl <em>Function</em>}' class.
@@ -887,7 +945,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getFunction()
    * @generated
    */
-  int FUNCTION = 20;
+  int FUNCTION = 24;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -933,7 +991,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 21;
+  int REGISTER = 25;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -972,7 +1030,7 @@ public interface ReflexPackage extends EPackage
   int REGISTER__ADDR2 = 3;
 
   /**
-   * The feature id for the '<em><b>Reg Size</b></em>' attribute.
+   * The feature id for the '<em><b>Reg Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -997,7 +1055,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getConst()
    * @generated
    */
-  int CONST = 22;
+  int CONST = 26;
 
   /**
    * The feature id for the '<em><b>Const Id</b></em>' attribute.
@@ -1034,7 +1092,16 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getEnum()
    * @generated
    */
-  int ENUM = 23;
+  int ENUM = 27;
+
+  /**
+   * The feature id for the '<em><b>Enum Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM__ENUM_ID = 0;
 
   /**
    * The feature id for the '<em><b>Enum Members</b></em>' containment reference list.
@@ -1043,7 +1110,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM__ENUM_MEMBERS = 0;
+  int ENUM__ENUM_MEMBERS = 1;
 
   /**
    * The number of structural features of the '<em>Enum</em>' class.
@@ -1052,7 +1119,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_FEATURE_COUNT = 1;
+  int ENUM_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.EnumMemberImpl <em>Enum Member</em>}' class.
@@ -1062,7 +1129,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getEnumMember()
    * @generated
    */
-  int ENUM_MEMBER = 24;
+  int ENUM_MEMBER = 28;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1099,7 +1166,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 42;
+  int EXPRESSION = 46;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1108,7 +1175,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 0;
+  int EXPRESSION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
@@ -1118,7 +1185,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignmentExpression()
    * @generated
    */
-  int ASSIGNMENT_EXPRESSION = 41;
+  int ASSIGNMENT_EXPRESSION = 45;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1164,7 +1231,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLogicalOrExpression()
    * @generated
    */
-  int LOGICAL_OR_EXPRESSION = 40;
+  int LOGICAL_OR_EXPRESSION = 44;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1228,7 +1295,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLogicalAndExpression()
    * @generated
    */
-  int LOGICAL_AND_EXPRESSION = 39;
+  int LOGICAL_AND_EXPRESSION = 43;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1292,7 +1359,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitOrExpression()
    * @generated
    */
-  int BIT_OR_EXPRESSION = 38;
+  int BIT_OR_EXPRESSION = 42;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1356,7 +1423,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitXorExpression()
    * @generated
    */
-  int BIT_XOR_EXPRESSION = 37;
+  int BIT_XOR_EXPRESSION = 41;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1420,7 +1487,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitAndExpression()
    * @generated
    */
-  int BIT_AND_EXPRESSION = 36;
+  int BIT_AND_EXPRESSION = 40;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1484,7 +1551,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getEqualityExpression()
    * @generated
    */
-  int EQUALITY_EXPRESSION = 35;
+  int EQUALITY_EXPRESSION = 39;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1557,7 +1624,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareExpression()
    * @generated
    */
-  int COMPARE_EXPRESSION = 34;
+  int COMPARE_EXPRESSION = 38;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1639,7 +1706,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftExpression()
    * @generated
    */
-  int SHIFT_EXPRESSION = 33;
+  int SHIFT_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1730,7 +1797,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveExpression()
    * @generated
    */
-  int ADDITIVE_EXPRESSION = 32;
+  int ADDITIVE_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1839,7 +1906,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeExpression()
    * @generated
    */
-  int MULTIPLICATIVE_EXPRESSION = 31;
+  int MULTIPLICATIVE_EXPRESSION = 35;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -1957,7 +2024,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCastExpression()
    * @generated
    */
-  int CAST_EXPRESSION = 30;
+  int CAST_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2084,7 +2151,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 29;
+  int UNARY_EXPRESSION = 33;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2229,7 +2296,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixOp()
    * @generated
    */
-  int INFIX_OP = 25;
+  int INFIX_OP = 29;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2392,7 +2459,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPostfixOp()
    * @generated
    */
-  int POSTFIX_OP = 26;
+  int POSTFIX_OP = 30;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2555,7 +2622,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 27;
+  int FUNCTION_CALL = 31;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2718,7 +2785,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPrimaryExpression()
    * @generated
    */
-  int PRIMARY_EXPRESSION = 28;
+  int PRIMARY_EXPRESSION = 32;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' attribute.
@@ -2856,22 +2923,13 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__VAR_ID = UNARY_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Literal</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__LITERAL = UNARY_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Primary Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 2;
+  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ReflexTypeImpl <em>Type</em>}' class.
@@ -2881,7 +2939,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getReflexType()
    * @generated
    */
-  int REFLEX_TYPE = 44;
+  int REFLEX_TYPE = 48;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -2900,7 +2958,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCType()
    * @generated
    */
-  int CTYPE = 43;
+  int CTYPE = 47;
 
   /**
    * The feature id for the '<em><b>Sign Spec</b></em>' attribute.
@@ -2928,7 +2986,142 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInteger()
    * @generated
    */
-  int INTEGER = 45;
+  int INTEGER = 49;
+
+  /**
+   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__ASSIGN_VAR = PRIMARY_EXPRESSION__ASSIGN_VAR;
+
+  /**
+   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__ASSIGN_OP = PRIMARY_EXPRESSION__ASSIGN_OP;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__EXPR = PRIMARY_EXPRESSION__EXPR;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__LEFT = PRIMARY_EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__RIGHT = PRIMARY_EXPRESSION__RIGHT;
+
+  /**
+   * The feature id for the '<em><b>Eq Cmp Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__EQ_CMP_OP = PRIMARY_EXPRESSION__EQ_CMP_OP;
+
+  /**
+   * The feature id for the '<em><b>Cmp Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__CMP_OP = PRIMARY_EXPRESSION__CMP_OP;
+
+  /**
+   * The feature id for the '<em><b>Shift Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__SHIFT_OP = PRIMARY_EXPRESSION__SHIFT_OP;
+
+  /**
+   * The feature id for the '<em><b>Add Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__ADD_OP = PRIMARY_EXPRESSION__ADD_OP;
+
+  /**
+   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__RIGHTT = PRIMARY_EXPRESSION__RIGHTT;
+
+  /**
+   * The feature id for the '<em><b>Mul Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__MUL_OP = PRIMARY_EXPRESSION__MUL_OP;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__TYPE = PRIMARY_EXPRESSION__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Unary Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__UNARY_OP = PRIMARY_EXPRESSION__UNARY_OP;
+
+  /**
+   * The feature id for the '<em><b>Rest</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__REST = PRIMARY_EXPRESSION__REST;
+
+  /**
+   * The feature id for the '<em><b>Var Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__VAR_ID = PRIMARY_EXPRESSION__VAR_ID;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2937,7 +3130,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER__VALUE = 0;
+  int INTEGER__VALUE = PRIMARY_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Qualfier</b></em>' attribute.
@@ -2946,7 +3139,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER__QUALFIER = 1;
+  int INTEGER__QUALFIER = PRIMARY_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Integer</em>' class.
@@ -2955,7 +3148,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER_FEATURE_COUNT = 2;
+  int INTEGER_FEATURE_COUNT = PRIMARY_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
@@ -2965,7 +3158,16 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
    * @generated
    */
-  int TIME = 46;
+  int TIME = 50;
+
+  /**
+   * The feature id for the '<em><b>Is Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__IS_DAY = 0;
 
   /**
    * The feature id for the '<em><b>Days</b></em>' attribute.
@@ -2974,7 +3176,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME__DAYS = 0;
+  int TIME__DAYS = 1;
+
+  /**
+   * The feature id for the '<em><b>Is Hour</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__IS_HOUR = 2;
 
   /**
    * The feature id for the '<em><b>Hours</b></em>' attribute.
@@ -2983,52 +3194,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME__HOURS = 1;
-
-  /**
-   * The feature id for the '<em><b>Minutes</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME__MINUTES = 2;
-
-  /**
-   * The feature id for the '<em><b>Seconds</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME__SECONDS = 3;
-
-  /**
-   * The feature id for the '<em><b>Milis</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME__MILIS = 4;
-
-  /**
-   * The feature id for the '<em><b>Micros</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME__MICROS = 5;
-
-  /**
-   * The feature id for the '<em><b>Nanos</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TIME__NANOS = 6;
+  int TIME__HOURS = 3;
 
   /**
    * The number of structural features of the '<em>Time</em>' class.
@@ -3037,7 +3203,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_FEATURE_COUNT = 7;
+  int TIME_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.
@@ -3047,7 +3213,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterType()
    * @generated
    */
-  int REGISTER_TYPE = 47;
+  int REGISTER_TYPE = 51;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}' enum.
@@ -3057,7 +3223,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixPostfixOp()
    * @generated
    */
-  int INFIX_POSTFIX_OP = 48;
+  int INFIX_POSTFIX_OP = 52;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AssignOperator <em>Assign Operator</em>}' enum.
@@ -3067,7 +3233,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignOperator()
    * @generated
    */
-  int ASSIGN_OPERATOR = 49;
+  int ASSIGN_OPERATOR = 53;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.UnaryOp <em>Unary Op</em>}' enum.
@@ -3077,7 +3243,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryOp()
    * @generated
    */
-  int UNARY_OP = 50;
+  int UNARY_OP = 54;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareOp <em>Compare Op</em>}' enum.
@@ -3087,7 +3253,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareOp()
    * @generated
    */
-  int COMPARE_OP = 51;
+  int COMPARE_OP = 55;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareEqOp <em>Compare Eq Op</em>}' enum.
@@ -3097,7 +3263,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareEqOp()
    * @generated
    */
-  int COMPARE_EQ_OP = 52;
+  int COMPARE_EQ_OP = 56;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.ShiftOp <em>Shift Op</em>}' enum.
@@ -3107,7 +3273,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftOp()
    * @generated
    */
-  int SHIFT_OP = 53;
+  int SHIFT_OP = 57;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AdditiveOp <em>Additive Op</em>}' enum.
@@ -3117,7 +3283,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveOp()
    * @generated
    */
-  int ADDITIVE_OP = 54;
+  int ADDITIVE_OP = 58;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
@@ -3127,7 +3293,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeOp()
    * @generated
    */
-  int MULTIPLICATIVE_OP = 55;
+  int MULTIPLICATIVE_OP = 59;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CTypeSignSpec <em>CType Sign Spec</em>}' enum.
@@ -3137,7 +3303,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCTypeSignSpec()
    * @generated
    */
-  int CTYPE_SIGN_SPEC = 56;
+  int CTYPE_SIGN_SPEC = 60;
 
 
   /**
@@ -3527,25 +3693,46 @@ public interface ReflexPackage extends EPackage
   EReference getState_TimeoutFunction();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StateFunction <em>State Function</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StatementSequence <em>Statement Sequence</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>State Function</em>'.
-   * @see ru.iaie.reflex.reflex.StateFunction
+   * @return the meta object for class '<em>Statement Sequence</em>'.
+   * @see ru.iaie.reflex.reflex.StatementSequence
    * @generated
    */
-  EClass getStateFunction();
+  EClass getStatementSequence();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.StateFunction#getStatements <em>Statements</em>}'.
+   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.StatementSequence#getStatements <em>Statements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Statements</em>'.
-   * @see ru.iaie.reflex.reflex.StateFunction#getStatements()
-   * @see #getStateFunction()
+   * @see ru.iaie.reflex.reflex.StatementSequence#getStatements()
+   * @see #getStatementSequence()
    * @generated
    */
-  EReference getStateFunction_Statements();
+  EReference getStatementSequence_Statements();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StatementBlock <em>Statement Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Statement Block</em>'.
+   * @see ru.iaie.reflex.reflex.StatementBlock
+   * @generated
+   */
+  EClass getStatementBlock();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.StatementBlock#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see ru.iaie.reflex.reflex.StatementBlock#getStatements()
+   * @see #getStatementBlock()
+   * @generated
+   */
+  EReference getStatementBlock_Statements();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.TimeoutFunction <em>Timeout Function</em>}'.
@@ -3580,58 +3767,14 @@ public interface ReflexPackage extends EPackage
   EReference getTimeoutFunction_Body();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Body <em>Body</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Statement <em>Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Body</em>'.
-   * @see ru.iaie.reflex.reflex.Body
+   * @return the meta object for class '<em>Statement</em>'.
+   * @see ru.iaie.reflex.reflex.Statement
    * @generated
    */
-  EClass getBody();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Body#getStatements <em>Statements</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Statements</em>'.
-   * @see ru.iaie.reflex.reflex.Body#getStatements()
-   * @see #getBody()
-   * @generated
-   */
-  EReference getBody_Statements();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Body#isLoop <em>Loop</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Loop</em>'.
-   * @see ru.iaie.reflex.reflex.Body#isLoop()
-   * @see #getBody()
-   * @generated
-   */
-  EAttribute getBody_Loop();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Body#isRestart <em>Restart</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Restart</em>'.
-   * @see ru.iaie.reflex.reflex.Body#isRestart()
-   * @see #getBody()
-   * @generated
-   */
-  EAttribute getBody_Restart();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Body#isReset <em>Reset</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Reset</em>'.
-   * @see ru.iaie.reflex.reflex.Body#isReset()
-   * @see #getBody()
-   * @generated
-   */
-  EAttribute getBody_Reset();
+  EClass getStatement();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.IfElseStat <em>If Else Stat</em>}'.
@@ -3741,6 +3884,17 @@ public interface ReflexPackage extends EPackage
   EReference getCaseStat_Body();
 
   /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Has Break</em>'.
+   * @see ru.iaie.reflex.reflex.CaseStat#isHasBreak()
+   * @see #getCaseStat()
+   * @generated
+   */
+  EAttribute getCaseStat_HasBreak();
+
+  /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StartProcStat <em>Start Proc Stat</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3802,6 +3956,36 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getErrorStat_ProcId();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.LoopStat <em>Loop Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Loop Stat</em>'.
+   * @see ru.iaie.reflex.reflex.LoopStat
+   * @generated
+   */
+  EClass getLoopStat();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.RestartStat <em>Restart Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Restart Stat</em>'.
+   * @see ru.iaie.reflex.reflex.RestartStat
+   * @generated
+   */
+  EClass getRestartStat();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ResetStat <em>Reset Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Reset Stat</em>'.
+   * @see ru.iaie.reflex.reflex.ResetStat
+   * @generated
+   */
+  EClass getResetStat();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.SetStateStat <em>Set State Stat</em>}'.
@@ -3933,15 +4117,15 @@ public interface ReflexPackage extends EPackage
   EReference getRegister_Addr2();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}'.
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Reg Size</em>'.
+   * @return the meta object for the containment reference '<em>Reg Size</em>'.
    * @see ru.iaie.reflex.reflex.Register#getRegSize()
    * @see #getRegister()
    * @generated
    */
-  EAttribute getRegister_RegSize();
+  EReference getRegister_RegSize();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Const <em>Const</em>}'.
@@ -3984,6 +4168,17 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EClass getEnum();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Enum#getEnumId <em>Enum Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Enum Id</em>'.
+   * @see ru.iaie.reflex.reflex.Enum#getEnumId()
+   * @see #getEnum()
+   * @generated
+   */
+  EAttribute getEnum_EnumId();
 
   /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Enum#getEnumMembers <em>Enum Members</em>}'.
@@ -4144,17 +4339,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getPrimaryExpression_VarId();
-
-  /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PrimaryExpression#getLiteral <em>Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Literal</em>'.
-   * @see ru.iaie.reflex.reflex.PrimaryExpression#getLiteral()
-   * @see #getPrimaryExpression()
-   * @generated
-   */
-  EReference getPrimaryExpression_Literal();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.UnaryExpression <em>Unary Expression</em>}'.
@@ -4524,6 +4708,17 @@ public interface ReflexPackage extends EPackage
   EClass getTime();
 
   /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isIsDay <em>Is Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Day</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isIsDay()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_IsDay();
+
+  /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getDays <em>Days</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4535,6 +4730,17 @@ public interface ReflexPackage extends EPackage
   EAttribute getTime_Days();
 
   /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#isIsHour <em>Is Hour</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Hour</em>'.
+   * @see ru.iaie.reflex.reflex.Time#isIsHour()
+   * @see #getTime()
+   * @generated
+   */
+  EAttribute getTime_IsHour();
+
+  /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getHours <em>Hours</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4544,61 +4750,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getTime_Hours();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getMinutes <em>Minutes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Minutes</em>'.
-   * @see ru.iaie.reflex.reflex.Time#getMinutes()
-   * @see #getTime()
-   * @generated
-   */
-  EAttribute getTime_Minutes();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getSeconds <em>Seconds</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Seconds</em>'.
-   * @see ru.iaie.reflex.reflex.Time#getSeconds()
-   * @see #getTime()
-   * @generated
-   */
-  EAttribute getTime_Seconds();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getMilis <em>Milis</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Milis</em>'.
-   * @see ru.iaie.reflex.reflex.Time#getMilis()
-   * @see #getTime()
-   * @generated
-   */
-  EAttribute getTime_Milis();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getMicros <em>Micros</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Micros</em>'.
-   * @see ru.iaie.reflex.reflex.Time#getMicros()
-   * @see #getTime()
-   * @generated
-   */
-  EAttribute getTime_Micros();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Time#getNanos <em>Nanos</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Nanos</em>'.
-   * @see ru.iaie.reflex.reflex.Time#getNanos()
-   * @see #getTime()
-   * @generated
-   */
-  EAttribute getTime_Nanos();
 
   /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}'.
@@ -5032,14 +5183,14 @@ public interface ReflexPackage extends EPackage
     EReference STATE__TIMEOUT_FUNCTION = eINSTANCE.getState_TimeoutFunction();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StateFunctionImpl <em>State Function</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StatementSequenceImpl <em>Statement Sequence</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.StateFunctionImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateFunction()
+     * @see ru.iaie.reflex.reflex.impl.StatementSequenceImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatementSequence()
      * @generated
      */
-    EClass STATE_FUNCTION = eINSTANCE.getStateFunction();
+    EClass STATEMENT_SEQUENCE = eINSTANCE.getStatementSequence();
 
     /**
      * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
@@ -5047,7 +5198,25 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference STATE_FUNCTION__STATEMENTS = eINSTANCE.getStateFunction_Statements();
+    EReference STATEMENT_SEQUENCE__STATEMENTS = eINSTANCE.getStatementSequence_Statements();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StatementBlockImpl <em>Statement Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.StatementBlockImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatementBlock()
+     * @generated
+     */
+    EClass STATEMENT_BLOCK = eINSTANCE.getStatementBlock();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATEMENT_BLOCK__STATEMENTS = eINSTANCE.getStatementBlock_Statements();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TimeoutFunctionImpl <em>Timeout Function</em>}' class.
@@ -5076,46 +5245,14 @@ public interface ReflexPackage extends EPackage
     EReference TIMEOUT_FUNCTION__BODY = eINSTANCE.getTimeoutFunction_Body();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.BodyImpl <em>Body</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StatementImpl <em>Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.BodyImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBody()
+     * @see ru.iaie.reflex.reflex.impl.StatementImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStatement()
      * @generated
      */
-    EClass BODY = eINSTANCE.getBody();
-
-    /**
-     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BODY__STATEMENTS = eINSTANCE.getBody_Statements();
-
-    /**
-     * The meta object literal for the '<em><b>Loop</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BODY__LOOP = eINSTANCE.getBody_Loop();
-
-    /**
-     * The meta object literal for the '<em><b>Restart</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BODY__RESTART = eINSTANCE.getBody_Restart();
-
-    /**
-     * The meta object literal for the '<em><b>Reset</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BODY__RESET = eINSTANCE.getBody_Reset();
+    EClass STATEMENT = eINSTANCE.getStatement();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.IfElseStatImpl <em>If Else Stat</em>}' class.
@@ -5204,6 +5341,14 @@ public interface ReflexPackage extends EPackage
     EReference CASE_STAT__BODY = eINSTANCE.getCaseStat_Body();
 
     /**
+     * The meta object literal for the '<em><b>Has Break</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CASE_STAT__HAS_BREAK = eINSTANCE.getCaseStat_HasBreak();
+
+    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StartProcStatImpl <em>Start Proc Stat</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5256,6 +5401,36 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute ERROR_STAT__PROC_ID = eINSTANCE.getErrorStat_ProcId();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.LoopStatImpl <em>Loop Stat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.LoopStatImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLoopStat()
+     * @generated
+     */
+    EClass LOOP_STAT = eINSTANCE.getLoopStat();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.RestartStatImpl <em>Restart Stat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.RestartStatImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRestartStat()
+     * @generated
+     */
+    EClass RESTART_STAT = eINSTANCE.getRestartStat();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ResetStatImpl <em>Reset Stat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.ResetStatImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getResetStat()
+     * @generated
+     */
+    EClass RESET_STAT = eINSTANCE.getResetStat();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl <em>Set State Stat</em>}' class.
@@ -5360,12 +5535,12 @@ public interface ReflexPackage extends EPackage
     EReference REGISTER__ADDR2 = eINSTANCE.getRegister_Addr2();
 
     /**
-     * The meta object literal for the '<em><b>Reg Size</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Reg Size</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__REG_SIZE = eINSTANCE.getRegister_RegSize();
+    EReference REGISTER__REG_SIZE = eINSTANCE.getRegister_RegSize();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ConstImpl <em>Const</em>}' class.
@@ -5402,6 +5577,14 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EClass ENUM = eINSTANCE.getEnum();
+
+    /**
+     * The meta object literal for the '<em><b>Enum Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM__ENUM_ID = eINSTANCE.getEnum_EnumId();
 
     /**
      * The meta object literal for the '<em><b>Enum Members</b></em>' containment reference list feature.
@@ -5532,14 +5715,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute PRIMARY_EXPRESSION__VAR_ID = eINSTANCE.getPrimaryExpression_VarId();
-
-    /**
-     * The meta object literal for the '<em><b>Literal</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PRIMARY_EXPRESSION__LITERAL = eINSTANCE.getPrimaryExpression_Literal();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.UnaryExpressionImpl <em>Unary Expression</em>}' class.
@@ -5858,6 +6033,14 @@ public interface ReflexPackage extends EPackage
     EClass TIME = eINSTANCE.getTime();
 
     /**
+     * The meta object literal for the '<em><b>Is Day</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__IS_DAY = eINSTANCE.getTime_IsDay();
+
+    /**
      * The meta object literal for the '<em><b>Days</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5866,52 +6049,20 @@ public interface ReflexPackage extends EPackage
     EAttribute TIME__DAYS = eINSTANCE.getTime_Days();
 
     /**
+     * The meta object literal for the '<em><b>Is Hour</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TIME__IS_HOUR = eINSTANCE.getTime_IsHour();
+
+    /**
      * The meta object literal for the '<em><b>Hours</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute TIME__HOURS = eINSTANCE.getTime_Hours();
-
-    /**
-     * The meta object literal for the '<em><b>Minutes</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TIME__MINUTES = eINSTANCE.getTime_Minutes();
-
-    /**
-     * The meta object literal for the '<em><b>Seconds</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TIME__SECONDS = eINSTANCE.getTime_Seconds();
-
-    /**
-     * The meta object literal for the '<em><b>Milis</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TIME__MILIS = eINSTANCE.getTime_Milis();
-
-    /**
-     * The meta object literal for the '<em><b>Micros</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TIME__MICROS = eINSTANCE.getTime_Micros();
-
-    /**
-     * The meta object literal for the '<em><b>Nanos</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TIME__NANOS = eINSTANCE.getTime_Nanos();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.

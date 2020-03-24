@@ -5,36 +5,34 @@ package ru.iaie.reflex.reflex;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>State Function</b></em>'.
+ * A representation of the model object '<em><b>Statement Block</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.StateFunction#getStatements <em>Statements</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.StatementBlock#getStatements <em>Statements</em>}</li>
  * </ul>
  *
- * @see ru.iaie.reflex.reflex.ReflexPackage#getStateFunction()
+ * @see ru.iaie.reflex.reflex.ReflexPackage#getStatementBlock()
  * @model
  * @generated
  */
-public interface StateFunction extends EObject
+public interface StatementBlock extends Statement
 {
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.Body}.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Statement}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Statements</em>' containment reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getStateFunction_Statements()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getStatementBlock_Statements()
    * @model containment="true"
    * @generated
    */
-  EList<Body> getStatements();
+  EList<Statement> getStatements();
 
-} // StateFunction
+} // StatementBlock

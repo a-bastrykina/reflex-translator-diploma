@@ -12,29 +12,27 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.Statement;
+import ru.iaie.reflex.reflex.StatementBlock;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>State Function</b></em>'.
+ * An implementation of the model object '<em><b>Statement Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StateFunctionImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StatementBlockImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StateFunctionImpl extends MinimalEObjectImpl.Container implements StateFunction
+public class StatementBlockImpl extends StatementImpl implements StatementBlock
 {
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
@@ -44,14 +42,14 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    * @ordered
    */
-  protected EList<Body> statements;
+  protected EList<Statement> statements;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected StateFunctionImpl()
+  protected StatementBlockImpl()
   {
     super();
   }
@@ -64,7 +62,7 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.STATE_FUNCTION;
+    return ReflexPackage.Literals.STATEMENT_BLOCK;
   }
 
   /**
@@ -73,11 +71,11 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public EList<Body> getStatements()
+  public EList<Statement> getStatements()
   {
     if (statements == null)
     {
-      statements = new EObjectContainmentEList<Body>(Body.class, this, ReflexPackage.STATE_FUNCTION__STATEMENTS);
+      statements = new EObjectContainmentEList<Statement>(Statement.class, this, ReflexPackage.STATEMENT_BLOCK__STATEMENTS);
     }
     return statements;
   }
@@ -92,7 +90,7 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+      case ReflexPackage.STATEMENT_BLOCK__STATEMENTS:
         return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -108,7 +106,7 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+      case ReflexPackage.STATEMENT_BLOCK__STATEMENTS:
         return getStatements();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -125,9 +123,9 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+      case ReflexPackage.STATEMENT_BLOCK__STATEMENTS:
         getStatements().clear();
-        getStatements().addAll((Collection<? extends Body>)newValue);
+        getStatements().addAll((Collection<? extends Statement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,7 +141,7 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+      case ReflexPackage.STATEMENT_BLOCK__STATEMENTS:
         getStatements().clear();
         return;
     }
@@ -160,10 +158,10 @@ public class StateFunctionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case ReflexPackage.STATE_FUNCTION__STATEMENTS:
+      case ReflexPackage.STATEMENT_BLOCK__STATEMENTS:
         return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //StateFunctionImpl
+} //StatementBlockImpl

@@ -15,7 +15,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
@@ -33,6 +32,7 @@ import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
@@ -43,11 +43,15 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.ResetStat;
+import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.Statement;
+import ru.iaie.reflex.reflex.StatementBlock;
+import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
@@ -170,9 +174,14 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
-      public Adapter caseStateFunction(StateFunction object)
+      public Adapter caseStatementSequence(StatementSequence object)
       {
-        return createStateFunctionAdapter();
+        return createStatementSequenceAdapter();
+      }
+      @Override
+      public Adapter caseStatementBlock(StatementBlock object)
+      {
+        return createStatementBlockAdapter();
       }
       @Override
       public Adapter caseTimeoutFunction(TimeoutFunction object)
@@ -180,9 +189,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createTimeoutFunctionAdapter();
       }
       @Override
-      public Adapter caseBody(Body object)
+      public Adapter caseStatement(Statement object)
       {
-        return createBodyAdapter();
+        return createStatementAdapter();
       }
       @Override
       public Adapter caseIfElseStat(IfElseStat object)
@@ -213,6 +222,21 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseErrorStat(ErrorStat object)
       {
         return createErrorStatAdapter();
+      }
+      @Override
+      public Adapter caseLoopStat(LoopStat object)
+      {
+        return createLoopStatAdapter();
+      }
+      @Override
+      public Adapter caseRestartStat(RestartStat object)
+      {
+        return createRestartStatAdapter();
+      }
+      @Override
+      public Adapter caseResetStat(ResetStat object)
+      {
+        return createResetStatAdapter();
       }
       @Override
       public Adapter caseSetStateStat(SetStateStat object)
@@ -527,16 +551,31 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StateFunction <em>State Function</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StatementSequence <em>Statement Sequence</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.StateFunction
+   * @see ru.iaie.reflex.reflex.StatementSequence
    * @generated
    */
-  public Adapter createStateFunctionAdapter()
+  public Adapter createStatementSequenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StatementBlock <em>Statement Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.StatementBlock
+   * @generated
+   */
+  public Adapter createStatementBlockAdapter()
   {
     return null;
   }
@@ -557,16 +596,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Body <em>Body</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Statement <em>Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Body
+   * @see ru.iaie.reflex.reflex.Statement
    * @generated
    */
-  public Adapter createBodyAdapter()
+  public Adapter createStatementAdapter()
   {
     return null;
   }
@@ -657,6 +696,51 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createErrorStatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.LoopStat <em>Loop Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.LoopStat
+   * @generated
+   */
+  public Adapter createLoopStatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.RestartStat <em>Restart Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.RestartStat
+   * @generated
+   */
+  public Adapter createRestartStatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ResetStat <em>Reset Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.ResetStat
+   * @generated
+   */
+  public Adapter createResetStatAdapter()
   {
     return null;
   }

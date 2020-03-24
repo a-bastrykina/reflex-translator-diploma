@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.StatementSequence;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +26,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#getOption <em>Option</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#isHasBreak <em>Has Break</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,7 +51,27 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    * @ordered
    */
-  protected Body body;
+  protected StatementSequence body;
+
+  /**
+   * The default value of the '{@link #isHasBreak() <em>Has Break</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHasBreak()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean HAS_BREAK_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isHasBreak() <em>Has Break</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHasBreak()
+   * @generated
+   * @ordered
+   */
+  protected boolean hasBreak = HAS_BREAK_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,7 +150,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    */
   @Override
-  public Body getBody()
+  public StatementSequence getBody()
   {
     return body;
   }
@@ -139,9 +160,9 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBody(Body newBody, NotificationChain msgs)
+  public NotificationChain basicSetBody(StatementSequence newBody, NotificationChain msgs)
   {
-    Body oldBody = body;
+    StatementSequence oldBody = body;
     body = newBody;
     if (eNotificationRequired())
     {
@@ -157,7 +178,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    */
   @Override
-  public void setBody(Body newBody)
+  public void setBody(StatementSequence newBody)
   {
     if (newBody != body)
     {
@@ -171,6 +192,31 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__BODY, newBody, newBody));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isHasBreak()
+  {
+    return hasBreak;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setHasBreak(boolean newHasBreak)
+  {
+    boolean oldHasBreak = hasBreak;
+    hasBreak = newHasBreak;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__HAS_BREAK, oldHasBreak, hasBreak));
   }
 
   /**
@@ -205,6 +251,8 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
         return getOption();
       case ReflexPackage.CASE_STAT__BODY:
         return getBody();
+      case ReflexPackage.CASE_STAT__HAS_BREAK:
+        return isHasBreak();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -223,7 +271,10 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
         setOption((ru.iaie.reflex.reflex.Integer)newValue);
         return;
       case ReflexPackage.CASE_STAT__BODY:
-        setBody((Body)newValue);
+        setBody((StatementSequence)newValue);
+        return;
+      case ReflexPackage.CASE_STAT__HAS_BREAK:
+        setHasBreak((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -243,7 +294,10 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
         setOption((ru.iaie.reflex.reflex.Integer)null);
         return;
       case ReflexPackage.CASE_STAT__BODY:
-        setBody((Body)null);
+        setBody((StatementSequence)null);
+        return;
+      case ReflexPackage.CASE_STAT__HAS_BREAK:
+        setHasBreak(HAS_BREAK_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -263,8 +317,27 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
         return option != null;
       case ReflexPackage.CASE_STAT__BODY:
         return body != null;
+      case ReflexPackage.CASE_STAT__HAS_BREAK:
+        return hasBreak != HAS_BREAK_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (hasBreak: ");
+    result.append(hasBreak);
+    result.append(')');
+    return result.toString();
   }
 
 } //CaseStatImpl

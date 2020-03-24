@@ -52,12 +52,12 @@ public interface State extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>State Function</em>' containment reference.
-   * @see #setStateFunction(StateFunction)
+   * @see #setStateFunction(StatementSequence)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getState_StateFunction()
    * @model containment="true"
    * @generated
    */
-  StateFunction getStateFunction();
+  StatementSequence getStateFunction();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}' containment reference.
@@ -67,7 +67,7 @@ public interface State extends EObject
    * @see #getStateFunction()
    * @generated
    */
-  void setStateFunction(StateFunction value);
+  void setStateFunction(StatementSequence value);
 
   /**
    * Returns the value of the '<em><b>Timeout Function</b></em>' containment reference.

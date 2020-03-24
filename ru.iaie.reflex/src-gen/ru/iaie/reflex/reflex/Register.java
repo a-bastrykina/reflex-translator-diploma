@@ -119,25 +119,25 @@ public interface Register extends EObject
   void setAddr2(ru.iaie.reflex.reflex.Integer value);
 
   /**
-   * Returns the value of the '<em><b>Reg Size</b></em>' attribute.
+   * Returns the value of the '<em><b>Reg Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg Size</em>' attribute.
-   * @see #setRegSize(int)
+   * @return the value of the '<em>Reg Size</em>' containment reference.
+   * @see #setRegSize(ru.iaie.reflex.reflex.Integer)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_RegSize()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getRegSize();
+  ru.iaie.reflex.reflex.Integer getRegSize();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg Size</em>' attribute.
+   * @param value the new value of the '<em>Reg Size</em>' containment reference.
    * @see #getRegSize()
    * @generated
    */
-  void setRegSize(int value);
+  void setRegSize(ru.iaie.reflex.reflex.Integer value);
 
 } // Register

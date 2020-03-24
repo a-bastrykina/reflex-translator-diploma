@@ -14,13 +14,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.Time#isIsDay <em>Is Day</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Time#getDays <em>Days</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Time#isIsHour <em>Is Hour</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Time#getHours <em>Hours</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getMinutes <em>Minutes</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getSeconds <em>Seconds</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getMilis <em>Milis</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getMicros <em>Micros</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getNanos <em>Nanos</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getTime()
@@ -29,6 +26,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Time extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Is Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Day</em>' attribute.
+   * @see #setIsDay(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_IsDay()
+   * @model
+   * @generated
+   */
+  boolean isIsDay();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#isIsDay <em>Is Day</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Day</em>' attribute.
+   * @see #isIsDay()
+   * @generated
+   */
+  void setIsDay(boolean value);
+
   /**
    * Returns the value of the '<em><b>Days</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -52,6 +71,28 @@ public interface Time extends EObject
   void setDays(String value);
 
   /**
+   * Returns the value of the '<em><b>Is Hour</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Hour</em>' attribute.
+   * @see #setIsHour(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_IsHour()
+   * @model
+   * @generated
+   */
+  boolean isIsHour();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#isIsHour <em>Is Hour</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Hour</em>' attribute.
+   * @see #isIsHour()
+   * @generated
+   */
+  void setIsHour(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Hours</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -72,115 +113,5 @@ public interface Time extends EObject
    * @generated
    */
   void setHours(String value);
-
-  /**
-   * Returns the value of the '<em><b>Minutes</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Minutes</em>' attribute.
-   * @see #setMinutes(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Minutes()
-   * @model
-   * @generated
-   */
-  String getMinutes();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getMinutes <em>Minutes</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Minutes</em>' attribute.
-   * @see #getMinutes()
-   * @generated
-   */
-  void setMinutes(String value);
-
-  /**
-   * Returns the value of the '<em><b>Seconds</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Seconds</em>' attribute.
-   * @see #setSeconds(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Seconds()
-   * @model
-   * @generated
-   */
-  String getSeconds();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getSeconds <em>Seconds</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Seconds</em>' attribute.
-   * @see #getSeconds()
-   * @generated
-   */
-  void setSeconds(String value);
-
-  /**
-   * Returns the value of the '<em><b>Milis</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Milis</em>' attribute.
-   * @see #setMilis(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Milis()
-   * @model
-   * @generated
-   */
-  String getMilis();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getMilis <em>Milis</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Milis</em>' attribute.
-   * @see #getMilis()
-   * @generated
-   */
-  void setMilis(String value);
-
-  /**
-   * Returns the value of the '<em><b>Micros</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Micros</em>' attribute.
-   * @see #setMicros(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Micros()
-   * @model
-   * @generated
-   */
-  String getMicros();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getMicros <em>Micros</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Micros</em>' attribute.
-   * @see #getMicros()
-   * @generated
-   */
-  void setMicros(String value);
-
-  /**
-   * Returns the value of the '<em><b>Nanos</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Nanos</em>' attribute.
-   * @see #setNanos(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Nanos()
-   * @model
-   * @generated
-   */
-  String getNanos();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getNanos <em>Nanos</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Nanos</em>' attribute.
-   * @see #getNanos()
-   * @generated
-   */
-  void setNanos(String value);
 
 } // Time

@@ -114,13 +114,22 @@ public interface ReflexFactory extends EFactory
   State createState();
 
   /**
-   * Returns a new object of class '<em>State Function</em>'.
+   * Returns a new object of class '<em>Statement Sequence</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>State Function</em>'.
+   * @return a new object of class '<em>Statement Sequence</em>'.
    * @generated
    */
-  StateFunction createStateFunction();
+  StatementSequence createStatementSequence();
+
+  /**
+   * Returns a new object of class '<em>Statement Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Statement Block</em>'.
+   * @generated
+   */
+  StatementBlock createStatementBlock();
 
   /**
    * Returns a new object of class '<em>Timeout Function</em>'.
@@ -132,13 +141,13 @@ public interface ReflexFactory extends EFactory
   TimeoutFunction createTimeoutFunction();
 
   /**
-   * Returns a new object of class '<em>Body</em>'.
+   * Returns a new object of class '<em>Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Body</em>'.
+   * @return a new object of class '<em>Statement</em>'.
    * @generated
    */
-  Body createBody();
+  Statement createStatement();
 
   /**
    * Returns a new object of class '<em>If Else Stat</em>'.
@@ -193,6 +202,33 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   ErrorStat createErrorStat();
+
+  /**
+   * Returns a new object of class '<em>Loop Stat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop Stat</em>'.
+   * @generated
+   */
+  LoopStat createLoopStat();
+
+  /**
+   * Returns a new object of class '<em>Restart Stat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Restart Stat</em>'.
+   * @generated
+   */
+  RestartStat createRestartStat();
+
+  /**
+   * Returns a new object of class '<em>Reset Stat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reset Stat</em>'.
+   * @generated
+   */
+  ResetStat createResetStat();
 
   /**
    * Returns a new object of class '<em>Set State Stat</em>'.

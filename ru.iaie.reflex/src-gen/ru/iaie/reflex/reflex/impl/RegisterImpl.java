@@ -3,8 +3,6 @@
  */
 package ru.iaie.reflex.reflex.impl;
 
-import java.lang.Integer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -98,24 +96,14 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   protected ru.iaie.reflex.reflex.Integer addr2;
 
   /**
-   * The default value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
+   * The cached value of the '{@link #getRegSize() <em>Reg Size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRegSize()
    * @generated
    * @ordered
    */
-  protected static final int REG_SIZE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRegSize()
-   * @generated
-   * @ordered
-   */
-  protected int regSize = REG_SIZE_EDEFAULT;
+  protected ru.iaie.reflex.reflex.Integer regSize;
 
   /**
    * <!-- begin-user-doc -->
@@ -294,7 +282,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public int getRegSize()
+  public ru.iaie.reflex.reflex.Integer getRegSize()
   {
     return regSize;
   }
@@ -304,13 +292,38 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setRegSize(int newRegSize)
+  public NotificationChain basicSetRegSize(ru.iaie.reflex.reflex.Integer newRegSize, NotificationChain msgs)
   {
-    int oldRegSize = regSize;
+    ru.iaie.reflex.reflex.Integer oldRegSize = regSize;
     regSize = newRegSize;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, oldRegSize, regSize));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, oldRegSize, newRegSize);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setRegSize(ru.iaie.reflex.reflex.Integer newRegSize)
+  {
+    if (newRegSize != regSize)
+    {
+      NotificationChain msgs = null;
+      if (regSize != null)
+        msgs = ((InternalEObject)regSize).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__REG_SIZE, null, msgs);
+      if (newRegSize != null)
+        msgs = ((InternalEObject)newRegSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__REG_SIZE, null, msgs);
+      msgs = basicSetRegSize(newRegSize, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, newRegSize, newRegSize));
   }
 
   /**
@@ -327,6 +340,8 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
         return basicSetAddr1(null, msgs);
       case ReflexPackage.REGISTER__ADDR2:
         return basicSetAddr2(null, msgs);
+      case ReflexPackage.REGISTER__REG_SIZE:
+        return basicSetRegSize(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -378,7 +393,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
         setAddr2((ru.iaie.reflex.reflex.Integer)newValue);
         return;
       case ReflexPackage.REGISTER__REG_SIZE:
-        setRegSize((Integer)newValue);
+        setRegSize((ru.iaie.reflex.reflex.Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -407,7 +422,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
         setAddr2((ru.iaie.reflex.reflex.Integer)null);
         return;
       case ReflexPackage.REGISTER__REG_SIZE:
-        setRegSize(REG_SIZE_EDEFAULT);
+        setRegSize((ru.iaie.reflex.reflex.Integer)null);
         return;
     }
     super.eUnset(featureID);
@@ -432,7 +447,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
       case ReflexPackage.REGISTER__ADDR2:
         return addr2 != null;
       case ReflexPackage.REGISTER__REG_SIZE:
-        return regSize != REG_SIZE_EDEFAULT;
+        return regSize != null;
     }
     return super.eIsSet(featureID);
   }
@@ -452,8 +467,6 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     result.append(type);
     result.append(", name: ");
     result.append(name);
-    result.append(", regSize: ");
-    result.append(regSize);
     result.append(')');
     return result.toString();
   }

@@ -10,12 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.Statement;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +31,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfElseStat
+public class IfElseStatImpl extends StatementImpl implements IfElseStat
 {
   /**
    * The cached value of the '{@link #getCond() <em>Cond</em>}' containment reference.
@@ -52,7 +51,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    * @ordered
    */
-  protected Body then;
+  protected Statement then;
 
   /**
    * The cached value of the '{@link #getElse() <em>Else</em>}' containment reference.
@@ -62,7 +61,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    * @ordered
    */
-  protected Body else_;
+  protected Statement else_;
 
   /**
    * <!-- begin-user-doc -->
@@ -141,7 +140,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    */
   @Override
-  public Body getThen()
+  public Statement getThen()
   {
     return then;
   }
@@ -151,9 +150,9 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetThen(Body newThen, NotificationChain msgs)
+  public NotificationChain basicSetThen(Statement newThen, NotificationChain msgs)
   {
-    Body oldThen = then;
+    Statement oldThen = then;
     then = newThen;
     if (eNotificationRequired())
     {
@@ -169,7 +168,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    */
   @Override
-  public void setThen(Body newThen)
+  public void setThen(Statement newThen)
   {
     if (newThen != then)
     {
@@ -191,7 +190,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    */
   @Override
-  public Body getElse()
+  public Statement getElse()
   {
     return else_;
   }
@@ -201,9 +200,9 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetElse(Body newElse, NotificationChain msgs)
+  public NotificationChain basicSetElse(Statement newElse, NotificationChain msgs)
   {
-    Body oldElse = else_;
+    Statement oldElse = else_;
     else_ = newElse;
     if (eNotificationRequired())
     {
@@ -219,7 +218,7 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
    * @generated
    */
   @Override
-  public void setElse(Body newElse)
+  public void setElse(Statement newElse)
   {
     if (newElse != else_)
     {
@@ -289,10 +288,10 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
         setCond((Expression)newValue);
         return;
       case ReflexPackage.IF_ELSE_STAT__THEN:
-        setThen((Body)newValue);
+        setThen((Statement)newValue);
         return;
       case ReflexPackage.IF_ELSE_STAT__ELSE:
-        setElse((Body)newValue);
+        setElse((Statement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -312,10 +311,10 @@ public class IfElseStatImpl extends MinimalEObjectImpl.Container implements IfEl
         setCond((Expression)null);
         return;
       case ReflexPackage.IF_ELSE_STAT__THEN:
-        setThen((Body)null);
+        setThen((Statement)null);
         return;
       case ReflexPackage.IF_ELSE_STAT__ELSE:
-        setElse((Body)null);
+        setElse((Statement)null);
         return;
     }
     super.eUnset(featureID);

@@ -19,7 +19,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.Body;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
@@ -41,6 +40,7 @@ import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
+import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
@@ -54,12 +54,16 @@ import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPort;
 import ru.iaie.reflex.reflex.RegisterType;
+import ru.iaie.reflex.reflex.ResetStat;
+import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.Statement;
+import ru.iaie.reflex.reflex.StatementBlock;
+import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Time;
@@ -131,15 +135,19 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
       case ReflexPackage.VISIBILITY: return createVisibility();
       case ReflexPackage.STATE: return createState();
-      case ReflexPackage.STATE_FUNCTION: return createStateFunction();
+      case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
+      case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
-      case ReflexPackage.BODY: return createBody();
+      case ReflexPackage.STATEMENT: return createStatement();
       case ReflexPackage.IF_ELSE_STAT: return createIfElseStat();
       case ReflexPackage.SWITCH_STAT: return createSwitchStat();
       case ReflexPackage.CASE_STAT: return createCaseStat();
       case ReflexPackage.START_PROC_STAT: return createStartProcStat();
       case ReflexPackage.STOP_PROC_STAT: return createStopProcStat();
       case ReflexPackage.ERROR_STAT: return createErrorStat();
+      case ReflexPackage.LOOP_STAT: return createLoopStat();
+      case ReflexPackage.RESTART_STAT: return createRestartStat();
+      case ReflexPackage.RESET_STAT: return createResetStat();
       case ReflexPackage.SET_STATE_STAT: return createSetStateStat();
       case ReflexPackage.FUNCTION: return createFunction();
       case ReflexPackage.REGISTER: return createRegister();
@@ -369,10 +377,22 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public StateFunction createStateFunction()
+  public StatementSequence createStatementSequence()
   {
-    StateFunctionImpl stateFunction = new StateFunctionImpl();
-    return stateFunction;
+    StatementSequenceImpl statementSequence = new StatementSequenceImpl();
+    return statementSequence;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StatementBlock createStatementBlock()
+  {
+    StatementBlockImpl statementBlock = new StatementBlockImpl();
+    return statementBlock;
   }
 
   /**
@@ -393,10 +413,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Body createBody()
+  public Statement createStatement()
   {
-    BodyImpl body = new BodyImpl();
-    return body;
+    StatementImpl statement = new StatementImpl();
+    return statement;
   }
 
   /**
@@ -469,6 +489,42 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     ErrorStatImpl errorStat = new ErrorStatImpl();
     return errorStat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LoopStat createLoopStat()
+  {
+    LoopStatImpl loopStat = new LoopStatImpl();
+    return loopStat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RestartStat createRestartStat()
+  {
+    RestartStatImpl restartStat = new RestartStatImpl();
+    return restartStat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResetStat createResetStat()
+  {
+    ResetStatImpl resetStat = new ResetStatImpl();
+    return resetStat;
   }
 
   /**

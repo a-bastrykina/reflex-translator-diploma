@@ -4,10 +4,8 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -23,7 +21,6 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getVarId <em>Var Id</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,16 +46,6 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @ordered
    */
   protected String varId = VAR_ID_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLiteral()
-   * @generated
-   * @ordered
-   */
-  protected ru.iaie.reflex.reflex.Integer literal;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,80 +99,12 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public ru.iaie.reflex.reflex.Integer getLiteral()
-  {
-    return literal;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetLiteral(ru.iaie.reflex.reflex.Integer newLiteral, NotificationChain msgs)
-  {
-    ru.iaie.reflex.reflex.Integer oldLiteral = literal;
-    literal = newLiteral;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__LITERAL, oldLiteral, newLiteral);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setLiteral(ru.iaie.reflex.reflex.Integer newLiteral)
-  {
-    if (newLiteral != literal)
-    {
-      NotificationChain msgs = null;
-      if (literal != null)
-        msgs = ((InternalEObject)literal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PRIMARY_EXPRESSION__LITERAL, null, msgs);
-      if (newLiteral != null)
-        msgs = ((InternalEObject)newLiteral).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PRIMARY_EXPRESSION__LITERAL, null, msgs);
-      msgs = basicSetLiteral(newLiteral, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__LITERAL, newLiteral, newLiteral));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.PRIMARY_EXPRESSION__LITERAL:
-        return basicSetLiteral(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         return getVarId();
-      case ReflexPackage.PRIMARY_EXPRESSION__LITERAL:
-        return getLiteral();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,9 +121,6 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         setVarId((String)newValue);
-        return;
-      case ReflexPackage.PRIMARY_EXPRESSION__LITERAL:
-        setLiteral((ru.iaie.reflex.reflex.Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,9 +139,6 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         setVarId(VAR_ID_EDEFAULT);
         return;
-      case ReflexPackage.PRIMARY_EXPRESSION__LITERAL:
-        setLiteral((ru.iaie.reflex.reflex.Integer)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -242,8 +155,6 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         return VAR_ID_EDEFAULT == null ? varId != null : !VAR_ID_EDEFAULT.equals(varId);
-      case ReflexPackage.PRIMARY_EXPRESSION__LITERAL:
-        return literal != null;
     }
     return super.eIsSet(featureID);
   }

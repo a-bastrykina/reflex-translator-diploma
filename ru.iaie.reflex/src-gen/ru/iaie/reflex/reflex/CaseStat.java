@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.CaseStat#getBody <em>Body</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat()
@@ -51,12 +52,12 @@ public interface CaseStat extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Body</em>' containment reference.
-   * @see #setBody(Body)
+   * @see #setBody(StatementSequence)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_Body()
    * @model containment="true"
    * @generated
    */
-  Body getBody();
+  StatementSequence getBody();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getBody <em>Body</em>}' containment reference.
@@ -66,6 +67,28 @@ public interface CaseStat extends EObject
    * @see #getBody()
    * @generated
    */
-  void setBody(Body value);
+  void setBody(StatementSequence value);
+
+  /**
+   * Returns the value of the '<em><b>Has Break</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Has Break</em>' attribute.
+   * @see #setHasBreak(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_HasBreak()
+   * @model
+   * @generated
+   */
+  boolean isHasBreak();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Has Break</em>' attribute.
+   * @see #isHasBreak()
+   * @generated
+   */
+  void setHasBreak(boolean value);
 
 } // CaseStat

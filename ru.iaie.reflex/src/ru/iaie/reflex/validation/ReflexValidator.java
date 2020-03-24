@@ -8,9 +8,6 @@ import org.eclipse.xtext.validation.Check;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.Process;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This class contains custom validation rules. 
  *
@@ -21,6 +18,7 @@ public class ReflexValidator extends AbstractReflexValidator {
 	
 //	@Check
 //	public void checkIdentifiers(Process process) {
+//		if (process.getName())
 //			error("Process is already declared", ReflexPackage.Literals.PROCESS__NAME, process.getName());
 //	}
 	

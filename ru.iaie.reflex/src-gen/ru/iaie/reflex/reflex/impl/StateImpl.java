@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.StateFunction;
+import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 
 /**
@@ -62,7 +62,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    * @ordered
    */
-  protected StateFunction stateFunction;
+  protected StatementSequence stateFunction;
 
   /**
    * The cached value of the '{@link #getTimeoutFunction() <em>Timeout Function</em>}' containment reference.
@@ -126,7 +126,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    */
   @Override
-  public StateFunction getStateFunction()
+  public StatementSequence getStateFunction()
   {
     return stateFunction;
   }
@@ -136,9 +136,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStateFunction(StateFunction newStateFunction, NotificationChain msgs)
+  public NotificationChain basicSetStateFunction(StatementSequence newStateFunction, NotificationChain msgs)
   {
-    StateFunction oldStateFunction = stateFunction;
+    StatementSequence oldStateFunction = stateFunction;
     stateFunction = newStateFunction;
     if (eNotificationRequired())
     {
@@ -154,7 +154,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    */
   @Override
-  public void setStateFunction(StateFunction newStateFunction)
+  public void setStateFunction(StatementSequence newStateFunction)
   {
     if (newStateFunction != stateFunction)
     {
@@ -272,7 +272,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setName((String)newValue);
         return;
       case ReflexPackage.STATE__STATE_FUNCTION:
-        setStateFunction((StateFunction)newValue);
+        setStateFunction((StatementSequence)newValue);
         return;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
         setTimeoutFunction((TimeoutFunction)newValue);
@@ -295,7 +295,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setName(NAME_EDEFAULT);
         return;
       case ReflexPackage.STATE__STATE_FUNCTION:
-        setStateFunction((StateFunction)null);
+        setStateFunction((StatementSequence)null);
         return;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
         setTimeoutFunction((TimeoutFunction)null);

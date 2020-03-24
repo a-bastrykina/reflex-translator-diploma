@@ -4,7 +4,8 @@
 package ru.iaie.reflex.ui.labeling;
 
 import com.google.inject.Inject;
-import ru.iaie.reflex.reflex.Body;
+import ru.iaie.reflex.reflex.Statement;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
@@ -23,12 +24,8 @@ public class ReflexLabelProvider extends DefaultEObjectLabelProvider {
 
 	// Labels and icons can be computed like this:
 
-	String text(Body b) {
-		if (b.getStatements().size() == 1) {
-			return b.getStatements().get(0).getClass().getSimpleName().replace("Impl", "");
-		} else {
-			return "Statement list";
-		}
+	String text(Statement s) {
+		return s.getClass().getSimpleName().replace("Impl", "");
 	}
 
 }

@@ -5,6 +5,7 @@ package ru.iaie.reflex.reflex.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -28,6 +30,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.EnumImpl#getEnumId <em>Enum Id</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.EnumImpl#getEnumMembers <em>Enum Members</em>}</li>
  * </ul>
  *
@@ -35,6 +38,26 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  */
 public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.reflex.reflex.Enum
 {
+  /**
+   * The default value of the '{@link #getEnumId() <em>Enum Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEnumId()
+   * @generated
+   * @ordered
+   */
+  protected static final String ENUM_ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getEnumId() <em>Enum Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEnumId()
+   * @generated
+   * @ordered
+   */
+  protected String enumId = ENUM_ID_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getEnumMembers() <em>Enum Members</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -64,6 +87,31 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.ENUM;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getEnumId()
+  {
+    return enumId;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setEnumId(String newEnumId)
+  {
+    String oldEnumId = enumId;
+    enumId = newEnumId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ENUM__ENUM_ID, oldEnumId, enumId));
   }
 
   /**
@@ -107,6 +155,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
+      case ReflexPackage.ENUM__ENUM_ID:
+        return getEnumId();
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         return getEnumMembers();
     }
@@ -124,6 +174,9 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
+      case ReflexPackage.ENUM__ENUM_ID:
+        setEnumId((String)newValue);
+        return;
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         getEnumMembers().clear();
         getEnumMembers().addAll((Collection<? extends EnumMember>)newValue);
@@ -142,6 +195,9 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
+      case ReflexPackage.ENUM__ENUM_ID:
+        setEnumId(ENUM_ID_EDEFAULT);
+        return;
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         getEnumMembers().clear();
         return;
@@ -159,10 +215,29 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
+      case ReflexPackage.ENUM__ENUM_ID:
+        return ENUM_ID_EDEFAULT == null ? enumId != null : !ENUM_ID_EDEFAULT.equals(enumId);
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         return enumMembers != null && !enumMembers.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (enumId: ");
+    result.append(enumId);
+    result.append(')');
+    return result.toString();
   }
 
 } //EnumImpl
