@@ -8,6 +8,8 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import com.google.inject.Inject
+import ru.iaie.reflex.generator.r2c.R2CReflexGenerator
+import ru.iaie.reflex.generator.xmi.XMIReflexGenerator
 
 /**
  * Generates code from your model files on save.

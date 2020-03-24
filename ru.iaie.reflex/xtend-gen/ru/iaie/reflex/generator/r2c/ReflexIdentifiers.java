@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator;
+package ru.iaie.reflex.generator.r2c;
 
 @SuppressWarnings("all")
 public class ReflexIdentifiers {

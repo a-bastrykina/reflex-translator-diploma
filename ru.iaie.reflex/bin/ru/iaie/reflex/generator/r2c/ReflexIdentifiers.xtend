@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator
+package ru.iaie.reflex.generator.r2c
 
 class ReflexIdentifiers {
 	public static String TIMER_ARRAY_NAME = "timers"

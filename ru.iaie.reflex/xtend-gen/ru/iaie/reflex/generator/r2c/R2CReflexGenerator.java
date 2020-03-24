@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator;
+package ru.iaie.reflex.generator.r2c;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
@@ -17,7 +17,7 @@ import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import ru.iaie.reflex.generator.ReflexIdentifiers;
+import ru.iaie.reflex.generator.r2c.ReflexIdentifiers;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IfElseStat;

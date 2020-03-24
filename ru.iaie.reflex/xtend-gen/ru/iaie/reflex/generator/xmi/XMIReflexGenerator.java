@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator;
+package ru.iaie.reflex.generator.xmi;
 
 import com.google.common.collect.Iterables;
 import java.io.IOException;

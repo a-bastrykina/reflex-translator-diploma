@@ -5,7 +5,7 @@ import org.eclipse.xtext.generator.IGenerator2;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import ru.iaie.reflex.generator.XMIReflexGenerator;
+import ru.iaie.reflex.generator.xmi.XMIReflexGenerator;
 
 public class ReflexStandaloneSetupXMIGen extends ReflexStandaloneSetup {
 	public Injector createInjector() {

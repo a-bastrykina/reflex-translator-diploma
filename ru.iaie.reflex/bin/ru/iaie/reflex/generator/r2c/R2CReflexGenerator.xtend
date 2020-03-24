@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator
+package ru.iaie.reflex.generator.r2c
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
