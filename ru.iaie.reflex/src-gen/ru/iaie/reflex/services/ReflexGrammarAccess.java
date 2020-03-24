@@ -170,7 +170,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDeclaredVariableParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//// Variables
 		//Variable:
 		//	(ImportedVariable | DeclaredVariable) ";";
 		@Override public ParserRule getRule() { return rule; }
@@ -2882,7 +2881,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getProcessAccess().getRule();
 	}
 	
-	//// Variables
 	//Variable:
 	//	(ImportedVariable | DeclaredVariable) ";";
 	public VariableElements getVariableAccess() {

@@ -50,4 +50,18 @@ Workflow {
 			}
 		}
 	}
+	
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = ReflexStandaloneSetupR2CGen {}
+		outlet = {
+			path = "src-gen"
+		}
+	}
+	
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = ReflexStandaloneSetupXMIGen {}
+		outlet = {
+			path = "src-gen"
+		}
+	}
 }
