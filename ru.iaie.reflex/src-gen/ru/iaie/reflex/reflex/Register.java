@@ -75,69 +75,69 @@ public interface Register extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Addr1</b></em>' containment reference.
+   * Returns the value of the '<em><b>Addr1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Addr1</em>' containment reference.
-   * @see #setAddr1(ru.iaie.reflex.reflex.Integer)
+   * @return the value of the '<em>Addr1</em>' attribute.
+   * @see #setAddr1(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Addr1()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ru.iaie.reflex.reflex.Integer getAddr1();
+  String getAddr1();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr1 <em>Addr1</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr1 <em>Addr1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Addr1</em>' containment reference.
+   * @param value the new value of the '<em>Addr1</em>' attribute.
    * @see #getAddr1()
    * @generated
    */
-  void setAddr1(ru.iaie.reflex.reflex.Integer value);
+  void setAddr1(String value);
 
   /**
-   * Returns the value of the '<em><b>Addr2</b></em>' containment reference.
+   * Returns the value of the '<em><b>Addr2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Addr2</em>' containment reference.
-   * @see #setAddr2(ru.iaie.reflex.reflex.Integer)
+   * @return the value of the '<em>Addr2</em>' attribute.
+   * @see #setAddr2(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Addr2()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ru.iaie.reflex.reflex.Integer getAddr2();
+  String getAddr2();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr2 <em>Addr2</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr2 <em>Addr2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Addr2</em>' containment reference.
+   * @param value the new value of the '<em>Addr2</em>' attribute.
    * @see #getAddr2()
    * @generated
    */
-  void setAddr2(ru.iaie.reflex.reflex.Integer value);
+  void setAddr2(String value);
 
   /**
-   * Returns the value of the '<em><b>Reg Size</b></em>' containment reference.
+   * Returns the value of the '<em><b>Reg Size</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg Size</em>' containment reference.
-   * @see #setRegSize(ru.iaie.reflex.reflex.Integer)
+   * @return the value of the '<em>Reg Size</em>' attribute.
+   * @see #setRegSize(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_RegSize()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ru.iaie.reflex.reflex.Integer getRegSize();
+  String getRegSize();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg Size</em>' containment reference.
+   * @param value the new value of the '<em>Reg Size</em>' attribute.
    * @see #getRegSize()
    * @generated
    */
-  void setRegSize(ru.iaie.reflex.reflex.Integer value);
+  void setRegSize(String value);
 
 } // Register

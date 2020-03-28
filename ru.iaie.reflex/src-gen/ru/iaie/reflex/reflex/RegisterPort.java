@@ -47,25 +47,25 @@ public interface RegisterPort extends EObject
   void setRegName(String value);
 
   /**
-   * Returns the value of the '<em><b>Port</b></em>' containment reference.
+   * Returns the value of the '<em><b>Port</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Port</em>' containment reference.
-   * @see #setPort(ru.iaie.reflex.reflex.Integer)
+   * @return the value of the '<em>Port</em>' attribute.
+   * @see #setPort(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getRegisterPort_Port()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ru.iaie.reflex.reflex.Integer getPort();
+  String getPort();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.RegisterPort#getPort <em>Port</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.RegisterPort#getPort <em>Port</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Port</em>' containment reference.
+   * @param value the new value of the '<em>Port</em>' attribute.
    * @see #getPort()
    * @generated
    */
-  void setPort(ru.iaie.reflex.reflex.Integer value);
+  void setPort(String value);
 
 } // RegisterPort

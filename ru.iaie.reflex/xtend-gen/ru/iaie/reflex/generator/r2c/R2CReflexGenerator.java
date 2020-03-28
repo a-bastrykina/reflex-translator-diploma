@@ -536,7 +536,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
       for(final CaseStat variant : _options) {
         _builder.append("\t");
         _builder.append("case (");
-        ru.iaie.reflex.reflex.Integer _option = variant.getOption();
+        String _option = variant.getOption();
         _builder.append(_option, "\t");
         _builder.append("):");
         _builder.newLineIfNotEmpty();

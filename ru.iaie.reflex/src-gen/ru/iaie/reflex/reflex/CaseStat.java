@@ -26,26 +26,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface CaseStat extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Option</b></em>' containment reference.
+   * Returns the value of the '<em><b>Option</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Option</em>' containment reference.
-   * @see #setOption(ru.iaie.reflex.reflex.Integer)
+   * @return the value of the '<em>Option</em>' attribute.
+   * @see #setOption(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_Option()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ru.iaie.reflex.reflex.Integer getOption();
+  String getOption();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Option</em>' containment reference.
+   * @param value the new value of the '<em>Option</em>' attribute.
    * @see #getOption()
    * @generated
    */
-  void setOption(ru.iaie.reflex.reflex.Integer value);
+  void setOption(String value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

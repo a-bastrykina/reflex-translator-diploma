@@ -88,7 +88,7 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//RegisterPort">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//RegisterPort/regName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//RegisterPort/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//RegisterPort/port"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ProgramVariable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//ProgramVariable/type"/>
@@ -125,7 +125,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//SwitchStat/options"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//CaseStat">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CaseStat/option"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CaseStat/option"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CaseStat/body"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CaseStat/hasBreak"/>
     </genClasses>
@@ -153,9 +153,9 @@
     <genClasses ecoreClass="Reflex.ecore#//Register">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Register/addr1"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Register/addr2"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Register/regSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/addr1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/addr2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/regSize"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Const">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Const/constId"/>
@@ -225,15 +225,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CType/signSpec"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ReflexType"/>
-    <genClasses ecoreClass="Reflex.ecore#//Integer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Integer/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Integer/qualfier"/>
+    <genClasses ecoreClass="Reflex.ecore#//Tact">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/value"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Time">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/isDay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/days"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/isHour"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/hours"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/ticks"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

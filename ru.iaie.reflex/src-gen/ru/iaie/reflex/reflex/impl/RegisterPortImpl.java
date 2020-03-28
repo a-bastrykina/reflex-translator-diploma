@@ -4,10 +4,8 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -52,14 +50,24 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   protected String regName = REG_NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPort() <em>Port</em>}' containment reference.
+   * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPort()
    * @generated
    * @ordered
    */
-  protected ru.iaie.reflex.reflex.Integer port;
+  protected static final String PORT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPort()
+   * @generated
+   * @ordered
+   */
+  protected String port = PORT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,7 +121,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public ru.iaie.reflex.reflex.Integer getPort()
+  public String getPort()
   {
     return port;
   }
@@ -123,54 +131,13 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPort(ru.iaie.reflex.reflex.Integer newPort, NotificationChain msgs)
+  @Override
+  public void setPort(String newPort)
   {
-    ru.iaie.reflex.reflex.Integer oldPort = port;
+    String oldPort = port;
     port = newPort;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT__PORT, oldPort, newPort);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setPort(ru.iaie.reflex.reflex.Integer newPort)
-  {
-    if (newPort != port)
-    {
-      NotificationChain msgs = null;
-      if (port != null)
-        msgs = ((InternalEObject)port).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER_PORT__PORT, null, msgs);
-      if (newPort != null)
-        msgs = ((InternalEObject)newPort).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER_PORT__PORT, null, msgs);
-      msgs = basicSetPort(newPort, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT__PORT, newPort, newPort));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.REGISTER_PORT__PORT:
-        return basicSetPort(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT__PORT, oldPort, port));
   }
 
   /**
@@ -205,7 +172,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
         setRegName((String)newValue);
         return;
       case ReflexPackage.REGISTER_PORT__PORT:
-        setPort((ru.iaie.reflex.reflex.Integer)newValue);
+        setPort((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,7 +192,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
         setRegName(REG_NAME_EDEFAULT);
         return;
       case ReflexPackage.REGISTER_PORT__PORT:
-        setPort((ru.iaie.reflex.reflex.Integer)null);
+        setPort(PORT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -244,7 +211,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
       case ReflexPackage.REGISTER_PORT__REG_NAME:
         return REG_NAME_EDEFAULT == null ? regName != null : !REG_NAME_EDEFAULT.equals(regName);
       case ReflexPackage.REGISTER_PORT__PORT:
-        return port != null;
+        return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
     }
     return super.eIsSet(featureID);
   }
@@ -262,6 +229,8 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (regName: ");
     result.append(regName);
+    result.append(", port: ");
+    result.append(port);
     result.append(')');
     return result.toString();
   }

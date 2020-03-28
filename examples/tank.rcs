@@ -1,0 +1,196 @@
+program TankController{
+
+tact 50;
+const T_H	0.1;
+const X_MIN 0.1;
+const X_MAX 0.5;
+const H_		0.6;
+const U_MIN	0.0;	
+const U_MAX	15.0;
+const DELTA_U 3.0;
+const K_P   31.2634; 
+const K_I   0.4016;
+//
+enum  COM2CA { COM2CA_XD=1 }
+enum CA2GUI { CA2GUI_X_LEVEL=0,
+		CA2GUI_U_LEVEL=1 }
+
+int GetNextMsgGUI(void);
+int  GetMsgGUICode(void);	
+float  GetFloatParamGUI(void);	
+float  PortsToFloat(int , int , int , int);
+int GetBit(float, int);
+int  SendMsgFloatParamGUI(int, float);
+int SendMsgIntParamGUI(int, int);
+
+input X_BIT0_PORT  0 0 8;
+input X_BIT1_PORT  0 1 8;
+input X_BIT2_PORT  0 2 8;
+input X_BIT3_PORT  0 3 8;
+
+
+output U_BIT0_PORT  1 0 8;
+output U_BIT1_PORT  1 1 8;
+output U_BIT2_PORT  1 2 8;
+output U_BIT3_PORT  1 3 8;
+
+proc INIT 
+{
+	float U global;
+	float X global;
+	float XD global;
+	
+	int X_BIT0 = { X_BIT0_PORT [8]} global; 
+	int X_BIT1 = { X_BIT1_PORT[8]} global; 
+	int X_BIT2 = { X_BIT2_PORT [8]} global; 
+	int X_BIT3 = { X_BIT3_PORT [8]} global; 
+	
+	int U_BIT0 = { U_BIT0_PORT [8]} global; 
+	int U_BIT1 = { U_BIT1_PORT [8]} global; 
+	int U_BIT2 = { U_BIT2_PORT [8]} global; 
+	int U_BIT3 = { U_BIT3_PORT [8]} global;
+	
+	state InitialSetup
+	{		
+		start READ_ADC;
+		start WRITE_DAC;
+		start CONTROLLER;
+		start Filter;
+		start ReadInputMsgs;
+		start Info;
+		stop;
+	}
+}
+
+proc ReadInputMsgs
+{
+	from proc INIT XD;
+	int msg_code global;
+/* */
+ state StartReading
+ {
+    /*  ÷èòàåì êîä è ïàðàìåòð ñîáûòèÿ èç êîëüöåâîãî áóôåðà â ñòðóêòóðó */
+    if (GetNextMsgGUI()) 
+	{
+		msg_code = GetMsgGUICode();
+		if (msg_code == COM2CA_XD)
+		{
+			XD = GetFloatParamGUI();
+		}
+	}
+	loop;
+}
+}
+
+proc READ_ADC {
+	from proc INIT X, X_BIT0, X_BIT1, X_BIT2, X_BIT3;
+	state READ {
+		X = PortsToFloat(X_BIT0, X_BIT1, X_BIT2, X_BIT3);
+	/*	SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */
+		loop;
+	}
+}	
+
+/*Tank PI controller*/
+/*X - water level */
+/*XD - desired water level */
+/*U - control signal */
+/*U_MAX - maximum value of the control signal */
+proc CONTROLLER {
+	from proc INIT X, XD, U;
+	float Sum local;
+	float E local;
+
+	state Init {
+		Sum = 0.0;
+		E = 0.0;
+		set next;
+	}
+	
+	state NormalPIControl {
+		E = XD - X;
+		Sum += E;
+		/*control signal calculation*/
+		/*numerical solution of a differential equation*/ 
+		U = K_P * E + K_I * Sum * T_H;		
+		
+		if (U > U_MAX)
+		{ U = U_MAX; }
+		if( U < 0 ) U = 0.0;		
+		if (X >= X_MAX) { set state Owerflow; }
+		else if ( X < X_MIN) { set state LowLevel;	}
+	}
+	state Owerflow
+	{
+		/* Emergency situation - water level is to hight. Pump stop */  
+		U = 0;  
+		if (X < X_MAX) set state Init;			
+	}
+	state LowLevel
+	{
+	/* Emergency situation - water level is to low. Maximum pump power */  
+		U = U_MAX;
+		if (X > X_MIN) set state Init;	
+	}
+}
+
+
+proc Filter
+{
+from proc INIT U;
+	float U_Prev local;
+	state Init
+	{
+		U_Prev = U_MIN;
+		set next;
+	}
+	state Filtering
+	{
+		if ( U >= U_Prev) 
+			if ( U - U_Prev > DELTA_U )
+			{
+				U = U_Prev + DELTA_U;
+			}
+		else 
+			if ( U_Prev - U > DELTA_U )
+			{
+				U = U_Prev - DELTA_U;
+			}
+		U_Prev = U;	
+		loop;
+	}
+}
+
+
+
+proc WRITE_DAC {
+	from proc INIT U, U_BIT0, U_BIT1, U_BIT2, U_BIT3;
+	state WRITE {
+
+		U_BIT0 = GetBit(U, 0);
+		U_BIT1 = GetBit(U, 1);
+		U_BIT2 = GetBit(U, 2);
+		U_BIT3 = GetBit(U, 3);
+	/*	SendMsgIntParamGUI(CA2GUI_U_LEVEL, U_BIT0);  */
+	/*	SendMsgIntParamGUI(CA2GUI_U_LEVEL, U_BIT1);  */
+	/*	SendMsgIntParamGUI(CA2GUI_U_LEVEL, U_BIT2);  */
+	/*	SendMsgIntParamGUI(CA2GUI_U_LEVEL, U_BIT3);  */
+		loop;                                        
+	}                                                
+}
+
+proc Info
+{
+	from proc INIT X, U, U_BIT0, U_BIT1, U_BIT2, U_BIT3;
+	state Idiling
+	{
+		timeout 0 
+		{		
+			/*SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */
+			SendMsgFloatParamGUI(CA2GUI_U_LEVEL, U); 
+			set state Idiling;
+		}
+	}
+}
+
+}

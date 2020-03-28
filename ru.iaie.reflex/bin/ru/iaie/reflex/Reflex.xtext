@@ -5,7 +5,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Program:
 	"program" name=ID "{"
-	(ticks?=TACT)?
+	(ticks?=Tact)?
 	(consts+=Const |
 	enums+=Enum |
 	functions+=Function |
@@ -32,7 +32,7 @@ PhysicalVariable:
 	type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}";
 
 RegisterPort:
-	regName=ID "[" port=Integer "]";
+	regName=ID "[" port=INTEGER "]";
 
 ProgramVariable:
 	type=ReflexType name=ID;
@@ -71,7 +71,7 @@ SwitchStat:
 
 	//TODO: add flag for break statement absence
 CaseStat:
-	"case" option=Integer ":" body=StatementSequence hasBreak?=BreakStat "}";
+	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
 
 BreakStat:
 	"break" ";";
@@ -104,7 +104,7 @@ enum RegisterType:
 	INPUT='input' | OUTPUT='output';
 
 Register:
-	type=RegisterType name=ID addr1=Integer addr2=Integer regSize=Integer ";";
+	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
 	"const" constId=ID constValue=Expression ";";
@@ -126,7 +126,7 @@ FunctionCall:
 	funcId=ID "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 PrimaryExpression:
-	varId=ID | Integer | {PrimaryExpression} Float | "(" expr=Expression ")";
+	varId=ID | INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -251,80 +251,81 @@ terminal LONG_C_TYPE:
 terminal BOOL_TYPE:
 	"bool";
 
-terminal TACT:
-	"tact";
+Tact:
+	"tact" value=INTEGER ";";
 
 	// LITERALS
-Integer:
-	value=(HEX | OCTAL | DECIMAL) qualfier?=(LONG | UNSIGNED)?;
+terminal INTEGER:
+	(HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
 
-Float:
+terminal FLOAT:
 	DEC_FLOAT | HEX_FLOAT;
 
-terminal DEC_FLOAT:
+terminal fragment DEC_FLOAT:
 	DEC_SEQUENCE? '.' DEC_SEQUENCE (EXPONENT SIGN DEC_SEQUENCE)? (LONG | FLOAT_SUFFIX)?;
 
-terminal HEX_FLOAT:
+terminal fragment HEX_FLOAT:
 	HEX_SEQUENCE? '.' HEX_SEQUENCE (BIN_EXPONENT SIGN DEC_SEQUENCE)? (LONG | FLOAT_SUFFIX)?;
 
-terminal DEC_SEQUENCE:
+terminal fragment DEC_SEQUENCE:
 	('0'..'9')+;
 
-terminal HEX_SEQUENCE:
+terminal fragment HEX_SEQUENCE:
 	('0'..'9' | 'a'..'f' | 'A'..'F')+;
 
-terminal BIN_EXPONENT:
+terminal fragment BIN_EXPONENT:
 	('p' | 'P');
 
-terminal EXPONENT:
+terminal fragment EXPONENT:
 	'e' | 'E';
 
-terminal SIGN:
+terminal fragment SIGN:
 	'+' | '-';
 
 	//terminal REG_SIZE returns ecore::EInt:
 //	("8" | "16");
-terminal DECIMAL:
+terminal fragment DECIMAL:
 	"0" | ('1'..'9') ('0'..'9')*;
 
-terminal OCTAL:
+terminal fragment OCTAL:
 	'0' ('0'..'7')+;
 
-terminal HEX:
+terminal fragment HEX:
 	HEX_PREFIX HEX_SEQUENCE;
 
-terminal HEX_PREFIX:
+terminal fragment HEX_PREFIX:
 	'0' ('x' | 'X');
 
 	// Time
 Time:
-	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
-terminal LONG:
+	ticks = INTEGER;
+//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
+terminal fragment LONG:
 	"L" | "l";
 
-terminal FLOAT_SUFFIX:
+terminal fragment FLOAT_SUFFIX:
 	"F" | "f";
 
-terminal UNSIGNED:
+terminal fragment UNSIGNED:
 	"U" | "u";
 
-terminal DAY:
-	"D" | "d";
-
-terminal HOUR:
-	"H" | "h";
-
-terminal MINUTE:
-	"M" | "m";
-
-terminal SECOND:
-	"S" | "s";
-
-terminal MILISECOND:
-	"MS" | "ms";
-
-terminal MICROSECOND:
-	"US" | "us";
-
-terminal NANOSECOND:
-	"NS" | "ns";
+//terminal fragment DAY:
+//	"D" | "d";
+//
+//terminal fragment HOUR:
+//	"H" | "h";
+//
+//terminal fragment MINUTE:
+//	"M" | "m";
+//
+//terminal fragment SECOND:
+//	"S" | "s";
+//
+//terminal fragment MILISECOND:
+//	"MS" | "ms";
+//
+//terminal fragment MICROSECOND:
+//	"US" | "us";
+//
+//terminal fragment NANOSECOND:
+//	"NS" | "ns";

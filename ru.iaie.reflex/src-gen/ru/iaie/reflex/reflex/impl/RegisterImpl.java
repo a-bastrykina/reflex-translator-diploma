@@ -4,10 +4,8 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -76,34 +74,64 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getAddr1() <em>Addr1</em>}' containment reference.
+   * The default value of the '{@link #getAddr1() <em>Addr1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAddr1()
    * @generated
    * @ordered
    */
-  protected ru.iaie.reflex.reflex.Integer addr1;
+  protected static final String ADDR1_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getAddr2() <em>Addr2</em>}' containment reference.
+   * The cached value of the '{@link #getAddr1() <em>Addr1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAddr1()
+   * @generated
+   * @ordered
+   */
+  protected String addr1 = ADDR1_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getAddr2() <em>Addr2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAddr2()
    * @generated
    * @ordered
    */
-  protected ru.iaie.reflex.reflex.Integer addr2;
+  protected static final String ADDR2_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getRegSize() <em>Reg Size</em>}' containment reference.
+   * The cached value of the '{@link #getAddr2() <em>Addr2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAddr2()
+   * @generated
+   * @ordered
+   */
+  protected String addr2 = ADDR2_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRegSize()
    * @generated
    * @ordered
    */
-  protected ru.iaie.reflex.reflex.Integer regSize;
+  protected static final String REG_SIZE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRegSize()
+   * @generated
+   * @ordered
+   */
+  protected String regSize = REG_SIZE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -182,7 +210,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public ru.iaie.reflex.reflex.Integer getAddr1()
+  public String getAddr1()
   {
     return addr1;
   }
@@ -192,16 +220,13 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAddr1(ru.iaie.reflex.reflex.Integer newAddr1, NotificationChain msgs)
+  @Override
+  public void setAddr1(String newAddr1)
   {
-    ru.iaie.reflex.reflex.Integer oldAddr1 = addr1;
+    String oldAddr1 = addr1;
     addr1 = newAddr1;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR1, oldAddr1, newAddr1);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR1, oldAddr1, addr1));
   }
 
   /**
@@ -210,29 +235,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public void setAddr1(ru.iaie.reflex.reflex.Integer newAddr1)
-  {
-    if (newAddr1 != addr1)
-    {
-      NotificationChain msgs = null;
-      if (addr1 != null)
-        msgs = ((InternalEObject)addr1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__ADDR1, null, msgs);
-      if (newAddr1 != null)
-        msgs = ((InternalEObject)newAddr1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__ADDR1, null, msgs);
-      msgs = basicSetAddr1(newAddr1, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR1, newAddr1, newAddr1));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ru.iaie.reflex.reflex.Integer getAddr2()
+  public String getAddr2()
   {
     return addr2;
   }
@@ -242,16 +245,13 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAddr2(ru.iaie.reflex.reflex.Integer newAddr2, NotificationChain msgs)
+  @Override
+  public void setAddr2(String newAddr2)
   {
-    ru.iaie.reflex.reflex.Integer oldAddr2 = addr2;
+    String oldAddr2 = addr2;
     addr2 = newAddr2;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR2, oldAddr2, newAddr2);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR2, oldAddr2, addr2));
   }
 
   /**
@@ -260,29 +260,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public void setAddr2(ru.iaie.reflex.reflex.Integer newAddr2)
-  {
-    if (newAddr2 != addr2)
-    {
-      NotificationChain msgs = null;
-      if (addr2 != null)
-        msgs = ((InternalEObject)addr2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__ADDR2, null, msgs);
-      if (newAddr2 != null)
-        msgs = ((InternalEObject)newAddr2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__ADDR2, null, msgs);
-      msgs = basicSetAddr2(newAddr2, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR2, newAddr2, newAddr2));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ru.iaie.reflex.reflex.Integer getRegSize()
+  public String getRegSize()
   {
     return regSize;
   }
@@ -292,58 +270,13 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRegSize(ru.iaie.reflex.reflex.Integer newRegSize, NotificationChain msgs)
+  @Override
+  public void setRegSize(String newRegSize)
   {
-    ru.iaie.reflex.reflex.Integer oldRegSize = regSize;
+    String oldRegSize = regSize;
     regSize = newRegSize;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, oldRegSize, newRegSize);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setRegSize(ru.iaie.reflex.reflex.Integer newRegSize)
-  {
-    if (newRegSize != regSize)
-    {
-      NotificationChain msgs = null;
-      if (regSize != null)
-        msgs = ((InternalEObject)regSize).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__REG_SIZE, null, msgs);
-      if (newRegSize != null)
-        msgs = ((InternalEObject)newRegSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.REGISTER__REG_SIZE, null, msgs);
-      msgs = basicSetRegSize(newRegSize, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, newRegSize, newRegSize));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.REGISTER__ADDR1:
-        return basicSetAddr1(null, msgs);
-      case ReflexPackage.REGISTER__ADDR2:
-        return basicSetAddr2(null, msgs);
-      case ReflexPackage.REGISTER__REG_SIZE:
-        return basicSetRegSize(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, oldRegSize, regSize));
   }
 
   /**
@@ -387,13 +320,13 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
         setName((String)newValue);
         return;
       case ReflexPackage.REGISTER__ADDR1:
-        setAddr1((ru.iaie.reflex.reflex.Integer)newValue);
+        setAddr1((String)newValue);
         return;
       case ReflexPackage.REGISTER__ADDR2:
-        setAddr2((ru.iaie.reflex.reflex.Integer)newValue);
+        setAddr2((String)newValue);
         return;
       case ReflexPackage.REGISTER__REG_SIZE:
-        setRegSize((ru.iaie.reflex.reflex.Integer)newValue);
+        setRegSize((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -416,13 +349,13 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
         setName(NAME_EDEFAULT);
         return;
       case ReflexPackage.REGISTER__ADDR1:
-        setAddr1((ru.iaie.reflex.reflex.Integer)null);
+        setAddr1(ADDR1_EDEFAULT);
         return;
       case ReflexPackage.REGISTER__ADDR2:
-        setAddr2((ru.iaie.reflex.reflex.Integer)null);
+        setAddr2(ADDR2_EDEFAULT);
         return;
       case ReflexPackage.REGISTER__REG_SIZE:
-        setRegSize((ru.iaie.reflex.reflex.Integer)null);
+        setRegSize(REG_SIZE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -443,11 +376,11 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
       case ReflexPackage.REGISTER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.REGISTER__ADDR1:
-        return addr1 != null;
+        return ADDR1_EDEFAULT == null ? addr1 != null : !ADDR1_EDEFAULT.equals(addr1);
       case ReflexPackage.REGISTER__ADDR2:
-        return addr2 != null;
+        return ADDR2_EDEFAULT == null ? addr2 != null : !ADDR2_EDEFAULT.equals(addr2);
       case ReflexPackage.REGISTER__REG_SIZE:
-        return regSize != null;
+        return REG_SIZE_EDEFAULT == null ? regSize != null : !REG_SIZE_EDEFAULT.equals(regSize);
     }
     return super.eIsSet(featureID);
   }
@@ -467,6 +400,12 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     result.append(type);
     result.append(", name: ");
     result.append(name);
+    result.append(", addr1: ");
+    result.append(addr1);
+    result.append(", addr2: ");
+    result.append(addr2);
+    result.append(", regSize: ");
+    result.append(regSize);
     result.append(')');
     return result.toString();
   }

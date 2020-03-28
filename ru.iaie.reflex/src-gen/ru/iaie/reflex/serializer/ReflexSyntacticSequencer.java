@@ -23,14 +23,12 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected ReflexGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1;
 	protected AbstractElementAlias match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0;
-	protected AbstractElementAlias match_Time_TKeyword_1_0_or_TKeyword_1_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ReflexGrammarAccess) access;
 		match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getDOUBLE_C_TYPETerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getFLOAT_C_TYPETerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getVOID_C_TYPETerminalRuleCall_0_1()));
 		match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()));
-		match_Time_TKeyword_1_0_or_TKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTimeAccess().getTKeyword_1_1()));
 	}
 	
 	@Override
@@ -49,34 +47,26 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getBreakStatToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCTypeSignSpecRule())
 			return getCTypeSignSpecToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getDAYRule())
-			return getDAYToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_C_TYPERule())
 			return getDOUBLE_C_TYPEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFLOATRule())
+			return getFLOATToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getFLOAT_C_TYPERule())
 			return getFLOAT_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getFloatRule())
-			return getFloatToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getHOURRule())
-			return getHOURToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getIDRule())
 			return getIDToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getINTEGERRule())
+			return getINTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINT_C_TYPERule())
 			return getINT_C_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ANDRule())
 			return getLOGICAL_ANDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ORRule())
 			return getLOGICAL_ORToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getLONGRule())
-			return getLONGToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLONG_C_TYPERule())
 			return getLONG_C_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSHORT_C_TYPERule())
 			return getSHORT_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getTACTRule())
-			return getTACTToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getUNSIGNEDRule())
-			return getUNSIGNEDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getVOID_C_TYPERule())
 			return getVOID_C_TYPEToken(semanticObject, ruleCall, node);
 		return "";
@@ -154,16 +144,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal DAY:
-	 * 	"D" | "d";
-	 */
-	protected String getDAYToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "D";
-	}
-	
-	/**
 	 * terminal DOUBLE_C_TYPE:
 	 * 	"double";
 	 */
@@ -171,6 +151,16 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "double";
+	}
+	
+	/**
+	 * terminal FLOAT:
+	 * 	DEC_FLOAT | HEX_FLOAT;
+	 */
+	protected String getFLOATToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ".";
 	}
 	
 	/**
@@ -184,32 +174,22 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * Float:
-	 * 	DEC_FLOAT | HEX_FLOAT;
-	 */
-	protected String getFloatToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return ".";
-	}
-	
-	/**
-	 * terminal HOUR:
-	 * 	"H" | "h";
-	 */
-	protected String getHOURToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "H";
-	}
-	
-	/**
 	 * terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	 */
 	protected String getIDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "";
+	}
+	
+	/**
+	 * terminal INTEGER:
+	 * 	(HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
+	 */
+	protected String getINTEGERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "0x";
 	}
 	
 	/**
@@ -243,16 +223,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal LONG:
-	 * 	"L" | "l";
-	 */
-	protected String getLONGToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "L";
-	}
-	
-	/**
 	 * terminal LONG_C_TYPE:
 	 * 	"long";
 	 */
@@ -270,26 +240,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "short";
-	}
-	
-	/**
-	 * terminal TACT:
-	 * 	"tact";
-	 */
-	protected String getTACTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "tact";
-	}
-	
-	/**
-	 * terminal UNSIGNED:
-	 * 	"U" | "u";
-	 */
-	protected String getUNSIGNEDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "U";
 	}
 	
 	/**
@@ -312,8 +262,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0.equals(syntax))
 				emit_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Time_TKeyword_1_0_or_TKeyword_1_1.equals(syntax))
-				emit_Time_TKeyword_1_0_or_TKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -344,19 +292,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     signSpec?=CTypeSignSpec (ambiguity) (rule end)
 	 */
 	protected void emit_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '0t' | '0T'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) isDay?=DAY
-	 *     (rule start) (ambiguity) isHour?=HOUR
-	 */
-	protected void emit_Time_TKeyword_1_0_or_TKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

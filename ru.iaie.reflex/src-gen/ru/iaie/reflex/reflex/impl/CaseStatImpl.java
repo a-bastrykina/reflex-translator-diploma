@@ -34,14 +34,24 @@ import ru.iaie.reflex.reflex.StatementSequence;
 public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseStat
 {
   /**
-   * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
+   * The default value of the '{@link #getOption() <em>Option</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOption()
    * @generated
    * @ordered
    */
-  protected ru.iaie.reflex.reflex.Integer option;
+  protected static final String OPTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOption() <em>Option</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOption()
+   * @generated
+   * @ordered
+   */
+  protected String option = OPTION_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -100,7 +110,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    */
   @Override
-  public ru.iaie.reflex.reflex.Integer getOption()
+  public String getOption()
   {
     return option;
   }
@@ -110,38 +120,13 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOption(ru.iaie.reflex.reflex.Integer newOption, NotificationChain msgs)
+  @Override
+  public void setOption(String newOption)
   {
-    ru.iaie.reflex.reflex.Integer oldOption = option;
+    String oldOption = option;
     option = newOption;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, oldOption, newOption);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setOption(ru.iaie.reflex.reflex.Integer newOption)
-  {
-    if (newOption != option)
-    {
-      NotificationChain msgs = null;
-      if (option != null)
-        msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__OPTION, null, msgs);
-      if (newOption != null)
-        msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__OPTION, null, msgs);
-      msgs = basicSetOption(newOption, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, newOption, newOption));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, oldOption, option));
   }
 
   /**
@@ -229,8 +214,6 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
   {
     switch (featureID)
     {
-      case ReflexPackage.CASE_STAT__OPTION:
-        return basicSetOption(null, msgs);
       case ReflexPackage.CASE_STAT__BODY:
         return basicSetBody(null, msgs);
     }
@@ -268,7 +251,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        setOption((ru.iaie.reflex.reflex.Integer)newValue);
+        setOption((String)newValue);
         return;
       case ReflexPackage.CASE_STAT__BODY:
         setBody((StatementSequence)newValue);
@@ -291,7 +274,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        setOption((ru.iaie.reflex.reflex.Integer)null);
+        setOption(OPTION_EDEFAULT);
         return;
       case ReflexPackage.CASE_STAT__BODY:
         setBody((StatementSequence)null);
@@ -314,7 +297,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        return option != null;
+        return OPTION_EDEFAULT == null ? option != null : !OPTION_EDEFAULT.equals(option);
       case ReflexPackage.CASE_STAT__BODY:
         return body != null;
       case ReflexPackage.CASE_STAT__HAS_BREAK:
@@ -334,7 +317,9 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (hasBreak: ");
+    result.append(" (option: ");
+    result.append(option);
+    result.append(", hasBreak: ");
     result.append(hasBreak);
     result.append(')');
     return result.toString();

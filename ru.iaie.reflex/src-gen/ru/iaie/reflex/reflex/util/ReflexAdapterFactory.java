@@ -54,6 +54,7 @@ import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
+import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
@@ -369,9 +370,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createReflexTypeAdapter();
       }
       @Override
-      public Adapter caseInteger(ru.iaie.reflex.reflex.Integer object)
+      public Adapter caseTact(Tact object)
       {
-        return createIntegerAdapter();
+        return createTactAdapter();
       }
       @Override
       public Adapter caseTime(Time object)
@@ -1136,16 +1137,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Integer <em>Integer</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Tact <em>Tact</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Integer
+   * @see ru.iaie.reflex.reflex.Tact
    * @generated
    */
-  public Adapter createIntegerAdapter()
+  public Adapter createTactAdapter()
   {
     return null;
   }

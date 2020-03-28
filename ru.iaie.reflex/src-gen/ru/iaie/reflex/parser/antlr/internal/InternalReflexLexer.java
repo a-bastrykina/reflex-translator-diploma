@@ -12,11 +12,10 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalReflexLexer extends Lexer {
-    public static final int RULE_HEX=18;
+    public static final int RULE_HEX=19;
     public static final int T__50=50;
-    public static final int RULE_SIGN=29;
-    public static final int RULE_DEC_SEQUENCE=27;
-    public static final int RULE_MINUTE=34;
+    public static final int RULE_SIGN=28;
+    public static final int RULE_DEC_SEQUENCE=26;
     public static final int T__59=59;
     public static final int T__55=55;
     public static final int T__56=56;
@@ -29,12 +28,11 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__60=60;
     public static final int T__61=61;
     public static final int RULE_ID=4;
-    public static final int RULE_TACT=5;
-    public static final int RULE_HEX_FLOAT=24;
-    public static final int RULE_INT_C_TYPE=15;
-    public static final int RULE_INT=39;
+    public static final int RULE_HEX_FLOAT=25;
+    public static final int RULE_INT_C_TYPE=16;
+    public static final int RULE_INT=33;
     public static final int T__66=66;
-    public static final int RULE_ML_COMMENT=41;
+    public static final int RULE_ML_COMMENT=35;
     public static final int T__67=67;
     public static final int T__68=68;
     public static final int T__69=69;
@@ -42,53 +40,54 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__63=63;
     public static final int T__64=64;
     public static final int T__65=65;
-    public static final int RULE_MICROSECOND=37;
-    public static final int RULE_VOID_C_TYPE=11;
-    public static final int RULE_HEX_SEQUENCE=31;
-    public static final int RULE_HOUR=26;
-    public static final int RULE_UNSIGNED=22;
-    public static final int RULE_DOUBLE_C_TYPE=13;
-    public static final int RULE_BIN_EXPONENT=32;
-    public static final int RULE_LOGICAL_AND=9;
-    public static final int RULE_EXPONENT=28;
+    public static final int T__39=39;
+    public static final int RULE_VOID_C_TYPE=12;
+    public static final int RULE_HEX_SEQUENCE=30;
+    public static final int RULE_UNSIGNED=23;
+    public static final int RULE_DOUBLE_C_TYPE=14;
+    public static final int RULE_BIN_EXPONENT=31;
+    public static final int RULE_LOGICAL_AND=10;
+    public static final int RULE_EXPONENT=27;
     public static final int T__48=48;
-    public static final int RULE_DEC_FLOAT=23;
+    public static final int RULE_DEC_FLOAT=24;
     public static final int T__49=49;
+    public static final int T__44=44;
     public static final int T__45=45;
+    public static final int RULE_FLOAT=6;
     public static final int T__46=46;
     public static final int T__47=47;
-    public static final int RULE_BIT_AND=6;
+    public static final int T__40=40;
+    public static final int RULE_BIT_AND=7;
+    public static final int T__41=41;
+    public static final int T__42=42;
+    public static final int T__43=43;
     public static final int T__91=91;
     public static final int T__100=100;
     public static final int T__92=92;
     public static final int T__93=93;
     public static final int T__102=102;
-    public static final int RULE_BOOL_TYPE=17;
+    public static final int RULE_BOOL_TYPE=18;
     public static final int T__94=94;
     public static final int T__101=101;
-    public static final int RULE_DAY=25;
     public static final int T__90=90;
-    public static final int RULE_FLOAT_C_TYPE=12;
-    public static final int RULE_OCTAL=19;
+    public static final int RULE_FLOAT_C_TYPE=13;
+    public static final int RULE_OCTAL=20;
     public static final int T__99=99;
     public static final int T__95=95;
     public static final int T__96=96;
     public static final int T__97=97;
     public static final int T__98=98;
-    public static final int RULE_SHORT_C_TYPE=14;
-    public static final int RULE_DECIMAL=20;
-    public static final int RULE_SECOND=35;
-    public static final int RULE_LOGICAL_OR=10;
-    public static final int RULE_LONG_C_TYPE=16;
-    public static final int RULE_FLOAT_SUFFIX=30;
+    public static final int RULE_SHORT_C_TYPE=15;
+    public static final int RULE_DECIMAL=21;
+    public static final int RULE_LOGICAL_OR=11;
+    public static final int RULE_LONG_C_TYPE=17;
+    public static final int RULE_FLOAT_SUFFIX=29;
     public static final int T__70=70;
     public static final int T__71=71;
     public static final int T__72=72;
-    public static final int RULE_NANOSECOND=38;
-    public static final int RULE_MILISECOND=36;
-    public static final int RULE_STRING=40;
-    public static final int RULE_SL_COMMENT=42;
-    public static final int RULE_HEX_PREFIX=33;
+    public static final int RULE_STRING=34;
+    public static final int RULE_SL_COMMENT=36;
+    public static final int RULE_HEX_PREFIX=32;
     public static final int T__77=77;
     public static final int T__78=78;
     public static final int T__79=79;
@@ -101,24 +100,18 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__81=81;
     public static final int T__82=82;
     public static final int T__83=83;
-    public static final int RULE_WS=43;
-    public static final int RULE_ANY_OTHER=44;
+    public static final int RULE_WS=37;
+    public static final int RULE_ANY_OTHER=38;
     public static final int T__88=88;
-    public static final int T__108=108;
-    public static final int RULE_BIT_XOR=7;
+    public static final int RULE_BIT_XOR=8;
     public static final int T__89=89;
-    public static final int T__107=107;
-    public static final int RULE_BIT_OR=8;
-    public static final int RULE_LONG=21;
-    public static final int T__109=109;
+    public static final int RULE_BIT_OR=9;
+    public static final int RULE_LONG=22;
     public static final int T__84=84;
-    public static final int T__104=104;
     public static final int T__85=85;
-    public static final int T__103=103;
+    public static final int RULE_INTEGER=5;
     public static final int T__86=86;
-    public static final int T__106=106;
     public static final int T__87=87;
-    public static final int T__105=105;
 
     // delegates
     // delegators
@@ -133,16 +126,138 @@ public class InternalReflexLexer extends Lexer {
     }
     public String getGrammarFileName() { return "InternalReflex.g"; }
 
-    // $ANTLR start "T__45"
-    public final void mT__45() throws RecognitionException {
+    // $ANTLR start "T__39"
+    public final void mT__39() throws RecognitionException {
         try {
-            int _type = T__45;
+            int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalReflex.g:11:7: ( 'program' )
             // InternalReflex.g:11:9: 'program'
             {
             match("program"); 
 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__39"
+
+    // $ANTLR start "T__40"
+    public final void mT__40() throws RecognitionException {
+        try {
+            int _type = T__40;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:12:7: ( '{' )
+            // InternalReflex.g:12:9: '{'
+            {
+            match('{'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__40"
+
+    // $ANTLR start "T__41"
+    public final void mT__41() throws RecognitionException {
+        try {
+            int _type = T__41;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:13:7: ( '}' )
+            // InternalReflex.g:13:9: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__41"
+
+    // $ANTLR start "T__42"
+    public final void mT__42() throws RecognitionException {
+        try {
+            int _type = T__42;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:14:7: ( 'proc' )
+            // InternalReflex.g:14:9: 'proc'
+            {
+            match("proc"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__42"
+
+    // $ANTLR start "T__43"
+    public final void mT__43() throws RecognitionException {
+        try {
+            int _type = T__43;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:15:7: ( ';' )
+            // InternalReflex.g:15:9: ';'
+            {
+            match(';'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__43"
+
+    // $ANTLR start "T__44"
+    public final void mT__44() throws RecognitionException {
+        try {
+            int _type = T__44;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:16:7: ( 'from' )
+            // InternalReflex.g:16:9: 'from'
+            {
+            match("from"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__44"
+
+    // $ANTLR start "T__45"
+    public final void mT__45() throws RecognitionException {
+        try {
+            int _type = T__45;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReflex.g:17:7: ( ',' )
+            // InternalReflex.g:17:9: ','
+            {
+            match(','); 
 
             }
 
@@ -159,10 +274,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:12:7: ( '{' )
-            // InternalReflex.g:12:9: '{'
+            // InternalReflex.g:18:7: ( '=' )
+            // InternalReflex.g:18:9: '='
             {
-            match('{'); 
+            match('='); 
 
             }
 
@@ -179,10 +294,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:13:7: ( '}' )
-            // InternalReflex.g:13:9: '}'
+            // InternalReflex.g:19:7: ( '[' )
+            // InternalReflex.g:19:9: '['
             {
-            match('}'); 
+            match('['); 
 
             }
 
@@ -199,11 +314,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:14:7: ( 'proc' )
-            // InternalReflex.g:14:9: 'proc'
+            // InternalReflex.g:20:7: ( ']' )
+            // InternalReflex.g:20:9: ']'
             {
-            match("proc"); 
-
+            match(']'); 
 
             }
 
@@ -220,10 +334,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:15:7: ( ';' )
-            // InternalReflex.g:15:9: ';'
+            // InternalReflex.g:21:7: ( 'local' )
+            // InternalReflex.g:21:9: 'local'
             {
-            match(';'); 
+            match("local"); 
+
 
             }
 
@@ -240,10 +355,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:16:7: ( 'from' )
-            // InternalReflex.g:16:9: 'from'
+            // InternalReflex.g:22:7: ( 'global' )
+            // InternalReflex.g:22:9: 'global'
             {
-            match("from"); 
+            match("global"); 
 
 
             }
@@ -261,10 +376,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:17:7: ( ',' )
-            // InternalReflex.g:17:9: ','
+            // InternalReflex.g:23:7: ( 'shared' )
+            // InternalReflex.g:23:9: 'shared'
             {
-            match(','); 
+            match("shared"); 
+
 
             }
 
@@ -281,10 +397,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:18:7: ( '=' )
-            // InternalReflex.g:18:9: '='
+            // InternalReflex.g:24:7: ( 'state' )
+            // InternalReflex.g:24:9: 'state'
             {
-            match('='); 
+            match("state"); 
+
 
             }
 
@@ -301,10 +418,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:19:7: ( '[' )
-            // InternalReflex.g:19:9: '['
+            // InternalReflex.g:25:7: ( 'timeout' )
+            // InternalReflex.g:25:9: 'timeout'
             {
-            match('['); 
+            match("timeout"); 
+
 
             }
 
@@ -321,10 +439,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:20:7: ( ']' )
-            // InternalReflex.g:20:9: ']'
+            // InternalReflex.g:26:7: ( 'if' )
+            // InternalReflex.g:26:9: 'if'
             {
-            match(']'); 
+            match("if"); 
+
 
             }
 
@@ -341,11 +460,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:21:7: ( 'local' )
-            // InternalReflex.g:21:9: 'local'
+            // InternalReflex.g:27:7: ( '(' )
+            // InternalReflex.g:27:9: '('
             {
-            match("local"); 
-
+            match('('); 
 
             }
 
@@ -362,11 +480,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:22:7: ( 'global' )
-            // InternalReflex.g:22:9: 'global'
+            // InternalReflex.g:28:7: ( ')' )
+            // InternalReflex.g:28:9: ')'
             {
-            match("global"); 
-
+            match(')'); 
 
             }
 
@@ -383,10 +500,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:23:7: ( 'shared' )
-            // InternalReflex.g:23:9: 'shared'
+            // InternalReflex.g:29:7: ( 'else' )
+            // InternalReflex.g:29:9: 'else'
             {
-            match("shared"); 
+            match("else"); 
 
 
             }
@@ -404,10 +521,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:24:7: ( 'state' )
-            // InternalReflex.g:24:9: 'state'
+            // InternalReflex.g:30:7: ( 'switch' )
+            // InternalReflex.g:30:9: 'switch'
             {
-            match("state"); 
+            match("switch"); 
 
 
             }
@@ -425,10 +542,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:25:7: ( 'timeout' )
-            // InternalReflex.g:25:9: 'timeout'
+            // InternalReflex.g:31:7: ( 'case' )
+            // InternalReflex.g:31:9: 'case'
             {
-            match("timeout"); 
+            match("case"); 
 
 
             }
@@ -446,11 +563,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:26:7: ( 'if' )
-            // InternalReflex.g:26:9: 'if'
+            // InternalReflex.g:32:7: ( ':' )
+            // InternalReflex.g:32:9: ':'
             {
-            match("if"); 
-
+            match(':'); 
 
             }
 
@@ -467,10 +583,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:27:7: ( '(' )
-            // InternalReflex.g:27:9: '('
+            // InternalReflex.g:33:7: ( 'break' )
+            // InternalReflex.g:33:9: 'break'
             {
-            match('('); 
+            match("break"); 
+
 
             }
 
@@ -487,10 +604,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:28:7: ( ')' )
-            // InternalReflex.g:28:9: ')'
+            // InternalReflex.g:34:7: ( 'start' )
+            // InternalReflex.g:34:9: 'start'
             {
-            match(')'); 
+            match("start"); 
+
 
             }
 
@@ -507,10 +625,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:29:7: ( 'else' )
-            // InternalReflex.g:29:9: 'else'
+            // InternalReflex.g:35:7: ( 'stop' )
+            // InternalReflex.g:35:9: 'stop'
             {
-            match("else"); 
+            match("stop"); 
 
 
             }
@@ -528,10 +646,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:30:7: ( 'switch' )
-            // InternalReflex.g:30:9: 'switch'
+            // InternalReflex.g:36:7: ( 'error' )
+            // InternalReflex.g:36:9: 'error'
             {
-            match("switch"); 
+            match("error"); 
 
 
             }
@@ -549,10 +667,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:31:7: ( 'case' )
-            // InternalReflex.g:31:9: 'case'
+            // InternalReflex.g:37:7: ( 'loop' )
+            // InternalReflex.g:37:9: 'loop'
             {
-            match("case"); 
+            match("loop"); 
 
 
             }
@@ -570,10 +688,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:32:7: ( ':' )
-            // InternalReflex.g:32:9: ':'
+            // InternalReflex.g:38:7: ( 'restart' )
+            // InternalReflex.g:38:9: 'restart'
             {
-            match(':'); 
+            match("restart"); 
+
 
             }
 
@@ -590,10 +709,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:33:7: ( 'break' )
-            // InternalReflex.g:33:9: 'break'
+            // InternalReflex.g:39:7: ( 'reset' )
+            // InternalReflex.g:39:9: 'reset'
             {
-            match("break"); 
+            match("reset"); 
 
 
             }
@@ -611,10 +730,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:34:7: ( 'start' )
-            // InternalReflex.g:34:9: 'start'
+            // InternalReflex.g:40:7: ( 'set' )
+            // InternalReflex.g:40:9: 'set'
             {
-            match("start"); 
+            match("set"); 
 
 
             }
@@ -632,10 +751,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:35:7: ( 'stop' )
-            // InternalReflex.g:35:9: 'stop'
+            // InternalReflex.g:41:7: ( 'next' )
+            // InternalReflex.g:41:9: 'next'
             {
-            match("stop"); 
+            match("next"); 
 
 
             }
@@ -653,10 +772,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:36:7: ( 'error' )
-            // InternalReflex.g:36:9: 'error'
+            // InternalReflex.g:42:7: ( 'const' )
+            // InternalReflex.g:42:9: 'const'
             {
-            match("error"); 
+            match("const"); 
 
 
             }
@@ -674,10 +793,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:37:7: ( 'loop' )
-            // InternalReflex.g:37:9: 'loop'
+            // InternalReflex.g:43:7: ( 'enum' )
+            // InternalReflex.g:43:9: 'enum'
             {
-            match("loop"); 
+            match("enum"); 
 
 
             }
@@ -695,10 +814,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:38:7: ( 'restart' )
-            // InternalReflex.g:38:9: 'restart'
+            // InternalReflex.g:44:7: ( 'tact' )
+            // InternalReflex.g:44:9: 'tact'
             {
-            match("restart"); 
+            match("tact"); 
 
 
             }
@@ -716,10 +835,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:39:7: ( 'reset' )
-            // InternalReflex.g:39:9: 'reset'
+            // InternalReflex.g:45:7: ( 'input' )
+            // InternalReflex.g:45:9: 'input'
             {
-            match("reset"); 
+            match("input"); 
 
 
             }
@@ -737,10 +856,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:40:7: ( 'set' )
-            // InternalReflex.g:40:9: 'set'
+            // InternalReflex.g:46:7: ( 'output' )
+            // InternalReflex.g:46:9: 'output'
             {
-            match("set"); 
+            match("output"); 
 
 
             }
@@ -758,10 +877,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:41:7: ( 'next' )
-            // InternalReflex.g:41:9: 'next'
+            // InternalReflex.g:47:7: ( '++' )
+            // InternalReflex.g:47:9: '++'
             {
-            match("next"); 
+            match("++"); 
 
 
             }
@@ -779,10 +898,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:42:7: ( 'const' )
-            // InternalReflex.g:42:9: 'const'
+            // InternalReflex.g:48:7: ( '--' )
+            // InternalReflex.g:48:9: '--'
             {
-            match("const"); 
+            match("--"); 
 
 
             }
@@ -800,10 +919,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:43:7: ( 'enum' )
-            // InternalReflex.g:43:9: 'enum'
+            // InternalReflex.g:49:7: ( '*=' )
+            // InternalReflex.g:49:9: '*='
             {
-            match("enum"); 
+            match("*="); 
 
 
             }
@@ -821,10 +940,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:44:7: ( '0t' )
-            // InternalReflex.g:44:9: '0t'
+            // InternalReflex.g:50:7: ( '/=' )
+            // InternalReflex.g:50:9: '/='
             {
-            match("0t"); 
+            match("/="); 
 
 
             }
@@ -842,10 +961,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:45:7: ( '0T' )
-            // InternalReflex.g:45:9: '0T'
+            // InternalReflex.g:51:7: ( '+=' )
+            // InternalReflex.g:51:9: '+='
             {
-            match("0T"); 
+            match("+="); 
 
 
             }
@@ -863,10 +982,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:46:7: ( 'input' )
-            // InternalReflex.g:46:9: 'input'
+            // InternalReflex.g:52:7: ( '-=' )
+            // InternalReflex.g:52:9: '-='
             {
-            match("input"); 
+            match("-="); 
 
 
             }
@@ -884,10 +1003,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:47:7: ( 'output' )
-            // InternalReflex.g:47:9: 'output'
+            // InternalReflex.g:53:7: ( '<<=' )
+            // InternalReflex.g:53:9: '<<='
             {
-            match("output"); 
+            match("<<="); 
 
 
             }
@@ -905,10 +1024,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:48:7: ( '++' )
-            // InternalReflex.g:48:9: '++'
+            // InternalReflex.g:54:7: ( '>>=' )
+            // InternalReflex.g:54:9: '>>='
             {
-            match("++"); 
+            match(">>="); 
 
 
             }
@@ -926,10 +1045,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:49:7: ( '--' )
-            // InternalReflex.g:49:9: '--'
+            // InternalReflex.g:55:7: ( '&=' )
+            // InternalReflex.g:55:9: '&='
             {
-            match("--"); 
+            match("&="); 
 
 
             }
@@ -947,10 +1066,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:50:7: ( '*=' )
-            // InternalReflex.g:50:9: '*='
+            // InternalReflex.g:56:7: ( '^=' )
+            // InternalReflex.g:56:9: '^='
             {
-            match("*="); 
+            match("^="); 
 
 
             }
@@ -968,10 +1087,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:51:7: ( '/=' )
-            // InternalReflex.g:51:9: '/='
+            // InternalReflex.g:57:7: ( '|=' )
+            // InternalReflex.g:57:9: '|='
             {
-            match("/="); 
+            match("|="); 
 
 
             }
@@ -989,11 +1108,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:52:7: ( '+=' )
-            // InternalReflex.g:52:9: '+='
+            // InternalReflex.g:58:7: ( '+' )
+            // InternalReflex.g:58:9: '+'
             {
-            match("+="); 
-
+            match('+'); 
 
             }
 
@@ -1010,11 +1128,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:53:7: ( '-=' )
-            // InternalReflex.g:53:9: '-='
+            // InternalReflex.g:59:7: ( '-' )
+            // InternalReflex.g:59:9: '-'
             {
-            match("-="); 
-
+            match('-'); 
 
             }
 
@@ -1031,11 +1148,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:54:7: ( '<<=' )
-            // InternalReflex.g:54:9: '<<='
+            // InternalReflex.g:60:7: ( '~' )
+            // InternalReflex.g:60:9: '~'
             {
-            match("<<="); 
-
+            match('~'); 
 
             }
 
@@ -1052,11 +1168,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:55:7: ( '>>=' )
-            // InternalReflex.g:55:9: '>>='
+            // InternalReflex.g:61:7: ( '!' )
+            // InternalReflex.g:61:9: '!'
             {
-            match(">>="); 
-
+            match('!'); 
 
             }
 
@@ -1073,11 +1188,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:56:7: ( '&=' )
-            // InternalReflex.g:56:9: '&='
+            // InternalReflex.g:62:7: ( '<' )
+            // InternalReflex.g:62:9: '<'
             {
-            match("&="); 
-
+            match('<'); 
 
             }
 
@@ -1094,11 +1208,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:57:7: ( '^=' )
-            // InternalReflex.g:57:9: '^='
+            // InternalReflex.g:63:7: ( '>' )
+            // InternalReflex.g:63:9: '>'
             {
-            match("^="); 
-
+            match('>'); 
 
             }
 
@@ -1115,10 +1228,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:58:7: ( '|=' )
-            // InternalReflex.g:58:9: '|='
+            // InternalReflex.g:64:7: ( '=<' )
+            // InternalReflex.g:64:9: '=<'
             {
-            match("|="); 
+            match("=<"); 
 
 
             }
@@ -1136,10 +1249,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:59:7: ( '+' )
-            // InternalReflex.g:59:9: '+'
+            // InternalReflex.g:65:7: ( '>=' )
+            // InternalReflex.g:65:9: '>='
             {
-            match('+'); 
+            match(">="); 
+
 
             }
 
@@ -1156,10 +1270,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:60:7: ( '-' )
-            // InternalReflex.g:60:9: '-'
+            // InternalReflex.g:66:7: ( '==' )
+            // InternalReflex.g:66:9: '=='
             {
-            match('-'); 
+            match("=="); 
+
 
             }
 
@@ -1176,10 +1291,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:61:7: ( '~' )
-            // InternalReflex.g:61:9: '~'
+            // InternalReflex.g:67:7: ( '!=' )
+            // InternalReflex.g:67:9: '!='
             {
-            match('~'); 
+            match("!="); 
+
 
             }
 
@@ -1196,10 +1312,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:62:7: ( '!' )
-            // InternalReflex.g:62:9: '!'
+            // InternalReflex.g:68:7: ( '>>' )
+            // InternalReflex.g:68:9: '>>'
             {
-            match('!'); 
+            match(">>"); 
+
 
             }
 
@@ -1216,10 +1333,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:63:7: ( '<' )
-            // InternalReflex.g:63:9: '<'
+            // InternalReflex.g:69:7: ( '<<' )
+            // InternalReflex.g:69:9: '<<'
             {
-            match('<'); 
+            match("<<"); 
+
 
             }
 
@@ -1236,10 +1354,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:64:7: ( '>' )
-            // InternalReflex.g:64:9: '>'
+            // InternalReflex.g:70:7: ( '*' )
+            // InternalReflex.g:70:9: '*'
             {
-            match('>'); 
+            match('*'); 
 
             }
 
@@ -1256,11 +1374,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:65:7: ( '=<' )
-            // InternalReflex.g:65:9: '=<'
+            // InternalReflex.g:71:7: ( '/' )
+            // InternalReflex.g:71:9: '/'
             {
-            match("=<"); 
-
+            match('/'); 
 
             }
 
@@ -1277,11 +1394,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:66:8: ( '>=' )
-            // InternalReflex.g:66:10: '>='
+            // InternalReflex.g:72:8: ( '%' )
+            // InternalReflex.g:72:10: '%'
             {
-            match(">="); 
-
+            match('%'); 
 
             }
 
@@ -1298,10 +1414,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:67:8: ( '==' )
-            // InternalReflex.g:67:10: '=='
+            // InternalReflex.g:73:8: ( 'signed' )
+            // InternalReflex.g:73:10: 'signed'
             {
-            match("=="); 
+            match("signed"); 
 
 
             }
@@ -1319,152 +1435,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:68:8: ( '!=' )
-            // InternalReflex.g:68:10: '!='
-            {
-            match("!="); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__102"
-
-    // $ANTLR start "T__103"
-    public final void mT__103() throws RecognitionException {
-        try {
-            int _type = T__103;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:69:8: ( '>>' )
-            // InternalReflex.g:69:10: '>>'
-            {
-            match(">>"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__103"
-
-    // $ANTLR start "T__104"
-    public final void mT__104() throws RecognitionException {
-        try {
-            int _type = T__104;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:70:8: ( '<<' )
-            // InternalReflex.g:70:10: '<<'
-            {
-            match("<<"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__104"
-
-    // $ANTLR start "T__105"
-    public final void mT__105() throws RecognitionException {
-        try {
-            int _type = T__105;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:71:8: ( '*' )
-            // InternalReflex.g:71:10: '*'
-            {
-            match('*'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__105"
-
-    // $ANTLR start "T__106"
-    public final void mT__106() throws RecognitionException {
-        try {
-            int _type = T__106;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:72:8: ( '/' )
-            // InternalReflex.g:72:10: '/'
-            {
-            match('/'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__106"
-
-    // $ANTLR start "T__107"
-    public final void mT__107() throws RecognitionException {
-        try {
-            int _type = T__107;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:73:8: ( '%' )
-            // InternalReflex.g:73:10: '%'
-            {
-            match('%'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__107"
-
-    // $ANTLR start "T__108"
-    public final void mT__108() throws RecognitionException {
-        try {
-            int _type = T__108;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:74:8: ( 'signed' )
-            // InternalReflex.g:74:10: 'signed'
-            {
-            match("signed"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__108"
-
-    // $ANTLR start "T__109"
-    public final void mT__109() throws RecognitionException {
-        try {
-            int _type = T__109;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:75:8: ( 'unsigned' )
-            // InternalReflex.g:75:10: 'unsigned'
+            // InternalReflex.g:74:8: ( 'unsigned' )
+            // InternalReflex.g:74:10: 'unsigned'
             {
             match("unsigned"); 
 
@@ -1477,15 +1449,15 @@ public class InternalReflexLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__109"
+    // $ANTLR end "T__102"
 
     // $ANTLR start "RULE_LOGICAL_OR"
     public final void mRULE_LOGICAL_OR() throws RecognitionException {
         try {
             int _type = RULE_LOGICAL_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4358:17: ( '||' )
-            // InternalReflex.g:4358:19: '||'
+            // InternalReflex.g:4176:17: ( '||' )
+            // InternalReflex.g:4176:19: '||'
             {
             match("||"); 
 
@@ -1505,8 +1477,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_LOGICAL_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4360:18: ( '&&' )
-            // InternalReflex.g:4360:20: '&&'
+            // InternalReflex.g:4178:18: ( '&&' )
+            // InternalReflex.g:4178:20: '&&'
             {
             match("&&"); 
 
@@ -1526,8 +1498,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4362:13: ( '|' )
-            // InternalReflex.g:4362:15: '|'
+            // InternalReflex.g:4180:13: ( '|' )
+            // InternalReflex.g:4180:15: '|'
             {
             match('|'); 
 
@@ -1546,8 +1518,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_XOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4364:14: ( '^' )
-            // InternalReflex.g:4364:16: '^'
+            // InternalReflex.g:4182:14: ( '^' )
+            // InternalReflex.g:4182:16: '^'
             {
             match('^'); 
 
@@ -1566,8 +1538,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4366:14: ( '&' )
-            // InternalReflex.g:4366:16: '&'
+            // InternalReflex.g:4184:14: ( '&' )
+            // InternalReflex.g:4184:16: '&'
             {
             match('&'); 
 
@@ -1586,8 +1558,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_VOID_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4368:18: ( 'void' )
-            // InternalReflex.g:4368:20: 'void'
+            // InternalReflex.g:4186:18: ( 'void' )
+            // InternalReflex.g:4186:20: 'void'
             {
             match("void"); 
 
@@ -1607,8 +1579,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_FLOAT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4370:19: ( 'float' )
-            // InternalReflex.g:4370:21: 'float'
+            // InternalReflex.g:4188:19: ( 'float' )
+            // InternalReflex.g:4188:21: 'float'
             {
             match("float"); 
 
@@ -1628,8 +1600,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_DOUBLE_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4372:20: ( 'double' )
-            // InternalReflex.g:4372:22: 'double'
+            // InternalReflex.g:4190:20: ( 'double' )
+            // InternalReflex.g:4190:22: 'double'
             {
             match("double"); 
 
@@ -1649,8 +1621,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_SHORT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4374:19: ( 'short' )
-            // InternalReflex.g:4374:21: 'short'
+            // InternalReflex.g:4192:19: ( 'short' )
+            // InternalReflex.g:4192:21: 'short'
             {
             match("short"); 
 
@@ -1670,8 +1642,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4376:17: ( 'int' )
-            // InternalReflex.g:4376:19: 'int'
+            // InternalReflex.g:4194:17: ( 'int' )
+            // InternalReflex.g:4194:19: 'int'
             {
             match("int"); 
 
@@ -1691,8 +1663,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_LONG_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4378:18: ( 'long' )
-            // InternalReflex.g:4378:20: 'long'
+            // InternalReflex.g:4196:18: ( 'long' )
+            // InternalReflex.g:4196:20: 'long'
             {
             match("long"); 
 
@@ -1712,8 +1684,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BOOL_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4380:16: ( 'bool' )
-            // InternalReflex.g:4380:18: 'bool'
+            // InternalReflex.g:4198:16: ( 'bool' )
+            // InternalReflex.g:4198:18: 'bool'
             {
             match("bool"); 
 
@@ -1728,87 +1700,88 @@ public class InternalReflexLexer extends Lexer {
     }
     // $ANTLR end "RULE_BOOL_TYPE"
 
-    // $ANTLR start "RULE_TACT"
-    public final void mRULE_TACT() throws RecognitionException {
+    // $ANTLR start "RULE_INTEGER"
+    public final void mRULE_INTEGER() throws RecognitionException {
         try {
-            int _type = RULE_TACT;
+            int _type = RULE_INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4382:11: ( 'tact' )
-            // InternalReflex.g:4382:13: 'tact'
+            // InternalReflex.g:4200:14: ( ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )? )
+            // InternalReflex.g:4200:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )?
             {
-            match("tact"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_TACT"
-
-    // $ANTLR start "RULE_DEC_FLOAT"
-    public final void mRULE_DEC_FLOAT() throws RecognitionException {
-        try {
-            int _type = RULE_DEC_FLOAT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4384:16: ( ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
-            // InternalReflex.g:4384:18: ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
-            {
-            // InternalReflex.g:4384:18: ( RULE_DEC_SEQUENCE )?
-            int alt1=2;
+            // InternalReflex.g:4200:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL )
+            int alt1=3;
             int LA1_0 = input.LA(1);
 
-            if ( ((LA1_0>='0' && LA1_0<='9')) ) {
-                alt1=1;
+            if ( (LA1_0=='0') ) {
+                switch ( input.LA(2) ) {
+                case 'X':
+                case 'x':
+                    {
+                    alt1=1;
+                    }
+                    break;
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                    {
+                    alt1=2;
+                    }
+                    break;
+                default:
+                    alt1=3;}
+
+            }
+            else if ( ((LA1_0>='1' && LA1_0<='9')) ) {
+                alt1=3;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 1, 0, input);
+
+                throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // InternalReflex.g:4384:18: RULE_DEC_SEQUENCE
+                    // InternalReflex.g:4200:17: RULE_HEX
                     {
-                    mRULE_DEC_SEQUENCE(); 
+                    mRULE_HEX(); 
+
+                    }
+                    break;
+                case 2 :
+                    // InternalReflex.g:4200:26: RULE_OCTAL
+                    {
+                    mRULE_OCTAL(); 
+
+                    }
+                    break;
+                case 3 :
+                    // InternalReflex.g:4200:37: RULE_DECIMAL
+                    {
+                    mRULE_DECIMAL(); 
 
                     }
                     break;
 
             }
 
-            match('.'); 
-            mRULE_DEC_SEQUENCE(); 
-            // InternalReflex.g:4384:59: ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
+            // InternalReflex.g:4200:51: ( RULE_LONG | RULE_UNSIGNED )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0=='E'||LA2_0=='e') ) {
+            if ( (LA2_0=='L'||LA2_0=='U'||LA2_0=='l'||LA2_0=='u') ) {
                 alt2=1;
             }
             switch (alt2) {
                 case 1 :
-                    // InternalReflex.g:4384:60: RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
-                    {
-                    mRULE_EXPONENT(); 
-                    mRULE_SIGN(); 
-                    mRULE_DEC_SEQUENCE(); 
-
-                    }
-                    break;
-
-            }
-
-            // InternalReflex.g:4384:104: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
-
-            if ( (LA3_0=='F'||LA3_0=='L'||LA3_0=='f'||LA3_0=='l') ) {
-                alt3=1;
-            }
-            switch (alt3) {
-                case 1 :
                     // InternalReflex.g:
                     {
-                    if ( input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='f'||input.LA(1)=='l' ) {
+                    if ( input.LA(1)=='L'||input.LA(1)=='U'||input.LA(1)=='l'||input.LA(1)=='u' ) {
                         input.consume();
 
                     }
@@ -1832,28 +1805,66 @@ public class InternalReflexLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RULE_DEC_FLOAT"
+    // $ANTLR end "RULE_INTEGER"
 
-    // $ANTLR start "RULE_HEX_FLOAT"
-    public final void mRULE_HEX_FLOAT() throws RecognitionException {
+    // $ANTLR start "RULE_FLOAT"
+    public final void mRULE_FLOAT() throws RecognitionException {
         try {
-            int _type = RULE_HEX_FLOAT;
+            int _type = RULE_FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4386:16: ( ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
-            // InternalReflex.g:4386:18: ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:4202:12: ( ( RULE_DEC_FLOAT | RULE_HEX_FLOAT ) )
+            // InternalReflex.g:4202:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
             {
-            // InternalReflex.g:4386:18: ( RULE_HEX_SEQUENCE )?
+            // InternalReflex.g:4202:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
+            int alt3=2;
+            alt3 = dfa3.predict(input);
+            switch (alt3) {
+                case 1 :
+                    // InternalReflex.g:4202:15: RULE_DEC_FLOAT
+                    {
+                    mRULE_DEC_FLOAT(); 
+
+                    }
+                    break;
+                case 2 :
+                    // InternalReflex.g:4202:30: RULE_HEX_FLOAT
+                    {
+                    mRULE_HEX_FLOAT(); 
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_FLOAT"
+
+    // $ANTLR start "RULE_DEC_FLOAT"
+    public final void mRULE_DEC_FLOAT() throws RecognitionException {
+        try {
+            // InternalReflex.g:4204:25: ( ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
+            // InternalReflex.g:4204:27: ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            {
+            // InternalReflex.g:4204:27: ( RULE_DEC_SEQUENCE )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>='0' && LA4_0<='9')||(LA4_0>='A' && LA4_0<='F')||(LA4_0>='a' && LA4_0<='f')) ) {
+            if ( ((LA4_0>='0' && LA4_0<='9')) ) {
                 alt4=1;
             }
             switch (alt4) {
                 case 1 :
-                    // InternalReflex.g:4386:18: RULE_HEX_SEQUENCE
+                    // InternalReflex.g:4204:27: RULE_DEC_SEQUENCE
                     {
-                    mRULE_HEX_SEQUENCE(); 
+                    mRULE_DEC_SEQUENCE(); 
 
                     }
                     break;
@@ -1861,19 +1872,19 @@ public class InternalReflexLexer extends Lexer {
             }
 
             match('.'); 
-            mRULE_HEX_SEQUENCE(); 
-            // InternalReflex.g:4386:59: ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
+            mRULE_DEC_SEQUENCE(); 
+            // InternalReflex.g:4204:68: ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0=='P'||LA5_0=='p') ) {
+            if ( (LA5_0=='E'||LA5_0=='e') ) {
                 alt5=1;
             }
             switch (alt5) {
                 case 1 :
-                    // InternalReflex.g:4386:60: RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
+                    // InternalReflex.g:4204:69: RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
                     {
-                    mRULE_BIN_EXPONENT(); 
+                    mRULE_EXPONENT(); 
                     mRULE_SIGN(); 
                     mRULE_DEC_SEQUENCE(); 
 
@@ -1882,7 +1893,7 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            // InternalReflex.g:4386:108: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:4204:113: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1911,8 +1922,87 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_DEC_FLOAT"
+
+    // $ANTLR start "RULE_HEX_FLOAT"
+    public final void mRULE_HEX_FLOAT() throws RecognitionException {
+        try {
+            // InternalReflex.g:4206:25: ( ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
+            // InternalReflex.g:4206:27: ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            {
+            // InternalReflex.g:4206:27: ( RULE_HEX_SEQUENCE )?
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( ((LA7_0>='0' && LA7_0<='9')||(LA7_0>='A' && LA7_0<='F')||(LA7_0>='a' && LA7_0<='f')) ) {
+                alt7=1;
+            }
+            switch (alt7) {
+                case 1 :
+                    // InternalReflex.g:4206:27: RULE_HEX_SEQUENCE
+                    {
+                    mRULE_HEX_SEQUENCE(); 
+
+                    }
+                    break;
+
+            }
+
+            match('.'); 
+            mRULE_HEX_SEQUENCE(); 
+            // InternalReflex.g:4206:68: ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
+
+            if ( (LA8_0=='P'||LA8_0=='p') ) {
+                alt8=1;
+            }
+            switch (alt8) {
+                case 1 :
+                    // InternalReflex.g:4206:69: RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
+                    {
+                    mRULE_BIN_EXPONENT(); 
+                    mRULE_SIGN(); 
+                    mRULE_DEC_SEQUENCE(); 
+
+                    }
+                    break;
+
+            }
+
+            // InternalReflex.g:4206:117: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0=='F'||LA9_0=='L'||LA9_0=='f'||LA9_0=='l') ) {
+                alt9=1;
+            }
+            switch (alt9) {
+                case 1 :
+                    // InternalReflex.g:
+                    {
+                    if ( input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='f'||input.LA(1)=='l' ) {
+                        input.consume();
+
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;}
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
         }
         finally {
         }
@@ -1922,24 +2012,24 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_DEC_SEQUENCE"
     public final void mRULE_DEC_SEQUENCE() throws RecognitionException {
         try {
-            // InternalReflex.g:4388:28: ( ( '0' .. '9' )+ )
-            // InternalReflex.g:4388:30: ( '0' .. '9' )+
+            // InternalReflex.g:4208:28: ( ( '0' .. '9' )+ )
+            // InternalReflex.g:4208:30: ( '0' .. '9' )+
             {
-            // InternalReflex.g:4388:30: ( '0' .. '9' )+
-            int cnt7=0;
-            loop7:
+            // InternalReflex.g:4208:30: ( '0' .. '9' )+
+            int cnt10=0;
+            loop10:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( ((LA7_0>='0' && LA7_0<='9')) ) {
-                    alt7=1;
+                if ( ((LA10_0>='0' && LA10_0<='9')) ) {
+                    alt10=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt10) {
             	case 1 :
-            	    // InternalReflex.g:4388:31: '0' .. '9'
+            	    // InternalReflex.g:4208:31: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1947,12 +2037,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt7 >= 1 ) break loop7;
+            	    if ( cnt10 >= 1 ) break loop10;
                         EarlyExitException eee =
-                            new EarlyExitException(7, input);
+                            new EarlyExitException(10, input);
                         throw eee;
                 }
-                cnt7++;
+                cnt10++;
             } while (true);
 
 
@@ -1967,22 +2057,22 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX_SEQUENCE"
     public final void mRULE_HEX_SEQUENCE() throws RecognitionException {
         try {
-            // InternalReflex.g:4390:28: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
-            // InternalReflex.g:4390:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalReflex.g:4210:28: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
+            // InternalReflex.g:4210:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
-            // InternalReflex.g:4390:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
-            int cnt8=0;
-            loop8:
+            // InternalReflex.g:4210:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            int cnt11=0;
+            loop11:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( ((LA8_0>='0' && LA8_0<='9')||(LA8_0>='A' && LA8_0<='F')||(LA8_0>='a' && LA8_0<='f')) ) {
-                    alt8=1;
+                if ( ((LA11_0>='0' && LA11_0<='9')||(LA11_0>='A' && LA11_0<='F')||(LA11_0>='a' && LA11_0<='f')) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt11) {
             	case 1 :
             	    // InternalReflex.g:
             	    {
@@ -2000,12 +2090,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt8 >= 1 ) break loop8;
+            	    if ( cnt11 >= 1 ) break loop11;
                         EarlyExitException eee =
-                            new EarlyExitException(8, input);
+                            new EarlyExitException(11, input);
                         throw eee;
                 }
-                cnt8++;
+                cnt11++;
             } while (true);
 
 
@@ -2020,8 +2110,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_BIN_EXPONENT"
     public final void mRULE_BIN_EXPONENT() throws RecognitionException {
         try {
-            // InternalReflex.g:4392:28: ( ( 'p' | 'P' ) )
-            // InternalReflex.g:4392:30: ( 'p' | 'P' )
+            // InternalReflex.g:4212:28: ( ( 'p' | 'P' ) )
+            // InternalReflex.g:4212:30: ( 'p' | 'P' )
             {
             if ( input.LA(1)=='P'||input.LA(1)=='p' ) {
                 input.consume();
@@ -2044,8 +2134,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_EXPONENT"
     public final void mRULE_EXPONENT() throws RecognitionException {
         try {
-            // InternalReflex.g:4394:24: ( ( 'e' | 'E' ) )
-            // InternalReflex.g:4394:26: ( 'e' | 'E' )
+            // InternalReflex.g:4214:24: ( ( 'e' | 'E' ) )
+            // InternalReflex.g:4214:26: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2068,8 +2158,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_SIGN"
     public final void mRULE_SIGN() throws RecognitionException {
         try {
-            // InternalReflex.g:4396:20: ( ( '+' | '-' ) )
-            // InternalReflex.g:4396:22: ( '+' | '-' )
+            // InternalReflex.g:4216:20: ( ( '+' | '-' ) )
+            // InternalReflex.g:4216:22: ( '+' | '-' )
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                 input.consume();
@@ -2092,53 +2182,51 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_DECIMAL"
     public final void mRULE_DECIMAL() throws RecognitionException {
         try {
-            int _type = RULE_DECIMAL;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4398:14: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // InternalReflex.g:4398:16: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // InternalReflex.g:4218:23: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // InternalReflex.g:4218:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // InternalReflex.g:4398:16: ( '0' | '1' .. '9' ( '0' .. '9' )* )
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // InternalReflex.g:4218:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA10_0=='0') ) {
-                alt10=1;
+            if ( (LA13_0=='0') ) {
+                alt13=1;
             }
-            else if ( ((LA10_0>='1' && LA10_0<='9')) ) {
-                alt10=2;
+            else if ( ((LA13_0>='1' && LA13_0<='9')) ) {
+                alt13=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
-            switch (alt10) {
+            switch (alt13) {
                 case 1 :
-                    // InternalReflex.g:4398:17: '0'
+                    // InternalReflex.g:4218:26: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:4398:21: '1' .. '9' ( '0' .. '9' )*
+                    // InternalReflex.g:4218:30: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // InternalReflex.g:4398:30: ( '0' .. '9' )*
-                    loop9:
+                    // InternalReflex.g:4218:39: ( '0' .. '9' )*
+                    loop12:
                     do {
-                        int alt9=2;
-                        int LA9_0 = input.LA(1);
+                        int alt12=2;
+                        int LA12_0 = input.LA(1);
 
-                        if ( ((LA9_0>='0' && LA9_0<='9')) ) {
-                            alt9=1;
+                        if ( ((LA12_0>='0' && LA12_0<='9')) ) {
+                            alt12=1;
                         }
 
 
-                        switch (alt9) {
+                        switch (alt12) {
                     	case 1 :
-                    	    // InternalReflex.g:4398:31: '0' .. '9'
+                    	    // InternalReflex.g:4218:40: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -2146,7 +2234,7 @@ public class InternalReflexLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop9;
+                    	    break loop12;
                         }
                     } while (true);
 
@@ -2159,8 +2247,6 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
         }
         finally {
         }
@@ -2170,27 +2256,25 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_OCTAL"
     public final void mRULE_OCTAL() throws RecognitionException {
         try {
-            int _type = RULE_OCTAL;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4400:12: ( '0' ( '0' .. '7' )+ )
-            // InternalReflex.g:4400:14: '0' ( '0' .. '7' )+
+            // InternalReflex.g:4220:21: ( '0' ( '0' .. '7' )+ )
+            // InternalReflex.g:4220:23: '0' ( '0' .. '7' )+
             {
             match('0'); 
-            // InternalReflex.g:4400:18: ( '0' .. '7' )+
-            int cnt11=0;
-            loop11:
+            // InternalReflex.g:4220:27: ( '0' .. '7' )+
+            int cnt14=0;
+            loop14:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt14=2;
+                int LA14_0 = input.LA(1);
 
-                if ( ((LA11_0>='0' && LA11_0<='7')) ) {
-                    alt11=1;
+                if ( ((LA14_0>='0' && LA14_0<='7')) ) {
+                    alt14=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt14) {
             	case 1 :
-            	    // InternalReflex.g:4400:19: '0' .. '7'
+            	    // InternalReflex.g:4220:28: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -2198,19 +2282,17 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt11 >= 1 ) break loop11;
+            	    if ( cnt14 >= 1 ) break loop14;
                         EarlyExitException eee =
-                            new EarlyExitException(11, input);
+                            new EarlyExitException(14, input);
                         throw eee;
                 }
-                cnt11++;
+                cnt14++;
             } while (true);
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
         }
         finally {
         }
@@ -2220,18 +2302,14 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX"
     public final void mRULE_HEX() throws RecognitionException {
         try {
-            int _type = RULE_HEX;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4402:10: ( RULE_HEX_PREFIX RULE_HEX_SEQUENCE )
-            // InternalReflex.g:4402:12: RULE_HEX_PREFIX RULE_HEX_SEQUENCE
+            // InternalReflex.g:4222:19: ( RULE_HEX_PREFIX RULE_HEX_SEQUENCE )
+            // InternalReflex.g:4222:21: RULE_HEX_PREFIX RULE_HEX_SEQUENCE
             {
             mRULE_HEX_PREFIX(); 
             mRULE_HEX_SEQUENCE(); 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
         }
         finally {
         }
@@ -2241,8 +2319,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX_PREFIX"
     public final void mRULE_HEX_PREFIX() throws RecognitionException {
         try {
-            // InternalReflex.g:4404:26: ( '0' ( 'x' | 'X' ) )
-            // InternalReflex.g:4404:28: '0' ( 'x' | 'X' )
+            // InternalReflex.g:4224:26: ( '0' ( 'x' | 'X' ) )
+            // InternalReflex.g:4224:28: '0' ( 'x' | 'X' )
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -2266,10 +2344,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_LONG"
     public final void mRULE_LONG() throws RecognitionException {
         try {
-            int _type = RULE_LONG;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4406:11: ( ( 'L' | 'l' ) )
-            // InternalReflex.g:4406:13: ( 'L' | 'l' )
+            // InternalReflex.g:4226:20: ( ( 'L' | 'l' ) )
+            // InternalReflex.g:4226:22: ( 'L' | 'l' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -2283,8 +2359,6 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
         }
         finally {
         }
@@ -2294,8 +2368,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_FLOAT_SUFFIX"
     public final void mRULE_FLOAT_SUFFIX() throws RecognitionException {
         try {
-            // InternalReflex.g:4408:28: ( ( 'F' | 'f' ) )
-            // InternalReflex.g:4408:30: ( 'F' | 'f' )
+            // InternalReflex.g:4228:28: ( ( 'F' | 'f' ) )
+            // InternalReflex.g:4228:30: ( 'F' | 'f' )
             {
             if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
                 input.consume();
@@ -2318,10 +2392,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_UNSIGNED"
     public final void mRULE_UNSIGNED() throws RecognitionException {
         try {
-            int _type = RULE_UNSIGNED;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4410:15: ( ( 'U' | 'u' ) )
-            // InternalReflex.g:4410:17: ( 'U' | 'u' )
+            // InternalReflex.g:4230:24: ( ( 'U' | 'u' ) )
+            // InternalReflex.g:4230:26: ( 'U' | 'u' )
             {
             if ( input.LA(1)=='U'||input.LA(1)=='u' ) {
                 input.consume();
@@ -2335,300 +2407,21 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
         }
         finally {
         }
     }
     // $ANTLR end "RULE_UNSIGNED"
 
-    // $ANTLR start "RULE_DAY"
-    public final void mRULE_DAY() throws RecognitionException {
-        try {
-            int _type = RULE_DAY;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4412:10: ( ( 'D' | 'd' ) )
-            // InternalReflex.g:4412:12: ( 'D' | 'd' )
-            {
-            if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_DAY"
-
-    // $ANTLR start "RULE_HOUR"
-    public final void mRULE_HOUR() throws RecognitionException {
-        try {
-            int _type = RULE_HOUR;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4414:11: ( ( 'H' | 'h' ) )
-            // InternalReflex.g:4414:13: ( 'H' | 'h' )
-            {
-            if ( input.LA(1)=='H'||input.LA(1)=='h' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_HOUR"
-
-    // $ANTLR start "RULE_MINUTE"
-    public final void mRULE_MINUTE() throws RecognitionException {
-        try {
-            int _type = RULE_MINUTE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4416:13: ( ( 'M' | 'm' ) )
-            // InternalReflex.g:4416:15: ( 'M' | 'm' )
-            {
-            if ( input.LA(1)=='M'||input.LA(1)=='m' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_MINUTE"
-
-    // $ANTLR start "RULE_SECOND"
-    public final void mRULE_SECOND() throws RecognitionException {
-        try {
-            int _type = RULE_SECOND;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4418:13: ( ( 'S' | 's' ) )
-            // InternalReflex.g:4418:15: ( 'S' | 's' )
-            {
-            if ( input.LA(1)=='S'||input.LA(1)=='s' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_SECOND"
-
-    // $ANTLR start "RULE_MILISECOND"
-    public final void mRULE_MILISECOND() throws RecognitionException {
-        try {
-            int _type = RULE_MILISECOND;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4420:17: ( ( 'MS' | 'ms' ) )
-            // InternalReflex.g:4420:19: ( 'MS' | 'ms' )
-            {
-            // InternalReflex.g:4420:19: ( 'MS' | 'ms' )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0=='M') ) {
-                alt12=1;
-            }
-            else if ( (LA12_0=='m') ) {
-                alt12=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
-
-                throw nvae;
-            }
-            switch (alt12) {
-                case 1 :
-                    // InternalReflex.g:4420:20: 'MS'
-                    {
-                    match("MS"); 
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalReflex.g:4420:25: 'ms'
-                    {
-                    match("ms"); 
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_MILISECOND"
-
-    // $ANTLR start "RULE_MICROSECOND"
-    public final void mRULE_MICROSECOND() throws RecognitionException {
-        try {
-            int _type = RULE_MICROSECOND;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4422:18: ( ( 'US' | 'us' ) )
-            // InternalReflex.g:4422:20: ( 'US' | 'us' )
-            {
-            // InternalReflex.g:4422:20: ( 'US' | 'us' )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
-
-            if ( (LA13_0=='U') ) {
-                alt13=1;
-            }
-            else if ( (LA13_0=='u') ) {
-                alt13=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
-
-                throw nvae;
-            }
-            switch (alt13) {
-                case 1 :
-                    // InternalReflex.g:4422:21: 'US'
-                    {
-                    match("US"); 
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalReflex.g:4422:26: 'us'
-                    {
-                    match("us"); 
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_MICROSECOND"
-
-    // $ANTLR start "RULE_NANOSECOND"
-    public final void mRULE_NANOSECOND() throws RecognitionException {
-        try {
-            int _type = RULE_NANOSECOND;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4424:17: ( ( 'NS' | 'ns' ) )
-            // InternalReflex.g:4424:19: ( 'NS' | 'ns' )
-            {
-            // InternalReflex.g:4424:19: ( 'NS' | 'ns' )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
-
-            if ( (LA14_0=='N') ) {
-                alt14=1;
-            }
-            else if ( (LA14_0=='n') ) {
-                alt14=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
-
-                throw nvae;
-            }
-            switch (alt14) {
-                case 1 :
-                    // InternalReflex.g:4424:20: 'NS'
-                    {
-                    match("NS"); 
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalReflex.g:4424:25: 'ns'
-                    {
-                    match("ns"); 
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_NANOSECOND"
-
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4426:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalReflex.g:4426:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReflex.g:4232:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalReflex.g:4232:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalReflex.g:4426:11: ( '^' )?
+            // InternalReflex.g:4232:11: ( '^' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2637,7 +2430,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // InternalReflex.g:4426:11: '^'
+                    // InternalReflex.g:4232:11: '^'
                     {
                     match('^'); 
 
@@ -2655,7 +2448,7 @@ public class InternalReflexLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalReflex.g:4426:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReflex.g:4232:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop16:
             do {
                 int alt16=2;
@@ -2704,10 +2497,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4428:10: ( ( '0' .. '9' )+ )
-            // InternalReflex.g:4428:12: ( '0' .. '9' )+
+            // InternalReflex.g:4234:10: ( ( '0' .. '9' )+ )
+            // InternalReflex.g:4234:12: ( '0' .. '9' )+
             {
-            // InternalReflex.g:4428:12: ( '0' .. '9' )+
+            // InternalReflex.g:4234:12: ( '0' .. '9' )+
             int cnt17=0;
             loop17:
             do {
@@ -2721,7 +2514,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // InternalReflex.g:4428:13: '0' .. '9'
+            	    // InternalReflex.g:4234:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2753,10 +2546,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4430:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalReflex.g:4430:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReflex.g:4236:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalReflex.g:4236:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalReflex.g:4430:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReflex.g:4236:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -2774,10 +2567,10 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // InternalReflex.g:4430:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalReflex.g:4236:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalReflex.g:4430:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalReflex.g:4236:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop18:
                     do {
                         int alt18=3;
@@ -2793,7 +2586,7 @@ public class InternalReflexLexer extends Lexer {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // InternalReflex.g:4430:21: '\\\\' .
+                    	    // InternalReflex.g:4236:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2801,7 +2594,7 @@ public class InternalReflexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReflex.g:4430:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalReflex.g:4236:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2826,10 +2619,10 @@ public class InternalReflexLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:4430:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalReflex.g:4236:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalReflex.g:4430:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalReflex.g:4236:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop19:
                     do {
                         int alt19=3;
@@ -2845,7 +2638,7 @@ public class InternalReflexLexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // InternalReflex.g:4430:54: '\\\\' .
+                    	    // InternalReflex.g:4236:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2853,7 +2646,7 @@ public class InternalReflexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReflex.g:4430:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalReflex.g:4236:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2896,12 +2689,12 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4432:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalReflex.g:4432:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalReflex.g:4238:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalReflex.g:4238:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalReflex.g:4432:24: ( options {greedy=false; } : . )*
+            // InternalReflex.g:4238:24: ( options {greedy=false; } : . )*
             loop21:
             do {
                 int alt21=2;
@@ -2926,7 +2719,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt21) {
             	case 1 :
-            	    // InternalReflex.g:4432:52: .
+            	    // InternalReflex.g:4238:52: .
             	    {
             	    matchAny(); 
 
@@ -2956,12 +2749,12 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4434:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalReflex.g:4434:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalReflex.g:4240:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalReflex.g:4240:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalReflex.g:4434:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalReflex.g:4240:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop22:
             do {
                 int alt22=2;
@@ -2974,7 +2767,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // InternalReflex.g:4434:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalReflex.g:4240:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2994,7 +2787,7 @@ public class InternalReflexLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalReflex.g:4434:40: ( ( '\\r' )? '\\n' )?
+            // InternalReflex.g:4240:40: ( ( '\\r' )? '\\n' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3003,9 +2796,9 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // InternalReflex.g:4434:41: ( '\\r' )? '\\n'
+                    // InternalReflex.g:4240:41: ( '\\r' )? '\\n'
                     {
-                    // InternalReflex.g:4434:41: ( '\\r' )?
+                    // InternalReflex.g:4240:41: ( '\\r' )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -3014,7 +2807,7 @@ public class InternalReflexLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // InternalReflex.g:4434:41: '\\r'
+                            // InternalReflex.g:4240:41: '\\r'
                             {
                             match('\r'); 
 
@@ -3046,10 +2839,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4436:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalReflex.g:4436:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReflex.g:4242:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalReflex.g:4242:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalReflex.g:4436:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReflex.g:4242:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt25=0;
             loop25:
             do {
@@ -3103,8 +2896,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:4438:16: ( . )
-            // InternalReflex.g:4438:18: .
+            // InternalReflex.g:4244:16: ( . )
+            // InternalReflex.g:4244:18: .
             {
             matchAny(); 
 
@@ -3119,698 +2912,600 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // InternalReflex.g:1:8: ( T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_VOID_C_TYPE | RULE_FLOAT_C_TYPE | RULE_DOUBLE_C_TYPE | RULE_SHORT_C_TYPE | RULE_INT_C_TYPE | RULE_LONG_C_TYPE | RULE_BOOL_TYPE | RULE_TACT | RULE_DEC_FLOAT | RULE_HEX_FLOAT | RULE_DECIMAL | RULE_OCTAL | RULE_HEX | RULE_LONG | RULE_UNSIGNED | RULE_DAY | RULE_HOUR | RULE_MINUTE | RULE_SECOND | RULE_MILISECOND | RULE_MICROSECOND | RULE_NANOSECOND | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt26=99;
+        // InternalReflex.g:1:8: ( T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_VOID_C_TYPE | RULE_FLOAT_C_TYPE | RULE_DOUBLE_C_TYPE | RULE_SHORT_C_TYPE | RULE_INT_C_TYPE | RULE_LONG_C_TYPE | RULE_BOOL_TYPE | RULE_INTEGER | RULE_FLOAT | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt26=85;
         alt26 = dfa26.predict(input);
         switch (alt26) {
             case 1 :
-                // InternalReflex.g:1:10: T__45
+                // InternalReflex.g:1:10: T__39
+                {
+                mT__39(); 
+
+                }
+                break;
+            case 2 :
+                // InternalReflex.g:1:16: T__40
+                {
+                mT__40(); 
+
+                }
+                break;
+            case 3 :
+                // InternalReflex.g:1:22: T__41
+                {
+                mT__41(); 
+
+                }
+                break;
+            case 4 :
+                // InternalReflex.g:1:28: T__42
+                {
+                mT__42(); 
+
+                }
+                break;
+            case 5 :
+                // InternalReflex.g:1:34: T__43
+                {
+                mT__43(); 
+
+                }
+                break;
+            case 6 :
+                // InternalReflex.g:1:40: T__44
+                {
+                mT__44(); 
+
+                }
+                break;
+            case 7 :
+                // InternalReflex.g:1:46: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 2 :
-                // InternalReflex.g:1:16: T__46
+            case 8 :
+                // InternalReflex.g:1:52: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 3 :
-                // InternalReflex.g:1:22: T__47
+            case 9 :
+                // InternalReflex.g:1:58: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
-            case 4 :
-                // InternalReflex.g:1:28: T__48
+            case 10 :
+                // InternalReflex.g:1:64: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
-            case 5 :
-                // InternalReflex.g:1:34: T__49
+            case 11 :
+                // InternalReflex.g:1:70: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
-            case 6 :
-                // InternalReflex.g:1:40: T__50
+            case 12 :
+                // InternalReflex.g:1:76: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
-            case 7 :
-                // InternalReflex.g:1:46: T__51
+            case 13 :
+                // InternalReflex.g:1:82: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
-            case 8 :
-                // InternalReflex.g:1:52: T__52
+            case 14 :
+                // InternalReflex.g:1:88: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
-            case 9 :
-                // InternalReflex.g:1:58: T__53
+            case 15 :
+                // InternalReflex.g:1:94: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
-            case 10 :
-                // InternalReflex.g:1:64: T__54
+            case 16 :
+                // InternalReflex.g:1:100: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
-            case 11 :
-                // InternalReflex.g:1:70: T__55
+            case 17 :
+                // InternalReflex.g:1:106: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
-            case 12 :
-                // InternalReflex.g:1:76: T__56
+            case 18 :
+                // InternalReflex.g:1:112: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
-            case 13 :
-                // InternalReflex.g:1:82: T__57
+            case 19 :
+                // InternalReflex.g:1:118: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
-            case 14 :
-                // InternalReflex.g:1:88: T__58
+            case 20 :
+                // InternalReflex.g:1:124: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
-            case 15 :
-                // InternalReflex.g:1:94: T__59
+            case 21 :
+                // InternalReflex.g:1:130: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
-            case 16 :
-                // InternalReflex.g:1:100: T__60
+            case 22 :
+                // InternalReflex.g:1:136: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
-            case 17 :
-                // InternalReflex.g:1:106: T__61
+            case 23 :
+                // InternalReflex.g:1:142: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
-            case 18 :
-                // InternalReflex.g:1:112: T__62
+            case 24 :
+                // InternalReflex.g:1:148: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
-            case 19 :
-                // InternalReflex.g:1:118: T__63
+            case 25 :
+                // InternalReflex.g:1:154: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
-            case 20 :
-                // InternalReflex.g:1:124: T__64
+            case 26 :
+                // InternalReflex.g:1:160: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
-            case 21 :
-                // InternalReflex.g:1:130: T__65
+            case 27 :
+                // InternalReflex.g:1:166: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
-            case 22 :
-                // InternalReflex.g:1:136: T__66
+            case 28 :
+                // InternalReflex.g:1:172: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
-            case 23 :
-                // InternalReflex.g:1:142: T__67
+            case 29 :
+                // InternalReflex.g:1:178: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
-            case 24 :
-                // InternalReflex.g:1:148: T__68
+            case 30 :
+                // InternalReflex.g:1:184: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
-            case 25 :
-                // InternalReflex.g:1:154: T__69
+            case 31 :
+                // InternalReflex.g:1:190: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
-            case 26 :
-                // InternalReflex.g:1:160: T__70
+            case 32 :
+                // InternalReflex.g:1:196: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
-            case 27 :
-                // InternalReflex.g:1:166: T__71
+            case 33 :
+                // InternalReflex.g:1:202: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
-            case 28 :
-                // InternalReflex.g:1:172: T__72
+            case 34 :
+                // InternalReflex.g:1:208: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
-            case 29 :
-                // InternalReflex.g:1:178: T__73
+            case 35 :
+                // InternalReflex.g:1:214: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
-            case 30 :
-                // InternalReflex.g:1:184: T__74
+            case 36 :
+                // InternalReflex.g:1:220: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
-            case 31 :
-                // InternalReflex.g:1:190: T__75
+            case 37 :
+                // InternalReflex.g:1:226: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
-            case 32 :
-                // InternalReflex.g:1:196: T__76
+            case 38 :
+                // InternalReflex.g:1:232: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
-            case 33 :
-                // InternalReflex.g:1:202: T__77
+            case 39 :
+                // InternalReflex.g:1:238: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
-            case 34 :
-                // InternalReflex.g:1:208: T__78
+            case 40 :
+                // InternalReflex.g:1:244: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
-            case 35 :
-                // InternalReflex.g:1:214: T__79
+            case 41 :
+                // InternalReflex.g:1:250: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
-            case 36 :
-                // InternalReflex.g:1:220: T__80
+            case 42 :
+                // InternalReflex.g:1:256: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
-            case 37 :
-                // InternalReflex.g:1:226: T__81
+            case 43 :
+                // InternalReflex.g:1:262: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
-            case 38 :
-                // InternalReflex.g:1:232: T__82
+            case 44 :
+                // InternalReflex.g:1:268: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
-            case 39 :
-                // InternalReflex.g:1:238: T__83
+            case 45 :
+                // InternalReflex.g:1:274: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
-            case 40 :
-                // InternalReflex.g:1:244: T__84
+            case 46 :
+                // InternalReflex.g:1:280: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
-            case 41 :
-                // InternalReflex.g:1:250: T__85
+            case 47 :
+                // InternalReflex.g:1:286: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
-            case 42 :
-                // InternalReflex.g:1:256: T__86
+            case 48 :
+                // InternalReflex.g:1:292: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
-            case 43 :
-                // InternalReflex.g:1:262: T__87
+            case 49 :
+                // InternalReflex.g:1:298: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
-            case 44 :
-                // InternalReflex.g:1:268: T__88
+            case 50 :
+                // InternalReflex.g:1:304: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
-            case 45 :
-                // InternalReflex.g:1:274: T__89
+            case 51 :
+                // InternalReflex.g:1:310: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
-            case 46 :
-                // InternalReflex.g:1:280: T__90
+            case 52 :
+                // InternalReflex.g:1:316: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
-            case 47 :
-                // InternalReflex.g:1:286: T__91
+            case 53 :
+                // InternalReflex.g:1:322: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
-            case 48 :
-                // InternalReflex.g:1:292: T__92
+            case 54 :
+                // InternalReflex.g:1:328: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
-            case 49 :
-                // InternalReflex.g:1:298: T__93
+            case 55 :
+                // InternalReflex.g:1:334: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
-            case 50 :
-                // InternalReflex.g:1:304: T__94
+            case 56 :
+                // InternalReflex.g:1:340: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
-            case 51 :
-                // InternalReflex.g:1:310: T__95
+            case 57 :
+                // InternalReflex.g:1:346: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
-            case 52 :
-                // InternalReflex.g:1:316: T__96
+            case 58 :
+                // InternalReflex.g:1:352: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
-            case 53 :
-                // InternalReflex.g:1:322: T__97
+            case 59 :
+                // InternalReflex.g:1:358: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
-            case 54 :
-                // InternalReflex.g:1:328: T__98
+            case 60 :
+                // InternalReflex.g:1:364: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
-            case 55 :
-                // InternalReflex.g:1:334: T__99
+            case 61 :
+                // InternalReflex.g:1:370: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
-            case 56 :
-                // InternalReflex.g:1:340: T__100
+            case 62 :
+                // InternalReflex.g:1:376: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
-            case 57 :
-                // InternalReflex.g:1:347: T__101
+            case 63 :
+                // InternalReflex.g:1:383: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
-            case 58 :
-                // InternalReflex.g:1:354: T__102
+            case 64 :
+                // InternalReflex.g:1:390: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
-            case 59 :
-                // InternalReflex.g:1:361: T__103
-                {
-                mT__103(); 
-
-                }
-                break;
-            case 60 :
-                // InternalReflex.g:1:368: T__104
-                {
-                mT__104(); 
-
-                }
-                break;
-            case 61 :
-                // InternalReflex.g:1:375: T__105
-                {
-                mT__105(); 
-
-                }
-                break;
-            case 62 :
-                // InternalReflex.g:1:382: T__106
-                {
-                mT__106(); 
-
-                }
-                break;
-            case 63 :
-                // InternalReflex.g:1:389: T__107
-                {
-                mT__107(); 
-
-                }
-                break;
-            case 64 :
-                // InternalReflex.g:1:396: T__108
-                {
-                mT__108(); 
-
-                }
-                break;
             case 65 :
-                // InternalReflex.g:1:403: T__109
-                {
-                mT__109(); 
-
-                }
-                break;
-            case 66 :
-                // InternalReflex.g:1:410: RULE_LOGICAL_OR
+                // InternalReflex.g:1:397: RULE_LOGICAL_OR
                 {
                 mRULE_LOGICAL_OR(); 
 
                 }
                 break;
-            case 67 :
-                // InternalReflex.g:1:426: RULE_LOGICAL_AND
+            case 66 :
+                // InternalReflex.g:1:413: RULE_LOGICAL_AND
                 {
                 mRULE_LOGICAL_AND(); 
 
                 }
                 break;
-            case 68 :
-                // InternalReflex.g:1:443: RULE_BIT_OR
+            case 67 :
+                // InternalReflex.g:1:430: RULE_BIT_OR
                 {
                 mRULE_BIT_OR(); 
 
                 }
                 break;
-            case 69 :
-                // InternalReflex.g:1:455: RULE_BIT_XOR
+            case 68 :
+                // InternalReflex.g:1:442: RULE_BIT_XOR
                 {
                 mRULE_BIT_XOR(); 
 
                 }
                 break;
-            case 70 :
-                // InternalReflex.g:1:468: RULE_BIT_AND
+            case 69 :
+                // InternalReflex.g:1:455: RULE_BIT_AND
                 {
                 mRULE_BIT_AND(); 
 
                 }
                 break;
-            case 71 :
-                // InternalReflex.g:1:481: RULE_VOID_C_TYPE
+            case 70 :
+                // InternalReflex.g:1:468: RULE_VOID_C_TYPE
                 {
                 mRULE_VOID_C_TYPE(); 
 
                 }
                 break;
-            case 72 :
-                // InternalReflex.g:1:498: RULE_FLOAT_C_TYPE
+            case 71 :
+                // InternalReflex.g:1:485: RULE_FLOAT_C_TYPE
                 {
                 mRULE_FLOAT_C_TYPE(); 
 
                 }
                 break;
-            case 73 :
-                // InternalReflex.g:1:516: RULE_DOUBLE_C_TYPE
+            case 72 :
+                // InternalReflex.g:1:503: RULE_DOUBLE_C_TYPE
                 {
                 mRULE_DOUBLE_C_TYPE(); 
 
                 }
                 break;
-            case 74 :
-                // InternalReflex.g:1:535: RULE_SHORT_C_TYPE
+            case 73 :
+                // InternalReflex.g:1:522: RULE_SHORT_C_TYPE
                 {
                 mRULE_SHORT_C_TYPE(); 
 
                 }
                 break;
-            case 75 :
-                // InternalReflex.g:1:553: RULE_INT_C_TYPE
+            case 74 :
+                // InternalReflex.g:1:540: RULE_INT_C_TYPE
                 {
                 mRULE_INT_C_TYPE(); 
 
                 }
                 break;
-            case 76 :
-                // InternalReflex.g:1:569: RULE_LONG_C_TYPE
+            case 75 :
+                // InternalReflex.g:1:556: RULE_LONG_C_TYPE
                 {
                 mRULE_LONG_C_TYPE(); 
 
                 }
                 break;
-            case 77 :
-                // InternalReflex.g:1:586: RULE_BOOL_TYPE
+            case 76 :
+                // InternalReflex.g:1:573: RULE_BOOL_TYPE
                 {
                 mRULE_BOOL_TYPE(); 
 
                 }
                 break;
-            case 78 :
-                // InternalReflex.g:1:601: RULE_TACT
+            case 77 :
+                // InternalReflex.g:1:588: RULE_INTEGER
                 {
-                mRULE_TACT(); 
+                mRULE_INTEGER(); 
+
+                }
+                break;
+            case 78 :
+                // InternalReflex.g:1:601: RULE_FLOAT
+                {
+                mRULE_FLOAT(); 
 
                 }
                 break;
             case 79 :
-                // InternalReflex.g:1:611: RULE_DEC_FLOAT
-                {
-                mRULE_DEC_FLOAT(); 
-
-                }
-                break;
-            case 80 :
-                // InternalReflex.g:1:626: RULE_HEX_FLOAT
-                {
-                mRULE_HEX_FLOAT(); 
-
-                }
-                break;
-            case 81 :
-                // InternalReflex.g:1:641: RULE_DECIMAL
-                {
-                mRULE_DECIMAL(); 
-
-                }
-                break;
-            case 82 :
-                // InternalReflex.g:1:654: RULE_OCTAL
-                {
-                mRULE_OCTAL(); 
-
-                }
-                break;
-            case 83 :
-                // InternalReflex.g:1:665: RULE_HEX
-                {
-                mRULE_HEX(); 
-
-                }
-                break;
-            case 84 :
-                // InternalReflex.g:1:674: RULE_LONG
-                {
-                mRULE_LONG(); 
-
-                }
-                break;
-            case 85 :
-                // InternalReflex.g:1:684: RULE_UNSIGNED
-                {
-                mRULE_UNSIGNED(); 
-
-                }
-                break;
-            case 86 :
-                // InternalReflex.g:1:698: RULE_DAY
-                {
-                mRULE_DAY(); 
-
-                }
-                break;
-            case 87 :
-                // InternalReflex.g:1:707: RULE_HOUR
-                {
-                mRULE_HOUR(); 
-
-                }
-                break;
-            case 88 :
-                // InternalReflex.g:1:717: RULE_MINUTE
-                {
-                mRULE_MINUTE(); 
-
-                }
-                break;
-            case 89 :
-                // InternalReflex.g:1:729: RULE_SECOND
-                {
-                mRULE_SECOND(); 
-
-                }
-                break;
-            case 90 :
-                // InternalReflex.g:1:741: RULE_MILISECOND
-                {
-                mRULE_MILISECOND(); 
-
-                }
-                break;
-            case 91 :
-                // InternalReflex.g:1:757: RULE_MICROSECOND
-                {
-                mRULE_MICROSECOND(); 
-
-                }
-                break;
-            case 92 :
-                // InternalReflex.g:1:774: RULE_NANOSECOND
-                {
-                mRULE_NANOSECOND(); 
-
-                }
-                break;
-            case 93 :
-                // InternalReflex.g:1:790: RULE_ID
+                // InternalReflex.g:1:612: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 94 :
-                // InternalReflex.g:1:798: RULE_INT
+            case 80 :
+                // InternalReflex.g:1:620: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 95 :
-                // InternalReflex.g:1:807: RULE_STRING
+            case 81 :
+                // InternalReflex.g:1:629: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 96 :
-                // InternalReflex.g:1:819: RULE_ML_COMMENT
+            case 82 :
+                // InternalReflex.g:1:641: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 97 :
-                // InternalReflex.g:1:835: RULE_SL_COMMENT
+            case 83 :
+                // InternalReflex.g:1:657: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 98 :
-                // InternalReflex.g:1:851: RULE_WS
+            case 84 :
+                // InternalReflex.g:1:673: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 99 :
-                // InternalReflex.g:1:859: RULE_ANY_OTHER
+            case 85 :
+                // InternalReflex.g:1:681: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -3822,315 +3517,336 @@ public class InternalReflexLexer extends Lexer {
     }
 
 
+    protected DFA3 dfa3 = new DFA3(this);
     protected DFA26 dfa26 = new DFA26(this);
+    static final String DFA3_eotS =
+        "\5\uffff";
+    static final String DFA3_eofS =
+        "\5\uffff";
+    static final String DFA3_minS =
+        "\2\56\1\60\2\uffff";
+    static final String DFA3_maxS =
+        "\3\146\2\uffff";
+    static final String DFA3_acceptS =
+        "\3\uffff\1\2\1\1";
+    static final String DFA3_specialS =
+        "\5\uffff}>";
+    static final String[] DFA3_transitionS = {
+            "\1\2\1\uffff\12\1\7\uffff\6\3\32\uffff\6\3",
+            "\1\2\1\uffff\12\1\7\uffff\6\3\32\uffff\6\3",
+            "\12\4\7\uffff\6\3\32\uffff\6\3",
+            "",
+            ""
+    };
+
+    static final short[] DFA3_eot = DFA.unpackEncodedString(DFA3_eotS);
+    static final short[] DFA3_eof = DFA.unpackEncodedString(DFA3_eofS);
+    static final char[] DFA3_min = DFA.unpackEncodedStringToUnsignedChars(DFA3_minS);
+    static final char[] DFA3_max = DFA.unpackEncodedStringToUnsignedChars(DFA3_maxS);
+    static final short[] DFA3_accept = DFA.unpackEncodedString(DFA3_acceptS);
+    static final short[] DFA3_special = DFA.unpackEncodedString(DFA3_specialS);
+    static final short[][] DFA3_transition;
+
+    static {
+        int numStates = DFA3_transitionS.length;
+        DFA3_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA3_transition[i] = DFA.unpackEncodedString(DFA3_transitionS[i]);
+        }
+    }
+
+    class DFA3 extends DFA {
+
+        public DFA3(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 3;
+            this.eot = DFA3_eot;
+            this.eof = DFA3_eof;
+            this.min = DFA3_min;
+            this.max = DFA3_max;
+            this.accept = DFA3_accept;
+            this.special = DFA3_special;
+            this.transition = DFA3_transition;
+        }
+        public String getDescription() {
+            return "4202:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )";
+        }
+    }
     static final String DFA26_eotS =
-        "\1\uffff\1\71\3\uffff\1\71\1\uffff\1\104\2\uffff\1\110\1\71\1\117\2\71\2\uffff\2\71\1\uffff\3\71\1\144\1\71\1\153\1\156\1\160\1\164\1\166\1\171\1\174\1\176\1\u0081\1\uffff\1\u0084\1\uffff\1\u0088\1\71\1\u008b\1\144\1\67\1\u008b\1\110\1\u0088\1\71\1\u008f\1\u0091\1\117\1\u0091\1\71\1\uffff\2\67\2\uffff\1\71\4\uffff\2\71\1\uffff\1\71\6\uffff\1\71\1\uffff\6\71\1\uffff\2\71\1\u00a6\1\71\2\uffff\5\71\1\uffff\4\71\1\u00b2\4\uffff\1\u00b3\1\uffff\1\u00b4\1\71\14\uffff\1\u00b7\1\uffff\1\u00b9\16\uffff\1\71\1\u00bb\1\uffff\2\71\1\uffff\1\144\1\u00be\1\u00bb\1\uffff\1\u00c2\1\uffff\1\u00c2\1\u00b2\2\uffff\14\71\1\u00d1\3\71\1\uffff\1\71\1\u00d6\11\71\3\uffff\1\71\4\uffff\1\71\1\uffff\2\71\1\uffff\1\77\1\u00be\2\uffff\1\71\1\u00e6\1\u00e7\2\71\1\u00ea\1\u00eb\5\71\1\u00f1\1\71\1\uffff\2\71\1\u00f5\1\71\1\uffff\1\u00f7\1\71\1\u00f9\1\u00fa\2\71\1\u00fd\2\71\1\u0100\2\71\1\u0103\2\71\2\uffff\1\u0106\1\u0107\2\uffff\2\71\1\u010a\1\u010b\1\u010c\1\uffff\3\71\1\uffff\1\u0110\1\uffff\1\u0111\2\uffff\1\u0112\1\u0113\1\uffff\1\71\1\u0115\1\uffff\2\71\1\uffff\2\71\2\uffff\1\u011a\1\u011b\3\uffff\1\u011c\1\u011d\1\71\4\uffff\1\71\1\uffff\1\u0120\1\71\1\u0122\1\u0123\4\uffff\1\u0124\1\u0125\1\uffff\1\71\4\uffff\1\u0127\1\uffff";
+        "\1\uffff\1\61\3\uffff\1\61\1\uffff\1\74\2\uffff\5\61\2\uffff\2\61\1\uffff\4\61\1\131\1\134\1\136\1\142\1\144\1\147\1\152\1\154\1\157\1\uffff\1\162\1\uffff\3\61\2\167\1\57\1\61\1\uffff\2\57\2\uffff\1\61\4\uffff\2\61\1\uffff\1\61\6\uffff\11\61\1\u008d\1\61\2\uffff\5\61\1\uffff\5\61\14\uffff\1\u009b\1\uffff\1\u009d\16\uffff\3\61\1\uffff\1\167\1\u00a1\1\167\2\uffff\14\61\1\u00b0\3\61\1\uffff\1\61\1\u00b5\12\61\4\uffff\3\61\1\uffff\1\61\1\u00c5\1\u00c6\2\61\1\u00c9\1\u00ca\5\61\1\u00d0\1\61\1\uffff\2\61\1\u00d4\1\61\1\uffff\1\u00d6\1\61\1\u00d8\1\u00d9\2\61\1\u00dc\2\61\1\u00df\2\61\1\u00e2\2\61\2\uffff\1\u00e5\1\u00e6\2\uffff\2\61\1\u00e9\1\u00ea\1\u00eb\1\uffff\3\61\1\uffff\1\u00ef\1\uffff\1\u00f0\2\uffff\1\u00f1\1\u00f2\1\uffff\1\61\1\u00f4\1\uffff\2\61\1\uffff\2\61\2\uffff\1\u00f9\1\u00fa\3\uffff\1\u00fb\1\u00fc\1\61\4\uffff\1\61\1\uffff\1\u00ff\1\61\1\u0101\1\u0102\4\uffff\1\u0103\1\u0104\1\uffff\1\61\4\uffff\1\u0106\1\uffff";
     static final String DFA26_eofS =
-        "\u0128\uffff";
+        "\u0107\uffff";
     static final String DFA26_minS =
-        "\1\0\1\162\3\uffff\1\56\1\uffff\1\74\2\uffff\1\60\1\154\1\60\1\141\1\146\2\uffff\2\56\1\uffff\1\56\2\145\1\56\1\165\1\53\1\55\1\75\1\52\1\74\1\75\1\46\2\75\1\uffff\1\75\1\uffff\1\60\1\157\2\56\1\60\1\56\2\60\1\56\4\60\1\123\1\uffff\2\0\2\uffff\1\157\4\uffff\2\157\1\uffff\1\56\6\uffff\1\143\1\uffff\1\157\2\141\1\151\1\164\1\147\1\uffff\1\155\1\143\1\60\1\160\2\uffff\1\163\1\162\1\165\1\56\1\156\1\uffff\1\145\1\157\1\163\1\170\1\60\4\uffff\1\56\1\60\1\56\1\164\14\uffff\1\75\1\uffff\1\75\16\uffff\1\163\1\60\1\uffff\1\151\1\165\1\uffff\1\56\2\60\1\uffff\1\60\1\uffff\2\60\2\uffff\1\143\1\155\2\141\1\160\1\147\1\142\3\162\1\160\1\164\1\60\1\156\1\145\1\164\1\uffff\1\165\1\60\1\145\1\157\1\155\1\145\1\163\1\141\1\154\1\145\1\164\3\uffff\1\160\4\uffff\1\151\1\uffff\1\144\1\142\1\uffff\1\53\1\60\2\uffff\1\162\2\60\1\164\1\154\2\60\1\141\1\145\1\164\1\145\1\164\1\60\1\143\1\uffff\1\145\1\157\1\60\1\164\1\uffff\1\60\1\162\2\60\1\164\1\153\1\60\1\141\1\164\1\60\1\165\1\147\1\60\1\154\1\141\2\uffff\2\60\2\uffff\1\154\1\144\3\60\1\uffff\1\150\1\144\1\165\1\uffff\1\60\1\uffff\1\60\2\uffff\2\60\1\uffff\1\162\1\60\1\uffff\1\164\1\156\1\uffff\1\145\1\155\2\uffff\2\60\3\uffff\2\60\1\164\4\uffff\1\164\1\uffff\1\60\1\145\2\60\4\uffff\2\60\1\uffff\1\144\4\uffff\1\60\1\uffff";
+        "\1\0\1\162\3\uffff\1\56\1\uffff\1\74\2\uffff\1\157\1\154\1\145\1\141\1\146\2\uffff\2\56\1\uffff\1\56\2\145\1\165\1\53\1\55\1\75\1\52\1\74\1\75\1\46\2\75\1\uffff\1\75\1\uffff\1\156\1\157\3\56\1\60\1\56\1\uffff\2\0\2\uffff\1\157\4\uffff\2\157\1\uffff\1\56\6\uffff\1\143\1\157\2\141\1\151\1\164\1\147\1\155\1\143\1\60\1\160\2\uffff\1\163\1\162\1\165\1\56\1\156\1\uffff\1\145\1\157\1\163\1\170\1\164\14\uffff\1\75\1\uffff\1\75\16\uffff\1\163\1\151\1\165\1\uffff\3\56\2\uffff\1\143\1\155\2\141\1\160\1\147\1\142\3\162\1\160\1\164\1\60\1\156\1\145\1\164\1\uffff\1\165\1\60\1\145\1\157\1\155\1\145\1\163\1\141\1\154\1\145\1\164\1\160\4\uffff\1\151\1\144\1\142\1\uffff\1\162\2\60\1\164\1\154\2\60\1\141\1\145\1\164\1\145\1\164\1\60\1\143\1\uffff\1\145\1\157\1\60\1\164\1\uffff\1\60\1\162\2\60\1\164\1\153\1\60\1\141\1\164\1\60\1\165\1\147\1\60\1\154\1\141\2\uffff\2\60\2\uffff\1\154\1\144\3\60\1\uffff\1\150\1\144\1\165\1\uffff\1\60\1\uffff\1\60\2\uffff\2\60\1\uffff\1\162\1\60\1\uffff\1\164\1\156\1\uffff\1\145\1\155\2\uffff\2\60\3\uffff\2\60\1\164\4\uffff\1\164\1\uffff\1\60\1\145\2\60\4\uffff\2\60\1\uffff\1\144\4\uffff\1\60\1\uffff";
     static final String DFA26_maxS =
-        "\1\uffff\1\162\3\uffff\1\162\1\uffff\1\75\2\uffff\1\172\1\154\1\172\1\151\1\156\2\uffff\1\162\1\157\1\uffff\1\162\1\145\1\163\1\170\1\165\4\75\1\74\1\76\1\75\1\172\1\174\1\uffff\1\75\1\uffff\1\172\1\157\1\172\2\146\3\172\1\146\4\172\1\123\1\uffff\2\uffff\2\uffff\1\157\4\uffff\2\157\1\uffff\1\146\6\uffff\1\157\1\uffff\3\157\1\151\1\164\1\147\1\uffff\1\155\1\143\1\172\1\164\2\uffff\1\163\1\162\1\165\1\163\1\156\1\uffff\1\145\1\157\1\163\1\170\1\172\4\uffff\3\146\1\164\14\uffff\1\75\1\uffff\1\75\16\uffff\1\163\1\172\1\uffff\1\151\1\165\1\uffff\1\146\1\160\1\172\1\uffff\1\172\1\uffff\2\172\2\uffff\1\147\1\155\2\141\1\160\1\147\1\142\2\162\1\164\1\160\1\164\1\172\1\156\1\145\1\164\1\uffff\1\165\1\172\1\145\1\157\1\155\1\145\1\163\1\141\1\154\2\164\3\uffff\1\160\4\uffff\1\151\1\uffff\1\144\1\142\1\uffff\1\55\1\160\2\uffff\1\162\2\172\1\164\1\154\2\172\1\141\1\145\1\164\1\145\1\164\1\172\1\143\1\uffff\1\145\1\157\1\172\1\164\1\uffff\1\172\1\162\2\172\1\164\1\153\1\172\1\141\1\164\1\172\1\165\1\147\1\172\1\154\1\141\2\uffff\2\172\2\uffff\1\154\1\144\3\172\1\uffff\1\150\1\144\1\165\1\uffff\1\172\1\uffff\1\172\2\uffff\2\172\1\uffff\1\162\1\172\1\uffff\1\164\1\156\1\uffff\1\145\1\155\2\uffff\2\172\3\uffff\2\172\1\164\4\uffff\1\164\1\uffff\1\172\1\145\2\172\4\uffff\2\172\1\uffff\1\144\4\uffff\1\172\1\uffff";
+        "\1\uffff\1\162\3\uffff\1\162\1\uffff\1\75\2\uffff\1\157\1\154\1\167\1\151\1\156\2\uffff\1\162\1\157\1\uffff\1\162\2\145\1\165\4\75\1\74\1\76\1\75\1\172\1\174\1\uffff\1\75\1\uffff\1\156\2\157\4\146\1\uffff\2\uffff\2\uffff\1\157\4\uffff\2\157\1\uffff\1\146\6\uffff\4\157\1\151\1\164\1\147\1\155\1\143\1\172\1\164\2\uffff\1\163\1\162\1\165\1\163\1\156\1\uffff\1\145\1\157\1\163\1\170\1\164\14\uffff\1\75\1\uffff\1\75\16\uffff\1\163\1\151\1\165\1\uffff\3\146\2\uffff\1\147\1\155\2\141\1\160\1\147\1\142\2\162\1\164\1\160\1\164\1\172\1\156\1\145\1\164\1\uffff\1\165\1\172\1\145\1\157\1\155\1\145\1\163\1\141\1\154\2\164\1\160\4\uffff\1\151\1\144\1\142\1\uffff\1\162\2\172\1\164\1\154\2\172\1\141\1\145\1\164\1\145\1\164\1\172\1\143\1\uffff\1\145\1\157\1\172\1\164\1\uffff\1\172\1\162\2\172\1\164\1\153\1\172\1\141\1\164\1\172\1\165\1\147\1\172\1\154\1\141\2\uffff\2\172\2\uffff\1\154\1\144\3\172\1\uffff\1\150\1\144\1\165\1\uffff\1\172\1\uffff\1\172\2\uffff\2\172\1\uffff\1\162\1\172\1\uffff\1\164\1\156\1\uffff\1\145\1\155\2\uffff\2\172\3\uffff\2\172\1\164\4\uffff\1\164\1\uffff\1\172\1\145\2\172\4\uffff\2\172\1\uffff\1\144\4\uffff\1\172\1\uffff";
     static final String DFA26_acceptS =
-        "\2\uffff\1\2\1\3\1\5\1\uffff\1\7\1\uffff\1\11\1\12\5\uffff\1\21\1\22\2\uffff\1\26\16\uffff\1\63\1\uffff\1\77\16\uffff\1\135\2\uffff\1\142\1\143\1\uffff\1\135\1\2\1\3\1\5\2\uffff\1\120\1\uffff\1\7\1\67\1\71\1\10\1\11\1\12\1\uffff\1\124\6\uffff\1\131\4\uffff\1\21\1\22\5\uffff\1\26\5\uffff\1\42\1\43\1\123\1\121\4\uffff\1\46\1\52\1\61\1\47\1\53\1\62\1\50\1\75\1\51\1\140\1\141\1\76\1\uffff\1\65\1\uffff\1\70\1\66\1\56\1\103\1\106\1\57\1\105\1\60\1\102\1\104\1\63\1\72\1\64\1\77\2\uffff\1\125\2\uffff\1\126\3\uffff\1\127\1\uffff\1\130\2\uffff\1\137\1\142\20\uffff\1\20\13\uffff\1\134\1\122\1\136\1\uffff\1\54\1\74\1\55\1\73\1\uffff\1\133\2\uffff\1\117\2\uffff\1\117\1\132\16\uffff\1\36\4\uffff\1\113\17\uffff\1\4\1\6\2\uffff\1\33\1\114\5\uffff\1\31\3\uffff\1\116\1\uffff\1\23\1\uffff\1\41\1\25\2\uffff\1\115\2\uffff\1\37\2\uffff\1\107\2\uffff\1\110\1\13\2\uffff\1\112\1\16\1\30\3\uffff\1\44\1\32\1\40\1\27\1\uffff\1\35\4\uffff\1\14\1\15\1\24\1\100\2\uffff\1\45\1\uffff\1\111\1\1\1\17\1\34\1\uffff\1\101";
+        "\2\uffff\1\2\1\3\1\5\1\uffff\1\7\1\uffff\1\11\1\12\5\uffff\1\21\1\22\2\uffff\1\26\15\uffff\1\62\1\uffff\1\76\7\uffff\1\117\2\uffff\1\124\1\125\1\uffff\1\117\1\2\1\3\1\5\2\uffff\1\116\1\uffff\1\7\1\66\1\70\1\10\1\11\1\12\13\uffff\1\21\1\22\5\uffff\1\26\5\uffff\1\45\1\51\1\60\1\46\1\52\1\61\1\47\1\74\1\50\1\122\1\123\1\75\1\uffff\1\64\1\uffff\1\67\1\65\1\55\1\102\1\105\1\56\1\104\1\57\1\101\1\103\1\62\1\71\1\63\1\76\3\uffff\1\115\3\uffff\1\121\1\124\20\uffff\1\20\14\uffff\1\53\1\73\1\54\1\72\3\uffff\1\120\16\uffff\1\36\4\uffff\1\112\17\uffff\1\4\1\6\2\uffff\1\33\1\113\5\uffff\1\31\3\uffff\1\42\1\uffff\1\23\1\uffff\1\41\1\25\2\uffff\1\114\2\uffff\1\37\2\uffff\1\106\2\uffff\1\107\1\13\2\uffff\1\111\1\16\1\30\3\uffff\1\43\1\32\1\40\1\27\1\uffff\1\35\4\uffff\1\14\1\15\1\24\1\77\2\uffff\1\44\1\uffff\1\110\1\1\1\17\1\34\1\uffff\1\100";
     static final String DFA26_specialS =
-        "\1\0\63\uffff\1\1\1\2\u00f2\uffff}>";
+        "\1\0\53\uffff\1\1\1\2\u00d9\uffff}>";
     static final String[] DFA26_transitionS = {
-            "\11\67\2\66\2\67\1\66\22\67\1\66\1\43\1\64\2\67\1\44\1\37\1\65\1\17\1\20\1\33\1\31\1\6\1\32\1\51\1\34\1\27\11\50\1\23\1\4\1\35\1\7\1\36\2\67\3\55\1\52\2\55\1\63\1\56\3\63\1\53\1\57\1\62\4\63\1\60\1\63\1\54\5\63\1\10\1\67\1\11\1\40\1\63\1\67\1\55\1\24\1\22\1\47\1\21\1\5\1\13\1\56\1\16\2\63\1\12\1\61\1\26\1\30\1\1\1\63\1\25\1\14\1\15\1\45\1\46\4\63\1\2\1\41\1\3\1\42\uff81\67",
-            "\1\70",
+            "\11\57\2\56\2\57\1\56\22\57\1\56\1\42\1\54\2\57\1\43\1\36\1\55\1\17\1\20\1\32\1\30\1\6\1\31\1\51\1\33\1\47\11\50\1\23\1\4\1\34\1\7\1\35\2\57\6\52\24\53\1\10\1\57\1\11\1\37\1\53\1\57\1\52\1\24\1\22\1\46\1\21\1\5\1\13\1\53\1\16\2\53\1\12\1\53\1\26\1\27\1\1\1\53\1\25\1\14\1\15\1\44\1\45\4\53\1\2\1\40\1\3\1\41\uff81\57",
+            "\1\60",
             "",
             "",
             "",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100\5\uffff\1\76\5\uffff\1\75",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70\5\uffff\1\66\5\uffff\1\65",
             "",
-            "\1\102\1\103",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\16\71\1\107\13\71",
-            "\1\111",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\4\71\1\115\2\71\1\112\1\116\12\71\1\113\2\71\1\114\3\71",
-            "\1\121\7\uffff\1\120",
-            "\1\122\7\uffff\1\123",
+            "\1\72\1\73",
             "",
             "",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100\5\uffff\1\126\1\uffff\1\130\3\uffff\1\127",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\1\131\5\100\10\uffff\1\132",
+            "\1\77",
+            "\1\100",
+            "\1\104\2\uffff\1\101\1\105\12\uffff\1\102\2\uffff\1\103",
+            "\1\107\7\uffff\1\106",
+            "\1\110\7\uffff\1\111",
             "",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100\10\uffff\1\135\2\uffff\1\134",
-            "\1\136",
-            "\1\137\15\uffff\1\140",
-            "\1\146\1\uffff\10\145\2\147\7\uffff\6\77\15\uffff\1\142\3\uffff\1\143\10\uffff\6\77\15\uffff\1\141\3\uffff\1\143",
-            "\1\150",
-            "\1\151\21\uffff\1\152",
-            "\1\154\17\uffff\1\155",
-            "\1\157",
-            "\1\162\4\uffff\1\163\15\uffff\1\161",
+            "",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70\5\uffff\1\114\1\uffff\1\116\3\uffff\1\115",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\1\117\5\70\10\uffff\1\120",
+            "",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70\10\uffff\1\123\2\uffff\1\122",
+            "\1\124",
+            "\1\125",
+            "\1\126",
+            "\1\127\21\uffff\1\130",
+            "\1\132\17\uffff\1\133",
+            "\1\135",
+            "\1\140\4\uffff\1\141\15\uffff\1\137",
+            "\1\143",
+            "\1\146\1\145",
+            "\1\151\26\uffff\1\150",
+            "\1\153\3\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\1\155\76\uffff\1\156",
+            "",
+            "\1\161",
+            "",
+            "\1\164",
             "\1\165",
-            "\1\170\1\167",
-            "\1\173\26\uffff\1\172",
-            "\1\175\3\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\177\76\uffff\1\u0080",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70\10\uffff\1\166",
+            "\1\67\1\uffff\10\170\2\171\7\uffff\6\67\32\uffff\6\67",
+            "\1\67\1\uffff\12\172\7\uffff\6\67\32\uffff\6\67",
+            "\12\67\7\uffff\6\67\32\uffff\6\67",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70",
             "",
+            "\0\173",
+            "\0\173",
+            "",
+            "",
+            "\1\175",
+            "",
+            "",
+            "",
+            "",
+            "\1\176",
+            "\1\177",
+            "",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u0080\12\uffff\1\u0082\1\u0081",
             "\1\u0083",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\15\71\1\u0086\4\71\1\u0087\7\71",
+            "\1\u0084\15\uffff\1\u0085",
+            "\1\u0086\15\uffff\1\u0087",
+            "\1\u0088",
             "\1\u0089",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\24\71\4\uffff\1\71\1\uffff\6\100\10\71\1\u008a\13\71",
-            "\1\146\1\uffff\12\u008c\7\uffff\6\77\32\uffff\6\77",
-            "\12\u008d\7\uffff\6\77\32\uffff\6\77",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\24\71\4\uffff\1\71\1\uffff\6\100\24\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\22\71\1\u008e\7\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\22\71\1\u0090\7\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\22\71\1\u0092\7\71",
-            "\1\u0093",
-            "",
-            "\0\u0094",
-            "\0\u0094",
+            "\1\u008a",
+            "\1\u008b",
+            "\1\u008c",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\1\u008e\3\uffff\1\u008f",
             "",
             "",
+            "\1\u0090",
+            "\1\u0091",
+            "\1\u0092",
+            "\1\67\1\uffff\12\70\7\uffff\6\70\32\uffff\6\70\14\uffff\1\u0093",
+            "\1\u0094",
+            "",
+            "\1\u0095",
             "\1\u0096",
-            "",
-            "",
-            "",
-            "",
             "\1\u0097",
             "\1\u0098",
-            "",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100",
-            "",
+            "\1\u0099",
             "",
             "",
             "",
             "",
             "",
-            "\1\u0099\12\uffff\1\u009b\1\u009a",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u009a",
             "",
             "\1\u009c",
-            "\1\u009d\15\uffff\1\u009e",
-            "\1\u009f\15\uffff\1\u00a0",
-            "\1\u00a1",
-            "\1\u00a2",
-            "\1\u00a3",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u009e",
+            "\1\u009f",
+            "\1\u00a0",
+            "",
+            "\1\67\1\uffff\10\170\2\171\7\uffff\6\67\32\uffff\6\67",
+            "\1\67\1\uffff\12\171\7\uffff\6\67\32\uffff\6\67",
+            "\1\67\1\uffff\12\172\7\uffff\6\67\32\uffff\6\67",
+            "",
+            "",
+            "\1\u00a3\3\uffff\1\u00a2",
             "\1\u00a4",
             "\1\u00a5",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u00a7\3\uffff\1\u00a8",
-            "",
-            "",
+            "\1\u00a6",
+            "\1\u00a7",
+            "\1\u00a8",
             "\1\u00a9",
             "\1\u00aa",
             "\1\u00ab",
-            "\1\77\1\uffff\12\100\7\uffff\6\100\32\uffff\6\100\14\uffff\1\u00ac",
-            "\1\u00ad",
-            "",
+            "\1\u00ad\1\uffff\1\u00ac",
             "\1\u00ae",
             "\1\u00af",
-            "\1\u00b0",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00b1",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00b2",
+            "\1\u00b3",
             "",
-            "",
-            "",
-            "",
-            "\1\146\1\uffff\10\145\2\147\7\uffff\6\77\32\uffff\6\77",
-            "\12\u008d\7\uffff\6\77\32\uffff\6\77",
-            "\1\146\1\uffff\12\147\7\uffff\6\77\32\uffff\6\77",
-            "\1\u00b5",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\u00b4",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00b6",
-            "",
+            "\1\u00b7",
             "\1\u00b8",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\u00b9",
             "\1\u00ba",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
+            "\1\u00bb",
             "\1\u00bc",
-            "\1\u00bd",
-            "",
-            "\1\146\1\uffff\12\u008c\7\uffff\6\77\32\uffff\6\77",
-            "\12\u008d\7\uffff\4\77\1\u00bf\1\u00c0\5\uffff\1\u00c1\3\uffff\1\77\20\uffff\4\77\1\u00bf\1\u00c0\5\uffff\1\u00c1\3\uffff\1\77",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00be\16\uffff\1\u00bd",
+            "\1\u00bf",
+            "\1\u00c0",
             "",
             "",
-            "\1\u00c4\3\uffff\1\u00c3",
-            "\1\u00c5",
-            "\1\u00c6",
+            "",
+            "",
+            "\1\u00c1",
+            "\1\u00c2",
+            "\1\u00c3",
+            "",
+            "\1\u00c4",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00c7",
             "\1\u00c8",
-            "\1\u00c9",
-            "\1\u00ca",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00cb",
             "\1\u00cc",
-            "\1\u00ce\1\uffff\1\u00cd",
+            "\1\u00cd",
+            "\1\u00ce",
             "\1\u00cf",
-            "\1\u00d0",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\1\u00d1",
+            "",
             "\1\u00d2",
             "\1\u00d3",
-            "\1\u00d4",
-            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00d5",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00d7",
-            "\1\u00d8",
-            "\1\u00d9",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00da",
             "\1\u00db",
-            "\1\u00dc",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00dd",
-            "\1\u00df\16\uffff\1\u00de",
+            "\1\u00de",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00e0",
-            "",
-            "",
-            "",
             "\1\u00e1",
-            "",
-            "",
-            "",
-            "",
-            "\1\u00e2",
-            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "\1\u00e3",
             "\1\u00e4",
             "",
-            "\1\u00be\1\uffff\1\u00be",
-            "\12\77\7\uffff\6\77\5\uffff\1\77\3\uffff\1\77\20\uffff\6\77\5\uffff\1\77\3\uffff\1\77",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "",
             "",
-            "\1\u00e5",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00e7",
             "\1\u00e8",
-            "\1\u00e9",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
             "\1\u00ec",
             "\1\u00ed",
             "\1\u00ee",
-            "\1\u00ef",
-            "\1\u00f0",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u00f2",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "",
             "\1\u00f3",
-            "\1\u00f4",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
+            "\1\u00f5",
             "\1\u00f6",
             "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00f7",
             "\1\u00f8",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u00fb",
-            "\1\u00fc",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
+            "",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\1\u00fd",
+            "",
+            "",
+            "",
+            "",
             "\1\u00fe",
-            "\1\u00ff",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u0101",
-            "\1\u0102",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u0104",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\1\u0100",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
+            "",
+            "",
+            "",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "",
             "\1\u0105",
             "",
             "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
             "",
             "",
-            "\1\u0108",
-            "\1\u0109",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\1\u010d",
-            "\1\u010e",
-            "\1\u010f",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\1\u0114",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\1\u0116",
-            "\1\u0117",
-            "",
-            "\1\u0118",
-            "\1\u0119",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u011e",
-            "",
-            "",
-            "",
-            "",
-            "\1\u011f",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\u0121",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\1\u0126",
-            "",
-            "",
-            "",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             ""
     };
 
@@ -4164,7 +3880,7 @@ public class InternalReflexLexer extends Lexer {
             this.transition = DFA26_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_VOID_C_TYPE | RULE_FLOAT_C_TYPE | RULE_DOUBLE_C_TYPE | RULE_SHORT_C_TYPE | RULE_INT_C_TYPE | RULE_LONG_C_TYPE | RULE_BOOL_TYPE | RULE_TACT | RULE_DEC_FLOAT | RULE_HEX_FLOAT | RULE_DECIMAL | RULE_OCTAL | RULE_HEX | RULE_LONG | RULE_UNSIGNED | RULE_DAY | RULE_HOUR | RULE_MINUTE | RULE_SECOND | RULE_MILISECOND | RULE_MICROSECOND | RULE_NANOSECOND | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_VOID_C_TYPE | RULE_FLOAT_C_TYPE | RULE_DOUBLE_C_TYPE | RULE_SHORT_C_TYPE | RULE_INT_C_TYPE | RULE_LONG_C_TYPE | RULE_BOOL_TYPE | RULE_INTEGER | RULE_FLOAT | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
@@ -4218,91 +3934,75 @@ public class InternalReflexLexer extends Lexer {
 
                         else if ( (LA26_0=='n') ) {s = 22;}
 
-                        else if ( (LA26_0=='0') ) {s = 23;}
+                        else if ( (LA26_0=='o') ) {s = 23;}
 
-                        else if ( (LA26_0=='o') ) {s = 24;}
+                        else if ( (LA26_0=='+') ) {s = 24;}
 
-                        else if ( (LA26_0=='+') ) {s = 25;}
+                        else if ( (LA26_0=='-') ) {s = 25;}
 
-                        else if ( (LA26_0=='-') ) {s = 26;}
+                        else if ( (LA26_0=='*') ) {s = 26;}
 
-                        else if ( (LA26_0=='*') ) {s = 27;}
+                        else if ( (LA26_0=='/') ) {s = 27;}
 
-                        else if ( (LA26_0=='/') ) {s = 28;}
+                        else if ( (LA26_0=='<') ) {s = 28;}
 
-                        else if ( (LA26_0=='<') ) {s = 29;}
+                        else if ( (LA26_0=='>') ) {s = 29;}
 
-                        else if ( (LA26_0=='>') ) {s = 30;}
+                        else if ( (LA26_0=='&') ) {s = 30;}
 
-                        else if ( (LA26_0=='&') ) {s = 31;}
+                        else if ( (LA26_0=='^') ) {s = 31;}
 
-                        else if ( (LA26_0=='^') ) {s = 32;}
+                        else if ( (LA26_0=='|') ) {s = 32;}
 
-                        else if ( (LA26_0=='|') ) {s = 33;}
+                        else if ( (LA26_0=='~') ) {s = 33;}
 
-                        else if ( (LA26_0=='~') ) {s = 34;}
+                        else if ( (LA26_0=='!') ) {s = 34;}
 
-                        else if ( (LA26_0=='!') ) {s = 35;}
+                        else if ( (LA26_0=='%') ) {s = 35;}
 
-                        else if ( (LA26_0=='%') ) {s = 36;}
+                        else if ( (LA26_0=='u') ) {s = 36;}
 
-                        else if ( (LA26_0=='u') ) {s = 37;}
+                        else if ( (LA26_0=='v') ) {s = 37;}
 
-                        else if ( (LA26_0=='v') ) {s = 38;}
+                        else if ( (LA26_0=='d') ) {s = 38;}
 
-                        else if ( (LA26_0=='d') ) {s = 39;}
+                        else if ( (LA26_0=='0') ) {s = 39;}
 
                         else if ( ((LA26_0>='1' && LA26_0<='9')) ) {s = 40;}
 
                         else if ( (LA26_0=='.') ) {s = 41;}
 
-                        else if ( (LA26_0=='D') ) {s = 42;}
+                        else if ( ((LA26_0>='A' && LA26_0<='F')||LA26_0=='a') ) {s = 42;}
 
-                        else if ( (LA26_0=='L') ) {s = 43;}
+                        else if ( ((LA26_0>='G' && LA26_0<='Z')||LA26_0=='_'||LA26_0=='h'||(LA26_0>='j' && LA26_0<='k')||LA26_0=='m'||LA26_0=='q'||(LA26_0>='w' && LA26_0<='z')) ) {s = 43;}
 
-                        else if ( (LA26_0=='U') ) {s = 44;}
+                        else if ( (LA26_0=='\"') ) {s = 44;}
 
-                        else if ( ((LA26_0>='A' && LA26_0<='C')||(LA26_0>='E' && LA26_0<='F')||LA26_0=='a') ) {s = 45;}
+                        else if ( (LA26_0=='\'') ) {s = 45;}
 
-                        else if ( (LA26_0=='H'||LA26_0=='h') ) {s = 46;}
+                        else if ( ((LA26_0>='\t' && LA26_0<='\n')||LA26_0=='\r'||LA26_0==' ') ) {s = 46;}
 
-                        else if ( (LA26_0=='M') ) {s = 47;}
-
-                        else if ( (LA26_0=='S') ) {s = 48;}
-
-                        else if ( (LA26_0=='m') ) {s = 49;}
-
-                        else if ( (LA26_0=='N') ) {s = 50;}
-
-                        else if ( (LA26_0=='G'||(LA26_0>='I' && LA26_0<='K')||(LA26_0>='O' && LA26_0<='R')||LA26_0=='T'||(LA26_0>='V' && LA26_0<='Z')||LA26_0=='_'||(LA26_0>='j' && LA26_0<='k')||LA26_0=='q'||(LA26_0>='w' && LA26_0<='z')) ) {s = 51;}
-
-                        else if ( (LA26_0=='\"') ) {s = 52;}
-
-                        else if ( (LA26_0=='\'') ) {s = 53;}
-
-                        else if ( ((LA26_0>='\t' && LA26_0<='\n')||LA26_0=='\r'||LA26_0==' ') ) {s = 54;}
-
-                        else if ( ((LA26_0>='\u0000' && LA26_0<='\b')||(LA26_0>='\u000B' && LA26_0<='\f')||(LA26_0>='\u000E' && LA26_0<='\u001F')||(LA26_0>='#' && LA26_0<='$')||(LA26_0>='?' && LA26_0<='@')||LA26_0=='\\'||LA26_0=='`'||(LA26_0>='\u007F' && LA26_0<='\uFFFF')) ) {s = 55;}
+                        else if ( ((LA26_0>='\u0000' && LA26_0<='\b')||(LA26_0>='\u000B' && LA26_0<='\f')||(LA26_0>='\u000E' && LA26_0<='\u001F')||(LA26_0>='#' && LA26_0<='$')||(LA26_0>='?' && LA26_0<='@')||LA26_0=='\\'||LA26_0=='`'||(LA26_0>='\u007F' && LA26_0<='\uFFFF')) ) {s = 47;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA26_52 = input.LA(1);
+                        int LA26_44 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA26_52>='\u0000' && LA26_52<='\uFFFF')) ) {s = 148;}
+                        if ( ((LA26_44>='\u0000' && LA26_44<='\uFFFF')) ) {s = 123;}
 
-                        else s = 55;
+                        else s = 47;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA26_53 = input.LA(1);
+                        int LA26_45 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA26_53>='\u0000' && LA26_53<='\uFFFF')) ) {s = 148;}
+                        if ( ((LA26_45>='\u0000' && LA26_45<='\uFFFF')) ) {s = 123;}
 
-                        else s = 55;
+                        else s = 47;
 
                         if ( s>=0 ) return s;
                         break;

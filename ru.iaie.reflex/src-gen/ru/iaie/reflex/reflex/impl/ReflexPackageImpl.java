@@ -65,6 +65,7 @@ import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
+import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
@@ -428,7 +429,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass integerEClass = null;
+  private EClass tactEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -840,9 +841,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getRegisterPort_Port()
+  public EAttribute getRegisterPort_Port()
   {
-    return (EReference)registerPortEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)registerPortEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1148,9 +1149,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getCaseStat_Option()
+  public EAttribute getCaseStat_Option()
   {
-    return (EReference)caseStatEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)caseStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1390,9 +1391,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getRegister_Addr1()
+  public EAttribute getRegister_Addr1()
   {
-    return (EReference)registerEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)registerEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1401,9 +1402,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getRegister_Addr2()
+  public EAttribute getRegister_Addr2()
   {
-    return (EReference)registerEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)registerEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1412,9 +1413,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getRegister_RegSize()
+  public EAttribute getRegister_RegSize()
   {
-    return (EReference)registerEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)registerEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1984,9 +1985,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getInteger()
+  public EClass getTact()
   {
-    return integerEClass;
+    return tactEClass;
   }
 
   /**
@@ -1995,20 +1996,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getInteger_Value()
+  public EAttribute getTact_Value()
   {
-    return (EAttribute)integerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getInteger_Qualfier()
-  {
-    return (EAttribute)integerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)tactEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2028,42 +2018,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getTime_IsDay()
+  public EAttribute getTime_Ticks()
   {
     return (EAttribute)timeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getTime_Days()
-  {
-    return (EAttribute)timeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getTime_IsHour()
-  {
-    return (EAttribute)timeEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getTime_Hours()
-  {
-    return (EAttribute)timeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2237,7 +2194,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     registerPortEClass = createEClass(REGISTER_PORT);
     createEAttribute(registerPortEClass, REGISTER_PORT__REG_NAME);
-    createEReference(registerPortEClass, REGISTER_PORT__PORT);
+    createEAttribute(registerPortEClass, REGISTER_PORT__PORT);
 
     programVariableEClass = createEClass(PROGRAM_VARIABLE);
     createEReference(programVariableEClass, PROGRAM_VARIABLE__TYPE);
@@ -2275,7 +2232,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(switchStatEClass, SWITCH_STAT__OPTIONS);
 
     caseStatEClass = createEClass(CASE_STAT);
-    createEReference(caseStatEClass, CASE_STAT__OPTION);
+    createEAttribute(caseStatEClass, CASE_STAT__OPTION);
     createEReference(caseStatEClass, CASE_STAT__BODY);
     createEAttribute(caseStatEClass, CASE_STAT__HAS_BREAK);
 
@@ -2306,9 +2263,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     registerEClass = createEClass(REGISTER);
     createEAttribute(registerEClass, REGISTER__TYPE);
     createEAttribute(registerEClass, REGISTER__NAME);
-    createEReference(registerEClass, REGISTER__ADDR1);
-    createEReference(registerEClass, REGISTER__ADDR2);
-    createEReference(registerEClass, REGISTER__REG_SIZE);
+    createEAttribute(registerEClass, REGISTER__ADDR1);
+    createEAttribute(registerEClass, REGISTER__ADDR2);
+    createEAttribute(registerEClass, REGISTER__REG_SIZE);
 
     constEClass = createEClass(CONST);
     createEAttribute(constEClass, CONST__CONST_ID);
@@ -2384,15 +2341,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     reflexTypeEClass = createEClass(REFLEX_TYPE);
 
-    integerEClass = createEClass(INTEGER);
-    createEAttribute(integerEClass, INTEGER__VALUE);
-    createEAttribute(integerEClass, INTEGER__QUALFIER);
+    tactEClass = createEClass(TACT);
+    createEAttribute(tactEClass, TACT__VALUE);
 
     timeEClass = createEClass(TIME);
-    createEAttribute(timeEClass, TIME__IS_DAY);
-    createEAttribute(timeEClass, TIME__DAYS);
-    createEAttribute(timeEClass, TIME__IS_HOUR);
-    createEAttribute(timeEClass, TIME__HOURS);
+    createEAttribute(timeEClass, TIME__TICKS);
 
     // Create enums
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
@@ -2469,7 +2422,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
     expressionEClass.getESuperTypes().add(this.getStatement());
     cTypeEClass.getESuperTypes().add(this.getReflexType());
-    integerEClass.getESuperTypes().add(this.getPrimaryExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2502,7 +2454,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(registerPortEClass, RegisterPort.class, "RegisterPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRegisterPort_RegName(), ecorePackage.getEString(), "regName", null, 0, 1, RegisterPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRegisterPort_Port(), this.getInteger(), null, "port", null, 0, 1, RegisterPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegisterPort_Port(), ecorePackage.getEString(), "port", null, 0, 1, RegisterPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programVariableEClass, ProgramVariable.class, "ProgramVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProgramVariable_Type(), this.getReflexType(), null, "type", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2540,7 +2492,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getSwitchStat_Options(), this.getCaseStat(), null, "options", null, 0, -1, SwitchStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(caseStatEClass, CaseStat.class, "CaseStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCaseStat_Option(), this.getInteger(), null, "option", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCaseStat_Option(), ecorePackage.getEString(), "option", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCaseStat_Body(), this.getStatementSequence(), null, "body", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCaseStat_HasBreak(), ecorePackage.getEBoolean(), "hasBreak", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2571,9 +2523,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(registerEClass, Register.class, "Register", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRegister_Type(), this.getRegisterType(), "type", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRegister_Name(), ecorePackage.getEString(), "name", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRegister_Addr1(), this.getInteger(), null, "addr1", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRegister_Addr2(), this.getInteger(), null, "addr2", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRegister_RegSize(), this.getInteger(), null, "regSize", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegister_Addr1(), ecorePackage.getEString(), "addr1", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegister_Addr2(), ecorePackage.getEString(), "addr2", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegister_RegSize(), ecorePackage.getEString(), "regSize", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constEClass, Const.class, "Const", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConst_ConstId(), ecorePackage.getEString(), "constId", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2649,15 +2601,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(reflexTypeEClass, ReflexType.class, "ReflexType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(integerEClass, ru.iaie.reflex.reflex.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInteger_Value(), ecorePackage.getEString(), "value", null, 0, 1, ru.iaie.reflex.reflex.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getInteger_Qualfier(), ecorePackage.getEBoolean(), "qualfier", null, 0, 1, ru.iaie.reflex.reflex.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTact_Value(), ecorePackage.getEString(), "value", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(timeEClass, Time.class, "Time", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTime_IsDay(), ecorePackage.getEBoolean(), "isDay", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTime_Days(), ecorePackage.getEString(), "days", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTime_IsHour(), ecorePackage.getEBoolean(), "isHour", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTime_Hours(), ecorePackage.getEString(), "hours", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTime_Ticks(), ecorePackage.getEString(), "ticks", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");

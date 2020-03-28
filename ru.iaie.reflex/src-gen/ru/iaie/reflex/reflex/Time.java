@@ -14,10 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Time#isIsDay <em>Is Day</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getDays <em>Days</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#isIsHour <em>Is Hour</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Time#getHours <em>Hours</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Time#getTicks <em>Ticks</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getTime()
@@ -27,91 +24,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface Time extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Is Day</b></em>' attribute.
+   * Returns the value of the '<em><b>Ticks</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Day</em>' attribute.
-   * @see #setIsDay(boolean)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_IsDay()
+   * @return the value of the '<em>Ticks</em>' attribute.
+   * @see #setTicks(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Ticks()
    * @model
    * @generated
    */
-  boolean isIsDay();
+  String getTicks();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#isIsDay <em>Is Day</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getTicks <em>Ticks</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Day</em>' attribute.
-   * @see #isIsDay()
+   * @param value the new value of the '<em>Ticks</em>' attribute.
+   * @see #getTicks()
    * @generated
    */
-  void setIsDay(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Days</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Days</em>' attribute.
-   * @see #setDays(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Days()
-   * @model
-   * @generated
-   */
-  String getDays();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getDays <em>Days</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Days</em>' attribute.
-   * @see #getDays()
-   * @generated
-   */
-  void setDays(String value);
-
-  /**
-   * Returns the value of the '<em><b>Is Hour</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Hour</em>' attribute.
-   * @see #setIsHour(boolean)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_IsHour()
-   * @model
-   * @generated
-   */
-  boolean isIsHour();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#isIsHour <em>Is Hour</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Hour</em>' attribute.
-   * @see #isIsHour()
-   * @generated
-   */
-  void setIsHour(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Hours</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Hours</em>' attribute.
-   * @see #setHours(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTime_Hours()
-   * @model
-   * @generated
-   */
-  String getHours();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Time#getHours <em>Hours</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Hours</em>' attribute.
-   * @see #getHours()
-   * @generated
-   */
-  void setHours(String value);
+  void setTicks(String value);
 
 } // Time

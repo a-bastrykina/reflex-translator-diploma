@@ -40,8 +40,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RegisterPort">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="regName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//Integer"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
@@ -90,8 +89,7 @@
         eType="#//CaseStat" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CaseStat">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="option" eType="#//Integer"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="option" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//StatementSequence"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasBreak" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -126,12 +124,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Register">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RegisterType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="addr1" eType="#//Integer"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="addr2" eType="#//Integer"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="regSize" eType="#//Integer"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="addr1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="addr2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Const">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -260,14 +255,10 @@
     <eLiterals name="UNSIGNED" value="1" literal="unsigned"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReflexType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Integer" eSuperTypes="#//PrimaryExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="Tact">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualfier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Time">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDay" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="days" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isHour" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hours" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

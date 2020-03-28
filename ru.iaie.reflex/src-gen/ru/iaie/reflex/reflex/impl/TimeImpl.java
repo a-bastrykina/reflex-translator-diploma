@@ -21,10 +21,7 @@ import ru.iaie.reflex.reflex.Time;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isIsDay <em>Is Day</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#getDays <em>Days</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#isIsHour <em>Is Hour</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#getHours <em>Hours</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeImpl#getTicks <em>Ticks</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,84 +29,24 @@ import ru.iaie.reflex.reflex.Time;
 public class TimeImpl extends MinimalEObjectImpl.Container implements Time
 {
   /**
-   * The default value of the '{@link #isIsDay() <em>Is Day</em>}' attribute.
+   * The default value of the '{@link #getTicks() <em>Ticks</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsDay()
+   * @see #getTicks()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_DAY_EDEFAULT = false;
+  protected static final String TICKS_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isIsDay() <em>Is Day</em>}' attribute.
+   * The cached value of the '{@link #getTicks() <em>Ticks</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsDay()
+   * @see #getTicks()
    * @generated
    * @ordered
    */
-  protected boolean isDay = IS_DAY_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDays() <em>Days</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDays()
-   * @generated
-   * @ordered
-   */
-  protected static final String DAYS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDays() <em>Days</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDays()
-   * @generated
-   * @ordered
-   */
-  protected String days = DAYS_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isIsHour() <em>Is Hour</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isIsHour()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean IS_HOUR_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isIsHour() <em>Is Hour</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isIsHour()
-   * @generated
-   * @ordered
-   */
-  protected boolean isHour = IS_HOUR_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getHours() <em>Hours</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHours()
-   * @generated
-   * @ordered
-   */
-  protected static final String HOURS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getHours() <em>Hours</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHours()
-   * @generated
-   * @ordered
-   */
-  protected String hours = HOURS_EDEFAULT;
+  protected String ticks = TICKS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -138,9 +75,9 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
    * @generated
    */
   @Override
-  public boolean isIsDay()
+  public String getTicks()
   {
-    return isDay;
+    return ticks;
   }
 
   /**
@@ -149,87 +86,12 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
    * @generated
    */
   @Override
-  public void setIsDay(boolean newIsDay)
+  public void setTicks(String newTicks)
   {
-    boolean oldIsDay = isDay;
-    isDay = newIsDay;
+    String oldTicks = ticks;
+    ticks = newTicks;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__IS_DAY, oldIsDay, isDay));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getDays()
-  {
-    return days;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setDays(String newDays)
-  {
-    String oldDays = days;
-    days = newDays;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__DAYS, oldDays, days));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isIsHour()
-  {
-    return isHour;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setIsHour(boolean newIsHour)
-  {
-    boolean oldIsHour = isHour;
-    isHour = newIsHour;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__IS_HOUR, oldIsHour, isHour));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getHours()
-  {
-    return hours;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setHours(String newHours)
-  {
-    String oldHours = hours;
-    hours = newHours;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__HOURS, oldHours, hours));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME__TICKS, oldTicks, ticks));
   }
 
   /**
@@ -242,14 +104,8 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
   {
     switch (featureID)
     {
-      case ReflexPackage.TIME__IS_DAY:
-        return isIsDay();
-      case ReflexPackage.TIME__DAYS:
-        return getDays();
-      case ReflexPackage.TIME__IS_HOUR:
-        return isIsHour();
-      case ReflexPackage.TIME__HOURS:
-        return getHours();
+      case ReflexPackage.TIME__TICKS:
+        return getTicks();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -264,17 +120,8 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
   {
     switch (featureID)
     {
-      case ReflexPackage.TIME__IS_DAY:
-        setIsDay((Boolean)newValue);
-        return;
-      case ReflexPackage.TIME__DAYS:
-        setDays((String)newValue);
-        return;
-      case ReflexPackage.TIME__IS_HOUR:
-        setIsHour((Boolean)newValue);
-        return;
-      case ReflexPackage.TIME__HOURS:
-        setHours((String)newValue);
+      case ReflexPackage.TIME__TICKS:
+        setTicks((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -290,17 +137,8 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
   {
     switch (featureID)
     {
-      case ReflexPackage.TIME__IS_DAY:
-        setIsDay(IS_DAY_EDEFAULT);
-        return;
-      case ReflexPackage.TIME__DAYS:
-        setDays(DAYS_EDEFAULT);
-        return;
-      case ReflexPackage.TIME__IS_HOUR:
-        setIsHour(IS_HOUR_EDEFAULT);
-        return;
-      case ReflexPackage.TIME__HOURS:
-        setHours(HOURS_EDEFAULT);
+      case ReflexPackage.TIME__TICKS:
+        setTicks(TICKS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -316,14 +154,8 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
   {
     switch (featureID)
     {
-      case ReflexPackage.TIME__IS_DAY:
-        return isDay != IS_DAY_EDEFAULT;
-      case ReflexPackage.TIME__DAYS:
-        return DAYS_EDEFAULT == null ? days != null : !DAYS_EDEFAULT.equals(days);
-      case ReflexPackage.TIME__IS_HOUR:
-        return isHour != IS_HOUR_EDEFAULT;
-      case ReflexPackage.TIME__HOURS:
-        return HOURS_EDEFAULT == null ? hours != null : !HOURS_EDEFAULT.equals(hours);
+      case ReflexPackage.TIME__TICKS:
+        return TICKS_EDEFAULT == null ? ticks != null : !TICKS_EDEFAULT.equals(ticks);
     }
     return super.eIsSet(featureID);
   }
@@ -339,14 +171,8 @@ public class TimeImpl extends MinimalEObjectImpl.Container implements Time
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (isDay: ");
-    result.append(isDay);
-    result.append(", days: ");
-    result.append(days);
-    result.append(", isHour: ");
-    result.append(isHour);
-    result.append(", hours: ");
-    result.append(hours);
+    result.append(" (ticks: ");
+    result.append(ticks);
     result.append(')');
     return result.toString();
   }

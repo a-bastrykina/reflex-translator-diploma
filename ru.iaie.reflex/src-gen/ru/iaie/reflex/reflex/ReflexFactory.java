@@ -465,13 +465,13 @@ public interface ReflexFactory extends EFactory
   ReflexType createReflexType();
 
   /**
-   * Returns a new object of class '<em>Integer</em>'.
+   * Returns a new object of class '<em>Tact</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Integer</em>'.
+   * @return a new object of class '<em>Tact</em>'.
    * @generated
    */
-  Integer createInteger();
+  Tact createTact();
 
   /**
    * Returns a new object of class '<em>Time</em>'.
