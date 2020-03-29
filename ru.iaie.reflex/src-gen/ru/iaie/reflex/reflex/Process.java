@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Process#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Process#getVariable <em>Variable</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Process#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Process#getStates <em>States</em>}</li>
  * </ul>
  *
@@ -50,16 +50,16 @@ public interface Process extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
    * The list contents are of type {@link ru.iaie.reflex.reflex.Variable}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' containment reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getProcess_Variable()
+   * @return the value of the '<em>Variables</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProcess_Variables()
    * @model containment="true"
    * @generated
    */
-  EList<Variable> getVariable();
+  EList<Variable> getVariables();
 
   /**
    * Returns the value of the '<em><b>States</b></em>' containment reference list.

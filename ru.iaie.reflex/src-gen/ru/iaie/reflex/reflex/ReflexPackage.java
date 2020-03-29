@@ -160,13 +160,13 @@ public interface ReflexPackage extends EPackage
   int PROCESS__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+   * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROCESS__VARIABLE = 1;
+  int PROCESS__VARIABLES = 1;
 
   /**
    * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -3244,15 +3244,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getProcess_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Process#getVariable <em>Variable</em>}'.
+   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Process#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Variable</em>'.
-   * @see ru.iaie.reflex.reflex.Process#getVariable()
+   * @return the meta object for the containment reference list '<em>Variables</em>'.
+   * @see ru.iaie.reflex.reflex.Process#getVariables()
    * @see #getProcess()
    * @generated
    */
-  EReference getProcess_Variable();
+  EReference getProcess_Variables();
 
   /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Process#getStates <em>States</em>}'.
@@ -4744,12 +4744,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PROCESS__NAME = eINSTANCE.getProcess_Name();
 
     /**
-     * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROCESS__VARIABLE = eINSTANCE.getProcess_Variable();
+    EReference PROCESS__VARIABLES = eINSTANCE.getProcess_Variables();
 
     /**
      * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.

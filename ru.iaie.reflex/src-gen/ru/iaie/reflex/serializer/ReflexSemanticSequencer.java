@@ -1001,7 +1001,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (name=ID variable+=Variable* states+=State*)
+	 *     (name=ID variables+=Variable* states+=State*)
 	 */
 	protected void sequence_Process(ISerializationContext context, ru.iaie.reflex.reflex.Process semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -119,20 +119,20 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cVariableVariableParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
+		private final Assignment cVariablesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cVariablesVariableParserRuleCall_3_0 = (RuleCall)cVariablesAssignment_3.eContents().get(0);
 		private final Assignment cStatesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cStatesStateParserRuleCall_4_0 = (RuleCall)cStatesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Process:
 		//	"proc" name=ID "{"
-		//	variable+=Variable*
+		//	variables+=Variable*
 		//	states+=State*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"proc" name=ID "{" variable+=Variable* states+=State* "}"
+		//"proc" name=ID "{" variables+=Variable* states+=State* "}"
 		public Group getGroup() { return cGroup; }
 		
 		//"proc"
@@ -147,11 +147,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//variable+=Variable*
-		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
+		//variables+=Variable*
+		public Assignment getVariablesAssignment_3() { return cVariablesAssignment_3; }
 		
 		//Variable
-		public RuleCall getVariableVariableParserRuleCall_3_0() { return cVariableVariableParserRuleCall_3_0; }
+		public RuleCall getVariablesVariableParserRuleCall_3_0() { return cVariablesVariableParserRuleCall_3_0; }
 		
 		//states+=State*
 		public Assignment getStatesAssignment_4() { return cStatesAssignment_4; }
@@ -1408,7 +1408,9 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cVarIdAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cVarIdIDTerminalRuleCall_0_0 = (RuleCall)cVarIdAssignment_0.eContents().get(0);
-		private final RuleCall cINTEGERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cPrimaryExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final RuleCall cINTEGERTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Action cPrimaryExpressionAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final RuleCall cFLOATTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
@@ -1419,10 +1421,10 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//PrimaryExpression:
-		//	varId=ID | INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
+		//	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//varId=ID | INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")"
+		//varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//varId=ID
@@ -1431,8 +1433,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getVarIdIDTerminalRuleCall_0_0() { return cVarIdIDTerminalRuleCall_0_0; }
 		
+		//{PrimaryExpression} INTEGER
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{PrimaryExpression}
+		public Action getPrimaryExpressionAction_1_0() { return cPrimaryExpressionAction_1_0; }
+		
 		//INTEGER
-		public RuleCall getINTEGERTerminalRuleCall_1() { return cINTEGERTerminalRuleCall_1; }
+		public RuleCall getINTEGERTerminalRuleCall_1_1() { return cINTEGERTerminalRuleCall_1_1; }
 		
 		//{PrimaryExpression} FLOAT
 		public Group getGroup_2() { return cGroup_2; }
@@ -1994,6 +2002,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cINT_C_TYPETerminalRuleCall_3_2_1 = (RuleCall)cAlternatives_3_2.eContents().get(1);
 		private final RuleCall cLONG_C_TYPETerminalRuleCall_3_2_2 = (RuleCall)cAlternatives_3_2.eContents().get(2);
 		
+		//// TODO: fix types
 		//CType:
 		//	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE
 		//	| INT_C_TYPE | LONG_C_TYPE);
@@ -2764,7 +2773,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Process:
 	//	"proc" name=ID "{"
-	//	variable+=Variable*
+	//	variables+=Variable*
 	//	states+=State*
 	//	"}";
 	public ProcessElements getProcessAccess() {
@@ -3103,7 +3112,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimaryExpression:
-	//	varId=ID | INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
+	//	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -3334,6 +3343,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicativeOpAccess().getRule();
 	}
 	
+	//// TODO: fix types
 	//CType:
 	//	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE
 	//	| INT_C_TYPE | LONG_C_TYPE);

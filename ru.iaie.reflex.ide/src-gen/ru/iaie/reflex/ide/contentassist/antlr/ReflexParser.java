@@ -98,6 +98,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_2(), "rule__FunctionCall__Group_2__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_2_1(), "rule__FunctionCall__Group_2_1__0");
+			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1(), "rule__PrimaryExpression__Group_1__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_2(), "rule__PrimaryExpression__Group_2__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_3(), "rule__PrimaryExpression__Group_3__0");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getGroup_4(), "rule__UnaryExpression__Group_4__0");
@@ -137,7 +138,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProgramAccess().getRegistersAssignment_4_3(), "rule__Program__RegistersAssignment_4_3");
 			builder.put(grammarAccess.getProgramAccess().getProcessesAssignment_4_4(), "rule__Program__ProcessesAssignment_4_4");
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_1(), "rule__Process__NameAssignment_1");
-			builder.put(grammarAccess.getProcessAccess().getVariableAssignment_3(), "rule__Process__VariableAssignment_3");
+			builder.put(grammarAccess.getProcessAccess().getVariablesAssignment_3(), "rule__Process__VariablesAssignment_3");
 			builder.put(grammarAccess.getProcessAccess().getStatesAssignment_4(), "rule__Process__StatesAssignment_4");
 			builder.put(grammarAccess.getImportedVariableAccess().getProcIdAssignment_2(), "rule__ImportedVariable__ProcIdAssignment_2");
 			builder.put(grammarAccess.getImportedVariableAccess().getVarNamesAssignment_3(), "rule__ImportedVariable__VarNamesAssignment_3");

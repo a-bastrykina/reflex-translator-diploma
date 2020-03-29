@@ -15,7 +15,7 @@ Program:
 
 Process:
 	"proc" name=ID "{"
-	variable+=Variable*
+	variables+=Variable*
 	states+=State*
 	"}";
 
@@ -126,7 +126,7 @@ FunctionCall:
 	funcId=ID "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 PrimaryExpression:
-	varId=ID | INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
+	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -200,6 +200,9 @@ enum AdditiveOp:
 
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
+
+
+// TODO: fix types
 
 CType:
 	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE

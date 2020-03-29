@@ -275,17 +275,17 @@ ruleProcess returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProcessAccess().getVariableVariableParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getProcessAccess().getVariablesVariableParserRuleCall_3_0());
 				}
-				lv_variable_3_0=ruleVariable
+				lv_variables_3_0=ruleVariable
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProcessRule());
 					}
 					add(
 						$current,
-						"variable",
-						lv_variable_3_0,
+						"variables",
+						lv_variables_3_0,
 						"ru.iaie.reflex.Reflex.Variable");
 					afterParserOrEnumRuleCall();
 				}
@@ -2525,10 +2525,19 @@ rulePrimaryExpression returns [EObject current=null]
 			)
 		)
 		    |
-		this_INTEGER_1=RULE_INTEGER
-		{
-			newLeafNode(this_INTEGER_1, grammarAccess.getPrimaryExpressionAccess().getINTEGERTerminalRuleCall_1());
-		}
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getPrimaryExpressionAccess().getPrimaryExpressionAction_1_0(),
+						$current);
+				}
+			)
+			this_INTEGER_2=RULE_INTEGER
+			{
+				newLeafNode(this_INTEGER_2, grammarAccess.getPrimaryExpressionAccess().getINTEGERTerminalRuleCall_1_1());
+			}
+		)
 		    |
 		(
 			(
@@ -2538,23 +2547,23 @@ rulePrimaryExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			this_FLOAT_3=RULE_FLOAT
+			this_FLOAT_4=RULE_FLOAT
 			{
-				newLeafNode(this_FLOAT_3, grammarAccess.getPrimaryExpressionAccess().getFLOATTerminalRuleCall_2_1());
+				newLeafNode(this_FLOAT_4, grammarAccess.getPrimaryExpressionAccess().getFLOATTerminalRuleCall_2_1());
 			}
 		)
 		    |
 		(
-			otherlv_4='('
+			otherlv_5='('
 			{
-				newLeafNode(otherlv_4, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_3_0());
+				newLeafNode(otherlv_5, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_3_0());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getExprExpressionParserRuleCall_3_1_0());
 					}
-					lv_expr_5_0=ruleExpression
+					lv_expr_6_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
@@ -2562,15 +2571,15 @@ rulePrimaryExpression returns [EObject current=null]
 						set(
 							$current,
 							"expr",
-							lv_expr_5_0,
+							lv_expr_6_0,
 							"ru.iaie.reflex.Reflex.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_6=')'
+			otherlv_7=')'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_3_2());
+				newLeafNode(otherlv_7, grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_3_2());
 			}
 		)
 	)

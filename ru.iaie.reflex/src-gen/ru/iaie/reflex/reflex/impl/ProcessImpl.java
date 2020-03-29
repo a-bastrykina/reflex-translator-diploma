@@ -32,7 +32,7 @@ import ru.iaie.reflex.reflex.Variable;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getStates <em>States</em>}</li>
  * </ul>
  *
@@ -61,14 +61,14 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariable()
+   * @see #getVariables()
    * @generated
    * @ordered
    */
-  protected EList<Variable> variable;
+  protected EList<Variable> variables;
 
   /**
    * The cached value of the '{@link #getStates() <em>States</em>}' containment reference list.
@@ -132,13 +132,13 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @generated
    */
   @Override
-  public EList<Variable> getVariable()
+  public EList<Variable> getVariables()
   {
-    if (variable == null)
+    if (variables == null)
     {
-      variable = new EObjectContainmentEList<Variable>(Variable.class, this, ReflexPackage.PROCESS__VARIABLE);
+      variables = new EObjectContainmentEList<Variable>(Variable.class, this, ReflexPackage.PROCESS__VARIABLES);
     }
-    return variable;
+    return variables;
   }
 
   /**
@@ -166,8 +166,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
-      case ReflexPackage.PROCESS__VARIABLE:
-        return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.PROCESS__VARIABLES:
+        return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROCESS__STATES:
         return ((InternalEList<?>)getStates()).basicRemove(otherEnd, msgs);
     }
@@ -186,8 +186,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__NAME:
         return getName();
-      case ReflexPackage.PROCESS__VARIABLE:
-        return getVariable();
+      case ReflexPackage.PROCESS__VARIABLES:
+        return getVariables();
       case ReflexPackage.PROCESS__STATES:
         return getStates();
     }
@@ -208,9 +208,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
       case ReflexPackage.PROCESS__NAME:
         setName((String)newValue);
         return;
-      case ReflexPackage.PROCESS__VARIABLE:
-        getVariable().clear();
-        getVariable().addAll((Collection<? extends Variable>)newValue);
+      case ReflexPackage.PROCESS__VARIABLES:
+        getVariables().clear();
+        getVariables().addAll((Collection<? extends Variable>)newValue);
         return;
       case ReflexPackage.PROCESS__STATES:
         getStates().clear();
@@ -233,8 +233,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
       case ReflexPackage.PROCESS__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReflexPackage.PROCESS__VARIABLE:
-        getVariable().clear();
+      case ReflexPackage.PROCESS__VARIABLES:
+        getVariables().clear();
         return;
       case ReflexPackage.PROCESS__STATES:
         getStates().clear();
@@ -255,8 +255,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReflexPackage.PROCESS__VARIABLE:
-        return variable != null && !variable.isEmpty();
+      case ReflexPackage.PROCESS__VARIABLES:
+        return variables != null && !variables.isEmpty();
       case ReflexPackage.PROCESS__STATES:
         return states != null && !states.isEmpty();
     }

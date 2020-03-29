@@ -6,8 +6,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import ru.iaie.reflex.reflex.Program
 import ru.iaie.reflex.reflex.Process
-import java.util.HashMap
-import java.util.Map
 import ru.iaie.reflex.reflex.State
 import org.eclipse.emf.ecore.EObject
 import ru.iaie.reflex.reflex.StopProcStat
@@ -22,120 +20,150 @@ import ru.iaie.reflex.reflex.LoopStat
 import ru.iaie.reflex.reflex.ResetStat
 import ru.iaie.reflex.reflex.RestartStat
 import ru.iaie.reflex.reflex.TimeoutFunction
+import java.util.List
+import ru.iaie.reflex.reflex.PrimaryExpression
+import ru.iaie.reflex.reflex.ProgramVariable
+import ru.iaie.reflex.reflex.RegisterType
 
 class R2CReflexGenerator extends AbstractGenerator {
-	Map<String, String> procIdentifiers = new HashMap
-	Map<String, String> stateIdentifiers = new HashMap
 
+	IReflexCachedIdentifiersHelper identifiersHelper = new ReflexIdentifiersHelper;
+	// AST root element
 	Program program;
 
+	// These files are common, they are just need to be copied to target c-code dir 
+	// TODO: replace with reading config
+	List<String> commonResources = newArrayList("CA_dll_interface.cpp", "CA_dll_interface.h", "CA_queue_const.h",
+		"CAio.h", "CAports.h", "CAusr1.cpp", "CAusr1.h", "CAusr2.h", "custom_dll_interface.cpp", "dll_interface.h",
+		"LabVIEWData.h", "dll_interface.h", "lib.cpp", "lib.h", "msg_queue.cpp", "msg_queue.h", "proc.h", "R_CNST.H",
+		"r_io.cpp", "r_io.h", "r_lib.cpp", "R_LIB.H", "r_main.h")
+
+	override void afterGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		identifiersHelper.clearCaches()
+	}
+	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		program = resource.allContents.toIterable.filter(Program).get(0)
-		val fileContent = translateProgram(program)
 
-		fsa.generateFile('''«program.name.toLowerCase».cpp''', fileContent)
+		copyResources(fsa)
+		generateVariables(resource, fsa, context)
+		generateProcessImplementations(resource, fsa, context)
+		generateMain(resource, fsa, context)
 	}
 
-	def translateProgram(Program prog) {
+	def copyResources(IFileSystemAccess2 fsa) {
+		for (resource : commonResources) {
+			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
+		}
+	}
+	
+	def generateVariables(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+			/*           Variables          */
+			/* CAGVAR.H = Global Variables Image-File. */
+			#pragma once
+			/*       Process variables     */
+			«generateProcessVariables()»
+			/*          Input Ports         */
+			«generateInputPorts()»
+			/*         Output Ports         */
+			«generateOutputPorts()»
+		'''
+		fsa.generateFile('''c-code/CAgvar.cpp''', fileContent)	
+	}
+	
+	def generateProcessVariables() {
 		return '''
-			#include <stdio.h>
-			#include <stdlib.h>
-			«generateProgramInfo(prog)»
-			int main() {
-				while (1) {
-					int i = 0;
-					for (; i < «ReflexIdentifiers.PROC_COUNT_VAR»; i++) {
-						«FOR proc : prog.processes»
-							«translateProcess(proc)»
-						«ENDFOR»
-					}
+		«FOR proc: program.processes»
+		«FOR variable: proc.variables»
+		«IF (variable instanceof ProgramVariable)»
+		«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getVariableId(proc, variable)»;
+		«ENDIF»
+		«ENDFOR»
+		«ENDFOR»
+		'''
+	}
+	
+	def generateInputPorts() {
+		// TODO: specify port type
+		return '''
+		«FOR reg: program.registers»
+		«IF reg.type == RegisterType.INPUT»
+		char «identifiersHelper.getPortId(reg)»;
+		«ENDIF»
+		«ENDFOR»
+		'''
+	}
+	
+	def generateOutputPorts(){
+		// TODO: specify port type
+		return '''
+		«FOR reg: program.registers»
+		«IF reg.type == RegisterType.OUTPUT»
+		char «identifiersHelper.getPortId(reg)»;
+		«ENDIF»
+		«ENDFOR»
+		'''
+	}
+
+	def generateProcessImplementations(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+			/* FILE OF PROC-IMAGES OF THE PROJECT */
+			#include "CAext.h" /* Common files for all generated c-files */
+			#include "CAxvar.h"  /* Var-images */
+			
+			«FOR proc : program.processes»
+				«translateProcess(proc)»
+			«ENDFOR»
+		'''
+		fsa.generateFile('''c-code/CA0001.cpp''', fileContent)
+	}
+
+	def generateMain(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+			/* MAIN FILE OF THE PROJECT */
+			#include "CAext.h" /* Common files for all generated c-files */
+			#include "CAproc.h"  /* Process-functions desription */
+			#include "CAgvar.h"  /* Project variables images */
+			#include "CAio.h"    /* Scan-input/output functions */
+			void Control_Loop(void);  /* for r_main.h */
+			#include "r_main.h"  /* Codes of the main-function that calls Control_Loop */
+			
+			void Control_Loop (void)    /* Control algorithm */
+			{
+				Input();
+				«FOR proc : program.processes»
+					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
+				«ENDFOR»
+				Output();
+				Prepare_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+			}
+		'''
+
+		fsa.generateFile('''c-code/CAmain.cpp''', fileContent)
+	}
+
+	def translateProcess(Process proc) {
+		return '''
+			void «identifiersHelper.getProcessFuncId(proc)»() { /* Process: «proc.name» */
+				switch (Check_State(«identifiersHelper.getProcessId(proc)»)) {
+					«FOR state : proc.states»
+						«translateState(proc, state)»
+					«ENDFOR»
 				}
 			}
 		'''
 	}
 
-	def translateProcess(Process proc) {
-		return '''
-			switch («ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»]) {
-				«FOR state : proc.states»
-					«translateState(proc, state)»
-				«ENDFOR»
-			}
-		'''
-	}
-
-	def getProcessId(Process proc) {
-		if (!procIdentifiers.containsKey(proc.name)) {
-			val id = proc.name.toUpperCase
-			procIdentifiers.put(proc.name, id)
-		}
-		return procIdentifiers.get(proc.name)
-	}
-
-	def generateProcessesEnum(Program prog) {
-		return '''
-			enum «ReflexIdentifiers.PROC_ENUM_ID» {
-				«FOR proc : prog.processes»
-					«getProcessId(proc)»,
-				«ENDFOR»
-			}
-		'''
-	}
-
-	def getStateId(Process proc, State state) {
-		val key = '''«proc.name».«state.name»'''
-		if (!stateIdentifiers.containsKey(key)) {
-			val id = '''«proc.name.toUpperCase»_«state.name.toUpperCase»'''
-			stateIdentifiers.put(key, id)
-		}
-		return stateIdentifiers.get(key)
-	}
-
-	def generateStateEnum(Process proc) {
-		return '''
-			enum «proc.name»_STATES {
-				«FOR state : proc.states»
-					«getStateId(proc, state)»,
-				«ENDFOR»
-				«proc.name.toUpperCase»«ReflexIdentifiers.STOP_STATE_ID_SUFFIX»,
-				«proc.name.toUpperCase»«ReflexIdentifiers.ERR_STATE_ID_SUFFIX»	
-			}
-		'''
-	}
-
-	def generateTimers(Program prog) {
-		return '''
-			int «ReflexIdentifiers.TIMER_ARRAY_NAME»[«ReflexIdentifiers.PROC_COUNT_VAR»];
-		'''
-	}
-
-	def generateStatesArray(Program prog) {
-		return '''
-			int «ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«ReflexIdentifiers.PROC_COUNT_VAR»];
-		'''
-	}
-
-	def generateProgramInfo(Program prog) {
-		return '''
-			int «ReflexIdentifiers.PROC_COUNT_VAR» = «prog.processes.length»;
-			«generateTimers(prog)»
-			«generateStatesArray(prog)»
-			«generateProcessesEnum(prog)»
-			«FOR proc : prog.processes»
-				«generateStateEnum(proc)»
-			«ENDFOR»
-		'''
-	}
-
 	def translateState(Process proc, State state) {
 		return '''
-			case «getStateId(proc, state)»: {
+			case «identifiersHelper.getStateId(proc, state)»: { /* State: «state.name» */
 			«FOR stat : state.stateFunction.statements»
 				«translateStatement(proc, state, stat)»
-				«IF state.timeoutFunction != null»
-					«translateTimeoutFunction(proc, state, state.timeoutFunction)»
-				«ENDIF»
 			«ENDFOR»
+			«IF state.timeoutFunction !== null »
+				«translateTimeoutFunction(proc, state, state.timeoutFunction)»
+			«ENDIF»
 				break;
 			}
 		'''
@@ -143,12 +171,12 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateTimeoutFunction(Process proc, State state, TimeoutFunction func) {
 		return '''
-			if («ReflexIdentifiers.TIMER_ARRAY_NAME»[«getProcessId(proc)»] >= TODO_Time)
+			if (Timeout(«identifiersHelper.getProcessId(proc)», «func.time.ticks»))
 				«translateStatement(proc, state, func.body)»
 		'''
-
 	}
 
+	// TODO: use multiple dispatch
 	def String translateStatement(Process proc, State state, EObject statement) {
 		if (statement instanceof StopProcStat) {
 			return translateStopProcStat(proc, state, statement)
@@ -165,7 +193,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		} else if (statement instanceof LoopStat) {
 			return '''«translateLoop(proc, state)»'''
 		} else if (statement instanceof ResetStat) {
-			return '''«translateResetTimer(proc)»'''
+			return '''«translateResetTimer(proc, state)»'''
 		} else if (statement instanceof RestartStat) {
 			return '''«translateRestartProcStat(proc)»'''
 		} else if (statement instanceof StatementBlock) {
@@ -190,45 +218,45 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateLoop(Process proc, State state) {
 		// TODO: break ?
-		return translateResetTimer(proc);
+		return ''''''
 	}
 
-	def translateResetTimer(Process proc) {
-		return '''«ReflexIdentifiers.TIMER_ARRAY_NAME»[«getProcessId(proc)»] =  0;''';
+	def translateResetTimer(Process proc, State state) {
+		return translateLoop(proc, state)
 	}
 
 	def translateSetStateStat(Process proc, State state, SetStateStat sss) {
-		// TODO: check index (possible validation check)
-		return '''
-			«IF sss.isNext»
-				«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»] =  «getStateId(proc, state)» + 1;
-			«ELSE»
-				«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»] =  «proc.name.toUpperCase»_«sss.stateId.toUpperCase»;
-			«ENDIF»
-			«translateResetTimer(proc)»
-		'''
+		if (sss.isNext) {
+			return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, state)» + 1);'''
+		}
+		val matchingStates = proc.states.filter[state.name.equals(sss.stateId)].toList
+		// TODO: check during validation 
+		if (matchingStates.isEmpty) {
+			return ''''''
+		}
+		val stateToSet = matchingStates.get(0)
+		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, stateToSet)»);'''
 	}
 
 	def translateStopProcStat(Process proc, State state, StopProcStat sps) {
 		return '''
-			«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»] =  «proc.name.toUpperCase»«ReflexIdentifiers.STOP_STATE_ID_SUFFIX»;
+			Set_Stop(«identifiersHelper.getProcessId(proc)»);
 		'''
 	}
 
 	def translateStartProcStat(Program prog, Process proc, State state, StartProcStat sps) {
+		// TODO: move to validation checks
 		val matchingProcs = prog.processes.filter[proc.name.equals(sps.procId)].toList
 		if(matchingProcs.isEmpty) return ''''''
 		val procToStart = matchingProcs.get(0)
 		return '''
-			«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(procToStart)»] =  «getStateId(procToStart, procToStart.states.get(0))»;
-			«translateResetTimer(procToStart)»
+			Set_Start(«identifiersHelper.getProcessId(procToStart)»);
 		'''
 	}
 
 	def translateRestartProcStat(Process proc) {
 		return '''
-			«ReflexIdentifiers.PROC_STATES_ARRAY_NAME»[«getProcessId(proc)»] =  «getStateId(proc, proc.states.get(0))»
-			«translateResetTimer(proc)»
+			Set_Start(«identifiersHelper.getProcessId(proc)»);
 		'''
 	}
 
@@ -245,7 +273,15 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateExpr(Expression expr) {
+		// TODO: translate variables in expressions
+//		expr.eResource.allContents.filter(PrimaryExpression).forEach[translateId]
 		return '''«NodeModelUtils.getNode(expr).text.trim»'''
 	}
+	
+	def translateId(PrimaryExpression e) {
+		if (e.varId !== null) {
+			e.varId = identifiersHelper.getId(e.varId)
+		}
+	} 
 
 }
