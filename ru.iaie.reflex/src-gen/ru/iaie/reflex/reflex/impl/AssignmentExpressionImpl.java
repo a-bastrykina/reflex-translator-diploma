@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import ru.iaie.reflex.reflex.AssignOperator;
 import ru.iaie.reflex.reflex.AssignmentExpression;
-import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
 /**
@@ -23,8 +24,8 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl#isAssignVar <em>Assign Var</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl#isAssignOp <em>Assign Op</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl#getAssignVar <em>Assign Var</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl#getAssignOp <em>Assign Op</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -33,44 +34,44 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class AssignmentExpressionImpl extends ExpressionImpl implements AssignmentExpression
 {
   /**
-   * The default value of the '{@link #isAssignVar() <em>Assign Var</em>}' attribute.
+   * The default value of the '{@link #getAssignVar() <em>Assign Var</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isAssignVar()
+   * @see #getAssignVar()
    * @generated
    * @ordered
    */
-  protected static final boolean ASSIGN_VAR_EDEFAULT = false;
+  protected static final String ASSIGN_VAR_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isAssignVar() <em>Assign Var</em>}' attribute.
+   * The cached value of the '{@link #getAssignVar() <em>Assign Var</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isAssignVar()
+   * @see #getAssignVar()
    * @generated
    * @ordered
    */
-  protected boolean assignVar = ASSIGN_VAR_EDEFAULT;
+  protected String assignVar = ASSIGN_VAR_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isAssignOp() <em>Assign Op</em>}' attribute.
+   * The default value of the '{@link #getAssignOp() <em>Assign Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isAssignOp()
+   * @see #getAssignOp()
    * @generated
    * @ordered
    */
-  protected static final boolean ASSIGN_OP_EDEFAULT = false;
+  protected static final AssignOperator ASSIGN_OP_EDEFAULT = AssignOperator.ASSIGN;
 
   /**
-   * The cached value of the '{@link #isAssignOp() <em>Assign Op</em>}' attribute.
+   * The cached value of the '{@link #getAssignOp() <em>Assign Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isAssignOp()
+   * @see #getAssignOp()
    * @generated
    * @ordered
    */
-  protected boolean assignOp = ASSIGN_OP_EDEFAULT;
+  protected AssignOperator assignOp = ASSIGN_OP_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -80,7 +81,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    * @ordered
    */
-  protected Expression expr;
+  protected LogicalOrExpression expr;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,7 +110,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public boolean isAssignVar()
+  public String getAssignVar()
   {
     return assignVar;
   }
@@ -120,9 +121,9 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public void setAssignVar(boolean newAssignVar)
+  public void setAssignVar(String newAssignVar)
   {
-    boolean oldAssignVar = assignVar;
+    String oldAssignVar = assignVar;
     assignVar = newAssignVar;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR, oldAssignVar, assignVar));
@@ -134,7 +135,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public boolean isAssignOp()
+  public AssignOperator getAssignOp()
   {
     return assignOp;
   }
@@ -145,10 +146,10 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public void setAssignOp(boolean newAssignOp)
+  public void setAssignOp(AssignOperator newAssignOp)
   {
-    boolean oldAssignOp = assignOp;
-    assignOp = newAssignOp;
+    AssignOperator oldAssignOp = assignOp;
+    assignOp = newAssignOp == null ? ASSIGN_OP_EDEFAULT : newAssignOp;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP, oldAssignOp, assignOp));
   }
@@ -159,7 +160,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public Expression getExpr()
+  public LogicalOrExpression getExpr()
   {
     return expr;
   }
@@ -169,9 +170,9 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpr(Expression newExpr, NotificationChain msgs)
+  public NotificationChain basicSetExpr(LogicalOrExpression newExpr, NotificationChain msgs)
   {
-    Expression oldExpr = expr;
+    LogicalOrExpression oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
     {
@@ -187,7 +188,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public void setExpr(Expression newExpr)
+  public void setExpr(LogicalOrExpression newExpr)
   {
     if (newExpr != expr)
     {
@@ -230,9 +231,9 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        return isAssignVar();
+        return getAssignVar();
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
-        return isAssignOp();
+        return getAssignOp();
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:
         return getExpr();
     }
@@ -250,13 +251,13 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        setAssignVar((Boolean)newValue);
+        setAssignVar((String)newValue);
         return;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
-        setAssignOp((Boolean)newValue);
+        setAssignOp((AssignOperator)newValue);
         return;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:
-        setExpr((Expression)newValue);
+        setExpr((LogicalOrExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -279,7 +280,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
         setAssignOp(ASSIGN_OP_EDEFAULT);
         return;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:
-        setExpr((Expression)null);
+        setExpr((LogicalOrExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -296,7 +297,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        return assignVar != ASSIGN_VAR_EDEFAULT;
+        return ASSIGN_VAR_EDEFAULT == null ? assignVar != null : !ASSIGN_VAR_EDEFAULT.equals(assignVar);
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
         return assignOp != ASSIGN_OP_EDEFAULT;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:

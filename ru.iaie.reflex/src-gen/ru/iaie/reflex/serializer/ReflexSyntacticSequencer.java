@@ -35,9 +35,7 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getAssignOperatorRule())
-			return getAssignOperatorToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getBIT_ANDRule())
+		if (ruleCall.getRule() == grammarAccess.getBIT_ANDRule())
 			return getBIT_ANDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getBIT_ORRule())
 			return getBIT_ORToken(semanticObject, ruleCall, node);
@@ -55,8 +53,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getFLOATToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getFLOAT_C_TYPERule())
 			return getFLOAT_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getIDRule())
-			return getIDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINTEGERRule())
 			return getINTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINT_C_TYPERule())
@@ -71,17 +67,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getSHORT_C_TYPEToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getVOID_C_TYPERule())
 			return getVOID_C_TYPEToken(semanticObject, ruleCall, node);
-		return "";
-	}
-	
-	/**
-	 * enum AssignOperator:
-	 * 	ASSIGN="=" | MUL='*=' | DIV="/=" | MOD="+=" | SUB="-=" | CIN="<<=" | COUT=">>=" | BIT_AND="&=" | BIT_XOR="^=" |
-	 * 	BIT_OR="|=";
-	 */
-	protected String getAssignOperatorToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
 		return "";
 	}
 	
@@ -173,15 +158,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "float";
-	}
-	
-	/**
-	 * terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-	 */
-	protected String getIDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
 	}
 	
 	/**
@@ -304,7 +280,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     INTEGER | FLOAT
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ';' (rule start)
 	 *     (rule start) (ambiguity) (rule start)
 	 */
 	protected void emit_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

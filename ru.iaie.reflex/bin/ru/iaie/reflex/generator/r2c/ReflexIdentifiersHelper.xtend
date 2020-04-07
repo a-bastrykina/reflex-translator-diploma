@@ -9,6 +9,8 @@ import java.util.Map
 import java.util.HashMap
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.ProgramVariable
+import ru.iaie.reflex.reflex.Enum
+import ru.iaie.reflex.reflex.EnumMember
 
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
@@ -17,6 +19,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	Map<String, Map<String, String>> varIdentifiers = new HashMap
 	Map<String, String> constIdentifiers = new HashMap
 	Map<String, String> portIdentifiers = new HashMap
+	Map<String, String> enumIdentifiers = new HashMap
 
 	Map<String, String> identifiers = new HashMap
 
@@ -37,11 +40,15 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	}
 	
 	private def dispatch getKey(Const c) {
-		return c.constantId
+		return c.constId
 	}
 	
 	private def dispatch getKey(Register r) {
 		return r.name
+	}
+	
+	private def dispatch getKey(Enum en) {
+		return en.enumId
 	}
 
 	override getProcessId(Process proc) {
@@ -119,14 +126,38 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		stateIdentifiers.clear
 		varIdentifiers.clear
 		constIdentifiers.clear
-//		inPortsIdentifiers.clear
-//		outPortsIdentifiers.clear
+		portIdentifiers.clear
+		enumIdentifiers.clear
 	}
 	
+	override getEnumId(Enum en) {
+		val key = getKey(en)
+		if (enumIdentifiers.containsKey(key)) {
+			return enumIdentifiers.get(key)
+		} else {
+			val value = '''EN«enumIdentifiers.size»'''
+			enumIdentifiers.put(key, value)
+			return value
+		}
+	}
+
 	override getId(String original) {
 		if (!identifiers.containsKey(original)) 
 			throw new IllegalArgumentException('''Name «original» wasn't declared''')
 		return identifiers.get(original)
 	}
+	
+	override getEnumMemberId(EnumMember em) {
+		val key = em.getName
+		if (constIdentifiers.containsKey(key)) {
+			return constIdentifiers.get(key)
+		} else {
+			val value = '''C_«constIdentifiers.size»'''
+			constIdentifiers.put(key, value)
+			identifiers.put(key, value)
+			return value
+		}
+	}
+	
 
 }

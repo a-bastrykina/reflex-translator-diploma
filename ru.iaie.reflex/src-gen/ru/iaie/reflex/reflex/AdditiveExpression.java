@@ -14,7 +14,6 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.AdditiveExpression#getAddOp <em>Add Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.AdditiveExpression#getRightt <em>Rightt</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getAdditiveExpression()
@@ -47,27 +46,5 @@ public interface AdditiveExpression extends ShiftExpression
    * @generated
    */
   void setAddOp(AdditiveOp value);
-
-  /**
-   * Returns the value of the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Rightt</em>' containment reference.
-   * @see #setRightt(AdditiveExpression)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getAdditiveExpression_Rightt()
-   * @model containment="true"
-   * @generated
-   */
-  AdditiveExpression getRightt();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.AdditiveExpression#getRightt <em>Rightt</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Rightt</em>' containment reference.
-   * @see #getRightt()
-   * @generated
-   */
-  void setRightt(AdditiveExpression value);
 
 } // AdditiveExpression

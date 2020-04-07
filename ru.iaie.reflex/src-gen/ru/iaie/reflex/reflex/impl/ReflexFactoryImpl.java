@@ -128,6 +128,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     {
       case ReflexPackage.PROGRAM: return createProgram();
       case ReflexPackage.PROCESS: return createProcess();
+      case ReflexPackage.STATE: return createState();
       case ReflexPackage.VARIABLE: return createVariable();
       case ReflexPackage.IMPORTED_VARIABLE: return createImportedVariable();
       case ReflexPackage.DECLARED_VARIABLE: return createDeclaredVariable();
@@ -135,7 +136,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.REGISTER_PORT: return createRegisterPort();
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
       case ReflexPackage.VISIBILITY: return createVisibility();
-      case ReflexPackage.STATE: return createState();
       case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
       case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
@@ -282,6 +282,18 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
+  public State createState()
+  {
+    StateImpl state = new StateImpl();
+    return state;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Variable createVariable()
   {
     VariableImpl variable = new VariableImpl();
@@ -358,18 +370,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     VisibilityImpl visibility = new VisibilityImpl();
     return visibility;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public State createState()
-  {
-    StateImpl state = new StateImpl();
-    return state;
   }
 
   /**

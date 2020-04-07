@@ -1,6 +1,7 @@
 package ru.iaie.reflex.generator.r2c;
 
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Variable;
@@ -18,6 +19,10 @@ public interface IReflexCachedIdentifiersHelper {
   public abstract String getConstantId(final Const c);
   
   public abstract String getPortId(final Register reg);
+  
+  public abstract String getEnumId(final ru.iaie.reflex.reflex.Enum en);
+  
+  public abstract String getEnumMemberId(final EnumMember em);
   
   public abstract String getId(final String original);
   

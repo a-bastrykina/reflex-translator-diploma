@@ -13,8 +13,8 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignVar <em>Assign Var</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignOp <em>Assign Op</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignOp <em>Assign Op</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.AssignmentExpression#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -29,56 +29,59 @@ public interface AssignmentExpression extends Expression
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Assign Var</em>' attribute.
-   * @see #setAssignVar(boolean)
+   * @see #setAssignVar(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getAssignmentExpression_AssignVar()
    * @model
    * @generated
    */
-  boolean isAssignVar();
+  String getAssignVar();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignVar <em>Assign Var</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Assign Var</em>' attribute.
-   * @see #isAssignVar()
+   * @see #getAssignVar()
    * @generated
    */
-  void setAssignVar(boolean value);
+  void setAssignVar(String value);
 
   /**
    * Returns the value of the '<em><b>Assign Op</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.AssignOperator}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Assign Op</em>' attribute.
-   * @see #setAssignOp(boolean)
+   * @see ru.iaie.reflex.reflex.AssignOperator
+   * @see #setAssignOp(AssignOperator)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getAssignmentExpression_AssignOp()
    * @model
    * @generated
    */
-  boolean isAssignOp();
+  AssignOperator getAssignOp();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignOp <em>Assign Op</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignOp <em>Assign Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Assign Op</em>' attribute.
-   * @see #isAssignOp()
+   * @see ru.iaie.reflex.reflex.AssignOperator
+   * @see #getAssignOp()
    * @generated
    */
-  void setAssignOp(boolean value);
+  void setAssignOp(AssignOperator value);
 
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference.
-   * @see #setExpr(Expression)
+   * @see #setExpr(LogicalOrExpression)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getAssignmentExpression_Expr()
    * @model containment="true"
    * @generated
    */
-  Expression getExpr();
+  LogicalOrExpression getExpr();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#getExpr <em>Expr</em>}' containment reference.
@@ -88,6 +91,6 @@ public interface AssignmentExpression extends Expression
    * @see #getExpr()
    * @generated
    */
-  void setExpr(Expression value);
+  void setExpr(LogicalOrExpression value);
 
 } // AssignmentExpression

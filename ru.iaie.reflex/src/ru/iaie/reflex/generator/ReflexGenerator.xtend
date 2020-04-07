@@ -29,9 +29,11 @@ class ReflexGenerator extends AbstractGenerator {
 		xmiGen.doGenerate(resource, fsa, context)
 	}
 	
+		
 	override void afterGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		r2cGen.afterGenerate(resource, fsa, context)
 		xmiGen.afterGenerate(resource, fsa, context)
 	}
 	
 }
+

@@ -24,6 +24,7 @@ import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.Register;
+import ru.iaie.reflex.reflex.Tact;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,7 @@ import ru.iaie.reflex.reflex.Register;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#isTicks <em>Ticks</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getTicks <em>Ticks</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getFunctions <em>Functions</em>}</li>
@@ -67,24 +68,14 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isTicks() <em>Ticks</em>}' attribute.
+   * The cached value of the '{@link #getTicks() <em>Ticks</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isTicks()
+   * @see #getTicks()
    * @generated
    * @ordered
    */
-  protected static final boolean TICKS_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isTicks() <em>Ticks</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isTicks()
-   * @generated
-   * @ordered
-   */
-  protected boolean ticks = TICKS_EDEFAULT;
+  protected Tact ticks;
 
   /**
    * The cached value of the '{@link #getConsts() <em>Consts</em>}' containment reference list.
@@ -188,7 +179,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    */
   @Override
-  public boolean isTicks()
+  public Tact getTicks()
   {
     return ticks;
   }
@@ -198,13 +189,38 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setTicks(boolean newTicks)
+  public NotificationChain basicSetTicks(Tact newTicks, NotificationChain msgs)
   {
-    boolean oldTicks = ticks;
+    Tact oldTicks = ticks;
     ticks = newTicks;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__TICKS, oldTicks, ticks));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__TICKS, oldTicks, newTicks);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTicks(Tact newTicks)
+  {
+    if (newTicks != ticks)
+    {
+      NotificationChain msgs = null;
+      if (ticks != null)
+        msgs = ((InternalEObject)ticks).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__TICKS, null, msgs);
+      if (newTicks != null)
+        msgs = ((InternalEObject)newTicks).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__TICKS, null, msgs);
+      msgs = basicSetTicks(newTicks, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__TICKS, newTicks, newTicks));
   }
 
   /**
@@ -292,6 +308,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__TICKS:
+        return basicSetTicks(null, msgs);
       case ReflexPackage.PROGRAM__CONSTS:
         return ((InternalEList<?>)getConsts()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__ENUMS:
@@ -319,7 +337,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__NAME:
         return getName();
       case ReflexPackage.PROGRAM__TICKS:
-        return isTicks();
+        return getTicks();
       case ReflexPackage.PROGRAM__CONSTS:
         return getConsts();
       case ReflexPackage.PROGRAM__ENUMS:
@@ -349,7 +367,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         setName((String)newValue);
         return;
       case ReflexPackage.PROGRAM__TICKS:
-        setTicks((Boolean)newValue);
+        setTicks((Tact)newValue);
         return;
       case ReflexPackage.PROGRAM__CONSTS:
         getConsts().clear();
@@ -389,7 +407,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         setName(NAME_EDEFAULT);
         return;
       case ReflexPackage.PROGRAM__TICKS:
-        setTicks(TICKS_EDEFAULT);
+        setTicks((Tact)null);
         return;
       case ReflexPackage.PROGRAM__CONSTS:
         getConsts().clear();
@@ -423,7 +441,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.PROGRAM__TICKS:
-        return ticks != TICKS_EDEFAULT;
+        return ticks != null;
       case ReflexPackage.PROGRAM__CONSTS:
         return consts != null && !consts.isEmpty();
       case ReflexPackage.PROGRAM__ENUMS:
@@ -451,8 +469,6 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", ticks: ");
-    result.append(ticks);
     result.append(')');
     return result.toString();
   }

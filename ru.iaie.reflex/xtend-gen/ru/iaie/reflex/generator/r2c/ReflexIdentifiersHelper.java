@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.Register;
@@ -24,6 +25,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   private Map<String, String> constIdentifiers = new HashMap<String, String>();
   
   private Map<String, String> portIdentifiers = new HashMap<String, String>();
+  
+  private Map<String, String> enumIdentifiers = new HashMap<String, String>();
   
   private Map<String, String> identifiers = new HashMap<String, String>();
   
@@ -44,11 +47,15 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   private String _getKey(final Const c) {
-    return this.getConstantId(c);
+    return c.getConstId();
   }
   
   private String _getKey(final Register r) {
     return r.getName();
+  }
+  
+  private String _getKey(final ru.iaie.reflex.reflex.Enum en) {
+    return en.getEnumId();
   }
   
   @Override
@@ -171,6 +178,25 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
     this.stateIdentifiers.clear();
     this.varIdentifiers.clear();
     this.constIdentifiers.clear();
+    this.portIdentifiers.clear();
+    this.enumIdentifiers.clear();
+  }
+  
+  @Override
+  public String getEnumId(final ru.iaie.reflex.reflex.Enum en) {
+    final String key = this.getKey(en);
+    boolean _containsKey = this.enumIdentifiers.containsKey(key);
+    if (_containsKey) {
+      return this.enumIdentifiers.get(key);
+    } else {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("EN");
+      int _size = this.enumIdentifiers.size();
+      _builder.append(_size);
+      final String value = _builder.toString();
+      this.enumIdentifiers.put(key, value);
+      return value;
+    }
   }
   
   @Override
@@ -187,6 +213,24 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
     return this.identifiers.get(original);
   }
   
+  @Override
+  public String getEnumMemberId(final EnumMember em) {
+    final String key = em.getName();
+    boolean _containsKey = this.constIdentifiers.containsKey(key);
+    if (_containsKey) {
+      return this.constIdentifiers.get(key);
+    } else {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("C_");
+      int _size = this.constIdentifiers.size();
+      _builder.append(_size);
+      final String value = _builder.toString();
+      this.constIdentifiers.put(key, value);
+      this.identifiers.put(key, value);
+      return value;
+    }
+  }
+  
   private String getKey(final EObject v) {
     if (v instanceof PhysicalVariable) {
       return _getKey((PhysicalVariable)v);
@@ -194,6 +238,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       return _getKey((ProgramVariable)v);
     } else if (v instanceof Const) {
       return _getKey((Const)v);
+    } else if (v instanceof ru.iaie.reflex.reflex.Enum) {
+      return _getKey((ru.iaie.reflex.reflex.Enum)v);
     } else if (v instanceof ru.iaie.reflex.reflex.Process) {
       return _getKey((ru.iaie.reflex.reflex.Process)v);
     } else if (v instanceof Register) {

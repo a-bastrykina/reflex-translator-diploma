@@ -5,7 +5,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Program:
 	"program" name=ID "{"
-	(ticks?=Tact)?
+	(ticks=Tact)?
 	(consts+=Const |
 	enums+=Enum |
 	functions+=Function |
@@ -17,6 +17,12 @@ Process:
 	"proc" name=ID "{"
 	variables+=Variable*
 	states+=State*
+	"}";
+
+State:
+	"state" name=ID "{"
+	stateFunction=StatementSequence
+	(timeoutFunction=TimeoutFunction)?
 	"}";
 
 Variable:
@@ -40,11 +46,6 @@ ProgramVariable:
 Visibility:
 	LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*;
 
-State:
-	"state" name=ID "{"
-	stateFunction=StatementSequence
-	(timeoutFunction=TimeoutFunction)?
-	"}";
 
 StatementSequence:
 	{StatementSequence} statements+=Statement*;
@@ -113,9 +114,8 @@ Enum:
 	"enum" enumId=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
 
 EnumMember:
-	name=ID "=" value=Expression;
+	name=ID ("=" value=Expression)?;
 
-	// Expression	
 InfixOp:
 	op=InfixPostfixOp varId=ID;
 
@@ -126,14 +126,14 @@ FunctionCall:
 	funcId=ID "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 PrimaryExpression:
-	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" expr=Expression ")";
+	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
 	FunctionCall |
 	PostfixOp |
 	InfixOp |
-	unaryOp=UnaryOp rest=CastExpression;
+	unaryOp=UnaryOp right=CastExpression;
 
 CastExpression:
 	UnaryExpression |
@@ -143,7 +143,7 @@ MultiplicativeExpression:
 	CastExpression ({MultiplicativeExpression.left=current} mulOp=MultiplicativeOp right=CastExpression)*;
 
 AdditiveExpression:
-	MultiplicativeExpression ({AdditiveExpression.left=current} addOp=AdditiveOp rightt=AdditiveExpression)*;
+	MultiplicativeExpression ({AdditiveExpression.left=current} addOp=AdditiveOp right=AdditiveExpression)*;
 
 ShiftExpression:
 	AdditiveExpression ({ShiftExpression.left=current} shiftOp=ShiftOp right=ShiftExpression)*;
@@ -170,8 +170,7 @@ LogicalOrExpression:
 	LogicalAndExpression ({LogicalOrExpression.left=current} LOGICAL_OR right=LogicalOrExpression)*;
 
 AssignmentExpression:
-	LogicalOrExpression |
-	assignVar?=ID assignOp?=AssignOperator expr=LogicalOrExpression;
+	(assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression;
 
 Expression:
 	AssignmentExpression;
@@ -201,9 +200,7 @@ enum AdditiveOp:
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
 
-
 // TODO: fix types
-
 CType:
 	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE
 	| INT_C_TYPE | LONG_C_TYPE);
@@ -285,8 +282,6 @@ terminal fragment EXPONENT:
 terminal fragment SIGN:
 	'+' | '-';
 
-	//terminal REG_SIZE returns ecore::EInt:
-//	("8" | "16");
 terminal fragment DECIMAL:
 	"0" | ('1'..'9') ('0'..'9')*;
 

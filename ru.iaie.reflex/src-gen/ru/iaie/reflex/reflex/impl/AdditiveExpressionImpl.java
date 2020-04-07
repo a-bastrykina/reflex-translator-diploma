@@ -4,10 +4,8 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -24,7 +22,6 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.AdditiveExpressionImpl#getAddOp <em>Add Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.AdditiveExpressionImpl#getRightt <em>Rightt</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,16 +47,6 @@ public class AdditiveExpressionImpl extends ShiftExpressionImpl implements Addit
    * @ordered
    */
   protected AdditiveOp addOp = ADD_OP_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getRightt() <em>Rightt</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRightt()
-   * @generated
-   * @ordered
-   */
-  protected AdditiveExpression rightt;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,80 +100,12 @@ public class AdditiveExpressionImpl extends ShiftExpressionImpl implements Addit
    * @generated
    */
   @Override
-  public AdditiveExpression getRightt()
-  {
-    return rightt;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetRightt(AdditiveExpression newRightt, NotificationChain msgs)
-  {
-    AdditiveExpression oldRightt = rightt;
-    rightt = newRightt;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT, oldRightt, newRightt);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setRightt(AdditiveExpression newRightt)
-  {
-    if (newRightt != rightt)
-    {
-      NotificationChain msgs = null;
-      if (rightt != null)
-        msgs = ((InternalEObject)rightt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT, null, msgs);
-      if (newRightt != null)
-        msgs = ((InternalEObject)newRightt).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT, null, msgs);
-      msgs = basicSetRightt(newRightt, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT, newRightt, newRightt));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT:
-        return basicSetRightt(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReflexPackage.ADDITIVE_EXPRESSION__ADD_OP:
         return getAddOp();
-      case ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT:
-        return getRightt();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -203,9 +122,6 @@ public class AdditiveExpressionImpl extends ShiftExpressionImpl implements Addit
     {
       case ReflexPackage.ADDITIVE_EXPRESSION__ADD_OP:
         setAddOp((AdditiveOp)newValue);
-        return;
-      case ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT:
-        setRightt((AdditiveExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -224,9 +140,6 @@ public class AdditiveExpressionImpl extends ShiftExpressionImpl implements Addit
       case ReflexPackage.ADDITIVE_EXPRESSION__ADD_OP:
         setAddOp(ADD_OP_EDEFAULT);
         return;
-      case ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT:
-        setRightt((AdditiveExpression)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -243,8 +156,6 @@ public class AdditiveExpressionImpl extends ShiftExpressionImpl implements Addit
     {
       case ReflexPackage.ADDITIVE_EXPRESSION__ADD_OP:
         return addOp != ADD_OP_EDEFAULT;
-      case ReflexPackage.ADDITIVE_EXPRESSION__RIGHTT:
-        return rightt != null;
     }
     return super.eIsSet(featureID);
   }

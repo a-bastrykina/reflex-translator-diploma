@@ -1,29 +1,49 @@
 package ru.iaie.reflex.generator.r2c
 
+import java.util.List
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import ru.iaie.reflex.reflex.Program
-import ru.iaie.reflex.reflex.Process
-import ru.iaie.reflex.reflex.State
-import org.eclipse.emf.ecore.EObject
-import ru.iaie.reflex.reflex.StopProcStat
-import ru.iaie.reflex.reflex.IfElseStat
-import ru.iaie.reflex.reflex.Expression
-import ru.iaie.reflex.reflex.SetStateStat
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
-import ru.iaie.reflex.reflex.SwitchStat
-import ru.iaie.reflex.reflex.StatementBlock
-import ru.iaie.reflex.reflex.StartProcStat
+import ru.iaie.reflex.reflex.AdditiveExpression
+import ru.iaie.reflex.reflex.AssignmentExpression
+import ru.iaie.reflex.reflex.BitAndExpression
+import ru.iaie.reflex.reflex.BitOrExpression
+import ru.iaie.reflex.reflex.BitXorExpression
+import ru.iaie.reflex.reflex.CastExpression
+import ru.iaie.reflex.reflex.CompareExpression
+import ru.iaie.reflex.reflex.EqualityExpression
+import ru.iaie.reflex.reflex.Expression
+import ru.iaie.reflex.reflex.FunctionCall
+import ru.iaie.reflex.reflex.IfElseStat
+import ru.iaie.reflex.reflex.InfixOp
+import ru.iaie.reflex.reflex.LogicalAndExpression
+import ru.iaie.reflex.reflex.LogicalOrExpression
 import ru.iaie.reflex.reflex.LoopStat
-import ru.iaie.reflex.reflex.ResetStat
-import ru.iaie.reflex.reflex.RestartStat
-import ru.iaie.reflex.reflex.TimeoutFunction
-import java.util.List
+import ru.iaie.reflex.reflex.MultiplicativeExpression
+import ru.iaie.reflex.reflex.PhysicalVariable
+import ru.iaie.reflex.reflex.PostfixOp
 import ru.iaie.reflex.reflex.PrimaryExpression
+import ru.iaie.reflex.reflex.Process
+import ru.iaie.reflex.reflex.Program
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.RegisterType
+import ru.iaie.reflex.reflex.ResetStat
+import ru.iaie.reflex.reflex.RestartStat
+import ru.iaie.reflex.reflex.SetStateStat
+import ru.iaie.reflex.reflex.ShiftExpression
+import ru.iaie.reflex.reflex.StartProcStat
+import ru.iaie.reflex.reflex.State
+import ru.iaie.reflex.reflex.StatementBlock
+import ru.iaie.reflex.reflex.StopProcStat
+import ru.iaie.reflex.reflex.SwitchStat
+import ru.iaie.reflex.reflex.TimeoutFunction
+import ru.iaie.reflex.reflex.UnaryExpression
+
+import static extension ru.iaie.reflex.utils.ExpressionUtil.*
+import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 
 class R2CReflexGenerator extends AbstractGenerator {
 
@@ -41,68 +61,104 @@ class R2CReflexGenerator extends AbstractGenerator {
 	override void afterGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		identifiersHelper.clearCaches()
 	}
-	
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		program = resource.allContents.toIterable.filter(Program).get(0)
 
-		copyResources(fsa)
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		program = resource.getProgram()
+
+		copyResources(program.name.toLowerCase, fsa)
 		generateVariables(resource, fsa, context)
+		generateConstants(resource, fsa, context)
 		generateProcessImplementations(resource, fsa, context)
 		generateMain(resource, fsa, context)
 	}
 
-	def copyResources(IFileSystemAccess2 fsa) {
+	def copyResources(String fileNamePrefix, IFileSystemAccess2 fsa) {
 		for (resource : commonResources) {
 			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
 		}
 	}
-	
+
+	def generateConstants(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+			#pragma once
+			/*           Constant definitions          */
+			«generateConstants(resource)»
+			/*                Enums                    */
+			«generateEnums(resource)»
+		'''
+		fsa.generateFile('''c-code/CAcnst.h''', fileContent)
+	}
+
+	def generateConstants(Resource resource) {
+		// TODO: check for const expr
+		return '''
+			«FOR constant : resource.program.consts»
+			#define «identifiersHelper.getConstantId(constant)» /*«constant.constId»*/ «translateExpr(constant.constValue)» 
+			«ENDFOR»
+		'''
+	}
+
+	def generateEnums(Resource resource) {
+		return '''
+			«FOR en : resource.program.enums»
+			enum «identifiersHelper.getEnumId(en)» {
+				 «FOR enumMember: en.enumMembers»
+				 «identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
+				 «ENDFOR»
+			}
+			«ENDFOR»
+		'''
+	}
+
 	def generateVariables(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
 			/*           Variables          */
 			/* CAGVAR.H = Global Variables Image-File. */
 			#pragma once
 			/*       Process variables     */
-			«generateProcessVariables()»
+			«generateProcessVariables(resource)»
 			/*          Input Ports         */
-			«generateInputPorts()»
+			«generateInputPorts(resource)»
 			/*         Output Ports         */
-			«generateOutputPorts()»
+			«generateOutputPorts(resource)»
 		'''
-		fsa.generateFile('''c-code/CAgvar.cpp''', fileContent)	
+		fsa.generateFile('''c-code/CAgvar.cpp''', fileContent)
 	}
-	
-	def generateProcessVariables() {
+
+	def generateProcessVariables(Resource resource) {
 		return '''
-		«FOR proc: program.processes»
-		«FOR variable: proc.variables»
-		«IF (variable instanceof ProgramVariable)»
-		«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getVariableId(proc, variable)»;
-		«ENDIF»
-		«ENDFOR»
-		«ENDFOR»
+			«FOR proc : resource.program.processes»
+				«FOR variable: proc.variables»
+					«IF (variable instanceof ProgramVariable)»
+						«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getVariableId(proc, variable)»;
+					«ENDIF»
+					«IF (variable instanceof PhysicalVariable)»
+						«variable.type» «identifiersHelper.getVariableId(proc, variable)»;
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
 		'''
 	}
-	
-	def generateInputPorts() {
+
+	def generateInputPorts(Resource resource) {
 		// TODO: specify port type
 		return '''
-		«FOR reg: program.registers»
-		«IF reg.type == RegisterType.INPUT»
-		char «identifiersHelper.getPortId(reg)»;
-		«ENDIF»
-		«ENDFOR»
+			«FOR reg : resource.program.registers»
+				«IF reg.type == RegisterType.INPUT»
+					char «identifiersHelper.getPortId(reg)»;
+				«ENDIF»
+			«ENDFOR»
 		'''
 	}
-	
-	def generateOutputPorts(){
+
+	def generateOutputPorts(Resource resource) {
 		// TODO: specify port type
 		return '''
-		«FOR reg: program.registers»
-		«IF reg.type == RegisterType.OUTPUT»
-		char «identifiersHelper.getPortId(reg)»;
-		«ENDIF»
-		«ENDFOR»
+			«FOR reg : resource.program.registers»
+				«IF reg.type == RegisterType.OUTPUT»
+					char «identifiersHelper.getPortId(reg)»;
+				«ENDIF»
+			«ENDFOR»
 		'''
 	}
 
@@ -112,7 +168,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#include "CAext.h" /* Common files for all generated c-files */
 			#include "CAxvar.h"  /* Var-images */
 			
-			«FOR proc : program.processes»
+			«FOR proc : resource.program.processes»
 				«translateProcess(proc)»
 			«ENDFOR»
 		'''
@@ -176,34 +232,34 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 
-	// TODO: use multiple dispatch
 	def String translateStatement(Process proc, State state, EObject statement) {
-		if (statement instanceof StopProcStat) {
-			return translateStopProcStat(proc, state, statement)
-		} else if (statement instanceof SetStateStat) {
-			return translateSetStateStat(proc, state, statement)
-		} else if (statement instanceof IfElseStat) {
-			return '''«translateIfElseStat(proc, state, statement)»'''
-		} else if (statement instanceof Expression) {
-			return '''«translateExpr(statement)»;'''
-		} else if (statement instanceof SwitchStat) {
-			return '''«translateSwitchCaseStat(proc, state, statement)»'''
-		} else if (statement instanceof StartProcStat) {
-			return '''«translateStartProcStat(program, proc, state, statement)»'''
-		} else if (statement instanceof LoopStat) {
-			return '''«translateLoop(proc, state)»'''
-		} else if (statement instanceof ResetStat) {
-			return '''«translateResetTimer(proc, state)»'''
-		} else if (statement instanceof RestartStat) {
-			return '''«translateRestartProcStat(proc)»'''
-		} else if (statement instanceof StatementBlock) {
-			return '''
-				«IF statement.statements.length > 1»{«ENDIF»
-				«FOR stat : statement.statements»
-					«translateStatement(proc, state, stat)»
-				«ENDFOR»
-				«IF statement.statements.length > 1»}«ENDIF»
-			'''
+		switch statement {
+			StopProcStat:
+				return translateStopProcStat(proc, state, statement)
+			SetStateStat:
+				return translateSetStateStat(proc, state, statement)
+			IfElseStat:
+				return translateIfElseStat(proc, state, statement)
+			Expression:
+				return '''«translateExpr(statement)»;'''
+			SwitchStat:
+				return translateSwitchCaseStat(proc, state, statement)
+			StartProcStat:
+				return translateStartProcStat(proc, state, statement)
+			LoopStat:
+				return translateLoop(proc, state)
+			ResetStat:
+				return translateResetTimer(proc, state)
+			RestartStat:
+				return translateRestartProcStat(proc)
+			StatementBlock:
+				return '''
+					«IF statement.statements.length > 1»{«ENDIF»
+					«FOR stat : statement.statements»
+						«translateStatement(proc, state, stat)»
+					«ENDFOR»
+					«IF statement.statements.length > 1»}«ENDIF»
+				'''
 		}
 	}
 
@@ -229,12 +285,8 @@ class R2CReflexGenerator extends AbstractGenerator {
 		if (sss.isNext) {
 			return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, state)» + 1);'''
 		}
-		val matchingStates = proc.states.filter[state.name.equals(sss.stateId)].toList
-		// TODO: check during validation 
-		if (matchingStates.isEmpty) {
-			return ''''''
-		}
-		val stateToSet = matchingStates.get(0)
+
+		val stateToSet = proc.findStateByName(sss.stateId)
 		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, stateToSet)»);'''
 	}
 
@@ -244,11 +296,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 
-	def translateStartProcStat(Program prog, Process proc, State state, StartProcStat sps) {
+	def translateStartProcStat(Process proc, State state, StartProcStat sps) {
 		// TODO: move to validation checks
-		val matchingProcs = prog.processes.filter[proc.name.equals(sps.procId)].toList
-		if(matchingProcs.isEmpty) return ''''''
-		val procToStart = matchingProcs.get(0)
+		val procToStart = proc.eResource.program.findProcessByName(sps.procId)
 		return '''
 			Set_Start(«identifiersHelper.getProcessId(procToStart)»);
 		'''
@@ -272,16 +322,48 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 
-	def translateExpr(Expression expr) {
-		// TODO: translate variables in expressions
-//		expr.eResource.allContents.filter(PrimaryExpression).forEach[translateId]
-		return '''«NodeModelUtils.getNode(expr).text.trim»'''
-	}
-	
-	def translateId(PrimaryExpression e) {
-		if (e.varId !== null) {
-			e.varId = identifiersHelper.getId(e.varId)
+	def String translateExpr(EObject expr) {
+		switch (expr) {
+			InfixOp:
+				return '''«expr.op» «identifiersHelper.getId(expr.varId)»'''
+			PostfixOp:
+				return '''«identifiersHelper.getId(expr.varId)» «expr.op»'''
+			FunctionCall:
+				return '''«expr.funcId»(«String.join(",", expr.args.map[translateExpr])»)'''
+			PrimaryExpression: {
+				if(expr.isVariableReference) return identifiersHelper.getId(expr.varId)
+				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
+				return NodeModelUtils.getNode(expr).text.trim
+			}
+			UnaryExpression:
+				return '''«expr.unaryOp» «translateExpr(expr.right)»'''
+			CastExpression:
+				return '''(«NodeModelUtils.getNode(expr.type).text.trim») «translateExpr(expr.right)»'''
+			MultiplicativeExpression:
+				return '''«translateExpr(expr.left)» «expr.mulOp» «translateExpr(expr.right)»'''
+			AdditiveExpression:
+				return '''«translateExpr(expr.left)» «expr.addOp» «translateExpr(expr.right)»'''
+			ShiftExpression:
+				return '''«translateExpr(expr.left)» «expr.shiftOp» «translateExpr(expr.right)»'''
+			CompareExpression:
+				return '''«translateExpr(expr.left)» «expr.cmpOp» «translateExpr(expr.right)»'''
+			EqualityExpression:
+				return '''«translateExpr(expr.left)» «expr.eqCmpOp» «translateExpr(expr.right)»'''
+			BitAndExpression:
+				return '''«translateExpr(expr.left)» & «translateExpr(expr.right)»'''
+			BitXorExpression:
+				return '''«translateExpr(expr.left)» ^ «translateExpr(expr.right)»'''
+			BitOrExpression:
+				return '''«translateExpr(expr.left)» | «translateExpr(expr.right)»'''
+			LogicalAndExpression:
+				return '''«translateExpr(expr.left)» && «translateExpr(expr.right)»'''
+			LogicalOrExpression:
+				return '''«translateExpr(expr.left)» || «translateExpr(expr.right)»'''
+			AssignmentExpression: {
+				if (expr.hasAssignment)
+					return '''«identifiersHelper.getId(expr.assignVar)» «expr.assignOp» «translateExpr(expr.expr)»'''
+				return '''«translateExpr(expr.expr)»'''
+			}
 		}
-	} 
-
+	}
 }

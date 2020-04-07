@@ -1,7 +1,6 @@
 package ru.iaie.reflex.generator.r2c;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -14,14 +13,36 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.generator.r2c.ReflexIdentifiersHelper;
+import ru.iaie.reflex.reflex.AdditiveExpression;
+import ru.iaie.reflex.reflex.AdditiveOp;
+import ru.iaie.reflex.reflex.AssignOperator;
+import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BitAndExpression;
+import ru.iaie.reflex.reflex.BitOrExpression;
+import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
+import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CompareEqOp;
+import ru.iaie.reflex.reflex.CompareExpression;
+import ru.iaie.reflex.reflex.CompareOp;
+import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
+import ru.iaie.reflex.reflex.InfixOp;
+import ru.iaie.reflex.reflex.InfixPostfixOp;
+import ru.iaie.reflex.reflex.LogicalAndExpression;
+import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.LoopStat;
+import ru.iaie.reflex.reflex.MultiplicativeExpression;
+import ru.iaie.reflex.reflex.MultiplicativeOp;
+import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
@@ -30,6 +51,8 @@ import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.ShiftExpression;
+import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
@@ -37,7 +60,11 @@ import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.UnaryExpression;
+import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.reflex.Variable;
+import ru.iaie.reflex.utils.ExpressionUtil;
+import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class R2CReflexGenerator extends AbstractGenerator {
@@ -57,14 +84,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.program = ((Program[])Conversions.unwrapArray((Iterables.<Program>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Program.class)), Program.class))[0];
-    this.copyResources(fsa);
+    this.program = ReflexModelUtil.getProgram(resource);
+    this.copyResources(this.program.getName().toLowerCase(), fsa);
     this.generateVariables(resource, fsa, context);
+    this.generateConstants(resource, fsa, context);
     this.generateProcessImplementations(resource, fsa, context);
     this.generateMain(resource, fsa, context);
   }
   
-  public void copyResources(final IFileSystemAccess2 fsa) {
+  public void copyResources(final String fileNamePrefix, final IFileSystemAccess2 fsa) {
     for (final String resource : this.commonResources) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("c-code/");
@@ -77,6 +105,82 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
   }
   
+  public void generateConstants(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("#pragma once");
+    _builder.newLine();
+    _builder.append("/*           Constant definitions          */");
+    _builder.newLine();
+    String _generateConstants = this.generateConstants(resource);
+    _builder.append(_generateConstants);
+    _builder.newLineIfNotEmpty();
+    _builder.append("/*                Enums                    */");
+    _builder.newLine();
+    String _generateEnums = this.generateEnums(resource);
+    _builder.append(_generateEnums);
+    _builder.newLineIfNotEmpty();
+    final String fileContent = _builder.toString();
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("c-code/CAcnst.h");
+    fsa.generateFile(_builder_1.toString(), fileContent);
+  }
+  
+  public String generateConstants(final Resource resource) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<Const> _consts = ReflexModelUtil.getProgram(resource).getConsts();
+      for(final Const constant : _consts) {
+        _builder.append("#define ");
+        String _constantId = this.identifiersHelper.getConstantId(constant);
+        _builder.append(_constantId);
+        _builder.append(" /*");
+        String _constId = constant.getConstId();
+        _builder.append(_constId);
+        _builder.append("*/ ");
+        String _translateExpr = this.translateExpr(constant.getConstValue());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder.toString();
+  }
+  
+  public String generateEnums(final Resource resource) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<ru.iaie.reflex.reflex.Enum> _enums = ReflexModelUtil.getProgram(resource).getEnums();
+      for(final ru.iaie.reflex.reflex.Enum en : _enums) {
+        _builder.append("enum ");
+        String _enumId = this.identifiersHelper.getEnumId(en);
+        _builder.append(_enumId);
+        _builder.append(" {");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<EnumMember> _enumMembers = en.getEnumMembers();
+          for(final EnumMember enumMember : _enumMembers) {
+            _builder.append("\t ");
+            String _enumMemberId = this.identifiersHelper.getEnumMemberId(enumMember);
+            _builder.append(_enumMemberId, "\t ");
+            {
+              boolean _hasValue = ReflexModelUtil.hasValue(enumMember);
+              if (_hasValue) {
+                _builder.append("=");
+                String _translateExpr = this.translateExpr(enumMember.getValue());
+                _builder.append(_translateExpr, "\t ");
+              }
+            }
+            _builder.append(", ");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    return _builder.toString();
+  }
+  
   public void generateVariables(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/*           Variables          */");
@@ -87,17 +191,17 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("/*       Process variables     */");
     _builder.newLine();
-    String _generateProcessVariables = this.generateProcessVariables();
+    String _generateProcessVariables = this.generateProcessVariables(resource);
     _builder.append(_generateProcessVariables);
     _builder.newLineIfNotEmpty();
     _builder.append("/*          Input Ports         */");
     _builder.newLine();
-    String _generateInputPorts = this.generateInputPorts();
+    String _generateInputPorts = this.generateInputPorts(resource);
     _builder.append(_generateInputPorts);
     _builder.newLineIfNotEmpty();
     _builder.append("/*         Output Ports         */");
     _builder.newLine();
-    String _generateOutputPorts = this.generateOutputPorts();
+    String _generateOutputPorts = this.generateOutputPorts(resource);
     _builder.append(_generateOutputPorts);
     _builder.newLineIfNotEmpty();
     final String fileContent = _builder.toString();
@@ -106,10 +210,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
-  public String generateProcessVariables() {
+  public String generateProcessVariables(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
+      EList<ru.iaie.reflex.reflex.Process> _processes = ReflexModelUtil.getProgram(resource).getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         {
           EList<Variable> _variables = proc.getVariables();
@@ -125,6 +229,17 @@ public class R2CReflexGenerator extends AbstractGenerator {
                 _builder.newLineIfNotEmpty();
               }
             }
+            {
+              if ((variable instanceof PhysicalVariable)) {
+                String _type = ((PhysicalVariable)variable).getType();
+                _builder.append(_type);
+                _builder.append(" ");
+                String _variableId_1 = this.identifiersHelper.getVariableId(proc, variable);
+                _builder.append(_variableId_1);
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
           }
         }
       }
@@ -132,10 +247,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateInputPorts() {
+  public String generateInputPorts(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Register> _registers = this.program.getRegisters();
+      EList<Register> _registers = ReflexModelUtil.getProgram(resource).getRegisters();
       for(final Register reg : _registers) {
         {
           RegisterType _type = reg.getType();
@@ -153,10 +268,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateOutputPorts() {
+  public String generateOutputPorts(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Register> _registers = this.program.getRegisters();
+      EList<Register> _registers = ReflexModelUtil.getProgram(resource).getRegisters();
       for(final Register reg : _registers) {
         {
           RegisterType _type = reg.getType();
@@ -184,7 +299,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
+      EList<ru.iaie.reflex.reflex.Process> _processes = ReflexModelUtil.getProgram(resource).getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         String _translateProcess = this.translateProcess(proc);
         _builder.append(_translateProcess);
@@ -334,90 +449,92 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public String translateStatement(final ru.iaie.reflex.reflex.Process proc, final State state, final EObject statement) {
-    if ((statement instanceof StopProcStat)) {
+    boolean _matched = false;
+    if (statement instanceof StopProcStat) {
+      _matched=true;
       return this.translateStopProcStat(proc, state, ((StopProcStat)statement));
-    } else {
-      if ((statement instanceof SetStateStat)) {
+    }
+    if (!_matched) {
+      if (statement instanceof SetStateStat) {
+        _matched=true;
         return this.translateSetStateStat(proc, state, ((SetStateStat)statement));
-      } else {
-        if ((statement instanceof IfElseStat)) {
-          StringConcatenation _builder = new StringConcatenation();
-          String _translateIfElseStat = this.translateIfElseStat(proc, state, ((IfElseStat)statement));
-          _builder.append(_translateIfElseStat);
-          return _builder.toString();
-        } else {
-          if ((statement instanceof Expression)) {
-            StringConcatenation _builder_1 = new StringConcatenation();
-            String _translateExpr = this.translateExpr(((Expression)statement));
-            _builder_1.append(_translateExpr);
-            _builder_1.append(";");
-            return _builder_1.toString();
-          } else {
-            if ((statement instanceof SwitchStat)) {
-              StringConcatenation _builder_2 = new StringConcatenation();
-              String _translateSwitchCaseStat = this.translateSwitchCaseStat(proc, state, ((SwitchStat)statement));
-              _builder_2.append(_translateSwitchCaseStat);
-              return _builder_2.toString();
-            } else {
-              if ((statement instanceof StartProcStat)) {
-                StringConcatenation _builder_3 = new StringConcatenation();
-                String _translateStartProcStat = this.translateStartProcStat(this.program, proc, state, ((StartProcStat)statement));
-                _builder_3.append(_translateStartProcStat);
-                return _builder_3.toString();
-              } else {
-                if ((statement instanceof LoopStat)) {
-                  StringConcatenation _builder_4 = new StringConcatenation();
-                  String _translateLoop = this.translateLoop(proc, state);
-                  _builder_4.append(_translateLoop);
-                  return _builder_4.toString();
-                } else {
-                  if ((statement instanceof ResetStat)) {
-                    StringConcatenation _builder_5 = new StringConcatenation();
-                    String _translateResetTimer = this.translateResetTimer(proc, state);
-                    _builder_5.append(_translateResetTimer);
-                    return _builder_5.toString();
-                  } else {
-                    if ((statement instanceof RestartStat)) {
-                      StringConcatenation _builder_6 = new StringConcatenation();
-                      String _translateRestartProcStat = this.translateRestartProcStat(proc);
-                      _builder_6.append(_translateRestartProcStat);
-                      return _builder_6.toString();
-                    } else {
-                      if ((statement instanceof StatementBlock)) {
-                        StringConcatenation _builder_7 = new StringConcatenation();
-                        {
-                          int _length = ((Object[])Conversions.unwrapArray(((StatementBlock)statement).getStatements(), Object.class)).length;
-                          boolean _greaterThan = (_length > 1);
-                          if (_greaterThan) {
-                            _builder_7.append("{");
-                          }
-                        }
-                        _builder_7.newLineIfNotEmpty();
-                        {
-                          EList<Statement> _statements = ((StatementBlock)statement).getStatements();
-                          for(final Statement stat : _statements) {
-                            String _translateStatement = this.translateStatement(proc, state, stat);
-                            _builder_7.append(_translateStatement);
-                            _builder_7.newLineIfNotEmpty();
-                          }
-                        }
-                        {
-                          int _length_1 = ((Object[])Conversions.unwrapArray(((StatementBlock)statement).getStatements(), Object.class)).length;
-                          boolean _greaterThan_1 = (_length_1 > 1);
-                          if (_greaterThan_1) {
-                            _builder_7.append("}");
-                          }
-                        }
-                        _builder_7.newLineIfNotEmpty();
-                        return _builder_7.toString();
-                      }
-                    }
-                  }
-                }
-              }
-            }
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof IfElseStat) {
+        _matched=true;
+        return this.translateIfElseStat(proc, state, ((IfElseStat)statement));
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof Expression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(statement);
+        _builder.append(_translateExpr);
+        _builder.append(";");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof SwitchStat) {
+        _matched=true;
+        return this.translateSwitchCaseStat(proc, state, ((SwitchStat)statement));
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof StartProcStat) {
+        _matched=true;
+        return this.translateStartProcStat(proc, state, ((StartProcStat)statement));
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof LoopStat) {
+        _matched=true;
+        return this.translateLoop(proc, state);
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof ResetStat) {
+        _matched=true;
+        return this.translateResetTimer(proc, state);
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof RestartStat) {
+        _matched=true;
+        return this.translateRestartProcStat(proc);
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof StatementBlock) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        {
+          int _length = ((Object[])Conversions.unwrapArray(((StatementBlock)statement).getStatements(), Object.class)).length;
+          boolean _greaterThan = (_length > 1);
+          if (_greaterThan) {
+            _builder.append("{");
           }
         }
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Statement> _statements = ((StatementBlock)statement).getStatements();
+          for(final Statement stat : _statements) {
+            String _translateStatement = this.translateStatement(proc, state, stat);
+            _builder.append(_translateStatement);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          int _length_1 = ((Object[])Conversions.unwrapArray(((StatementBlock)statement).getStatements(), Object.class)).length;
+          boolean _greaterThan_1 = (_length_1 > 1);
+          if (_greaterThan_1) {
+            _builder.append("}");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+        return _builder.toString();
       }
     }
     return null;
@@ -467,25 +584,16 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder.append(" + 1);");
       return _builder.toString();
     }
-    final Function1<State, Boolean> _function = (State it) -> {
-      return Boolean.valueOf(state.getName().equals(sss.getStateId()));
-    };
-    final List<State> matchingStates = IterableExtensions.<State>toList(IterableExtensions.<State>filter(proc.getStates(), _function));
-    boolean _isEmpty = matchingStates.isEmpty();
-    if (_isEmpty) {
-      StringConcatenation _builder_1 = new StringConcatenation();
-      return _builder_1.toString();
-    }
-    final State stateToSet = matchingStates.get(0);
-    StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("Set_State(");
+    final State stateToSet = ReflexModelUtil.findStateByName(proc, sss.getStateId());
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("Set_State(");
     String _processId_1 = this.identifiersHelper.getProcessId(proc);
-    _builder_2.append(_processId_1);
-    _builder_2.append(", ");
+    _builder_1.append(_processId_1);
+    _builder_1.append(", ");
     String _stateId_1 = this.identifiersHelper.getStateId(proc, stateToSet);
-    _builder_2.append(_stateId_1);
-    _builder_2.append(");");
-    return _builder_2.toString();
+    _builder_1.append(_stateId_1);
+    _builder_1.append(");");
+    return _builder_1.toString();
   }
   
   public String translateStopProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StopProcStat sps) {
@@ -498,24 +606,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String translateStartProcStat(final Program prog, final ru.iaie.reflex.reflex.Process proc, final State state, final StartProcStat sps) {
-    final Function1<ru.iaie.reflex.reflex.Process, Boolean> _function = (ru.iaie.reflex.reflex.Process it) -> {
-      return Boolean.valueOf(proc.getName().equals(sps.getProcId()));
-    };
-    final List<ru.iaie.reflex.reflex.Process> matchingProcs = IterableExtensions.<ru.iaie.reflex.reflex.Process>toList(IterableExtensions.<ru.iaie.reflex.reflex.Process>filter(prog.getProcesses(), _function));
-    boolean _isEmpty = matchingProcs.isEmpty();
-    if (_isEmpty) {
-      StringConcatenation _builder = new StringConcatenation();
-      return _builder.toString();
-    }
-    final ru.iaie.reflex.reflex.Process procToStart = matchingProcs.get(0);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Set_Start(");
+  public String translateStartProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StartProcStat sps) {
+    final ru.iaie.reflex.reflex.Process procToStart = ReflexModelUtil.findProcessByName(ReflexModelUtil.getProgram(proc.eResource()), sps.getProcId());
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Set_Start(");
     String _processId = this.identifiersHelper.getProcessId(procToStart);
-    _builder_1.append(_processId);
-    _builder_1.append(");");
-    _builder_1.newLineIfNotEmpty();
-    return _builder_1.toString();
+    _builder.append(_processId);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
   }
   
   public String translateRestartProcStat(final ru.iaie.reflex.reflex.Process proc) {
@@ -565,18 +664,247 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String translateExpr(final Expression expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _trim = NodeModelUtils.getNode(expr).getText().trim();
-    _builder.append(_trim);
-    return _builder.toString();
-  }
-  
-  public void translateId(final PrimaryExpression e) {
-    String _varId = e.getVarId();
-    boolean _tripleNotEquals = (_varId != null);
-    if (_tripleNotEquals) {
-      e.setVarId(this.identifiersHelper.getId(e.getVarId()));
+  public String translateExpr(final EObject expr) {
+    boolean _matched = false;
+    if (expr instanceof InfixOp) {
+      _matched=true;
+      StringConcatenation _builder = new StringConcatenation();
+      InfixPostfixOp _op = ((InfixOp)expr).getOp();
+      _builder.append(_op);
+      _builder.append(" ");
+      String _id = this.identifiersHelper.getId(((InfixOp)expr).getVarId());
+      _builder.append(_id);
+      return _builder.toString();
     }
+    if (!_matched) {
+      if (expr instanceof PostfixOp) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _id = this.identifiersHelper.getId(((PostfixOp)expr).getVarId());
+        _builder.append(_id);
+        _builder.append(" ");
+        InfixPostfixOp _op = ((PostfixOp)expr).getOp();
+        _builder.append(_op);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof FunctionCall) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _funcId = ((FunctionCall)expr).getFuncId();
+        _builder.append(_funcId);
+        _builder.append("(");
+        final Function1<Expression, String> _function = (Expression it) -> {
+          return this.translateExpr(it);
+        };
+        String _join = String.join(",", ListExtensions.<Expression, String>map(((FunctionCall)expr).getArgs(), _function));
+        _builder.append(_join);
+        _builder.append(")");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof PrimaryExpression) {
+        _matched=true;
+        boolean _isVariableReference = ExpressionUtil.isVariableReference(((PrimaryExpression)expr));
+        if (_isVariableReference) {
+          return this.identifiersHelper.getId(((PrimaryExpression)expr).getVarId());
+        }
+        boolean _isNestedExpr = ExpressionUtil.isNestedExpr(((PrimaryExpression)expr));
+        if (_isNestedExpr) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("(");
+          String _translateExpr = this.translateExpr(((PrimaryExpression)expr).getNestedExpr());
+          _builder.append(_translateExpr);
+          _builder.append(")");
+          return _builder.toString();
+        }
+        return NodeModelUtils.getNode(expr).getText().trim();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof UnaryExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        UnaryOp _unaryOp = ((UnaryExpression)expr).getUnaryOp();
+        _builder.append(_unaryOp);
+        _builder.append(" ");
+        String _translateExpr = this.translateExpr(((UnaryExpression)expr).getRight());
+        _builder.append(_translateExpr);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof CastExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("(");
+        String _trim = NodeModelUtils.getNode(((CastExpression)expr).getType()).getText().trim();
+        _builder.append(_trim);
+        _builder.append(") ");
+        String _translateExpr = this.translateExpr(((CastExpression)expr).getRight());
+        _builder.append(_translateExpr);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof MultiplicativeExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((MultiplicativeExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        MultiplicativeOp _mulOp = ((MultiplicativeExpression)expr).getMulOp();
+        _builder.append(_mulOp);
+        _builder.append(" ");
+        String _translateExpr_1 = this.translateExpr(((MultiplicativeExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof AdditiveExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((AdditiveExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        AdditiveOp _addOp = ((AdditiveExpression)expr).getAddOp();
+        _builder.append(_addOp);
+        _builder.append(" ");
+        String _translateExpr_1 = this.translateExpr(((AdditiveExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof ShiftExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((ShiftExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        ShiftOp _shiftOp = ((ShiftExpression)expr).getShiftOp();
+        _builder.append(_shiftOp);
+        _builder.append(" ");
+        String _translateExpr_1 = this.translateExpr(((ShiftExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof CompareExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((CompareExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        CompareOp _cmpOp = ((CompareExpression)expr).getCmpOp();
+        _builder.append(_cmpOp);
+        _builder.append(" ");
+        String _translateExpr_1 = this.translateExpr(((CompareExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof EqualityExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((EqualityExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ");
+        CompareEqOp _eqCmpOp = ((EqualityExpression)expr).getEqCmpOp();
+        _builder.append(_eqCmpOp);
+        _builder.append(" ");
+        String _translateExpr_1 = this.translateExpr(((EqualityExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof BitAndExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((BitAndExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" & ");
+        String _translateExpr_1 = this.translateExpr(((BitAndExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof BitXorExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((BitXorExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" ^ ");
+        String _translateExpr_1 = this.translateExpr(((BitXorExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof BitOrExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((BitOrExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" | ");
+        String _translateExpr_1 = this.translateExpr(((BitOrExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof LogicalAndExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((LogicalAndExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" && ");
+        String _translateExpr_1 = this.translateExpr(((LogicalAndExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof LogicalOrExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        String _translateExpr = this.translateExpr(((LogicalOrExpression)expr).getLeft());
+        _builder.append(_translateExpr);
+        _builder.append(" || ");
+        String _translateExpr_1 = this.translateExpr(((LogicalOrExpression)expr).getRight());
+        _builder.append(_translateExpr_1);
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof AssignmentExpression) {
+        _matched=true;
+        boolean _hasAssignment = ExpressionUtil.hasAssignment(((AssignmentExpression)expr));
+        if (_hasAssignment) {
+          StringConcatenation _builder = new StringConcatenation();
+          String _id = this.identifiersHelper.getId(((AssignmentExpression)expr).getAssignVar());
+          _builder.append(_id);
+          _builder.append(" ");
+          AssignOperator _assignOp = ((AssignmentExpression)expr).getAssignOp();
+          _builder.append(_assignOp);
+          _builder.append(" ");
+          String _translateExpr = this.translateExpr(((AssignmentExpression)expr).getExpr());
+          _builder.append(_translateExpr);
+          return _builder.toString();
+        }
+        StringConcatenation _builder_1 = new StringConcatenation();
+        String _translateExpr_1 = this.translateExpr(((AssignmentExpression)expr).getExpr());
+        _builder_1.append(_translateExpr_1);
+        return _builder_1.toString();
+      }
+    }
+    return null;
   }
 }

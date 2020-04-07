@@ -61,7 +61,7 @@
     </genEnums>
     <genClasses ecoreClass="Reflex.ecore#//Program">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Program/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Program/ticks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/ticks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/consts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/enums"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/functions"/>
@@ -72,6 +72,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Process/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/states"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/stateFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Variable"/>
     <genClasses ecoreClass="Reflex.ecore#//ImportedVariable">
@@ -98,11 +103,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Visibility/GLOBAL"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Visibility/SHARED"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Visibility/sharingProcs"/>
-    </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//State">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/stateFunction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//StatementSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementSequence/statements"/>
@@ -183,10 +183,10 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//PrimaryExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/varId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/nestedExpr"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//UnaryExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//UnaryExpression/unaryOp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//UnaryExpression/rest"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//CastExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CastExpression/type"/>
@@ -196,7 +196,6 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//AdditiveExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AdditiveExpression/addOp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AdditiveExpression/rightt"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ShiftExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ShiftExpression/shiftOp"/>

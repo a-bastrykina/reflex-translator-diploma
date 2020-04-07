@@ -4,11 +4,14 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -21,6 +24,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +50,16 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @ordered
    */
   protected String varId = VAR_ID_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getNestedExpr() <em>Nested Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNestedExpr()
+   * @generated
+   * @ordered
+   */
+  protected Expression nestedExpr;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,12 +113,80 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
+  public Expression getNestedExpr()
+  {
+    return nestedExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetNestedExpr(Expression newNestedExpr, NotificationChain msgs)
+  {
+    Expression oldNestedExpr = nestedExpr;
+    nestedExpr = newNestedExpr;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR, oldNestedExpr, newNestedExpr);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNestedExpr(Expression newNestedExpr)
+  {
+    if (newNestedExpr != nestedExpr)
+    {
+      NotificationChain msgs = null;
+      if (nestedExpr != null)
+        msgs = ((InternalEObject)nestedExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR, null, msgs);
+      if (newNestedExpr != null)
+        msgs = ((InternalEObject)newNestedExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR, null, msgs);
+      msgs = basicSetNestedExpr(newNestedExpr, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR, newNestedExpr, newNestedExpr));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
+        return basicSetNestedExpr(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         return getVarId();
+      case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
+        return getNestedExpr();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,6 +203,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         setVarId((String)newValue);
+        return;
+      case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
+        setNestedExpr((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,6 +224,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         setVarId(VAR_ID_EDEFAULT);
         return;
+      case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
+        setNestedExpr((Expression)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -155,6 +243,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     {
       case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
         return VAR_ID_EDEFAULT == null ? varId != null : !VAR_ID_EDEFAULT.equals(varId);
+      case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
+        return nestedExpr != null;
     }
     return super.eIsSet(featureID);
   }

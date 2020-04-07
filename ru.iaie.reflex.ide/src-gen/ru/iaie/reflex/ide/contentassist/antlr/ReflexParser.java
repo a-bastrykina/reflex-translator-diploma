@@ -40,7 +40,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
 			builder.put(grammarAccess.getCastExpressionAccess().getAlternatives(), "rule__CastExpression__Alternatives");
-			builder.put(grammarAccess.getAssignmentExpressionAccess().getAlternatives(), "rule__AssignmentExpression__Alternatives");
 			builder.put(grammarAccess.getCTypeAccess().getAlternatives(), "rule__CType__Alternatives");
 			builder.put(grammarAccess.getCTypeAccess().getAlternatives_3_2(), "rule__CType__Alternatives_3_2");
 			builder.put(grammarAccess.getIntegerTypeAccess().getAlternatives(), "rule__IntegerType__Alternatives");
@@ -57,6 +56,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCTypeSignSpecAccess().getAlternatives(), "rule__CTypeSignSpec__Alternatives");
 			builder.put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 			builder.put(grammarAccess.getProcessAccess().getGroup(), "rule__Process__Group__0");
+			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getVariableAccess().getGroup(), "rule__Variable__Group__0");
 			builder.put(grammarAccess.getImportedVariableAccess().getGroup(), "rule__ImportedVariable__Group__0");
 			builder.put(grammarAccess.getImportedVariableAccess().getGroup_4(), "rule__ImportedVariable__Group_4__0");
@@ -67,7 +67,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProgramVariableAccess().getGroup(), "rule__ProgramVariable__Group__0");
 			builder.put(grammarAccess.getVisibilityAccess().getGroup_2(), "rule__Visibility__Group_2__0");
 			builder.put(grammarAccess.getVisibilityAccess().getGroup_2_2(), "rule__Visibility__Group_2_2__0");
-			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getStatementSequenceAccess().getGroup(), "rule__StatementSequence__Group__0");
 			builder.put(grammarAccess.getStatementBlockAccess().getGroup(), "rule__StatementBlock__Group__0");
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getGroup(), "rule__TimeoutFunction__Group__0");
@@ -93,6 +92,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnumAccess().getGroup(), "rule__Enum__Group__0");
 			builder.put(grammarAccess.getEnumAccess().getGroup_4(), "rule__Enum__Group_4__0");
 			builder.put(grammarAccess.getEnumMemberAccess().getGroup(), "rule__EnumMember__Group__0");
+			builder.put(grammarAccess.getEnumMemberAccess().getGroup_1(), "rule__EnumMember__Group_1__0");
 			builder.put(grammarAccess.getInfixOpAccess().getGroup(), "rule__InfixOp__Group__0");
 			builder.put(grammarAccess.getPostfixOpAccess().getGroup(), "rule__PostfixOp__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
@@ -123,7 +123,8 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLogicalAndExpressionAccess().getGroup_1(), "rule__LogicalAndExpression__Group_1__0");
 			builder.put(grammarAccess.getLogicalOrExpressionAccess().getGroup(), "rule__LogicalOrExpression__Group__0");
 			builder.put(grammarAccess.getLogicalOrExpressionAccess().getGroup_1(), "rule__LogicalOrExpression__Group_1__0");
-			builder.put(grammarAccess.getAssignmentExpressionAccess().getGroup_1(), "rule__AssignmentExpression__Group_1__0");
+			builder.put(grammarAccess.getAssignmentExpressionAccess().getGroup(), "rule__AssignmentExpression__Group__0");
+			builder.put(grammarAccess.getAssignmentExpressionAccess().getGroup_0(), "rule__AssignmentExpression__Group_0__0");
 			builder.put(grammarAccess.getCTypeAccess().getGroup_0(), "rule__CType__Group_0__0");
 			builder.put(grammarAccess.getCTypeAccess().getGroup_1(), "rule__CType__Group_1__0");
 			builder.put(grammarAccess.getCTypeAccess().getGroup_2(), "rule__CType__Group_2__0");
@@ -140,6 +141,9 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_1(), "rule__Process__NameAssignment_1");
 			builder.put(grammarAccess.getProcessAccess().getVariablesAssignment_3(), "rule__Process__VariablesAssignment_3");
 			builder.put(grammarAccess.getProcessAccess().getStatesAssignment_4(), "rule__Process__StatesAssignment_4");
+			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
+			builder.put(grammarAccess.getStateAccess().getStateFunctionAssignment_3(), "rule__State__StateFunctionAssignment_3");
+			builder.put(grammarAccess.getStateAccess().getTimeoutFunctionAssignment_4(), "rule__State__TimeoutFunctionAssignment_4");
 			builder.put(grammarAccess.getImportedVariableAccess().getProcIdAssignment_2(), "rule__ImportedVariable__ProcIdAssignment_2");
 			builder.put(grammarAccess.getImportedVariableAccess().getVarNamesAssignment_3(), "rule__ImportedVariable__VarNamesAssignment_3");
 			builder.put(grammarAccess.getImportedVariableAccess().getVarNamesAssignment_4_1(), "rule__ImportedVariable__VarNamesAssignment_4_1");
@@ -157,9 +161,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getVisibilityAccess().getSHAREDAssignment_2_0(), "rule__Visibility__SHAREDAssignment_2_0");
 			builder.put(grammarAccess.getVisibilityAccess().getSharingProcsAssignment_2_1(), "rule__Visibility__SharingProcsAssignment_2_1");
 			builder.put(grammarAccess.getVisibilityAccess().getSharingProcsAssignment_2_2_1(), "rule__Visibility__SharingProcsAssignment_2_2_1");
-			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
-			builder.put(grammarAccess.getStateAccess().getStateFunctionAssignment_3(), "rule__State__StateFunctionAssignment_3");
-			builder.put(grammarAccess.getStateAccess().getTimeoutFunctionAssignment_4(), "rule__State__TimeoutFunctionAssignment_4");
 			builder.put(grammarAccess.getStatementSequenceAccess().getStatementsAssignment_1(), "rule__StatementSequence__StatementsAssignment_1");
 			builder.put(grammarAccess.getStatementBlockAccess().getStatementsAssignment_2(), "rule__StatementBlock__StatementsAssignment_2");
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getTimeAssignment_1(), "rule__TimeoutFunction__TimeAssignment_1");
@@ -192,7 +193,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnumAccess().getEnumMembersAssignment_3(), "rule__Enum__EnumMembersAssignment_3");
 			builder.put(grammarAccess.getEnumAccess().getEnumMembersAssignment_4_1(), "rule__Enum__EnumMembersAssignment_4_1");
 			builder.put(grammarAccess.getEnumMemberAccess().getNameAssignment_0(), "rule__EnumMember__NameAssignment_0");
-			builder.put(grammarAccess.getEnumMemberAccess().getValueAssignment_2(), "rule__EnumMember__ValueAssignment_2");
+			builder.put(grammarAccess.getEnumMemberAccess().getValueAssignment_1_1(), "rule__EnumMember__ValueAssignment_1_1");
 			builder.put(grammarAccess.getInfixOpAccess().getOpAssignment_0(), "rule__InfixOp__OpAssignment_0");
 			builder.put(grammarAccess.getInfixOpAccess().getVarIdAssignment_1(), "rule__InfixOp__VarIdAssignment_1");
 			builder.put(grammarAccess.getPostfixOpAccess().getVarIdAssignment_0(), "rule__PostfixOp__VarIdAssignment_0");
@@ -201,15 +202,15 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getArgsAssignment_2_0(), "rule__FunctionCall__ArgsAssignment_2_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgsAssignment_2_1_1(), "rule__FunctionCall__ArgsAssignment_2_1_1");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getVarIdAssignment_0(), "rule__PrimaryExpression__VarIdAssignment_0");
-			builder.put(grammarAccess.getPrimaryExpressionAccess().getExprAssignment_3_1(), "rule__PrimaryExpression__ExprAssignment_3_1");
+			builder.put(grammarAccess.getPrimaryExpressionAccess().getNestedExprAssignment_3_1(), "rule__PrimaryExpression__NestedExprAssignment_3_1");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getUnaryOpAssignment_4_0(), "rule__UnaryExpression__UnaryOpAssignment_4_0");
-			builder.put(grammarAccess.getUnaryExpressionAccess().getRestAssignment_4_1(), "rule__UnaryExpression__RestAssignment_4_1");
+			builder.put(grammarAccess.getUnaryExpressionAccess().getRightAssignment_4_1(), "rule__UnaryExpression__RightAssignment_4_1");
 			builder.put(grammarAccess.getCastExpressionAccess().getTypeAssignment_1_1(), "rule__CastExpression__TypeAssignment_1_1");
 			builder.put(grammarAccess.getCastExpressionAccess().getRightAssignment_1_3(), "rule__CastExpression__RightAssignment_1_3");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getMulOpAssignment_1_1(), "rule__MultiplicativeExpression__MulOpAssignment_1_1");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getRightAssignment_1_2(), "rule__MultiplicativeExpression__RightAssignment_1_2");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getAddOpAssignment_1_1(), "rule__AdditiveExpression__AddOpAssignment_1_1");
-			builder.put(grammarAccess.getAdditiveExpressionAccess().getRighttAssignment_1_2(), "rule__AdditiveExpression__RighttAssignment_1_2");
+			builder.put(grammarAccess.getAdditiveExpressionAccess().getRightAssignment_1_2(), "rule__AdditiveExpression__RightAssignment_1_2");
 			builder.put(grammarAccess.getShiftExpressionAccess().getShiftOpAssignment_1_1(), "rule__ShiftExpression__ShiftOpAssignment_1_1");
 			builder.put(grammarAccess.getShiftExpressionAccess().getRightAssignment_1_2(), "rule__ShiftExpression__RightAssignment_1_2");
 			builder.put(grammarAccess.getCompareExpressionAccess().getCmpOpAssignment_1_1(), "rule__CompareExpression__CmpOpAssignment_1_1");
@@ -221,9 +222,9 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBitOrExpressionAccess().getRightAssignment_1_2(), "rule__BitOrExpression__RightAssignment_1_2");
 			builder.put(grammarAccess.getLogicalAndExpressionAccess().getRightAssignment_1_2(), "rule__LogicalAndExpression__RightAssignment_1_2");
 			builder.put(grammarAccess.getLogicalOrExpressionAccess().getRightAssignment_1_2(), "rule__LogicalOrExpression__RightAssignment_1_2");
-			builder.put(grammarAccess.getAssignmentExpressionAccess().getAssignVarAssignment_1_0(), "rule__AssignmentExpression__AssignVarAssignment_1_0");
-			builder.put(grammarAccess.getAssignmentExpressionAccess().getAssignOpAssignment_1_1(), "rule__AssignmentExpression__AssignOpAssignment_1_1");
-			builder.put(grammarAccess.getAssignmentExpressionAccess().getExprAssignment_1_2(), "rule__AssignmentExpression__ExprAssignment_1_2");
+			builder.put(grammarAccess.getAssignmentExpressionAccess().getAssignVarAssignment_0_0(), "rule__AssignmentExpression__AssignVarAssignment_0_0");
+			builder.put(grammarAccess.getAssignmentExpressionAccess().getAssignOpAssignment_0_1(), "rule__AssignmentExpression__AssignOpAssignment_0_1");
+			builder.put(grammarAccess.getAssignmentExpressionAccess().getExprAssignment_1(), "rule__AssignmentExpression__ExprAssignment_1");
 			builder.put(grammarAccess.getCTypeAccess().getSignSpecAssignment_3_1(), "rule__CType__SignSpecAssignment_3_1");
 			builder.put(grammarAccess.getTactAccess().getValueAssignment_1(), "rule__Tact__ValueAssignment_1");
 			builder.put(grammarAccess.getTimeAccess().getTicksAssignment(), "rule__Time__TicksAssignment");

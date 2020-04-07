@@ -14,6 +14,7 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression()
@@ -43,5 +44,27 @@ public interface PrimaryExpression extends UnaryExpression
    * @generated
    */
   void setVarId(String value);
+
+  /**
+   * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nested Expr</em>' containment reference.
+   * @see #setNestedExpr(Expression)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_NestedExpr()
+   * @model containment="true"
+   * @generated
+   */
+  Expression getNestedExpr();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nested Expr</em>' containment reference.
+   * @see #getNestedExpr()
+   * @generated
+   */
+  void setNestedExpr(Expression value);
 
 } // PrimaryExpression

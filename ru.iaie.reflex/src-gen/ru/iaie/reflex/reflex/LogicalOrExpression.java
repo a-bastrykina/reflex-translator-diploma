@@ -3,6 +3,7 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface LogicalOrExpression extends AssignmentExpression
+public interface LogicalOrExpression extends EObject
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.

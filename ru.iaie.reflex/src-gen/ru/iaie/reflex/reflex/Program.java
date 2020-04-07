@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Program#isTicks <em>Ticks</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getFunctions <em>Functions</em>}</li>
@@ -54,26 +54,26 @@ public interface Program extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Ticks</b></em>' attribute.
+   * Returns the value of the '<em><b>Ticks</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ticks</em>' attribute.
-   * @see #setTicks(boolean)
+   * @return the value of the '<em>Ticks</em>' containment reference.
+   * @see #setTicks(Tact)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Ticks()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  boolean isTicks();
+  Tact getTicks();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Program#isTicks <em>Ticks</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ticks</em>' attribute.
-   * @see #isTicks()
+   * @param value the new value of the '<em>Ticks</em>' containment reference.
+   * @see #getTicks()
    * @generated
    */
-  void setTicks(boolean value);
+  void setTicks(Tact value);
 
   /**
    * Returns the value of the '<em><b>Consts</b></em>' containment reference list.

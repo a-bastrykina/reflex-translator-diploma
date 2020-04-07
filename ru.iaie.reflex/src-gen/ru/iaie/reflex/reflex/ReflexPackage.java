@@ -78,7 +78,7 @@ public interface ReflexPackage extends EPackage
   int PROGRAM__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Ticks</b></em>' attribute.
+   * The feature id for the '<em><b>Ticks</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -187,6 +187,52 @@ public interface ReflexPackage extends EPackage
   int PROCESS_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StateImpl <em>State</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.StateImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getState()
+   * @generated
+   */
+  int STATE = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>State Function</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__STATE_FUNCTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Timeout Function</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__TIMEOUT_FUNCTION = 2;
+
+  /**
+   * The number of structural features of the '<em>State</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.VariableImpl <em>Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -194,7 +240,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 2;
+  int VARIABLE = 3;
 
   /**
    * The number of structural features of the '<em>Variable</em>' class.
@@ -213,7 +259,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getImportedVariable()
    * @generated
    */
-  int IMPORTED_VARIABLE = 3;
+  int IMPORTED_VARIABLE = 4;
 
   /**
    * The feature id for the '<em><b>Proc Id</b></em>' attribute.
@@ -250,7 +296,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getDeclaredVariable()
    * @generated
    */
-  int DECLARED_VARIABLE = 4;
+  int DECLARED_VARIABLE = 5;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' containment reference.
@@ -287,7 +333,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPhysicalVariable()
    * @generated
    */
-  int PHYSICAL_VARIABLE = 5;
+  int PHYSICAL_VARIABLE = 6;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' containment reference.
@@ -342,7 +388,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterPort()
    * @generated
    */
-  int REGISTER_PORT = 6;
+  int REGISTER_PORT = 7;
 
   /**
    * The feature id for the '<em><b>Reg Name</b></em>' attribute.
@@ -379,7 +425,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getProgramVariable()
    * @generated
    */
-  int PROGRAM_VARIABLE = 7;
+  int PROGRAM_VARIABLE = 8;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' containment reference.
@@ -425,7 +471,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 8;
+  int VISIBILITY = 9;
 
   /**
    * The feature id for the '<em><b>LOCAL</b></em>' attribute.
@@ -471,52 +517,6 @@ public interface ReflexPackage extends EPackage
    * @ordered
    */
   int VISIBILITY_FEATURE_COUNT = 4;
-
-  /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StateImpl <em>State</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.StateImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getState()
-   * @generated
-   */
-  int STATE = 9;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>State Function</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__STATE_FUNCTION = 1;
-
-  /**
-   * The feature id for the '<em><b>Timeout Function</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__TIMEOUT_FUNCTION = 2;
-
-  /**
-   * The number of structural features of the '<em>State</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StatementSequenceImpl <em>Statement Sequence</em>}' class.
@@ -1159,71 +1159,6 @@ public interface ReflexPackage extends EPackage
   int ENUM_MEMBER_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ExpressionImpl <em>Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.ExpressionImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getExpression()
-   * @generated
-   */
-  int EXPRESSION = 46;
-
-  /**
-   * The number of structural features of the '<em>Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPRESSION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignmentExpression()
-   * @generated
-   */
-  int ASSIGNMENT_EXPRESSION = 45;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSIGNMENT_EXPRESSION__ASSIGN_VAR = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSIGNMENT_EXPRESSION__ASSIGN_OP = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSIGNMENT_EXPRESSION__EXPR = EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Assignment Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSIGNMENT_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.LogicalOrExpressionImpl <em>Logical Or Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1234,40 +1169,13 @@ public interface ReflexPackage extends EPackage
   int LOGICAL_OR_EXPRESSION = 44;
 
   /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_OR_EXPRESSION__ASSIGN_VAR = ASSIGNMENT_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_OR_EXPRESSION__ASSIGN_OP = ASSIGNMENT_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_OR_EXPRESSION__EXPR = ASSIGNMENT_EXPRESSION__EXPR;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOGICAL_OR_EXPRESSION__LEFT = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 0;
+  int LOGICAL_OR_EXPRESSION__LEFT = 0;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -1276,7 +1184,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOGICAL_OR_EXPRESSION__RIGHT = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 1;
+  int LOGICAL_OR_EXPRESSION__RIGHT = 1;
 
   /**
    * The number of structural features of the '<em>Logical Or Expression</em>' class.
@@ -1285,7 +1193,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOGICAL_OR_EXPRESSION_FEATURE_COUNT = ASSIGNMENT_EXPRESSION_FEATURE_COUNT + 2;
+  int LOGICAL_OR_EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.LogicalAndExpressionImpl <em>Logical And Expression</em>}' class.
@@ -1296,33 +1204,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int LOGICAL_AND_EXPRESSION = 43;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_AND_EXPRESSION__ASSIGN_VAR = LOGICAL_OR_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_AND_EXPRESSION__ASSIGN_OP = LOGICAL_OR_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOGICAL_AND_EXPRESSION__EXPR = LOGICAL_OR_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1362,33 +1243,6 @@ public interface ReflexPackage extends EPackage
   int BIT_OR_EXPRESSION = 42;
 
   /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_OR_EXPRESSION__ASSIGN_VAR = LOGICAL_AND_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_OR_EXPRESSION__ASSIGN_OP = LOGICAL_AND_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_OR_EXPRESSION__EXPR = LOGICAL_AND_EXPRESSION__EXPR;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1424,33 +1278,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int BIT_XOR_EXPRESSION = 41;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_XOR_EXPRESSION__ASSIGN_VAR = BIT_OR_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_XOR_EXPRESSION__ASSIGN_OP = BIT_OR_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_XOR_EXPRESSION__EXPR = BIT_OR_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1490,33 +1317,6 @@ public interface ReflexPackage extends EPackage
   int BIT_AND_EXPRESSION = 40;
 
   /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_AND_EXPRESSION__ASSIGN_VAR = BIT_XOR_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_AND_EXPRESSION__ASSIGN_OP = BIT_XOR_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIT_AND_EXPRESSION__EXPR = BIT_XOR_EXPRESSION__EXPR;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1552,33 +1352,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int EQUALITY_EXPRESSION = 39;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQUALITY_EXPRESSION__ASSIGN_VAR = BIT_AND_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQUALITY_EXPRESSION__ASSIGN_OP = BIT_AND_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQUALITY_EXPRESSION__EXPR = BIT_AND_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1625,33 +1398,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int COMPARE_EXPRESSION = 38;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARE_EXPRESSION__ASSIGN_VAR = EQUALITY_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARE_EXPRESSION__ASSIGN_OP = EQUALITY_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARE_EXPRESSION__EXPR = EQUALITY_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1707,33 +1453,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int SHIFT_EXPRESSION = 37;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SHIFT_EXPRESSION__ASSIGN_VAR = COMPARE_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SHIFT_EXPRESSION__ASSIGN_OP = COMPARE_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SHIFT_EXPRESSION__EXPR = COMPARE_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1800,33 +1519,6 @@ public interface ReflexPackage extends EPackage
   int ADDITIVE_EXPRESSION = 36;
 
   /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDITIVE_EXPRESSION__ASSIGN_VAR = SHIFT_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDITIVE_EXPRESSION__ASSIGN_OP = SHIFT_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDITIVE_EXPRESSION__EXPR = SHIFT_EXPRESSION__EXPR;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1881,22 +1573,13 @@ public interface ReflexPackage extends EPackage
   int ADDITIVE_EXPRESSION__ADD_OP = SHIFT_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDITIVE_EXPRESSION__RIGHTT = SHIFT_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Additive Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADDITIVE_EXPRESSION_FEATURE_COUNT = SHIFT_EXPRESSION_FEATURE_COUNT + 2;
+  int ADDITIVE_EXPRESSION_FEATURE_COUNT = SHIFT_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.MultiplicativeExpressionImpl <em>Multiplicative Expression</em>}' class.
@@ -1907,33 +1590,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int MULTIPLICATIVE_EXPRESSION = 35;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULTIPLICATIVE_EXPRESSION__ASSIGN_VAR = ADDITIVE_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULTIPLICATIVE_EXPRESSION__ASSIGN_OP = ADDITIVE_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULTIPLICATIVE_EXPRESSION__EXPR = ADDITIVE_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1990,15 +1646,6 @@ public interface ReflexPackage extends EPackage
   int MULTIPLICATIVE_EXPRESSION__ADD_OP = ADDITIVE_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULTIPLICATIVE_EXPRESSION__RIGHTT = ADDITIVE_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2025,33 +1672,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int CAST_EXPRESSION = 34;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAST_EXPRESSION__ASSIGN_VAR = MULTIPLICATIVE_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAST_EXPRESSION__ASSIGN_OP = MULTIPLICATIVE_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAST_EXPRESSION__EXPR = MULTIPLICATIVE_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2108,15 +1728,6 @@ public interface ReflexPackage extends EPackage
   int CAST_EXPRESSION__ADD_OP = MULTIPLICATIVE_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAST_EXPRESSION__RIGHTT = MULTIPLICATIVE_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2152,33 +1763,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int UNARY_EXPRESSION = 33;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__ASSIGN_VAR = CAST_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__ASSIGN_OP = CAST_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__EXPR = CAST_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2235,15 +1819,6 @@ public interface ReflexPackage extends EPackage
   int UNARY_EXPRESSION__ADD_OP = CAST_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__RIGHTT = CAST_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2271,22 +1846,13 @@ public interface ReflexPackage extends EPackage
   int UNARY_EXPRESSION__UNARY_OP = CAST_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__REST = CAST_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Unary Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION_FEATURE_COUNT = CAST_EXPRESSION_FEATURE_COUNT + 2;
+  int UNARY_EXPRESSION_FEATURE_COUNT = CAST_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.InfixOpImpl <em>Infix Op</em>}' class.
@@ -2297,33 +1863,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int INFIX_OP = 29;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX_OP__ASSIGN_VAR = UNARY_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX_OP__ASSIGN_OP = UNARY_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX_OP__EXPR = UNARY_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2380,15 +1919,6 @@ public interface ReflexPackage extends EPackage
   int INFIX_OP__ADD_OP = UNARY_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX_OP__RIGHTT = UNARY_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2414,15 +1944,6 @@ public interface ReflexPackage extends EPackage
    * @ordered
    */
   int INFIX_OP__UNARY_OP = UNARY_EXPRESSION__UNARY_OP;
-
-  /**
-   * The feature id for the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX_OP__REST = UNARY_EXPRESSION__REST;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -2460,33 +1981,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int POSTFIX_OP = 30;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSTFIX_OP__ASSIGN_VAR = UNARY_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSTFIX_OP__ASSIGN_OP = UNARY_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSTFIX_OP__EXPR = UNARY_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2543,15 +2037,6 @@ public interface ReflexPackage extends EPackage
   int POSTFIX_OP__ADD_OP = UNARY_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSTFIX_OP__RIGHTT = UNARY_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2577,15 +2062,6 @@ public interface ReflexPackage extends EPackage
    * @ordered
    */
   int POSTFIX_OP__UNARY_OP = UNARY_EXPRESSION__UNARY_OP;
-
-  /**
-   * The feature id for the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSTFIX_OP__REST = UNARY_EXPRESSION__REST;
 
   /**
    * The feature id for the '<em><b>Var Id</b></em>' attribute.
@@ -2623,33 +2099,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int FUNCTION_CALL = 31;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__ASSIGN_VAR = UNARY_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__ASSIGN_OP = UNARY_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__EXPR = UNARY_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2706,15 +2155,6 @@ public interface ReflexPackage extends EPackage
   int FUNCTION_CALL__ADD_OP = UNARY_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__RIGHTT = UNARY_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2740,15 +2180,6 @@ public interface ReflexPackage extends EPackage
    * @ordered
    */
   int FUNCTION_CALL__UNARY_OP = UNARY_EXPRESSION__UNARY_OP;
-
-  /**
-   * The feature id for the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__REST = UNARY_EXPRESSION__REST;
 
   /**
    * The feature id for the '<em><b>Func Id</b></em>' attribute.
@@ -2786,33 +2217,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   int PRIMARY_EXPRESSION = 32;
-
-  /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__ASSIGN_VAR = UNARY_EXPRESSION__ASSIGN_VAR;
-
-  /**
-   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__ASSIGN_OP = UNARY_EXPRESSION__ASSIGN_OP;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__EXPR = UNARY_EXPRESSION__EXPR;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2869,15 +2273,6 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__ADD_OP = UNARY_EXPRESSION__ADD_OP;
 
   /**
-   * The feature id for the '<em><b>Rightt</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__RIGHTT = UNARY_EXPRESSION__RIGHTT;
-
-  /**
    * The feature id for the '<em><b>Mul Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2905,15 +2300,6 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__UNARY_OP = UNARY_EXPRESSION__UNARY_OP;
 
   /**
-   * The feature id for the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY_EXPRESSION__REST = UNARY_EXPRESSION__REST;
-
-  /**
    * The feature id for the '<em><b>Var Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2923,13 +2309,87 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__VAR_ID = UNARY_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Nested Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__NESTED_EXPR = UNARY_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Primary Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 1;
+  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ExpressionImpl <em>Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.ExpressionImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getExpression()
+   * @generated
+   */
+  int EXPRESSION = 46;
+
+  /**
+   * The number of structural features of the '<em>Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.AssignmentExpressionImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignmentExpression()
+   * @generated
+   */
+  int ASSIGNMENT_EXPRESSION = 45;
+
+  /**
+   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION__ASSIGN_VAR = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Assign Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION__ASSIGN_OP = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION__EXPR = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Assignment Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ReflexTypeImpl <em>Type</em>}' class.
@@ -3157,15 +2617,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getProgram_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Program#isTicks <em>Ticks</em>}'.
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ticks</em>'.
-   * @see ru.iaie.reflex.reflex.Program#isTicks()
+   * @return the meta object for the containment reference '<em>Ticks</em>'.
+   * @see ru.iaie.reflex.reflex.Program#getTicks()
    * @see #getProgram()
    * @generated
    */
-  EAttribute getProgram_Ticks();
+  EReference getProgram_Ticks();
 
   /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}'.
@@ -3264,6 +2724,49 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EReference getProcess_States();
+
+  /**
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.State <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>State</em>'.
+   * @see ru.iaie.reflex.reflex.State
+   * @generated
+   */
+  EClass getState();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.State#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see ru.iaie.reflex.reflex.State#getName()
+   * @see #getState()
+   * @generated
+   */
+  EAttribute getState_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>State Function</em>'.
+   * @see ru.iaie.reflex.reflex.State#getStateFunction()
+   * @see #getState()
+   * @generated
+   */
+  EReference getState_StateFunction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.State#getTimeoutFunction <em>Timeout Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Timeout Function</em>'.
+   * @see ru.iaie.reflex.reflex.State#getTimeoutFunction()
+   * @see #getState()
+   * @generated
+   */
+  EReference getState_TimeoutFunction();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Variable <em>Variable</em>}'.
@@ -3477,49 +2980,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getVisibility_SharingProcs();
-
-  /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.State <em>State</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>State</em>'.
-   * @see ru.iaie.reflex.reflex.State
-   * @generated
-   */
-  EClass getState();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.State#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see ru.iaie.reflex.reflex.State#getName()
-   * @see #getState()
-   * @generated
-   */
-  EAttribute getState_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>State Function</em>'.
-   * @see ru.iaie.reflex.reflex.State#getStateFunction()
-   * @see #getState()
-   * @generated
-   */
-  EReference getState_StateFunction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.State#getTimeoutFunction <em>Timeout Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Timeout Function</em>'.
-   * @see ru.iaie.reflex.reflex.State#getTimeoutFunction()
-   * @see #getState()
-   * @generated
-   */
-  EReference getState_TimeoutFunction();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StatementSequence <em>Statement Sequence</em>}'.
@@ -4170,6 +3630,17 @@ public interface ReflexPackage extends EPackage
   EAttribute getPrimaryExpression_VarId();
 
   /**
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Nested Expr</em>'.
+   * @see ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EReference getPrimaryExpression_NestedExpr();
+
+  /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.UnaryExpression <em>Unary Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4189,17 +3660,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getUnaryExpression_UnaryOp();
-
-  /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.UnaryExpression#getRest <em>Rest</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rest</em>'.
-   * @see ru.iaie.reflex.reflex.UnaryExpression#getRest()
-   * @see #getUnaryExpression()
-   * @generated
-   */
-  EReference getUnaryExpression_Rest();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.CastExpression <em>Cast Expression</em>}'.
@@ -4263,17 +3723,6 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getAdditiveExpression_AddOp();
-
-  /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.AdditiveExpression#getRightt <em>Rightt</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rightt</em>'.
-   * @see ru.iaie.reflex.reflex.AdditiveExpression#getRightt()
-   * @see #getAdditiveExpression()
-   * @generated
-   */
-  EReference getAdditiveExpression_Rightt();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ShiftExpression <em>Shift Expression</em>}'.
@@ -4421,22 +3870,22 @@ public interface ReflexPackage extends EPackage
   EClass getAssignmentExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignVar <em>Assign Var</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Assign Var</em>'.
-   * @see ru.iaie.reflex.reflex.AssignmentExpression#isAssignVar()
+   * @see ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar()
    * @see #getAssignmentExpression()
    * @generated
    */
   EAttribute getAssignmentExpression_AssignVar();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#isAssignOp <em>Assign Op</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignOp <em>Assign Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Assign Op</em>'.
-   * @see ru.iaie.reflex.reflex.AssignmentExpression#isAssignOp()
+   * @see ru.iaie.reflex.reflex.AssignmentExpression#getAssignOp()
    * @see #getAssignmentExpression()
    * @generated
    */
@@ -4678,12 +4127,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PROGRAM__NAME = eINSTANCE.getProgram_Name();
 
     /**
-     * The meta object literal for the '<em><b>Ticks</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ticks</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROGRAM__TICKS = eINSTANCE.getProgram_Ticks();
+    EReference PROGRAM__TICKS = eINSTANCE.getProgram_Ticks();
 
     /**
      * The meta object literal for the '<em><b>Consts</b></em>' containment reference list feature.
@@ -4758,6 +4207,40 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EReference PROCESS__STATES = eINSTANCE.getProcess_States();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StateImpl <em>State</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.StateImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getState()
+     * @generated
+     */
+    EClass STATE = eINSTANCE.getState();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STATE__NAME = eINSTANCE.getState_Name();
+
+    /**
+     * The meta object literal for the '<em><b>State Function</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATE__STATE_FUNCTION = eINSTANCE.getState_StateFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Timeout Function</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATE__TIMEOUT_FUNCTION = eINSTANCE.getState_TimeoutFunction();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.VariableImpl <em>Variable</em>}' class.
@@ -4932,40 +4415,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute VISIBILITY__SHARING_PROCS = eINSTANCE.getVisibility_SharingProcs();
-
-    /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StateImpl <em>State</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.StateImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getState()
-     * @generated
-     */
-    EClass STATE = eINSTANCE.getState();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STATE__NAME = eINSTANCE.getState_Name();
-
-    /**
-     * The meta object literal for the '<em><b>State Function</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STATE__STATE_FUNCTION = eINSTANCE.getState_StateFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Timeout Function</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STATE__TIMEOUT_FUNCTION = eINSTANCE.getState_TimeoutFunction();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StatementSequenceImpl <em>Statement Sequence</em>}' class.
@@ -5502,6 +4951,14 @@ public interface ReflexPackage extends EPackage
     EAttribute PRIMARY_EXPRESSION__VAR_ID = eINSTANCE.getPrimaryExpression_VarId();
 
     /**
+     * The meta object literal for the '<em><b>Nested Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMARY_EXPRESSION__NESTED_EXPR = eINSTANCE.getPrimaryExpression_NestedExpr();
+
+    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.UnaryExpressionImpl <em>Unary Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5518,14 +4975,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute UNARY_EXPRESSION__UNARY_OP = eINSTANCE.getUnaryExpression_UnaryOp();
-
-    /**
-     * The meta object literal for the '<em><b>Rest</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference UNARY_EXPRESSION__REST = eINSTANCE.getUnaryExpression_Rest();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.CastExpressionImpl <em>Cast Expression</em>}' class.
@@ -5580,14 +5029,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EAttribute ADDITIVE_EXPRESSION__ADD_OP = eINSTANCE.getAdditiveExpression_AddOp();
-
-    /**
-     * The meta object literal for the '<em><b>Rightt</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADDITIVE_EXPRESSION__RIGHTT = eINSTANCE.getAdditiveExpression_Rightt();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ShiftExpressionImpl <em>Shift Expression</em>}' class.

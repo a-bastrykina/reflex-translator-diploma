@@ -4,14 +4,11 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
@@ -25,7 +22,6 @@ import ru.iaie.reflex.reflex.UnaryOp;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.UnaryExpressionImpl#getUnaryOp <em>Unary Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.UnaryExpressionImpl#getRest <em>Rest</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,16 +47,6 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
    * @ordered
    */
   protected UnaryOp unaryOp = UNARY_OP_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getRest() <em>Rest</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRest()
-   * @generated
-   * @ordered
-   */
-  protected CastExpression rest;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,80 +100,12 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
    * @generated
    */
   @Override
-  public CastExpression getRest()
-  {
-    return rest;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetRest(CastExpression newRest, NotificationChain msgs)
-  {
-    CastExpression oldRest = rest;
-    rest = newRest;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.UNARY_EXPRESSION__REST, oldRest, newRest);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setRest(CastExpression newRest)
-  {
-    if (newRest != rest)
-    {
-      NotificationChain msgs = null;
-      if (rest != null)
-        msgs = ((InternalEObject)rest).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.UNARY_EXPRESSION__REST, null, msgs);
-      if (newRest != null)
-        msgs = ((InternalEObject)newRest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.UNARY_EXPRESSION__REST, null, msgs);
-      msgs = basicSetRest(newRest, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.UNARY_EXPRESSION__REST, newRest, newRest));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.UNARY_EXPRESSION__REST:
-        return basicSetRest(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReflexPackage.UNARY_EXPRESSION__UNARY_OP:
         return getUnaryOp();
-      case ReflexPackage.UNARY_EXPRESSION__REST:
-        return getRest();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -204,9 +122,6 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
     {
       case ReflexPackage.UNARY_EXPRESSION__UNARY_OP:
         setUnaryOp((UnaryOp)newValue);
-        return;
-      case ReflexPackage.UNARY_EXPRESSION__REST:
-        setRest((CastExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,9 +140,6 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
       case ReflexPackage.UNARY_EXPRESSION__UNARY_OP:
         setUnaryOp(UNARY_OP_EDEFAULT);
         return;
-      case ReflexPackage.UNARY_EXPRESSION__REST:
-        setRest((CastExpression)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -244,8 +156,6 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
     {
       case ReflexPackage.UNARY_EXPRESSION__UNARY_OP:
         return unaryOp != UNARY_OP_EDEFAULT;
-      case ReflexPackage.UNARY_EXPRESSION__REST:
-        return rest != null;
     }
     return super.eIsSet(featureID);
   }

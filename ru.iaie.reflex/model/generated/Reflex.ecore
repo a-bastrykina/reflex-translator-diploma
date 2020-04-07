@@ -3,7 +3,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="reflex" nsURI="http://www.iaie.ru/reflex/Reflex" nsPrefix="reflex">
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ticks" eType="#//Tact"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="consts" upperBound="-1"
         eType="#//Const" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="enums" upperBound="-1"
@@ -21,6 +22,13 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
         eType="#//State" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateFunction" eType="#//StatementSequence"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFunction" eType="#//TimeoutFunction"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//Variable">
@@ -52,13 +60,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="SHARED" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sharingProcs" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateFunction" eType="#//StatementSequence"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFunction" eType="#//TimeoutFunction"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatementSequence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
@@ -158,11 +159,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpression" eSuperTypes="#//UnaryExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="varId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedExpr" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression" eSuperTypes="#//CastExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unaryOp" eType="#//UnaryOp"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rest" eType="#//CastExpression"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CastExpression" eSuperTypes="#//MultiplicativeExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
@@ -173,8 +174,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression" eSuperTypes="#//ShiftExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="addOp" eType="#//AdditiveOp"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightt" eType="#//AdditiveExpression"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ShiftExpression" eSuperTypes="#//CompareExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shiftOp" eType="#//ShiftOp"/>
@@ -189,16 +188,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="BitXorExpression" eSuperTypes="#//BitOrExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BitOrExpression" eSuperTypes="#//LogicalAndExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LogicalAndExpression" eSuperTypes="#//LogicalOrExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LogicalOrExpression" eSuperTypes="#//AssignmentExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalOrExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//LogicalOrExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//LogicalOrExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignVar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignOp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignVar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignOp" eType="#//AssignOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//LogicalOrExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Statement"/>

@@ -14,7 +14,6 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.UnaryExpression#getUnaryOp <em>Unary Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.UnaryExpression#getRest <em>Rest</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getUnaryExpression()
@@ -47,27 +46,5 @@ public interface UnaryExpression extends CastExpression
    * @generated
    */
   void setUnaryOp(UnaryOp value);
-
-  /**
-   * Returns the value of the '<em><b>Rest</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Rest</em>' containment reference.
-   * @see #setRest(CastExpression)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getUnaryExpression_Rest()
-   * @model containment="true"
-   * @generated
-   */
-  CastExpression getRest();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.UnaryExpression#getRest <em>Rest</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Rest</em>' containment reference.
-   * @see #getRest()
-   * @generated
-   */
-  void setRest(CastExpression value);
 
 } // UnaryExpression

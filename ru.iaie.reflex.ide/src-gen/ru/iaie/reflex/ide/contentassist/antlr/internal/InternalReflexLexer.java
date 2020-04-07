@@ -854,10 +854,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:46:7: ( ';' )
-            // InternalReflex.g:46:9: ';'
+            // InternalReflex.g:46:7: ( 'state' )
+            // InternalReflex.g:46:9: 'state'
             {
-            match(';'); 
+            match("state"); 
+
 
             }
 
@@ -874,11 +875,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:47:7: ( 'from' )
-            // InternalReflex.g:47:9: 'from'
+            // InternalReflex.g:47:7: ( ';' )
+            // InternalReflex.g:47:9: ';'
             {
-            match("from"); 
-
+            match(';'); 
 
             }
 
@@ -895,10 +895,11 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:48:7: ( ',' )
-            // InternalReflex.g:48:9: ','
+            // InternalReflex.g:48:7: ( 'from' )
+            // InternalReflex.g:48:9: 'from'
             {
-            match(','); 
+            match("from"); 
+
 
             }
 
@@ -915,10 +916,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:49:7: ( '[' )
-            // InternalReflex.g:49:9: '['
+            // InternalReflex.g:49:7: ( ',' )
+            // InternalReflex.g:49:9: ','
             {
-            match('['); 
+            match(','); 
 
             }
 
@@ -935,10 +936,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:50:7: ( ']' )
-            // InternalReflex.g:50:9: ']'
+            // InternalReflex.g:50:7: ( '[' )
+            // InternalReflex.g:50:9: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -955,11 +956,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:51:7: ( 'state' )
-            // InternalReflex.g:51:9: 'state'
+            // InternalReflex.g:51:7: ( ']' )
+            // InternalReflex.g:51:9: ']'
             {
-            match("state"); 
-
+            match(']'); 
 
             }
 
@@ -1456,8 +1456,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_LOGICAL_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10053:17: ( '||' )
-            // InternalReflex.g:10053:19: '||'
+            // InternalReflex.g:10086:17: ( '||' )
+            // InternalReflex.g:10086:19: '||'
             {
             match("||"); 
 
@@ -1477,8 +1477,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_LOGICAL_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10055:18: ( '&&' )
-            // InternalReflex.g:10055:20: '&&'
+            // InternalReflex.g:10088:18: ( '&&' )
+            // InternalReflex.g:10088:20: '&&'
             {
             match("&&"); 
 
@@ -1498,8 +1498,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10057:13: ( '|' )
-            // InternalReflex.g:10057:15: '|'
+            // InternalReflex.g:10090:13: ( '|' )
+            // InternalReflex.g:10090:15: '|'
             {
             match('|'); 
 
@@ -1518,8 +1518,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_XOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10059:14: ( '^' )
-            // InternalReflex.g:10059:16: '^'
+            // InternalReflex.g:10092:14: ( '^' )
+            // InternalReflex.g:10092:16: '^'
             {
             match('^'); 
 
@@ -1538,8 +1538,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BIT_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10061:14: ( '&' )
-            // InternalReflex.g:10061:16: '&'
+            // InternalReflex.g:10094:14: ( '&' )
+            // InternalReflex.g:10094:16: '&'
             {
             match('&'); 
 
@@ -1558,8 +1558,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_VOID_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10063:18: ( 'void' )
-            // InternalReflex.g:10063:20: 'void'
+            // InternalReflex.g:10096:18: ( 'void' )
+            // InternalReflex.g:10096:20: 'void'
             {
             match("void"); 
 
@@ -1579,8 +1579,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_FLOAT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10065:19: ( 'float' )
-            // InternalReflex.g:10065:21: 'float'
+            // InternalReflex.g:10098:19: ( 'float' )
+            // InternalReflex.g:10098:21: 'float'
             {
             match("float"); 
 
@@ -1600,8 +1600,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_DOUBLE_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10067:20: ( 'double' )
-            // InternalReflex.g:10067:22: 'double'
+            // InternalReflex.g:10100:20: ( 'double' )
+            // InternalReflex.g:10100:22: 'double'
             {
             match("double"); 
 
@@ -1621,8 +1621,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_SHORT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10069:19: ( 'short' )
-            // InternalReflex.g:10069:21: 'short'
+            // InternalReflex.g:10102:19: ( 'short' )
+            // InternalReflex.g:10102:21: 'short'
             {
             match("short"); 
 
@@ -1642,8 +1642,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INT_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10071:17: ( 'int' )
-            // InternalReflex.g:10071:19: 'int'
+            // InternalReflex.g:10104:17: ( 'int' )
+            // InternalReflex.g:10104:19: 'int'
             {
             match("int"); 
 
@@ -1663,8 +1663,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_LONG_C_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10073:18: ( 'long' )
-            // InternalReflex.g:10073:20: 'long'
+            // InternalReflex.g:10106:18: ( 'long' )
+            // InternalReflex.g:10106:20: 'long'
             {
             match("long"); 
 
@@ -1684,8 +1684,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_BOOL_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10075:16: ( 'bool' )
-            // InternalReflex.g:10075:18: 'bool'
+            // InternalReflex.g:10108:16: ( 'bool' )
+            // InternalReflex.g:10108:18: 'bool'
             {
             match("bool"); 
 
@@ -1705,10 +1705,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10077:14: ( ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )? )
-            // InternalReflex.g:10077:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )?
+            // InternalReflex.g:10110:14: ( ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )? )
+            // InternalReflex.g:10110:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )?
             {
-            // InternalReflex.g:10077:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL )
+            // InternalReflex.g:10110:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL )
             int alt1=3;
             int LA1_0 = input.LA(1);
 
@@ -1747,21 +1747,21 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalReflex.g:10077:17: RULE_HEX
+                    // InternalReflex.g:10110:17: RULE_HEX
                     {
                     mRULE_HEX(); 
 
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:10077:26: RULE_OCTAL
+                    // InternalReflex.g:10110:26: RULE_OCTAL
                     {
                     mRULE_OCTAL(); 
 
                     }
                     break;
                 case 3 :
-                    // InternalReflex.g:10077:37: RULE_DECIMAL
+                    // InternalReflex.g:10110:37: RULE_DECIMAL
                     {
                     mRULE_DECIMAL(); 
 
@@ -1770,7 +1770,7 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            // InternalReflex.g:10077:51: ( RULE_LONG | RULE_UNSIGNED )?
+            // InternalReflex.g:10110:51: ( RULE_LONG | RULE_UNSIGNED )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1812,22 +1812,22 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10079:12: ( ( RULE_DEC_FLOAT | RULE_HEX_FLOAT ) )
-            // InternalReflex.g:10079:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
+            // InternalReflex.g:10112:12: ( ( RULE_DEC_FLOAT | RULE_HEX_FLOAT ) )
+            // InternalReflex.g:10112:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
             {
-            // InternalReflex.g:10079:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
+            // InternalReflex.g:10112:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
             int alt3=2;
             alt3 = dfa3.predict(input);
             switch (alt3) {
                 case 1 :
-                    // InternalReflex.g:10079:15: RULE_DEC_FLOAT
+                    // InternalReflex.g:10112:15: RULE_DEC_FLOAT
                     {
                     mRULE_DEC_FLOAT(); 
 
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:10079:30: RULE_HEX_FLOAT
+                    // InternalReflex.g:10112:30: RULE_HEX_FLOAT
                     {
                     mRULE_HEX_FLOAT(); 
 
@@ -1850,10 +1850,10 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_DEC_FLOAT"
     public final void mRULE_DEC_FLOAT() throws RecognitionException {
         try {
-            // InternalReflex.g:10081:25: ( ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
-            // InternalReflex.g:10081:27: ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:10114:25: ( ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
+            // InternalReflex.g:10114:27: ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             {
-            // InternalReflex.g:10081:27: ( RULE_DEC_SEQUENCE )?
+            // InternalReflex.g:10114:27: ( RULE_DEC_SEQUENCE )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1862,7 +1862,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalReflex.g:10081:27: RULE_DEC_SEQUENCE
+                    // InternalReflex.g:10114:27: RULE_DEC_SEQUENCE
                     {
                     mRULE_DEC_SEQUENCE(); 
 
@@ -1873,7 +1873,7 @@ public class InternalReflexLexer extends Lexer {
 
             match('.'); 
             mRULE_DEC_SEQUENCE(); 
-            // InternalReflex.g:10081:68: ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
+            // InternalReflex.g:10114:68: ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1882,7 +1882,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalReflex.g:10081:69: RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
+                    // InternalReflex.g:10114:69: RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
                     {
                     mRULE_EXPONENT(); 
                     mRULE_SIGN(); 
@@ -1893,7 +1893,7 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            // InternalReflex.g:10081:113: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:10114:113: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1931,10 +1931,10 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX_FLOAT"
     public final void mRULE_HEX_FLOAT() throws RecognitionException {
         try {
-            // InternalReflex.g:10083:25: ( ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
-            // InternalReflex.g:10083:27: ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:10116:25: ( ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )? )
+            // InternalReflex.g:10116:27: ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             {
-            // InternalReflex.g:10083:27: ( RULE_HEX_SEQUENCE )?
+            // InternalReflex.g:10116:27: ( RULE_HEX_SEQUENCE )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1943,7 +1943,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalReflex.g:10083:27: RULE_HEX_SEQUENCE
+                    // InternalReflex.g:10116:27: RULE_HEX_SEQUENCE
                     {
                     mRULE_HEX_SEQUENCE(); 
 
@@ -1954,7 +1954,7 @@ public class InternalReflexLexer extends Lexer {
 
             match('.'); 
             mRULE_HEX_SEQUENCE(); 
-            // InternalReflex.g:10083:68: ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
+            // InternalReflex.g:10116:68: ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1963,7 +1963,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalReflex.g:10083:69: RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
+                    // InternalReflex.g:10116:69: RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
                     {
                     mRULE_BIN_EXPONENT(); 
                     mRULE_SIGN(); 
@@ -1974,7 +1974,7 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            // InternalReflex.g:10083:117: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
+            // InternalReflex.g:10116:117: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2012,10 +2012,10 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_DEC_SEQUENCE"
     public final void mRULE_DEC_SEQUENCE() throws RecognitionException {
         try {
-            // InternalReflex.g:10085:28: ( ( '0' .. '9' )+ )
-            // InternalReflex.g:10085:30: ( '0' .. '9' )+
+            // InternalReflex.g:10118:28: ( ( '0' .. '9' )+ )
+            // InternalReflex.g:10118:30: ( '0' .. '9' )+
             {
-            // InternalReflex.g:10085:30: ( '0' .. '9' )+
+            // InternalReflex.g:10118:30: ( '0' .. '9' )+
             int cnt10=0;
             loop10:
             do {
@@ -2029,7 +2029,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalReflex.g:10085:31: '0' .. '9'
+            	    // InternalReflex.g:10118:31: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2057,10 +2057,10 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX_SEQUENCE"
     public final void mRULE_HEX_SEQUENCE() throws RecognitionException {
         try {
-            // InternalReflex.g:10087:28: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
-            // InternalReflex.g:10087:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalReflex.g:10120:28: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
+            // InternalReflex.g:10120:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
-            // InternalReflex.g:10087:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalReflex.g:10120:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             int cnt11=0;
             loop11:
             do {
@@ -2110,8 +2110,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_BIN_EXPONENT"
     public final void mRULE_BIN_EXPONENT() throws RecognitionException {
         try {
-            // InternalReflex.g:10089:28: ( ( 'p' | 'P' ) )
-            // InternalReflex.g:10089:30: ( 'p' | 'P' )
+            // InternalReflex.g:10122:28: ( ( 'p' | 'P' ) )
+            // InternalReflex.g:10122:30: ( 'p' | 'P' )
             {
             if ( input.LA(1)=='P'||input.LA(1)=='p' ) {
                 input.consume();
@@ -2134,8 +2134,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_EXPONENT"
     public final void mRULE_EXPONENT() throws RecognitionException {
         try {
-            // InternalReflex.g:10091:24: ( ( 'e' | 'E' ) )
-            // InternalReflex.g:10091:26: ( 'e' | 'E' )
+            // InternalReflex.g:10124:24: ( ( 'e' | 'E' ) )
+            // InternalReflex.g:10124:26: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2158,8 +2158,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_SIGN"
     public final void mRULE_SIGN() throws RecognitionException {
         try {
-            // InternalReflex.g:10093:20: ( ( '+' | '-' ) )
-            // InternalReflex.g:10093:22: ( '+' | '-' )
+            // InternalReflex.g:10126:20: ( ( '+' | '-' ) )
+            // InternalReflex.g:10126:22: ( '+' | '-' )
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                 input.consume();
@@ -2182,10 +2182,10 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_DECIMAL"
     public final void mRULE_DECIMAL() throws RecognitionException {
         try {
-            // InternalReflex.g:10095:23: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // InternalReflex.g:10095:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // InternalReflex.g:10128:23: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // InternalReflex.g:10128:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // InternalReflex.g:10095:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // InternalReflex.g:10128:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2203,17 +2203,17 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalReflex.g:10095:26: '0'
+                    // InternalReflex.g:10128:26: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:10095:30: '1' .. '9' ( '0' .. '9' )*
+                    // InternalReflex.g:10128:30: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // InternalReflex.g:10095:39: ( '0' .. '9' )*
+                    // InternalReflex.g:10128:39: ( '0' .. '9' )*
                     loop12:
                     do {
                         int alt12=2;
@@ -2226,7 +2226,7 @@ public class InternalReflexLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // InternalReflex.g:10095:40: '0' .. '9'
+                    	    // InternalReflex.g:10128:40: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -2256,11 +2256,11 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_OCTAL"
     public final void mRULE_OCTAL() throws RecognitionException {
         try {
-            // InternalReflex.g:10097:21: ( '0' ( '0' .. '7' )+ )
-            // InternalReflex.g:10097:23: '0' ( '0' .. '7' )+
+            // InternalReflex.g:10130:21: ( '0' ( '0' .. '7' )+ )
+            // InternalReflex.g:10130:23: '0' ( '0' .. '7' )+
             {
             match('0'); 
-            // InternalReflex.g:10097:27: ( '0' .. '7' )+
+            // InternalReflex.g:10130:27: ( '0' .. '7' )+
             int cnt14=0;
             loop14:
             do {
@@ -2274,7 +2274,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // InternalReflex.g:10097:28: '0' .. '7'
+            	    // InternalReflex.g:10130:28: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -2302,8 +2302,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX"
     public final void mRULE_HEX() throws RecognitionException {
         try {
-            // InternalReflex.g:10099:19: ( RULE_HEX_PREFIX RULE_HEX_SEQUENCE )
-            // InternalReflex.g:10099:21: RULE_HEX_PREFIX RULE_HEX_SEQUENCE
+            // InternalReflex.g:10132:19: ( RULE_HEX_PREFIX RULE_HEX_SEQUENCE )
+            // InternalReflex.g:10132:21: RULE_HEX_PREFIX RULE_HEX_SEQUENCE
             {
             mRULE_HEX_PREFIX(); 
             mRULE_HEX_SEQUENCE(); 
@@ -2319,8 +2319,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_HEX_PREFIX"
     public final void mRULE_HEX_PREFIX() throws RecognitionException {
         try {
-            // InternalReflex.g:10101:26: ( '0' ( 'x' | 'X' ) )
-            // InternalReflex.g:10101:28: '0' ( 'x' | 'X' )
+            // InternalReflex.g:10134:26: ( '0' ( 'x' | 'X' ) )
+            // InternalReflex.g:10134:28: '0' ( 'x' | 'X' )
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -2344,8 +2344,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_LONG"
     public final void mRULE_LONG() throws RecognitionException {
         try {
-            // InternalReflex.g:10103:20: ( ( 'L' | 'l' ) )
-            // InternalReflex.g:10103:22: ( 'L' | 'l' )
+            // InternalReflex.g:10136:20: ( ( 'L' | 'l' ) )
+            // InternalReflex.g:10136:22: ( 'L' | 'l' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -2368,8 +2368,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_FLOAT_SUFFIX"
     public final void mRULE_FLOAT_SUFFIX() throws RecognitionException {
         try {
-            // InternalReflex.g:10105:28: ( ( 'F' | 'f' ) )
-            // InternalReflex.g:10105:30: ( 'F' | 'f' )
+            // InternalReflex.g:10138:28: ( ( 'F' | 'f' ) )
+            // InternalReflex.g:10138:30: ( 'F' | 'f' )
             {
             if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
                 input.consume();
@@ -2392,8 +2392,8 @@ public class InternalReflexLexer extends Lexer {
     // $ANTLR start "RULE_UNSIGNED"
     public final void mRULE_UNSIGNED() throws RecognitionException {
         try {
-            // InternalReflex.g:10107:24: ( ( 'U' | 'u' ) )
-            // InternalReflex.g:10107:26: ( 'U' | 'u' )
+            // InternalReflex.g:10140:24: ( ( 'U' | 'u' ) )
+            // InternalReflex.g:10140:26: ( 'U' | 'u' )
             {
             if ( input.LA(1)=='U'||input.LA(1)=='u' ) {
                 input.consume();
@@ -2418,10 +2418,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10109:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalReflex.g:10109:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReflex.g:10142:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalReflex.g:10142:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalReflex.g:10109:11: ( '^' )?
+            // InternalReflex.g:10142:11: ( '^' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2430,7 +2430,7 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // InternalReflex.g:10109:11: '^'
+                    // InternalReflex.g:10142:11: '^'
                     {
                     match('^'); 
 
@@ -2448,7 +2448,7 @@ public class InternalReflexLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalReflex.g:10109:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReflex.g:10142:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop16:
             do {
                 int alt16=2;
@@ -2497,10 +2497,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10111:10: ( ( '0' .. '9' )+ )
-            // InternalReflex.g:10111:12: ( '0' .. '9' )+
+            // InternalReflex.g:10144:10: ( ( '0' .. '9' )+ )
+            // InternalReflex.g:10144:12: ( '0' .. '9' )+
             {
-            // InternalReflex.g:10111:12: ( '0' .. '9' )+
+            // InternalReflex.g:10144:12: ( '0' .. '9' )+
             int cnt17=0;
             loop17:
             do {
@@ -2514,7 +2514,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // InternalReflex.g:10111:13: '0' .. '9'
+            	    // InternalReflex.g:10144:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2546,10 +2546,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10113:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalReflex.g:10113:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReflex.g:10146:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalReflex.g:10146:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalReflex.g:10113:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReflex.g:10146:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -2567,10 +2567,10 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // InternalReflex.g:10113:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalReflex.g:10146:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalReflex.g:10113:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalReflex.g:10146:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop18:
                     do {
                         int alt18=3;
@@ -2586,7 +2586,7 @@ public class InternalReflexLexer extends Lexer {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // InternalReflex.g:10113:21: '\\\\' .
+                    	    // InternalReflex.g:10146:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2594,7 +2594,7 @@ public class InternalReflexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReflex.g:10113:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalReflex.g:10146:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2619,10 +2619,10 @@ public class InternalReflexLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:10113:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalReflex.g:10146:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalReflex.g:10113:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalReflex.g:10146:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop19:
                     do {
                         int alt19=3;
@@ -2638,7 +2638,7 @@ public class InternalReflexLexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // InternalReflex.g:10113:54: '\\\\' .
+                    	    // InternalReflex.g:10146:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2646,7 +2646,7 @@ public class InternalReflexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReflex.g:10113:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalReflex.g:10146:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2689,12 +2689,12 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10115:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalReflex.g:10115:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalReflex.g:10148:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalReflex.g:10148:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalReflex.g:10115:24: ( options {greedy=false; } : . )*
+            // InternalReflex.g:10148:24: ( options {greedy=false; } : . )*
             loop21:
             do {
                 int alt21=2;
@@ -2719,7 +2719,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt21) {
             	case 1 :
-            	    // InternalReflex.g:10115:52: .
+            	    // InternalReflex.g:10148:52: .
             	    {
             	    matchAny(); 
 
@@ -2749,12 +2749,12 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10117:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalReflex.g:10117:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalReflex.g:10150:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalReflex.g:10150:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalReflex.g:10117:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalReflex.g:10150:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop22:
             do {
                 int alt22=2;
@@ -2767,7 +2767,7 @@ public class InternalReflexLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // InternalReflex.g:10117:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalReflex.g:10150:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2787,7 +2787,7 @@ public class InternalReflexLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalReflex.g:10117:40: ( ( '\\r' )? '\\n' )?
+            // InternalReflex.g:10150:40: ( ( '\\r' )? '\\n' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -2796,9 +2796,9 @@ public class InternalReflexLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // InternalReflex.g:10117:41: ( '\\r' )? '\\n'
+                    // InternalReflex.g:10150:41: ( '\\r' )? '\\n'
                     {
-                    // InternalReflex.g:10117:41: ( '\\r' )?
+                    // InternalReflex.g:10150:41: ( '\\r' )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -2807,7 +2807,7 @@ public class InternalReflexLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // InternalReflex.g:10117:41: '\\r'
+                            // InternalReflex.g:10150:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2839,10 +2839,10 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10119:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalReflex.g:10119:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReflex.g:10152:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalReflex.g:10152:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalReflex.g:10119:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReflex.g:10152:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt25=0;
             loop25:
             do {
@@ -2896,8 +2896,8 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10121:16: ( . )
-            // InternalReflex.g:10121:18: .
+            // InternalReflex.g:10154:16: ( . )
+            // InternalReflex.g:10154:18: .
             {
             matchAny(); 
 
@@ -3569,7 +3569,7 @@ public class InternalReflexLexer extends Lexer {
             this.transition = DFA3_transition;
         }
         public String getDescription() {
-            return "10079:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )";
+            return "10112:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )";
         }
     }
     static final String DFA26_eotS =
@@ -3581,7 +3581,7 @@ public class InternalReflexLexer extends Lexer {
     static final String DFA26_maxS =
         "\1\uffff\1\156\1\165\5\75\1\74\1\76\1\75\1\172\1\174\1\uffff\1\75\1\uffff\1\167\1\156\1\162\3\uffff\1\162\3\uffff\1\151\2\uffff\1\162\1\157\1\uffff\1\162\1\157\1\145\1\154\1\145\2\157\4\146\1\uffff\2\uffff\2\uffff\1\164\1\172\1\uffff\1\164\17\uffff\1\75\1\uffff\1\75\16\uffff\1\147\1\157\1\151\1\164\1\157\1\163\1\157\3\uffff\2\157\1\uffff\1\146\3\uffff\1\155\1\143\2\uffff\1\163\1\162\1\165\1\163\1\156\1\uffff\1\145\2\157\1\163\1\157\1\170\1\151\1\165\1\uffff\3\146\2\uffff\1\165\1\172\1\uffff\1\160\4\uffff\1\156\1\164\1\160\1\164\1\172\2\162\1\151\1\147\1\155\1\141\1\145\1\164\1\145\1\157\1\155\1\145\1\163\1\141\1\154\1\160\1\141\1\147\1\164\1\142\1\164\1\144\1\142\1\uffff\1\164\1\uffff\1\165\2\145\1\164\1\172\1\143\1\uffff\1\145\1\164\1\147\1\162\2\172\1\164\1\157\2\172\1\162\2\172\1\164\1\153\2\172\1\154\1\172\1\141\1\164\1\141\2\172\1\154\1\172\1\164\1\144\2\172\1\uffff\1\150\1\144\1\172\1\156\1\141\2\uffff\1\172\1\165\2\uffff\1\172\2\uffff\2\172\2\uffff\1\172\1\uffff\1\162\1\172\1\154\2\uffff\1\145\1\uffff\2\172\2\uffff\2\172\1\uffff\1\145\1\155\1\uffff\1\164\4\uffff\1\164\1\uffff\2\172\4\uffff\1\144\3\172\2\uffff\1\172\4\uffff";
     static final String DFA26_acceptS =
-        "\15\uffff\1\21\1\uffff\1\35\3\uffff\1\41\1\42\1\44\1\uffff\1\46\1\47\1\50\1\uffff\1\54\1\55\2\uffff\1\61\13\uffff\1\117\2\uffff\1\124\1\125\2\uffff\1\117\1\uffff\1\3\1\10\1\17\1\4\1\11\1\20\1\25\1\27\1\5\1\6\1\33\1\7\1\122\1\123\1\34\1\uffff\1\23\1\uffff\1\26\1\24\1\14\1\102\1\105\1\15\1\104\1\16\1\101\1\103\1\21\1\30\1\22\1\35\7\uffff\1\41\1\42\1\44\2\uffff\1\116\1\uffff\1\46\1\47\1\50\2\uffff\1\54\1\55\5\uffff\1\61\10\uffff\1\115\3\uffff\1\121\1\124\2\uffff\1\53\1\uffff\1\12\1\32\1\13\1\31\34\uffff\1\120\1\uffff\1\112\6\uffff\1\71\36\uffff\1\64\5\uffff\1\43\1\45\2\uffff\1\74\1\56\1\uffff\1\73\1\60\2\uffff\1\114\1\66\1\uffff\1\113\3\uffff\1\100\1\106\1\uffff\1\1\2\uffff\1\51\1\63\2\uffff\1\111\2\uffff\1\107\1\uffff\1\65\1\72\1\62\1\75\1\uffff\1\70\2\uffff\1\2\1\36\1\57\1\77\4\uffff\1\76\1\110\1\uffff\1\40\1\52\1\67\1\37";
+        "\15\uffff\1\21\1\uffff\1\35\3\uffff\1\41\1\42\1\45\1\uffff\1\47\1\50\1\51\1\uffff\1\54\1\55\2\uffff\1\61\13\uffff\1\117\2\uffff\1\124\1\125\2\uffff\1\117\1\uffff\1\3\1\10\1\17\1\4\1\11\1\20\1\25\1\27\1\5\1\6\1\33\1\7\1\122\1\123\1\34\1\uffff\1\23\1\uffff\1\26\1\24\1\14\1\102\1\105\1\15\1\104\1\16\1\101\1\103\1\21\1\30\1\22\1\35\7\uffff\1\41\1\42\1\45\2\uffff\1\116\1\uffff\1\47\1\50\1\51\2\uffff\1\54\1\55\5\uffff\1\61\10\uffff\1\115\3\uffff\1\121\1\124\2\uffff\1\53\1\uffff\1\12\1\32\1\13\1\31\34\uffff\1\120\1\uffff\1\112\6\uffff\1\71\36\uffff\1\64\5\uffff\1\43\1\46\2\uffff\1\74\1\56\1\uffff\1\73\1\60\2\uffff\1\114\1\66\1\uffff\1\113\3\uffff\1\100\1\106\1\uffff\1\1\2\uffff\1\44\1\63\2\uffff\1\111\2\uffff\1\107\1\uffff\1\65\1\72\1\62\1\75\1\uffff\1\70\2\uffff\1\2\1\36\1\57\1\77\4\uffff\1\76\1\110\1\uffff\1\40\1\52\1\67\1\37";
     static final String DFA26_specialS =
         "\1\1\53\uffff\1\0\1\2\u00d9\uffff}>";
     static final String[] DFA26_transitionS = {
