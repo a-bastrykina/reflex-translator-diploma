@@ -25,6 +25,12 @@ public class ReflexGenerator extends AbstractGenerator {
   private XMIReflexGenerator xmiGen;
   
   @Override
+  public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    this.r2cGen.beforeGenerate(resource, fsa, context);
+    this.xmiGen.beforeGenerate(resource, fsa, context);
+  }
+  
+  @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.r2cGen.doGenerate(resource, fsa, context);
     this.xmiGen.doGenerate(resource, fsa, context);

@@ -58,13 +58,15 @@ class R2CReflexGenerator extends AbstractGenerator {
 		"LabVIEWData.h", "dll_interface.h", "lib.cpp", "lib.h", "msg_queue.cpp", "msg_queue.h", "proc.h", "R_CNST.H",
 		"r_io.cpp", "r_io.h", "r_lib.cpp", "R_LIB.H", "r_main.h")
 
+	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		program = resource.getProgram()
+	}
+
 	override void afterGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		identifiersHelper.clearCaches()
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		program = resource.getProgram()
-
 		copyResources(program.name.toLowerCase, fsa)
 		generateVariables(resource, fsa, context)
 		generateConstants(resource, fsa, context)
@@ -92,20 +94,20 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def generateConstants(Resource resource) {
 		// TODO: check for const expr
 		return '''
-			«FOR constant : resource.program.consts»
-			#define «identifiersHelper.getConstantId(constant)» /*«constant.constId»*/ «translateExpr(constant.constValue)» 
+			«FOR constant : program.consts»
+				#define «identifiersHelper.getConstantId(constant)» /*«constant.constId»*/ «translateExpr(constant.constValue)» 
 			«ENDFOR»
 		'''
 	}
 
 	def generateEnums(Resource resource) {
 		return '''
-			«FOR en : resource.program.enums»
-			enum «identifiersHelper.getEnumId(en)» {
-				 «FOR enumMember: en.enumMembers»
-				 «identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
-				 «ENDFOR»
-			}
+			«FOR en : program.enums»
+				enum «identifiersHelper.getEnumId(en)» {
+					 «FOR enumMember: en.enumMembers»
+					 	«identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
+					 «ENDFOR»
+				}
 			«ENDFOR»
 		'''
 	}
@@ -127,7 +129,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateProcessVariables(Resource resource) {
 		return '''
-			«FOR proc : resource.program.processes»
+			«FOR proc : program.processes»
 				«FOR variable: proc.variables»
 					«IF (variable instanceof ProgramVariable)»
 						«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getVariableId(proc, variable)»;
@@ -143,7 +145,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def generateInputPorts(Resource resource) {
 		// TODO: specify port type
 		return '''
-			«FOR reg : resource.program.registers»
+			«FOR reg : program.registers»
 				«IF reg.type == RegisterType.INPUT»
 					char «identifiersHelper.getPortId(reg)»;
 				«ENDIF»
@@ -154,7 +156,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def generateOutputPorts(Resource resource) {
 		// TODO: specify port type
 		return '''
-			«FOR reg : resource.program.registers»
+			«FOR reg : program.registers»
 				«IF reg.type == RegisterType.OUTPUT»
 					char «identifiersHelper.getPortId(reg)»;
 				«ENDIF»
@@ -168,7 +170,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#include "CAext.h" /* Common files for all generated c-files */
 			#include "CAxvar.h"  /* Var-images */
 			
-			«FOR proc : resource.program.processes»
+			«FOR proc : program.processes»
 				«translateProcess(proc)»
 			«ENDFOR»
 		'''

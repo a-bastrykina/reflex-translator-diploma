@@ -24,6 +24,11 @@ class ReflexGenerator extends AbstractGenerator {
 	@Inject
 	XMIReflexGenerator xmiGen
 
+	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		r2cGen.beforeGenerate(resource, fsa, context)
+		xmiGen.beforeGenerate(resource, fsa, context)
+	}
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		r2cGen.doGenerate(resource, fsa, context)
 		xmiGen.doGenerate(resource, fsa, context)

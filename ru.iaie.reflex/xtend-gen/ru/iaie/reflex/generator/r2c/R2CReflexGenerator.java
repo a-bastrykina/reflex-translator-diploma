@@ -78,13 +78,17 @@ public class R2CReflexGenerator extends AbstractGenerator {
     "r_io.cpp", "r_io.h", "r_lib.cpp", "R_LIB.H", "r_main.h");
   
   @Override
+  public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    this.program = ReflexModelUtil.getProgram(resource);
+  }
+  
+  @Override
   public void afterGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.identifiersHelper.clearCaches();
   }
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.program = ReflexModelUtil.getProgram(resource);
     this.copyResources(this.program.getName().toLowerCase(), fsa);
     this.generateVariables(resource, fsa, context);
     this.generateConstants(resource, fsa, context);
@@ -128,7 +132,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateConstants(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Const> _consts = ReflexModelUtil.getProgram(resource).getConsts();
+      EList<Const> _consts = this.program.getConsts();
       for(final Const constant : _consts) {
         _builder.append("#define ");
         String _constantId = this.identifiersHelper.getConstantId(constant);
@@ -149,7 +153,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateEnums(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<ru.iaie.reflex.reflex.Enum> _enums = ReflexModelUtil.getProgram(resource).getEnums();
+      EList<ru.iaie.reflex.reflex.Enum> _enums = this.program.getEnums();
       for(final ru.iaie.reflex.reflex.Enum en : _enums) {
         _builder.append("enum ");
         String _enumId = this.identifiersHelper.getEnumId(en);
@@ -213,7 +217,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateProcessVariables(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<ru.iaie.reflex.reflex.Process> _processes = ReflexModelUtil.getProgram(resource).getProcesses();
+      EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         {
           EList<Variable> _variables = proc.getVariables();
@@ -250,7 +254,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateInputPorts(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Register> _registers = ReflexModelUtil.getProgram(resource).getRegisters();
+      EList<Register> _registers = this.program.getRegisters();
       for(final Register reg : _registers) {
         {
           RegisterType _type = reg.getType();
@@ -271,7 +275,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateOutputPorts(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Register> _registers = ReflexModelUtil.getProgram(resource).getRegisters();
+      EList<Register> _registers = this.program.getRegisters();
       for(final Register reg : _registers) {
         {
           RegisterType _type = reg.getType();
@@ -299,7 +303,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<ru.iaie.reflex.reflex.Process> _processes = ReflexModelUtil.getProgram(resource).getProcesses();
+      EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         String _translateProcess = this.translateProcess(proc);
         _builder.append(_translateProcess);
