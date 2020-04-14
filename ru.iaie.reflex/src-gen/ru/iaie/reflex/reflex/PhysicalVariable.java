@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,16 +13,43 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getPorts <em>Ports</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable()
  * @model
  * @generated
  */
-public interface PhysicalVariable extends DeclaredVariable
+public interface PhysicalVariable extends DeclaredVariable, GlobalVariable
 {
+  /**
+   * Returns the value of the '<em><b>Visibility</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Visibility}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Visibility</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Visibility
+   * @see #setVisibility(Visibility)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Visibility()
+   * @model
+   * @generated
+   */
+  Visibility getVisibility();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getVisibility <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Visibility</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Visibility
+   * @see #getVisibility()
+   * @generated
+   */
+  void setVisibility(Visibility value);
+
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -47,15 +73,47 @@ public interface PhysicalVariable extends DeclaredVariable
   void setType(String value);
 
   /**
-   * Returns the value of the '<em><b>Ports</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.RegisterPort}.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ports</em>' containment reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Ports()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Port</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Port</em>' containment reference.
+   * @see #setPort(RegisterPortMapping)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Port()
    * @model containment="true"
    * @generated
    */
-  EList<RegisterPort> getPorts();
+  RegisterPortMapping getPort();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Port</em>' containment reference.
+   * @see #getPort()
+   * @generated
+   */
+  void setPort(RegisterPortMapping value);
 
 } // PhysicalVariable

@@ -32,7 +32,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class ImportedVariableImpl extends VariableImpl implements ImportedVariable
+public class ImportedVariableImpl extends ProcessVariableImpl implements ImportedVariable
 {
   /**
    * The default value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.

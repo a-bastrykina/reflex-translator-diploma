@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Process#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Process#isLooped <em>Looped</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Process#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Process#getStates <em>States</em>}</li>
  * </ul>
@@ -50,8 +51,30 @@ public interface Process extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Looped</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Looped</em>' attribute.
+   * @see #setLooped(boolean)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProcess_Looped()
+   * @model
+   * @generated
+   */
+  boolean isLooped();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Process#isLooped <em>Looped</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Looped</em>' attribute.
+   * @see #isLooped()
+   * @generated
+   */
+  void setLooped(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.Variable}.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.ProcessVariable}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variables</em>' containment reference list.
@@ -59,7 +82,7 @@ public interface Process extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Variable> getVariables();
+  EList<ProcessVariable> getVariables();
 
   /**
    * Returns the value of the '<em><b>States</b></em>' containment reference list.

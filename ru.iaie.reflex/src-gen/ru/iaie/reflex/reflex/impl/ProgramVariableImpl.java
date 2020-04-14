@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
+import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,13 +24,35 @@ import ru.iaie.reflex.reflex.ReflexType;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getType <em>Type</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ProgramVariableImpl extends DeclaredVariableImpl implements ProgramVariable
 {
+  /**
+   * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected static final Visibility VISIBILITY_EDEFAULT = Visibility.LOCAL;
+
+  /**
+   * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected Visibility visibility = VISIBILITY_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -39,6 +62,26 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @ordered
    */
   protected ReflexType type;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -59,6 +102,31 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.PROGRAM_VARIABLE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Visibility getVisibility()
+  {
+    return visibility;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setVisibility(Visibility newVisibility)
+  {
+    Visibility oldVisibility = visibility;
+    visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__VISIBILITY, oldVisibility, visibility));
   }
 
   /**
@@ -117,6 +185,31 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    */
   @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -137,8 +230,12 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
+        return getVisibility();
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         return getType();
+      case ReflexPackage.PROGRAM_VARIABLE__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -153,8 +250,14 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
+        setVisibility((Visibility)newValue);
+        return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         setType((ReflexType)newValue);
+        return;
+      case ReflexPackage.PROGRAM_VARIABLE__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,8 +273,14 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
+        setVisibility(VISIBILITY_EDEFAULT);
+        return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         setType((ReflexType)null);
+        return;
+      case ReflexPackage.PROGRAM_VARIABLE__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -187,10 +296,33 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
+        return visibility != VISIBILITY_EDEFAULT;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         return type != null;
+      case ReflexPackage.PROGRAM_VARIABLE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (visibility: ");
+    result.append(visibility);
+    result.append(", name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //ProgramVariableImpl

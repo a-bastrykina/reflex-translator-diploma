@@ -25,22 +25,23 @@ import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
-import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -56,8 +57,6 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
-import ru.iaie.reflex.reflex.Variable;
-import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -143,10 +142,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.VARIABLE:
+      case ReflexPackage.PROCESS_VARIABLE:
       {
-        Variable variable = (Variable)theEObject;
-        T result = caseVariable(variable);
+        ProcessVariable processVariable = (ProcessVariable)theEObject;
+        T result = caseProcessVariable(processVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -154,7 +153,7 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ImportedVariable importedVariable = (ImportedVariable)theEObject;
         T result = caseImportedVariable(importedVariable);
-        if (result == null) result = caseVariable(importedVariable);
+        if (result == null) result = caseProcessVariable(importedVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -162,7 +161,14 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         DeclaredVariable declaredVariable = (DeclaredVariable)theEObject;
         T result = caseDeclaredVariable(declaredVariable);
-        if (result == null) result = caseVariable(declaredVariable);
+        if (result == null) result = caseProcessVariable(declaredVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.GLOBAL_VARIABLE:
+      {
+        GlobalVariable globalVariable = (GlobalVariable)theEObject;
+        T result = caseGlobalVariable(globalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,14 +177,15 @@ public class ReflexSwitch<T> extends Switch<T>
         PhysicalVariable physicalVariable = (PhysicalVariable)theEObject;
         T result = casePhysicalVariable(physicalVariable);
         if (result == null) result = caseDeclaredVariable(physicalVariable);
-        if (result == null) result = caseVariable(physicalVariable);
+        if (result == null) result = caseGlobalVariable(physicalVariable);
+        if (result == null) result = caseProcessVariable(physicalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.REGISTER_PORT:
+      case ReflexPackage.REGISTER_PORT_MAPPING:
       {
-        RegisterPort registerPort = (RegisterPort)theEObject;
-        T result = caseRegisterPort(registerPort);
+        RegisterPortMapping registerPortMapping = (RegisterPortMapping)theEObject;
+        T result = caseRegisterPortMapping(registerPortMapping);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -187,14 +194,8 @@ public class ReflexSwitch<T> extends Switch<T>
         ProgramVariable programVariable = (ProgramVariable)theEObject;
         T result = caseProgramVariable(programVariable);
         if (result == null) result = caseDeclaredVariable(programVariable);
-        if (result == null) result = caseVariable(programVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.VISIBILITY:
-      {
-        Visibility visibility = (Visibility)theEObject;
-        T result = caseVisibility(visibility);
+        if (result == null) result = caseGlobalVariable(programVariable);
+        if (result == null) result = caseProcessVariable(programVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -271,14 +272,6 @@ public class ReflexSwitch<T> extends Switch<T>
         ErrorStat errorStat = (ErrorStat)theEObject;
         T result = caseErrorStat(errorStat);
         if (result == null) result = caseStatement(errorStat);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.LOOP_STAT:
-      {
-        LoopStat loopStat = (LoopStat)theEObject;
-        T result = caseLoopStat(loopStat);
-        if (result == null) result = caseStatement(loopStat);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -666,17 +659,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Process Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Process Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariable(Variable object)
+  public T caseProcessVariable(ProcessVariable object)
   {
     return null;
   }
@@ -714,6 +707,22 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGlobalVariable(GlobalVariable object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Physical Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -730,17 +739,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Register Port</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Register Port Mapping</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Register Port</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Register Port Mapping</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRegisterPort(RegisterPort object)
+  public T caseRegisterPortMapping(RegisterPortMapping object)
   {
     return null;
   }
@@ -757,22 +766,6 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProgramVariable(ProgramVariable object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Visibility</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Visibility</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseVisibility(Visibility object)
   {
     return null;
   }
@@ -933,22 +926,6 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseErrorStat(ErrorStat object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Loop Stat</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Loop Stat</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLoopStat(LoopStat object)
   {
     return null;
   }

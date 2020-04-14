@@ -3,9 +3,12 @@
  */
 package ru.iaie.reflex.validation;
 
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
@@ -17,7 +20,7 @@ import ru.iaie.reflex.validation.AbstractReflexValidator;
 @SuppressWarnings("all")
 public class ReflexValidator extends AbstractReflexValidator {
   @Check
-  public void checkNextState(final SetStateStat setStateStat) {
+  public void checkForNextState(final SetStateStat setStateStat) {
     boolean _isNext = setStateStat.isNext();
     if (_isNext) {
       final ru.iaie.reflex.reflex.State state = EcoreUtil2.<ru.iaie.reflex.reflex.State>getContainerOfType(setStateStat, ru.iaie.reflex.reflex.State.class);
@@ -26,7 +29,31 @@ public class ReflexValidator extends AbstractReflexValidator {
       int _length = ((Object[])Conversions.unwrapArray(process.getStates(), Object.class)).length;
       boolean _greaterEqualsThan = ((callingStateIndex + 1) >= _length);
       if (_greaterEqualsThan) {
-        this.error("Invalid state transition: no next state in the process", ReflexPackage.eINSTANCE.getSetStateStat_Next());
+        this.error("Invalid state transition: no next state in the process", 
+          ReflexPackage.eINSTANCE.getSetStateStat_Next());
+      }
+    }
+  }
+  
+  @Check
+  public void checkTransitionState(final SetStateStat setStateStat) {
+    boolean _isNext = setStateStat.isNext();
+    boolean _not = (!_isNext);
+    if (_not) {
+      final ru.iaie.reflex.reflex.Process process = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(setStateStat, ru.iaie.reflex.reflex.Process.class);
+      final String stateName = setStateStat.getStateId();
+      final Function1<ru.iaie.reflex.reflex.State, Boolean> _function = (ru.iaie.reflex.reflex.State it) -> {
+        return Boolean.valueOf(it.getName().equals(stateName));
+      };
+      ru.iaie.reflex.reflex.State _findFirst = IterableExtensions.<ru.iaie.reflex.reflex.State>findFirst(process.getStates(), _function);
+      boolean _tripleEquals = (_findFirst == null);
+      if (_tripleEquals) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Invalid state transition: state ");
+        _builder.append(stateName);
+        _builder.append(" doesn\'t exist in the process");
+        this.error(_builder.toString(), 
+          ReflexPackage.eINSTANCE.getSetStateStat_StateId());
       }
     }
   }

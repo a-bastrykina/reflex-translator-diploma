@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getFunctions <em>Functions</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Program#getGlobalVars <em>Global Vars</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getRegisters <em>Registers</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getProcesses <em>Processes</em>}</li>
  * </ul>
@@ -110,6 +111,18 @@ public interface Program extends EObject
    * @generated
    */
   EList<Function> getFunctions();
+
+  /**
+   * Returns the value of the '<em><b>Global Vars</b></em>' containment reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.GlobalVariable}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Global Vars</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_GlobalVars()
+   * @model containment="true"
+   * @generated
+   */
+  EList<GlobalVariable> getGlobalVars();
 
   /**
    * Returns the value of the '<em><b>Registers</b></em>' containment reference list.

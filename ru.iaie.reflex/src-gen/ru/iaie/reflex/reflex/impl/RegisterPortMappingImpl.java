@@ -11,23 +11,23 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.RegisterPortMapping;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Register Port</b></em>'.
+ * An implementation of the model object '<em><b>Register Port Mapping</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortImpl#getRegName <em>Reg Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl#getRegName <em>Reg Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl#getPortBit <em>Port Bit</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RegisterPortImpl extends MinimalEObjectImpl.Container implements RegisterPort
+public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implements RegisterPortMapping
 {
   /**
    * The default value of the '{@link #getRegName() <em>Reg Name</em>}' attribute.
@@ -50,31 +50,31 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   protected String regName = REG_NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
+   * The default value of the '{@link #getPortBit() <em>Port Bit</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPort()
+   * @see #getPortBit()
    * @generated
    * @ordered
    */
-  protected static final String PORT_EDEFAULT = null;
+  protected static final String PORT_BIT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
+   * The cached value of the '{@link #getPortBit() <em>Port Bit</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPort()
+   * @see #getPortBit()
    * @generated
    * @ordered
    */
-  protected String port = PORT_EDEFAULT;
+  protected String portBit = PORT_BIT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RegisterPortImpl()
+  protected RegisterPortMappingImpl()
   {
     super();
   }
@@ -87,7 +87,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.REGISTER_PORT;
+    return ReflexPackage.Literals.REGISTER_PORT_MAPPING;
   }
 
   /**
@@ -112,7 +112,7 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
     String oldRegName = regName;
     regName = newRegName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT__REG_NAME, oldRegName, regName));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT_MAPPING__REG_NAME, oldRegName, regName));
   }
 
   /**
@@ -121,9 +121,9 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public String getPort()
+  public String getPortBit()
   {
-    return port;
+    return portBit;
   }
 
   /**
@@ -132,12 +132,12 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public void setPort(String newPort)
+  public void setPortBit(String newPortBit)
   {
-    String oldPort = port;
-    port = newPort;
+    String oldPortBit = portBit;
+    portBit = newPortBit;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT__PORT, oldPort, port));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT, oldPortBit, portBit));
   }
 
   /**
@@ -150,10 +150,10 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT__REG_NAME:
+      case ReflexPackage.REGISTER_PORT_MAPPING__REG_NAME:
         return getRegName();
-      case ReflexPackage.REGISTER_PORT__PORT:
-        return getPort();
+      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
+        return getPortBit();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,11 +168,11 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT__REG_NAME:
+      case ReflexPackage.REGISTER_PORT_MAPPING__REG_NAME:
         setRegName((String)newValue);
         return;
-      case ReflexPackage.REGISTER_PORT__PORT:
-        setPort((String)newValue);
+      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
+        setPortBit((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -188,11 +188,11 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT__REG_NAME:
+      case ReflexPackage.REGISTER_PORT_MAPPING__REG_NAME:
         setRegName(REG_NAME_EDEFAULT);
         return;
-      case ReflexPackage.REGISTER_PORT__PORT:
-        setPort(PORT_EDEFAULT);
+      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
+        setPortBit(PORT_BIT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -208,10 +208,10 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT__REG_NAME:
+      case ReflexPackage.REGISTER_PORT_MAPPING__REG_NAME:
         return REG_NAME_EDEFAULT == null ? regName != null : !REG_NAME_EDEFAULT.equals(regName);
-      case ReflexPackage.REGISTER_PORT__PORT:
-        return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
+      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
+        return PORT_BIT_EDEFAULT == null ? portBit != null : !PORT_BIT_EDEFAULT.equals(portBit);
     }
     return super.eIsSet(featureID);
   }
@@ -229,10 +229,10 @@ public class RegisterPortImpl extends MinimalEObjectImpl.Container implements Re
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (regName: ");
     result.append(regName);
-    result.append(", port: ");
-    result.append(port);
+    result.append(", portBit: ");
+    result.append(portBit);
     result.append(')');
     return result.toString();
   }
 
-} //RegisterPortImpl
+} //RegisterPortMappingImpl

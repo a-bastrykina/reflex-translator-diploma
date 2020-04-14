@@ -7,24 +7,24 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Variable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable</b></em>'.
+ * An implementation of the model object '<em><b>Global Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class VariableImpl extends MinimalEObjectImpl.Container implements Variable
+public class GlobalVariableImpl extends MinimalEObjectImpl.Container implements GlobalVariable
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected VariableImpl()
+  protected GlobalVariableImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.VARIABLE;
+    return ReflexPackage.Literals.GLOBAL_VARIABLE;
   }
 
-} //VariableImpl
+} //GlobalVariableImpl

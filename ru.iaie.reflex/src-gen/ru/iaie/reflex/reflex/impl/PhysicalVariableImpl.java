@@ -3,24 +3,18 @@
  */
 package ru.iaie.reflex.reflex.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.RegisterPortMapping;
+import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,14 +24,36 @@ import ru.iaie.reflex.reflex.RegisterPort;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getPorts <em>Ports</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getPort <em>Port</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PhysicalVariableImpl extends DeclaredVariableImpl implements PhysicalVariable
 {
+  /**
+   * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected static final Visibility VISIBILITY_EDEFAULT = Visibility.LOCAL;
+
+  /**
+   * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected Visibility visibility = VISIBILITY_EDEFAULT;
+
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -59,14 +75,34 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   protected String type = TYPE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPorts() <em>Ports</em>}' containment reference list.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPorts()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected EList<RegisterPort> ports;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getPort() <em>Port</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPort()
+   * @generated
+   * @ordered
+   */
+  protected RegisterPortMapping port;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,6 +123,31 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.PHYSICAL_VARIABLE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Visibility getVisibility()
+  {
+    return visibility;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setVisibility(Visibility newVisibility)
+  {
+    Visibility oldVisibility = visibility;
+    visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__VISIBILITY, oldVisibility, visibility));
   }
 
   /**
@@ -120,13 +181,73 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * @generated
    */
   @Override
-  public EList<RegisterPort> getPorts()
+  public String getName()
   {
-    if (ports == null)
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RegisterPortMapping getPort()
+  {
+    return port;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetPort(RegisterPortMapping newPort, NotificationChain msgs)
+  {
+    RegisterPortMapping oldPort = port;
+    port = newPort;
+    if (eNotificationRequired())
     {
-      ports = new EObjectContainmentEList<RegisterPort>(RegisterPort.class, this, ReflexPackage.PHYSICAL_VARIABLE__PORTS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__PORT, oldPort, newPort);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return ports;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPort(RegisterPortMapping newPort)
+  {
+    if (newPort != port)
+    {
+      NotificationChain msgs = null;
+      if (port != null)
+        msgs = ((InternalEObject)port).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__PORT, null, msgs);
+      if (newPort != null)
+        msgs = ((InternalEObject)newPort).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__PORT, null, msgs);
+      msgs = basicSetPort(newPort, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__PORT, newPort, newPort));
   }
 
   /**
@@ -139,8 +260,8 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   {
     switch (featureID)
     {
-      case ReflexPackage.PHYSICAL_VARIABLE__PORTS:
-        return ((InternalEList<?>)getPorts()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
+        return basicSetPort(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -155,10 +276,14 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   {
     switch (featureID)
     {
+      case ReflexPackage.PHYSICAL_VARIABLE__VISIBILITY:
+        return getVisibility();
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         return getType();
-      case ReflexPackage.PHYSICAL_VARIABLE__PORTS:
-        return getPorts();
+      case ReflexPackage.PHYSICAL_VARIABLE__NAME:
+        return getName();
+      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
+        return getPort();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,18 +293,22 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case ReflexPackage.PHYSICAL_VARIABLE__VISIBILITY:
+        setVisibility((Visibility)newValue);
+        return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         setType((String)newValue);
         return;
-      case ReflexPackage.PHYSICAL_VARIABLE__PORTS:
-        getPorts().clear();
-        getPorts().addAll((Collection<? extends RegisterPort>)newValue);
+      case ReflexPackage.PHYSICAL_VARIABLE__NAME:
+        setName((String)newValue);
+        return;
+      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
+        setPort((RegisterPortMapping)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -195,11 +324,17 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   {
     switch (featureID)
     {
+      case ReflexPackage.PHYSICAL_VARIABLE__VISIBILITY:
+        setVisibility(VISIBILITY_EDEFAULT);
+        return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         setType(TYPE_EDEFAULT);
         return;
-      case ReflexPackage.PHYSICAL_VARIABLE__PORTS:
-        getPorts().clear();
+      case ReflexPackage.PHYSICAL_VARIABLE__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
+        setPort((RegisterPortMapping)null);
         return;
     }
     super.eUnset(featureID);
@@ -215,10 +350,14 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   {
     switch (featureID)
     {
+      case ReflexPackage.PHYSICAL_VARIABLE__VISIBILITY:
+        return visibility != VISIBILITY_EDEFAULT;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-      case ReflexPackage.PHYSICAL_VARIABLE__PORTS:
-        return ports != null && !ports.isEmpty();
+      case ReflexPackage.PHYSICAL_VARIABLE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
+        return port != null;
     }
     return super.eIsSet(featureID);
   }
@@ -234,8 +373,12 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (type: ");
+    result.append(" (visibility: ");
+    result.append(visibility);
+    result.append(", type: ");
     result.append(type);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

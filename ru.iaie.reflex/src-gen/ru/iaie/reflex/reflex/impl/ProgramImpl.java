@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Function;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.Register;
@@ -39,6 +40,7 @@ import ru.iaie.reflex.reflex.Tact;
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getFunctions <em>Functions</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getGlobalVars <em>Global Vars</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getRegisters <em>Registers</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
@@ -106,6 +108,16 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @ordered
    */
   protected EList<Function> functions;
+
+  /**
+   * The cached value of the '{@link #getGlobalVars() <em>Global Vars</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getGlobalVars()
+   * @generated
+   * @ordered
+   */
+  protected EList<GlobalVariable> globalVars;
 
   /**
    * The cached value of the '{@link #getRegisters() <em>Registers</em>}' containment reference list.
@@ -274,6 +286,21 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    */
   @Override
+  public EList<GlobalVariable> getGlobalVars()
+  {
+    if (globalVars == null)
+    {
+      globalVars = new EObjectContainmentEList<GlobalVariable>(GlobalVariable.class, this, ReflexPackage.PROGRAM__GLOBAL_VARS);
+    }
+    return globalVars;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Register> getRegisters()
   {
     if (registers == null)
@@ -316,6 +343,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return ((InternalEList<?>)getEnums()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__FUNCTIONS:
         return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.PROGRAM__GLOBAL_VARS:
+        return ((InternalEList<?>)getGlobalVars()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__REGISTERS:
         return ((InternalEList<?>)getRegisters()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__PROCESSES:
@@ -344,6 +373,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return getEnums();
       case ReflexPackage.PROGRAM__FUNCTIONS:
         return getFunctions();
+      case ReflexPackage.PROGRAM__GLOBAL_VARS:
+        return getGlobalVars();
       case ReflexPackage.PROGRAM__REGISTERS:
         return getRegisters();
       case ReflexPackage.PROGRAM__PROCESSES:
@@ -380,6 +411,10 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__FUNCTIONS:
         getFunctions().clear();
         getFunctions().addAll((Collection<? extends Function>)newValue);
+        return;
+      case ReflexPackage.PROGRAM__GLOBAL_VARS:
+        getGlobalVars().clear();
+        getGlobalVars().addAll((Collection<? extends GlobalVariable>)newValue);
         return;
       case ReflexPackage.PROGRAM__REGISTERS:
         getRegisters().clear();
@@ -418,6 +453,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__FUNCTIONS:
         getFunctions().clear();
         return;
+      case ReflexPackage.PROGRAM__GLOBAL_VARS:
+        getGlobalVars().clear();
+        return;
       case ReflexPackage.PROGRAM__REGISTERS:
         getRegisters().clear();
         return;
@@ -448,6 +486,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return enums != null && !enums.isEmpty();
       case ReflexPackage.PROGRAM__FUNCTIONS:
         return functions != null && !functions.isEmpty();
+      case ReflexPackage.PROGRAM__GLOBAL_VARS:
+        return globalVars != null && !globalVars.isEmpty();
       case ReflexPackage.PROGRAM__REGISTERS:
         return registers != null && !registers.isEmpty();
       case ReflexPackage.PROGRAM__PROCESSES:

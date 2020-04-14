@@ -5,24 +5,26 @@ package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import ru.iaie.reflex.reflex.LoopStat;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Loop Stat</b></em>'.
+ * An implementation of the model object '<em><b>Process Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class LoopStatImpl extends StatementImpl implements LoopStat
+public class ProcessVariableImpl extends MinimalEObjectImpl.Container implements ProcessVariable
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LoopStatImpl()
+  protected ProcessVariableImpl()
   {
     super();
   }
@@ -35,7 +37,7 @@ public class LoopStatImpl extends StatementImpl implements LoopStat
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.LOOP_STAT;
+    return ReflexPackage.Literals.PROCESS_VARIABLE;
   }
 
-} //LoopStatImpl
+} //ProcessVariableImpl

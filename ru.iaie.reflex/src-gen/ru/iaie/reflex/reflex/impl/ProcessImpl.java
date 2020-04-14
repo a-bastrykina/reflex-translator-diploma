@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +32,7 @@ import ru.iaie.reflex.reflex.Variable;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#isLooped <em>Looped</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getStates <em>States</em>}</li>
  * </ul>
@@ -61,6 +62,26 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The default value of the '{@link #isLooped() <em>Looped</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLooped()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean LOOPED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isLooped() <em>Looped</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLooped()
+   * @generated
+   * @ordered
+   */
+  protected boolean looped = LOOPED_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -68,7 +89,7 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @generated
    * @ordered
    */
-  protected EList<Variable> variables;
+  protected EList<ProcessVariable> variables;
 
   /**
    * The cached value of the '{@link #getStates() <em>States</em>}' containment reference list.
@@ -132,11 +153,36 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @generated
    */
   @Override
-  public EList<Variable> getVariables()
+  public boolean isLooped()
+  {
+    return looped;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLooped(boolean newLooped)
+  {
+    boolean oldLooped = looped;
+    looped = newLooped;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROCESS__LOOPED, oldLooped, looped));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<ProcessVariable> getVariables()
   {
     if (variables == null)
     {
-      variables = new EObjectContainmentEList<Variable>(Variable.class, this, ReflexPackage.PROCESS__VARIABLES);
+      variables = new EObjectContainmentEList<ProcessVariable>(ProcessVariable.class, this, ReflexPackage.PROCESS__VARIABLES);
     }
     return variables;
   }
@@ -186,6 +232,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__NAME:
         return getName();
+      case ReflexPackage.PROCESS__LOOPED:
+        return isLooped();
       case ReflexPackage.PROCESS__VARIABLES:
         return getVariables();
       case ReflexPackage.PROCESS__STATES:
@@ -208,9 +256,12 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
       case ReflexPackage.PROCESS__NAME:
         setName((String)newValue);
         return;
+      case ReflexPackage.PROCESS__LOOPED:
+        setLooped((Boolean)newValue);
+        return;
       case ReflexPackage.PROCESS__VARIABLES:
         getVariables().clear();
-        getVariables().addAll((Collection<? extends Variable>)newValue);
+        getVariables().addAll((Collection<? extends ProcessVariable>)newValue);
         return;
       case ReflexPackage.PROCESS__STATES:
         getStates().clear();
@@ -232,6 +283,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case ReflexPackage.PROCESS__LOOPED:
+        setLooped(LOOPED_EDEFAULT);
         return;
       case ReflexPackage.PROCESS__VARIABLES:
         getVariables().clear();
@@ -255,6 +309,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReflexPackage.PROCESS__LOOPED:
+        return looped != LOOPED_EDEFAULT;
       case ReflexPackage.PROCESS__VARIABLES:
         return variables != null && !variables.isEmpty();
       case ReflexPackage.PROCESS__STATES:
@@ -276,6 +332,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", looped: ");
+    result.append(looped);
     result.append(')');
     return result.toString();
   }

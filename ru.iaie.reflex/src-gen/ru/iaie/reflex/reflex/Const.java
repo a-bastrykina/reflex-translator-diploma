@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getConstId <em>Const Id</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getConstValue <em>Const Value</em>}</li>
  * </ul>
@@ -24,6 +25,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Const extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(ReflexType)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getConst_Type()
+   * @model containment="true"
+   * @generated
+   */
+  ReflexType getType();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(ReflexType value);
+
   /**
    * Returns the value of the '<em><b>Const Id</b></em>' attribute.
    * <!-- begin-user-doc -->

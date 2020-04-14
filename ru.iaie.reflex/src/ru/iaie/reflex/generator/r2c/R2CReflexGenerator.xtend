@@ -21,7 +21,6 @@ import ru.iaie.reflex.reflex.IfElseStat
 import ru.iaie.reflex.reflex.InfixOp
 import ru.iaie.reflex.reflex.LogicalAndExpression
 import ru.iaie.reflex.reflex.LogicalOrExpression
-import ru.iaie.reflex.reflex.LoopStat
 import ru.iaie.reflex.reflex.MultiplicativeExpression
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PostfixOp
@@ -44,6 +43,8 @@ import ru.iaie.reflex.reflex.UnaryExpression
 
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
+import ru.iaie.reflex.reflex.ProcessVariable
+import ru.iaie.reflex.reflex.GlobalVariable
 
 class R2CReflexGenerator extends AbstractGenerator {
 
@@ -129,16 +130,36 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateProcessVariables(Resource resource) {
 		return '''
+			«FOR variable: program.globalVars»
+				«generateGlobalVariableDefinition(variable)»
+			«ENDFOR»
 			«FOR proc : program.processes»
 				«FOR variable: proc.variables»
-					«IF (variable instanceof ProgramVariable)»
-						«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getVariableId(proc, variable)»;
-					«ENDIF»
-					«IF (variable instanceof PhysicalVariable)»
-						«variable.type» «identifiersHelper.getVariableId(proc, variable)»;
-					«ENDIF»
+					«generateProcessVariableDefinition(proc, variable)»
 				«ENDFOR»
 			«ENDFOR»
+		'''
+	}
+	
+	def generateProcessVariableDefinition(Process proc, ProcessVariable variable) {
+		return '''
+			«IF (variable instanceof ProgramVariable)»
+			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
+			«ENDIF»
+			«IF (variable instanceof PhysicalVariable)»
+			«variable.type» «identifiersHelper.getProcessVariableId(proc, variable)»;
+			«ENDIF»
+		'''
+	}
+	
+	def generateGlobalVariableDefinition(GlobalVariable variable) {
+		return '''
+			«IF (variable instanceof ProgramVariable)»
+			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getGlobalVariableId(variable)»;
+			«ENDIF»
+			«IF (variable instanceof PhysicalVariable)»
+			«variable.type» «identifiersHelper.getGlobalVariableId(variable)»;
+			«ENDIF»
 		'''
 	}
 
@@ -248,8 +269,6 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return translateSwitchCaseStat(proc, state, statement)
 			StartProcStat:
 				return translateStartProcStat(proc, state, statement)
-			LoopStat:
-				return translateLoop(proc, state)
 			ResetStat:
 				return translateResetTimer(proc, state)
 			RestartStat:
@@ -274,13 +293,8 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 
-	def translateLoop(Process proc, State state) {
-		// TODO: break ?
-		return ''''''
-	}
-
 	def translateResetTimer(Process proc, State state) {
-		return translateLoop(proc, state)
+		return "TODO" 
 	}
 
 	def translateSetStateStat(Process proc, State state, SetStateStat sss) {

@@ -8,11 +8,12 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.Variable;
 
 @SuppressWarnings("all")
 public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
@@ -21,6 +22,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   private Map<String, Map<String, String>> stateIdentifiers = new HashMap<String, Map<String, String>>();
   
   private Map<String, Map<String, String>> varIdentifiers = new HashMap<String, Map<String, String>>();
+  
+  private Map<String, String> globalVarIdentifiers = new HashMap<String, String>();
   
   private Map<String, String> constIdentifiers = new HashMap<String, String>();
   
@@ -98,7 +101,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   @Override
-  public String getVariableId(final ru.iaie.reflex.reflex.Process proc, final Variable v) {
+  public String getProcessVariableId(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable v) {
     final String procKey = this.getKey(proc);
     final String varKey = this.getKey(v);
     boolean _containsKey = this.varIdentifiers.containsKey(procKey);
@@ -180,6 +183,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
     this.constIdentifiers.clear();
     this.portIdentifiers.clear();
     this.enumIdentifiers.clear();
+    this.globalVarIdentifiers.clear();
   }
   
   @Override
@@ -200,20 +204,6 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   @Override
-  public String getId(final String original) {
-    boolean _containsKey = this.identifiers.containsKey(original);
-    boolean _not = (!_containsKey);
-    if (_not) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Name ");
-      _builder.append(original);
-      _builder.append(" wasn\'t declared");
-      throw new IllegalArgumentException(_builder.toString());
-    }
-    return this.identifiers.get(original);
-  }
-  
-  @Override
   public String getEnumMemberId(final EnumMember em) {
     final String key = em.getName();
     boolean _containsKey = this.constIdentifiers.containsKey(key);
@@ -229,6 +219,38 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       this.identifiers.put(key, value);
       return value;
     }
+  }
+  
+  @Override
+  public String getGlobalVariableId(final GlobalVariable v) {
+    final String key = this.getKey(v);
+    boolean _containsKey = this.globalVarIdentifiers.containsKey(key);
+    if (_containsKey) {
+      return this.globalVarIdentifiers.get(key);
+    } else {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("GV");
+      int _size = this.globalVarIdentifiers.size();
+      _builder.append(_size);
+      final String value = _builder.toString();
+      this.globalVarIdentifiers.put(key, value);
+      this.identifiers.put(key, value);
+      return value;
+    }
+  }
+  
+  @Override
+  public String getId(final String original) {
+    boolean _containsKey = this.identifiers.containsKey(original);
+    boolean _not = (!_containsKey);
+    if (_not) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Name ");
+      _builder.append(original);
+      _builder.append(" wasn\'t declared");
+      throw new IllegalArgumentException(_builder.toString());
+    }
+    return this.identifiers.get(original);
   }
   
   private String getKey(final EObject v) {

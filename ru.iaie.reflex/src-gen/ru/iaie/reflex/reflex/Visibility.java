@@ -3,107 +3,223 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Visibility</b></em>'.
+ * A representation of the literals of the enumeration '<em><b>Visibility</b></em>',
+ * and utility methods for working with them.
  * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Visibility#getLOCAL <em>LOCAL</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Visibility#getGLOBAL <em>GLOBAL</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Visibility#getSHARED <em>SHARED</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Visibility#getSharingProcs <em>Sharing Procs</em>}</li>
- * </ul>
- *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getVisibility()
  * @model
  * @generated
  */
-public interface Visibility extends EObject
+public enum Visibility implements Enumerator
 {
   /**
-   * Returns the value of the '<em><b>LOCAL</b></em>' attribute.
+   * The '<em><b>LOCAL</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>LOCAL</em>' attribute.
-   * @see #setLOCAL(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getVisibility_LOCAL()
-   * @model
+   * @see #LOCAL_VALUE
    * @generated
+   * @ordered
    */
-  String getLOCAL();
+  LOCAL(0, "LOCAL", "local"),
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Visibility#getLOCAL <em>LOCAL</em>}' attribute.
+   * The '<em><b>SHARED</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>LOCAL</em>' attribute.
-   * @see #getLOCAL()
+   * @see #SHARED_VALUE
    * @generated
+   * @ordered
    */
-  void setLOCAL(String value);
+  SHARED(1, "SHARED", "shared");
 
   /**
-   * Returns the value of the '<em><b>GLOBAL</b></em>' attribute.
+   * The '<em><b>LOCAL</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>GLOBAL</em>' attribute.
-   * @see #setGLOBAL(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getVisibility_GLOBAL()
-   * @model
+   * @see #LOCAL
+   * @model literal="local"
    * @generated
+   * @ordered
    */
-  String getGLOBAL();
+  public static final int LOCAL_VALUE = 0;
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Visibility#getGLOBAL <em>GLOBAL</em>}' attribute.
+   * The '<em><b>SHARED</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>GLOBAL</em>' attribute.
-   * @see #getGLOBAL()
+   * @see #SHARED
+   * @model literal="shared"
    * @generated
+   * @ordered
    */
-  void setGLOBAL(String value);
+  public static final int SHARED_VALUE = 1;
 
   /**
-   * Returns the value of the '<em><b>SHARED</b></em>' attribute.
+   * An array of all the '<em><b>Visibility</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>SHARED</em>' attribute.
-   * @see #setSHARED(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getVisibility_SHARED()
-   * @model
    * @generated
    */
-  String getSHARED();
+  private static final Visibility[] VALUES_ARRAY =
+    new Visibility[]
+    {
+      LOCAL,
+      SHARED,
+    };
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Visibility#getSHARED <em>SHARED</em>}' attribute.
+   * A public read-only list of all the '<em><b>Visibility</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>SHARED</em>' attribute.
-   * @see #getSHARED()
    * @generated
    */
-  void setSHARED(String value);
+  public static final List<Visibility> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the value of the '<em><b>Sharing Procs</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the '<em><b>Visibility</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Sharing Procs</em>' attribute list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getVisibility_SharingProcs()
-   * @model unique="false"
+   * @param literal the literal.
+   * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  EList<String> getSharingProcs();
+  public static Visibility get(String literal)
+  {
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      Visibility result = VALUES_ARRAY[i];
+      if (result.toString().equals(literal))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
 
-} // Visibility
+  /**
+   * Returns the '<em><b>Visibility</b></em>' literal with the specified name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param name the name.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
+  public static Visibility getByName(String name)
+  {
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      Visibility result = VALUES_ARRAY[i];
+      if (result.getName().equals(name))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Returns the '<em><b>Visibility</b></em>' literal with the specified integer value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the integer value.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
+  public static Visibility get(int value)
+  {
+    switch (value)
+    {
+      case LOCAL_VALUE: return LOCAL;
+      case SHARED_VALUE: return SHARED;
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final int value;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final String name;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final String literal;
+
+  /**
+   * Only this class can construct instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private Visibility(int value, String name, String literal)
+  {
+    this.value = value;
+    this.name = name;
+    this.literal = literal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getLiteral()
+  {
+    return literal;
+  }
+
+  /**
+   * Returns the literal value of the enumerator, which is its string representation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    return literal;
+  }
+  
+} //Visibility

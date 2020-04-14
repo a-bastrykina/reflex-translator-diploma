@@ -51,13 +51,13 @@ public interface ReflexFactory extends EFactory
   State createState();
 
   /**
-   * Returns a new object of class '<em>Variable</em>'.
+   * Returns a new object of class '<em>Process Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable</em>'.
+   * @return a new object of class '<em>Process Variable</em>'.
    * @generated
    */
-  Variable createVariable();
+  ProcessVariable createProcessVariable();
 
   /**
    * Returns a new object of class '<em>Imported Variable</em>'.
@@ -78,6 +78,15 @@ public interface ReflexFactory extends EFactory
   DeclaredVariable createDeclaredVariable();
 
   /**
+   * Returns a new object of class '<em>Global Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Global Variable</em>'.
+   * @generated
+   */
+  GlobalVariable createGlobalVariable();
+
+  /**
    * Returns a new object of class '<em>Physical Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -87,13 +96,13 @@ public interface ReflexFactory extends EFactory
   PhysicalVariable createPhysicalVariable();
 
   /**
-   * Returns a new object of class '<em>Register Port</em>'.
+   * Returns a new object of class '<em>Register Port Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Register Port</em>'.
+   * @return a new object of class '<em>Register Port Mapping</em>'.
    * @generated
    */
-  RegisterPort createRegisterPort();
+  RegisterPortMapping createRegisterPortMapping();
 
   /**
    * Returns a new object of class '<em>Program Variable</em>'.
@@ -103,15 +112,6 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   ProgramVariable createProgramVariable();
-
-  /**
-   * Returns a new object of class '<em>Visibility</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Visibility</em>'.
-   * @generated
-   */
-  Visibility createVisibility();
 
   /**
    * Returns a new object of class '<em>Statement Sequence</em>'.
@@ -202,15 +202,6 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   ErrorStat createErrorStat();
-
-  /**
-   * Returns a new object of class '<em>Loop Stat</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Loop Stat</em>'.
-   * @generated
-   */
-  LoopStat createLoopStat();
 
   /**
    * Returns a new object of class '<em>Restart Stat</em>'.

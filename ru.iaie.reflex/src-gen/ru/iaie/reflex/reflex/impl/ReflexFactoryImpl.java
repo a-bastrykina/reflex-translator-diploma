@@ -34,25 +34,26 @@ import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
-import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
@@ -71,7 +72,6 @@ import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
-import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.reflex.Visibility;
 
 /**
@@ -129,13 +129,13 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.PROGRAM: return createProgram();
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
-      case ReflexPackage.VARIABLE: return createVariable();
+      case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
       case ReflexPackage.IMPORTED_VARIABLE: return createImportedVariable();
       case ReflexPackage.DECLARED_VARIABLE: return createDeclaredVariable();
+      case ReflexPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       case ReflexPackage.PHYSICAL_VARIABLE: return createPhysicalVariable();
-      case ReflexPackage.REGISTER_PORT: return createRegisterPort();
+      case ReflexPackage.REGISTER_PORT_MAPPING: return createRegisterPortMapping();
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
-      case ReflexPackage.VISIBILITY: return createVisibility();
       case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
       case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
@@ -146,7 +146,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.START_PROC_STAT: return createStartProcStat();
       case ReflexPackage.STOP_PROC_STAT: return createStopProcStat();
       case ReflexPackage.ERROR_STAT: return createErrorStat();
-      case ReflexPackage.LOOP_STAT: return createLoopStat();
       case ReflexPackage.RESTART_STAT: return createRestartStat();
       case ReflexPackage.RESET_STAT: return createResetStat();
       case ReflexPackage.SET_STATE_STAT: return createSetStateStat();
@@ -192,6 +191,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case ReflexPackage.VISIBILITY:
+        return createVisibilityFromString(eDataType, initialValue);
       case ReflexPackage.REGISTER_TYPE:
         return createRegisterTypeFromString(eDataType, initialValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
@@ -227,6 +228,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case ReflexPackage.VISIBILITY:
+        return convertVisibilityToString(eDataType, instanceValue);
       case ReflexPackage.REGISTER_TYPE:
         return convertRegisterTypeToString(eDataType, instanceValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
@@ -294,10 +297,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Variable createVariable()
+  public ProcessVariable createProcessVariable()
   {
-    VariableImpl variable = new VariableImpl();
-    return variable;
+    ProcessVariableImpl processVariable = new ProcessVariableImpl();
+    return processVariable;
   }
 
   /**
@@ -330,6 +333,18 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
+  public GlobalVariable createGlobalVariable()
+  {
+    GlobalVariableImpl globalVariable = new GlobalVariableImpl();
+    return globalVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public PhysicalVariable createPhysicalVariable()
   {
     PhysicalVariableImpl physicalVariable = new PhysicalVariableImpl();
@@ -342,10 +357,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public RegisterPort createRegisterPort()
+  public RegisterPortMapping createRegisterPortMapping()
   {
-    RegisterPortImpl registerPort = new RegisterPortImpl();
-    return registerPort;
+    RegisterPortMappingImpl registerPortMapping = new RegisterPortMappingImpl();
+    return registerPortMapping;
   }
 
   /**
@@ -358,18 +373,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     ProgramVariableImpl programVariable = new ProgramVariableImpl();
     return programVariable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Visibility createVisibility()
-  {
-    VisibilityImpl visibility = new VisibilityImpl();
-    return visibility;
   }
 
   /**
@@ -490,18 +493,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     ErrorStatImpl errorStat = new ErrorStatImpl();
     return errorStat;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public LoopStat createLoopStat()
-  {
-    LoopStatImpl loopStat = new LoopStatImpl();
-    return loopStat;
   }
 
   /**
@@ -862,6 +853,28 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     TimeImpl time = new TimeImpl();
     return time;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Visibility createVisibilityFromString(EDataType eDataType, String initialValue)
+  {
+    Visibility result = Visibility.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertVisibilityToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

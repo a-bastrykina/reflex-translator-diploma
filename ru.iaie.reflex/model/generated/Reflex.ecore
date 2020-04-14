@@ -11,6 +11,8 @@
         eType="#//Enum" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
         eType="#//Function" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalVars" upperBound="-1"
+        eType="#//GlobalVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="registers" upperBound="-1"
         eType="#//Register" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
@@ -18,8 +20,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Process">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="looped" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-        eType="#//Variable" containment="true"/>
+        eType="#//ProcessVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
         eType="#//State" containment="true"/>
   </eClassifiers>
@@ -30,36 +33,34 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFunction" eType="#//TimeoutFunction"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//Variable">
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//ProcessVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="procId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="varNames" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeclaredVariable" eSuperTypes="#//Variable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//Visibility"
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredVariable" eSuperTypes="#//ProcessVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//RegisterPortMapping"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegisterPortMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="portBit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//DeclaredVariable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
-        eType="#//RegisterPort" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RegisterPort">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Visibility">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LOCAL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="GLOBAL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="SHARED" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sharingProcs" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="LOCAL" literal="local"/>
+    <eLiterals name="SHARED" value="1" literal="shared"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatementSequence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
@@ -104,7 +105,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ErrorStat" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="procId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LoopStat" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="RestartStat" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ResetStat" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetStateStat" eSuperTypes="#//Statement">
@@ -130,6 +130,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="regSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Const">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constValue" eType="#//Expression"
         containment="true"/>

@@ -9,13 +9,15 @@ Program:
 	(consts+=Const |
 	enums+=Enum |
 	functions+=Function |
+	globalVars+=GlobalVariable |
 	registers+=Register |
 	processes+=Process)*
 	"}";
 
 Process:
-	"proc" name=ID "{"
-	variables+=Variable*
+	("[" "annotation" "]")?
+	"process" name=ID (looped?="looped")? "{"
+	variables+=ProcessVariable*
 	states+=State*
 	"}";
 
@@ -25,27 +27,29 @@ State:
 	(timeoutFunction=TimeoutFunction)?
 	"}";
 
-Variable:
+ProcessVariable:
 	(ImportedVariable | DeclaredVariable) ";";
 
 ImportedVariable:
-	"from" "proc" procId=ID varNames+=ID ("," varNames+=ID)*;
+	"from" "process" procId=ID varNames+=ID ("," varNames+=ID)*;
 
 DeclaredVariable:
 	(PhysicalVariable | ProgramVariable) visibility=Visibility;
 
-PhysicalVariable:
-	type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}";
+GlobalVariable:
+	(PhysicalVariable | ProgramVariable) ";";
 
-RegisterPort:
-	regName=ID "[" port=INTEGER "]";
+PhysicalVariable:
+	type=IntegerType name=ID "=" port=RegisterPortMapping;
+
+RegisterPortMapping:
+	regName=ID ("[" portBit=INTEGER "]")?;
 
 ProgramVariable:
 	type=ReflexType name=ID;
 
-Visibility:
-	LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*;
-
+enum Visibility:
+	LOCAL="local" | SHARED="shared";
 
 StatementSequence:
 	{StatementSequence} statements+=Statement*;
@@ -58,8 +62,7 @@ TimeoutFunction:
 
 Statement:
 	{Statement} ";" | StatementBlock |
-	StartProcStat | StopProcStat | ErrorStat |
-	LoopStat | RestartStat | ResetStat
+	StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
 	| SetStateStat | IfElseStat | SwitchStat | Expression ";";
 
 IfElseStat:
@@ -70,7 +73,6 @@ IfElseStat:
 SwitchStat:
 	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
 
-	//TODO: add flag for break statement absence
 CaseStat:
 	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
 
@@ -86,14 +88,11 @@ StopProcStat:
 ErrorStat:
 	{ErrorStat} "error" (procId=ID)? ";";
 
-LoopStat:
-	{LoopStat} "loop" ";";
-
 RestartStat:
 	{RestartStat} "restart" ";";
 
 ResetStat:
-	{ResetStat} "reset" "timeout" ";";
+	{ResetStat} "reset" "timer" ";";
 
 SetStateStat:
 	{SetStateStat} "set" (("state" stateId=ID) | next?="next") ";";
@@ -108,7 +107,7 @@ Register:
 	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
-	"const" constId=ID constValue=Expression ";";
+	"const" type=ReflexType constId=ID "=" constValue=Expression ";";
 
 Enum:
 	"enum" enumId=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
@@ -200,7 +199,7 @@ enum AdditiveOp:
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
 
-// TODO: fix types
+	// TODO: fix types
 CType:
 	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE
 	| INT_C_TYPE | LONG_C_TYPE);
@@ -296,8 +295,8 @@ terminal fragment HEX_PREFIX:
 
 	// Time
 Time:
-	ticks = INTEGER;
-//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
+	ticks=INTEGER;
+	//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
 terminal fragment LONG:
 	"L" | "l";
 
@@ -307,7 +306,7 @@ terminal fragment FLOAT_SUFFIX:
 terminal fragment UNSIGNED:
 	"U" | "u";
 
-//terminal fragment DAY:
+	//terminal fragment DAY:
 //	"D" | "d";
 //
 //terminal fragment HOUR:

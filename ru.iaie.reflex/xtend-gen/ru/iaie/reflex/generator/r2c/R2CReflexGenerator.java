@@ -33,17 +33,18 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.FunctionCall;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
-import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.Register;
@@ -62,7 +63,6 @@ import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
-import ru.iaie.reflex.reflex.Variable;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
@@ -217,35 +217,78 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String generateProcessVariables(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     {
+      EList<GlobalVariable> _globalVars = this.program.getGlobalVars();
+      for(final GlobalVariable variable : _globalVars) {
+        String _generateGlobalVariableDefinition = this.generateGlobalVariableDefinition(variable);
+        _builder.append(_generateGlobalVariableDefinition);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
       EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
         {
-          EList<Variable> _variables = proc.getVariables();
-          for(final Variable variable : _variables) {
-            {
-              if ((variable instanceof ProgramVariable)) {
-                String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
-                _builder.append(_trim);
-                _builder.append(" ");
-                String _variableId = this.identifiersHelper.getVariableId(proc, variable);
-                _builder.append(_variableId);
-                _builder.append(";");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-            {
-              if ((variable instanceof PhysicalVariable)) {
-                String _type = ((PhysicalVariable)variable).getType();
-                _builder.append(_type);
-                _builder.append(" ");
-                String _variableId_1 = this.identifiersHelper.getVariableId(proc, variable);
-                _builder.append(_variableId_1);
-                _builder.append(";");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+          EList<ProcessVariable> _variables = proc.getVariables();
+          for(final ProcessVariable variable_1 : _variables) {
+            String _generateProcessVariableDefinition = this.generateProcessVariableDefinition(proc, variable_1);
+            _builder.append(_generateProcessVariableDefinition);
+            _builder.newLineIfNotEmpty();
           }
         }
+      }
+    }
+    return _builder.toString();
+  }
+  
+  public String generateProcessVariableDefinition(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable variable) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((variable instanceof ProgramVariable)) {
+        String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
+        _builder.append(_trim);
+        _builder.append(" ");
+        String _processVariableId = this.identifiersHelper.getProcessVariableId(proc, variable);
+        _builder.append(_processVariableId);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      if ((variable instanceof PhysicalVariable)) {
+        String _type = ((PhysicalVariable)variable).getType();
+        _builder.append(_type);
+        _builder.append(" ");
+        String _processVariableId_1 = this.identifiersHelper.getProcessVariableId(proc, variable);
+        _builder.append(_processVariableId_1);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder.toString();
+  }
+  
+  public String generateGlobalVariableDefinition(final GlobalVariable variable) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((variable instanceof ProgramVariable)) {
+        String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
+        _builder.append(_trim);
+        _builder.append(" ");
+        String _globalVariableId = this.identifiersHelper.getGlobalVariableId(variable);
+        _builder.append(_globalVariableId);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      if ((variable instanceof PhysicalVariable)) {
+        String _type = ((PhysicalVariable)variable).getType();
+        _builder.append(_type);
+        _builder.append(" ");
+        String _globalVariableId_1 = this.identifiersHelper.getGlobalVariableId(variable);
+        _builder.append(_globalVariableId_1);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
       }
     }
     return _builder.toString();
@@ -493,12 +536,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
       }
     }
     if (!_matched) {
-      if (statement instanceof LoopStat) {
-        _matched=true;
-        return this.translateLoop(proc, state);
-      }
-    }
-    if (!_matched) {
       if (statement instanceof ResetStat) {
         _matched=true;
         return this.translateResetTimer(proc, state);
@@ -566,13 +603,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String translateLoop(final ru.iaie.reflex.reflex.Process proc, final State state) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder.toString();
-  }
-  
   public String translateResetTimer(final ru.iaie.reflex.reflex.Process proc, final State state) {
-    return this.translateLoop(proc, state);
+    return "TODO";
   }
   
   public String translateSetStateStat(final ru.iaie.reflex.reflex.Process proc, final State state, final SetStateStat sss) {

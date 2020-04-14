@@ -27,22 +27,23 @@ import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
-import ru.iaie.reflex.reflex.LoopStat;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPort;
+import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -58,8 +59,6 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
-import ru.iaie.reflex.reflex.Variable;
-import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,9 +139,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
-      public Adapter caseVariable(Variable object)
+      public Adapter caseProcessVariable(ProcessVariable object)
       {
-        return createVariableAdapter();
+        return createProcessVariableAdapter();
       }
       @Override
       public Adapter caseImportedVariable(ImportedVariable object)
@@ -155,24 +154,24 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createDeclaredVariableAdapter();
       }
       @Override
+      public Adapter caseGlobalVariable(GlobalVariable object)
+      {
+        return createGlobalVariableAdapter();
+      }
+      @Override
       public Adapter casePhysicalVariable(PhysicalVariable object)
       {
         return createPhysicalVariableAdapter();
       }
       @Override
-      public Adapter caseRegisterPort(RegisterPort object)
+      public Adapter caseRegisterPortMapping(RegisterPortMapping object)
       {
-        return createRegisterPortAdapter();
+        return createRegisterPortMappingAdapter();
       }
       @Override
       public Adapter caseProgramVariable(ProgramVariable object)
       {
         return createProgramVariableAdapter();
-      }
-      @Override
-      public Adapter caseVisibility(Visibility object)
-      {
-        return createVisibilityAdapter();
       }
       @Override
       public Adapter caseStatementSequence(StatementSequence object)
@@ -223,11 +222,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseErrorStat(ErrorStat object)
       {
         return createErrorStatAdapter();
-      }
-      @Override
-      public Adapter caseLoopStat(LoopStat object)
-      {
-        return createLoopStatAdapter();
       }
       @Override
       public Adapter caseRestartStat(RestartStat object)
@@ -447,16 +441,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Variable <em>Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ProcessVariable <em>Process Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Variable
+   * @see ru.iaie.reflex.reflex.ProcessVariable
    * @generated
    */
-  public Adapter createVariableAdapter()
+  public Adapter createProcessVariableAdapter()
   {
     return null;
   }
@@ -492,6 +486,21 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.GlobalVariable <em>Global Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.GlobalVariable
+   * @generated
+   */
+  public Adapter createGlobalVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.PhysicalVariable <em>Physical Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -507,16 +516,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.RegisterPort <em>Register Port</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.RegisterPortMapping <em>Register Port Mapping</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.RegisterPort
+   * @see ru.iaie.reflex.reflex.RegisterPortMapping
    * @generated
    */
-  public Adapter createRegisterPortAdapter()
+  public Adapter createRegisterPortMappingAdapter()
   {
     return null;
   }
@@ -532,21 +541,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProgramVariableAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Visibility <em>Visibility</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Visibility
-   * @generated
-   */
-  public Adapter createVisibilityAdapter()
   {
     return null;
   }
@@ -697,21 +691,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createErrorStatAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.LoopStat <em>Loop Stat</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.LoopStat
-   * @generated
-   */
-  public Adapter createLoopStatAdapter()
   {
     return null;
   }

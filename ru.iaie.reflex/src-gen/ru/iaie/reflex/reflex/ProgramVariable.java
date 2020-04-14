@@ -13,15 +13,42 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable()
  * @model
  * @generated
  */
-public interface ProgramVariable extends DeclaredVariable
+public interface ProgramVariable extends DeclaredVariable, GlobalVariable
 {
+  /**
+   * Returns the value of the '<em><b>Visibility</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Visibility}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Visibility</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Visibility
+   * @see #setVisibility(Visibility)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Visibility()
+   * @model
+   * @generated
+   */
+  Visibility getVisibility();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getVisibility <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Visibility</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Visibility
+   * @see #getVisibility()
+   * @generated
+   */
+  void setVisibility(Visibility value);
+
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -43,5 +70,27 @@ public interface ProgramVariable extends DeclaredVariable
    * @generated
    */
   void setType(ReflexType value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
 
 } // ProgramVariable

@@ -2,7 +2,6 @@ package ru.iaie.reflex.generator.r2c
 
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.State
-import ru.iaie.reflex.reflex.Variable
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Register
 import java.util.Map
@@ -11,12 +10,15 @@ import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.Enum
 import ru.iaie.reflex.reflex.EnumMember
+import ru.iaie.reflex.reflex.GlobalVariable
+import ru.iaie.reflex.reflex.ProcessVariable
 
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
 	Map<String, String> procIdentifiers = new HashMap
 	Map<String, Map<String, String>> stateIdentifiers = new HashMap
 	Map<String, Map<String, String>> varIdentifiers = new HashMap
+	Map<String, String> globalVarIdentifiers = new HashMap
 	Map<String, String> constIdentifiers = new HashMap
 	Map<String, String> portIdentifiers = new HashMap
 	Map<String, String> enumIdentifiers = new HashMap
@@ -77,7 +79,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		}
 	}
 
-	override getVariableId(Process proc, Variable v) {
+	override getProcessVariableId(Process proc, ProcessVariable v) {
 		val procKey = getKey(proc)
 		val varKey = getKey(v)
 		if (!varIdentifiers.containsKey(procKey)) {
@@ -128,6 +130,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		constIdentifiers.clear
 		portIdentifiers.clear
 		enumIdentifiers.clear
+		globalVarIdentifiers.clear
 	}
 	
 	override getEnumId(Enum en) {
@@ -141,12 +144,6 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		}
 	}
 
-	override getId(String original) {
-		if (!identifiers.containsKey(original)) 
-			throw new IllegalArgumentException('''Name «original» wasn't declared''')
-		return identifiers.get(original)
-	}
-	
 	override getEnumMemberId(EnumMember em) {
 		val key = em.getName
 		if (constIdentifiers.containsKey(key)) {
@@ -157,6 +154,24 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 			identifiers.put(key, value)
 			return value
 		}
+	}
+	
+	override getGlobalVariableId(GlobalVariable v) {
+		val key = getKey(v)
+		if (globalVarIdentifiers.containsKey(key)) {
+			return globalVarIdentifiers.get(key)
+		} else {
+			val value = '''GV«globalVarIdentifiers.size»'''
+			globalVarIdentifiers.put(key, value)
+			identifiers.put(key, value)
+			return value
+		}
+	}
+	
+	override getId(String original) {
+		if (!identifiers.containsKey(original)) 
+			throw new IllegalArgumentException('''Name «original» wasn't declared''')
+		return identifiers.get(original)
 	}
 	
 

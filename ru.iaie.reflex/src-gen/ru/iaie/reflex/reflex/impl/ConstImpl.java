@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.ReflexType;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +25,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getConstId <em>Const Id</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getConstValue <em>Const Value</em>}</li>
  * </ul>
@@ -32,6 +34,16 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  */
 public class ConstImpl extends MinimalEObjectImpl.Container implements Const
 {
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected ReflexType type;
+
   /**
    * The default value of the '{@link #getConstId() <em>Const Id</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -81,6 +93,56 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.CONST;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ReflexType getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetType(ReflexType newType, NotificationChain msgs)
+  {
+    ReflexType oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(ReflexType newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__TYPE, newType, newType));
   }
 
   /**
@@ -168,6 +230,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   {
     switch (featureID)
     {
+      case ReflexPackage.CONST__TYPE:
+        return basicSetType(null, msgs);
       case ReflexPackage.CONST__CONST_VALUE:
         return basicSetConstValue(null, msgs);
     }
@@ -184,6 +248,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   {
     switch (featureID)
     {
+      case ReflexPackage.CONST__TYPE:
+        return getType();
       case ReflexPackage.CONST__CONST_ID:
         return getConstId();
       case ReflexPackage.CONST__CONST_VALUE:
@@ -202,6 +268,9 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   {
     switch (featureID)
     {
+      case ReflexPackage.CONST__TYPE:
+        setType((ReflexType)newValue);
+        return;
       case ReflexPackage.CONST__CONST_ID:
         setConstId((String)newValue);
         return;
@@ -222,6 +291,9 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   {
     switch (featureID)
     {
+      case ReflexPackage.CONST__TYPE:
+        setType((ReflexType)null);
+        return;
       case ReflexPackage.CONST__CONST_ID:
         setConstId(CONST_ID_EDEFAULT);
         return;
@@ -242,6 +314,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   {
     switch (featureID)
     {
+      case ReflexPackage.CONST__TYPE:
+        return type != null;
       case ReflexPackage.CONST__CONST_ID:
         return CONST_ID_EDEFAULT == null ? constId != null : !CONST_ID_EDEFAULT.equals(constId);
       case ReflexPackage.CONST__CONST_VALUE:

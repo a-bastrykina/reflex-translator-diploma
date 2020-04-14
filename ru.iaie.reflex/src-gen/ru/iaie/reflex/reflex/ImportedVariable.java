@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ImportedVariable extends Variable
+public interface ImportedVariable extends ProcessVariable
 {
   /**
    * Returns the value of the '<em><b>Proc Id</b></em>' attribute.

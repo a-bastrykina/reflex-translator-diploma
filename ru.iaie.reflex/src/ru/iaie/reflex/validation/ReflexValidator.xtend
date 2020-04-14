@@ -17,15 +17,27 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ReflexValidator extends AbstractReflexValidator {
-	
-	@Check def void checkNextState(SetStateStat setStateStat) {
+
+	@Check def void checkForNextState(SetStateStat setStateStat) {
 		if (setStateStat.isNext()) {
 			val state = setStateStat.getContainerOfType(ru.iaie.reflex.reflex.State)
 			val process = setStateStat.getContainerOfType(Process)
 			val callingStateIndex = process.states.indexOf(state)
 			if (callingStateIndex + 1 >= process.states.length) {
-				error("Invalid state transition: no next state in the process", ReflexPackage.eINSTANCE.setStateStat_Next)
-			}  
+				error("Invalid state transition: no next state in the process",
+					ReflexPackage.eINSTANCE.setStateStat_Next)
+			}
+		}
+	}
+
+	@Check def void checkTransitionState(SetStateStat setStateStat) {
+		if (!setStateStat.isNext()) {
+			val process = setStateStat.getContainerOfType(Process)
+			val stateName = setStateStat.stateId
+			if (process.states.findFirst[name.equals(stateName)] === null) {
+				error('''Invalid state transition: state «stateName» doesn't exist in the process''',
+					ReflexPackage.eINSTANCE.setStateStat_StateId)
+			}
 		}
 	}
 }

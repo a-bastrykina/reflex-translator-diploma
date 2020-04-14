@@ -42,20 +42,23 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEnumsEnumParserRuleCall_4_1_0 = (RuleCall)cEnumsAssignment_4_1.eContents().get(0);
 		private final Assignment cFunctionsAssignment_4_2 = (Assignment)cAlternatives_4.eContents().get(2);
 		private final RuleCall cFunctionsFunctionParserRuleCall_4_2_0 = (RuleCall)cFunctionsAssignment_4_2.eContents().get(0);
-		private final Assignment cRegistersAssignment_4_3 = (Assignment)cAlternatives_4.eContents().get(3);
-		private final RuleCall cRegistersRegisterParserRuleCall_4_3_0 = (RuleCall)cRegistersAssignment_4_3.eContents().get(0);
-		private final Assignment cProcessesAssignment_4_4 = (Assignment)cAlternatives_4.eContents().get(4);
-		private final RuleCall cProcessesProcessParserRuleCall_4_4_0 = (RuleCall)cProcessesAssignment_4_4.eContents().get(0);
+		private final Assignment cGlobalVarsAssignment_4_3 = (Assignment)cAlternatives_4.eContents().get(3);
+		private final RuleCall cGlobalVarsGlobalVariableParserRuleCall_4_3_0 = (RuleCall)cGlobalVarsAssignment_4_3.eContents().get(0);
+		private final Assignment cRegistersAssignment_4_4 = (Assignment)cAlternatives_4.eContents().get(4);
+		private final RuleCall cRegistersRegisterParserRuleCall_4_4_0 = (RuleCall)cRegistersAssignment_4_4.eContents().get(0);
+		private final Assignment cProcessesAssignment_4_5 = (Assignment)cAlternatives_4.eContents().get(5);
+		private final RuleCall cProcessesProcessParserRuleCall_4_5_0 = (RuleCall)cProcessesAssignment_4_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Program:
 		//	"program" name=ID "{"
-		//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | registers+=Register | processes+=Process)*
+		//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
+		//	processes+=Process)*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"program" name=ID "{" ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | registers+=Register |
-		//processes+=Process)* "}"
+		//"program" name=ID "{" ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable |
+		//registers+=Register | processes+=Process)* "}"
 		public Group getGroup() { return cGroup; }
 		
 		//"program"
@@ -76,7 +79,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//Tact
 		public RuleCall getTicksTactParserRuleCall_3_0() { return cTicksTactParserRuleCall_3_0; }
 		
-		//(consts+=Const | enums+=Enum | functions+=Function | registers+=Register | processes+=Process)*
+		//(consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
+		//processes+=Process)*
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
 		//consts+=Const
@@ -97,17 +101,23 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//Function
 		public RuleCall getFunctionsFunctionParserRuleCall_4_2_0() { return cFunctionsFunctionParserRuleCall_4_2_0; }
 		
+		//globalVars+=GlobalVariable
+		public Assignment getGlobalVarsAssignment_4_3() { return cGlobalVarsAssignment_4_3; }
+		
+		//GlobalVariable
+		public RuleCall getGlobalVarsGlobalVariableParserRuleCall_4_3_0() { return cGlobalVarsGlobalVariableParserRuleCall_4_3_0; }
+		
 		//registers+=Register
-		public Assignment getRegistersAssignment_4_3() { return cRegistersAssignment_4_3; }
+		public Assignment getRegistersAssignment_4_4() { return cRegistersAssignment_4_4; }
 		
 		//Register
-		public RuleCall getRegistersRegisterParserRuleCall_4_3_0() { return cRegistersRegisterParserRuleCall_4_3_0; }
+		public RuleCall getRegistersRegisterParserRuleCall_4_4_0() { return cRegistersRegisterParserRuleCall_4_4_0; }
 		
 		//processes+=Process
-		public Assignment getProcessesAssignment_4_4() { return cProcessesAssignment_4_4; }
+		public Assignment getProcessesAssignment_4_5() { return cProcessesAssignment_4_5; }
 		
 		//Process
-		public RuleCall getProcessesProcessParserRuleCall_4_4_0() { return cProcessesProcessParserRuleCall_4_4_0; }
+		public RuleCall getProcessesProcessParserRuleCall_4_5_0() { return cProcessesProcessParserRuleCall_4_5_0; }
 		
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
@@ -115,52 +125,77 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	public class ProcessElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Process");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cProcKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cVariablesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cVariablesVariableParserRuleCall_3_0 = (RuleCall)cVariablesAssignment_3.eContents().get(0);
-		private final Assignment cStatesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cStatesStateParserRuleCall_4_0 = (RuleCall)cStatesAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Keyword cAnnotationKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Keyword cProcessKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Assignment cLoopedAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cLoopedLoopedKeyword_3_0 = (Keyword)cLoopedAssignment_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cVariablesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cVariablesProcessVariableParserRuleCall_5_0 = (RuleCall)cVariablesAssignment_5.eContents().get(0);
+		private final Assignment cStatesAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cStatesStateParserRuleCall_6_0 = (RuleCall)cStatesAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Process:
-		//	"proc" name=ID "{"
-		//	variables+=Variable*
+		//	("[" "annotation" "]")?
+		//	"process" name=ID looped?="looped"? "{"
+		//	variables+=ProcessVariable*
 		//	states+=State*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"proc" name=ID "{" variables+=Variable* states+=State* "}"
+		//("[" "annotation" "]")? "process" name=ID looped?="looped"? "{" variables+=ProcessVariable* states+=State* "}"
 		public Group getGroup() { return cGroup; }
 		
-		//"proc"
-		public Keyword getProcKeyword_0() { return cProcKeyword_0; }
+		//("[" "annotation" "]")?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0_0() { return cLeftSquareBracketKeyword_0_0; }
+		
+		//"annotation"
+		public Keyword getAnnotationKeyword_0_1() { return cAnnotationKeyword_0_1; }
+		
+		//"]"
+		public Keyword getRightSquareBracketKeyword_0_2() { return cRightSquareBracketKeyword_0_2; }
+		
+		//"process"
+		public Keyword getProcessKeyword_1() { return cProcessKeyword_1; }
 		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		
+		//looped?="looped"?
+		public Assignment getLoopedAssignment_3() { return cLoopedAssignment_3; }
+		
+		//"looped"
+		public Keyword getLoopedLoopedKeyword_3_0() { return cLoopedLoopedKeyword_3_0; }
 		
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//variables+=Variable*
-		public Assignment getVariablesAssignment_3() { return cVariablesAssignment_3; }
+		//variables+=ProcessVariable*
+		public Assignment getVariablesAssignment_5() { return cVariablesAssignment_5; }
 		
-		//Variable
-		public RuleCall getVariablesVariableParserRuleCall_3_0() { return cVariablesVariableParserRuleCall_3_0; }
+		//ProcessVariable
+		public RuleCall getVariablesProcessVariableParserRuleCall_5_0() { return cVariablesProcessVariableParserRuleCall_5_0; }
 		
 		//states+=State*
-		public Assignment getStatesAssignment_4() { return cStatesAssignment_4; }
+		public Assignment getStatesAssignment_6() { return cStatesAssignment_6; }
 		
 		//State
-		public RuleCall getStatesStateParserRuleCall_4_0() { return cStatesStateParserRuleCall_4_0; }
+		public RuleCall getStatesStateParserRuleCall_6_0() { return cStatesStateParserRuleCall_6_0; }
 		
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class StateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.State");
@@ -212,15 +247,15 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
-	public class VariableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Variable");
+	public class ProcessVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ProcessVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final RuleCall cImportedVariableParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cDeclaredVariableParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//Variable:
+		//ProcessVariable:
 		//	(ImportedVariable | DeclaredVariable) ";";
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -243,7 +278,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ImportedVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFromKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cProcKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cProcessKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cProcIdAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cProcIdIDTerminalRuleCall_2_0 = (RuleCall)cProcIdAssignment_2.eContents().get(0);
 		private final Assignment cVarNamesAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -254,17 +289,17 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVarNamesIDTerminalRuleCall_4_1_0 = (RuleCall)cVarNamesAssignment_4_1.eContents().get(0);
 		
 		//ImportedVariable:
-		//	"from" "proc" procId=ID varNames+=ID ("," varNames+=ID)*;
+		//	"from" "process" procId=ID varNames+=ID ("," varNames+=ID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"from" "proc" procId=ID varNames+=ID ("," varNames+=ID)*
+		//"from" "process" procId=ID varNames+=ID ("," varNames+=ID)*
 		public Group getGroup() { return cGroup; }
 		
 		//"from"
 		public Keyword getFromKeyword_0() { return cFromKeyword_0; }
 		
-		//"proc"
-		public Keyword getProcKeyword_1() { return cProcKeyword_1; }
+		//"process"
+		public Keyword getProcessKeyword_1() { return cProcessKeyword_1; }
 		
 		//procId=ID
 		public Assignment getProcIdAssignment_2() { return cProcIdAssignment_2; }
@@ -297,7 +332,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPhysicalVariableParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cProgramVariableParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityParserRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
+		private final RuleCall cVisibilityVisibilityEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
 		
 		//DeclaredVariable:
 		//	(PhysicalVariable | ProgramVariable) visibility=Visibility;
@@ -319,7 +354,34 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
 		
 		//Visibility
-		public RuleCall getVisibilityVisibilityParserRuleCall_1_0() { return cVisibilityVisibilityParserRuleCall_1_0; }
+		public RuleCall getVisibilityVisibilityEnumRuleCall_1_0() { return cVisibilityVisibilityEnumRuleCall_1_0; }
+	}
+	public class GlobalVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.GlobalVariable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cPhysicalVariableParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cProgramVariableParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//GlobalVariable:
+		//	(PhysicalVariable | ProgramVariable) ";";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(PhysicalVariable | ProgramVariable) ";"
+		public Group getGroup() { return cGroup; }
+		
+		//(PhysicalVariable | ProgramVariable)
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//PhysicalVariable
+		public RuleCall getPhysicalVariableParserRuleCall_0_0() { return cPhysicalVariableParserRuleCall_0_0; }
+		
+		//ProgramVariable
+		public RuleCall getProgramVariableParserRuleCall_0_1() { return cProgramVariableParserRuleCall_0_1; }
+		
+		//";"
+		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 	public class PhysicalVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.PhysicalVariable");
@@ -329,20 +391,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPortsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPortsRegisterPortParserRuleCall_4_0 = (RuleCall)cPortsAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cPortsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cPortsRegisterPortParserRuleCall_5_1_0 = (RuleCall)cPortsAssignment_5_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cPortAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPortRegisterPortMappingParserRuleCall_3_0 = (RuleCall)cPortAssignment_3.eContents().get(0);
 		
 		//PhysicalVariable:
-		//	type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}";
+		//	type=IntegerType name=ID "=" port=RegisterPortMapping;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}"
+		//type=IntegerType name=ID "=" port=RegisterPortMapping
 		public Group getGroup() { return cGroup; }
 		
 		//type=IntegerType
@@ -360,45 +416,28 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 		
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		//port=RegisterPortMapping
+		public Assignment getPortAssignment_3() { return cPortAssignment_3; }
 		
-		//ports+=RegisterPort
-		public Assignment getPortsAssignment_4() { return cPortsAssignment_4; }
-		
-		//RegisterPort
-		public RuleCall getPortsRegisterPortParserRuleCall_4_0() { return cPortsRegisterPortParserRuleCall_4_0; }
-		
-		//("," ports+=RegisterPort)*
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//","
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
-		
-		//ports+=RegisterPort
-		public Assignment getPortsAssignment_5_1() { return cPortsAssignment_5_1; }
-		
-		//RegisterPort
-		public RuleCall getPortsRegisterPortParserRuleCall_5_1_0() { return cPortsRegisterPortParserRuleCall_5_1_0; }
-		
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		//RegisterPortMapping
+		public RuleCall getPortRegisterPortMappingParserRuleCall_3_0() { return cPortRegisterPortMappingParserRuleCall_3_0; }
 	}
-	public class RegisterPortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RegisterPort");
+	public class RegisterPortMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RegisterPortMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cRegNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cRegNameIDTerminalRuleCall_0_0 = (RuleCall)cRegNameAssignment_0.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPortAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPortINTEGERTerminalRuleCall_2_0 = (RuleCall)cPortAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPortBitAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPortBitINTEGERTerminalRuleCall_1_1_0 = (RuleCall)cPortBitAssignment_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
-		//RegisterPort:
-		//	regName=ID "[" port=INTEGER "]";
+		//RegisterPortMapping:
+		//	regName=ID ("[" portBit=INTEGER "]")?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//regName=ID "[" port=INTEGER "]"
+		//regName=ID ("[" portBit=INTEGER "]")?
 		public Group getGroup() { return cGroup; }
 		
 		//regName=ID
@@ -407,17 +446,20 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getRegNameIDTerminalRuleCall_0_0() { return cRegNameIDTerminalRuleCall_0_0; }
 		
-		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		//("[" portBit=INTEGER "]")?
+		public Group getGroup_1() { return cGroup_1; }
 		
-		//port=INTEGER
-		public Assignment getPortAssignment_2() { return cPortAssignment_2; }
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		
+		//portBit=INTEGER
+		public Assignment getPortBitAssignment_1_1() { return cPortBitAssignment_1_1; }
 		
 		//INTEGER
-		public RuleCall getPortINTEGERTerminalRuleCall_2_0() { return cPortINTEGERTerminalRuleCall_2_0; }
+		public RuleCall getPortBitINTEGERTerminalRuleCall_1_1_0() { return cPortBitINTEGERTerminalRuleCall_1_1_0; }
 		
 		//"]"
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
 	}
 	public class ProgramVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ProgramVariable");
@@ -445,69 +487,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-	}
-	public class VisibilityElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Visibility");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cLOCALAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Keyword cLOCALLocalKeyword_0_0 = (Keyword)cLOCALAssignment_0.eContents().get(0);
-		private final Assignment cGLOBALAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final Keyword cGLOBALGlobalKeyword_1_0 = (Keyword)cGLOBALAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Assignment cSHAREDAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final Keyword cSHAREDSharedKeyword_2_0_0 = (Keyword)cSHAREDAssignment_2_0.eContents().get(0);
-		private final Assignment cSharingProcsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSharingProcsIDTerminalRuleCall_2_1_0 = (RuleCall)cSharingProcsAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
-		private final Assignment cSharingProcsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cSharingProcsIDTerminalRuleCall_2_2_1_0 = (RuleCall)cSharingProcsAssignment_2_2_1.eContents().get(0);
-		
-		//Visibility:
-		//	LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//LOCAL="local"
-		public Assignment getLOCALAssignment_0() { return cLOCALAssignment_0; }
-		
-		//"local"
-		public Keyword getLOCALLocalKeyword_0_0() { return cLOCALLocalKeyword_0_0; }
-		
-		//GLOBAL="global"
-		public Assignment getGLOBALAssignment_1() { return cGLOBALAssignment_1; }
-		
-		//"global"
-		public Keyword getGLOBALGlobalKeyword_1_0() { return cGLOBALGlobalKeyword_1_0; }
-		
-		//SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//SHARED="shared"
-		public Assignment getSHAREDAssignment_2_0() { return cSHAREDAssignment_2_0; }
-		
-		//"shared"
-		public Keyword getSHAREDSharedKeyword_2_0_0() { return cSHAREDSharedKeyword_2_0_0; }
-		
-		//sharingProcs+=ID
-		public Assignment getSharingProcsAssignment_2_1() { return cSharingProcsAssignment_2_1; }
-		
-		//ID
-		public RuleCall getSharingProcsIDTerminalRuleCall_2_1_0() { return cSharingProcsIDTerminalRuleCall_2_1_0; }
-		
-		//("," sharingProcs+=ID)*
-		public Group getGroup_2_2() { return cGroup_2_2; }
-		
-		//","
-		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
-		
-		//sharingProcs+=ID
-		public Assignment getSharingProcsAssignment_2_2_1() { return cSharingProcsAssignment_2_2_1; }
-		
-		//ID
-		public RuleCall getSharingProcsIDTerminalRuleCall_2_2_1_0() { return cSharingProcsIDTerminalRuleCall_2_2_1_0; }
 	}
 	public class StatementSequenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.StatementSequence");
@@ -604,23 +583,22 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStartProcStatParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cStopProcStatParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cErrorStatParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cLoopStatParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cRestartStatParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cResetStatParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cSetStateStatParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cIfElseStatParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cSwitchStatParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
-		private final RuleCall cExpressionParserRuleCall_11_0 = (RuleCall)cGroup_11.eContents().get(0);
-		private final Keyword cSemicolonKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
+		private final RuleCall cRestartStatParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cResetStatParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cSetStateStatParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cIfElseStatParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cSwitchStatParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final RuleCall cExpressionParserRuleCall_10_0 = (RuleCall)cGroup_10.eContents().get(0);
+		private final Keyword cSemicolonKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//Statement:
-		//	{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | LoopStat | RestartStat | ResetStat
+		//	{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
 		//	| SetStateStat | IfElseStat | SwitchStat | Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | LoopStat | RestartStat | ResetStat |
-		//SetStateStat | IfElseStat | SwitchStat | Expression ";"
+		//{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat | SetStateStat |
+		//IfElseStat | SwitchStat | Expression ";"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{Statement} ";"
@@ -644,32 +622,29 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//ErrorStat
 		public RuleCall getErrorStatParserRuleCall_4() { return cErrorStatParserRuleCall_4; }
 		
-		//LoopStat
-		public RuleCall getLoopStatParserRuleCall_5() { return cLoopStatParserRuleCall_5; }
-		
 		//RestartStat
-		public RuleCall getRestartStatParserRuleCall_6() { return cRestartStatParserRuleCall_6; }
+		public RuleCall getRestartStatParserRuleCall_5() { return cRestartStatParserRuleCall_5; }
 		
 		//ResetStat
-		public RuleCall getResetStatParserRuleCall_7() { return cResetStatParserRuleCall_7; }
+		public RuleCall getResetStatParserRuleCall_6() { return cResetStatParserRuleCall_6; }
 		
 		//SetStateStat
-		public RuleCall getSetStateStatParserRuleCall_8() { return cSetStateStatParserRuleCall_8; }
+		public RuleCall getSetStateStatParserRuleCall_7() { return cSetStateStatParserRuleCall_7; }
 		
 		//IfElseStat
-		public RuleCall getIfElseStatParserRuleCall_9() { return cIfElseStatParserRuleCall_9; }
+		public RuleCall getIfElseStatParserRuleCall_8() { return cIfElseStatParserRuleCall_8; }
 		
 		//SwitchStat
-		public RuleCall getSwitchStatParserRuleCall_10() { return cSwitchStatParserRuleCall_10; }
+		public RuleCall getSwitchStatParserRuleCall_9() { return cSwitchStatParserRuleCall_9; }
 		
 		//Expression ";"
-		public Group getGroup_11() { return cGroup_11; }
+		public Group getGroup_10() { return cGroup_10; }
 		
 		//Expression
-		public RuleCall getExpressionParserRuleCall_11_0() { return cExpressionParserRuleCall_11_0; }
+		public RuleCall getExpressionParserRuleCall_10_0() { return cExpressionParserRuleCall_10_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_11_1() { return cSemicolonKeyword_11_1; }
+		public Keyword getSemicolonKeyword_10_1() { return cSemicolonKeyword_10_1; }
 	}
 	public class IfElseStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.IfElseStat");
@@ -787,7 +762,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cHasBreakBreakStatParserRuleCall_4_0 = (RuleCall)cHasBreakAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		////TODO: add flag for break statement absence
 		//CaseStat:
 		//	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
 		@Override public ParserRule getRule() { return rule; }
@@ -930,29 +904,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
-	public class LoopStatElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LoopStat");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cLoopStatAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cLoopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		
-		//LoopStat:
-		//	{LoopStat} "loop" ";";
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{LoopStat} "loop" ";"
-		public Group getGroup() { return cGroup; }
-		
-		//{LoopStat}
-		public Action getLoopStatAction_0() { return cLoopStatAction_0; }
-		
-		//"loop"
-		public Keyword getLoopKeyword_1() { return cLoopKeyword_1; }
-		
-		//";"
-		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
-	}
 	public class RestartStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RestartStat");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -981,14 +932,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cResetStatAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cResetKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cTimeoutKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cTimerKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ResetStat:
-		//	{ResetStat} "reset" "timeout" ";";
+		//	{ResetStat} "reset" "timer" ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ResetStat} "reset" "timeout" ";"
+		//{ResetStat} "reset" "timer" ";"
 		public Group getGroup() { return cGroup; }
 		
 		//{ResetStat}
@@ -997,8 +948,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"reset"
 		public Keyword getResetKeyword_1() { return cResetKeyword_1; }
 		
-		//"timeout"
-		public Keyword getTimeoutKeyword_2() { return cTimeoutKeyword_2; }
+		//"timer"
+		public Keyword getTimerKeyword_2() { return cTimerKeyword_2; }
 		
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -1176,36 +1127,48 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Const");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cConstKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cConstIdAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConstIdIDTerminalRuleCall_1_0 = (RuleCall)cConstIdAssignment_1.eContents().get(0);
-		private final Assignment cConstValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConstValueExpressionParserRuleCall_2_0 = (RuleCall)cConstValueAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeReflexTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Assignment cConstIdAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConstIdIDTerminalRuleCall_2_0 = (RuleCall)cConstIdAssignment_2.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cConstValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cConstValueExpressionParserRuleCall_4_0 = (RuleCall)cConstValueAssignment_4.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Const:
-		//	"const" constId=ID constValue=Expression ";";
+		//	"const" type=ReflexType constId=ID "=" constValue=Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"const" constId=ID constValue=Expression ";"
+		//"const" type=ReflexType constId=ID "=" constValue=Expression ";"
 		public Group getGroup() { return cGroup; }
 		
 		//"const"
 		public Keyword getConstKeyword_0() { return cConstKeyword_0; }
 		
+		//type=ReflexType
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//ReflexType
+		public RuleCall getTypeReflexTypeParserRuleCall_1_0() { return cTypeReflexTypeParserRuleCall_1_0; }
+		
 		//constId=ID
-		public Assignment getConstIdAssignment_1() { return cConstIdAssignment_1; }
+		public Assignment getConstIdAssignment_2() { return cConstIdAssignment_2; }
 		
 		//ID
-		public RuleCall getConstIdIDTerminalRuleCall_1_0() { return cConstIdIDTerminalRuleCall_1_0; }
+		public RuleCall getConstIdIDTerminalRuleCall_2_0() { return cConstIdIDTerminalRuleCall_2_0; }
+		
+		//"="
+		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
 		
 		//constValue=Expression
-		public Assignment getConstValueAssignment_2() { return cConstValueAssignment_2; }
+		public Assignment getConstValueAssignment_4() { return cConstValueAssignment_4; }
 		
 		//Expression
-		public RuleCall getConstValueExpressionParserRuleCall_2_0() { return cConstValueExpressionParserRuleCall_2_0; }
+		public RuleCall getConstValueExpressionParserRuleCall_4_0() { return cConstValueExpressionParserRuleCall_4_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
 	}
 	public class EnumElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Enum");
@@ -2160,6 +2123,33 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getTicksINTEGERTerminalRuleCall_0() { return cTicksINTEGERTerminalRuleCall_0; }
 	}
 	
+	public class VisibilityElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Visibility");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cLOCALEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cLOCALLocalKeyword_0_0 = (Keyword)cLOCALEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cSHAREDEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cSHAREDSharedKeyword_1_0 = (Keyword)cSHAREDEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum Visibility:
+		//	LOCAL="local" | SHARED="shared";
+		public EnumRule getRule() { return rule; }
+		
+		//LOCAL="local" | SHARED="shared"
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//LOCAL="local"
+		public EnumLiteralDeclaration getLOCALEnumLiteralDeclaration_0() { return cLOCALEnumLiteralDeclaration_0; }
+		
+		//"local"
+		public Keyword getLOCALLocalKeyword_0_0() { return cLOCALLocalKeyword_0_0; }
+		
+		//SHARED="shared"
+		public EnumLiteralDeclaration getSHAREDEnumLiteralDeclaration_1() { return cSHAREDEnumLiteralDeclaration_1; }
+		
+		//"shared"
+		public Keyword getSHAREDSharedKeyword_1_0() { return cSHAREDSharedKeyword_1_0; }
+	}
 	public class RegisterTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RegisterType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -2540,13 +2530,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ProgramElements pProgram;
 	private final ProcessElements pProcess;
 	private final StateElements pState;
-	private final VariableElements pVariable;
+	private final ProcessVariableElements pProcessVariable;
 	private final ImportedVariableElements pImportedVariable;
 	private final DeclaredVariableElements pDeclaredVariable;
+	private final GlobalVariableElements pGlobalVariable;
 	private final PhysicalVariableElements pPhysicalVariable;
-	private final RegisterPortElements pRegisterPort;
+	private final RegisterPortMappingElements pRegisterPortMapping;
 	private final ProgramVariableElements pProgramVariable;
-	private final VisibilityElements pVisibility;
+	private final VisibilityElements eVisibility;
 	private final StatementSequenceElements pStatementSequence;
 	private final StatementBlockElements pStatementBlock;
 	private final TimeoutFunctionElements pTimeoutFunction;
@@ -2558,7 +2549,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final StartProcStatElements pStartProcStat;
 	private final StopProcStatElements pStopProcStat;
 	private final ErrorStatElements pErrorStat;
-	private final LoopStatElements pLoopStat;
 	private final RestartStatElements pRestartStat;
 	private final ResetStatElements pResetStat;
 	private final SetStateStatElements pSetStateStat;
@@ -2641,13 +2631,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProgram = new ProgramElements();
 		this.pProcess = new ProcessElements();
 		this.pState = new StateElements();
-		this.pVariable = new VariableElements();
+		this.pProcessVariable = new ProcessVariableElements();
 		this.pImportedVariable = new ImportedVariableElements();
 		this.pDeclaredVariable = new DeclaredVariableElements();
+		this.pGlobalVariable = new GlobalVariableElements();
 		this.pPhysicalVariable = new PhysicalVariableElements();
-		this.pRegisterPort = new RegisterPortElements();
+		this.pRegisterPortMapping = new RegisterPortMappingElements();
 		this.pProgramVariable = new ProgramVariableElements();
-		this.pVisibility = new VisibilityElements();
+		this.eVisibility = new VisibilityElements();
 		this.pStatementSequence = new StatementSequenceElements();
 		this.pStatementBlock = new StatementBlockElements();
 		this.pTimeoutFunction = new TimeoutFunctionElements();
@@ -2659,7 +2650,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pStartProcStat = new StartProcStatElements();
 		this.pStopProcStat = new StopProcStatElements();
 		this.pErrorStat = new ErrorStatElements();
-		this.pLoopStat = new LoopStatElements();
 		this.pRestartStat = new RestartStatElements();
 		this.pResetStat = new ResetStatElements();
 		this.pSetStateStat = new SetStateStatElements();
@@ -2760,7 +2750,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Program:
 	//	"program" name=ID "{"
-	//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | registers+=Register | processes+=Process)*
+	//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
+	//	processes+=Process)*
 	//	"}";
 	public ProgramElements getProgramAccess() {
 		return pProgram;
@@ -2771,8 +2762,9 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Process:
-	//	"proc" name=ID "{"
-	//	variables+=Variable*
+	//	("[" "annotation" "]")?
+	//	"process" name=ID looped?="looped"? "{"
+	//	variables+=ProcessVariable*
 	//	states+=State*
 	//	"}";
 	public ProcessElements getProcessAccess() {
@@ -2796,18 +2788,18 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getStateAccess().getRule();
 	}
 	
-	//Variable:
+	//ProcessVariable:
 	//	(ImportedVariable | DeclaredVariable) ";";
-	public VariableElements getVariableAccess() {
-		return pVariable;
+	public ProcessVariableElements getProcessVariableAccess() {
+		return pProcessVariable;
 	}
 	
-	public ParserRule getVariableRule() {
-		return getVariableAccess().getRule();
+	public ParserRule getProcessVariableRule() {
+		return getProcessVariableAccess().getRule();
 	}
 	
 	//ImportedVariable:
-	//	"from" "proc" procId=ID varNames+=ID ("," varNames+=ID)*;
+	//	"from" "process" procId=ID varNames+=ID ("," varNames+=ID)*;
 	public ImportedVariableElements getImportedVariableAccess() {
 		return pImportedVariable;
 	}
@@ -2826,8 +2818,18 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getDeclaredVariableAccess().getRule();
 	}
 	
+	//GlobalVariable:
+	//	(PhysicalVariable | ProgramVariable) ";";
+	public GlobalVariableElements getGlobalVariableAccess() {
+		return pGlobalVariable;
+	}
+	
+	public ParserRule getGlobalVariableRule() {
+		return getGlobalVariableAccess().getRule();
+	}
+	
 	//PhysicalVariable:
-	//	type=IntegerType name=ID "=" "{" ports+=RegisterPort ("," ports+=RegisterPort)* "}";
+	//	type=IntegerType name=ID "=" port=RegisterPortMapping;
 	public PhysicalVariableElements getPhysicalVariableAccess() {
 		return pPhysicalVariable;
 	}
@@ -2836,14 +2838,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getPhysicalVariableAccess().getRule();
 	}
 	
-	//RegisterPort:
-	//	regName=ID "[" port=INTEGER "]";
-	public RegisterPortElements getRegisterPortAccess() {
-		return pRegisterPort;
+	//RegisterPortMapping:
+	//	regName=ID ("[" portBit=INTEGER "]")?;
+	public RegisterPortMappingElements getRegisterPortMappingAccess() {
+		return pRegisterPortMapping;
 	}
 	
-	public ParserRule getRegisterPortRule() {
-		return getRegisterPortAccess().getRule();
+	public ParserRule getRegisterPortMappingRule() {
+		return getRegisterPortMappingAccess().getRule();
 	}
 	
 	//ProgramVariable:
@@ -2856,13 +2858,13 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getProgramVariableAccess().getRule();
 	}
 	
-	//Visibility:
-	//	LOCAL="local" | GLOBAL="global" | SHARED="shared" sharingProcs+=ID ("," sharingProcs+=ID)*;
+	//enum Visibility:
+	//	LOCAL="local" | SHARED="shared";
 	public VisibilityElements getVisibilityAccess() {
-		return pVisibility;
+		return eVisibility;
 	}
 	
-	public ParserRule getVisibilityRule() {
+	public EnumRule getVisibilityRule() {
 		return getVisibilityAccess().getRule();
 	}
 	
@@ -2897,7 +2899,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Statement:
-	//	{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | LoopStat | RestartStat | ResetStat
+	//	{Statement} ";" | StatementBlock | StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
 	//	| SetStateStat | IfElseStat | SwitchStat | Expression ";";
 	public StatementElements getStatementAccess() {
 		return pStatement;
@@ -2928,7 +2930,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getSwitchStatAccess().getRule();
 	}
 	
-	////TODO: add flag for break statement absence
 	//CaseStat:
 	//	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
 	public CaseStatElements getCaseStatAccess() {
@@ -2979,16 +2980,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getErrorStatAccess().getRule();
 	}
 	
-	//LoopStat:
-	//	{LoopStat} "loop" ";";
-	public LoopStatElements getLoopStatAccess() {
-		return pLoopStat;
-	}
-	
-	public ParserRule getLoopStatRule() {
-		return getLoopStatAccess().getRule();
-	}
-	
 	//RestartStat:
 	//	{RestartStat} "restart" ";";
 	public RestartStatElements getRestartStatAccess() {
@@ -3000,7 +2991,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ResetStat:
-	//	{ResetStat} "reset" "timeout" ";";
+	//	{ResetStat} "reset" "timer" ";";
 	public ResetStatElements getResetStatAccess() {
 		return pResetStat;
 	}
@@ -3050,7 +3041,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Const:
-	//	"const" constId=ID constValue=Expression ";";
+	//	"const" type=ReflexType constId=ID "=" constValue=Expression ";";
 	public ConstElements getConstAccess() {
 		return pConst;
 	}
