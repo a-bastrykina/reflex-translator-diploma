@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getName <em>Name</em>}</li>
  * </ul>
@@ -25,29 +25,26 @@ package ru.iaie.reflex.reflex;
 public interface ProgramVariable extends DeclaredVariable, GlobalVariable
 {
   /**
-   * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Visibility}.
+   * Returns the value of the '<em><b>Shared</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Visibility</em>' attribute.
-   * @see ru.iaie.reflex.reflex.Visibility
-   * @see #setVisibility(Visibility)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Visibility()
+   * @return the value of the '<em>Shared</em>' attribute.
+   * @see #setShared(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Shared()
    * @model
    * @generated
    */
-  Visibility getVisibility();
+  String getShared();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getVisibility <em>Visibility</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getShared <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Visibility</em>' attribute.
-   * @see ru.iaie.reflex.reflex.Visibility
-   * @see #getVisibility()
+   * @param value the new value of the '<em>Shared</em>' attribute.
+   * @see #getShared()
    * @generated
    */
-  void setVisibility(Visibility value);
+  void setShared(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

@@ -3,14 +3,20 @@
  */
 package ru.iaie.reflex.validation;
 
+import com.google.common.collect.Iterators;
+import java.util.Iterator;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.StartProcStat;
+import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.utils.ReflexModelUtil;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
 
 /**
@@ -36,25 +42,74 @@ public class ReflexValidator extends AbstractReflexValidator {
   }
   
   @Check
-  public void checkTransitionState(final SetStateStat setStateStat) {
-    boolean _isNext = setStateStat.isNext();
-    boolean _not = (!_isNext);
-    if (_not) {
-      final ru.iaie.reflex.reflex.Process process = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(setStateStat, ru.iaie.reflex.reflex.Process.class);
-      final String stateName = setStateStat.getStateId();
-      final Function1<ru.iaie.reflex.reflex.State, Boolean> _function = (ru.iaie.reflex.reflex.State it) -> {
-        return Boolean.valueOf(it.getName().equals(stateName));
+  public void checkStateTransitions(final ru.iaie.reflex.reflex.State state) {
+    boolean _isLooped = state.isLooped();
+    if (_isLooped) {
+      return;
+    }
+    final Iterator<SetStateStat> stateTransitions = Iterators.<SetStateStat>filter(state.eAllContents(), SetStateStat.class);
+    boolean _isEmpty = IteratorExtensions.isEmpty(stateTransitions);
+    if (_isEmpty) {
+      final Function1<StopProcStat, Boolean> _function = (StopProcStat it) -> {
+        return Boolean.valueOf(ReflexModelUtil.selfStop(it));
       };
-      ru.iaie.reflex.reflex.State _findFirst = IterableExtensions.<ru.iaie.reflex.reflex.State>findFirst(process.getStates(), _function);
-      boolean _tripleEquals = (_findFirst == null);
-      if (_tripleEquals) {
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Invalid state transition: state ");
-        _builder.append(stateName);
-        _builder.append(" doesn\'t exist in the process");
-        this.error(_builder.toString(), 
-          ReflexPackage.eINSTANCE.getSetStateStat_StateId());
+      final Iterator<StopProcStat> selfStopTransitions = IteratorExtensions.<StopProcStat>filter(Iterators.<StopProcStat>filter(state.eAllContents(), StopProcStat.class), _function);
+      boolean _isEmpty_1 = IteratorExtensions.isEmpty(selfStopTransitions);
+      if (_isEmpty_1) {
+        final Function1<ErrorStat, Boolean> _function_1 = (ErrorStat it) -> {
+          return Boolean.valueOf(ReflexModelUtil.selfError(it));
+        };
+        final Iterator<ErrorStat> selfErrorTransitions = IteratorExtensions.<ErrorStat>filter(Iterators.<ErrorStat>filter(state.eAllContents(), ErrorStat.class), _function_1);
+        boolean _isEmpty_2 = IteratorExtensions.isEmpty(selfErrorTransitions);
+        if (_isEmpty_2) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Potential cycle in state ");
+          String _name = state.getName();
+          _builder.append(_name);
+          _builder.append(": no state transitions declared");
+          this.error(_builder.toString(), 
+            ReflexPackage.eINSTANCE.getState_Name());
+        }
       }
+    }
+  }
+  
+  @Check
+  public void checkStartStatement(final StartProcStat startStat) {
+    final ru.iaie.reflex.reflex.Process selfProcess = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(startStat, ru.iaie.reflex.reflex.Process.class);
+    final String procName = startStat.getProcess().getName();
+    boolean _equals = selfProcess.getName().equals(procName);
+    if (_equals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Use \'restart\' statement for restarting current process");
+      this.warning(_builder.toString(), 
+        ReflexPackage.eINSTANCE.getStartProcStat_Process());
+    }
+  }
+  
+  @Check
+  public void checkStopStatement(final StopProcStat stopStat) {
+    final ru.iaie.reflex.reflex.Process selfProcess = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(stopStat, ru.iaie.reflex.reflex.Process.class);
+    final String procName = stopStat.getProcess().getName();
+    boolean _equals = selfProcess.getName().equals(procName);
+    if (_equals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Use \'stop\' without argument to stop current process");
+      this.warning(_builder.toString(), 
+        ReflexPackage.eINSTANCE.getStopProcStat_Process());
+    }
+  }
+  
+  @Check
+  public void checkErrorStatement(final ErrorStat errorStat) {
+    final ru.iaie.reflex.reflex.Process selfProcess = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(errorStat, ru.iaie.reflex.reflex.Process.class);
+    final String procName = errorStat.getProcess().getName();
+    boolean _equals = selfProcess.getName().equals(procName);
+    if (_equals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Use \'error\' without argument to set current process state to error");
+      this.warning(_builder.toString(), 
+        ReflexPackage.eINSTANCE.getErrorStat_Process());
     }
   }
 }

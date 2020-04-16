@@ -495,20 +495,20 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Const returns Const
 	 *
 	 * Constraint:
-	 *     (type=ReflexType constId=ID constValue=Expression)
+	 *     (type=ReflexType name=ID constValue=Expression)
 	 */
 	protected void sequence_Const(ISerializationContext context, Const semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__TYPE));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__CONST_ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__CONST_ID));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__NAME));
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__CONST_VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__CONST_VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getConstAccess().getTypeReflexTypeParserRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getConstAccess().getConstIdIDTerminalRuleCall_2_0(), semanticObject.getConstId());
+		feeder.accept(grammarAccess.getConstAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getConstAccess().getConstValueExpressionParserRuleCall_4_0(), semanticObject.getConstValue());
 		feeder.finish();
 	}
@@ -520,25 +520,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     DeclaredVariable returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=IntegerType name=ID port=RegisterPortMapping visibility=Visibility)
+	 *     (type=IntegerType name=ID port=RegisterPortMapping shared='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__TYPE));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__PORT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__PORT));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__VISIBILITY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__VISIBILITY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPhysicalVariableAccess().getTypeIntegerTypeParserRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getPhysicalVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0(), semanticObject.getPort());
-		feeder.accept(grammarAccess.getDeclaredVariableAccess().getVisibilityVisibilityEnumRuleCall_1_0(), semanticObject.getVisibility());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -548,22 +533,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     DeclaredVariable returns ProgramVariable
 	 *
 	 * Constraint:
-	 *     (type=ReflexType name=ID visibility=Visibility)
+	 *     (type=ReflexType name=ID shared='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__TYPE));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__VISIBILITY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__VISIBILITY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProgramVariableAccess().getTypeReflexTypeParserRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getProgramVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDeclaredVariableAccess().getVisibilityVisibilityEnumRuleCall_1_0(), semanticObject.getVisibility());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -584,7 +557,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Enum returns Enum
 	 *
 	 * Constraint:
-	 *     (enumId=ID enumMembers+=EnumMember enumMembers+=EnumMember*)
+	 *     (name=ID enumMembers+=EnumMember enumMembers+=EnumMember*)
 	 */
 	protected void sequence_Enum(ISerializationContext context, ru.iaie.reflex.reflex.Enum semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -632,7 +605,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ErrorStat returns ErrorStat
 	 *
 	 * Constraint:
-	 *     procId=ID?
+	 *     process=[Process|ID]?
 	 */
 	protected void sequence_ErrorStat(ISerializationContext context, ErrorStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -666,7 +639,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (funcId=ID (args+=Expression args+=Expression*)?)
+	 *     (function=[Function|ID] (args+=Expression args+=Expression*)?)
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -704,7 +677,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ImportedVariable returns ImportedVariable
 	 *
 	 * Constraint:
-	 *     (procId=ID varNames+=ID varNames+=ID*)
+	 *     (process=[Process|ID] varNames+=ID varNames+=ID*)
 	 */
 	protected void sequence_ImportedVariable(ISerializationContext context, ImportedVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -950,7 +923,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (name=ID looped?='looped'? variables+=ProcessVariable* states+=State*)
+	 *     (name=ID variables+=ProcessVariable* states+=State*)
 	 */
 	protected void sequence_Process(ISerializationContext context, ru.iaie.reflex.reflex.Process semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1088,7 +1061,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     SetStateStat returns SetStateStat
 	 *
 	 * Constraint:
-	 *     (stateId=ID | next?='next')
+	 *     (state=[State|ID] | next?='next')
 	 */
 	protected void sequence_SetStateStat(ISerializationContext context, SetStateStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1140,15 +1113,15 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     StartProcStat returns StartProcStat
 	 *
 	 * Constraint:
-	 *     procId=ID
+	 *     process=[Process|ID]
 	 */
 	protected void sequence_StartProcStat(ISerializationContext context, StartProcStat semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.START_PROC_STAT__PROC_ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.START_PROC_STAT__PROC_ID));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.START_PROC_STAT__PROCESS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.START_PROC_STAT__PROCESS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStartProcStatAccess().getProcIdIDTerminalRuleCall_1_0(), semanticObject.getProcId());
+		feeder.accept(grammarAccess.getStartProcStatAccess().getProcessProcessIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexPackage.Literals.START_PROC_STAT__PROCESS, false));
 		feeder.finish();
 	}
 	
@@ -1158,7 +1131,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     State returns State
 	 *
 	 * Constraint:
-	 *     (name=ID stateFunction=StatementSequence timeoutFunction=TimeoutFunction?)
+	 *     (name=ID looped?='looped'? stateFunction=StatementSequence timeoutFunction=TimeoutFunction?)
 	 */
 	protected void sequence_State(ISerializationContext context, State semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1208,7 +1181,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     StopProcStat returns StopProcStat
 	 *
 	 * Constraint:
-	 *     procId=ID?
+	 *     process=[Process|ID]?
 	 */
 	protected void sequence_StopProcStat(ISerializationContext context, StopProcStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

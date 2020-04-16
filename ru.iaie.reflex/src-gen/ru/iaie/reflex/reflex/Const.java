@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Const#getConstId <em>Const Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Const#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getConstValue <em>Const Value</em>}</li>
  * </ul>
  *
@@ -48,26 +48,26 @@ public interface Const extends EObject
   void setType(ReflexType value);
 
   /**
-   * Returns the value of the '<em><b>Const Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Const Id</em>' attribute.
-   * @see #setConstId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getConst_ConstId()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getConst_Name()
    * @model
    * @generated
    */
-  String getConstId();
+  String getName();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Const#getConstId <em>Const Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Const#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Const Id</em>' attribute.
-   * @see #getConstId()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setConstId(String value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Const Value</b></em>' containment reference.

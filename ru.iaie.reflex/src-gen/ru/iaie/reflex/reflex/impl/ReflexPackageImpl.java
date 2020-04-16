@@ -71,7 +71,6 @@ import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
-import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -436,13 +435,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum visibilityEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EEnum registerTypeEEnum = null;
 
   /**
@@ -698,20 +690,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getProcess_Looped()
-  {
-    return (EAttribute)processEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getProcess_Variables()
   {
-    return (EReference)processEClass.getEStructuralFeatures().get(2);
+    return (EReference)processEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -722,7 +703,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   @Override
   public EReference getProcess_States()
   {
-    return (EReference)processEClass.getEStructuralFeatures().get(3);
+    return (EReference)processEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -753,9 +734,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EAttribute getState_Looped()
+  {
+    return (EAttribute)stateEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getState_StateFunction()
   {
-    return (EReference)stateEClass.getEStructuralFeatures().get(1);
+    return (EReference)stateEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -766,7 +758,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   @Override
   public EReference getState_TimeoutFunction()
   {
-    return (EReference)stateEClass.getEStructuralFeatures().get(2);
+    return (EReference)stateEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -797,9 +789,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getImportedVariable_ProcId()
+  public EReference getImportedVariable_Process()
   {
-    return (EAttribute)importedVariableEClass.getEStructuralFeatures().get(0);
+    return (EReference)importedVariableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -852,7 +844,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getPhysicalVariable_Visibility()
+  public EAttribute getPhysicalVariable_Shared()
   {
     return (EAttribute)physicalVariableEClass.getEStructuralFeatures().get(0);
   }
@@ -940,7 +932,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getProgramVariable_Visibility()
+  public EAttribute getProgramVariable_Shared()
   {
     return (EAttribute)programVariableEClass.getEStructuralFeatures().get(0);
   }
@@ -1193,9 +1185,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getStartProcStat_ProcId()
+  public EReference getStartProcStat_Process()
   {
-    return (EAttribute)startProcStatEClass.getEStructuralFeatures().get(0);
+    return (EReference)startProcStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1215,9 +1207,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getStopProcStat_ProcId()
+  public EReference getStopProcStat_Process()
   {
-    return (EAttribute)stopProcStatEClass.getEStructuralFeatures().get(0);
+    return (EReference)stopProcStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1237,9 +1229,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getErrorStat_ProcId()
+  public EReference getErrorStat_Process()
   {
-    return (EAttribute)errorStatEClass.getEStructuralFeatures().get(0);
+    return (EReference)errorStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1281,9 +1273,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getSetStateStat_StateId()
+  public EReference getSetStateStat_State()
   {
-    return (EAttribute)setStateStatEClass.getEStructuralFeatures().get(0);
+    return (EReference)setStateStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1435,7 +1427,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getConst_ConstId()
+  public EAttribute getConst_Name()
   {
     return (EAttribute)constEClass.getEStructuralFeatures().get(1);
   }
@@ -1468,7 +1460,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getEnum_EnumId()
+  public EAttribute getEnum_Name()
   {
     return (EAttribute)enumEClass.getEStructuralFeatures().get(0);
   }
@@ -1600,9 +1592,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getFunctionCall_FuncId()
+  public EReference getFunctionCall_Function()
   {
-    return (EAttribute)functionCallEClass.getEStructuralFeatures().get(0);
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2018,17 +2010,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EEnum getVisibility()
-  {
-    return visibilityEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getRegisterType()
   {
     return registerTypeEEnum;
@@ -2176,19 +2157,19 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     processEClass = createEClass(PROCESS);
     createEAttribute(processEClass, PROCESS__NAME);
-    createEAttribute(processEClass, PROCESS__LOOPED);
     createEReference(processEClass, PROCESS__VARIABLES);
     createEReference(processEClass, PROCESS__STATES);
 
     stateEClass = createEClass(STATE);
     createEAttribute(stateEClass, STATE__NAME);
+    createEAttribute(stateEClass, STATE__LOOPED);
     createEReference(stateEClass, STATE__STATE_FUNCTION);
     createEReference(stateEClass, STATE__TIMEOUT_FUNCTION);
 
     processVariableEClass = createEClass(PROCESS_VARIABLE);
 
     importedVariableEClass = createEClass(IMPORTED_VARIABLE);
-    createEAttribute(importedVariableEClass, IMPORTED_VARIABLE__PROC_ID);
+    createEReference(importedVariableEClass, IMPORTED_VARIABLE__PROCESS);
     createEAttribute(importedVariableEClass, IMPORTED_VARIABLE__VAR_NAMES);
 
     declaredVariableEClass = createEClass(DECLARED_VARIABLE);
@@ -2196,7 +2177,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     globalVariableEClass = createEClass(GLOBAL_VARIABLE);
 
     physicalVariableEClass = createEClass(PHYSICAL_VARIABLE);
-    createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__VISIBILITY);
+    createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__SHARED);
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__TYPE);
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__NAME);
     createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__PORT);
@@ -2206,7 +2187,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(registerPortMappingEClass, REGISTER_PORT_MAPPING__PORT_BIT);
 
     programVariableEClass = createEClass(PROGRAM_VARIABLE);
-    createEAttribute(programVariableEClass, PROGRAM_VARIABLE__VISIBILITY);
+    createEAttribute(programVariableEClass, PROGRAM_VARIABLE__SHARED);
     createEReference(programVariableEClass, PROGRAM_VARIABLE__TYPE);
     createEAttribute(programVariableEClass, PROGRAM_VARIABLE__NAME);
 
@@ -2237,20 +2218,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(caseStatEClass, CASE_STAT__HAS_BREAK);
 
     startProcStatEClass = createEClass(START_PROC_STAT);
-    createEAttribute(startProcStatEClass, START_PROC_STAT__PROC_ID);
+    createEReference(startProcStatEClass, START_PROC_STAT__PROCESS);
 
     stopProcStatEClass = createEClass(STOP_PROC_STAT);
-    createEAttribute(stopProcStatEClass, STOP_PROC_STAT__PROC_ID);
+    createEReference(stopProcStatEClass, STOP_PROC_STAT__PROCESS);
 
     errorStatEClass = createEClass(ERROR_STAT);
-    createEAttribute(errorStatEClass, ERROR_STAT__PROC_ID);
+    createEReference(errorStatEClass, ERROR_STAT__PROCESS);
 
     restartStatEClass = createEClass(RESTART_STAT);
 
     resetStatEClass = createEClass(RESET_STAT);
 
     setStateStatEClass = createEClass(SET_STATE_STAT);
-    createEAttribute(setStateStatEClass, SET_STATE_STAT__STATE_ID);
+    createEReference(setStateStatEClass, SET_STATE_STAT__STATE);
     createEAttribute(setStateStatEClass, SET_STATE_STAT__NEXT);
 
     functionEClass = createEClass(FUNCTION);
@@ -2267,11 +2248,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     constEClass = createEClass(CONST);
     createEReference(constEClass, CONST__TYPE);
-    createEAttribute(constEClass, CONST__CONST_ID);
+    createEAttribute(constEClass, CONST__NAME);
     createEReference(constEClass, CONST__CONST_VALUE);
 
     enumEClass = createEClass(ENUM);
-    createEAttribute(enumEClass, ENUM__ENUM_ID);
+    createEAttribute(enumEClass, ENUM__NAME);
     createEReference(enumEClass, ENUM__ENUM_MEMBERS);
 
     enumMemberEClass = createEClass(ENUM_MEMBER);
@@ -2287,7 +2268,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(postfixOpEClass, POSTFIX_OP__OP);
 
     functionCallEClass = createEClass(FUNCTION_CALL);
-    createEAttribute(functionCallEClass, FUNCTION_CALL__FUNC_ID);
+    createEReference(functionCallEClass, FUNCTION_CALL__FUNCTION);
     createEReference(functionCallEClass, FUNCTION_CALL__ARGS);
 
     primaryExpressionEClass = createEClass(PRIMARY_EXPRESSION);
@@ -2346,7 +2327,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(timeEClass, TIME__TICKS);
 
     // Create enums
-    visibilityEEnum = createEEnum(VISIBILITY);
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
     infixPostfixOpEEnum = createEEnum(INFIX_POSTFIX_OP);
     assignOperatorEEnum = createEEnum(ASSIGN_OPERATOR);
@@ -2435,19 +2415,19 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(processEClass, ru.iaie.reflex.reflex.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProcess_Looped(), ecorePackage.getEBoolean(), "looped", null, 0, 1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_Variables(), this.getProcessVariable(), null, "variables", null, 0, -1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_States(), this.getState(), null, "states", null, 0, -1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getState_Looped(), ecorePackage.getEBoolean(), "looped", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getState_StateFunction(), this.getStatementSequence(), null, "stateFunction", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getState_TimeoutFunction(), this.getTimeoutFunction(), null, "timeoutFunction", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processVariableEClass, ProcessVariable.class, "ProcessVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(importedVariableEClass, ImportedVariable.class, "ImportedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getImportedVariable_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImportedVariable_Process(), this.getProcess(), null, "process", null, 0, 1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImportedVariable_VarNames(), ecorePackage.getEString(), "varNames", null, 0, -1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(declaredVariableEClass, DeclaredVariable.class, "DeclaredVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2455,7 +2435,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(globalVariableEClass, GlobalVariable.class, "GlobalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(physicalVariableEClass, PhysicalVariable.class, "PhysicalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPhysicalVariable_Visibility(), this.getVisibility(), "visibility", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPhysicalVariable_Shared(), ecorePackage.getEString(), "shared", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPhysicalVariable_Type(), ecorePackage.getEString(), "type", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPhysicalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPhysicalVariable_Port(), this.getRegisterPortMapping(), null, "port", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2465,7 +2445,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getRegisterPortMapping_PortBit(), ecorePackage.getEString(), "portBit", null, 0, 1, RegisterPortMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programVariableEClass, ProgramVariable.class, "ProgramVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProgramVariable_Visibility(), this.getVisibility(), "visibility", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProgramVariable_Shared(), ecorePackage.getEString(), "shared", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgramVariable_Type(), this.getReflexType(), null, "type", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProgramVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2496,20 +2476,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getCaseStat_HasBreak(), ecorePackage.getEBoolean(), "hasBreak", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(startProcStatEClass, StartProcStat.class, "StartProcStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStartProcStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, StartProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStartProcStat_Process(), this.getProcess(), null, "process", null, 0, 1, StartProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stopProcStatEClass, StopProcStat.class, "StopProcStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStopProcStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, StopProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStopProcStat_Process(), this.getProcess(), null, "process", null, 0, 1, StopProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(errorStatEClass, ErrorStat.class, "ErrorStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getErrorStat_ProcId(), ecorePackage.getEString(), "procId", null, 0, 1, ErrorStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getErrorStat_Process(), this.getProcess(), null, "process", null, 0, 1, ErrorStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(restartStatEClass, RestartStat.class, "RestartStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(resetStatEClass, ResetStat.class, "ResetStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(setStateStatEClass, SetStateStat.class, "SetStateStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSetStateStat_StateId(), ecorePackage.getEString(), "stateId", null, 0, 1, SetStateStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetStateStat_State(), this.getState(), null, "state", null, 0, 1, SetStateStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSetStateStat_Next(), ecorePackage.getEBoolean(), "next", null, 0, 1, SetStateStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2526,11 +2506,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(constEClass, Const.class, "Const", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConst_Type(), this.getReflexType(), null, "type", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConst_ConstId(), ecorePackage.getEString(), "constId", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConst_Name(), ecorePackage.getEString(), "name", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConst_ConstValue(), this.getExpression(), null, "constValue", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumEClass, ru.iaie.reflex.reflex.Enum.class, "Enum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEnum_EnumId(), ecorePackage.getEString(), "enumId", null, 0, 1, ru.iaie.reflex.reflex.Enum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEnum_Name(), ecorePackage.getEString(), "name", null, 0, 1, ru.iaie.reflex.reflex.Enum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnum_EnumMembers(), this.getEnumMember(), null, "enumMembers", null, 0, -1, ru.iaie.reflex.reflex.Enum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumMemberEClass, EnumMember.class, "EnumMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2546,7 +2526,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getPostfixOp_Op(), this.getInfixPostfixOp(), "op", null, 0, 1, PostfixOp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFunctionCall_FuncId(), ecorePackage.getEString(), "funcId", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionCall_Function(), this.getFunction(), null, "function", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionCall_Args(), this.getExpression(), null, "args", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primaryExpressionEClass, PrimaryExpression.class, "PrimaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2605,10 +2585,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getTime_Ticks(), ecorePackage.getEString(), "ticks", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(visibilityEEnum, Visibility.class, "Visibility");
-    addEEnumLiteral(visibilityEEnum, Visibility.LOCAL);
-    addEEnumLiteral(visibilityEEnum, Visibility.SHARED);
-
     initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");
     addEEnumLiteral(registerTypeEEnum, RegisterType.INPUT);
     addEEnumLiteral(registerTypeEEnum, RegisterType.OUTPUT);

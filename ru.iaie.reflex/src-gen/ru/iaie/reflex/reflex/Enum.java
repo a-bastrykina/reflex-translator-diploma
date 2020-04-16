@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Enum#getEnumId <em>Enum Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Enum#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Enum#getEnumMembers <em>Enum Members</em>}</li>
  * </ul>
  *
@@ -27,26 +27,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Enum extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Enum Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Enum Id</em>' attribute.
-   * @see #setEnumId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getEnum_EnumId()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getEnum_Name()
    * @model
    * @generated
    */
-  String getEnumId();
+  String getName();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Enum#getEnumId <em>Enum Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Enum#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Enum Id</em>' attribute.
-   * @see #getEnumId()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setEnumId(String value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Enum Members</b></em>' containment reference list.

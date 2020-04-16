@@ -96,7 +96,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
-				#define «identifiersHelper.getConstantId(constant)» /*«constant.constId»*/ «translateExpr(constant.constValue)» 
+				#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.constValue)» 
 			«ENDFOR»
 		'''
 	}
@@ -128,6 +128,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		fsa.generateFile('''c-code/CAgvar.cpp''', fileContent)
 	}
 
+	// TODO: split to global and process
 	def generateProcessVariables(Resource resource) {
 		return '''
 			«FOR variable: program.globalVars»
@@ -302,7 +303,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, state)» + 1);'''
 		}
 
-		val stateToSet = proc.findStateByName(sss.stateId)
+		val stateToSet = sss.state
 		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, stateToSet)»);'''
 	}
 
@@ -314,7 +315,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateStartProcStat(Process proc, State state, StartProcStat sps) {
 		// TODO: move to validation checks
-		val procToStart = proc.eResource.program.findProcessByName(sps.procId)
+		val procToStart = proc.eResource.program.findProcessByName(sps.process.name)
 		return '''
 			Set_Start(«identifiersHelper.getProcessId(procToStart)»);
 		'''
@@ -345,7 +346,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			PostfixOp:
 				return '''«identifiersHelper.getId(expr.varId)» «expr.op»'''
 			FunctionCall:
-				return '''«expr.funcId»(«String.join(",", expr.args.map[translateExpr])»)'''
+				return '''«expr.function.name»(«String.join(",", expr.args.map[translateExpr])»)'''
 			PrimaryExpression: {
 				if(expr.isVariableReference) return identifiersHelper.getId(expr.varId)
 				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''

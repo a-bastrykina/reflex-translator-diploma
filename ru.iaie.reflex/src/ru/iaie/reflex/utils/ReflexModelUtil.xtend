@@ -4,6 +4,8 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.State;
 import org.eclipse.emf.ecore.resource.Resource
 import ru.iaie.reflex.reflex.EnumMember
+import ru.iaie.reflex.reflex.StopProcStat
+import ru.iaie.reflex.reflex.ErrorStat
 
 class ReflexModelUtil {
 	def static State findStateByName(Process proc, String stateName) {
@@ -24,6 +26,14 @@ class ReflexModelUtil {
 	
 	def static boolean hasValue(EnumMember em) {
 		return em.value !== null
+	}
+	
+	def static boolean selfStop(StopProcStat sps) {
+		return sps.process === null
+	}
+	
+	def static boolean selfError(ErrorStat sps) {
+		return sps.process === null
 	}
 	
 }

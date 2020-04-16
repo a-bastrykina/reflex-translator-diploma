@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.ReflexType;
-import ru.iaie.reflex.reflex.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import ru.iaie.reflex.reflex.Visibility;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -34,24 +33,24 @@ import ru.iaie.reflex.reflex.Visibility;
 public class ProgramVariableImpl extends DeclaredVariableImpl implements ProgramVariable
 {
   /**
-   * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * The default value of the '{@link #getShared() <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVisibility()
+   * @see #getShared()
    * @generated
    * @ordered
    */
-  protected static final Visibility VISIBILITY_EDEFAULT = Visibility.LOCAL;
+  protected static final String SHARED_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * The cached value of the '{@link #getShared() <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVisibility()
+   * @see #getShared()
    * @generated
    * @ordered
    */
-  protected Visibility visibility = VISIBILITY_EDEFAULT;
+  protected String shared = SHARED_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -110,9 +109,9 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    */
   @Override
-  public Visibility getVisibility()
+  public String getShared()
   {
-    return visibility;
+    return shared;
   }
 
   /**
@@ -121,12 +120,12 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    */
   @Override
-  public void setVisibility(Visibility newVisibility)
+  public void setShared(String newShared)
   {
-    Visibility oldVisibility = visibility;
-    visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
+    String oldShared = shared;
+    shared = newShared;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__VISIBILITY, oldVisibility, visibility));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__SHARED, oldShared, shared));
   }
 
   /**
@@ -230,8 +229,8 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
-      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
-        return getVisibility();
+      case ReflexPackage.PROGRAM_VARIABLE__SHARED:
+        return getShared();
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         return getType();
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
@@ -250,8 +249,8 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
-      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
-        setVisibility((Visibility)newValue);
+      case ReflexPackage.PROGRAM_VARIABLE__SHARED:
+        setShared((String)newValue);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         setType((ReflexType)newValue);
@@ -273,8 +272,8 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
-      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
-        setVisibility(VISIBILITY_EDEFAULT);
+      case ReflexPackage.PROGRAM_VARIABLE__SHARED:
+        setShared(SHARED_EDEFAULT);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         setType((ReflexType)null);
@@ -296,8 +295,8 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
   {
     switch (featureID)
     {
-      case ReflexPackage.PROGRAM_VARIABLE__VISIBILITY:
-        return visibility != VISIBILITY_EDEFAULT;
+      case ReflexPackage.PROGRAM_VARIABLE__SHARED:
+        return SHARED_EDEFAULT == null ? shared != null : !SHARED_EDEFAULT.equals(shared);
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
         return type != null;
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
@@ -317,8 +316,8 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (visibility: ");
-    result.append(visibility);
+    result.append(" (shared: ");
+    result.append(shared);
     result.append(", name: ");
     result.append(name);
     result.append(')');

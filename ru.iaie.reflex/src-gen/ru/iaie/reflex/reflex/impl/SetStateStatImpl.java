@@ -6,11 +6,13 @@ package ru.iaie.reflex.reflex.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SetStateStat;
+import ru.iaie.reflex.reflex.State;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +22,7 @@ import ru.iaie.reflex.reflex.SetStateStat;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#getStateId <em>State Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#getState <em>State</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#isNext <em>Next</em>}</li>
  * </ul>
  *
@@ -29,24 +31,14 @@ import ru.iaie.reflex.reflex.SetStateStat;
 public class SetStateStatImpl extends StatementImpl implements SetStateStat
 {
   /**
-   * The default value of the '{@link #getStateId() <em>State Id</em>}' attribute.
+   * The cached value of the '{@link #getState() <em>State</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStateId()
+   * @see #getState()
    * @generated
    * @ordered
    */
-  protected static final String STATE_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getStateId() <em>State Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStateId()
-   * @generated
-   * @ordered
-   */
-  protected String stateId = STATE_ID_EDEFAULT;
+  protected State state;
 
   /**
    * The default value of the '{@link #isNext() <em>Next</em>}' attribute.
@@ -95,9 +87,29 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
    * @generated
    */
   @Override
-  public String getStateId()
+  public State getState()
   {
-    return stateId;
+    if (state != null && state.eIsProxy())
+    {
+      InternalEObject oldState = (InternalEObject)state;
+      state = (State)eResolveProxy(oldState);
+      if (state != oldState)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.SET_STATE_STAT__STATE, oldState, state));
+      }
+    }
+    return state;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public State basicGetState()
+  {
+    return state;
   }
 
   /**
@@ -106,12 +118,12 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
    * @generated
    */
   @Override
-  public void setStateId(String newStateId)
+  public void setState(State newState)
   {
-    String oldStateId = stateId;
-    stateId = newStateId;
+    State oldState = state;
+    state = newState;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.SET_STATE_STAT__STATE_ID, oldStateId, stateId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.SET_STATE_STAT__STATE, oldState, state));
   }
 
   /**
@@ -149,8 +161,9 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE_ID:
-        return getStateId();
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        if (resolve) return getState();
+        return basicGetState();
       case ReflexPackage.SET_STATE_STAT__NEXT:
         return isNext();
     }
@@ -167,8 +180,8 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE_ID:
-        setStateId((String)newValue);
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        setState((State)newValue);
         return;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         setNext((Boolean)newValue);
@@ -187,8 +200,8 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE_ID:
-        setStateId(STATE_ID_EDEFAULT);
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        setState((State)null);
         return;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         setNext(NEXT_EDEFAULT);
@@ -207,8 +220,8 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE_ID:
-        return STATE_ID_EDEFAULT == null ? stateId != null : !STATE_ID_EDEFAULT.equals(stateId);
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        return state != null;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         return next != NEXT_EDEFAULT;
     }
@@ -226,9 +239,7 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (stateId: ");
-    result.append(stateId);
-    result.append(", next: ");
+    result.append(" (next: ");
     result.append(next);
     result.append(')');
     return result.toString();

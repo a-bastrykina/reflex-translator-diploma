@@ -50,7 +50,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   private String _getKey(final Const c) {
-    return c.getConstId();
+    return c.getName();
   }
   
   private String _getKey(final Register r) {
@@ -58,7 +58,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   private String _getKey(final ru.iaie.reflex.reflex.Enum en) {
-    return en.getEnumId();
+    return en.getName();
   }
   
   @Override

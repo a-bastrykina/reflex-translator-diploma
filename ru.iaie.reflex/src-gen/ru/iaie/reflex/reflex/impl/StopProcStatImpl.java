@@ -6,6 +6,7 @@ package ru.iaie.reflex.reflex.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -20,7 +21,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.StopProcStatImpl#getProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StopProcStatImpl#getProcess <em>Process</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +29,14 @@ import ru.iaie.reflex.reflex.StopProcStat;
 public class StopProcStatImpl extends StatementImpl implements StopProcStat
 {
   /**
-   * The default value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
+   * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProcId()
+   * @see #getProcess()
    * @generated
    * @ordered
    */
-  protected static final String PROC_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProcId()
-   * @generated
-   * @ordered
-   */
-  protected String procId = PROC_ID_EDEFAULT;
+  protected ru.iaie.reflex.reflex.Process process;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +65,29 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
    * @generated
    */
   @Override
-  public String getProcId()
+  public ru.iaie.reflex.reflex.Process getProcess()
   {
-    return procId;
+    if (process != null && process.eIsProxy())
+    {
+      InternalEObject oldProcess = (InternalEObject)process;
+      process = (ru.iaie.reflex.reflex.Process)eResolveProxy(oldProcess);
+      if (process != oldProcess)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.STOP_PROC_STAT__PROCESS, oldProcess, process));
+      }
+    }
+    return process;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ru.iaie.reflex.reflex.Process basicGetProcess()
+  {
+    return process;
   }
 
   /**
@@ -85,12 +96,12 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
    * @generated
    */
   @Override
-  public void setProcId(String newProcId)
+  public void setProcess(ru.iaie.reflex.reflex.Process newProcess)
   {
-    String oldProcId = procId;
-    procId = newProcId;
+    ru.iaie.reflex.reflex.Process oldProcess = process;
+    process = newProcess;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STOP_PROC_STAT__PROC_ID, oldProcId, procId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STOP_PROC_STAT__PROCESS, oldProcess, process));
   }
 
   /**
@@ -103,8 +114,9 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
   {
     switch (featureID)
     {
-      case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        return getProcId();
+      case ReflexPackage.STOP_PROC_STAT__PROCESS:
+        if (resolve) return getProcess();
+        return basicGetProcess();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +131,8 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
   {
     switch (featureID)
     {
-      case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        setProcId((String)newValue);
+      case ReflexPackage.STOP_PROC_STAT__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +148,8 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
   {
     switch (featureID)
     {
-      case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        setProcId(PROC_ID_EDEFAULT);
+      case ReflexPackage.STOP_PROC_STAT__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)null);
         return;
     }
     super.eUnset(featureID);
@@ -153,27 +165,10 @@ public class StopProcStatImpl extends StatementImpl implements StopProcStat
   {
     switch (featureID)
     {
-      case ReflexPackage.STOP_PROC_STAT__PROC_ID:
-        return PROC_ID_EDEFAULT == null ? procId != null : !PROC_ID_EDEFAULT.equals(procId);
+      case ReflexPackage.STOP_PROC_STAT__PROCESS:
+        return process != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (procId: ");
-    result.append(procId);
-    result.append(')');
-    return result.toString();
   }
 
 } //StopProcStatImpl

@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getVarNames <em>Var Names</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
 public interface ImportedVariable extends ProcessVariable
 {
   /**
-   * Returns the value of the '<em><b>Proc Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Proc Id</em>' attribute.
-   * @see #setProcId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_ProcId()
+   * @return the value of the '<em>Process</em>' reference.
+   * @see #setProcess(ru.iaie.reflex.reflex.Process)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Process()
    * @model
    * @generated
    */
-  String getProcId();
+  ru.iaie.reflex.reflex.Process getProcess();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcId <em>Proc Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Proc Id</em>' attribute.
-   * @see #getProcId()
+   * @param value the new value of the '<em>Process</em>' reference.
+   * @see #getProcess()
    * @generated
    */
-  void setProcId(String value);
+  void setProcess(ru.iaie.reflex.reflex.Process value);
 
   /**
    * Returns the value of the '<em><b>Var Names</b></em>' attribute list.

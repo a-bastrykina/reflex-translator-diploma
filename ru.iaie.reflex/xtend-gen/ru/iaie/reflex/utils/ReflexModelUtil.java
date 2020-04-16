@@ -9,9 +9,11 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import ru.iaie.reflex.reflex.EnumMember;
+import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StopProcStat;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
@@ -46,5 +48,15 @@ public class ReflexModelUtil {
   public static boolean hasValue(final EnumMember em) {
     Expression _value = em.getValue();
     return (_value != null);
+  }
+  
+  public static boolean selfStop(final StopProcStat sps) {
+    ru.iaie.reflex.reflex.Process _process = sps.getProcess();
+    return (_process == null);
+  }
+  
+  public static boolean selfError(final ErrorStat sps) {
+    ru.iaie.reflex.reflex.Process _process = sps.getProcess();
+    return (_process == null);
   }
 }

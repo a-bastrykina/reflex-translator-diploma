@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -26,7 +27,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getVarNames <em>Var Names</em>}</li>
  * </ul>
  *
@@ -35,24 +36,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class ImportedVariableImpl extends ProcessVariableImpl implements ImportedVariable
 {
   /**
-   * The default value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
+   * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProcId()
+   * @see #getProcess()
    * @generated
    * @ordered
    */
-  protected static final String PROC_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getProcId() <em>Proc Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProcId()
-   * @generated
-   * @ordered
-   */
-  protected String procId = PROC_ID_EDEFAULT;
+  protected ru.iaie.reflex.reflex.Process process;
 
   /**
    * The cached value of the '{@link #getVarNames() <em>Var Names</em>}' attribute list.
@@ -91,9 +82,29 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
    * @generated
    */
   @Override
-  public String getProcId()
+  public ru.iaie.reflex.reflex.Process getProcess()
   {
-    return procId;
+    if (process != null && process.eIsProxy())
+    {
+      InternalEObject oldProcess = (InternalEObject)process;
+      process = (ru.iaie.reflex.reflex.Process)eResolveProxy(oldProcess);
+      if (process != oldProcess)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.IMPORTED_VARIABLE__PROCESS, oldProcess, process));
+      }
+    }
+    return process;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ru.iaie.reflex.reflex.Process basicGetProcess()
+  {
+    return process;
   }
 
   /**
@@ -102,12 +113,12 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
    * @generated
    */
   @Override
-  public void setProcId(String newProcId)
+  public void setProcess(ru.iaie.reflex.reflex.Process newProcess)
   {
-    String oldProcId = procId;
-    procId = newProcId;
+    ru.iaie.reflex.reflex.Process oldProcess = process;
+    process = newProcess;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.IMPORTED_VARIABLE__PROC_ID, oldProcId, procId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.IMPORTED_VARIABLE__PROCESS, oldProcess, process));
   }
 
   /**
@@ -135,8 +146,9 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROC_ID:
-        return getProcId();
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        if (resolve) return getProcess();
+        return basicGetProcess();
       case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
         return getVarNames();
     }
@@ -154,8 +166,8 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROC_ID:
-        setProcId((String)newValue);
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)newValue);
         return;
       case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
         getVarNames().clear();
@@ -175,8 +187,8 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROC_ID:
-        setProcId(PROC_ID_EDEFAULT);
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)null);
         return;
       case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
         getVarNames().clear();
@@ -195,8 +207,8 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROC_ID:
-        return PROC_ID_EDEFAULT == null ? procId != null : !PROC_ID_EDEFAULT.equals(procId);
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        return process != null;
       case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
         return varNames != null && !varNames.isEmpty();
     }
@@ -214,9 +226,7 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (procId: ");
-    result.append(procId);
-    result.append(", varNames: ");
+    result.append(" (varNames: ");
     result.append(varNames);
     result.append(')');
     return result.toString();

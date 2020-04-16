@@ -42,7 +42,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	}
 	
 	private def dispatch getKey(Const c) {
-		return c.constId
+		return c.name
 	}
 	
 	private def dispatch getKey(Register r) {
@@ -50,7 +50,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	}
 	
 	private def dispatch getKey(Enum en) {
-		return en.enumId
+		return en.name
 	}
 
 	override getProcessId(Process proc) {

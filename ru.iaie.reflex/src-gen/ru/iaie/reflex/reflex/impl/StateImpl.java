@@ -26,6 +26,7 @@ import ru.iaie.reflex.reflex.TimeoutFunction;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#isLooped <em>Looped</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getStateFunction <em>State Function</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getTimeoutFunction <em>Timeout Function</em>}</li>
  * </ul>
@@ -53,6 +54,26 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isLooped() <em>Looped</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLooped()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean LOOPED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isLooped() <em>Looped</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLooped()
+   * @generated
+   * @ordered
+   */
+  protected boolean looped = LOOPED_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getStateFunction() <em>State Function</em>}' containment reference.
@@ -118,6 +139,31 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isLooped()
+  {
+    return looped;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLooped(boolean newLooped)
+  {
+    boolean oldLooped = looped;
+    looped = newLooped;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.STATE__LOOPED, oldLooped, looped));
   }
 
   /**
@@ -250,6 +296,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     {
       case ReflexPackage.STATE__NAME:
         return getName();
+      case ReflexPackage.STATE__LOOPED:
+        return isLooped();
       case ReflexPackage.STATE__STATE_FUNCTION:
         return getStateFunction();
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
@@ -270,6 +318,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     {
       case ReflexPackage.STATE__NAME:
         setName((String)newValue);
+        return;
+      case ReflexPackage.STATE__LOOPED:
+        setLooped((Boolean)newValue);
         return;
       case ReflexPackage.STATE__STATE_FUNCTION:
         setStateFunction((StatementSequence)newValue);
@@ -294,6 +345,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
       case ReflexPackage.STATE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ReflexPackage.STATE__LOOPED:
+        setLooped(LOOPED_EDEFAULT);
+        return;
       case ReflexPackage.STATE__STATE_FUNCTION:
         setStateFunction((StatementSequence)null);
         return;
@@ -316,6 +370,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     {
       case ReflexPackage.STATE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReflexPackage.STATE__LOOPED:
+        return looped != LOOPED_EDEFAULT;
       case ReflexPackage.STATE__STATE_FUNCTION:
         return stateFunction != null;
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
@@ -337,6 +393,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", looped: ");
+    result.append(looped);
     result.append(')');
     return result.toString();
   }

@@ -7,10 +7,12 @@ import org.eclipse.xtext.validation.Check
 import ru.iaie.reflex.reflex.ReflexPackage
 import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.Process
-import ru.iaie.reflex.reflex.State
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import ru.iaie.reflex.reflex.ErrorStat
+import ru.iaie.reflex.reflex.StopProcStat
+import ru.iaie.reflex.reflex.StartProcStat
 
 /** 
  * This class contains custom validation rules. 
@@ -30,14 +32,46 @@ class ReflexValidator extends AbstractReflexValidator {
 		}
 	}
 
-	@Check def void checkTransitionState(SetStateStat setStateStat) {
-		if (!setStateStat.isNext()) {
-			val process = setStateStat.getContainerOfType(Process)
-			val stateName = setStateStat.stateId
-			if (process.states.findFirst[name.equals(stateName)] === null) {
-				error('''Invalid state transition: state «stateName» doesn't exist in the process''',
-					ReflexPackage.eINSTANCE.setStateStat_StateId)
+	@Check def void checkStateTransitions(ru.iaie.reflex.reflex.State state) {
+		if (state.isLooped) return;
+		val stateTransitions = state.eAllContents.filter(SetStateStat)
+		if (stateTransitions.isEmpty) {
+			val selfStopTransitions = state.eAllContents.filter(StopProcStat).filter[selfStop]
+			if (selfStopTransitions.isEmpty) {
+				val selfErrorTransitions = state.eAllContents.filter(ErrorStat).filter[selfError]
+				if (selfErrorTransitions.isEmpty) {
+					error('''Potential cycle in state «state.name»: no state transitions declared''',
+						ReflexPackage.eINSTANCE.state_Name)
+				}
 			}
 		}
 	}
+
+	@Check def void checkStartStatement(StartProcStat startStat) {
+		val selfProcess = startStat.getContainerOfType(Process)
+		val procName = startStat.process.name;
+		if (selfProcess.name.equals(procName)) {
+			warning('''Use 'restart' statement for restarting current process''',
+				ReflexPackage.eINSTANCE.startProcStat_Process)
+		}
+	}
+	
+	@Check def void checkStopStatement(StopProcStat stopStat) {
+		val selfProcess = stopStat.getContainerOfType(Process)
+		val procName = stopStat.process.name;
+		if (selfProcess.name.equals(procName)) {
+			warning('''Use 'stop' without argument to stop current process''',
+				ReflexPackage.eINSTANCE.stopProcStat_Process)
+		}
+	}
+	
+	@Check def void checkErrorStatement(ErrorStat errorStat) {
+		val selfProcess = errorStat.getContainerOfType(Process)
+		val procName = errorStat.process.name;
+		if (selfProcess.name.equals(procName)) {
+			warning('''Use 'error' without argument to set current process state to error''',
+				ReflexPackage.eINSTANCE.errorStat_Process)
+		}
+	}
+
 }

@@ -26,7 +26,7 @@ import ru.iaie.reflex.reflex.ReflexType;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getConstId <em>Const Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getConstValue <em>Const Value</em>}</li>
  * </ul>
  *
@@ -45,24 +45,24 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
   protected ReflexType type;
 
   /**
-   * The default value of the '{@link #getConstId() <em>Const Id</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConstId()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String CONST_ID_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getConstId() <em>Const Id</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConstId()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String constId = CONST_ID_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getConstValue() <em>Const Value</em>}' containment reference.
@@ -151,9 +151,9 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
    * @generated
    */
   @Override
-  public String getConstId()
+  public String getName()
   {
-    return constId;
+    return name;
   }
 
   /**
@@ -162,12 +162,12 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
    * @generated
    */
   @Override
-  public void setConstId(String newConstId)
+  public void setName(String newName)
   {
-    String oldConstId = constId;
-    constId = newConstId;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__CONST_ID, oldConstId, constId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__NAME, oldName, name));
   }
 
   /**
@@ -250,8 +250,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
     {
       case ReflexPackage.CONST__TYPE:
         return getType();
-      case ReflexPackage.CONST__CONST_ID:
-        return getConstId();
+      case ReflexPackage.CONST__NAME:
+        return getName();
       case ReflexPackage.CONST__CONST_VALUE:
         return getConstValue();
     }
@@ -271,8 +271,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
       case ReflexPackage.CONST__TYPE:
         setType((ReflexType)newValue);
         return;
-      case ReflexPackage.CONST__CONST_ID:
-        setConstId((String)newValue);
+      case ReflexPackage.CONST__NAME:
+        setName((String)newValue);
         return;
       case ReflexPackage.CONST__CONST_VALUE:
         setConstValue((Expression)newValue);
@@ -294,8 +294,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
       case ReflexPackage.CONST__TYPE:
         setType((ReflexType)null);
         return;
-      case ReflexPackage.CONST__CONST_ID:
-        setConstId(CONST_ID_EDEFAULT);
+      case ReflexPackage.CONST__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case ReflexPackage.CONST__CONST_VALUE:
         setConstValue((Expression)null);
@@ -316,8 +316,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
     {
       case ReflexPackage.CONST__TYPE:
         return type != null;
-      case ReflexPackage.CONST__CONST_ID:
-        return CONST_ID_EDEFAULT == null ? constId != null : !CONST_ID_EDEFAULT.equals(constId);
+      case ReflexPackage.CONST__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.CONST__CONST_VALUE:
         return constValue != null;
     }
@@ -335,8 +335,8 @@ public class ConstImpl extends MinimalEObjectImpl.Container implements Const
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (constId: ");
-    result.append(constId);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

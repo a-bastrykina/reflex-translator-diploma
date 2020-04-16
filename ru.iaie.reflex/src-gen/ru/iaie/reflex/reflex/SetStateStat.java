@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.SetStateStat#getStateId <em>State Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.SetStateStat#getState <em>State</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.SetStateStat#isNext <em>Next</em>}</li>
  * </ul>
  *
@@ -24,26 +24,26 @@ package ru.iaie.reflex.reflex;
 public interface SetStateStat extends Statement
 {
   /**
-   * Returns the value of the '<em><b>State Id</b></em>' attribute.
+   * Returns the value of the '<em><b>State</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State Id</em>' attribute.
-   * @see #setStateId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getSetStateStat_StateId()
+   * @return the value of the '<em>State</em>' reference.
+   * @see #setState(State)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getSetStateStat_State()
    * @model
    * @generated
    */
-  String getStateId();
+  State getState();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.SetStateStat#getStateId <em>State Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.SetStateStat#getState <em>State</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State Id</em>' attribute.
-   * @see #getStateId()
+   * @param value the new value of the '<em>State</em>' reference.
+   * @see #getState()
    * @generated
    */
-  void setStateId(String value);
+  void setState(State value);
 
   /**
    * Returns the value of the '<em><b>Next</b></em>' attribute.

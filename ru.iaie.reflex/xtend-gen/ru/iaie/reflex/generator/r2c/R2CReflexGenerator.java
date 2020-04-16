@@ -138,8 +138,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
         String _constantId = this.identifiersHelper.getConstantId(constant);
         _builder.append(_constantId);
         _builder.append(" /*");
-        String _constId = constant.getConstId();
-        _builder.append(_constId);
+        String _name = constant.getName();
+        _builder.append(_name);
         _builder.append("*/ ");
         String _translateExpr = this.translateExpr(constant.getConstValue());
         _builder.append(_translateExpr);
@@ -620,7 +620,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder.append(" + 1);");
       return _builder.toString();
     }
-    final State stateToSet = ReflexModelUtil.findStateByName(proc, sss.getStateId());
+    final State stateToSet = sss.getState();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("Set_State(");
     String _processId_1 = this.identifiersHelper.getProcessId(proc);
@@ -643,7 +643,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public String translateStartProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StartProcStat sps) {
-    final ru.iaie.reflex.reflex.Process procToStart = ReflexModelUtil.findProcessByName(ReflexModelUtil.getProgram(proc.eResource()), sps.getProcId());
+    final ru.iaie.reflex.reflex.Process procToStart = ReflexModelUtil.findProcessByName(ReflexModelUtil.getProgram(proc.eResource()), sps.getProcess().getName());
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Start(");
     String _processId = this.identifiersHelper.getProcessId(procToStart);
@@ -728,8 +728,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
       if (expr instanceof FunctionCall) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        String _funcId = ((FunctionCall)expr).getFuncId();
-        _builder.append(_funcId);
+        String _name = ((FunctionCall)expr).getFunction().getName();
+        _builder.append(_name);
         _builder.append("(");
         final Function1<Expression, String> _function = (Expression it) -> {
           return this.translateExpr(it);

@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ErrorStat#getProcId <em>Proc Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ErrorStat#getProcess <em>Process</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getErrorStat()
@@ -23,25 +23,25 @@ package ru.iaie.reflex.reflex;
 public interface ErrorStat extends Statement
 {
   /**
-   * Returns the value of the '<em><b>Proc Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Proc Id</em>' attribute.
-   * @see #setProcId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getErrorStat_ProcId()
+   * @return the value of the '<em>Process</em>' reference.
+   * @see #setProcess(ru.iaie.reflex.reflex.Process)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getErrorStat_Process()
    * @model
    * @generated
    */
-  String getProcId();
+  ru.iaie.reflex.reflex.Process getProcess();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ErrorStat#getProcId <em>Proc Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ErrorStat#getProcess <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Proc Id</em>' attribute.
-   * @see #getProcId()
+   * @param value the new value of the '<em>Process</em>' reference.
+   * @see #getProcess()
    * @generated
    */
-  void setProcId(String value);
+  void setProcess(ru.iaie.reflex.reflex.Process value);
 
 } // ErrorStat

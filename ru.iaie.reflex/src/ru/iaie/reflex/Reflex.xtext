@@ -16,13 +16,13 @@ Program:
 
 Process:
 	("[" "annotation" "]")?
-	"process" name=ID (looped?="looped")? "{"
+	"process" name=ID "{"
 	variables+=ProcessVariable*
 	states+=State*
 	"}";
 
 State:
-	"state" name=ID "{"
+	"state" name=ID (looped?="looped")? "{"
 	stateFunction=StatementSequence
 	(timeoutFunction=TimeoutFunction)?
 	"}";
@@ -31,10 +31,10 @@ ProcessVariable:
 	(ImportedVariable | DeclaredVariable) ";";
 
 ImportedVariable:
-	"from" "process" procId=ID varNames+=ID ("," varNames+=ID)*;
+	"from" "process" process=[Process] varNames+=ID ("," varNames+=ID)*;
 
 DeclaredVariable:
-	(PhysicalVariable | ProgramVariable) visibility=Visibility;
+	(PhysicalVariable | ProgramVariable) (shared="shared")?;
 
 GlobalVariable:
 	(PhysicalVariable | ProgramVariable) ";";
@@ -47,9 +47,6 @@ RegisterPortMapping:
 
 ProgramVariable:
 	type=ReflexType name=ID;
-
-enum Visibility:
-	LOCAL="local" | SHARED="shared";
 
 StatementSequence:
 	{StatementSequence} statements+=Statement*;
@@ -80,13 +77,13 @@ BreakStat:
 	"break" ";";
 
 StartProcStat:
-	"start" procId=ID ";";
+	"start" process=[Process] ";";
 
 StopProcStat:
-	{StopProcStat} "stop" (procId=ID)? ";";
+	{StopProcStat} "stop" (process=[Process])? ";";
 
 ErrorStat:
-	{ErrorStat} "error" (procId=ID)? ";";
+	{ErrorStat} "error" (process=[Process])? ";";
 
 RestartStat:
 	{RestartStat} "restart" ";";
@@ -95,7 +92,7 @@ ResetStat:
 	{ResetStat} "reset" "timer" ";";
 
 SetStateStat:
-	{SetStateStat} "set" (("state" stateId=ID) | next?="next") ";";
+	{SetStateStat} "set" (("state" state=[State]) | next?="next") ";";
 
 Function:
 	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
@@ -107,10 +104,10 @@ Register:
 	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
-	"const" type=ReflexType constId=ID "=" constValue=Expression ";";
+	"const" type=ReflexType name=ID "=" constValue=Expression ";";
 
 Enum:
-	"enum" enumId=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
+	"enum" name=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
 
 EnumMember:
 	name=ID ("=" value=Expression)?;
@@ -122,7 +119,7 @@ PostfixOp:
 	varId=ID op=InfixPostfixOp;
 
 FunctionCall:
-	funcId=ID "(" (args+=Expression ("," args+=Expression)*)? ")";
+	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 PrimaryExpression:
 	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" nestedExpr=Expression ")";
@@ -251,7 +248,7 @@ terminal BOOL_TYPE:
 	"bool";
 
 Tact:
-	"tact" value=INTEGER ";";
+	"clock" value=INTEGER ";";
 
 	// LITERALS
 terminal INTEGER:

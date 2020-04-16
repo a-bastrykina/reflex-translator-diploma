@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.FunctionCall#getFuncId <em>Func Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.FunctionCall#getFunction <em>Function</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.FunctionCall#getArgs <em>Args</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
 public interface FunctionCall extends UnaryExpression
 {
   /**
-   * Returns the value of the '<em><b>Func Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Function</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Func Id</em>' attribute.
-   * @see #setFuncId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getFunctionCall_FuncId()
+   * @return the value of the '<em>Function</em>' reference.
+   * @see #setFunction(Function)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getFunctionCall_Function()
    * @model
    * @generated
    */
-  String getFuncId();
+  Function getFunction();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.FunctionCall#getFuncId <em>Func Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.FunctionCall#getFunction <em>Function</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Func Id</em>' attribute.
-   * @see #getFuncId()
+   * @param value the new value of the '<em>Function</em>' reference.
+   * @see #getFunction()
    * @generated
    */
-  void setFuncId(String value);
+  void setFunction(Function value);
 
   /**
    * Returns the value of the '<em><b>Args</b></em>' containment reference list.

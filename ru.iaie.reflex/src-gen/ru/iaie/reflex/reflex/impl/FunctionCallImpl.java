@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -30,7 +31,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.FunctionCallImpl#getFuncId <em>Func Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.FunctionCallImpl#getFunction <em>Function</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.FunctionCallImpl#getArgs <em>Args</em>}</li>
  * </ul>
  *
@@ -39,24 +40,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCall
 {
   /**
-   * The default value of the '{@link #getFuncId() <em>Func Id</em>}' attribute.
+   * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFuncId()
+   * @see #getFunction()
    * @generated
    * @ordered
    */
-  protected static final String FUNC_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getFuncId() <em>Func Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFuncId()
-   * @generated
-   * @ordered
-   */
-  protected String funcId = FUNC_ID_EDEFAULT;
+  protected Function function;
 
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
@@ -95,9 +86,29 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
    * @generated
    */
   @Override
-  public String getFuncId()
+  public Function getFunction()
   {
-    return funcId;
+    if (function != null && function.eIsProxy())
+    {
+      InternalEObject oldFunction = (InternalEObject)function;
+      function = (Function)eResolveProxy(oldFunction);
+      if (function != oldFunction)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.FUNCTION_CALL__FUNCTION, oldFunction, function));
+      }
+    }
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Function basicGetFunction()
+  {
+    return function;
   }
 
   /**
@@ -106,12 +117,12 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
    * @generated
    */
   @Override
-  public void setFuncId(String newFuncId)
+  public void setFunction(Function newFunction)
   {
-    String oldFuncId = funcId;
-    funcId = newFuncId;
+    Function oldFunction = function;
+    function = newFunction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.FUNCTION_CALL__FUNC_ID, oldFuncId, funcId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.FUNCTION_CALL__FUNCTION, oldFunction, function));
   }
 
   /**
@@ -155,8 +166,9 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
   {
     switch (featureID)
     {
-      case ReflexPackage.FUNCTION_CALL__FUNC_ID:
-        return getFuncId();
+      case ReflexPackage.FUNCTION_CALL__FUNCTION:
+        if (resolve) return getFunction();
+        return basicGetFunction();
       case ReflexPackage.FUNCTION_CALL__ARGS:
         return getArgs();
     }
@@ -174,8 +186,8 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
   {
     switch (featureID)
     {
-      case ReflexPackage.FUNCTION_CALL__FUNC_ID:
-        setFuncId((String)newValue);
+      case ReflexPackage.FUNCTION_CALL__FUNCTION:
+        setFunction((Function)newValue);
         return;
       case ReflexPackage.FUNCTION_CALL__ARGS:
         getArgs().clear();
@@ -195,8 +207,8 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
   {
     switch (featureID)
     {
-      case ReflexPackage.FUNCTION_CALL__FUNC_ID:
-        setFuncId(FUNC_ID_EDEFAULT);
+      case ReflexPackage.FUNCTION_CALL__FUNCTION:
+        setFunction((Function)null);
         return;
       case ReflexPackage.FUNCTION_CALL__ARGS:
         getArgs().clear();
@@ -215,29 +227,12 @@ public class FunctionCallImpl extends UnaryExpressionImpl implements FunctionCal
   {
     switch (featureID)
     {
-      case ReflexPackage.FUNCTION_CALL__FUNC_ID:
-        return FUNC_ID_EDEFAULT == null ? funcId != null : !FUNC_ID_EDEFAULT.equals(funcId);
+      case ReflexPackage.FUNCTION_CALL__FUNCTION:
+        return function != null;
       case ReflexPackage.FUNCTION_CALL__ARGS:
         return args != null && !args.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (funcId: ");
-    result.append(funcId);
-    result.append(')');
-    return result.toString();
   }
 
 } //FunctionCallImpl
