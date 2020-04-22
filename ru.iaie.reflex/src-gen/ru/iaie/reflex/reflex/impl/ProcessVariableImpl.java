@@ -5,8 +5,6 @@ package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -17,7 +15,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class ProcessVariableImpl extends MinimalEObjectImpl.Container implements ProcessVariable
+public class ProcessVariableImpl extends IdReferenceImpl implements ProcessVariable
 {
   /**
    * <!-- begin-user-doc -->

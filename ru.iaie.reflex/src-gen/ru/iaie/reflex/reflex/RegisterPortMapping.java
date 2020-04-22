@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.RegisterPortMapping#getRegName <em>Reg Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.RegisterPortMapping#getRegister <em>Register</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.RegisterPortMapping#getPortBit <em>Port Bit</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface RegisterPortMapping extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Reg Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Register</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg Name</em>' attribute.
-   * @see #setRegName(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegisterPortMapping_RegName()
+   * @return the value of the '<em>Register</em>' reference.
+   * @see #setRegister(Register)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegisterPortMapping_Register()
    * @model
    * @generated
    */
-  String getRegName();
+  Register getRegister();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.RegisterPortMapping#getRegName <em>Reg Name</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.RegisterPortMapping#getRegister <em>Register</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg Name</em>' attribute.
-   * @see #getRegName()
+   * @param value the new value of the '<em>Register</em>' reference.
+   * @see #getRegister()
    * @generated
    */
-  void setRegName(String value);
+  void setRegister(Register value);
 
   /**
    * Returns the value of the '<em><b>Port Bit</b></em>' attribute.

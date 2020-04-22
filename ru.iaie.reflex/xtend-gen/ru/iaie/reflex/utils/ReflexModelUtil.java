@@ -8,12 +8,19 @@ import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.IdReference;
+import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Program;
+import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.Time;
+import ru.iaie.reflex.reflex.TimeoutFunction;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
@@ -58,5 +65,48 @@ public class ReflexModelUtil {
   public static boolean selfError(final ErrorStat sps) {
     ru.iaie.reflex.reflex.Process _process = sps.getProcess();
     return (_process == null);
+  }
+  
+  public static boolean isClearTimeout(final TimeoutFunction f) {
+    Time _time = f.getTime();
+    return (_time != null);
+  }
+  
+  public static boolean isReferencedTimeout(final TimeoutFunction f) {
+    IdReference _ref = f.getRef();
+    return (_ref != null);
+  }
+  
+  public static String resolveName(final IdReference ref) {
+    boolean _matched = false;
+    if (ref instanceof ImportedVariable) {
+      _matched=true;
+      return ReflexModelUtil.resolveName(((ImportedVariable)ref).getVariables().get(0));
+    }
+    if (!_matched) {
+      if (ref instanceof ProgramVariable) {
+        _matched=true;
+        return ((ProgramVariable)ref).getName();
+      }
+    }
+    if (!_matched) {
+      if (ref instanceof PhysicalVariable) {
+        _matched=true;
+        return ((PhysicalVariable)ref).getName();
+      }
+    }
+    if (!_matched) {
+      if (ref instanceof EnumMember) {
+        _matched=true;
+        return ((EnumMember)ref).getName();
+      }
+    }
+    if (!_matched) {
+      if (ref instanceof Const) {
+        _matched=true;
+        return ((Const)ref).getName();
+      }
+    }
+    return null;
   }
 }

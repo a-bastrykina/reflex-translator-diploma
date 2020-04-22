@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.GlobalVariable;
@@ -35,6 +36,7 @@ import ru.iaie.reflex.reflex.Tact;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getTicks <em>Ticks</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getConsts <em>Consts</em>}</li>
@@ -49,6 +51,16 @@ import ru.iaie.reflex.reflex.Tact;
  */
 public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 {
+  /**
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnnotations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Annotation> annotations;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -158,6 +170,21 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.PROGRAM;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Annotation> getAnnotations()
+  {
+    if (annotations == null)
+    {
+      annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ReflexPackage.PROGRAM__ANNOTATIONS);
+    }
+    return annotations;
   }
 
   /**
@@ -335,6 +362,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__TICKS:
         return basicSetTicks(null, msgs);
       case ReflexPackage.PROGRAM__CONSTS:
@@ -363,6 +392,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__ANNOTATIONS:
+        return getAnnotations();
       case ReflexPackage.PROGRAM__NAME:
         return getName();
       case ReflexPackage.PROGRAM__TICKS:
@@ -394,6 +425,10 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends Annotation>)newValue);
+        return;
       case ReflexPackage.PROGRAM__NAME:
         setName((String)newValue);
         return;
@@ -438,6 +473,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__ANNOTATIONS:
+        getAnnotations().clear();
+        return;
       case ReflexPackage.PROGRAM__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -476,6 +514,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   {
     switch (featureID)
     {
+      case ReflexPackage.PROGRAM__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case ReflexPackage.PROGRAM__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.PROGRAM__TICKS:

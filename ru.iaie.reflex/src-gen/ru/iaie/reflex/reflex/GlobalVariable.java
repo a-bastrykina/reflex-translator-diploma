@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface GlobalVariable extends EObject
+public interface GlobalVariable extends IdReference
 {
 } // GlobalVariable

@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface EnumMember extends EObject
+public interface EnumMember extends IdReference
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

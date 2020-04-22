@@ -123,13 +123,13 @@ public interface ReflexFactory extends EFactory
   StatementSequence createStatementSequence();
 
   /**
-   * Returns a new object of class '<em>Statement Block</em>'.
+   * Returns a new object of class '<em>Compound Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Statement Block</em>'.
+   * @return a new object of class '<em>Compound Statement</em>'.
    * @generated
    */
-  StatementBlock createStatementBlock();
+  CompoundStatement createCompoundStatement();
 
   /**
    * Returns a new object of class '<em>Timeout Function</em>'.
@@ -139,6 +139,15 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   TimeoutFunction createTimeoutFunction();
+
+  /**
+   * Returns a new object of class '<em>Time Amount Or Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Time Amount Or Ref</em>'.
+   * @generated
+   */
+  TimeAmountOrRef createTimeAmountOrRef();
 
   /**
    * Returns a new object of class '<em>Statement</em>'.
@@ -301,6 +310,24 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Id Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Id Reference</em>'.
+   * @generated
+   */
+  IdReference createIdReference();
+
+  /**
+   * Returns a new object of class '<em>Check State Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Check State Expression</em>'.
+   * @generated
+   */
+  CheckStateExpression createCheckStateExpression();
 
   /**
    * Returns a new object of class '<em>Primary Expression</em>'.
@@ -472,6 +499,24 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   Time createTime();
+
+  /**
+   * Returns a new object of class '<em>Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation</em>'.
+   * @generated
+   */
+  Annotation createAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Statement Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Statement Block</em>'.
+   * @generated
+   */
+  StatementBlock createStatementBlock();
 
   /**
    * Returns the package supported by this factory.

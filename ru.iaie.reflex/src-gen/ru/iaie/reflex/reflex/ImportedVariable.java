@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getVarNames <em>Var Names</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getVariables <em>Variables</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable()
@@ -47,15 +47,15 @@ public interface ImportedVariable extends ProcessVariable
   void setProcess(ru.iaie.reflex.reflex.Process value);
 
   /**
-   * Returns the value of the '<em><b>Var Names</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Variables</b></em>' reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.DeclaredVariable}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Names</em>' attribute list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_VarNames()
-   * @model unique="false"
+   * @return the value of the '<em>Variables</em>' reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Variables()
+   * @model
    * @generated
    */
-  EList<String> getVarNames();
+  EList<DeclaredVariable> getVariables();
 
 } // ImportedVariable

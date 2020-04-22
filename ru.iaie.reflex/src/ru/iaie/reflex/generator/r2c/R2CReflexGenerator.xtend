@@ -45,15 +45,26 @@ import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.GlobalVariable
+import ru.iaie.reflex.reflex.IdReference
+
+// TODO: abstract class with same doGenerate and abstract
+// 		generateVariables(resource, fsa, context)
+//		generateConstants(resource, fsa, context)
+//		generateProcessImplementations(resource, fsa, context)
+//		generateMain(resource, fsa, context)
+//
+//
 
 class R2CReflexGenerator extends AbstractGenerator {
 
+	// TODO: move to singleton with configuration
 	IReflexCachedIdentifiersHelper identifiersHelper = new ReflexIdentifiersHelper;
 	// AST root element
 	Program program;
 
 	// These files are common, they are just need to be copied to target c-code dir 
 	// TODO: replace with reading config
+	// TODO: move to singleton with configuration
 	List<String> commonResources = newArrayList("CA_dll_interface.cpp", "CA_dll_interface.h", "CA_queue_const.h",
 		"CAio.h", "CAports.h", "CAusr1.cpp", "CAusr1.h", "CAusr2.h", "custom_dll_interface.cpp", "dll_interface.h",
 		"LabVIEWData.h", "dll_interface.h", "lib.cpp", "lib.h", "msg_queue.cpp", "msg_queue.h", "proc.h", "R_CNST.H",
@@ -70,8 +81,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		copyResources(program.name.toLowerCase, fsa)
 		generateVariables(resource, fsa, context)
-		generateConstants(resource, fsa, context)
+		generateConstantsFile(resource, fsa, context)
 		generateProcessImplementations(resource, fsa, context)
+		generateInput(resource, fsa, context)
+		generateOutput(resource, fsa, context)
 		generateMain(resource, fsa, context)
 	}
 
@@ -80,8 +93,17 @@ class R2CReflexGenerator extends AbstractGenerator {
 			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
 		}
 	}
+	
+	def generateInput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		
+	}
+	
+	def generateOutput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		
+	}
 
-	def generateConstants(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+	// TODO: rename
+	def generateConstantsFile(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
 			#pragma once
 			/*           Constant definitions          */
@@ -145,6 +167,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def generateProcessVariableDefinition(Process proc, ProcessVariable variable) {
 		return '''
 			«IF (variable instanceof ProgramVariable)»
+			// TODO: fix type getting
 			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
 			«ENDIF»
 			«IF (variable instanceof PhysicalVariable)»
@@ -255,6 +278,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 				«translateStatement(proc, state, func.body)»
 		'''
 	}
+	
+	def traslateTimeout(TimeoutFunction func) {
+		if (func.isClearTimeout) return func.time.ticks
+		if (func.isReferencedTimeout) identifiersHelper.getId(func.ref.resolveName);
+	}
 
 	def String translateStatement(Process proc, State state, EObject statement) {
 		switch statement {
@@ -295,7 +323,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateResetTimer(Process proc, State state) {
-		return "TODO" 
+		return '''Reset_Timer(«identifiersHelper.getProcessId(proc)»);''' 
 	}
 
 	def translateSetStateStat(Process proc, State state, SetStateStat sss) {
@@ -347,8 +375,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return '''«identifiersHelper.getId(expr.varId)» «expr.op»'''
 			FunctionCall:
 				return '''«expr.function.name»(«String.join(",", expr.args.map[translateExpr])»)'''
+			IdReference:
+				return expr.resolveName
 			PrimaryExpression: {
-				if(expr.isVariableReference) return identifiersHelper.getId(expr.varId)
 				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
 				return NodeModelUtils.getNode(expr).text.trim
 			}

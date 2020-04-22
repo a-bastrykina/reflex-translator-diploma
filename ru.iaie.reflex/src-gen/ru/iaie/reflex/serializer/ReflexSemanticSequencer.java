@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import ru.iaie.reflex.reflex.AdditiveExpression;
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
@@ -22,6 +23,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -78,6 +80,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.ADDITIVE_EXPRESSION:
 				sequence_AdditiveExpression(context, (AdditiveExpression) semanticObject); 
 				return; 
+			case ReflexPackage.ANNOTATION:
+				sequence_Annotation(context, (Annotation) semanticObject); 
+				return; 
 			case ReflexPackage.ASSIGNMENT_EXPRESSION:
 				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
 				return; 
@@ -98,6 +103,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.CAST_EXPRESSION:
 				sequence_CastExpression(context, (CastExpression) semanticObject); 
+				return; 
+			case ReflexPackage.CHECK_STATE_EXPRESSION:
+				sequence_CheckStateExpression(context, (CheckStateExpression) semanticObject); 
 				return; 
 			case ReflexPackage.COMPARE_EXPRESSION:
 				sequence_CompareExpression(context, (CompareExpression) semanticObject); 
@@ -143,7 +151,8 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.PHYSICAL_VARIABLE:
 				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()) {
+						|| rule == grammarAccess.getDeclaredVariableRule()
+						|| rule == grammarAccess.getIdReferenceRule()) {
 					sequence_DeclaredVariable_PhysicalVariable(context, (PhysicalVariable) semanticObject); 
 					return; 
 				}
@@ -167,7 +176,8 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.PROGRAM_VARIABLE:
 				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()) {
+						|| rule == grammarAccess.getDeclaredVariableRule()
+						|| rule == grammarAccess.getIdReferenceRule()) {
 					sequence_DeclaredVariable_ProgramVariable(context, (ProgramVariable) semanticObject); 
 					return; 
 				}
@@ -208,7 +218,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Statement(context, (Statement) semanticObject); 
 				return; 
 			case ReflexPackage.STATEMENT_BLOCK:
-				sequence_StatementBlock(context, (StatementBlock) semanticObject); 
+				sequence_CompoundStatement(context, (StatementBlock) semanticObject); 
 				return; 
 			case ReflexPackage.STATEMENT_SEQUENCE:
 				sequence_StatementSequence(context, (StatementSequence) semanticObject); 
@@ -226,7 +236,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Time(context, (Time) semanticObject); 
 				return; 
 			case ReflexPackage.TIMEOUT_FUNCTION:
-				sequence_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
+				sequence_TimeAmountOrRef_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
 				return; 
 			case ReflexPackage.UNARY_EXPRESSION:
 				sequence_UnaryExpression(context, (UnaryExpression) semanticObject); 
@@ -243,7 +253,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns AdditiveExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns AdditiveExpression
 	 *     CompareExpression returns AdditiveExpression
-	 *     CompareExpression.CompareExpression_1_0 returns AdditiveExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns AdditiveExpression
 	 *     EqualityExpression returns AdditiveExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns AdditiveExpression
 	 *     BitAndExpression returns AdditiveExpression
@@ -274,6 +284,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getAdditiveExpressionAccess().getAddOpAdditiveOpEnumRuleCall_1_1_0(), semanticObject.getAddOp());
 		feeder.accept(grammarAccess.getAdditiveExpressionAccess().getRightAdditiveExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Annotation returns Annotation
+	 *
+	 * Constraint:
+	 *     ((key=AnnotationKey value=STRING) | key=AnnotationKey)
+	 */
+	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -422,7 +444,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns CastExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns CastExpression
 	 *     CompareExpression returns CastExpression
-	 *     CompareExpression.CompareExpression_1_0 returns CastExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns CastExpression
 	 *     EqualityExpression returns CastExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns CastExpression
 	 *     BitAndExpression returns CastExpression
@@ -455,8 +477,33 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     CheckStateExpression returns CheckStateExpression
+	 *     CompareExpression returns CheckStateExpression
+	 *     EqualityExpression returns CheckStateExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns CheckStateExpression
+	 *     BitAndExpression returns CheckStateExpression
+	 *     BitAndExpression.BitAndExpression_1_0 returns CheckStateExpression
+	 *     BitXorExpression returns CheckStateExpression
+	 *     BitXorExpression.BitXorExpression_1_0 returns CheckStateExpression
+	 *     BitOrExpression returns CheckStateExpression
+	 *     BitOrExpression.BitOrExpression_1_0 returns CheckStateExpression
+	 *     LogicalAndExpression returns CheckStateExpression
+	 *     LogicalAndExpression.LogicalAndExpression_1_0 returns CheckStateExpression
+	 *     LogicalOrExpression returns CheckStateExpression
+	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CheckStateExpression
+	 *
+	 * Constraint:
+	 *     (process=[Process|ID] (state=[State|ID] | active?='active' | passive?='passive'))
+	 */
+	protected void sequence_CheckStateExpression(ISerializationContext context, CheckStateExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     CompareExpression returns CompareExpression
-	 *     CompareExpression.CompareExpression_1_0 returns CompareExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns CompareExpression
 	 *     EqualityExpression returns CompareExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns CompareExpression
 	 *     BitAndExpression returns CompareExpression
@@ -471,7 +518,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CompareExpression
 	 *
 	 * Constraint:
-	 *     (left=CompareExpression_CompareExpression_1_0 cmpOp=CompareOp right=CompareExpression)
+	 *     (left=CompareExpression_CompareExpression_1_1_0 cmpOp=CompareOp right=CompareExpression)
 	 */
 	protected void sequence_CompareExpression(ISerializationContext context, CompareExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -483,16 +530,30 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCompareExpressionAccess().getCompareExpressionLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getCompareExpressionAccess().getCmpOpCompareOpEnumRuleCall_1_1_0(), semanticObject.getCmpOp());
-		feeder.accept(grammarAccess.getCompareExpressionAccess().getRightCompareExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getCompareExpressionLeftAction_1_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getCmpOpCompareOpEnumRuleCall_1_1_1_0(), semanticObject.getCmpOp());
+		feeder.accept(grammarAccess.getCompareExpressionAccess().getRightCompareExpressionParserRuleCall_1_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     CompoundStatement returns StatementBlock
+	 *     Statement returns StatementBlock
+	 *
+	 * Constraint:
+	 *     statements+=Statement*
+	 */
+	protected void sequence_CompoundStatement(ISerializationContext context, StatementBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Const returns Const
+	 *     IdReference returns Const
 	 *
 	 * Constraint:
 	 *     (type=ReflexType name=ID constValue=Expression)
@@ -518,6 +579,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns PhysicalVariable
 	 *     DeclaredVariable returns PhysicalVariable
+	 *     IdReference returns PhysicalVariable
 	 *
 	 * Constraint:
 	 *     (type=IntegerType name=ID port=RegisterPortMapping shared='shared'?)
@@ -531,6 +593,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns ProgramVariable
 	 *     DeclaredVariable returns ProgramVariable
+	 *     IdReference returns ProgramVariable
 	 *
 	 * Constraint:
 	 *     (type=ReflexType name=ID shared='shared'?)
@@ -543,6 +606,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     EnumMember returns EnumMember
+	 *     IdReference returns EnumMember
 	 *
 	 * Constraint:
 	 *     (name=ID value=Expression?)
@@ -557,7 +621,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Enum returns Enum
 	 *
 	 * Constraint:
-	 *     (name=ID enumMembers+=EnumMember enumMembers+=EnumMember*)
+	 *     (identifier=ID enumMembers+=EnumMember enumMembers+=EnumMember*)
 	 */
 	protected void sequence_Enum(ISerializationContext context, ru.iaie.reflex.reflex.Enum semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -624,7 +688,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns FunctionCall
 	 *     ShiftExpression.ShiftExpression_1_0 returns FunctionCall
 	 *     CompareExpression returns FunctionCall
-	 *     CompareExpression.CompareExpression_1_0 returns FunctionCall
+	 *     CompareExpression.CompareExpression_1_1_0 returns FunctionCall
 	 *     EqualityExpression returns FunctionCall
 	 *     EqualityExpression.EqualityExpression_1_0 returns FunctionCall
 	 *     BitAndExpression returns FunctionCall
@@ -675,9 +739,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns ImportedVariable
 	 *     ImportedVariable returns ImportedVariable
+	 *     IdReference returns ImportedVariable
 	 *
 	 * Constraint:
-	 *     (process=[Process|ID] varNames+=ID varNames+=ID*)
+	 *     (process=[Process|ID] variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]*)
 	 */
 	protected void sequence_ImportedVariable(ISerializationContext context, ImportedVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -696,7 +761,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns InfixOp
 	 *     ShiftExpression.ShiftExpression_1_0 returns InfixOp
 	 *     CompareExpression returns InfixOp
-	 *     CompareExpression.CompareExpression_1_0 returns InfixOp
+	 *     CompareExpression.CompareExpression_1_1_0 returns InfixOp
 	 *     EqualityExpression returns InfixOp
 	 *     EqualityExpression.EqualityExpression_1_0 returns InfixOp
 	 *     BitAndExpression returns InfixOp
@@ -782,7 +847,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns MultiplicativeExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns MultiplicativeExpression
 	 *     CompareExpression returns MultiplicativeExpression
-	 *     CompareExpression.CompareExpression_1_0 returns MultiplicativeExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns MultiplicativeExpression
 	 *     EqualityExpression returns MultiplicativeExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns MultiplicativeExpression
 	 *     BitAndExpression returns MultiplicativeExpression
@@ -853,7 +918,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns PostfixOp
 	 *     ShiftExpression.ShiftExpression_1_0 returns PostfixOp
 	 *     CompareExpression returns PostfixOp
-	 *     CompareExpression.CompareExpression_1_0 returns PostfixOp
+	 *     CompareExpression.CompareExpression_1_1_0 returns PostfixOp
 	 *     EqualityExpression returns PostfixOp
 	 *     EqualityExpression.EqualityExpression_1_0 returns PostfixOp
 	 *     BitAndExpression returns PostfixOp
@@ -896,7 +961,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns PrimaryExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns PrimaryExpression
 	 *     CompareExpression returns PrimaryExpression
-	 *     CompareExpression.CompareExpression_1_0 returns PrimaryExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns PrimaryExpression
 	 *     EqualityExpression returns PrimaryExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns PrimaryExpression
 	 *     BitAndExpression returns PrimaryExpression
@@ -911,7 +976,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (varId=ID | nestedExpr=Expression)?
+	 *     (reference=[IdReference|ID] | nestedExpr=Expression)?
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -923,7 +988,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (name=ID variables+=ProcessVariable* states+=State*)
+	 *     (annotations+=Annotation* name=ID variables+=ProcessVariable* states+=State*)
 	 */
 	protected void sequence_Process(ISerializationContext context, ru.iaie.reflex.reflex.Process semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -958,6 +1023,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
+	 *         annotations+=Annotation* 
 	 *         name=ID 
 	 *         ticks=Tact? 
 	 *         (
@@ -992,7 +1058,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     RegisterPortMapping returns RegisterPortMapping
 	 *
 	 * Constraint:
-	 *     (regName=ID portBit=INTEGER?)
+	 *     (register=[Register|ID] portBit=INTEGER?)
 	 */
 	protected void sequence_RegisterPortMapping(ISerializationContext context, RegisterPortMapping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1073,7 +1139,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns ShiftExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns ShiftExpression
 	 *     CompareExpression returns ShiftExpression
-	 *     CompareExpression.CompareExpression_1_0 returns ShiftExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns ShiftExpression
 	 *     EqualityExpression returns ShiftExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns ShiftExpression
 	 *     BitAndExpression returns ShiftExpression
@@ -1131,22 +1197,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     State returns State
 	 *
 	 * Constraint:
-	 *     (name=ID looped?='looped'? stateFunction=StatementSequence timeoutFunction=TimeoutFunction?)
+	 *     (annotations+=Annotation* name=ID looped?='looped'? stateFunction=StatementSequence timeoutFunction=TimeoutFunction?)
 	 */
 	protected void sequence_State(ISerializationContext context, State semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StatementBlock returns StatementBlock
-	 *     Statement returns StatementBlock
-	 *
-	 * Constraint:
-	 *     statements+=Statement*
-	 */
-	protected void sequence_StatementBlock(ISerializationContext context, StatementBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1221,6 +1274,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TimeoutFunction returns TimeoutFunction
+	 *
+	 * Constraint:
+	 *     ((time=Time | ref=[IdReference|ID]) body=Statement)
+	 */
+	protected void sequence_TimeAmountOrRef_TimeoutFunction(ISerializationContext context, TimeoutFunction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Time returns Time
 	 *
 	 * Constraint:
@@ -1239,27 +1304,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TimeoutFunction returns TimeoutFunction
-	 *
-	 * Constraint:
-	 *     (time=Time body=Statement)
-	 */
-	protected void sequence_TimeoutFunction(ISerializationContext context, TimeoutFunction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.TIMEOUT_FUNCTION__TIME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.TIMEOUT_FUNCTION__TIME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.TIMEOUT_FUNCTION__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.TIMEOUT_FUNCTION__BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTimeoutFunctionAccess().getTimeTimeParserRuleCall_1_0(), semanticObject.getTime());
-		feeder.accept(grammarAccess.getTimeoutFunctionAccess().getBodyStatementParserRuleCall_2_0(), semanticObject.getBody());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     UnaryExpression returns UnaryExpression
 	 *     CastExpression returns UnaryExpression
 	 *     MultiplicativeExpression returns UnaryExpression
@@ -1269,7 +1313,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ShiftExpression returns UnaryExpression
 	 *     ShiftExpression.ShiftExpression_1_0 returns UnaryExpression
 	 *     CompareExpression returns UnaryExpression
-	 *     CompareExpression.CompareExpression_1_0 returns UnaryExpression
+	 *     CompareExpression.CompareExpression_1_1_0 returns UnaryExpression
 	 *     EqualityExpression returns UnaryExpression
 	 *     EqualityExpression.EqualityExpression_1_0 returns UnaryExpression
 	 *     BitAndExpression returns UnaryExpression

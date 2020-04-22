@@ -4,6 +4,7 @@ generate reflex "http://www.iaie.ru/reflex/Reflex"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Program:
+	("[" annotations+=Annotation  "]")*
 	"program" name=ID "{"
 	(ticks=Tact)?
 	(consts+=Const |
@@ -15,13 +16,14 @@ Program:
 	"}";
 
 Process:
-	("[" "annotation" "]")?
+	("[" annotations+=Annotation  "]")*
 	"process" name=ID "{"
 	variables+=ProcessVariable*
 	states+=State*
 	"}";
 
 State:
+	("[" annotations+=Annotation  "]")*
 	"state" name=ID (looped?="looped")? "{"
 	stateFunction=StatementSequence
 	(timeoutFunction=TimeoutFunction)?
@@ -31,7 +33,7 @@ ProcessVariable:
 	(ImportedVariable | DeclaredVariable) ";";
 
 ImportedVariable:
-	"from" "process" process=[Process] varNames+=ID ("," varNames+=ID)*;
+	"from" "process" process=[Process] variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*;
 
 DeclaredVariable:
 	(PhysicalVariable | ProgramVariable) (shared="shared")?;
@@ -43,7 +45,7 @@ PhysicalVariable:
 	type=IntegerType name=ID "=" port=RegisterPortMapping;
 
 RegisterPortMapping:
-	regName=ID ("[" portBit=INTEGER "]")?;
+	register=[Register] ("[" portBit=INTEGER "]")?;
 
 ProgramVariable:
 	type=ReflexType name=ID;
@@ -51,14 +53,17 @@ ProgramVariable:
 StatementSequence:
 	{StatementSequence} statements+=Statement*;
 
-StatementBlock:
+CompoundStatement:
 	{StatementBlock} "{" statements+=Statement* "}";
 
 TimeoutFunction:
-	"timeout" time=Time body=Statement;
+	"timeout" (TimeAmountOrRef | "(" TimeAmountOrRef ")") body=Statement;
+
+fragment TimeAmountOrRef:
+	time=Time | ref=[IdReference];
 
 Statement:
-	{Statement} ";" | StatementBlock |
+	{Statement} ";" | CompoundStatement |
 	StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
 	| SetStateStat | IfElseStat | SwitchStat | Expression ";";
 
@@ -107,7 +112,7 @@ Const:
 	"const" type=ReflexType name=ID "=" constValue=Expression ";";
 
 Enum:
-	"enum" name=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
+	"enum" identifier=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
 
 EnumMember:
 	name=ID ("=" value=Expression)?;
@@ -121,8 +126,17 @@ PostfixOp:
 FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
 
+IdReference:
+	GlobalVariable | ProcessVariable | EnumMember | Const;
+
+CheckStateExpression:
+	"process" process=[Process] IN_WORD "state" (state=[State] | active?="active" | passive?="passive");
+
+fragment IN_WORD:
+	"in";
+
 PrimaryExpression:
-	varId=ID | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" nestedExpr=Expression ")";
+	reference=[IdReference] | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -145,7 +159,7 @@ ShiftExpression:
 	AdditiveExpression ({ShiftExpression.left=current} shiftOp=ShiftOp right=ShiftExpression)*;
 
 CompareExpression:
-	ShiftExpression ({CompareExpression.left=current} cmpOp=CompareOp right=CompareExpression)*;
+	CheckStateExpression | ShiftExpression ({CompareExpression.left=current} cmpOp=CompareOp right=CompareExpression)*;
 
 EqualityExpression:
 	CompareExpression ({EqualityExpression.left=current} eqCmpOp=CompareEqOp right=EqualityExpression)*;
@@ -290,9 +304,9 @@ terminal fragment HEX:
 terminal fragment HEX_PREFIX:
 	'0' ('x' | 'X');
 
-	// Time
 Time:
 	ticks=INTEGER;
+
 	//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
 terminal fragment LONG:
 	"L" | "l";
@@ -302,6 +316,14 @@ terminal fragment FLOAT_SUFFIX:
 
 terminal fragment UNSIGNED:
 	"U" | "u";
+
+Annotation:
+	key=AnnotationKey ":" value=STRING | key=AnnotationKey
+;
+
+AnnotationKey:
+	ID "." ID | ID
+;
 
 	//terminal fragment DAY:
 //	"D" | "d";

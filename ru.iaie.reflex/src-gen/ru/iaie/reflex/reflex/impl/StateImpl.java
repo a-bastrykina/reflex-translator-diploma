@@ -3,8 +3,12 @@
  */
 package ru.iaie.reflex.reflex.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -12,6 +16,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StatementSequence;
@@ -25,6 +33,7 @@ import ru.iaie.reflex.reflex.TimeoutFunction;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#isLooped <em>Looped</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.StateImpl#getStateFunction <em>State Function</em>}</li>
@@ -35,6 +44,16 @@ import ru.iaie.reflex.reflex.TimeoutFunction;
  */
 public class StateImpl extends MinimalEObjectImpl.Container implements State
 {
+  /**
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnnotations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Annotation> annotations;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -114,6 +133,21 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.STATE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Annotation> getAnnotations()
+  {
+    if (annotations == null)
+    {
+      annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ReflexPackage.STATE__ANNOTATIONS);
+    }
+    return annotations;
   }
 
   /**
@@ -276,6 +310,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case ReflexPackage.STATE__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ReflexPackage.STATE__STATE_FUNCTION:
         return basicSetStateFunction(null, msgs);
       case ReflexPackage.STATE__TIMEOUT_FUNCTION:
@@ -294,6 +330,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case ReflexPackage.STATE__ANNOTATIONS:
+        return getAnnotations();
       case ReflexPackage.STATE__NAME:
         return getName();
       case ReflexPackage.STATE__LOOPED:
@@ -311,11 +349,16 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case ReflexPackage.STATE__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends Annotation>)newValue);
+        return;
       case ReflexPackage.STATE__NAME:
         setName((String)newValue);
         return;
@@ -342,6 +385,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case ReflexPackage.STATE__ANNOTATIONS:
+        getAnnotations().clear();
+        return;
       case ReflexPackage.STATE__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -368,6 +414,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case ReflexPackage.STATE__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case ReflexPackage.STATE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.STATE__LOOPED:

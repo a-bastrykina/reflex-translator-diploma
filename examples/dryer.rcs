@@ -1,14 +1,14 @@
 	
 program Dryer {
-	input in 0x01 0x02 16;
+	input inp 0x01 0x02 16;
  	output out 0x03 0x04 16;
   	
   	const bool ON = 1;
   	const bool OFF = 0;
   	
 	process Dryer {
-		bool hands_under_dryer = in[1] local;
-		bool dryer_control = out[1] local;
+		bool hands_under_dryer = inp[1];
+		bool dryer_control = out[1];
 		state Wait {		
 			if (hands_under_dryer) {
 				dryer_control = ON;

@@ -10,11 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 
 /**
@@ -25,24 +23,13 @@ import ru.iaie.reflex.reflex.TimeoutFunction;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TimeoutFunctionImpl#getTime <em>Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.TimeoutFunctionImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements TimeoutFunction
+public class TimeoutFunctionImpl extends TimeAmountOrRefImpl implements TimeoutFunction
 {
-  /**
-   * The cached value of the '{@link #getTime() <em>Time</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTime()
-   * @generated
-   * @ordered
-   */
-  protected Time time;
-
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -72,56 +59,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.TIMEOUT_FUNCTION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Time getTime()
-  {
-    return time;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTime(Time newTime, NotificationChain msgs)
-  {
-    Time oldTime = time;
-    time = newTime;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.TIMEOUT_FUNCTION__TIME, oldTime, newTime);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setTime(Time newTime)
-  {
-    if (newTime != time)
-    {
-      NotificationChain msgs = null;
-      if (time != null)
-        msgs = ((InternalEObject)time).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.TIMEOUT_FUNCTION__TIME, null, msgs);
-      if (newTime != null)
-        msgs = ((InternalEObject)newTime).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.TIMEOUT_FUNCTION__TIME, null, msgs);
-      msgs = basicSetTime(newTime, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIMEOUT_FUNCTION__TIME, newTime, newTime));
   }
 
   /**
@@ -184,8 +121,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case ReflexPackage.TIMEOUT_FUNCTION__TIME:
-        return basicSetTime(null, msgs);
       case ReflexPackage.TIMEOUT_FUNCTION__BODY:
         return basicSetBody(null, msgs);
     }
@@ -202,8 +137,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case ReflexPackage.TIMEOUT_FUNCTION__TIME:
-        return getTime();
       case ReflexPackage.TIMEOUT_FUNCTION__BODY:
         return getBody();
     }
@@ -220,9 +153,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case ReflexPackage.TIMEOUT_FUNCTION__TIME:
-        setTime((Time)newValue);
-        return;
       case ReflexPackage.TIMEOUT_FUNCTION__BODY:
         setBody((Statement)newValue);
         return;
@@ -240,9 +170,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case ReflexPackage.TIMEOUT_FUNCTION__TIME:
-        setTime((Time)null);
-        return;
       case ReflexPackage.TIMEOUT_FUNCTION__BODY:
         setBody((Statement)null);
         return;
@@ -260,8 +187,6 @@ public class TimeoutFunctionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case ReflexPackage.TIMEOUT_FUNCTION__TIME:
-        return time != null;
       case ReflexPackage.TIMEOUT_FUNCTION__BODY:
         return body != null;
     }

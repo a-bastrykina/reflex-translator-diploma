@@ -8,8 +8,8 @@ class ExpressionUtil {
 		return e.assignVar !== null
 	}
 	
-	static def boolean isVariableReference(PrimaryExpression e) {
-		return e.varId !== null
+	static def boolean isReference(PrimaryExpression e) {
+		return e.reference !== null
 	}
 	
 	static def boolean isNestedExpr(PrimaryExpression e) {

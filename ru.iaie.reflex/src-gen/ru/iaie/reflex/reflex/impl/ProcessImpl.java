@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
@@ -31,6 +32,7 @@ import ru.iaie.reflex.reflex.State;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getStates <em>States</em>}</li>
@@ -40,6 +42,16 @@ import ru.iaie.reflex.reflex.State;
  */
 public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie.reflex.reflex.Process
 {
+  /**
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnnotations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Annotation> annotations;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -107,6 +119,21 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @generated
    */
   @Override
+  public EList<Annotation> getAnnotations()
+  {
+    if (annotations == null)
+    {
+      annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ReflexPackage.PROCESS__ANNOTATIONS);
+    }
+    return annotations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getName()
   {
     return name;
@@ -166,6 +193,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
+      case ReflexPackage.PROCESS__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROCESS__VARIABLES:
         return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROCESS__STATES:
@@ -184,6 +213,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
+      case ReflexPackage.PROCESS__ANNOTATIONS:
+        return getAnnotations();
       case ReflexPackage.PROCESS__NAME:
         return getName();
       case ReflexPackage.PROCESS__VARIABLES:
@@ -205,6 +236,10 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
+      case ReflexPackage.PROCESS__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends Annotation>)newValue);
+        return;
       case ReflexPackage.PROCESS__NAME:
         setName((String)newValue);
         return;
@@ -230,6 +265,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
+      case ReflexPackage.PROCESS__ANNOTATIONS:
+        getAnnotations().clear();
+        return;
       case ReflexPackage.PROCESS__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -253,6 +291,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
   {
     switch (featureID)
     {
+      case ReflexPackage.PROCESS__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case ReflexPackage.PROCESS__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.PROCESS__VARIABLES:

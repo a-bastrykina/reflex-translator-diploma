@@ -30,7 +30,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.EnumImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.EnumImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.EnumImpl#getEnumMembers <em>Enum Members</em>}</li>
  * </ul>
  *
@@ -39,24 +39,24 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.reflex.reflex.Enum
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getIdentifier()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String IDENTIFIER_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getIdentifier()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String identifier = IDENTIFIER_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEnumMembers() <em>Enum Members</em>}' containment reference list.
@@ -95,9 +95,9 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
    * @generated
    */
   @Override
-  public String getName()
+  public String getIdentifier()
   {
-    return name;
+    return identifier;
   }
 
   /**
@@ -106,12 +106,12 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setIdentifier(String newIdentifier)
   {
-    String oldName = name;
-    name = newName;
+    String oldIdentifier = identifier;
+    identifier = newIdentifier;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ENUM__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ENUM__IDENTIFIER, oldIdentifier, identifier));
   }
 
   /**
@@ -155,8 +155,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
-      case ReflexPackage.ENUM__NAME:
-        return getName();
+      case ReflexPackage.ENUM__IDENTIFIER:
+        return getIdentifier();
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         return getEnumMembers();
     }
@@ -174,8 +174,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
-      case ReflexPackage.ENUM__NAME:
-        setName((String)newValue);
+      case ReflexPackage.ENUM__IDENTIFIER:
+        setIdentifier((String)newValue);
         return;
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         getEnumMembers().clear();
@@ -195,8 +195,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
-      case ReflexPackage.ENUM__NAME:
-        setName(NAME_EDEFAULT);
+      case ReflexPackage.ENUM__IDENTIFIER:
+        setIdentifier(IDENTIFIER_EDEFAULT);
         return;
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         getEnumMembers().clear();
@@ -215,8 +215,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
   {
     switch (featureID)
     {
-      case ReflexPackage.ENUM__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReflexPackage.ENUM__IDENTIFIER:
+        return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
       case ReflexPackage.ENUM__ENUM_MEMBERS:
         return enumMembers != null && !enumMembers.isEmpty();
     }
@@ -234,8 +234,8 @@ public class EnumImpl extends MinimalEObjectImpl.Container implements ru.iaie.re
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (identifier: ");
+    result.append(identifier);
     result.append(')');
     return result.toString();
   }

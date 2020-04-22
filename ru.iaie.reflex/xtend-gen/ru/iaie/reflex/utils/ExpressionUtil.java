@@ -2,6 +2,7 @@ package ru.iaie.reflex.utils;
 
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 
 @SuppressWarnings("all")
@@ -11,9 +12,9 @@ public class ExpressionUtil {
     return (_assignVar != null);
   }
   
-  public static boolean isVariableReference(final PrimaryExpression e) {
-    String _varId = e.getVarId();
-    return (_varId != null);
+  public static boolean isReference(final PrimaryExpression e) {
+    IdReference _reference = e.getReference();
+    return (_reference != null);
   }
   
   public static boolean isNestedExpr(final PrimaryExpression e) {

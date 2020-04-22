@@ -32,7 +32,7 @@ import ru.iaie.reflex.reflex.StatementBlock;
  *
  * @generated
  */
-public class StatementBlockImpl extends StatementImpl implements StatementBlock
+public class StatementBlockImpl extends CompoundStatementImpl implements StatementBlock
 {
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.

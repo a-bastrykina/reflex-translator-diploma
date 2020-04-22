@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.Expression;
@@ -30,7 +29,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class EnumMemberImpl extends MinimalEObjectImpl.Container implements EnumMember
+public class EnumMemberImpl extends IdReferenceImpl implements EnumMember
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

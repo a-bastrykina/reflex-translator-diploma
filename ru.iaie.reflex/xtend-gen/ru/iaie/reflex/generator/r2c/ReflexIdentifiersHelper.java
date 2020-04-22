@@ -58,7 +58,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   private String _getKey(final ru.iaie.reflex.reflex.Enum en) {
-    return en.getName();
+    return en.getIdentifier();
   }
   
   @Override

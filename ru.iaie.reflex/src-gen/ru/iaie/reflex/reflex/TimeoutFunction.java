@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.TimeoutFunction#getTime <em>Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.TimeoutFunction#getBody <em>Body</em>}</li>
  * </ul>
  *
@@ -22,30 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TimeoutFunction extends EObject
+public interface TimeoutFunction extends TimeAmountOrRef
 {
-  /**
-   * Returns the value of the '<em><b>Time</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Time</em>' containment reference.
-   * @see #setTime(Time)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTimeoutFunction_Time()
-   * @model containment="true"
-   * @generated
-   */
-  Time getTime();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.TimeoutFunction#getTime <em>Time</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Time</em>' containment reference.
-   * @see #getTime()
-   * @generated
-   */
-  void setTime(Time value);
-
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->

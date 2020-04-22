@@ -1,6 +1,6 @@
 program TankController {
 
-tact 50;
+clock 50;
 const float T_H = 0.1;
 const float X_MIN = 0.1;
 const float X_MAX = 0.5;
@@ -63,10 +63,10 @@ process INIT {
 	}
 }
 
-process ReadInputMsgs looped {
+process ReadInputMsgs {
 	from process INIT XD;
 	
-	state StartReading {
+	state StartReading looped {
     	if (GetNextMsgGUI()) {
 			msg_code = GetMsgGUICode();
 			if (msg_code == COM2CA_XD) {
@@ -76,10 +76,10 @@ process ReadInputMsgs looped {
 	}
 }
 
-process READ_ADC looped {
+process READ_ADC {
 	from process INIT X, X_BIT0, X_BIT1, X_BIT2, X_BIT3;
 	
-	state READ {
+	state READ looped {
 		X = PortsToFloat(X_BIT0, X_BIT1, X_BIT2, X_BIT3);
 	/*	SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */
 	}
@@ -92,8 +92,8 @@ process READ_ADC looped {
 /*U_MAX - maximum value of the control signal */
 process CONTROLLER {
 	from process INIT X, XD, U;
-	float Sum local;
-	float E local;
+	float Sum;
+	float E;
 
 	state Init {
 		Sum = 0.0;
@@ -128,16 +128,16 @@ process CONTROLLER {
 }
 
 
-process Filter looped {
+process Filter {
 	from process INIT U;
-	float U_Prev local;
+	float U_Prev;
 	
 	state Init {
 		U_Prev = U_MIN;
 		set next;
 	}
 	
-	state Filtering {
+	state Filtering looped {
 		if (U >= U_Prev) {
 			if (U - U_Prev > DELTA_U ) {
 				U = U_Prev + DELTA_U;
@@ -154,10 +154,10 @@ process Filter looped {
 
 
 
-process WRITE_DAC looped {
+process WRITE_DAC {
 	from process INIT U, U_BIT0, U_BIT1, U_BIT2, U_BIT3;
 	
-	state WRITE {
+	state WRITE looped {
 		U_BIT0 = GetBit(U, 0);
 		U_BIT1 = GetBit(U, 1);
 		U_BIT2 = GetBit(U, 2);

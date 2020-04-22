@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Expression;
@@ -32,7 +31,7 @@ import ru.iaie.reflex.reflex.ReflexType;
  *
  * @generated
  */
-public class ConstImpl extends MinimalEObjectImpl.Container implements Const
+public class ConstImpl extends IdReferenceImpl implements Const
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

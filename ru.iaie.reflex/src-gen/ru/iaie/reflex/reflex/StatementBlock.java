@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StatementBlock extends Statement
+public interface StatementBlock extends CompoundStatement
 {
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.

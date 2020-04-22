@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Const extends EObject
+public interface Const extends IdReference
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

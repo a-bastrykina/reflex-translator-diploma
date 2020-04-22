@@ -14,8 +14,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -28,7 +29,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getProcess <em>Process</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getVarNames <em>Var Names</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,14 +47,14 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   protected ru.iaie.reflex.reflex.Process process;
 
   /**
-   * The cached value of the '{@link #getVarNames() <em>Var Names</em>}' attribute list.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVarNames()
+   * @see #getVariables()
    * @generated
    * @ordered
    */
-  protected EList<String> varNames;
+  protected EList<DeclaredVariable> variables;
 
   /**
    * <!-- begin-user-doc -->
@@ -127,13 +128,13 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
    * @generated
    */
   @Override
-  public EList<String> getVarNames()
+  public EList<DeclaredVariable> getVariables()
   {
-    if (varNames == null)
+    if (variables == null)
     {
-      varNames = new EDataTypeEList<String>(String.class, this, ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES);
+      variables = new EObjectResolvingEList<DeclaredVariable>(DeclaredVariable.class, this, ReflexPackage.IMPORTED_VARIABLE__VARIABLES);
     }
-    return varNames;
+    return variables;
   }
 
   /**
@@ -149,8 +150,8 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
       case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
         if (resolve) return getProcess();
         return basicGetProcess();
-      case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
-        return getVarNames();
+      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
+        return getVariables();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -169,9 +170,9 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
       case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
         setProcess((ru.iaie.reflex.reflex.Process)newValue);
         return;
-      case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
-        getVarNames().clear();
-        getVarNames().addAll((Collection<? extends String>)newValue);
+      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
+        getVariables().clear();
+        getVariables().addAll((Collection<? extends DeclaredVariable>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -190,8 +191,8 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
       case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
         setProcess((ru.iaie.reflex.reflex.Process)null);
         return;
-      case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
-        getVarNames().clear();
+      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
+        getVariables().clear();
         return;
     }
     super.eUnset(featureID);
@@ -209,27 +210,10 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
     {
       case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
         return process != null;
-      case ReflexPackage.IMPORTED_VARIABLE__VAR_NAMES:
-        return varNames != null && !varNames.isEmpty();
+      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
+        return variables != null && !variables.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (varNames: ");
-    result.append(varNames);
-    result.append(')');
-    return result.toString();
   }
 
 } //ImportedVariableImpl

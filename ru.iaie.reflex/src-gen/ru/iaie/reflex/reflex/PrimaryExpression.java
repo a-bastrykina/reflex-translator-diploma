@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getReference <em>Reference</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -24,26 +24,26 @@ package ru.iaie.reflex.reflex;
 public interface PrimaryExpression extends UnaryExpression
 {
   /**
-   * Returns the value of the '<em><b>Var Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Reference</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Id</em>' attribute.
-   * @see #setVarId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_VarId()
+   * @return the value of the '<em>Reference</em>' reference.
+   * @see #setReference(IdReference)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Reference()
    * @model
    * @generated
    */
-  String getVarId();
+  IdReference getReference();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getVarId <em>Var Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getReference <em>Reference</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var Id</em>' attribute.
-   * @see #getVarId()
+   * @param value the new value of the '<em>Reference</em>' reference.
+   * @see #getReference()
    * @generated
    */
-  void setVarId(String value);
+  void setReference(IdReference value);
 
   /**
    * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.

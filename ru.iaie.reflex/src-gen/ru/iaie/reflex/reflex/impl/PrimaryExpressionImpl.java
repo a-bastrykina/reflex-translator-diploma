@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -23,7 +24,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getReference <em>Reference</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -32,24 +33,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class PrimaryExpressionImpl extends UnaryExpressionImpl implements PrimaryExpression
 {
   /**
-   * The default value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
+   * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVarId()
+   * @see #getReference()
    * @generated
    * @ordered
    */
-  protected static final String VAR_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVarId()
-   * @generated
-   * @ordered
-   */
-  protected String varId = VAR_ID_EDEFAULT;
+  protected IdReference reference;
 
   /**
    * The cached value of the '{@link #getNestedExpr() <em>Nested Expr</em>}' containment reference.
@@ -88,9 +79,29 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public String getVarId()
+  public IdReference getReference()
   {
-    return varId;
+    if (reference != null && reference.eIsProxy())
+    {
+      InternalEObject oldReference = (InternalEObject)reference;
+      reference = (IdReference)eResolveProxy(oldReference);
+      if (reference != oldReference)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.PRIMARY_EXPRESSION__REFERENCE, oldReference, reference));
+      }
+    }
+    return reference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IdReference basicGetReference()
+  {
+    return reference;
   }
 
   /**
@@ -99,12 +110,12 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public void setVarId(String newVarId)
+  public void setReference(IdReference newReference)
   {
-    String oldVarId = varId;
-    varId = newVarId;
+    IdReference oldReference = reference;
+    reference = newReference;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__VAR_ID, oldVarId, varId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__REFERENCE, oldReference, reference));
   }
 
   /**
@@ -183,8 +194,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
   {
     switch (featureID)
     {
-      case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
-        return getVarId();
+      case ReflexPackage.PRIMARY_EXPRESSION__REFERENCE:
+        if (resolve) return getReference();
+        return basicGetReference();
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return getNestedExpr();
     }
@@ -201,8 +213,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
   {
     switch (featureID)
     {
-      case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
-        setVarId((String)newValue);
+      case ReflexPackage.PRIMARY_EXPRESSION__REFERENCE:
+        setReference((IdReference)newValue);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)newValue);
@@ -221,8 +233,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
   {
     switch (featureID)
     {
-      case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
-        setVarId(VAR_ID_EDEFAULT);
+      case ReflexPackage.PRIMARY_EXPRESSION__REFERENCE:
+        setReference((IdReference)null);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)null);
@@ -241,29 +253,12 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
   {
     switch (featureID)
     {
-      case ReflexPackage.PRIMARY_EXPRESSION__VAR_ID:
-        return VAR_ID_EDEFAULT == null ? varId != null : !VAR_ID_EDEFAULT.equals(varId);
+      case ReflexPackage.PRIMARY_EXPRESSION__REFERENCE:
+        return reference != null;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return nestedExpr != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (varId: ");
-    result.append(varId);
-    result.append(')');
-    return result.toString();
   }
 
 } //PrimaryExpressionImpl

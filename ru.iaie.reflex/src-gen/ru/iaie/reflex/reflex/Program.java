@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.Program#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}</li>
@@ -32,6 +33,18 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Program extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Annotation}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Annotations</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Annotations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Annotation> getAnnotations();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

@@ -34,6 +34,7 @@ import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
@@ -91,8 +92,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.copyResources(this.program.getName().toLowerCase(), fsa);
     this.generateVariables(resource, fsa, context);
-    this.generateConstants(resource, fsa, context);
+    this.generateConstantsFile(resource, fsa, context);
     this.generateProcessImplementations(resource, fsa, context);
+    this.generateInput(resource, fsa, context);
+    this.generateOutput(resource, fsa, context);
     this.generateMain(resource, fsa, context);
   }
   
@@ -109,7 +112,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
   }
   
-  public void generateConstants(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+  public Object generateInput(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    return null;
+  }
+  
+  public Object generateOutput(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    return null;
+  }
+  
+  public void generateConstantsFile(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#pragma once");
     _builder.newLine();
@@ -244,6 +255,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       if ((variable instanceof ProgramVariable)) {
+        _builder.append("// TODO: fix type getting");
+        _builder.newLine();
         String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
         _builder.append(_trim);
         _builder.append(" ");
@@ -495,6 +508,23 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
+  public String traslateTimeout(final TimeoutFunction func) {
+    String _xblockexpression = null;
+    {
+      boolean _isClearTimeout = ReflexModelUtil.isClearTimeout(func);
+      if (_isClearTimeout) {
+        return func.getTime().getTicks();
+      }
+      String _xifexpression = null;
+      boolean _isReferencedTimeout = ReflexModelUtil.isReferencedTimeout(func);
+      if (_isReferencedTimeout) {
+        _xifexpression = this.identifiersHelper.getId(ReflexModelUtil.resolveName(func.getRef()));
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
   public String translateStatement(final ru.iaie.reflex.reflex.Process proc, final State state, final EObject statement) {
     boolean _matched = false;
     if (statement instanceof StopProcStat) {
@@ -604,7 +634,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public String translateResetTimer(final ru.iaie.reflex.reflex.Process proc, final State state) {
-    return "TODO";
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Reset_Timer(");
+    String _processId = this.identifiersHelper.getProcessId(proc);
+    _builder.append(_processId);
+    _builder.append(");");
+    return _builder.toString();
   }
   
   public String translateSetStateStat(final ru.iaie.reflex.reflex.Process proc, final State state, final SetStateStat sss) {
@@ -741,12 +776,14 @@ public class R2CReflexGenerator extends AbstractGenerator {
       }
     }
     if (!_matched) {
+      if (expr instanceof IdReference) {
+        _matched=true;
+        return ReflexModelUtil.resolveName(((IdReference)expr));
+      }
+    }
+    if (!_matched) {
       if (expr instanceof PrimaryExpression) {
         _matched=true;
-        boolean _isVariableReference = ExpressionUtil.isVariableReference(((PrimaryExpression)expr));
-        if (_isVariableReference) {
-          return this.identifiersHelper.getId(((PrimaryExpression)expr).getVarId());
-        }
         boolean _isNestedExpr = ExpressionUtil.isNestedExpr(((PrimaryExpression)expr));
         if (_isNestedExpr) {
           StringConcatenation _builder = new StringConcatenation();

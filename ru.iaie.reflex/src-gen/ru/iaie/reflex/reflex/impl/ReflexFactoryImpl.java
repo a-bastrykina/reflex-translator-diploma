@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AdditiveOp;
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.AssignOperator;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
@@ -23,9 +24,11 @@ import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
+import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -35,6 +38,7 @@ import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.InfixOp;
@@ -69,6 +73,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
+import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
@@ -136,8 +141,9 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.REGISTER_PORT_MAPPING: return createRegisterPortMapping();
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
       case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
-      case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
+      case ReflexPackage.COMPOUND_STATEMENT: return createCompoundStatement();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
+      case ReflexPackage.TIME_AMOUNT_OR_REF: return createTimeAmountOrRef();
       case ReflexPackage.STATEMENT: return createStatement();
       case ReflexPackage.IF_ELSE_STAT: return createIfElseStat();
       case ReflexPackage.SWITCH_STAT: return createSwitchStat();
@@ -156,6 +162,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.INFIX_OP: return createInfixOp();
       case ReflexPackage.POSTFIX_OP: return createPostfixOp();
       case ReflexPackage.FUNCTION_CALL: return createFunctionCall();
+      case ReflexPackage.ID_REFERENCE: return createIdReference();
+      case ReflexPackage.CHECK_STATE_EXPRESSION: return createCheckStateExpression();
       case ReflexPackage.PRIMARY_EXPRESSION: return createPrimaryExpression();
       case ReflexPackage.UNARY_EXPRESSION: return createUnaryExpression();
       case ReflexPackage.CAST_EXPRESSION: return createCastExpression();
@@ -175,6 +183,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.REFLEX_TYPE: return createReflexType();
       case ReflexPackage.TACT: return createTact();
       case ReflexPackage.TIME: return createTime();
+      case ReflexPackage.ANNOTATION: return createAnnotation();
+      case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -388,10 +398,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public StatementBlock createStatementBlock()
+  public CompoundStatement createCompoundStatement()
   {
-    StatementBlockImpl statementBlock = new StatementBlockImpl();
-    return statementBlock;
+    CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
+    return compoundStatement;
   }
 
   /**
@@ -404,6 +414,18 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     TimeoutFunctionImpl timeoutFunction = new TimeoutFunctionImpl();
     return timeoutFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TimeAmountOrRef createTimeAmountOrRef()
+  {
+    TimeAmountOrRefImpl timeAmountOrRef = new TimeAmountOrRefImpl();
+    return timeAmountOrRef;
   }
 
   /**
@@ -620,6 +642,30 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     FunctionCallImpl functionCall = new FunctionCallImpl();
     return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IdReference createIdReference()
+  {
+    IdReferenceImpl idReference = new IdReferenceImpl();
+    return idReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CheckStateExpression createCheckStateExpression()
+  {
+    CheckStateExpressionImpl checkStateExpression = new CheckStateExpressionImpl();
+    return checkStateExpression;
   }
 
   /**
@@ -848,6 +894,30 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     TimeImpl time = new TimeImpl();
     return time;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Annotation createAnnotation()
+  {
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StatementBlock createStatementBlock()
+  {
+    StatementBlockImpl statementBlock = new StatementBlockImpl();
+    return statementBlock;
   }
 
   /**

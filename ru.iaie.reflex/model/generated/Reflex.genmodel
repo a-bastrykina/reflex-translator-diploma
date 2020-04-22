@@ -60,6 +60,7 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/UNSIGNED"/>
     </genEnums>
     <genClasses ecoreClass="Reflex.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/annotations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Program/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/ticks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/consts"/>
@@ -70,11 +71,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/processes"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Process">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/annotations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Process/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/states"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//State">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/annotations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//State/looped"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/stateFunction"/>
@@ -83,7 +86,7 @@
     <genClasses ecoreClass="Reflex.ecore#//ProcessVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//ImportedVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/process"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ImportedVariable/varNames"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/variables"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//DeclaredVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//GlobalVariable"/>
@@ -94,7 +97,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/port"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//RegisterPortMapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//RegisterPortMapping/regName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//RegisterPortMapping/register"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//RegisterPortMapping/portBit"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ProgramVariable">
@@ -105,12 +108,13 @@
     <genClasses ecoreClass="Reflex.ecore#//StatementSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementSequence/statements"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//StatementBlock">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementBlock/statements"/>
-    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//CompoundStatement"/>
     <genClasses ecoreClass="Reflex.ecore#//TimeoutFunction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeoutFunction/time"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeoutFunction/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//TimeAmountOrRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeAmountOrRef/time"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeAmountOrRef/ref"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Statement"/>
     <genClasses ecoreClass="Reflex.ecore#//IfElseStat">
@@ -160,7 +164,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/constValue"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Enum">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Enum/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Enum/identifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Enum/enumMembers"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//EnumMember">
@@ -179,8 +183,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//FunctionCall/function"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//FunctionCall/args"/>
     </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//IdReference"/>
+    <genClasses ecoreClass="Reflex.ecore#//CheckStateExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//CheckStateExpression/process"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//CheckStateExpression/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CheckStateExpression/active"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CheckStateExpression/passive"/>
+    </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//PrimaryExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/varId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/reference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/nestedExpr"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//UnaryExpression">
@@ -227,6 +238,13 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Time">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/ticks"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Annotation/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Annotation/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//StatementBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementBlock/statements"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

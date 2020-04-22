@@ -15,6 +15,7 @@ import ru.iaie.reflex.reflex.ProcessVariable
 
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
+	// TODO: final
 	Map<String, String> procIdentifiers = new HashMap
 	Map<String, Map<String, String>> stateIdentifiers = new HashMap
 	Map<String, Map<String, String>> varIdentifiers = new HashMap
@@ -25,6 +26,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
 	Map<String, String> identifiers = new HashMap
 
+	// TODO: investigate possibility to implement an interface to get name 
 	private def dispatch getKey(Process proc) {
 		return proc.name
 	}
@@ -50,7 +52,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	}
 	
 	private def dispatch getKey(Enum en) {
-		return en.name
+		return en.identifier
 	}
 
 	override getProcessId(Process proc) {

@@ -3,6 +3,8 @@
  */
 package ru.iaie.reflex.reflex;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflex.reflex.State#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.State#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.State#isLooped <em>Looped</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.State#getStateFunction <em>State Function</em>}</li>
@@ -26,6 +29,18 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface State extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Annotation}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Annotations</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getState_Annotations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Annotation> getAnnotations();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
