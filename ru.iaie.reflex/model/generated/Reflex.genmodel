@@ -10,6 +10,12 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/INPUT"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/OUTPUT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//StateQualifier">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//StateQualifier/ACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//StateQualifier/INACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//StateQualifier/STOP"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//StateQualifier/ERROR"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//InfixPostfixOp">
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//InfixPostfixOp/INC"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//InfixPostfixOp/DEC"/>
@@ -55,6 +61,10 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/DIV"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/MOD"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//BoolLiteral">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/TRUE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/FALSE"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//CTypeSignSpec">
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/SIGNED"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/UNSIGNED"/>
@@ -85,8 +95,8 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ProcessVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//ImportedVariable">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/process"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/variables"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/process"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//DeclaredVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//GlobalVariable"/>
@@ -186,12 +196,13 @@
     <genClasses ecoreClass="Reflex.ecore#//IdReference"/>
     <genClasses ecoreClass="Reflex.ecore#//CheckStateExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//CheckStateExpression/process"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//CheckStateExpression/state"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CheckStateExpression/active"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CheckStateExpression/passive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CheckStateExpression/qualfier"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//PrimaryExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/integer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/floating"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/boolean"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/nestedExpr"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//UnaryExpression">

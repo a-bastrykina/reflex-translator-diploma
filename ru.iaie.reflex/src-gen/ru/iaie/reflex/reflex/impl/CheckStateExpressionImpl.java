@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StateQualifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,9 +23,7 @@ import ru.iaie.reflex.reflex.State;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.CheckStateExpressionImpl#getProcess <em>Process</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.CheckStateExpressionImpl#getState <em>State</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.CheckStateExpressionImpl#isActive <em>Active</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.CheckStateExpressionImpl#isPassive <em>Passive</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.CheckStateExpressionImpl#getQualfier <em>Qualfier</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,54 +41,24 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   protected ru.iaie.reflex.reflex.Process process;
 
   /**
-   * The cached value of the '{@link #getState() <em>State</em>}' reference.
+   * The default value of the '{@link #getQualfier() <em>Qualfier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getState()
+   * @see #getQualfier()
    * @generated
    * @ordered
    */
-  protected State state;
+  protected static final StateQualifier QUALFIER_EDEFAULT = StateQualifier.ACTIVE;
 
   /**
-   * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
+   * The cached value of the '{@link #getQualfier() <em>Qualfier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isActive()
+   * @see #getQualfier()
    * @generated
    * @ordered
    */
-  protected static final boolean ACTIVE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isActive() <em>Active</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isActive()
-   * @generated
-   * @ordered
-   */
-  protected boolean active = ACTIVE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isPassive() <em>Passive</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isPassive()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean PASSIVE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isPassive() <em>Passive</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isPassive()
-   * @generated
-   * @ordered
-   */
-  protected boolean passive = PASSIVE_EDEFAULT;
+  protected StateQualifier qualfier = QUALFIER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -164,29 +132,9 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
    * @generated
    */
   @Override
-  public State getState()
+  public StateQualifier getQualfier()
   {
-    if (state != null && state.eIsProxy())
-    {
-      InternalEObject oldState = (InternalEObject)state;
-      state = (State)eResolveProxy(oldState);
-      if (state != oldState)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.CHECK_STATE_EXPRESSION__STATE, oldState, state));
-      }
-    }
-    return state;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public State basicGetState()
-  {
-    return state;
+    return qualfier;
   }
 
   /**
@@ -195,62 +143,12 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
    * @generated
    */
   @Override
-  public void setState(State newState)
+  public void setQualfier(StateQualifier newQualfier)
   {
-    State oldState = state;
-    state = newState;
+    StateQualifier oldQualfier = qualfier;
+    qualfier = newQualfier == null ? QUALFIER_EDEFAULT : newQualfier;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CHECK_STATE_EXPRESSION__STATE, oldState, state));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isActive()
-  {
-    return active;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setActive(boolean newActive)
-  {
-    boolean oldActive = active;
-    active = newActive;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CHECK_STATE_EXPRESSION__ACTIVE, oldActive, active));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isPassive()
-  {
-    return passive;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setPassive(boolean newPassive)
-  {
-    boolean oldPassive = passive;
-    passive = newPassive;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CHECK_STATE_EXPRESSION__PASSIVE, oldPassive, passive));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CHECK_STATE_EXPRESSION__QUALFIER, oldQualfier, qualfier));
   }
 
   /**
@@ -266,13 +164,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
       case ReflexPackage.CHECK_STATE_EXPRESSION__PROCESS:
         if (resolve) return getProcess();
         return basicGetProcess();
-      case ReflexPackage.CHECK_STATE_EXPRESSION__STATE:
-        if (resolve) return getState();
-        return basicGetState();
-      case ReflexPackage.CHECK_STATE_EXPRESSION__ACTIVE:
-        return isActive();
-      case ReflexPackage.CHECK_STATE_EXPRESSION__PASSIVE:
-        return isPassive();
+      case ReflexPackage.CHECK_STATE_EXPRESSION__QUALFIER:
+        return getQualfier();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -290,14 +183,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
       case ReflexPackage.CHECK_STATE_EXPRESSION__PROCESS:
         setProcess((ru.iaie.reflex.reflex.Process)newValue);
         return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__STATE:
-        setState((State)newValue);
-        return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__ACTIVE:
-        setActive((Boolean)newValue);
-        return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__PASSIVE:
-        setPassive((Boolean)newValue);
+      case ReflexPackage.CHECK_STATE_EXPRESSION__QUALFIER:
+        setQualfier((StateQualifier)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -316,14 +203,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
       case ReflexPackage.CHECK_STATE_EXPRESSION__PROCESS:
         setProcess((ru.iaie.reflex.reflex.Process)null);
         return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__STATE:
-        setState((State)null);
-        return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__ACTIVE:
-        setActive(ACTIVE_EDEFAULT);
-        return;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__PASSIVE:
-        setPassive(PASSIVE_EDEFAULT);
+      case ReflexPackage.CHECK_STATE_EXPRESSION__QUALFIER:
+        setQualfier(QUALFIER_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -341,12 +222,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
     {
       case ReflexPackage.CHECK_STATE_EXPRESSION__PROCESS:
         return process != null;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__STATE:
-        return state != null;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__ACTIVE:
-        return active != ACTIVE_EDEFAULT;
-      case ReflexPackage.CHECK_STATE_EXPRESSION__PASSIVE:
-        return passive != PASSIVE_EDEFAULT;
+      case ReflexPackage.CHECK_STATE_EXPRESSION__QUALFIER:
+        return qualfier != QUALFIER_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -362,10 +239,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (active: ");
-    result.append(active);
-    result.append(", passive: ");
-    result.append(passive);
+    result.append(" (qualfier: ");
+    result.append(qualfier);
     result.append(')');
     return result.toString();
   }

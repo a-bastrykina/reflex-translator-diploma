@@ -6,6 +6,10 @@ program Dryer {
   	const bool ON = 1;
   	const bool OFF = 0;
   	
+  	int my_shared_var;
+  	
+  	const int TIMEOUT = 6;
+  	
 	process Dryer {
 		bool hands_under_dryer = inp[1];
 		bool dryer_control = out[1];
@@ -17,7 +21,7 @@ program Dryer {
 		} 
 		state Work {
 			if (hands_under_dryer) reset timer;
-			timeout 6 {
+			timeout (TIMEOUT) {
 				dryer_control = OFF;
 				set state Wait;
 			}

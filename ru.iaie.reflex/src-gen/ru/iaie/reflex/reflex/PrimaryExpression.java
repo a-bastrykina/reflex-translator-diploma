@@ -14,6 +14,9 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getReference <em>Reference</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getInteger <em>Integer</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getFloating <em>Floating</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getBoolean <em>Boolean</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -44,6 +47,75 @@ public interface PrimaryExpression extends UnaryExpression
    * @generated
    */
   void setReference(IdReference value);
+
+  /**
+   * Returns the value of the '<em><b>Integer</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Integer</em>' attribute.
+   * @see #setInteger(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Integer()
+   * @model
+   * @generated
+   */
+  String getInteger();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getInteger <em>Integer</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Integer</em>' attribute.
+   * @see #getInteger()
+   * @generated
+   */
+  void setInteger(String value);
+
+  /**
+   * Returns the value of the '<em><b>Floating</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Floating</em>' attribute.
+   * @see #setFloating(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Floating()
+   * @model
+   * @generated
+   */
+  String getFloating();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getFloating <em>Floating</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Floating</em>' attribute.
+   * @see #getFloating()
+   * @generated
+   */
+  void setFloating(String value);
+
+  /**
+   * Returns the value of the '<em><b>Boolean</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.BoolLiteral}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Boolean</em>' attribute.
+   * @see ru.iaie.reflex.reflex.BoolLiteral
+   * @see #setBoolean(BoolLiteral)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Boolean()
+   * @model
+   * @generated
+   */
+  BoolLiteral getBoolean();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getBoolean <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Boolean</em>' attribute.
+   * @see ru.iaie.reflex.reflex.BoolLiteral
+   * @see #getBoolean()
+   * @generated
+   */
+  void setBoolean(BoolLiteral value);
 
   /**
    * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.

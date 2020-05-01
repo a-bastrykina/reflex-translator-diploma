@@ -493,10 +493,19 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CheckStateExpression
 	 *
 	 * Constraint:
-	 *     (process=[Process|ID] (state=[State|ID] | active?='active' | passive?='passive'))
+	 *     (process=[Process|ID] qualfier=StateQualifier)
 	 */
 	protected void sequence_CheckStateExpression(ISerializationContext context, CheckStateExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CHECK_STATE_EXPRESSION__QUALFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CHECK_STATE_EXPRESSION__QUALFIER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getProcessProcessIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS, false));
+		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getQualfierStateQualifierEnumRuleCall_4_0(), semanticObject.getQualfier());
+		feeder.finish();
 	}
 	
 	
@@ -742,7 +751,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns ImportedVariable
 	 *
 	 * Constraint:
-	 *     (process=[Process|ID] variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]*)
+	 *     (variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]* process=[Process|ID])
 	 */
 	protected void sequence_ImportedVariable(ISerializationContext context, ImportedVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -976,7 +985,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (reference=[IdReference|ID] | nestedExpr=Expression)?
+	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | boolean=BoolLiteral | nestedExpr=Expression)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1187,7 +1196,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.START_PROC_STAT__PROCESS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStartProcStatAccess().getProcessProcessIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexPackage.Literals.START_PROC_STAT__PROCESS, false));
+		feeder.accept(grammarAccess.getStartProcStatAccess().getProcessProcessIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ReflexPackage.Literals.START_PROC_STAT__PROCESS, false));
 		feeder.finish();
 	}
 	

@@ -274,12 +274,12 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateTimeoutFunction(Process proc, State state, TimeoutFunction func) {
 		return '''
-			if (Timeout(«identifiersHelper.getProcessId(proc)», «func.time.ticks»))
+			if (Timeout(«identifiersHelper.getProcessId(proc)», «translateTimeout(func)»))
 				«translateStatement(proc, state, func.body)»
 		'''
 	}
 	
-	def traslateTimeout(TimeoutFunction func) {
+	def translateTimeout(TimeoutFunction func) {
 		if (func.isClearTimeout) return func.time.ticks
 		if (func.isReferencedTimeout) identifiersHelper.getId(func.ref.resolveName);
 	}

@@ -41,9 +41,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable" eSuperTypes="#//IdReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//ProcessVariable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
         upperBound="-1" eType="#//DeclaredVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredVariable" eSuperTypes="#//ProcessVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//IdReference"/>
@@ -164,12 +164,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="IdReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="CheckStateExpression" eSuperTypes="#//CompareExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="passive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualfier" eType="#//StateQualifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StateQualifier">
+    <eLiterals name="ACTIVE" literal="active"/>
+    <eLiterals name="INACTIVE" value="1" literal="inactive"/>
+    <eLiterals name="STOP" value="2" literal="stop"/>
+    <eLiterals name="ERROR" value="3" literal="error"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpression" eSuperTypes="#//UnaryExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//IdReference"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="floating" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boolean" eType="#//BoolLiteral"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedExpr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -256,6 +263,10 @@
     <eLiterals name="MUL" literal="*"/>
     <eLiterals name="DIV" value="1" literal="/"/>
     <eLiterals name="MOD" value="2" literal="%"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BoolLiteral">
+    <eLiterals name="TRUE" literal="true"/>
+    <eLiterals name="FALSE" value="1" literal="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CType" eSuperTypes="#//ReflexType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signSpec" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

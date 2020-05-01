@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getVariables <em>Variables</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable()
@@ -24,6 +24,18 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ImportedVariable extends ProcessVariable
 {
+  /**
+   * Returns the value of the '<em><b>Variables</b></em>' reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.DeclaredVariable}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Variables</em>' reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Variables()
+   * @model
+   * @generated
+   */
+  EList<DeclaredVariable> getVariables();
+
   /**
    * Returns the value of the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -45,17 +57,5 @@ public interface ImportedVariable extends ProcessVariable
    * @generated
    */
   void setProcess(ru.iaie.reflex.reflex.Process value);
-
-  /**
-   * Returns the value of the '<em><b>Variables</b></em>' reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.DeclaredVariable}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variables</em>' reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Variables()
-   * @model
-   * @generated
-   */
-  EList<DeclaredVariable> getVariables();
 
 } // ImportedVariable

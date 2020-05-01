@@ -19,6 +19,7 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
+import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
@@ -65,6 +66,7 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
@@ -482,6 +484,13 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EEnum stateQualifierEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EEnum infixPostfixOpEEnum = null;
 
   /**
@@ -532,6 +541,13 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EEnum multiplicativeOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum boolLiteralEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -862,7 +878,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getImportedVariable_Process()
+  public EReference getImportedVariable_Variables()
   {
     return (EReference)importedVariableEClass.getEStructuralFeatures().get(0);
   }
@@ -873,7 +889,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getImportedVariable_Variables()
+  public EReference getImportedVariable_Process()
   {
     return (EReference)importedVariableEClass.getEStructuralFeatures().get(1);
   }
@@ -1731,31 +1747,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getCheckStateExpression_State()
+  public EAttribute getCheckStateExpression_Qualfier()
   {
-    return (EReference)checkStateExpressionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getCheckStateExpression_Active()
-  {
-    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getCheckStateExpression_Passive()
-  {
-    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1786,9 +1780,42 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EAttribute getPrimaryExpression_Integer()
+  {
+    return (EAttribute)primaryExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPrimaryExpression_Floating()
+  {
+    return (EAttribute)primaryExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPrimaryExpression_Boolean()
+  {
+    return (EAttribute)primaryExpressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getPrimaryExpression_NestedExpr()
   {
-    return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(1);
+    return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -2226,6 +2253,17 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EEnum getStateQualifier()
+  {
+    return stateQualifierEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getInfixPostfixOp()
   {
     return infixPostfixOpEEnum;
@@ -2314,6 +2352,17 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EEnum getBoolLiteral()
+  {
+    return boolLiteralEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getCTypeSignSpec()
   {
     return cTypeSignSpecEEnum;
@@ -2377,8 +2426,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     processVariableEClass = createEClass(PROCESS_VARIABLE);
 
     importedVariableEClass = createEClass(IMPORTED_VARIABLE);
-    createEReference(importedVariableEClass, IMPORTED_VARIABLE__PROCESS);
     createEReference(importedVariableEClass, IMPORTED_VARIABLE__VARIABLES);
+    createEReference(importedVariableEClass, IMPORTED_VARIABLE__PROCESS);
 
     declaredVariableEClass = createEClass(DECLARED_VARIABLE);
 
@@ -2485,12 +2534,13 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     checkStateExpressionEClass = createEClass(CHECK_STATE_EXPRESSION);
     createEReference(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__PROCESS);
-    createEReference(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__STATE);
-    createEAttribute(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__ACTIVE);
-    createEAttribute(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__PASSIVE);
+    createEAttribute(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__QUALFIER);
 
     primaryExpressionEClass = createEClass(PRIMARY_EXPRESSION);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__REFERENCE);
+    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__INTEGER);
+    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__FLOATING);
+    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__BOOLEAN);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__NESTED_EXPR);
 
     unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
@@ -2553,6 +2603,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     // Create enums
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
+    stateQualifierEEnum = createEEnum(STATE_QUALIFIER);
     infixPostfixOpEEnum = createEEnum(INFIX_POSTFIX_OP);
     assignOperatorEEnum = createEEnum(ASSIGN_OPERATOR);
     unaryOpEEnum = createEEnum(UNARY_OP);
@@ -2561,6 +2612,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     shiftOpEEnum = createEEnum(SHIFT_OP);
     additiveOpEEnum = createEEnum(ADDITIVE_OP);
     multiplicativeOpEEnum = createEEnum(MULTIPLICATIVE_OP);
+    boolLiteralEEnum = createEEnum(BOOL_LITERAL);
     cTypeSignSpecEEnum = createEEnum(CTYPE_SIGN_SPEC);
   }
 
@@ -2662,8 +2714,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(processVariableEClass, ProcessVariable.class, "ProcessVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(importedVariableEClass, ImportedVariable.class, "ImportedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getImportedVariable_Process(), this.getProcess(), null, "process", null, 0, 1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImportedVariable_Variables(), this.getDeclaredVariable(), null, "variables", null, 0, -1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImportedVariable_Process(), this.getProcess(), null, "process", null, 0, 1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(declaredVariableEClass, DeclaredVariable.class, "DeclaredVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2770,12 +2822,13 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(checkStateExpressionEClass, CheckStateExpression.class, "CheckStateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCheckStateExpression_Process(), this.getProcess(), null, "process", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCheckStateExpression_State(), this.getState(), null, "state", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCheckStateExpression_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCheckStateExpression_Passive(), ecorePackage.getEBoolean(), "passive", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCheckStateExpression_Qualfier(), this.getStateQualifier(), "qualfier", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primaryExpressionEClass, PrimaryExpression.class, "PrimaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPrimaryExpression_Reference(), this.getIdReference(), null, "reference", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimaryExpression_Integer(), ecorePackage.getEString(), "integer", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimaryExpression_Floating(), ecorePackage.getEString(), "floating", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimaryExpression_Boolean(), this.getBoolLiteral(), "boolean", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_NestedExpr(), this.getExpression(), null, "nestedExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2841,6 +2894,12 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     addEEnumLiteral(registerTypeEEnum, RegisterType.INPUT);
     addEEnumLiteral(registerTypeEEnum, RegisterType.OUTPUT);
 
+    initEEnum(stateQualifierEEnum, StateQualifier.class, "StateQualifier");
+    addEEnumLiteral(stateQualifierEEnum, StateQualifier.ACTIVE);
+    addEEnumLiteral(stateQualifierEEnum, StateQualifier.INACTIVE);
+    addEEnumLiteral(stateQualifierEEnum, StateQualifier.STOP);
+    addEEnumLiteral(stateQualifierEEnum, StateQualifier.ERROR);
+
     initEEnum(infixPostfixOpEEnum, InfixPostfixOp.class, "InfixPostfixOp");
     addEEnumLiteral(infixPostfixOpEEnum, InfixPostfixOp.INC);
     addEEnumLiteral(infixPostfixOpEEnum, InfixPostfixOp.DEC);
@@ -2885,6 +2944,10 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MUL);
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.DIV);
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MOD);
+
+    initEEnum(boolLiteralEEnum, BoolLiteral.class, "BoolLiteral");
+    addEEnumLiteral(boolLiteralEEnum, BoolLiteral.TRUE);
+    addEEnumLiteral(boolLiteralEEnum, BoolLiteral.FALSE);
 
     initEEnum(cTypeSignSpecEEnum, CTypeSignSpec.class, "CTypeSignSpec");
     addEEnumLiteral(cTypeSignSpecEEnum, CTypeSignSpec.SIGNED);

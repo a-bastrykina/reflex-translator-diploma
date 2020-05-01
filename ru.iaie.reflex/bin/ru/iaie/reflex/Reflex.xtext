@@ -4,7 +4,7 @@ generate reflex "http://www.iaie.ru/reflex/Reflex"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Program:
-	("[" annotations+=Annotation  "]")*
+	("[" annotations+=Annotation "]")*
 	"program" name=ID "{"
 	(ticks=Tact)?
 	(consts+=Const |
@@ -16,14 +16,14 @@ Program:
 	"}";
 
 Process:
-	("[" annotations+=Annotation  "]")*
+	("[" annotations+=Annotation "]")*
 	"process" name=ID "{"
 	variables+=ProcessVariable*
 	states+=State*
 	"}";
 
 State:
-	("[" annotations+=Annotation  "]")*
+	("[" annotations+=Annotation "]")*
 	"state" name=ID (looped?="looped")? "{"
 	stateFunction=StatementSequence
 	(timeoutFunction=TimeoutFunction)?
@@ -33,7 +33,7 @@ ProcessVariable:
 	(ImportedVariable | DeclaredVariable) ";";
 
 ImportedVariable:
-	"from" "process" process=[Process] variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*;
+	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
 
 DeclaredVariable:
 	(PhysicalVariable | ProgramVariable) (shared="shared")?;
@@ -82,13 +82,13 @@ BreakStat:
 	"break" ";";
 
 StartProcStat:
-	"start" process=[Process] ";";
+	"start" "process" process=[Process] ";";
 
 StopProcStat:
-	{StopProcStat} "stop" (process=[Process])? ";";
+	{StopProcStat} "stop" ("process" (process=[Process]))? ";";
 
 ErrorStat:
-	{ErrorStat} "error" (process=[Process])? ";";
+	{ErrorStat} "error" ("process" (process=[Process]))? ";";
 
 RestartStat:
 	{RestartStat} "restart" ";";
@@ -97,7 +97,7 @@ ResetStat:
 	{ResetStat} "reset" "timer" ";";
 
 SetStateStat:
-	{SetStateStat} "set" (("state" state=[State]) | next?="next") ";";
+	{SetStateStat} "set" "state" (state=[State] | next?="next") ";";
 
 Function:
 	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
@@ -128,15 +128,16 @@ FunctionCall:
 
 IdReference:
 	GlobalVariable | ProcessVariable | EnumMember | Const;
-
+	
 CheckStateExpression:
-	"process" process=[Process] IN_WORD "state" (state=[State] | active?="active" | passive?="passive");
+	"process" process=[Process] "in" "state" qualfier=StateQualifier;
 
-fragment IN_WORD:
-	"in";
+enum StateQualifier:
+	ACTIVE="active" | INACTIVE="inactive" | STOP="stop" | ERROR="error";
 
 PrimaryExpression:
-	reference=[IdReference] | {PrimaryExpression} INTEGER | {PrimaryExpression} FLOAT | "(" nestedExpr=Expression ")";
+	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
+	{PrimaryExpression} boolean=BoolLiteral | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -180,7 +181,7 @@ LogicalOrExpression:
 	LogicalAndExpression ({LogicalOrExpression.left=current} LOGICAL_OR right=LogicalOrExpression)*;
 
 AssignmentExpression:
-	(assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression;
+	(assignVar=[IdReference] assignOp=AssignOperator)? expr=LogicalOrExpression;
 
 Expression:
 	AssignmentExpression;
@@ -209,6 +210,9 @@ enum AdditiveOp:
 
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
+
+enum BoolLiteral:
+	TRUE="true" | FALSE="false";
 
 	// TODO: fix types
 CType:
@@ -318,12 +322,10 @@ terminal fragment UNSIGNED:
 	"U" | "u";
 
 Annotation:
-	key=AnnotationKey ":" value=STRING | key=AnnotationKey
-;
+	key=AnnotationKey ":" value=STRING | key=AnnotationKey;
 
 AnnotationKey:
-	ID "." ID | ID
-;
+	ID "." ID | ID;
 
 	//terminal fragment DAY:
 //	"D" | "d";

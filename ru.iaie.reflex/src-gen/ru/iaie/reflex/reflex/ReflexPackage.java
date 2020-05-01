@@ -326,22 +326,22 @@ public interface ReflexPackage extends EPackage
   int IMPORTED_VARIABLE = 4;
 
   /**
-   * The feature id for the '<em><b>Process</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IMPORTED_VARIABLE__PROCESS = PROCESS_VARIABLE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Variables</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPORTED_VARIABLE__VARIABLES = PROCESS_VARIABLE_FEATURE_COUNT + 1;
+  int IMPORTED_VARIABLE__VARIABLES = PROCESS_VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Process</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPORTED_VARIABLE__PROCESS = PROCESS_VARIABLE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Imported Variable</em>' class.
@@ -2301,31 +2301,13 @@ public interface ReflexPackage extends EPackage
   int CHECK_STATE_EXPRESSION__PROCESS = COMPARE_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>State</b></em>' reference.
+   * The feature id for the '<em><b>Qualfier</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHECK_STATE_EXPRESSION__STATE = COMPARE_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Active</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHECK_STATE_EXPRESSION__ACTIVE = COMPARE_EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Passive</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHECK_STATE_EXPRESSION__PASSIVE = COMPARE_EXPRESSION_FEATURE_COUNT + 3;
+  int CHECK_STATE_EXPRESSION__QUALFIER = COMPARE_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Check State Expression</em>' class.
@@ -2334,7 +2316,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHECK_STATE_EXPRESSION_FEATURE_COUNT = COMPARE_EXPRESSION_FEATURE_COUNT + 4;
+  int CHECK_STATE_EXPRESSION_FEATURE_COUNT = COMPARE_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl <em>Primary Expression</em>}' class.
@@ -2437,13 +2419,40 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__REFERENCE = UNARY_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Integer</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__INTEGER = UNARY_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Floating</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__FLOATING = UNARY_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__BOOLEAN = UNARY_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
    * The feature id for the '<em><b>Nested Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRIMARY_EXPRESSION__NESTED_EXPR = UNARY_EXPRESSION_FEATURE_COUNT + 1;
+  int PRIMARY_EXPRESSION__NESTED_EXPR = UNARY_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Primary Expression</em>' class.
@@ -2452,7 +2461,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 2;
+  int PRIMARY_EXPRESSION_FEATURE_COUNT = UNARY_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -2698,6 +2707,16 @@ public interface ReflexPackage extends EPackage
   int REGISTER_TYPE = 55;
 
   /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.StateQualifier
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateQualifier()
+   * @generated
+   */
+  int STATE_QUALIFIER = 56;
+
+  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2705,7 +2724,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixPostfixOp()
    * @generated
    */
-  int INFIX_POSTFIX_OP = 56;
+  int INFIX_POSTFIX_OP = 57;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AssignOperator <em>Assign Operator</em>}' enum.
@@ -2715,7 +2734,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignOperator()
    * @generated
    */
-  int ASSIGN_OPERATOR = 57;
+  int ASSIGN_OPERATOR = 58;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.UnaryOp <em>Unary Op</em>}' enum.
@@ -2725,7 +2744,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryOp()
    * @generated
    */
-  int UNARY_OP = 58;
+  int UNARY_OP = 59;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareOp <em>Compare Op</em>}' enum.
@@ -2735,7 +2754,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareOp()
    * @generated
    */
-  int COMPARE_OP = 59;
+  int COMPARE_OP = 60;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareEqOp <em>Compare Eq Op</em>}' enum.
@@ -2745,7 +2764,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareEqOp()
    * @generated
    */
-  int COMPARE_EQ_OP = 60;
+  int COMPARE_EQ_OP = 61;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.ShiftOp <em>Shift Op</em>}' enum.
@@ -2755,7 +2774,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftOp()
    * @generated
    */
-  int SHIFT_OP = 61;
+  int SHIFT_OP = 62;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AdditiveOp <em>Additive Op</em>}' enum.
@@ -2765,7 +2784,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveOp()
    * @generated
    */
-  int ADDITIVE_OP = 62;
+  int ADDITIVE_OP = 63;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
@@ -2775,7 +2794,17 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeOp()
    * @generated
    */
-  int MULTIPLICATIVE_OP = 63;
+  int MULTIPLICATIVE_OP = 64;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.BoolLiteral
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBoolLiteral()
+   * @generated
+   */
+  int BOOL_LITERAL = 65;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CTypeSignSpec <em>CType Sign Spec</em>}' enum.
@@ -2785,7 +2814,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCTypeSignSpec()
    * @generated
    */
-  int CTYPE_SIGN_SPEC = 64;
+  int CTYPE_SIGN_SPEC = 66;
 
 
   /**
@@ -3037,17 +3066,6 @@ public interface ReflexPackage extends EPackage
   EClass getImportedVariable();
 
   /**
-   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Process</em>'.
-   * @see ru.iaie.reflex.reflex.ImportedVariable#getProcess()
-   * @see #getImportedVariable()
-   * @generated
-   */
-  EReference getImportedVariable_Process();
-
-  /**
    * Returns the meta object for the reference list '{@link ru.iaie.reflex.reflex.ImportedVariable#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3057,6 +3075,17 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EReference getImportedVariable_Variables();
+
+  /**
+   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Process</em>'.
+   * @see ru.iaie.reflex.reflex.ImportedVariable#getProcess()
+   * @see #getImportedVariable()
+   * @generated
+   */
+  EReference getImportedVariable_Process();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.DeclaredVariable <em>Declared Variable</em>}'.
@@ -3877,37 +3906,15 @@ public interface ReflexPackage extends EPackage
   EReference getCheckStateExpression_Process();
 
   /**
-   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.CheckStateExpression#getState <em>State</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CheckStateExpression#getQualfier <em>Qualfier</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>State</em>'.
-   * @see ru.iaie.reflex.reflex.CheckStateExpression#getState()
+   * @return the meta object for the attribute '<em>Qualfier</em>'.
+   * @see ru.iaie.reflex.reflex.CheckStateExpression#getQualfier()
    * @see #getCheckStateExpression()
    * @generated
    */
-  EReference getCheckStateExpression_State();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CheckStateExpression#isActive <em>Active</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Active</em>'.
-   * @see ru.iaie.reflex.reflex.CheckStateExpression#isActive()
-   * @see #getCheckStateExpression()
-   * @generated
-   */
-  EAttribute getCheckStateExpression_Active();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CheckStateExpression#isPassive <em>Passive</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Passive</em>'.
-   * @see ru.iaie.reflex.reflex.CheckStateExpression#isPassive()
-   * @see #getCheckStateExpression()
-   * @generated
-   */
-  EAttribute getCheckStateExpression_Passive();
+  EAttribute getCheckStateExpression_Qualfier();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.PrimaryExpression <em>Primary Expression</em>}'.
@@ -3929,6 +3936,39 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EReference getPrimaryExpression_Reference();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PrimaryExpression#getInteger <em>Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Integer</em>'.
+   * @see ru.iaie.reflex.reflex.PrimaryExpression#getInteger()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EAttribute getPrimaryExpression_Integer();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PrimaryExpression#getFloating <em>Floating</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Floating</em>'.
+   * @see ru.iaie.reflex.reflex.PrimaryExpression#getFloating()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EAttribute getPrimaryExpression_Floating();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PrimaryExpression#getBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see ru.iaie.reflex.reflex.PrimaryExpression#getBoolean()
+   * @see #getPrimaryExpression()
+   * @generated
+   */
+  EAttribute getPrimaryExpression_Boolean();
 
   /**
    * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}'.
@@ -4350,6 +4390,16 @@ public interface ReflexPackage extends EPackage
   EEnum getRegisterType();
 
   /**
+   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>State Qualifier</em>'.
+   * @see ru.iaie.reflex.reflex.StateQualifier
+   * @generated
+   */
+  EEnum getStateQualifier();
+
+  /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4428,6 +4478,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EEnum getMultiplicativeOp();
+
+  /**
+   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Bool Literal</em>'.
+   * @see ru.iaie.reflex.reflex.BoolLiteral
+   * @generated
+   */
+  EEnum getBoolLiteral();
 
   /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.CTypeSignSpec <em>CType Sign Spec</em>}'.
@@ -4657,20 +4717,20 @@ public interface ReflexPackage extends EPackage
     EClass IMPORTED_VARIABLE = eINSTANCE.getImportedVariable();
 
     /**
-     * The meta object literal for the '<em><b>Process</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPORTED_VARIABLE__PROCESS = eINSTANCE.getImportedVariable_Process();
-
-    /**
      * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference IMPORTED_VARIABLE__VARIABLES = eINSTANCE.getImportedVariable_Variables();
+
+    /**
+     * The meta object literal for the '<em><b>Process</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPORTED_VARIABLE__PROCESS = eINSTANCE.getImportedVariable_Process();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.DeclaredVariableImpl <em>Declared Variable</em>}' class.
@@ -5347,28 +5407,12 @@ public interface ReflexPackage extends EPackage
     EReference CHECK_STATE_EXPRESSION__PROCESS = eINSTANCE.getCheckStateExpression_Process();
 
     /**
-     * The meta object literal for the '<em><b>State</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Qualfier</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CHECK_STATE_EXPRESSION__STATE = eINSTANCE.getCheckStateExpression_State();
-
-    /**
-     * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHECK_STATE_EXPRESSION__ACTIVE = eINSTANCE.getCheckStateExpression_Active();
-
-    /**
-     * The meta object literal for the '<em><b>Passive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHECK_STATE_EXPRESSION__PASSIVE = eINSTANCE.getCheckStateExpression_Passive();
+    EAttribute CHECK_STATE_EXPRESSION__QUALFIER = eINSTANCE.getCheckStateExpression_Qualfier();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl <em>Primary Expression</em>}' class.
@@ -5387,6 +5431,30 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EReference PRIMARY_EXPRESSION__REFERENCE = eINSTANCE.getPrimaryExpression_Reference();
+
+    /**
+     * The meta object literal for the '<em><b>Integer</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRIMARY_EXPRESSION__INTEGER = eINSTANCE.getPrimaryExpression_Integer();
+
+    /**
+     * The meta object literal for the '<em><b>Floating</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRIMARY_EXPRESSION__FLOATING = eINSTANCE.getPrimaryExpression_Floating();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRIMARY_EXPRESSION__BOOLEAN = eINSTANCE.getPrimaryExpression_Boolean();
 
     /**
      * The meta object literal for the '<em><b>Nested Expr</b></em>' containment reference feature.
@@ -5751,6 +5819,16 @@ public interface ReflexPackage extends EPackage
     EEnum REGISTER_TYPE = eINSTANCE.getRegisterType();
 
     /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.StateQualifier
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateQualifier()
+     * @generated
+     */
+    EEnum STATE_QUALIFIER = eINSTANCE.getStateQualifier();
+
+    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5829,6 +5907,16 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EEnum MULTIPLICATIVE_OP = eINSTANCE.getMultiplicativeOp();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.BoolLiteral
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBoolLiteral()
+     * @generated
+     */
+    EEnum BOOL_LITERAL = eINSTANCE.getBoolLiteral();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.CTypeSignSpec <em>CType Sign Spec</em>}' enum.

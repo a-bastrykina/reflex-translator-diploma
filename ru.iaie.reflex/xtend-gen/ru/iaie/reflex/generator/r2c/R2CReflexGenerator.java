@@ -497,8 +497,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _processId = this.identifiersHelper.getProcessId(proc);
     _builder.append(_processId);
     _builder.append(", ");
-    String _ticks = func.getTime().getTicks();
-    _builder.append(_ticks);
+    String _translateTimeout = this.translateTimeout(func);
+    _builder.append(_translateTimeout);
     _builder.append("))");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -508,7 +508,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String traslateTimeout(final TimeoutFunction func) {
+  public String translateTimeout(final TimeoutFunction func) {
     String _xblockexpression = null;
     {
       boolean _isClearTimeout = ReflexModelUtil.isClearTimeout(func);

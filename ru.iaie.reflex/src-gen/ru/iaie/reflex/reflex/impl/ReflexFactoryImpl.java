@@ -20,6 +20,7 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
+import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
@@ -66,6 +67,7 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
@@ -202,6 +204,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     {
       case ReflexPackage.REGISTER_TYPE:
         return createRegisterTypeFromString(eDataType, initialValue);
+      case ReflexPackage.STATE_QUALIFIER:
+        return createStateQualifierFromString(eDataType, initialValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
         return createInfixPostfixOpFromString(eDataType, initialValue);
       case ReflexPackage.ASSIGN_OPERATOR:
@@ -218,6 +222,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return createAdditiveOpFromString(eDataType, initialValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return createMultiplicativeOpFromString(eDataType, initialValue);
+      case ReflexPackage.BOOL_LITERAL:
+        return createBoolLiteralFromString(eDataType, initialValue);
       case ReflexPackage.CTYPE_SIGN_SPEC:
         return createCTypeSignSpecFromString(eDataType, initialValue);
       default:
@@ -237,6 +243,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     {
       case ReflexPackage.REGISTER_TYPE:
         return convertRegisterTypeToString(eDataType, instanceValue);
+      case ReflexPackage.STATE_QUALIFIER:
+        return convertStateQualifierToString(eDataType, instanceValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
         return convertInfixPostfixOpToString(eDataType, instanceValue);
       case ReflexPackage.ASSIGN_OPERATOR:
@@ -253,6 +261,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return convertAdditiveOpToString(eDataType, instanceValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return convertMultiplicativeOpToString(eDataType, instanceValue);
+      case ReflexPackage.BOOL_LITERAL:
+        return convertBoolLiteralToString(eDataType, instanceValue);
       case ReflexPackage.CTYPE_SIGN_SPEC:
         return convertCTypeSignSpecToString(eDataType, instanceValue);
       default:
@@ -947,6 +957,28 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public StateQualifier createStateQualifierFromString(EDataType eDataType, String initialValue)
+  {
+    StateQualifier result = StateQualifier.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertStateQualifierToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public InfixPostfixOp createInfixPostfixOpFromString(EDataType eDataType, String initialValue)
   {
     InfixPostfixOp result = InfixPostfixOp.get(initialValue);
@@ -1114,6 +1146,28 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   public String convertMultiplicativeOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoolLiteral createBoolLiteralFromString(EDataType eDataType, String initialValue)
+  {
+    BoolLiteral result = BoolLiteral.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertBoolLiteralToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

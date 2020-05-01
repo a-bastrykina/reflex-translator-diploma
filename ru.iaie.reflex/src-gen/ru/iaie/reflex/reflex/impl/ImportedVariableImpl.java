@@ -28,24 +28,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl#getProcess <em>Process</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ImportedVariableImpl extends ProcessVariableImpl implements ImportedVariable
 {
-  /**
-   * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProcess()
-   * @generated
-   * @ordered
-   */
-  protected ru.iaie.reflex.reflex.Process process;
-
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
    * <!-- begin-user-doc -->
@@ -55,6 +45,16 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
    * @ordered
    */
   protected EList<DeclaredVariable> variables;
+
+  /**
+   * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProcess()
+   * @generated
+   * @ordered
+   */
+  protected ru.iaie.reflex.reflex.Process process;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,6 +75,21 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.IMPORTED_VARIABLE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<DeclaredVariable> getVariables()
+  {
+    if (variables == null)
+    {
+      variables = new EObjectResolvingEList<DeclaredVariable>(DeclaredVariable.class, this, ReflexPackage.IMPORTED_VARIABLE__VARIABLES);
+    }
+    return variables;
   }
 
   /**
@@ -128,30 +143,15 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
    * @generated
    */
   @Override
-  public EList<DeclaredVariable> getVariables()
-  {
-    if (variables == null)
-    {
-      variables = new EObjectResolvingEList<DeclaredVariable>(DeclaredVariable.class, this, ReflexPackage.IMPORTED_VARIABLE__VARIABLES);
-    }
-    return variables;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
+        return getVariables();
       case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
         if (resolve) return getProcess();
         return basicGetProcess();
-      case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
-        return getVariables();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -167,12 +167,12 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
-        setProcess((ru.iaie.reflex.reflex.Process)newValue);
-        return;
       case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
         getVariables().clear();
         getVariables().addAll((Collection<? extends DeclaredVariable>)newValue);
+        return;
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -188,11 +188,11 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
-        setProcess((ru.iaie.reflex.reflex.Process)null);
-        return;
       case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
         getVariables().clear();
+        return;
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        setProcess((ru.iaie.reflex.reflex.Process)null);
         return;
     }
     super.eUnset(featureID);
@@ -208,10 +208,10 @@ public class ImportedVariableImpl extends ProcessVariableImpl implements Importe
   {
     switch (featureID)
     {
-      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
-        return process != null;
       case ReflexPackage.IMPORTED_VARIABLE__VARIABLES:
         return variables != null && !variables.isEmpty();
+      case ReflexPackage.IMPORTED_VARIABLE__PROCESS:
+        return process != null;
     }
     return super.eIsSet(featureID);
   }

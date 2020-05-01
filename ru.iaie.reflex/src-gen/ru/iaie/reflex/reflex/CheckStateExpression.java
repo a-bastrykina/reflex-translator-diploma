@@ -14,9 +14,7 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.CheckStateExpression#getProcess <em>Process</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.CheckStateExpression#getState <em>State</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.CheckStateExpression#isActive <em>Active</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.CheckStateExpression#isPassive <em>Passive</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.CheckStateExpression#getQualfier <em>Qualfier</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getCheckStateExpression()
@@ -48,69 +46,28 @@ public interface CheckStateExpression extends CompareExpression
   void setProcess(ru.iaie.reflex.reflex.Process value);
 
   /**
-   * Returns the value of the '<em><b>State</b></em>' reference.
+   * Returns the value of the '<em><b>Qualfier</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.StateQualifier}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State</em>' reference.
-   * @see #setState(State)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getCheckStateExpression_State()
+   * @return the value of the '<em>Qualfier</em>' attribute.
+   * @see ru.iaie.reflex.reflex.StateQualifier
+   * @see #setQualfier(StateQualifier)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getCheckStateExpression_Qualfier()
    * @model
    * @generated
    */
-  State getState();
+  StateQualifier getQualfier();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CheckStateExpression#getState <em>State</em>}' reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.CheckStateExpression#getQualfier <em>Qualfier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State</em>' reference.
-   * @see #getState()
+   * @param value the new value of the '<em>Qualfier</em>' attribute.
+   * @see ru.iaie.reflex.reflex.StateQualifier
+   * @see #getQualfier()
    * @generated
    */
-  void setState(State value);
-
-  /**
-   * Returns the value of the '<em><b>Active</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Active</em>' attribute.
-   * @see #setActive(boolean)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getCheckStateExpression_Active()
-   * @model
-   * @generated
-   */
-  boolean isActive();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CheckStateExpression#isActive <em>Active</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Active</em>' attribute.
-   * @see #isActive()
-   * @generated
-   */
-  void setActive(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Passive</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Passive</em>' attribute.
-   * @see #setPassive(boolean)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getCheckStateExpression_Passive()
-   * @model
-   * @generated
-   */
-  boolean isPassive();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CheckStateExpression#isPassive <em>Passive</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Passive</em>' attribute.
-   * @see #isPassive()
-   * @generated
-   */
-  void setPassive(boolean value);
+  void setQualfier(StateQualifier value);
 
 } // CheckStateExpression

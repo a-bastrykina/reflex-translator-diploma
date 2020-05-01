@@ -23,7 +23,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected ReflexGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1;
 	protected AbstractElementAlias match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0;
-	protected AbstractElementAlias match_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1;
 	protected AbstractElementAlias match_TimeoutFunction_LeftParenthesisKeyword_1_1_0_q;
 	
 	@Inject
@@ -31,7 +30,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (ReflexGrammarAccess) access;
 		match_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getDOUBLE_C_TYPETerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getFLOAT_C_TYPETerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getVOID_C_TYPETerminalRuleCall_0_1()));
 		match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2()), new TokenAlias(false, false, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0()));
-		match_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getFLOATTerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getPrimaryExpressionAccess().getINTEGERTerminalRuleCall_1_1()));
 		match_TimeoutFunction_LeftParenthesisKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getTimeoutFunctionAccess().getLeftParenthesisKeyword_1_1_0());
 	}
 	
@@ -51,16 +49,10 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getCTypeSignSpecToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getDOUBLE_C_TYPERule())
 			return getDOUBLE_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getFLOATRule())
-			return getFLOATToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getFLOAT_C_TYPERule())
 			return getFLOAT_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getINTEGERRule())
-			return getINTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINT_C_TYPERule())
 			return getINT_C_TYPEToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getIN_WORDRule())
-			return getIN_WORDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ANDRule())
 			return getLOGICAL_ANDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getLOGICAL_ORRule())
@@ -145,16 +137,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal FLOAT:
-	 * 	DEC_FLOAT | HEX_FLOAT;
-	 */
-	protected String getFLOATToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return ".";
-	}
-	
-	/**
 	 * terminal FLOAT_C_TYPE:
 	 * 	"float";
 	 */
@@ -165,16 +147,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal INTEGER:
-	 * 	(HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
-	 */
-	protected String getINTEGERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "0x";
-	}
-	
-	/**
 	 * terminal INT_C_TYPE:
 	 * 	"int";
 	 */
@@ -182,16 +154,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "int";
-	}
-	
-	/**
-	 * fragment IN_WORD:
-	 * 	"in";
-	 */
-	protected String getIN_WORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "in";
 	}
 	
 	/**
@@ -254,8 +216,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_CType_DOUBLE_C_TYPETerminalRuleCall_2_1_or_FLOAT_C_TYPETerminalRuleCall_1_1_or_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0_or_VOID_C_TYPETerminalRuleCall_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0.equals(syntax))
 				emit_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1.equals(syntax))
-				emit_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TimeoutFunction_LeftParenthesisKeyword_1_1_0_q.equals(syntax))
 				emit_TimeoutFunction_LeftParenthesisKeyword_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -288,17 +248,6 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     signSpec?=CTypeSignSpec (ambiguity) (rule end)
 	 */
 	protected void emit_CType_INT_C_TYPETerminalRuleCall_3_2_1_or_LONG_C_TYPETerminalRuleCall_3_2_2_or_SHORT_C_TYPETerminalRuleCall_3_2_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     INTEGER | FLOAT
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_PrimaryExpression_FLOATTerminalRuleCall_2_1_or_INTEGERTerminalRuleCall_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

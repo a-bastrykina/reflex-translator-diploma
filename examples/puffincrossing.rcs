@@ -14,8 +14,8 @@ the proc does the following - looks if the TrafficLightCycle process is
 stopped (in a passive state) - then the proc starts it ... */
 {
 clock 10; 
-const bool ON=1;
-const bool OFF=0;
+const bool ON=true;
+const bool OFF=false;
 const int SECOND=100;
 const int THIRTY_SECONDS=30*SECOND;
 const int MINUTE=60*SECOND;
@@ -32,12 +32,12 @@ bool O_CROSSWALK = OUTPUTS[0];
 process WaitingButton{ 
   state Begin{
     O_CROSSWALK = OFF;
-    set next; 
+    set state next; 
   }
   state CheckButton looped {
     if (I_BUTTON) { /* Vehicle ? */
-     if (process TrafficLightCycle in state passive) 
-        start TrafficLightCycle;
+     if (process TrafficLightCycle in state inactive) 
+        start process TrafficLightCycle;
       }
     }
   }
@@ -47,11 +47,11 @@ process TrafficLightCycle { /* working out one cycle of the traffic light:
                            * 30 s - prohibition of motorway traffic
                            * stop */
 
-from process WaitingButton O_CROSSWALK;
+shared O_CROSSWALK from process WaitingButton ;
 
   state Pause1min{
     O_CROSSWALK = OFF;
-    timeout MINUTE set next;
+    timeout MINUTE set state next;
   }
   state LetCrossWalking30sec{
     O_CROSSWALK = ON;
