@@ -403,10 +403,10 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSharedSharedKeyword_1_0 = (Keyword)cSharedAssignment_1.eContents().get(0);
 		
 		//DeclaredVariable:
-		//	(PhysicalVariable | ProgramVariable) shared="shared"?;
+		//	(PhysicalVariable | ProgramVariable) shared?="shared"?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(PhysicalVariable | ProgramVariable) shared="shared"?
+		//(PhysicalVariable | ProgramVariable) shared?="shared"?
 		public Group getGroup() { return cGroup; }
 		
 		//(PhysicalVariable | ProgramVariable)
@@ -418,7 +418,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//ProgramVariable
 		public RuleCall getProgramVariableParserRuleCall_0_1() { return cProgramVariableParserRuleCall_0_1; }
 		
-		//shared="shared"?
+		//shared?="shared"?
 		public Assignment getSharedAssignment_1() { return cSharedAssignment_1; }
 		
 		//"shared"
@@ -1110,20 +1110,23 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSetStateStatAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cSetKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cStateKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Assignment cStateAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
-		private final CrossReference cStateStateCrossReference_3_0_0 = (CrossReference)cStateAssignment_3_0.eContents().get(0);
-		private final RuleCall cStateStateIDTerminalRuleCall_3_0_0_1 = (RuleCall)cStateStateCrossReference_3_0_0.eContents().get(1);
-		private final Assignment cNextAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final Keyword cNextNextKeyword_3_1_0 = (Keyword)cNextAssignment_3_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cNextAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Keyword cNextNextKeyword_2_0_0_0 = (Keyword)cNextAssignment_2_0_0.eContents().get(0);
+		private final Keyword cStateKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cStateKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cStateAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final CrossReference cStateStateCrossReference_2_1_1_0 = (CrossReference)cStateAssignment_2_1_1.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_2_1_1_0_1 = (RuleCall)cStateStateCrossReference_2_1_1_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SetStateStat:
-		//	{SetStateStat} "set" "state" (state=[State] | next?="next") ";";
+		//	{SetStateStat} "set" (next?="next" "state" | "state" state=[State]) ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SetStateStat} "set" "state" (state=[State] | next?="next") ";"
+		//{SetStateStat} "set" (next?="next" "state" | "state" state=[State]) ";"
 		public Group getGroup() { return cGroup; }
 		
 		//{SetStateStat}
@@ -1132,29 +1135,38 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"set"
 		public Keyword getSetKeyword_1() { return cSetKeyword_1; }
 		
-		//"state"
-		public Keyword getStateKeyword_2() { return cStateKeyword_2; }
+		//(next?="next" "state" | "state" state=[State])
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//(state=[State] | next?="next")
-		public Alternatives getAlternatives_3() { return cAlternatives_3; }
-		
-		//state=[State]
-		public Assignment getStateAssignment_3_0() { return cStateAssignment_3_0; }
-		
-		//[State]
-		public CrossReference getStateStateCrossReference_3_0_0() { return cStateStateCrossReference_3_0_0; }
-		
-		//ID
-		public RuleCall getStateStateIDTerminalRuleCall_3_0_0_1() { return cStateStateIDTerminalRuleCall_3_0_0_1; }
+		//next?="next" "state"
+		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//next?="next"
-		public Assignment getNextAssignment_3_1() { return cNextAssignment_3_1; }
+		public Assignment getNextAssignment_2_0_0() { return cNextAssignment_2_0_0; }
 		
 		//"next"
-		public Keyword getNextNextKeyword_3_1_0() { return cNextNextKeyword_3_1_0; }
+		public Keyword getNextNextKeyword_2_0_0_0() { return cNextNextKeyword_2_0_0_0; }
+		
+		//"state"
+		public Keyword getStateKeyword_2_0_1() { return cStateKeyword_2_0_1; }
+		
+		//"state" state=[State]
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//"state"
+		public Keyword getStateKeyword_2_1_0() { return cStateKeyword_2_1_0; }
+		
+		//state=[State]
+		public Assignment getStateAssignment_2_1_1() { return cStateAssignment_2_1_1; }
+		
+		//[State]
+		public CrossReference getStateStateCrossReference_2_1_1_0() { return cStateStateCrossReference_2_1_1_0; }
+		
+		//ID
+		public RuleCall getStateStateIDTerminalRuleCall_2_1_1_0_1() { return cStateStateIDTerminalRuleCall_2_1_1_0_1; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class FunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Function");
@@ -1527,23 +1539,23 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	public class IdReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.IdReference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cGlobalVariableParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cProcessVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPhysicalVariableParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cProgramVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cEnumMemberParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cConstParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//IdReference:
-		//	GlobalVariable | ProcessVariable | EnumMember | Const;
+		//	PhysicalVariable | ProgramVariable | EnumMember | Const;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//GlobalVariable | ProcessVariable | EnumMember | Const
+		//PhysicalVariable | ProgramVariable | EnumMember | Const
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//GlobalVariable
-		public RuleCall getGlobalVariableParserRuleCall_0() { return cGlobalVariableParserRuleCall_0; }
+		//PhysicalVariable
+		public RuleCall getPhysicalVariableParserRuleCall_0() { return cPhysicalVariableParserRuleCall_0; }
 		
-		//ProcessVariable
-		public RuleCall getProcessVariableParserRuleCall_1() { return cProcessVariableParserRuleCall_1; }
+		//ProgramVariable
+		public RuleCall getProgramVariableParserRuleCall_1() { return cProgramVariableParserRuleCall_1; }
 		
 		//EnumMember
 		public RuleCall getEnumMemberParserRuleCall_2() { return cEnumMemberParserRuleCall_2; }
@@ -2161,27 +2173,31 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Assignment cAssignVarAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cAssignVarIDTerminalRuleCall_0_0_0 = (RuleCall)cAssignVarAssignment_0_0.eContents().get(0);
+		private final CrossReference cAssignVarIdReferenceCrossReference_0_0_0 = (CrossReference)cAssignVarAssignment_0_0.eContents().get(0);
+		private final RuleCall cAssignVarIdReferenceIDTerminalRuleCall_0_0_0_1 = (RuleCall)cAssignVarIdReferenceCrossReference_0_0_0.eContents().get(1);
 		private final Assignment cAssignOpAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cAssignOpAssignOperatorEnumRuleCall_0_1_0 = (RuleCall)cAssignOpAssignment_0_1.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprLogicalOrExpressionParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
 		
 		//AssignmentExpression:
-		//	(assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression;
+		//	(assignVar=[IdReference] assignOp=AssignOperator)? expr=LogicalOrExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression
+		//(assignVar=[IdReference] assignOp=AssignOperator)? expr=LogicalOrExpression
 		public Group getGroup() { return cGroup; }
 		
-		//(assignVar=ID assignOp=AssignOperator)?
+		//(assignVar=[IdReference] assignOp=AssignOperator)?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//assignVar=ID
+		//assignVar=[IdReference]
 		public Assignment getAssignVarAssignment_0_0() { return cAssignVarAssignment_0_0; }
 		
+		//[IdReference]
+		public CrossReference getAssignVarIdReferenceCrossReference_0_0_0() { return cAssignVarIdReferenceCrossReference_0_0_0; }
+		
 		//ID
-		public RuleCall getAssignVarIDTerminalRuleCall_0_0_0() { return cAssignVarIDTerminalRuleCall_0_0_0; }
+		public RuleCall getAssignVarIdReferenceIDTerminalRuleCall_0_0_0_1() { return cAssignVarIdReferenceIDTerminalRuleCall_0_0_0_1; }
 		
 		//assignOp=AssignOperator
 		public Assignment getAssignOpAssignment_0_1() { return cAssignOpAssignment_0_1; }
@@ -3202,7 +3218,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DeclaredVariable:
-	//	(PhysicalVariable | ProgramVariable) shared="shared"?;
+	//	(PhysicalVariable | ProgramVariable) shared?="shared"?;
 	public DeclaredVariableElements getDeclaredVariableAccess() {
 		return pDeclaredVariable;
 	}
@@ -3394,7 +3410,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SetStateStat:
-	//	{SetStateStat} "set" "state" (state=[State] | next?="next") ";";
+	//	{SetStateStat} "set" (next?="next" "state" | "state" state=[State]) ";";
 	public SetStateStatElements getSetStateStatAccess() {
 		return pSetStateStat;
 	}
@@ -3494,7 +3510,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IdReference:
-	//	GlobalVariable | ProcessVariable | EnumMember | Const;
+	//	PhysicalVariable | ProgramVariable | EnumMember | Const;
 	public IdReferenceElements getIdReferenceAccess() {
 		return pIdReference;
 	}
@@ -3656,7 +3672,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AssignmentExpression:
-	//	(assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression;
+	//	(assignVar=[IdReference] assignOp=AssignOperator)? expr=LogicalOrExpression;
 	public AssignmentExpressionElements getAssignmentExpressionAccess() {
 		return pAssignmentExpression;
 	}

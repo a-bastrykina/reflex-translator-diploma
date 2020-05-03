@@ -38,7 +38,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTimeoutFunctionAccess().getAlternatives_1(), "rule__TimeoutFunction__Alternatives_1");
 			builder.put(grammarAccess.getTimeAmountOrRefAccess().getAlternatives(), "rule__TimeAmountOrRef__Alternatives");
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
-			builder.put(grammarAccess.getSetStateStatAccess().getAlternatives_3(), "rule__SetStateStat__Alternatives_3");
+			builder.put(grammarAccess.getSetStateStatAccess().getAlternatives_2(), "rule__SetStateStat__Alternatives_2");
 			builder.put(grammarAccess.getIdReferenceAccess().getAlternatives(), "rule__IdReference__Alternatives");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
@@ -97,6 +97,8 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRestartStatAccess().getGroup(), "rule__RestartStat__Group__0");
 			builder.put(grammarAccess.getResetStatAccess().getGroup(), "rule__ResetStat__Group__0");
 			builder.put(grammarAccess.getSetStateStatAccess().getGroup(), "rule__SetStateStat__Group__0");
+			builder.put(grammarAccess.getSetStateStatAccess().getGroup_2_0(), "rule__SetStateStat__Group_2_0__0");
+			builder.put(grammarAccess.getSetStateStatAccess().getGroup_2_1(), "rule__SetStateStat__Group_2_1__0");
 			builder.put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
 			builder.put(grammarAccess.getFunctionAccess().getGroup_4(), "rule__Function__Group_4__0");
 			builder.put(grammarAccess.getRegisterAccess().getGroup(), "rule__Register__Group__0");
@@ -192,8 +194,8 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStartProcStatAccess().getProcessAssignment_2(), "rule__StartProcStat__ProcessAssignment_2");
 			builder.put(grammarAccess.getStopProcStatAccess().getProcessAssignment_2_1(), "rule__StopProcStat__ProcessAssignment_2_1");
 			builder.put(grammarAccess.getErrorStatAccess().getProcessAssignment_2_1(), "rule__ErrorStat__ProcessAssignment_2_1");
-			builder.put(grammarAccess.getSetStateStatAccess().getStateAssignment_3_0(), "rule__SetStateStat__StateAssignment_3_0");
-			builder.put(grammarAccess.getSetStateStatAccess().getNextAssignment_3_1(), "rule__SetStateStat__NextAssignment_3_1");
+			builder.put(grammarAccess.getSetStateStatAccess().getNextAssignment_2_0_0(), "rule__SetStateStat__NextAssignment_2_0_0");
+			builder.put(grammarAccess.getSetStateStatAccess().getStateAssignment_2_1_1(), "rule__SetStateStat__StateAssignment_2_1_1");
 			builder.put(grammarAccess.getFunctionAccess().getReturnTypeAssignment_0(), "rule__Function__ReturnTypeAssignment_0");
 			builder.put(grammarAccess.getFunctionAccess().getNameAssignment_1(), "rule__Function__NameAssignment_1");
 			builder.put(grammarAccess.getFunctionAccess().getArgTypesAssignment_3(), "rule__Function__ArgTypesAssignment_3");

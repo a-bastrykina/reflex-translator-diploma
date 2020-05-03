@@ -23,7 +23,7 @@ import ru.iaie.reflex.reflex.RegisterPortMapping;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getShared <em>Shared</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#isShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getPort <em>Port</em>}</li>
@@ -34,24 +34,24 @@ import ru.iaie.reflex.reflex.RegisterPortMapping;
 public class PhysicalVariableImpl extends DeclaredVariableImpl implements PhysicalVariable
 {
   /**
-   * The default value of the '{@link #getShared() <em>Shared</em>}' attribute.
+   * The default value of the '{@link #isShared() <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getShared()
+   * @see #isShared()
    * @generated
    * @ordered
    */
-  protected static final String SHARED_EDEFAULT = null;
+  protected static final boolean SHARED_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getShared() <em>Shared</em>}' attribute.
+   * The cached value of the '{@link #isShared() <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getShared()
+   * @see #isShared()
    * @generated
    * @ordered
    */
-  protected String shared = SHARED_EDEFAULT;
+  protected boolean shared = SHARED_EDEFAULT;
 
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -130,7 +130,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * @generated
    */
   @Override
-  public String getShared()
+  public boolean isShared()
   {
     return shared;
   }
@@ -141,9 +141,9 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * @generated
    */
   @Override
-  public void setShared(String newShared)
+  public void setShared(boolean newShared)
   {
-    String oldShared = shared;
+    boolean oldShared = shared;
     shared = newShared;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__SHARED, oldShared, shared));
@@ -276,7 +276,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
     switch (featureID)
     {
       case ReflexPackage.PHYSICAL_VARIABLE__SHARED:
-        return getShared();
+        return isShared();
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         return getType();
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
@@ -298,7 +298,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
     switch (featureID)
     {
       case ReflexPackage.PHYSICAL_VARIABLE__SHARED:
-        setShared((String)newValue);
+        setShared((Boolean)newValue);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         setType((String)newValue);
@@ -350,7 +350,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
     switch (featureID)
     {
       case ReflexPackage.PHYSICAL_VARIABLE__SHARED:
-        return SHARED_EDEFAULT == null ? shared != null : !SHARED_EDEFAULT.equals(shared);
+        return shared != SHARED_EDEFAULT;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:

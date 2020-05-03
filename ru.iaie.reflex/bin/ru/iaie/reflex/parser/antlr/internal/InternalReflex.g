@@ -690,7 +690,7 @@ ruleDeclaredVariable returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getDeclaredVariableRule());
 					}
-					setWithLastConsumed($current, "shared", lv_shared_2_0, "shared");
+					setWithLastConsumed($current, "shared", true, "shared");
 				}
 			)
 		)?
@@ -1822,43 +1822,51 @@ ruleSetStateStat returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getSetStateStatAccess().getSetKeyword_1());
 		}
-		otherlv_2='state'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getSetStateStatAccess().getStateKeyword_2());
-		}
 		(
 			(
 				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSetStateStatRule());
+					(
+						lv_next_2_0='next'
+						{
+							newLeafNode(lv_next_2_0, grammarAccess.getSetStateStatAccess().getNextNextKeyword_2_0_0_0());
 						}
-					}
-					otherlv_3=RULE_ID
-					{
-						newLeafNode(otherlv_3, grammarAccess.getSetStateStatAccess().getStateStateCrossReference_3_0_0());
-					}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getSetStateStatRule());
+							}
+							setWithLastConsumed($current, "next", true, "next");
+						}
+					)
 				)
+				otherlv_3='state'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getSetStateStatAccess().getStateKeyword_2_0_1());
+				}
 			)
 			    |
 			(
+				otherlv_4='state'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getSetStateStatAccess().getStateKeyword_2_1_0());
+				}
 				(
-					lv_next_4_0='next'
-					{
-						newLeafNode(lv_next_4_0, grammarAccess.getSetStateStatAccess().getNextNextKeyword_3_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSetStateStatRule());
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getSetStateStatRule());
+							}
 						}
-						setWithLastConsumed($current, "next", true, "next");
-					}
+						otherlv_5=RULE_ID
+						{
+							newLeafNode(otherlv_5, grammarAccess.getSetStateStatAccess().getStateStateCrossReference_2_1_1_0());
+						}
+					)
 				)
 			)
 		)
-		otherlv_5=';'
+		otherlv_6=';'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getSetStateStatAccess().getSemicolonKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getSetStateStatAccess().getSemicolonKeyword_3());
 		}
 	)
 ;
@@ -3605,19 +3613,14 @@ ruleAssignmentExpression returns [EObject current=null]
 		(
 			(
 				(
-					lv_assignVar_0_0=RULE_ID
-					{
-						newLeafNode(lv_assignVar_0_0, grammarAccess.getAssignmentExpressionAccess().getAssignVarIDTerminalRuleCall_0_0_0());
-					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAssignmentExpressionRule());
 						}
-						setWithLastConsumed(
-							$current,
-							"assignVar",
-							lv_assignVar_0_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+					}
+					otherlv_0=RULE_ID
+					{
+						newLeafNode(otherlv_0, grammarAccess.getAssignmentExpressionAccess().getAssignVarIdReferenceCrossReference_0_0_0());
 					}
 				)
 			)

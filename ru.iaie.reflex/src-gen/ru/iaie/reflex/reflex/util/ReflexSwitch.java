@@ -151,7 +151,6 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ProcessVariable processVariable = (ProcessVariable)theEObject;
         T result = caseProcessVariable(processVariable);
-        if (result == null) result = caseIdReference(processVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -160,7 +159,6 @@ public class ReflexSwitch<T> extends Switch<T>
         ImportedVariable importedVariable = (ImportedVariable)theEObject;
         T result = caseImportedVariable(importedVariable);
         if (result == null) result = caseProcessVariable(importedVariable);
-        if (result == null) result = caseIdReference(importedVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -169,7 +167,6 @@ public class ReflexSwitch<T> extends Switch<T>
         DeclaredVariable declaredVariable = (DeclaredVariable)theEObject;
         T result = caseDeclaredVariable(declaredVariable);
         if (result == null) result = caseProcessVariable(declaredVariable);
-        if (result == null) result = caseIdReference(declaredVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -177,7 +174,6 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         GlobalVariable globalVariable = (GlobalVariable)theEObject;
         T result = caseGlobalVariable(globalVariable);
-        if (result == null) result = caseIdReference(globalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -187,8 +183,8 @@ public class ReflexSwitch<T> extends Switch<T>
         T result = casePhysicalVariable(physicalVariable);
         if (result == null) result = caseDeclaredVariable(physicalVariable);
         if (result == null) result = caseGlobalVariable(physicalVariable);
-        if (result == null) result = caseProcessVariable(physicalVariable);
         if (result == null) result = caseIdReference(physicalVariable);
+        if (result == null) result = caseProcessVariable(physicalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -205,8 +201,8 @@ public class ReflexSwitch<T> extends Switch<T>
         T result = caseProgramVariable(programVariable);
         if (result == null) result = caseDeclaredVariable(programVariable);
         if (result == null) result = caseGlobalVariable(programVariable);
-        if (result == null) result = caseProcessVariable(programVariable);
         if (result == null) result = caseIdReference(programVariable);
+        if (result == null) result = caseProcessVariable(programVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

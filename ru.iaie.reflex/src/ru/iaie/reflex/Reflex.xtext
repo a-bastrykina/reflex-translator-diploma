@@ -18,7 +18,7 @@ Program:
 Process:
 	("[" annotations+=Annotation "]")*
 	"process" name=ID "{"
-	variables+=ProcessVariable*
+	(variables+=ProcessVariable)*
 	states+=State*
 	"}";
 
@@ -36,7 +36,7 @@ ImportedVariable:
 	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
 
 DeclaredVariable:
-	(PhysicalVariable | ProgramVariable) (shared="shared")?;
+	(PhysicalVariable | ProgramVariable) (shared?="shared")?;
 
 GlobalVariable:
 	(PhysicalVariable | ProgramVariable) ";";
@@ -97,7 +97,7 @@ ResetStat:
 	{ResetStat} "reset" "timer" ";";
 
 SetStateStat:
-	{SetStateStat} "set" "state" (state=[State] | next?="next") ";";
+	{SetStateStat} "set" ((next?="next" "state") | ("state" state=[State])) ";";
 
 Function:
 	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
@@ -127,7 +127,7 @@ FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 IdReference:
-	GlobalVariable | ProcessVariable | EnumMember | Const;
+	PhysicalVariable | ProgramVariable | EnumMember | Const;
 	
 CheckStateExpression:
 	"process" process=[Process] "in" "state" qualfier=StateQualifier;
@@ -243,7 +243,6 @@ terminal BIT_XOR:
 terminal BIT_AND:
 	"&";
 
-	// TODO: move to another file
 terminal VOID_C_TYPE:
 	"void";
 

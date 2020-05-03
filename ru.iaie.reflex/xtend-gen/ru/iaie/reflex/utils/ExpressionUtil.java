@@ -8,7 +8,7 @@ import ru.iaie.reflex.reflex.PrimaryExpression;
 @SuppressWarnings("all")
 public class ExpressionUtil {
   public static boolean hasAssignment(final AssignmentExpression e) {
-    String _assignVar = e.getAssignVar();
+    IdReference _assignVar = e.getAssignVar();
     return (_assignVar != null);
   }
   

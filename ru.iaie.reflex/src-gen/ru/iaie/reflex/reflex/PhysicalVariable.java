@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getShared <em>Shared</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#isShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}</li>
@@ -23,29 +23,29 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface PhysicalVariable extends DeclaredVariable, GlobalVariable
+public interface PhysicalVariable extends DeclaredVariable, GlobalVariable, IdReference
 {
   /**
    * Returns the value of the '<em><b>Shared</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Shared</em>' attribute.
-   * @see #setShared(String)
+   * @see #setShared(boolean)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Shared()
    * @model
    * @generated
    */
-  String getShared();
+  boolean isShared();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getShared <em>Shared</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#isShared <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Shared</em>' attribute.
-   * @see #getShared()
+   * @see #isShared()
    * @generated
    */
-  void setShared(String value);
+  void setShared(boolean value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

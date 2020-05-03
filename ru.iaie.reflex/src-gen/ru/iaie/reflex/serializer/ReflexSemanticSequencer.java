@@ -151,13 +151,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.PHYSICAL_VARIABLE:
 				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()
-						|| rule == grammarAccess.getIdReferenceRule()) {
+						|| rule == grammarAccess.getDeclaredVariableRule()) {
 					sequence_DeclaredVariable_PhysicalVariable(context, (PhysicalVariable) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getGlobalVariableRule()
-						|| rule == grammarAccess.getPhysicalVariableRule()) {
+						|| rule == grammarAccess.getPhysicalVariableRule()
+						|| rule == grammarAccess.getIdReferenceRule()) {
 					sequence_PhysicalVariable(context, (PhysicalVariable) semanticObject); 
 					return; 
 				}
@@ -176,13 +176,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.PROGRAM_VARIABLE:
 				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()
-						|| rule == grammarAccess.getIdReferenceRule()) {
+						|| rule == grammarAccess.getDeclaredVariableRule()) {
 					sequence_DeclaredVariable_ProgramVariable(context, (ProgramVariable) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getGlobalVariableRule()
-						|| rule == grammarAccess.getProgramVariableRule()) {
+						|| rule == grammarAccess.getProgramVariableRule()
+						|| rule == grammarAccess.getIdReferenceRule()) {
 					sequence_ProgramVariable(context, (ProgramVariable) semanticObject); 
 					return; 
 				}
@@ -306,7 +306,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Expression returns AssignmentExpression
 	 *
 	 * Constraint:
-	 *     ((assignVar=ID assignOp=AssignOperator)? expr=LogicalOrExpression)
+	 *     ((assignVar=[IdReference|ID] assignOp=AssignOperator)? expr=LogicalOrExpression)
 	 */
 	protected void sequence_AssignmentExpression(ISerializationContext context, AssignmentExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -588,10 +588,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns PhysicalVariable
 	 *     DeclaredVariable returns PhysicalVariable
-	 *     IdReference returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=IntegerType name=ID port=RegisterPortMapping shared='shared'?)
+	 *     (type=IntegerType name=ID port=RegisterPortMapping shared?='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -602,10 +601,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns ProgramVariable
 	 *     DeclaredVariable returns ProgramVariable
-	 *     IdReference returns ProgramVariable
 	 *
 	 * Constraint:
-	 *     (type=ReflexType name=ID shared='shared'?)
+	 *     (type=ReflexType name=ID shared?='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -748,7 +746,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ProcessVariable returns ImportedVariable
 	 *     ImportedVariable returns ImportedVariable
-	 *     IdReference returns ImportedVariable
 	 *
 	 * Constraint:
 	 *     (variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]* process=[Process|ID])
@@ -894,6 +891,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     GlobalVariable returns PhysicalVariable
 	 *     PhysicalVariable returns PhysicalVariable
+	 *     IdReference returns PhysicalVariable
 	 *
 	 * Constraint:
 	 *     (type=IntegerType name=ID port=RegisterPortMapping)
@@ -1008,6 +1006,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     GlobalVariable returns ProgramVariable
 	 *     ProgramVariable returns ProgramVariable
+	 *     IdReference returns ProgramVariable
 	 *
 	 * Constraint:
 	 *     (type=ReflexType name=ID)
@@ -1136,7 +1135,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     SetStateStat returns SetStateStat
 	 *
 	 * Constraint:
-	 *     (state=[State|ID] | next?='next')
+	 *     (next?='next' | state=[State|ID])
 	 */
 	protected void sequence_SetStateStat(ISerializationContext context, SetStateStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

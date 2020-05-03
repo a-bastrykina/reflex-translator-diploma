@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.AssignOperator;
 import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -34,24 +35,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class AssignmentExpressionImpl extends ExpressionImpl implements AssignmentExpression
 {
   /**
-   * The default value of the '{@link #getAssignVar() <em>Assign Var</em>}' attribute.
+   * The cached value of the '{@link #getAssignVar() <em>Assign Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAssignVar()
    * @generated
    * @ordered
    */
-  protected static final String ASSIGN_VAR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getAssignVar() <em>Assign Var</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAssignVar()
-   * @generated
-   * @ordered
-   */
-  protected String assignVar = ASSIGN_VAR_EDEFAULT;
+  protected IdReference assignVar;
 
   /**
    * The default value of the '{@link #getAssignOp() <em>Assign Op</em>}' attribute.
@@ -110,7 +101,27 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public String getAssignVar()
+  public IdReference getAssignVar()
+  {
+    if (assignVar != null && assignVar.eIsProxy())
+    {
+      InternalEObject oldAssignVar = (InternalEObject)assignVar;
+      assignVar = (IdReference)eResolveProxy(oldAssignVar);
+      if (assignVar != oldAssignVar)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR, oldAssignVar, assignVar));
+      }
+    }
+    return assignVar;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IdReference basicGetAssignVar()
   {
     return assignVar;
   }
@@ -121,9 +132,9 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
    * @generated
    */
   @Override
-  public void setAssignVar(String newAssignVar)
+  public void setAssignVar(IdReference newAssignVar)
   {
-    String oldAssignVar = assignVar;
+    IdReference oldAssignVar = assignVar;
     assignVar = newAssignVar;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR, oldAssignVar, assignVar));
@@ -231,7 +242,8 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        return getAssignVar();
+        if (resolve) return getAssignVar();
+        return basicGetAssignVar();
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
         return getAssignOp();
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:
@@ -251,7 +263,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        setAssignVar((String)newValue);
+        setAssignVar((IdReference)newValue);
         return;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
         setAssignOp((AssignOperator)newValue);
@@ -274,7 +286,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        setAssignVar(ASSIGN_VAR_EDEFAULT);
+        setAssignVar((IdReference)null);
         return;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
         setAssignOp(ASSIGN_OP_EDEFAULT);
@@ -297,7 +309,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     switch (featureID)
     {
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_VAR:
-        return ASSIGN_VAR_EDEFAULT == null ? assignVar != null : !ASSIGN_VAR_EDEFAULT.equals(assignVar);
+        return assignVar != null;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__ASSIGN_OP:
         return assignOp != ASSIGN_OP_EDEFAULT;
       case ReflexPackage.ASSIGNMENT_EXPRESSION__EXPR:
@@ -317,9 +329,7 @@ public class AssignmentExpressionImpl extends ExpressionImpl implements Assignme
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (assignVar: ");
-    result.append(assignVar);
-    result.append(", assignOp: ");
+    result.append(" (assignOp: ");
     result.append(assignOp);
     result.append(')');
     return result.toString();

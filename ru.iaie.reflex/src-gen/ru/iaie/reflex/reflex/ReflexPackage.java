@@ -278,25 +278,6 @@ public interface ReflexPackage extends EPackage
   int STATE_FEATURE_COUNT = 5;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IdReferenceImpl <em>Id Reference</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.IdReferenceImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getIdReference()
-   * @generated
-   */
-  int ID_REFERENCE = 32;
-
-  /**
-   * The number of structural features of the '<em>Id Reference</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ID_REFERENCE_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ProcessVariableImpl <em>Process Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -313,7 +294,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROCESS_VARIABLE_FEATURE_COUNT = ID_REFERENCE_FEATURE_COUNT + 0;
+  int PROCESS_VARIABLE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl <em>Imported Variable</em>}' class.
@@ -388,7 +369,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GLOBAL_VARIABLE_FEATURE_COUNT = ID_REFERENCE_FEATURE_COUNT + 0;
+  int GLOBAL_VARIABLE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl <em>Physical Variable</em>}' class.
@@ -939,22 +920,22 @@ public interface ReflexPackage extends EPackage
   int SET_STATE_STAT = 23;
 
   /**
-   * The feature id for the '<em><b>State</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET_STATE_STAT__STATE = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Next</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SET_STATE_STAT__NEXT = STATEMENT_FEATURE_COUNT + 1;
+  int SET_STATE_STAT__NEXT = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>State</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SET_STATE_STAT__STATE = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Set State Stat</em>' class.
@@ -1074,6 +1055,25 @@ public interface ReflexPackage extends EPackage
    * @ordered
    */
   int REGISTER_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IdReferenceImpl <em>Id Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.IdReferenceImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getIdReference()
+   * @generated
+   */
+  int ID_REFERENCE = 32;
+
+  /**
+   * The number of structural features of the '<em>Id Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ID_REFERENCE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ConstImpl <em>Const</em>}' class.
@@ -2493,7 +2493,7 @@ public interface ReflexPackage extends EPackage
   int ASSIGNMENT_EXPRESSION = 47;
 
   /**
-   * The feature id for the '<em><b>Assign Var</b></em>' attribute.
+   * The feature id for the '<em><b>Assign Var</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3118,11 +3118,11 @@ public interface ReflexPackage extends EPackage
   EClass getPhysicalVariable();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PhysicalVariable#getShared <em>Shared</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PhysicalVariable#isShared <em>Shared</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Shared</em>'.
-   * @see ru.iaie.reflex.reflex.PhysicalVariable#getShared()
+   * @see ru.iaie.reflex.reflex.PhysicalVariable#isShared()
    * @see #getPhysicalVariable()
    * @generated
    */
@@ -3204,11 +3204,11 @@ public interface ReflexPackage extends EPackage
   EClass getProgramVariable();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ProgramVariable#getShared <em>Shared</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ProgramVariable#isShared <em>Shared</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Shared</em>'.
-   * @see ru.iaie.reflex.reflex.ProgramVariable#getShared()
+   * @see ru.iaie.reflex.reflex.ProgramVariable#isShared()
    * @see #getProgramVariable()
    * @generated
    */
@@ -3542,17 +3542,6 @@ public interface ReflexPackage extends EPackage
   EClass getSetStateStat();
 
   /**
-   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.SetStateStat#getState <em>State</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>State</em>'.
-   * @see ru.iaie.reflex.reflex.SetStateStat#getState()
-   * @see #getSetStateStat()
-   * @generated
-   */
-  EReference getSetStateStat_State();
-
-  /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.SetStateStat#isNext <em>Next</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3562,6 +3551,17 @@ public interface ReflexPackage extends EPackage
    * @generated
    */
   EAttribute getSetStateStat_Next();
+
+  /**
+   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.SetStateStat#getState <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>State</em>'.
+   * @see ru.iaie.reflex.reflex.SetStateStat#getState()
+   * @see #getSetStateStat()
+   * @generated
+   */
+  EReference getSetStateStat_State();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Function <em>Function</em>}'.
@@ -4211,15 +4211,15 @@ public interface ReflexPackage extends EPackage
   EClass getAssignmentExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}'.
+   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Assign Var</em>'.
+   * @return the meta object for the reference '<em>Assign Var</em>'.
    * @see ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar()
    * @see #getAssignmentExpression()
    * @generated
    */
-  EAttribute getAssignmentExpression_AssignVar();
+  EReference getAssignmentExpression_AssignVar();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignOp <em>Assign Op</em>}'.
@@ -5115,20 +5115,20 @@ public interface ReflexPackage extends EPackage
     EClass SET_STATE_STAT = eINSTANCE.getSetStateStat();
 
     /**
-     * The meta object literal for the '<em><b>State</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SET_STATE_STAT__STATE = eINSTANCE.getSetStateStat_State();
-
-    /**
      * The meta object literal for the '<em><b>Next</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute SET_STATE_STAT__NEXT = eINSTANCE.getSetStateStat_Next();
+
+    /**
+     * The meta object literal for the '<em><b>State</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SET_STATE_STAT__STATE = eINSTANCE.getSetStateStat_State();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.FunctionImpl <em>Function</em>}' class.
@@ -5667,12 +5667,12 @@ public interface ReflexPackage extends EPackage
     EClass ASSIGNMENT_EXPRESSION = eINSTANCE.getAssignmentExpression();
 
     /**
-     * The meta object literal for the '<em><b>Assign Var</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Assign Var</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASSIGNMENT_EXPRESSION__ASSIGN_VAR = eINSTANCE.getAssignmentExpression_AssignVar();
+    EReference ASSIGNMENT_EXPRESSION__ASSIGN_VAR = eINSTANCE.getAssignmentExpression_AssignVar();
 
     /**
      * The meta object literal for the '<em><b>Assign Op</b></em>' attribute feature.

@@ -22,24 +22,14 @@ import ru.iaie.reflex.reflex.State;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#getState <em>State</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#isNext <em>Next</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.SetStateStatImpl#getState <em>State</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SetStateStatImpl extends StatementImpl implements SetStateStat
 {
-  /**
-   * The cached value of the '{@link #getState() <em>State</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getState()
-   * @generated
-   * @ordered
-   */
-  protected State state;
-
   /**
    * The default value of the '{@link #isNext() <em>Next</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -61,6 +51,16 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   protected boolean next = NEXT_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getState() <em>State</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getState()
+   * @generated
+   * @ordered
+   */
+  protected State state;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -79,6 +79,31 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   protected EClass eStaticClass()
   {
     return ReflexPackage.Literals.SET_STATE_STAT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isNext()
+  {
+    return next;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNext(boolean newNext)
+  {
+    boolean oldNext = next;
+    next = newNext;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.SET_STATE_STAT__NEXT, oldNext, next));
   }
 
   /**
@@ -132,40 +157,15 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
    * @generated
    */
   @Override
-  public boolean isNext()
-  {
-    return next;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setNext(boolean newNext)
-  {
-    boolean oldNext = next;
-    next = newNext;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.SET_STATE_STAT__NEXT, oldNext, next));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case ReflexPackage.SET_STATE_STAT__NEXT:
+        return isNext();
       case ReflexPackage.SET_STATE_STAT__STATE:
         if (resolve) return getState();
         return basicGetState();
-      case ReflexPackage.SET_STATE_STAT__NEXT:
-        return isNext();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -180,11 +180,11 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE:
-        setState((State)newValue);
-        return;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         setNext((Boolean)newValue);
+        return;
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        setState((State)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -200,11 +200,11 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE:
-        setState((State)null);
-        return;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         setNext(NEXT_EDEFAULT);
+        return;
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        setState((State)null);
         return;
     }
     super.eUnset(featureID);
@@ -220,10 +220,10 @@ public class SetStateStatImpl extends StatementImpl implements SetStateStat
   {
     switch (featureID)
     {
-      case ReflexPackage.SET_STATE_STAT__STATE:
-        return state != null;
       case ReflexPackage.SET_STATE_STAT__NEXT:
         return next != NEXT_EDEFAULT;
+      case ReflexPackage.SET_STATE_STAT__STATE:
+        return state != null;
     }
     return super.eIsSet(featureID);
   }

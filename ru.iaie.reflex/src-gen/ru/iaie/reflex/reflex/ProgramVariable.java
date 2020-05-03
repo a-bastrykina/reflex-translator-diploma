@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getShared <em>Shared</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#isShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.ProgramVariable#getName <em>Name</em>}</li>
  * </ul>
@@ -22,29 +22,29 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface ProgramVariable extends DeclaredVariable, GlobalVariable
+public interface ProgramVariable extends DeclaredVariable, GlobalVariable, IdReference
 {
   /**
    * Returns the value of the '<em><b>Shared</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Shared</em>' attribute.
-   * @see #setShared(String)
+   * @see #setShared(boolean)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Shared()
    * @model
    * @generated
    */
-  String getShared();
+  boolean isShared();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getShared <em>Shared</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#isShared <em>Shared</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Shared</em>' attribute.
-   * @see #getShared()
+   * @see #isShared()
    * @generated
    */
-  void setShared(String value);
+  void setShared(boolean value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

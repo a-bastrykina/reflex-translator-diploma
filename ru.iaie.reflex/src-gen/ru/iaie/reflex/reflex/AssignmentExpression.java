@@ -25,26 +25,26 @@ package ru.iaie.reflex.reflex;
 public interface AssignmentExpression extends Expression
 {
   /**
-   * Returns the value of the '<em><b>Assign Var</b></em>' attribute.
+   * Returns the value of the '<em><b>Assign Var</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Assign Var</em>' attribute.
-   * @see #setAssignVar(String)
+   * @return the value of the '<em>Assign Var</em>' reference.
+   * @see #setAssignVar(IdReference)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getAssignmentExpression_AssignVar()
    * @model
    * @generated
    */
-  String getAssignVar();
+  IdReference getAssignVar();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.AssignmentExpression#getAssignVar <em>Assign Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Assign Var</em>' attribute.
+   * @param value the new value of the '<em>Assign Var</em>' reference.
    * @see #getAssignVar()
    * @generated
    */
-  void setAssignVar(String value);
+  void setAssignVar(IdReference value);
 
   /**
    * Returns the value of the '<em><b>Assign Op</b></em>' attribute.

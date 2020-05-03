@@ -5,6 +5,8 @@ package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
@@ -15,7 +17,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class GlobalVariableImpl extends IdReferenceImpl implements GlobalVariable
+public class GlobalVariableImpl extends MinimalEObjectImpl.Container implements GlobalVariable
 {
   /**
    * <!-- begin-user-doc -->

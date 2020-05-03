@@ -9,12 +9,14 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ImportedVariable;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.State;
@@ -62,8 +64,8 @@ public class ReflexModelUtil {
     return (_process == null);
   }
   
-  public static boolean selfError(final ErrorStat sps) {
-    ru.iaie.reflex.reflex.Process _process = sps.getProcess();
+  public static boolean selfError(final ErrorStat es) {
+    ru.iaie.reflex.reflex.Process _process = es.getProcess();
     return (_process == null);
   }
   
@@ -77,17 +79,39 @@ public class ReflexModelUtil {
     return (_ref != null);
   }
   
-  public static String resolveName(final IdReference ref) {
+  public static boolean hasTimeout(final State s) {
+    TimeoutFunction _timeoutFunction = s.getTimeoutFunction();
+    return (_timeoutFunction != null);
+  }
+  
+  public static boolean isShared(final ProcessVariable v) {
     boolean _matched = false;
-    if (ref instanceof ImportedVariable) {
+    if (v instanceof ProgramVariable) {
       _matched=true;
-      return ReflexModelUtil.resolveName(((ImportedVariable)ref).getVariables().get(0));
+      return ((ProgramVariable)v).isShared();
     }
     if (!_matched) {
-      if (ref instanceof ProgramVariable) {
+      if (v instanceof PhysicalVariable) {
         _matched=true;
-        return ((ProgramVariable)ref).getName();
+        return ((PhysicalVariable)v).isShared();
       }
+    }
+    return false;
+  }
+  
+  public static boolean isDeclared(final ProcessVariable v) {
+    return (v instanceof DeclaredVariable);
+  }
+  
+  public static boolean isImportedList(final ProcessVariable v) {
+    return (v instanceof ImportedVariable);
+  }
+  
+  public static String resolveName(final IdReference ref) {
+    boolean _matched = false;
+    if (ref instanceof ProgramVariable) {
+      _matched=true;
+      return ((ProgramVariable)ref).getName();
     }
     if (!_matched) {
       if (ref instanceof PhysicalVariable) {

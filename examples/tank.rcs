@@ -16,7 +16,7 @@ enum CA2GUI { CA2GUI_X_LEVEL=0,
 		CA2GUI_U_LEVEL=1 }
 
 int GetNextMsgGUI(void);
-int  GetMsgGUICode(void);	
+int  GetMsgGUICode(void);
 float  GetFloatParamGUI(void);	
 float  PortsToFloat(int , int , int , int);
 int GetBit(float, int);
@@ -63,9 +63,7 @@ process INIT {
 	}
 }
 
-process ReadInputMsgs {
-	shared XD from process INIT;
-	
+process ReadInputMsgs {	
 	state StartReading looped {
     	if (GetNextMsgGUI()) {
 			msg_code = GetMsgGUICode();
@@ -76,9 +74,7 @@ process ReadInputMsgs {
 	}
 }
 
-process READ_ADC {
-	shared X, X_BIT0, X_BIT1, X_BIT2, X_BIT3 from process INIT;
-	
+process READ_ADC {	
 	state READ looped {
 		X = PortsToFloat(X_BIT0, X_BIT1, X_BIT2, X_BIT3);
 	/*	SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */
@@ -91,14 +87,13 @@ process READ_ADC {
 /*U - control signal */
 /*U_MAX - maximum value of the control signal */
 process CONTROLLER {
-	shared  X, XD, U from process INIT;
 	float Sum;
 	float E;
 
 	state Init {
 		Sum = 0.0;
 		E = 0.0;
-		set state next;
+		set next state;
 	}
 	
 	state NormalPIControl {
@@ -129,12 +124,11 @@ process CONTROLLER {
 
 
 process Filter {
-	shared U from process INIT;
 	float U_Prev;
 	
 	state Init {
 		U_Prev = U_MIN;
-		set state next;
+		set next state;
 	}
 	
 	state Filtering looped {
@@ -154,9 +148,7 @@ process Filter {
 
 
 
-process WRITE_DAC {
-	shared  U, U_BIT0, U_BIT1, U_BIT2, U_BIT3 from process INIT;
-	
+process WRITE_DAC {	
 	state WRITE looped {
 		U_BIT0 = GetBit(U, 0);
 		U_BIT1 = GetBit(U, 1);
@@ -170,7 +162,6 @@ process WRITE_DAC {
 }
 
 process Info {
-	shared X, U, U_BIT0, U_BIT1, U_BIT2, U_BIT3 from process INIT;
 	state Idiling {
 		timeout 50 {		
 			/*SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */

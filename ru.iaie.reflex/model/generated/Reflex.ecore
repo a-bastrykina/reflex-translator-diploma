@@ -39,16 +39,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFunction" eType="#//TimeoutFunction"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable" eSuperTypes="#//IdReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//ProcessVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
         upperBound="-1" eType="#//DeclaredVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredVariable" eSuperTypes="#//ProcessVariable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//IdReference"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable #//IdReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//RegisterPortMapping"
@@ -58,8 +58,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="register" eType="#//Register"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="portBit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable #//IdReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ReflexType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -110,8 +110,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="RestartStat" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ResetStat" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetStateStat" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="next" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//CType"
@@ -213,7 +213,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignVar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignVar" eType="#//IdReference"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignOp" eType="#//AssignOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//LogicalOrExpression"
         containment="true"/>

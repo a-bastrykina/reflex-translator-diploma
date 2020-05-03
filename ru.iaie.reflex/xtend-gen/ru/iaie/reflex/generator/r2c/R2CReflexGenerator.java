@@ -655,22 +655,29 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder.append(" + 1);");
       return _builder.toString();
     }
-    final State stateToSet = sss.getState();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("Set_State(");
     String _processId_1 = this.identifiersHelper.getProcessId(proc);
     _builder_1.append(_processId_1);
     _builder_1.append(", ");
-    String _stateId_1 = this.identifiersHelper.getStateId(proc, stateToSet);
+    String _stateId_1 = this.identifiersHelper.getStateId(proc, sss.getState());
     _builder_1.append(_stateId_1);
     _builder_1.append(");");
     return _builder_1.toString();
   }
   
   public String translateStopProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StopProcStat sps) {
+    ru.iaie.reflex.reflex.Process _xifexpression = null;
+    boolean _selfStop = ReflexModelUtil.selfStop(sps);
+    if (_selfStop) {
+      _xifexpression = proc;
+    } else {
+      _xifexpression = sps.getProcess();
+    }
+    final ru.iaie.reflex.reflex.Process procToStop = _xifexpression;
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Stop(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
+    String _processId = this.identifiersHelper.getProcessId(procToStop);
     _builder.append(_processId);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
@@ -678,10 +685,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public String translateStartProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StartProcStat sps) {
-    final ru.iaie.reflex.reflex.Process procToStart = ReflexModelUtil.findProcessByName(ReflexModelUtil.getProgram(proc.eResource()), sps.getProcess().getName());
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Start(");
-    String _processId = this.identifiersHelper.getProcessId(procToStart);
+    String _processId = this.identifiersHelper.getProcessId(sps.getProcess());
     _builder.append(_processId);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
@@ -778,7 +784,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
     if (!_matched) {
       if (expr instanceof IdReference) {
         _matched=true;
-        return ReflexModelUtil.resolveName(((IdReference)expr));
+        StringConcatenation _builder = new StringConcatenation();
+        String _id = this.identifiersHelper.getId(ReflexModelUtil.resolveName(((IdReference)expr)));
+        _builder.append(_id);
+        return _builder.toString();
       }
     }
     if (!_matched) {
@@ -962,19 +971,19 @@ public class R2CReflexGenerator extends AbstractGenerator {
         boolean _hasAssignment = ExpressionUtil.hasAssignment(((AssignmentExpression)expr));
         if (_hasAssignment) {
           StringConcatenation _builder = new StringConcatenation();
-          String _id = this.identifiersHelper.getId(((AssignmentExpression)expr).getAssignVar());
-          _builder.append(_id);
+          String _translateExpr = this.translateExpr(((AssignmentExpression)expr).getAssignVar());
+          _builder.append(_translateExpr);
           _builder.append(" ");
           AssignOperator _assignOp = ((AssignmentExpression)expr).getAssignOp();
           _builder.append(_assignOp);
           _builder.append(" ");
-          String _translateExpr = this.translateExpr(((AssignmentExpression)expr).getExpr());
-          _builder.append(_translateExpr);
+          String _translateExpr_1 = this.translateExpr(((AssignmentExpression)expr).getExpr());
+          _builder.append(_translateExpr_1);
           return _builder.toString();
         }
         StringConcatenation _builder_1 = new StringConcatenation();
-        String _translateExpr_1 = this.translateExpr(((AssignmentExpression)expr).getExpr());
-        _builder_1.append(_translateExpr_1);
+        String _translateExpr_2 = this.translateExpr(((AssignmentExpression)expr).getExpr());
+        _builder_1.append(_translateExpr_2);
         return _builder_1.toString();
       }
     }

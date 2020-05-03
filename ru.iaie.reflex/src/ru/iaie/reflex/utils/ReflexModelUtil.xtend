@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import ru.iaie.reflex.reflex.EnumMember
 import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.ErrorStat
-import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.ImportedVariable
 import ru.iaie.reflex.reflex.ProgramVariable
@@ -15,6 +14,7 @@ import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.TimeoutFunction
+import ru.iaie.reflex.reflex.DeclaredVariable
 
 class ReflexModelUtil {
 	def static State findStateByName(Process proc, String stateName) {
@@ -41,8 +41,8 @@ class ReflexModelUtil {
 		return sps.process === null
 	}
 
-	def static boolean selfError(ErrorStat sps) {
-		return sps.process === null
+	def static boolean selfError(ErrorStat es) {
+		return es.process === null
 	}
 	
 	def static boolean isClearTimeout(TimeoutFunction f) {
@@ -53,12 +53,30 @@ class ReflexModelUtil {
 		return f.ref !== null
 	}
 	
+	def static boolean hasTimeout(State s) {
+		return s.timeoutFunction !== null
+	}
+	
+	def static boolean isShared(ProcessVariable v) {
+		switch v {
+			ProgramVariable:
+				return v.shared
+			PhysicalVariable:
+				return v.shared
+		}
+		return false
+	}
+	
+	def static boolean isDeclared(ProcessVariable v) {
+		return v instanceof DeclaredVariable
+	}
+	
+	def static boolean isImportedList(ProcessVariable v) {
+		return v instanceof ImportedVariable
+	}
 	
 	def static String resolveName(IdReference ref) {
-		switch (ref) {
-			// TODO ????
-			ImportedVariable:
-				return resolveName(ref.variables.get(0))
+		switch ref {
 			ProgramVariable:
 				return ref.name
 			PhysicalVariable:

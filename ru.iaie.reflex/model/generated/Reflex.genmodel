@@ -153,8 +153,8 @@
     <genClasses ecoreClass="Reflex.ecore#//RestartStat"/>
     <genClasses ecoreClass="Reflex.ecore#//ResetStat"/>
     <genClasses ecoreClass="Reflex.ecore#//SetStateStat">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//SetStateStat/state"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//SetStateStat/next"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//SetStateStat/state"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Function">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Function/returnType"/>
@@ -235,7 +235,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//LogicalOrExpression/right"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//AssignmentExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignmentExpression/assignVar"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//AssignmentExpression/assignVar"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//AssignmentExpression/assignOp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AssignmentExpression/expr"/>
     </genClasses>

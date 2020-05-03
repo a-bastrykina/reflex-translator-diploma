@@ -74,4 +74,6 @@ class ReflexValidator extends AbstractReflexValidator {
 		}
 	}
 
+	// TODO: error when assigned to const or enum
+
 }

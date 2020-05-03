@@ -54,7 +54,6 @@ import ru.iaie.reflex.reflex.IdReference
 //		generateMain(resource, fsa, context)
 //
 //
-
 class R2CReflexGenerator extends AbstractGenerator {
 
 	// TODO: move to singleton with configuration
@@ -93,13 +92,13 @@ class R2CReflexGenerator extends AbstractGenerator {
 			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
 		}
 	}
-	
+
 	def generateInput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		
+		// TODO
 	}
-	
+
 	def generateOutput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		
+		// TODO
 	}
 
 	// TODO: rename
@@ -153,7 +152,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	// TODO: split to global and process
 	def generateProcessVariables(Resource resource) {
 		return '''
-			«FOR variable: program.globalVars»
+			«FOR variable : program.globalVars»
 				«generateGlobalVariableDefinition(variable)»
 			«ENDFOR»
 			«FOR proc : program.processes»
@@ -163,26 +162,26 @@ class R2CReflexGenerator extends AbstractGenerator {
 			«ENDFOR»
 		'''
 	}
-	
+
 	def generateProcessVariableDefinition(Process proc, ProcessVariable variable) {
 		return '''
 			«IF (variable instanceof ProgramVariable)»
-			// TODO: fix type getting
-			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
+				// TODO: fix type getting
+				«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
 			«ENDIF»
 			«IF (variable instanceof PhysicalVariable)»
-			«variable.type» «identifiersHelper.getProcessVariableId(proc, variable)»;
+				«variable.type» «identifiersHelper.getProcessVariableId(proc, variable)»;
 			«ENDIF»
 		'''
 	}
-	
+
 	def generateGlobalVariableDefinition(GlobalVariable variable) {
 		return '''
 			«IF (variable instanceof ProgramVariable)»
-			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getGlobalVariableId(variable)»;
+				«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getGlobalVariableId(variable)»;
 			«ENDIF»
 			«IF (variable instanceof PhysicalVariable)»
-			«variable.type» «identifiersHelper.getGlobalVariableId(variable)»;
+				«variable.type» «identifiersHelper.getGlobalVariableId(variable)»;
 			«ENDIF»
 		'''
 	}
@@ -278,10 +277,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 				«translateStatement(proc, state, func.body)»
 		'''
 	}
-	
+
 	def translateTimeout(TimeoutFunction func) {
-		if (func.isClearTimeout) return func.time.ticks
-		if (func.isReferencedTimeout) identifiersHelper.getId(func.ref.resolveName);
+		if(func.isClearTimeout) return func.time.ticks
+		if(func.isReferencedTimeout) identifiersHelper.getId(func.ref.resolveName);
 	}
 
 	def String translateStatement(Process proc, State state, EObject statement) {
@@ -323,29 +322,26 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateResetTimer(Process proc, State state) {
-		return '''Reset_Timer(«identifiersHelper.getProcessId(proc)»);''' 
+		return '''Reset_Timer(«identifiersHelper.getProcessId(proc)»);'''
 	}
 
 	def translateSetStateStat(Process proc, State state, SetStateStat sss) {
 		if (sss.isNext) {
 			return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, state)» + 1);'''
 		}
-
-		val stateToSet = sss.state
-		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, stateToSet)»);'''
+		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, sss.state)»);'''
 	}
 
 	def translateStopProcStat(Process proc, State state, StopProcStat sps) {
-		return '''
-			Set_Stop(«identifiersHelper.getProcessId(proc)»);
-		'''
+		val procToStop = sps.selfStop ? proc : sps.process 
+			return '''
+				Set_Stop(«identifiersHelper.getProcessId(procToStop)»);
+			'''
 	}
 
 	def translateStartProcStat(Process proc, State state, StartProcStat sps) {
-		// TODO: move to validation checks
-		val procToStart = proc.eResource.program.findProcessByName(sps.process.name)
 		return '''
-			Set_Start(«identifiersHelper.getProcessId(procToStart)»);
+			Set_Start(«identifiersHelper.getProcessId(sps.process)»);
 		'''
 	}
 
@@ -376,7 +372,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			FunctionCall:
 				return '''«expr.function.name»(«String.join(",", expr.args.map[translateExpr])»)'''
 			IdReference:
-				return expr.resolveName
+				return '''«identifiersHelper.getId(expr.resolveName)»'''
 			PrimaryExpression: {
 				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
 				return NodeModelUtils.getNode(expr).text.trim
@@ -407,7 +403,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return '''«translateExpr(expr.left)» || «translateExpr(expr.right)»'''
 			AssignmentExpression: {
 				if (expr.hasAssignment)
-					return '''«identifiersHelper.getId(expr.assignVar)» «expr.assignOp» «translateExpr(expr.expr)»'''
+					return '''«translateExpr(expr.assignVar)» «expr.assignOp» «translateExpr(expr.expr)»'''
 				return '''«translateExpr(expr.expr)»'''
 			}
 		}

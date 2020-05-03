@@ -1,17 +1,4 @@
 program PuffinCrossing
-/* To simplify traffic light works uses 2 sattes only (not with three colors
-(red, yellow, green)). The system has
-one input signal:
-I_BUTTON,
-and control signal:
-O_CROSSWALK.
-The structure of the solution of the problem:
-A. The base process is the TrafficLightCycle, which implements
-cycle - 1 min. pause, 30 seconds - crosswalk alowing, then permission
-for vehicle and stop.
-B. All is controlled by the Waiting Button process. When button appears
-the proc does the following - looks if the TrafficLightCycle process is
-stopped (in a passive state) - then the proc starts it ... */
 {
 clock 10; 
 const bool ON=true;
@@ -26,32 +13,27 @@ const int BA_FPGA3_U1=0XA910; /* OUTPUT */
 input  INPUTS 0 0 8; 
 output OUTPUTS 0 0 8; 
 
-bool I_BUTTON = INPUTS[0];
-bool O_CROSSWALK = OUTPUTS[0];
 
 process WaitingButton{ 
-  state Begin{
-    O_CROSSWALK = OFF;
-    set state next; 
-  }
-  state CheckButton looped {
-    if (I_BUTTON) { /* Vehicle ? */
-     if (process TrafficLightCycle in state inactive) 
-        start process TrafficLightCycle;
-      }
+	bool I_BUTTON = INPUTS[0] shared;
+	bool O_CROSSWALK = OUTPUTS[0] shared;
+  	state Begin{
+    	O_CROSSWALK = OFF;
+    	set next state; 
+  	}
+  	state CheckButton looped {
+    	if (I_BUTTON) { /* Vehicle ? */
+     	if (process TrafficLightCycle in state inactive) 
+        	start process TrafficLightCycle;
+      	}
     }
-  }
+ }
 
-process TrafficLightCycle { /* working out one cycle of the traffic light:
-                           * 1 min - green for freeway,
-                           * 30 s - prohibition of motorway traffic
-                           * stop */
-
-shared O_CROSSWALK from process WaitingButton ;
-
+process TrafficLightCycle {
+  shared O_CROSSWALK from process WaitingButton;                       
   state Pause1min{
-    O_CROSSWALK = OFF;
-    timeout MINUTE set state next;
+    O_CROSSWALK = ON;
+    timeout MINUTE set next state;
   }
   state LetCrossWalking30sec{
     O_CROSSWALK = ON;
