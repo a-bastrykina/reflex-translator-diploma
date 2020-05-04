@@ -60,13 +60,13 @@ public interface ReflexFactory extends EFactory
   ProcessVariable createProcessVariable();
 
   /**
-   * Returns a new object of class '<em>Imported Variable</em>'.
+   * Returns a new object of class '<em>Imported Variable List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Imported Variable</em>'.
+   * @return a new object of class '<em>Imported Variable List</em>'.
    * @generated
    */
-  ImportedVariable createImportedVariable();
+  ImportedVariableList createImportedVariableList();
 
   /**
    * Returns a new object of class '<em>Declared Variable</em>'.

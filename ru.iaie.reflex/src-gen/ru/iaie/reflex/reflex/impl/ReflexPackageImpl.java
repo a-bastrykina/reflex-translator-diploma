@@ -40,7 +40,7 @@ import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
@@ -120,7 +120,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass importedVariableEClass = null;
+  private EClass importedVariableListEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -867,9 +867,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getImportedVariable()
+  public EClass getImportedVariableList()
   {
-    return importedVariableEClass;
+    return importedVariableListEClass;
   }
 
   /**
@@ -878,9 +878,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getImportedVariable_Variables()
+  public EReference getImportedVariableList_Variables()
   {
-    return (EReference)importedVariableEClass.getEStructuralFeatures().get(0);
+    return (EReference)importedVariableListEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -889,9 +889,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getImportedVariable_Process()
+  public EReference getImportedVariableList_Process()
   {
-    return (EReference)importedVariableEClass.getEStructuralFeatures().get(1);
+    return (EReference)importedVariableListEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2425,9 +2425,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     processVariableEClass = createEClass(PROCESS_VARIABLE);
 
-    importedVariableEClass = createEClass(IMPORTED_VARIABLE);
-    createEReference(importedVariableEClass, IMPORTED_VARIABLE__VARIABLES);
-    createEReference(importedVariableEClass, IMPORTED_VARIABLE__PROCESS);
+    importedVariableListEClass = createEClass(IMPORTED_VARIABLE_LIST);
+    createEReference(importedVariableListEClass, IMPORTED_VARIABLE_LIST__VARIABLES);
+    createEReference(importedVariableListEClass, IMPORTED_VARIABLE_LIST__PROCESS);
 
     declaredVariableEClass = createEClass(DECLARED_VARIABLE);
 
@@ -2645,7 +2645,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    importedVariableEClass.getESuperTypes().add(this.getProcessVariable());
+    importedVariableListEClass.getESuperTypes().add(this.getProcessVariable());
     declaredVariableEClass.getESuperTypes().add(this.getProcessVariable());
     physicalVariableEClass.getESuperTypes().add(this.getDeclaredVariable());
     physicalVariableEClass.getESuperTypes().add(this.getGlobalVariable());
@@ -2713,9 +2713,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(processVariableEClass, ProcessVariable.class, "ProcessVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(importedVariableEClass, ImportedVariable.class, "ImportedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getImportedVariable_Variables(), this.getDeclaredVariable(), null, "variables", null, 0, -1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImportedVariable_Process(), this.getProcess(), null, "process", null, 0, 1, ImportedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(importedVariableListEClass, ImportedVariableList.class, "ImportedVariableList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImportedVariableList_Variables(), this.getDeclaredVariable(), null, "variables", null, 0, -1, ImportedVariableList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImportedVariableList_Process(), this.getProcess(), null, "process", null, 0, 1, ImportedVariableList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(declaredVariableEClass, DeclaredVariable.class, "DeclaredVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

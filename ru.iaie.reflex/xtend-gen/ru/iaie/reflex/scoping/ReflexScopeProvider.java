@@ -18,7 +18,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
@@ -43,11 +43,11 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
       final EList<State> candidates = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ctx, ru.iaie.reflex.reflex.Process.class).getStates();
       return Scopes.scopeFor(candidates);
     }
-    if (((ctx instanceof ImportedVariable) && Objects.equal(ref, this.ePackage.getImportedVariable_Variables()))) {
+    if (((ctx instanceof ImportedVariableList) && Objects.equal(ref, this.ePackage.getImportedVariableList_Variables()))) {
       final Function1<ProcessVariable, Boolean> _function = (ProcessVariable it) -> {
         return Boolean.valueOf(ReflexModelUtil.isShared(it));
       };
-      final Iterable<ProcessVariable> candidates_1 = IterableExtensions.<ProcessVariable>filter(((ImportedVariable) ctx).getProcess().getVariables(), _function);
+      final Iterable<ProcessVariable> candidates_1 = IterableExtensions.<ProcessVariable>filter(((ImportedVariableList) ctx).getProcess().getVariables(), _function);
       return Scopes.scopeFor(candidates_1);
     }
     if ((ctx instanceof PrimaryExpression)) {
@@ -68,10 +68,10 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
             return Boolean.valueOf(ReflexModelUtil.isDeclared(it));
           };
           Iterables.<EObject>addAll(candidates_2, IterableExtensions.<ProcessVariable>filter(proc.getVariables(), _function_2));
-          final Function1<ImportedVariable, EList<DeclaredVariable>> _function_3 = (ImportedVariable it) -> {
+          final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_3 = (ImportedVariableList it) -> {
             return it.getVariables();
           };
-          Iterables.<EObject>addAll(candidates_2, Iterables.<EObject>concat(IterableExtensions.<ImportedVariable, EList<DeclaredVariable>>map(Iterables.<ImportedVariable>filter(proc.getVariables(), ImportedVariable.class), _function_3)));
+          Iterables.<EObject>addAll(candidates_2, Iterables.<EObject>concat(IterableExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(Iterables.<ImportedVariableList>filter(proc.getVariables(), ImportedVariableList.class), _function_3)));
         }
         return Scopes.scopeFor(candidates_2);
       }
@@ -89,10 +89,10 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
             return Boolean.valueOf(ReflexModelUtil.isDeclared(it));
           };
           Iterables.<EObject>addAll(candidates_3, IterableExtensions.<ProcessVariable>filter(proc_1.getVariables(), _function_4));
-          final Function1<ImportedVariable, EList<DeclaredVariable>> _function_5 = (ImportedVariable it) -> {
+          final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_5 = (ImportedVariableList it) -> {
             return it.getVariables();
           };
-          Iterables.<EObject>addAll(candidates_3, Iterables.<EObject>concat(IterableExtensions.<ImportedVariable, EList<DeclaredVariable>>map(Iterables.<ImportedVariable>filter(proc_1.getVariables(), ImportedVariable.class), _function_5)));
+          Iterables.<EObject>addAll(candidates_3, Iterables.<EObject>concat(IterableExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(Iterables.<ImportedVariableList>filter(proc_1.getVariables(), ImportedVariableList.class), _function_5)));
         }
         return Scopes.scopeFor(candidates_3);
       }

@@ -94,9 +94,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ProcessVariable"/>
-    <genClasses ecoreClass="Reflex.ecore#//ImportedVariable">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/variables"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariable/process"/>
+    <genClasses ecoreClass="Reflex.ecore#//ImportedVariableList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariableList/variables"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariableList/process"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//DeclaredVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//GlobalVariable"/>

@@ -1383,12 +1383,12 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProcessVariable"
-    // InternalReflex.g:536:1: ruleProcessVariable returns [EObject current=null] : ( (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' ) ;
+    // InternalReflex.g:536:1: ruleProcessVariable returns [EObject current=null] : ( (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' ) ;
     public final EObject ruleProcessVariable() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_ImportedVariable_0 = null;
+        EObject this_ImportedVariableList_0 = null;
 
         EObject this_DeclaredVariable_1 = null;
 
@@ -1397,13 +1397,13 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReflex.g:542:2: ( ( (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' ) )
-            // InternalReflex.g:543:2: ( (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' )
+            // InternalReflex.g:542:2: ( ( (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' ) )
+            // InternalReflex.g:543:2: ( (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' )
             {
-            // InternalReflex.g:543:2: ( (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' )
-            // InternalReflex.g:544:3: (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';'
+            // InternalReflex.g:543:2: ( (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';' )
+            // InternalReflex.g:544:3: (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable ) otherlv_2= ';'
             {
-            // InternalReflex.g:544:3: (this_ImportedVariable_0= ruleImportedVariable | this_DeclaredVariable_1= ruleDeclaredVariable )
+            // InternalReflex.g:544:3: (this_ImportedVariableList_0= ruleImportedVariableList | this_DeclaredVariable_1= ruleDeclaredVariable )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1422,21 +1422,21 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalReflex.g:545:4: this_ImportedVariable_0= ruleImportedVariable
+                    // InternalReflex.g:545:4: this_ImportedVariableList_0= ruleImportedVariableList
                     {
                     if ( state.backtracking==0 ) {
 
-                      				newCompositeNode(grammarAccess.getProcessVariableAccess().getImportedVariableParserRuleCall_0_0());
+                      				newCompositeNode(grammarAccess.getProcessVariableAccess().getImportedVariableListParserRuleCall_0_0());
                       			
                     }
                     pushFollow(FOLLOW_17);
-                    this_ImportedVariable_0=ruleImportedVariable();
+                    this_ImportedVariableList_0=ruleImportedVariableList();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = this_ImportedVariable_0;
+                      				current = this_ImportedVariableList_0;
                       				afterParserOrEnumRuleCall();
                       			
                     }
@@ -1498,28 +1498,28 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleProcessVariable"
 
 
-    // $ANTLR start "entryRuleImportedVariable"
-    // InternalReflex.g:571:1: entryRuleImportedVariable returns [EObject current=null] : iv_ruleImportedVariable= ruleImportedVariable EOF ;
-    public final EObject entryRuleImportedVariable() throws RecognitionException {
+    // $ANTLR start "entryRuleImportedVariableList"
+    // InternalReflex.g:571:1: entryRuleImportedVariableList returns [EObject current=null] : iv_ruleImportedVariableList= ruleImportedVariableList EOF ;
+    public final EObject entryRuleImportedVariableList() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleImportedVariable = null;
+        EObject iv_ruleImportedVariableList = null;
 
 
         try {
-            // InternalReflex.g:571:57: (iv_ruleImportedVariable= ruleImportedVariable EOF )
-            // InternalReflex.g:572:2: iv_ruleImportedVariable= ruleImportedVariable EOF
+            // InternalReflex.g:571:61: (iv_ruleImportedVariableList= ruleImportedVariableList EOF )
+            // InternalReflex.g:572:2: iv_ruleImportedVariableList= ruleImportedVariableList EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getImportedVariableRule()); 
+               newCompositeNode(grammarAccess.getImportedVariableListRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleImportedVariable=ruleImportedVariable();
+            iv_ruleImportedVariableList=ruleImportedVariableList();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleImportedVariable; 
+               current =iv_ruleImportedVariableList; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -1535,12 +1535,12 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleImportedVariable"
+    // $ANTLR end "entryRuleImportedVariableList"
 
 
-    // $ANTLR start "ruleImportedVariable"
-    // InternalReflex.g:578:1: ruleImportedVariable returns [EObject current=null] : (otherlv_0= 'shared' ( ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) otherlv_4= 'from' otherlv_5= 'process' ( (otherlv_6= RULE_ID ) ) ) ;
-    public final EObject ruleImportedVariable() throws RecognitionException {
+    // $ANTLR start "ruleImportedVariableList"
+    // InternalReflex.g:578:1: ruleImportedVariableList returns [EObject current=null] : (otherlv_0= 'shared' ( ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) otherlv_4= 'from' otherlv_5= 'process' ( (otherlv_6= RULE_ID ) ) ) ;
+    public final EObject ruleImportedVariableList() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -1564,7 +1564,7 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             otherlv_0=(Token)match(input,48,FOLLOW_3); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_0, grammarAccess.getImportedVariableAccess().getSharedKeyword_0());
+              			newLeafNode(otherlv_0, grammarAccess.getImportedVariableListAccess().getSharedKeyword_0());
               		
             }
             // InternalReflex.g:590:3: ( ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
@@ -1579,14 +1579,14 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               						if (current==null) {
-              							current = createModelElement(grammarAccess.getImportedVariableRule());
+              							current = createModelElement(grammarAccess.getImportedVariableListRule());
               						}
               					
             }
             otherlv_1=(Token)match(input,RULE_ID,FOLLOW_18); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              						newLeafNode(otherlv_1, grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_0_0());
+              						newLeafNode(otherlv_1, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_0_0());
               					
             }
 
@@ -1613,7 +1613,7 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             	    otherlv_2=(Token)match(input,49,FOLLOW_3); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      					newLeafNode(otherlv_2, grammarAccess.getImportedVariableAccess().getCommaKeyword_1_1_0());
+            	      					newLeafNode(otherlv_2, grammarAccess.getImportedVariableListAccess().getCommaKeyword_1_1_0());
             	      				
             	    }
             	    // InternalReflex.g:609:5: ( (otherlv_3= RULE_ID ) )
@@ -1625,14 +1625,14 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      							if (current==null) {
-            	      								current = createModelElement(grammarAccess.getImportedVariableRule());
+            	      								current = createModelElement(grammarAccess.getImportedVariableListRule());
             	      							}
             	      						
             	    }
             	    otherlv_3=(Token)match(input,RULE_ID,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      							newLeafNode(otherlv_3, grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0());
+            	      							newLeafNode(otherlv_3, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0());
             	      						
             	    }
 
@@ -1656,13 +1656,13 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             otherlv_4=(Token)match(input,50,FOLLOW_19); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_4, grammarAccess.getImportedVariableAccess().getFromKeyword_2());
+              			newLeafNode(otherlv_4, grammarAccess.getImportedVariableListAccess().getFromKeyword_2());
               		
             }
             otherlv_5=(Token)match(input,44,FOLLOW_3); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_5, grammarAccess.getImportedVariableAccess().getProcessKeyword_3());
+              			newLeafNode(otherlv_5, grammarAccess.getImportedVariableListAccess().getProcessKeyword_3());
               		
             }
             // InternalReflex.g:632:3: ( (otherlv_6= RULE_ID ) )
@@ -1674,14 +1674,14 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               					if (current==null) {
-              						current = createModelElement(grammarAccess.getImportedVariableRule());
+              						current = createModelElement(grammarAccess.getImportedVariableListRule());
               					}
               				
             }
             otherlv_6=(Token)match(input,RULE_ID,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              					newLeafNode(otherlv_6, grammarAccess.getImportedVariableAccess().getProcessProcessCrossReference_4_0());
+              					newLeafNode(otherlv_6, grammarAccess.getImportedVariableListAccess().getProcessProcessCrossReference_4_0());
               				
             }
 
@@ -1711,7 +1711,7 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleImportedVariable"
+    // $ANTLR end "ruleImportedVariableList"
 
 
     // $ANTLR start "entryRuleDeclaredVariable"

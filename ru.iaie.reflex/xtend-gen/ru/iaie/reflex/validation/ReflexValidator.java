@@ -3,19 +3,31 @@
  */
 package ru.iaie.reflex.validation;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
+import ru.iaie.reflex.reflex.IdReference;
+import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
 
@@ -106,10 +118,49 @@ public class ReflexValidator extends AbstractReflexValidator {
     final String procName = errorStat.getProcess().getName();
     boolean _equals = selfProcess.getName().equals(procName);
     if (_equals) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Use \'error\' without argument to set current process state to error");
-      this.warning(_builder.toString(), 
+      this.warning("Use \'error\' without argument to set current process state to error", 
         ReflexPackage.eINSTANCE.getErrorStat_Process());
+    }
+  }
+  
+  @Check
+  public void checkAssignVariable(final AssignmentExpression expr) {
+    boolean _hasAssignment = ExpressionUtil.hasAssignment(expr);
+    if (_hasAssignment) {
+      final IdReference assignVar = expr.getAssignVar();
+      if ((assignVar instanceof PhysicalVariable)) {
+        RegisterType _mappedPortType = ReflexModelUtil.getMappedPortType(((PhysicalVariable)assignVar));
+        boolean _equals = Objects.equal(_mappedPortType, RegisterType.INPUT);
+        if (_equals) {
+          this.warning("An attempt to assign value into variable mapped on input port", 
+            ReflexPackage.eINSTANCE.getAssignmentExpression_AssignVar());
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkOutputVarUsagesInAssignment(final PhysicalVariable physVar) {
+    RegisterType _mappedPortType = ReflexModelUtil.getMappedPortType(physVar);
+    boolean _equals = Objects.equal(_mappedPortType, RegisterType.OUTPUT);
+    if (_equals) {
+      final Program container = EcoreUtil2.<Program>getContainerOfType(physVar, Program.class);
+      HashSet<PhysicalVariable> target = CollectionLiterals.<PhysicalVariable>newHashSet(physVar);
+      final ArrayList<EObject> refered = CollectionLiterals.<EObject>newArrayList();
+      final EcoreUtil2.ElementReferenceAcceptor _function = (EObject referrer, EObject referenced, EReference reference, int index) -> {
+        EReference _assignmentExpression_AssignVar = ReflexPackage.eINSTANCE.getAssignmentExpression_AssignVar();
+        boolean _equals_1 = Objects.equal(reference, _assignmentExpression_AssignVar);
+        if (_equals_1) {
+          refered.add(referrer);
+        }
+      };
+      final EcoreUtil2.ElementReferenceAcceptor acceptor = _function;
+      EcoreUtil2.findCrossReferences(container, target, acceptor);
+      boolean _isEmpty = refered.isEmpty();
+      if (_isEmpty) {
+        this.warning("Variable mapped on output port is not used in assignment", 
+          ReflexPackage.eINSTANCE.getPhysicalVariable_Name());
+      }
     }
   }
 }

@@ -297,14 +297,14 @@ public interface ReflexPackage extends EPackage
   int PROCESS_VARIABLE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl <em>Imported Variable</em>}' class.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ImportedVariableListImpl <em>Imported Variable List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.ImportedVariableImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getImportedVariable()
+   * @see ru.iaie.reflex.reflex.impl.ImportedVariableListImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getImportedVariableList()
    * @generated
    */
-  int IMPORTED_VARIABLE = 4;
+  int IMPORTED_VARIABLE_LIST = 4;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -313,7 +313,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPORTED_VARIABLE__VARIABLES = PROCESS_VARIABLE_FEATURE_COUNT + 0;
+  int IMPORTED_VARIABLE_LIST__VARIABLES = PROCESS_VARIABLE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -322,16 +322,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPORTED_VARIABLE__PROCESS = PROCESS_VARIABLE_FEATURE_COUNT + 1;
+  int IMPORTED_VARIABLE_LIST__PROCESS = PROCESS_VARIABLE_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Imported Variable</em>' class.
+   * The number of structural features of the '<em>Imported Variable List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPORTED_VARIABLE_FEATURE_COUNT = PROCESS_VARIABLE_FEATURE_COUNT + 2;
+  int IMPORTED_VARIABLE_LIST_FEATURE_COUNT = PROCESS_VARIABLE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.DeclaredVariableImpl <em>Declared Variable</em>}' class.
@@ -3056,36 +3056,36 @@ public interface ReflexPackage extends EPackage
   EClass getProcessVariable();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ImportedVariable <em>Imported Variable</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ImportedVariableList <em>Imported Variable List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Imported Variable</em>'.
-   * @see ru.iaie.reflex.reflex.ImportedVariable
+   * @return the meta object for class '<em>Imported Variable List</em>'.
+   * @see ru.iaie.reflex.reflex.ImportedVariableList
    * @generated
    */
-  EClass getImportedVariable();
+  EClass getImportedVariableList();
 
   /**
-   * Returns the meta object for the reference list '{@link ru.iaie.reflex.reflex.ImportedVariable#getVariables <em>Variables</em>}'.
+   * Returns the meta object for the reference list '{@link ru.iaie.reflex.reflex.ImportedVariableList#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Variables</em>'.
-   * @see ru.iaie.reflex.reflex.ImportedVariable#getVariables()
-   * @see #getImportedVariable()
+   * @see ru.iaie.reflex.reflex.ImportedVariableList#getVariables()
+   * @see #getImportedVariableList()
    * @generated
    */
-  EReference getImportedVariable_Variables();
+  EReference getImportedVariableList_Variables();
 
   /**
-   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}'.
+   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.ImportedVariableList#getProcess <em>Process</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Process</em>'.
-   * @see ru.iaie.reflex.reflex.ImportedVariable#getProcess()
-   * @see #getImportedVariable()
+   * @see ru.iaie.reflex.reflex.ImportedVariableList#getProcess()
+   * @see #getImportedVariableList()
    * @generated
    */
-  EReference getImportedVariable_Process();
+  EReference getImportedVariableList_Process();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.DeclaredVariable <em>Declared Variable</em>}'.
@@ -4707,14 +4707,14 @@ public interface ReflexPackage extends EPackage
     EClass PROCESS_VARIABLE = eINSTANCE.getProcessVariable();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ImportedVariableImpl <em>Imported Variable</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ImportedVariableListImpl <em>Imported Variable List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.ImportedVariableImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getImportedVariable()
+     * @see ru.iaie.reflex.reflex.impl.ImportedVariableListImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getImportedVariableList()
      * @generated
      */
-    EClass IMPORTED_VARIABLE = eINSTANCE.getImportedVariable();
+    EClass IMPORTED_VARIABLE_LIST = eINSTANCE.getImportedVariableList();
 
     /**
      * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
@@ -4722,7 +4722,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IMPORTED_VARIABLE__VARIABLES = eINSTANCE.getImportedVariable_Variables();
+    EReference IMPORTED_VARIABLE_LIST__VARIABLES = eINSTANCE.getImportedVariableList_Variables();
 
     /**
      * The meta object literal for the '<em><b>Process</b></em>' reference feature.
@@ -4730,7 +4730,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IMPORTED_VARIABLE__PROCESS = eINSTANCE.getImportedVariable_Process();
+    EReference IMPORTED_VARIABLE_LIST__PROCESS = eINSTANCE.getImportedVariableList_Process();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.DeclaredVariableImpl <em>Declared Variable</em>}' class.

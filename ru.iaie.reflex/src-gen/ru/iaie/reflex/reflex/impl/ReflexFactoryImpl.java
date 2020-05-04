@@ -41,7 +41,7 @@ import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
@@ -136,7 +136,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
       case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
-      case ReflexPackage.IMPORTED_VARIABLE: return createImportedVariable();
+      case ReflexPackage.IMPORTED_VARIABLE_LIST: return createImportedVariableList();
       case ReflexPackage.DECLARED_VARIABLE: return createDeclaredVariable();
       case ReflexPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       case ReflexPackage.PHYSICAL_VARIABLE: return createPhysicalVariable();
@@ -324,10 +324,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public ImportedVariable createImportedVariable()
+  public ImportedVariableList createImportedVariableList()
   {
-    ImportedVariableImpl importedVariable = new ImportedVariableImpl();
-    return importedVariable;
+    ImportedVariableListImpl importedVariableList = new ImportedVariableListImpl();
+    return importedVariableList;
   }
 
   /**

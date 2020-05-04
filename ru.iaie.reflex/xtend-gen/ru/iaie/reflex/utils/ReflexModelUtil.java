@@ -14,11 +14,12 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IdReference;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
+import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.Time;
@@ -104,7 +105,15 @@ public class ReflexModelUtil {
   }
   
   public static boolean isImportedList(final ProcessVariable v) {
-    return (v instanceof ImportedVariable);
+    return (v instanceof ImportedVariableList);
+  }
+  
+  public static boolean isPhysical(final ProcessVariable v) {
+    return (v instanceof PhysicalVariable);
+  }
+  
+  public static RegisterType getMappedPortType(final PhysicalVariable v) {
+    return v.getPort().getRegister().getType();
   }
   
   public static String resolveName(final IdReference ref) {

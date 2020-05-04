@@ -32,7 +32,7 @@ import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.IfElseStat;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
@@ -134,8 +134,8 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case ReflexPackage.IF_ELSE_STAT:
 				sequence_IfElseStat(context, (IfElseStat) semanticObject); 
 				return; 
-			case ReflexPackage.IMPORTED_VARIABLE:
-				sequence_ImportedVariable(context, (ImportedVariable) semanticObject); 
+			case ReflexPackage.IMPORTED_VARIABLE_LIST:
+				sequence_ImportedVariableList(context, (ImportedVariableList) semanticObject); 
 				return; 
 			case ReflexPackage.INFIX_OP:
 				sequence_InfixOp(context, (InfixOp) semanticObject); 
@@ -744,13 +744,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ProcessVariable returns ImportedVariable
-	 *     ImportedVariable returns ImportedVariable
+	 *     ProcessVariable returns ImportedVariableList
+	 *     ImportedVariableList returns ImportedVariableList
 	 *
 	 * Constraint:
 	 *     (variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]* process=[Process|ID])
 	 */
-	protected void sequence_ImportedVariable(ISerializationContext context, ImportedVariable semanticObject) {
+	protected void sequence_ImportedVariableList(ISerializationContext context, ImportedVariableList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

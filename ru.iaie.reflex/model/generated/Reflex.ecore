@@ -40,7 +40,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariable" eSuperTypes="#//ProcessVariable">
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariableList" eSuperTypes="#//ProcessVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
         upperBound="-1" eType="#//DeclaredVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>

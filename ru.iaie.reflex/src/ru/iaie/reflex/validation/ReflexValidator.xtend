@@ -9,10 +9,18 @@ import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.Process
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
+import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.ErrorStat
 import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.StartProcStat
+import ru.iaie.reflex.reflex.AssignmentExpression
+import ru.iaie.reflex.reflex.PhysicalVariable
+import ru.iaie.reflex.reflex.RegisterType
+import ru.iaie.reflex.reflex.Program
+import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 
 /** 
  * This class contains custom validation rules. 
@@ -33,7 +41,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 
 	@Check def void checkStateTransitions(ru.iaie.reflex.reflex.State state) {
-		if (state.isLooped) return;
+		if(state.isLooped) return;
 		val stateTransitions = state.eAllContents.filter(SetStateStat)
 		if (stateTransitions.isEmpty) {
 			val selfStopTransitions = state.eAllContents.filter(StopProcStat).filter[selfStop]
@@ -55,7 +63,7 @@ class ReflexValidator extends AbstractReflexValidator {
 				ReflexPackage.eINSTANCE.startProcStat_Process)
 		}
 	}
-	
+
 	@Check def void checkStopStatement(StopProcStat stopStat) {
 		val selfProcess = stopStat.getContainerOfType(Process)
 		val procName = stopStat.process.name;
@@ -64,16 +72,44 @@ class ReflexValidator extends AbstractReflexValidator {
 				ReflexPackage.eINSTANCE.stopProcStat_Process)
 		}
 	}
-	
+
 	@Check def void checkErrorStatement(ErrorStat errorStat) {
 		val selfProcess = errorStat.getContainerOfType(Process)
 		val procName = errorStat.process.name;
 		if (selfProcess.name.equals(procName)) {
-			warning('''Use 'error' without argument to set current process state to error''',
+			warning("Use 'error' without argument to set current process state to error",
 				ReflexPackage.eINSTANCE.errorStat_Process)
 		}
 	}
 
-	// TODO: error when assigned to const or enum
+	@Check def void checkAssignVariable(AssignmentExpression expr) {
+		if (expr.hasAssignment) {
+			val assignVar = expr.assignVar
+			if (assignVar instanceof PhysicalVariable) {
+				if (assignVar.mappedPortType == RegisterType.INPUT) {
+					warning("An attempt to assign value into variable mapped on input port",
+						ReflexPackage.eINSTANCE.assignmentExpression_AssignVar);
+				}
+			}
+		}
+	}
+
+	@Check def void checkOutputVarUsagesInAssignment(PhysicalVariable physVar) {
+		if (physVar.mappedPortType == RegisterType.OUTPUT) {
+			val container = physVar.getContainerOfType(Program)
+			var target = newHashSet(physVar)
+			val refered = newArrayList()
+			val ElementReferenceAcceptor acceptor = [ EObject referrer, EObject referenced, EReference reference, int index |
+				if (reference == ReflexPackage.eINSTANCE.assignmentExpression_AssignVar) {
+					refered.add(referrer)
+				}
+			]
+			findCrossReferences(container, target, acceptor)
+			if (refered.empty) {
+				warning("Variable mapped on output port is not used in assignment",
+					ReflexPackage.eINSTANCE.physicalVariable_Name)
+			}
+		}
+	}
 
 }

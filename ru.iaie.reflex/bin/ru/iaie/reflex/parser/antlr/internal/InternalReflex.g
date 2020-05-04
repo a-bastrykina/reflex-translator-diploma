@@ -543,11 +543,11 @@ ruleProcessVariable returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getProcessVariableAccess().getImportedVariableParserRuleCall_0_0());
+				newCompositeNode(grammarAccess.getProcessVariableAccess().getImportedVariableListParserRuleCall_0_0());
 			}
-			this_ImportedVariable_0=ruleImportedVariable
+			this_ImportedVariableList_0=ruleImportedVariableList
 			{
-				$current = $this_ImportedVariable_0.current;
+				$current = $this_ImportedVariableList_0.current;
 				afterParserOrEnumRuleCall();
 			}
 			    |
@@ -567,15 +567,15 @@ ruleProcessVariable returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleImportedVariable
-entryRuleImportedVariable returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getImportedVariableRule()); }
-	iv_ruleImportedVariable=ruleImportedVariable
-	{ $current=$iv_ruleImportedVariable.current; }
+// Entry rule entryRuleImportedVariableList
+entryRuleImportedVariableList returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImportedVariableListRule()); }
+	iv_ruleImportedVariableList=ruleImportedVariableList
+	{ $current=$iv_ruleImportedVariableList.current; }
 	EOF;
 
-// Rule ImportedVariable
-ruleImportedVariable returns [EObject current=null]
+// Rule ImportedVariableList
+ruleImportedVariableList returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -585,37 +585,37 @@ ruleImportedVariable returns [EObject current=null]
 	(
 		otherlv_0='shared'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getImportedVariableAccess().getSharedKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getImportedVariableListAccess().getSharedKeyword_0());
 		}
 		(
 			(
 				(
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getImportedVariableRule());
+							$current = createModelElement(grammarAccess.getImportedVariableListRule());
 						}
 					}
 					otherlv_1=RULE_ID
 					{
-						newLeafNode(otherlv_1, grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_0_0());
+						newLeafNode(otherlv_1, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_0_0());
 					}
 				)
 			)
 			(
 				otherlv_2=','
 				{
-					newLeafNode(otherlv_2, grammarAccess.getImportedVariableAccess().getCommaKeyword_1_1_0());
+					newLeafNode(otherlv_2, grammarAccess.getImportedVariableListAccess().getCommaKeyword_1_1_0());
 				}
 				(
 					(
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getImportedVariableRule());
+								$current = createModelElement(grammarAccess.getImportedVariableListRule());
 							}
 						}
 						otherlv_3=RULE_ID
 						{
-							newLeafNode(otherlv_3, grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0());
+							newLeafNode(otherlv_3, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0());
 						}
 					)
 				)
@@ -623,22 +623,22 @@ ruleImportedVariable returns [EObject current=null]
 		)
 		otherlv_4='from'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getImportedVariableAccess().getFromKeyword_2());
+			newLeafNode(otherlv_4, grammarAccess.getImportedVariableListAccess().getFromKeyword_2());
 		}
 		otherlv_5='process'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getImportedVariableAccess().getProcessKeyword_3());
+			newLeafNode(otherlv_5, grammarAccess.getImportedVariableListAccess().getProcessKeyword_3());
 		}
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getImportedVariableRule());
+						$current = createModelElement(grammarAccess.getImportedVariableListRule());
 					}
 				}
 				otherlv_6=RULE_ID
 				{
-					newLeafNode(otherlv_6, grammarAccess.getImportedVariableAccess().getProcessProcessCrossReference_4_0());
+					newLeafNode(otherlv_6, grammarAccess.getImportedVariableListAccess().getProcessProcessCrossReference_4_0());
 				}
 			)
 		)

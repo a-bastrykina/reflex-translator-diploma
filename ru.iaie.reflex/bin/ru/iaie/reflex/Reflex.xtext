@@ -30,9 +30,9 @@ State:
 	"}";
 
 ProcessVariable:
-	(ImportedVariable | DeclaredVariable) ";";
+	(ImportedVariableList | DeclaredVariable) ";";
 
-ImportedVariable:
+ImportedVariableList:
 	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
 
 DeclaredVariable:

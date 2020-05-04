@@ -506,23 +506,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleProcessVariable"
 
 
-    // $ANTLR start "entryRuleImportedVariable"
-    // InternalReflex.g:154:1: entryRuleImportedVariable : ruleImportedVariable EOF ;
-    public final void entryRuleImportedVariable() throws RecognitionException {
+    // $ANTLR start "entryRuleImportedVariableList"
+    // InternalReflex.g:154:1: entryRuleImportedVariableList : ruleImportedVariableList EOF ;
+    public final void entryRuleImportedVariableList() throws RecognitionException {
         try {
-            // InternalReflex.g:155:1: ( ruleImportedVariable EOF )
-            // InternalReflex.g:156:1: ruleImportedVariable EOF
+            // InternalReflex.g:155:1: ( ruleImportedVariableList EOF )
+            // InternalReflex.g:156:1: ruleImportedVariableList EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableRule()); 
+               before(grammarAccess.getImportedVariableListRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleImportedVariable();
+            ruleImportedVariableList();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableRule()); 
+               after(grammarAccess.getImportedVariableListRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -537,30 +537,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleImportedVariable"
+    // $ANTLR end "entryRuleImportedVariableList"
 
 
-    // $ANTLR start "ruleImportedVariable"
-    // InternalReflex.g:163:1: ruleImportedVariable : ( ( rule__ImportedVariable__Group__0 ) ) ;
-    public final void ruleImportedVariable() throws RecognitionException {
+    // $ANTLR start "ruleImportedVariableList"
+    // InternalReflex.g:163:1: ruleImportedVariableList : ( ( rule__ImportedVariableList__Group__0 ) ) ;
+    public final void ruleImportedVariableList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:167:2: ( ( ( rule__ImportedVariable__Group__0 ) ) )
-            // InternalReflex.g:168:2: ( ( rule__ImportedVariable__Group__0 ) )
+            // InternalReflex.g:167:2: ( ( ( rule__ImportedVariableList__Group__0 ) ) )
+            // InternalReflex.g:168:2: ( ( rule__ImportedVariableList__Group__0 ) )
             {
-            // InternalReflex.g:168:2: ( ( rule__ImportedVariable__Group__0 ) )
-            // InternalReflex.g:169:3: ( rule__ImportedVariable__Group__0 )
+            // InternalReflex.g:168:2: ( ( rule__ImportedVariableList__Group__0 ) )
+            // InternalReflex.g:169:3: ( rule__ImportedVariableList__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getGroup()); 
+               before(grammarAccess.getImportedVariableListAccess().getGroup()); 
             }
-            // InternalReflex.g:170:3: ( rule__ImportedVariable__Group__0 )
-            // InternalReflex.g:170:4: rule__ImportedVariable__Group__0
+            // InternalReflex.g:170:3: ( rule__ImportedVariableList__Group__0 )
+            // InternalReflex.g:170:4: rule__ImportedVariableList__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__0();
+            rule__ImportedVariableList__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -568,7 +568,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getGroup()); 
+               after(grammarAccess.getImportedVariableListAccess().getGroup()); 
             }
 
             }
@@ -588,7 +588,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleImportedVariable"
+    // $ANTLR end "ruleImportedVariableList"
 
 
     // $ANTLR start "entryRuleDeclaredVariable"
@@ -5701,13 +5701,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVariable__Alternatives_0"
-    // InternalReflex.g:1682:1: rule__ProcessVariable__Alternatives_0 : ( ( ruleImportedVariable ) | ( ruleDeclaredVariable ) );
+    // InternalReflex.g:1682:1: rule__ProcessVariable__Alternatives_0 : ( ( ruleImportedVariableList ) | ( ruleDeclaredVariable ) );
     public final void rule__ProcessVariable__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:1686:1: ( ( ruleImportedVariable ) | ( ruleDeclaredVariable ) )
+            // InternalReflex.g:1686:1: ( ( ruleImportedVariableList ) | ( ruleDeclaredVariable ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -5726,21 +5726,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // InternalReflex.g:1687:2: ( ruleImportedVariable )
+                    // InternalReflex.g:1687:2: ( ruleImportedVariableList )
                     {
-                    // InternalReflex.g:1687:2: ( ruleImportedVariable )
-                    // InternalReflex.g:1688:3: ruleImportedVariable
+                    // InternalReflex.g:1687:2: ( ruleImportedVariableList )
+                    // InternalReflex.g:1688:3: ruleImportedVariableList
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getProcessVariableAccess().getImportedVariableParserRuleCall_0_0()); 
+                       before(grammarAccess.getProcessVariableAccess().getImportedVariableListParserRuleCall_0_0()); 
                     }
                     pushFollow(FOLLOW_2);
-                    ruleImportedVariable();
+                    ruleImportedVariableList();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getProcessVariableAccess().getImportedVariableParserRuleCall_0_0()); 
+                       after(grammarAccess.getProcessVariableAccess().getImportedVariableListParserRuleCall_0_0()); 
                     }
 
                     }
@@ -12726,23 +12726,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ProcessVariable__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__0"
-    // InternalReflex.g:3392:1: rule__ImportedVariable__Group__0 : rule__ImportedVariable__Group__0__Impl rule__ImportedVariable__Group__1 ;
-    public final void rule__ImportedVariable__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__0"
+    // InternalReflex.g:3392:1: rule__ImportedVariableList__Group__0 : rule__ImportedVariableList__Group__0__Impl rule__ImportedVariableList__Group__1 ;
+    public final void rule__ImportedVariableList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3396:1: ( rule__ImportedVariable__Group__0__Impl rule__ImportedVariable__Group__1 )
-            // InternalReflex.g:3397:2: rule__ImportedVariable__Group__0__Impl rule__ImportedVariable__Group__1
+            // InternalReflex.g:3396:1: ( rule__ImportedVariableList__Group__0__Impl rule__ImportedVariableList__Group__1 )
+            // InternalReflex.g:3397:2: rule__ImportedVariableList__Group__0__Impl rule__ImportedVariableList__Group__1
             {
             pushFollow(FOLLOW_5);
-            rule__ImportedVariable__Group__0__Impl();
+            rule__ImportedVariableList__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__1();
+            rule__ImportedVariableList__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -12761,12 +12761,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__0"
+    // $ANTLR end "rule__ImportedVariableList__Group__0"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__0__Impl"
-    // InternalReflex.g:3404:1: rule__ImportedVariable__Group__0__Impl : ( 'shared' ) ;
-    public final void rule__ImportedVariable__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__0__Impl"
+    // InternalReflex.g:3404:1: rule__ImportedVariableList__Group__0__Impl : ( 'shared' ) ;
+    public final void rule__ImportedVariableList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -12778,11 +12778,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3410:2: 'shared'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getSharedKeyword_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getSharedKeyword_0()); 
             }
             match(input,84,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getSharedKeyword_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getSharedKeyword_0()); 
             }
 
             }
@@ -12802,26 +12802,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__0__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__1"
-    // InternalReflex.g:3419:1: rule__ImportedVariable__Group__1 : rule__ImportedVariable__Group__1__Impl rule__ImportedVariable__Group__2 ;
-    public final void rule__ImportedVariable__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__1"
+    // InternalReflex.g:3419:1: rule__ImportedVariableList__Group__1 : rule__ImportedVariableList__Group__1__Impl rule__ImportedVariableList__Group__2 ;
+    public final void rule__ImportedVariableList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3423:1: ( rule__ImportedVariable__Group__1__Impl rule__ImportedVariable__Group__2 )
-            // InternalReflex.g:3424:2: rule__ImportedVariable__Group__1__Impl rule__ImportedVariable__Group__2
+            // InternalReflex.g:3423:1: ( rule__ImportedVariableList__Group__1__Impl rule__ImportedVariableList__Group__2 )
+            // InternalReflex.g:3424:2: rule__ImportedVariableList__Group__1__Impl rule__ImportedVariableList__Group__2
             {
             pushFollow(FOLLOW_19);
-            rule__ImportedVariable__Group__1__Impl();
+            rule__ImportedVariableList__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__2();
+            rule__ImportedVariableList__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -12840,30 +12840,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__1"
+    // $ANTLR end "rule__ImportedVariableList__Group__1"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__1__Impl"
-    // InternalReflex.g:3431:1: rule__ImportedVariable__Group__1__Impl : ( ( rule__ImportedVariable__Group_1__0 ) ) ;
-    public final void rule__ImportedVariable__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__1__Impl"
+    // InternalReflex.g:3431:1: rule__ImportedVariableList__Group__1__Impl : ( ( rule__ImportedVariableList__Group_1__0 ) ) ;
+    public final void rule__ImportedVariableList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3435:1: ( ( ( rule__ImportedVariable__Group_1__0 ) ) )
-            // InternalReflex.g:3436:1: ( ( rule__ImportedVariable__Group_1__0 ) )
+            // InternalReflex.g:3435:1: ( ( ( rule__ImportedVariableList__Group_1__0 ) ) )
+            // InternalReflex.g:3436:1: ( ( rule__ImportedVariableList__Group_1__0 ) )
             {
-            // InternalReflex.g:3436:1: ( ( rule__ImportedVariable__Group_1__0 ) )
-            // InternalReflex.g:3437:2: ( rule__ImportedVariable__Group_1__0 )
+            // InternalReflex.g:3436:1: ( ( rule__ImportedVariableList__Group_1__0 ) )
+            // InternalReflex.g:3437:2: ( rule__ImportedVariableList__Group_1__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getGroup_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getGroup_1()); 
             }
-            // InternalReflex.g:3438:2: ( rule__ImportedVariable__Group_1__0 )
-            // InternalReflex.g:3438:3: rule__ImportedVariable__Group_1__0
+            // InternalReflex.g:3438:2: ( rule__ImportedVariableList__Group_1__0 )
+            // InternalReflex.g:3438:3: rule__ImportedVariableList__Group_1__0
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group_1__0();
+            rule__ImportedVariableList__Group_1__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -12871,7 +12871,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getGroup_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getGroup_1()); 
             }
 
             }
@@ -12891,26 +12891,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__1__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__2"
-    // InternalReflex.g:3446:1: rule__ImportedVariable__Group__2 : rule__ImportedVariable__Group__2__Impl rule__ImportedVariable__Group__3 ;
-    public final void rule__ImportedVariable__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__2"
+    // InternalReflex.g:3446:1: rule__ImportedVariableList__Group__2 : rule__ImportedVariableList__Group__2__Impl rule__ImportedVariableList__Group__3 ;
+    public final void rule__ImportedVariableList__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3450:1: ( rule__ImportedVariable__Group__2__Impl rule__ImportedVariable__Group__3 )
-            // InternalReflex.g:3451:2: rule__ImportedVariable__Group__2__Impl rule__ImportedVariable__Group__3
+            // InternalReflex.g:3450:1: ( rule__ImportedVariableList__Group__2__Impl rule__ImportedVariableList__Group__3 )
+            // InternalReflex.g:3451:2: rule__ImportedVariableList__Group__2__Impl rule__ImportedVariableList__Group__3
             {
             pushFollow(FOLLOW_20);
-            rule__ImportedVariable__Group__2__Impl();
+            rule__ImportedVariableList__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__3();
+            rule__ImportedVariableList__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -12929,12 +12929,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__2"
+    // $ANTLR end "rule__ImportedVariableList__Group__2"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__2__Impl"
-    // InternalReflex.g:3458:1: rule__ImportedVariable__Group__2__Impl : ( 'from' ) ;
-    public final void rule__ImportedVariable__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__2__Impl"
+    // InternalReflex.g:3458:1: rule__ImportedVariableList__Group__2__Impl : ( 'from' ) ;
+    public final void rule__ImportedVariableList__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -12946,11 +12946,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3464:2: 'from'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getFromKeyword_2()); 
+               before(grammarAccess.getImportedVariableListAccess().getFromKeyword_2()); 
             }
             match(input,85,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getFromKeyword_2()); 
+               after(grammarAccess.getImportedVariableListAccess().getFromKeyword_2()); 
             }
 
             }
@@ -12970,26 +12970,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__2__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group__2__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__3"
-    // InternalReflex.g:3473:1: rule__ImportedVariable__Group__3 : rule__ImportedVariable__Group__3__Impl rule__ImportedVariable__Group__4 ;
-    public final void rule__ImportedVariable__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__3"
+    // InternalReflex.g:3473:1: rule__ImportedVariableList__Group__3 : rule__ImportedVariableList__Group__3__Impl rule__ImportedVariableList__Group__4 ;
+    public final void rule__ImportedVariableList__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3477:1: ( rule__ImportedVariable__Group__3__Impl rule__ImportedVariable__Group__4 )
-            // InternalReflex.g:3478:2: rule__ImportedVariable__Group__3__Impl rule__ImportedVariable__Group__4
+            // InternalReflex.g:3477:1: ( rule__ImportedVariableList__Group__3__Impl rule__ImportedVariableList__Group__4 )
+            // InternalReflex.g:3478:2: rule__ImportedVariableList__Group__3__Impl rule__ImportedVariableList__Group__4
             {
             pushFollow(FOLLOW_5);
-            rule__ImportedVariable__Group__3__Impl();
+            rule__ImportedVariableList__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__4();
+            rule__ImportedVariableList__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13008,12 +13008,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__3"
+    // $ANTLR end "rule__ImportedVariableList__Group__3"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__3__Impl"
-    // InternalReflex.g:3485:1: rule__ImportedVariable__Group__3__Impl : ( 'process' ) ;
-    public final void rule__ImportedVariable__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__3__Impl"
+    // InternalReflex.g:3485:1: rule__ImportedVariableList__Group__3__Impl : ( 'process' ) ;
+    public final void rule__ImportedVariableList__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13025,11 +13025,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3491:2: 'process'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getProcessKeyword_3()); 
+               before(grammarAccess.getImportedVariableListAccess().getProcessKeyword_3()); 
             }
             match(input,81,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getProcessKeyword_3()); 
+               after(grammarAccess.getImportedVariableListAccess().getProcessKeyword_3()); 
             }
 
             }
@@ -13049,21 +13049,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__3__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group__3__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__4"
-    // InternalReflex.g:3500:1: rule__ImportedVariable__Group__4 : rule__ImportedVariable__Group__4__Impl ;
-    public final void rule__ImportedVariable__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__4"
+    // InternalReflex.g:3500:1: rule__ImportedVariableList__Group__4 : rule__ImportedVariableList__Group__4__Impl ;
+    public final void rule__ImportedVariableList__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3504:1: ( rule__ImportedVariable__Group__4__Impl )
-            // InternalReflex.g:3505:2: rule__ImportedVariable__Group__4__Impl
+            // InternalReflex.g:3504:1: ( rule__ImportedVariableList__Group__4__Impl )
+            // InternalReflex.g:3505:2: rule__ImportedVariableList__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group__4__Impl();
+            rule__ImportedVariableList__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13082,30 +13082,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__4"
+    // $ANTLR end "rule__ImportedVariableList__Group__4"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group__4__Impl"
-    // InternalReflex.g:3511:1: rule__ImportedVariable__Group__4__Impl : ( ( rule__ImportedVariable__ProcessAssignment_4 ) ) ;
-    public final void rule__ImportedVariable__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group__4__Impl"
+    // InternalReflex.g:3511:1: rule__ImportedVariableList__Group__4__Impl : ( ( rule__ImportedVariableList__ProcessAssignment_4 ) ) ;
+    public final void rule__ImportedVariableList__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3515:1: ( ( ( rule__ImportedVariable__ProcessAssignment_4 ) ) )
-            // InternalReflex.g:3516:1: ( ( rule__ImportedVariable__ProcessAssignment_4 ) )
+            // InternalReflex.g:3515:1: ( ( ( rule__ImportedVariableList__ProcessAssignment_4 ) ) )
+            // InternalReflex.g:3516:1: ( ( rule__ImportedVariableList__ProcessAssignment_4 ) )
             {
-            // InternalReflex.g:3516:1: ( ( rule__ImportedVariable__ProcessAssignment_4 ) )
-            // InternalReflex.g:3517:2: ( rule__ImportedVariable__ProcessAssignment_4 )
+            // InternalReflex.g:3516:1: ( ( rule__ImportedVariableList__ProcessAssignment_4 ) )
+            // InternalReflex.g:3517:2: ( rule__ImportedVariableList__ProcessAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getProcessAssignment_4()); 
+               before(grammarAccess.getImportedVariableListAccess().getProcessAssignment_4()); 
             }
-            // InternalReflex.g:3518:2: ( rule__ImportedVariable__ProcessAssignment_4 )
-            // InternalReflex.g:3518:3: rule__ImportedVariable__ProcessAssignment_4
+            // InternalReflex.g:3518:2: ( rule__ImportedVariableList__ProcessAssignment_4 )
+            // InternalReflex.g:3518:3: rule__ImportedVariableList__ProcessAssignment_4
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__ProcessAssignment_4();
+            rule__ImportedVariableList__ProcessAssignment_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13113,7 +13113,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getProcessAssignment_4()); 
+               after(grammarAccess.getImportedVariableListAccess().getProcessAssignment_4()); 
             }
 
             }
@@ -13133,26 +13133,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group__4__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group__4__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1__0"
-    // InternalReflex.g:3527:1: rule__ImportedVariable__Group_1__0 : rule__ImportedVariable__Group_1__0__Impl rule__ImportedVariable__Group_1__1 ;
-    public final void rule__ImportedVariable__Group_1__0() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1__0"
+    // InternalReflex.g:3527:1: rule__ImportedVariableList__Group_1__0 : rule__ImportedVariableList__Group_1__0__Impl rule__ImportedVariableList__Group_1__1 ;
+    public final void rule__ImportedVariableList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3531:1: ( rule__ImportedVariable__Group_1__0__Impl rule__ImportedVariable__Group_1__1 )
-            // InternalReflex.g:3532:2: rule__ImportedVariable__Group_1__0__Impl rule__ImportedVariable__Group_1__1
+            // InternalReflex.g:3531:1: ( rule__ImportedVariableList__Group_1__0__Impl rule__ImportedVariableList__Group_1__1 )
+            // InternalReflex.g:3532:2: rule__ImportedVariableList__Group_1__0__Impl rule__ImportedVariableList__Group_1__1
             {
             pushFollow(FOLLOW_21);
-            rule__ImportedVariable__Group_1__0__Impl();
+            rule__ImportedVariableList__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group_1__1();
+            rule__ImportedVariableList__Group_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13171,30 +13171,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1__0"
+    // $ANTLR end "rule__ImportedVariableList__Group_1__0"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1__0__Impl"
-    // InternalReflex.g:3539:1: rule__ImportedVariable__Group_1__0__Impl : ( ( rule__ImportedVariable__VariablesAssignment_1_0 ) ) ;
-    public final void rule__ImportedVariable__Group_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1__0__Impl"
+    // InternalReflex.g:3539:1: rule__ImportedVariableList__Group_1__0__Impl : ( ( rule__ImportedVariableList__VariablesAssignment_1_0 ) ) ;
+    public final void rule__ImportedVariableList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3543:1: ( ( ( rule__ImportedVariable__VariablesAssignment_1_0 ) ) )
-            // InternalReflex.g:3544:1: ( ( rule__ImportedVariable__VariablesAssignment_1_0 ) )
+            // InternalReflex.g:3543:1: ( ( ( rule__ImportedVariableList__VariablesAssignment_1_0 ) ) )
+            // InternalReflex.g:3544:1: ( ( rule__ImportedVariableList__VariablesAssignment_1_0 ) )
             {
-            // InternalReflex.g:3544:1: ( ( rule__ImportedVariable__VariablesAssignment_1_0 ) )
-            // InternalReflex.g:3545:2: ( rule__ImportedVariable__VariablesAssignment_1_0 )
+            // InternalReflex.g:3544:1: ( ( rule__ImportedVariableList__VariablesAssignment_1_0 ) )
+            // InternalReflex.g:3545:2: ( rule__ImportedVariableList__VariablesAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_0()); 
             }
-            // InternalReflex.g:3546:2: ( rule__ImportedVariable__VariablesAssignment_1_0 )
-            // InternalReflex.g:3546:3: rule__ImportedVariable__VariablesAssignment_1_0
+            // InternalReflex.g:3546:2: ( rule__ImportedVariableList__VariablesAssignment_1_0 )
+            // InternalReflex.g:3546:3: rule__ImportedVariableList__VariablesAssignment_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__VariablesAssignment_1_0();
+            rule__ImportedVariableList__VariablesAssignment_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13202,7 +13202,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_0()); 
             }
 
             }
@@ -13222,21 +13222,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1__0__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group_1__0__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1__1"
-    // InternalReflex.g:3554:1: rule__ImportedVariable__Group_1__1 : rule__ImportedVariable__Group_1__1__Impl ;
-    public final void rule__ImportedVariable__Group_1__1() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1__1"
+    // InternalReflex.g:3554:1: rule__ImportedVariableList__Group_1__1 : rule__ImportedVariableList__Group_1__1__Impl ;
+    public final void rule__ImportedVariableList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3558:1: ( rule__ImportedVariable__Group_1__1__Impl )
-            // InternalReflex.g:3559:2: rule__ImportedVariable__Group_1__1__Impl
+            // InternalReflex.g:3558:1: ( rule__ImportedVariableList__Group_1__1__Impl )
+            // InternalReflex.g:3559:2: rule__ImportedVariableList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group_1__1__Impl();
+            rule__ImportedVariableList__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13255,26 +13255,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1__1"
+    // $ANTLR end "rule__ImportedVariableList__Group_1__1"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1__1__Impl"
-    // InternalReflex.g:3565:1: rule__ImportedVariable__Group_1__1__Impl : ( ( rule__ImportedVariable__Group_1_1__0 )* ) ;
-    public final void rule__ImportedVariable__Group_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1__1__Impl"
+    // InternalReflex.g:3565:1: rule__ImportedVariableList__Group_1__1__Impl : ( ( rule__ImportedVariableList__Group_1_1__0 )* ) ;
+    public final void rule__ImportedVariableList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3569:1: ( ( ( rule__ImportedVariable__Group_1_1__0 )* ) )
-            // InternalReflex.g:3570:1: ( ( rule__ImportedVariable__Group_1_1__0 )* )
+            // InternalReflex.g:3569:1: ( ( ( rule__ImportedVariableList__Group_1_1__0 )* ) )
+            // InternalReflex.g:3570:1: ( ( rule__ImportedVariableList__Group_1_1__0 )* )
             {
-            // InternalReflex.g:3570:1: ( ( rule__ImportedVariable__Group_1_1__0 )* )
-            // InternalReflex.g:3571:2: ( rule__ImportedVariable__Group_1_1__0 )*
+            // InternalReflex.g:3570:1: ( ( rule__ImportedVariableList__Group_1_1__0 )* )
+            // InternalReflex.g:3571:2: ( rule__ImportedVariableList__Group_1_1__0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getGroup_1_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getGroup_1_1()); 
             }
-            // InternalReflex.g:3572:2: ( rule__ImportedVariable__Group_1_1__0 )*
+            // InternalReflex.g:3572:2: ( rule__ImportedVariableList__Group_1_1__0 )*
             loop40:
             do {
                 int alt40=2;
@@ -13287,10 +13287,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
                 switch (alt40) {
             	case 1 :
-            	    // InternalReflex.g:3572:3: rule__ImportedVariable__Group_1_1__0
+            	    // InternalReflex.g:3572:3: rule__ImportedVariableList__Group_1_1__0
             	    {
             	    pushFollow(FOLLOW_22);
-            	    rule__ImportedVariable__Group_1_1__0();
+            	    rule__ImportedVariableList__Group_1_1__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -13304,7 +13304,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getGroup_1_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getGroup_1_1()); 
             }
 
             }
@@ -13324,26 +13324,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1__1__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group_1__1__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1_1__0"
-    // InternalReflex.g:3581:1: rule__ImportedVariable__Group_1_1__0 : rule__ImportedVariable__Group_1_1__0__Impl rule__ImportedVariable__Group_1_1__1 ;
-    public final void rule__ImportedVariable__Group_1_1__0() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1_1__0"
+    // InternalReflex.g:3581:1: rule__ImportedVariableList__Group_1_1__0 : rule__ImportedVariableList__Group_1_1__0__Impl rule__ImportedVariableList__Group_1_1__1 ;
+    public final void rule__ImportedVariableList__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3585:1: ( rule__ImportedVariable__Group_1_1__0__Impl rule__ImportedVariable__Group_1_1__1 )
-            // InternalReflex.g:3586:2: rule__ImportedVariable__Group_1_1__0__Impl rule__ImportedVariable__Group_1_1__1
+            // InternalReflex.g:3585:1: ( rule__ImportedVariableList__Group_1_1__0__Impl rule__ImportedVariableList__Group_1_1__1 )
+            // InternalReflex.g:3586:2: rule__ImportedVariableList__Group_1_1__0__Impl rule__ImportedVariableList__Group_1_1__1
             {
             pushFollow(FOLLOW_5);
-            rule__ImportedVariable__Group_1_1__0__Impl();
+            rule__ImportedVariableList__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group_1_1__1();
+            rule__ImportedVariableList__Group_1_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13362,12 +13362,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1_1__0"
+    // $ANTLR end "rule__ImportedVariableList__Group_1_1__0"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1_1__0__Impl"
-    // InternalReflex.g:3593:1: rule__ImportedVariable__Group_1_1__0__Impl : ( ',' ) ;
-    public final void rule__ImportedVariable__Group_1_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1_1__0__Impl"
+    // InternalReflex.g:3593:1: rule__ImportedVariableList__Group_1_1__0__Impl : ( ',' ) ;
+    public final void rule__ImportedVariableList__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13379,11 +13379,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3599:2: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getCommaKeyword_1_1_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getCommaKeyword_1_1_0()); 
             }
             match(input,86,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getCommaKeyword_1_1_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getCommaKeyword_1_1_0()); 
             }
 
             }
@@ -13403,21 +13403,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1_1__0__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group_1_1__0__Impl"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1_1__1"
-    // InternalReflex.g:3608:1: rule__ImportedVariable__Group_1_1__1 : rule__ImportedVariable__Group_1_1__1__Impl ;
-    public final void rule__ImportedVariable__Group_1_1__1() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1_1__1"
+    // InternalReflex.g:3608:1: rule__ImportedVariableList__Group_1_1__1 : rule__ImportedVariableList__Group_1_1__1__Impl ;
+    public final void rule__ImportedVariableList__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3612:1: ( rule__ImportedVariable__Group_1_1__1__Impl )
-            // InternalReflex.g:3613:2: rule__ImportedVariable__Group_1_1__1__Impl
+            // InternalReflex.g:3612:1: ( rule__ImportedVariableList__Group_1_1__1__Impl )
+            // InternalReflex.g:3613:2: rule__ImportedVariableList__Group_1_1__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__Group_1_1__1__Impl();
+            rule__ImportedVariableList__Group_1_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13436,30 +13436,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1_1__1"
+    // $ANTLR end "rule__ImportedVariableList__Group_1_1__1"
 
 
-    // $ANTLR start "rule__ImportedVariable__Group_1_1__1__Impl"
-    // InternalReflex.g:3619:1: rule__ImportedVariable__Group_1_1__1__Impl : ( ( rule__ImportedVariable__VariablesAssignment_1_1_1 ) ) ;
-    public final void rule__ImportedVariable__Group_1_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__Group_1_1__1__Impl"
+    // InternalReflex.g:3619:1: rule__ImportedVariableList__Group_1_1__1__Impl : ( ( rule__ImportedVariableList__VariablesAssignment_1_1_1 ) ) ;
+    public final void rule__ImportedVariableList__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3623:1: ( ( ( rule__ImportedVariable__VariablesAssignment_1_1_1 ) ) )
-            // InternalReflex.g:3624:1: ( ( rule__ImportedVariable__VariablesAssignment_1_1_1 ) )
+            // InternalReflex.g:3623:1: ( ( ( rule__ImportedVariableList__VariablesAssignment_1_1_1 ) ) )
+            // InternalReflex.g:3624:1: ( ( rule__ImportedVariableList__VariablesAssignment_1_1_1 ) )
             {
-            // InternalReflex.g:3624:1: ( ( rule__ImportedVariable__VariablesAssignment_1_1_1 ) )
-            // InternalReflex.g:3625:2: ( rule__ImportedVariable__VariablesAssignment_1_1_1 )
+            // InternalReflex.g:3624:1: ( ( rule__ImportedVariableList__VariablesAssignment_1_1_1 ) )
+            // InternalReflex.g:3625:2: ( rule__ImportedVariableList__VariablesAssignment_1_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_1_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_1_1()); 
             }
-            // InternalReflex.g:3626:2: ( rule__ImportedVariable__VariablesAssignment_1_1_1 )
-            // InternalReflex.g:3626:3: rule__ImportedVariable__VariablesAssignment_1_1_1
+            // InternalReflex.g:3626:2: ( rule__ImportedVariableList__VariablesAssignment_1_1_1 )
+            // InternalReflex.g:3626:3: rule__ImportedVariableList__VariablesAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ImportedVariable__VariablesAssignment_1_1_1();
+            rule__ImportedVariableList__VariablesAssignment_1_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13467,7 +13467,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_1_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_1_1()); 
             }
 
             }
@@ -13487,7 +13487,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__Group_1_1__1__Impl"
+    // $ANTLR end "rule__ImportedVariableList__Group_1_1__1__Impl"
 
 
     // $ANTLR start "rule__DeclaredVariable__Group__0"
@@ -33222,9 +33222,9 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__State__TimeoutFunctionAssignment_6"
 
 
-    // $ANTLR start "rule__ImportedVariable__VariablesAssignment_1_0"
-    // InternalReflex.g:9957:1: rule__ImportedVariable__VariablesAssignment_1_0 : ( ( RULE_ID ) ) ;
-    public final void rule__ImportedVariable__VariablesAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__VariablesAssignment_1_0"
+    // InternalReflex.g:9957:1: rule__ImportedVariableList__VariablesAssignment_1_0 : ( ( RULE_ID ) ) ;
+    public final void rule__ImportedVariableList__VariablesAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33236,23 +33236,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9963:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_0_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_0_0()); 
             }
             // InternalReflex.g:9964:3: ( RULE_ID )
             // InternalReflex.g:9965:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_0_0_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_0_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_0_0_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_0_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_0_0()); 
             }
 
             }
@@ -33272,12 +33272,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__VariablesAssignment_1_0"
+    // $ANTLR end "rule__ImportedVariableList__VariablesAssignment_1_0"
 
 
-    // $ANTLR start "rule__ImportedVariable__VariablesAssignment_1_1_1"
-    // InternalReflex.g:9976:1: rule__ImportedVariable__VariablesAssignment_1_1_1 : ( ( RULE_ID ) ) ;
-    public final void rule__ImportedVariable__VariablesAssignment_1_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__VariablesAssignment_1_1_1"
+    // InternalReflex.g:9976:1: rule__ImportedVariableList__VariablesAssignment_1_1_1 : ( ( RULE_ID ) ) ;
+    public final void rule__ImportedVariableList__VariablesAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33289,23 +33289,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9982:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0()); 
             }
             // InternalReflex.g:9983:3: ( RULE_ID )
             // InternalReflex.g:9984:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_1_1_0_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_1_1_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_1_1_0_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableIDTerminalRuleCall_1_1_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0()); 
             }
 
             }
@@ -33325,12 +33325,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__VariablesAssignment_1_1_1"
+    // $ANTLR end "rule__ImportedVariableList__VariablesAssignment_1_1_1"
 
 
-    // $ANTLR start "rule__ImportedVariable__ProcessAssignment_4"
-    // InternalReflex.g:9995:1: rule__ImportedVariable__ProcessAssignment_4 : ( ( RULE_ID ) ) ;
-    public final void rule__ImportedVariable__ProcessAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__ImportedVariableList__ProcessAssignment_4"
+    // InternalReflex.g:9995:1: rule__ImportedVariableList__ProcessAssignment_4 : ( ( RULE_ID ) ) ;
+    public final void rule__ImportedVariableList__ProcessAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33342,23 +33342,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:10001:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getProcessProcessCrossReference_4_0()); 
+               before(grammarAccess.getImportedVariableListAccess().getProcessProcessCrossReference_4_0()); 
             }
             // InternalReflex.g:10002:3: ( RULE_ID )
             // InternalReflex.g:10003:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getImportedVariableAccess().getProcessProcessIDTerminalRuleCall_4_0_1()); 
+               before(grammarAccess.getImportedVariableListAccess().getProcessProcessIDTerminalRuleCall_4_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getProcessProcessIDTerminalRuleCall_4_0_1()); 
+               after(grammarAccess.getImportedVariableListAccess().getProcessProcessIDTerminalRuleCall_4_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getImportedVariableAccess().getProcessProcessCrossReference_4_0()); 
+               after(grammarAccess.getImportedVariableListAccess().getProcessProcessCrossReference_4_0()); 
             }
 
             }
@@ -33378,7 +33378,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImportedVariable__ProcessAssignment_4"
+    // $ANTLR end "rule__ImportedVariableList__ProcessAssignment_4"
 
 
     // $ANTLR start "rule__DeclaredVariable__SharedAssignment_1"

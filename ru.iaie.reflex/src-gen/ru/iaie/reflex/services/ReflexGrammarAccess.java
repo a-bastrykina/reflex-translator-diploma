@@ -299,22 +299,22 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ProcessVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cImportedVariableParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cImportedVariableListParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cDeclaredVariableParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ProcessVariable:
-		//	(ImportedVariable | DeclaredVariable) ";";
+		//	(ImportedVariableList | DeclaredVariable) ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(ImportedVariable | DeclaredVariable) ";"
+		//(ImportedVariableList | DeclaredVariable) ";"
 		public Group getGroup() { return cGroup; }
 		
-		//(ImportedVariable | DeclaredVariable)
+		//(ImportedVariableList | DeclaredVariable)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
-		//ImportedVariable
-		public RuleCall getImportedVariableParserRuleCall_0_0() { return cImportedVariableParserRuleCall_0_0; }
+		//ImportedVariableList
+		public RuleCall getImportedVariableListParserRuleCall_0_0() { return cImportedVariableListParserRuleCall_0_0; }
 		
 		//DeclaredVariable
 		public RuleCall getDeclaredVariableParserRuleCall_0_1() { return cDeclaredVariableParserRuleCall_0_1; }
@@ -322,8 +322,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
-	public class ImportedVariableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ImportedVariable");
+	public class ImportedVariableListElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ImportedVariableList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSharedKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -341,7 +341,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cProcessProcessCrossReference_4_0 = (CrossReference)cProcessAssignment_4.eContents().get(0);
 		private final RuleCall cProcessProcessIDTerminalRuleCall_4_0_1 = (RuleCall)cProcessProcessCrossReference_4_0.eContents().get(1);
 		
-		//ImportedVariable:
+		//ImportedVariableList:
 		//	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2926,7 +2926,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ProcessElements pProcess;
 	private final StateElements pState;
 	private final ProcessVariableElements pProcessVariable;
-	private final ImportedVariableElements pImportedVariable;
+	private final ImportedVariableListElements pImportedVariableList;
 	private final DeclaredVariableElements pDeclaredVariable;
 	private final GlobalVariableElements pGlobalVariable;
 	private final PhysicalVariableElements pPhysicalVariable;
@@ -3033,7 +3033,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProcess = new ProcessElements();
 		this.pState = new StateElements();
 		this.pProcessVariable = new ProcessVariableElements();
-		this.pImportedVariable = new ImportedVariableElements();
+		this.pImportedVariableList = new ImportedVariableListElements();
 		this.pDeclaredVariable = new DeclaredVariableElements();
 		this.pGlobalVariable = new GlobalVariableElements();
 		this.pPhysicalVariable = new PhysicalVariableElements();
@@ -3198,7 +3198,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ProcessVariable:
-	//	(ImportedVariable | DeclaredVariable) ";";
+	//	(ImportedVariableList | DeclaredVariable) ";";
 	public ProcessVariableElements getProcessVariableAccess() {
 		return pProcessVariable;
 	}
@@ -3207,14 +3207,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getProcessVariableAccess().getRule();
 	}
 	
-	//ImportedVariable:
+	//ImportedVariableList:
 	//	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
-	public ImportedVariableElements getImportedVariableAccess() {
-		return pImportedVariable;
+	public ImportedVariableListElements getImportedVariableListAccess() {
+		return pImportedVariableList;
 	}
 	
-	public ParserRule getImportedVariableRule() {
-		return getImportedVariableAccess().getRule();
+	public ParserRule getImportedVariableListRule() {
+		return getImportedVariableListAccess().getRule();
 	}
 	
 	//DeclaredVariable:

@@ -8,13 +8,14 @@ import ru.iaie.reflex.reflex.EnumMember
 import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.ErrorStat
 import ru.iaie.reflex.reflex.ProcessVariable
-import ru.iaie.reflex.reflex.ImportedVariable
+import ru.iaie.reflex.reflex.ImportedVariableList
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.TimeoutFunction
 import ru.iaie.reflex.reflex.DeclaredVariable
+import ru.iaie.reflex.reflex.RegisterType
 
 class ReflexModelUtil {
 	def static State findStateByName(Process proc, String stateName) {
@@ -72,7 +73,15 @@ class ReflexModelUtil {
 	}
 	
 	def static boolean isImportedList(ProcessVariable v) {
-		return v instanceof ImportedVariable
+		return v instanceof ImportedVariableList
+	}
+	
+	def static boolean isPhysical(ProcessVariable v) {
+		return v instanceof PhysicalVariable
+	}
+	
+	def static RegisterType getMappedPortType(PhysicalVariable v) {
+		return v.port.register.type
 	}
 	
 	def static String resolveName(IdReference ref) {

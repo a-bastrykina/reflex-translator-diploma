@@ -31,7 +31,7 @@ import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
@@ -154,11 +154,11 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.IMPORTED_VARIABLE:
+      case ReflexPackage.IMPORTED_VARIABLE_LIST:
       {
-        ImportedVariable importedVariable = (ImportedVariable)theEObject;
-        T result = caseImportedVariable(importedVariable);
-        if (result == null) result = caseProcessVariable(importedVariable);
+        ImportedVariableList importedVariableList = (ImportedVariableList)theEObject;
+        T result = caseImportedVariableList(importedVariableList);
+        if (result == null) result = caseProcessVariable(importedVariableList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -729,17 +729,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Imported Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Imported Variable List</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Imported Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Imported Variable List</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseImportedVariable(ImportedVariable object)
+  public T caseImportedVariableList(ImportedVariableList object)
   {
     return null;
   }

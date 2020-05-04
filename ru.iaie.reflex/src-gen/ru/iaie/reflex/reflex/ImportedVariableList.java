@@ -7,22 +7,22 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Imported Variable</b></em>'.
+ * A representation of the model object '<em><b>Imported Variable List</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getVariables <em>Variables</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ImportedVariableList#getVariables <em>Variables</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ImportedVariableList#getProcess <em>Process</em>}</li>
  * </ul>
  *
- * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable()
+ * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariableList()
  * @model
  * @generated
  */
-public interface ImportedVariable extends ProcessVariable
+public interface ImportedVariableList extends ProcessVariable
 {
   /**
    * Returns the value of the '<em><b>Variables</b></em>' reference list.
@@ -30,7 +30,7 @@ public interface ImportedVariable extends ProcessVariable
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variables</em>' reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Variables()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariableList_Variables()
    * @model
    * @generated
    */
@@ -42,14 +42,14 @@ public interface ImportedVariable extends ProcessVariable
    * <!-- end-user-doc -->
    * @return the value of the '<em>Process</em>' reference.
    * @see #setProcess(ru.iaie.reflex.reflex.Process)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariable_Process()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getImportedVariableList_Process()
    * @model
    * @generated
    */
   ru.iaie.reflex.reflex.Process getProcess();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ImportedVariable#getProcess <em>Process</em>}' reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ImportedVariableList#getProcess <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Process</em>' reference.
@@ -58,4 +58,4 @@ public interface ImportedVariable extends ProcessVariable
    */
   void setProcess(ru.iaie.reflex.reflex.Process value);
 
-} // ImportedVariable
+} // ImportedVariableList

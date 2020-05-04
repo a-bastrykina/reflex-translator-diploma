@@ -7,8 +7,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
-import ru.iaie.reflex.reflex.IdReference
-import ru.iaie.reflex.reflex.ImportedVariable
+import ru.iaie.reflex.reflex.ImportedVariableList
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.Program
 import ru.iaie.reflex.reflex.ReflexPackage
@@ -34,8 +33,8 @@ class ReflexScopeProvider extends AbstractReflexScopeProvider {
 			val candidates = ctx.getContainerOfType(Process).states;
 			return Scopes.scopeFor(candidates);
 		}
-		if (ctx instanceof ImportedVariable && ref == ePackage.importedVariable_Variables) {
-			val candidates = (ctx as ImportedVariable).process.variables.filter[shared]
+		if (ctx instanceof ImportedVariableList && ref == ePackage.importedVariableList_Variables) {
+			val candidates = (ctx as ImportedVariableList).process.variables.filter[shared]
 			return Scopes.scopeFor(candidates)
 		}
 		if (ctx instanceof PrimaryExpression) {
@@ -49,7 +48,7 @@ class ReflexScopeProvider extends AbstractReflexScopeProvider {
 				candidates.addAll(prog.globalVars)
 				if (proc !== null) {
 					candidates.addAll(proc.variables.filter[declared])
-					candidates.addAll(proc.variables.filter(ImportedVariable).map[variables].flatten)
+					candidates.addAll(proc.variables.filter(ImportedVariableList).map[variables].flatten)
 				}
 
 				return Scopes.scopeFor(candidates)
@@ -64,7 +63,7 @@ class ReflexScopeProvider extends AbstractReflexScopeProvider {
 				candidates.addAll(prog.globalVars)
 				if (proc !== null) {
 					candidates.addAll(proc.variables.filter[declared])
-					candidates.addAll(proc.variables.filter(ImportedVariable).map[variables].flatten)
+					candidates.addAll(proc.variables.filter(ImportedVariableList).map[variables].flatten)
 				}
 
 				return Scopes.scopeFor(candidates)

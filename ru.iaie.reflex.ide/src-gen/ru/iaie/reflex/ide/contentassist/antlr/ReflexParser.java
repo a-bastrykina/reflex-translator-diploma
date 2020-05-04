@@ -69,9 +69,9 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup_0(), "rule__State__Group_0__0");
 			builder.put(grammarAccess.getProcessVariableAccess().getGroup(), "rule__ProcessVariable__Group__0");
-			builder.put(grammarAccess.getImportedVariableAccess().getGroup(), "rule__ImportedVariable__Group__0");
-			builder.put(grammarAccess.getImportedVariableAccess().getGroup_1(), "rule__ImportedVariable__Group_1__0");
-			builder.put(grammarAccess.getImportedVariableAccess().getGroup_1_1(), "rule__ImportedVariable__Group_1_1__0");
+			builder.put(grammarAccess.getImportedVariableListAccess().getGroup(), "rule__ImportedVariableList__Group__0");
+			builder.put(grammarAccess.getImportedVariableListAccess().getGroup_1(), "rule__ImportedVariableList__Group_1__0");
+			builder.put(grammarAccess.getImportedVariableListAccess().getGroup_1_1(), "rule__ImportedVariableList__Group_1_1__0");
 			builder.put(grammarAccess.getDeclaredVariableAccess().getGroup(), "rule__DeclaredVariable__Group__0");
 			builder.put(grammarAccess.getGlobalVariableAccess().getGroup(), "rule__GlobalVariable__Group__0");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getGroup(), "rule__PhysicalVariable__Group__0");
@@ -167,9 +167,9 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateAccess().getLoopedAssignment_3(), "rule__State__LoopedAssignment_3");
 			builder.put(grammarAccess.getStateAccess().getStateFunctionAssignment_5(), "rule__State__StateFunctionAssignment_5");
 			builder.put(grammarAccess.getStateAccess().getTimeoutFunctionAssignment_6(), "rule__State__TimeoutFunctionAssignment_6");
-			builder.put(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_0(), "rule__ImportedVariable__VariablesAssignment_1_0");
-			builder.put(grammarAccess.getImportedVariableAccess().getVariablesAssignment_1_1_1(), "rule__ImportedVariable__VariablesAssignment_1_1_1");
-			builder.put(grammarAccess.getImportedVariableAccess().getProcessAssignment_4(), "rule__ImportedVariable__ProcessAssignment_4");
+			builder.put(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_0(), "rule__ImportedVariableList__VariablesAssignment_1_0");
+			builder.put(grammarAccess.getImportedVariableListAccess().getVariablesAssignment_1_1_1(), "rule__ImportedVariableList__VariablesAssignment_1_1_1");
+			builder.put(grammarAccess.getImportedVariableListAccess().getProcessAssignment_4(), "rule__ImportedVariableList__ProcessAssignment_4");
 			builder.put(grammarAccess.getDeclaredVariableAccess().getSharedAssignment_1(), "rule__DeclaredVariable__SharedAssignment_1");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getTypeAssignment_0(), "rule__PhysicalVariable__TypeAssignment_0");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getNameAssignment_1(), "rule__PhysicalVariable__NameAssignment_1");

@@ -33,7 +33,7 @@ import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
-import ru.iaie.reflex.reflex.ImportedVariable;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
@@ -149,9 +149,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createProcessVariableAdapter();
       }
       @Override
-      public Adapter caseImportedVariable(ImportedVariable object)
+      public Adapter caseImportedVariableList(ImportedVariableList object)
       {
-        return createImportedVariableAdapter();
+        return createImportedVariableListAdapter();
       }
       @Override
       public Adapter caseDeclaredVariable(DeclaredVariable object)
@@ -486,16 +486,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ImportedVariable <em>Imported Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ImportedVariableList <em>Imported Variable List</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.ImportedVariable
+   * @see ru.iaie.reflex.reflex.ImportedVariableList
    * @generated
    */
-  public Adapter createImportedVariableAdapter()
+  public Adapter createImportedVariableListAdapter()
   {
     return null;
   }
