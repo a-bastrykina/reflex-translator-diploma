@@ -18,6 +18,7 @@ import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import java.util.ArrayList
 import ru.iaie.reflex.reflex.PrimaryExpression
 import ru.iaie.reflex.reflex.AssignmentExpression
+import ru.iaie.reflex.reflex.TimeAmountOrRef
 
 /** 
  * This class contains custom scoping description.
@@ -37,38 +38,29 @@ class ReflexScopeProvider extends AbstractReflexScopeProvider {
 			val candidates = (ctx as ImportedVariableList).process.variables.filter[shared]
 			return Scopes.scopeFor(candidates)
 		}
-		if (ctx instanceof PrimaryExpression) {
-			if (ref == ePackage.primaryExpression_Reference) {
-				val prog = ctx.getContainerOfType(Program)
-				val proc = ctx.getContainerOfType(Process)
-
-				val candidates = new ArrayList<EObject>
-				candidates.addAll(prog.enums.map[enumMembers].flatten)
-				candidates.addAll(prog.consts)
-				candidates.addAll(prog.globalVars)
-				if (proc !== null) {
-					candidates.addAll(proc.variables.filter[declared])
-					candidates.addAll(proc.variables.filter(ImportedVariableList).map[variables].flatten)
-				}
-
-				return Scopes.scopeFor(candidates)
-			}
-		}
-		if (ctx instanceof AssignmentExpression) {
-			if (ref == ePackage.assignmentExpression_AssignVar) {
-				val prog = ctx.getContainerOfType(Program)
-				val proc = ctx.getContainerOfType(Process)
-
-				val candidates = new ArrayList<EObject>
-				candidates.addAll(prog.globalVars)
-				if (proc !== null) {
-					candidates.addAll(proc.variables.filter[declared])
-					candidates.addAll(proc.variables.filter(ImportedVariableList).map[variables].flatten)
-				}
-
-				return Scopes.scopeFor(candidates)
-			}
+		
+		if (ctx instanceof PrimaryExpression && ref == ePackage.primaryExpression_Reference ||
+			ctx instanceof AssignmentExpression && ref == ePackage.assignmentExpression_AssignVar ||
+			ctx instanceof TimeAmountOrRef && ref == ePackage.timeAmountOrRef_Ref) {
+			return getIdReferenceScope(ctx)		
 		}
 		return super.getScope(ctx, ref)
 	}
+
+	private def IScope getIdReferenceScope(EObject ctx) {
+		val prog = ctx.getContainerOfType(Program)
+		val proc = ctx.getContainerOfType(Process)
+
+		val candidates = new ArrayList<EObject>
+		candidates.addAll(prog.enums.map[enumMembers].flatten)
+		candidates.addAll(prog.consts)
+		candidates.addAll(prog.globalVars)
+		if (proc !== null) {
+			candidates.addAll(proc.declaredVariables)
+			candidates.addAll(proc.imports.map[variables].flatten)
+		}
+
+		return Scopes.scopeFor(candidates)
+	}
+
 }

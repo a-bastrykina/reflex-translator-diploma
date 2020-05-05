@@ -4,29 +4,40 @@
 package ru.iaie.reflex.validation;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DeclaredVariable;
+import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Program;
+import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
@@ -37,6 +48,8 @@ import ru.iaie.reflex.validation.AbstractReflexValidator;
  */
 @SuppressWarnings("all")
 public class ReflexValidator extends AbstractReflexValidator {
+  private static ReflexPackage ePackage = ReflexPackage.eINSTANCE;
+  
   @Check
   public void checkForNextState(final SetStateStat setStateStat) {
     boolean _isNext = setStateStat.isNext();
@@ -47,8 +60,7 @@ public class ReflexValidator extends AbstractReflexValidator {
       int _length = ((Object[])Conversions.unwrapArray(process.getStates(), Object.class)).length;
       boolean _greaterEqualsThan = ((callingStateIndex + 1) >= _length);
       if (_greaterEqualsThan) {
-        this.error("Invalid state transition: no next state in the process", 
-          ReflexPackage.eINSTANCE.getSetStateStat_Next());
+        this.error("Invalid state transition: no next state in the process", ReflexValidator.ePackage.getSetStateStat_Next());
       }
     }
   }
@@ -80,7 +92,7 @@ public class ReflexValidator extends AbstractReflexValidator {
           _builder.append(_name);
           _builder.append(": no state transitions declared");
           this.error(_builder.toString(), 
-            ReflexPackage.eINSTANCE.getState_Name());
+            ReflexValidator.ePackage.getState_Name());
         }
       }
     }
@@ -94,8 +106,7 @@ public class ReflexValidator extends AbstractReflexValidator {
     if (_equals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Use \'restart\' statement for restarting current process");
-      this.warning(_builder.toString(), 
-        ReflexPackage.eINSTANCE.getStartProcStat_Process());
+      this.warning(_builder.toString(), ReflexValidator.ePackage.getStartProcStat_Process());
     }
   }
   
@@ -107,8 +118,7 @@ public class ReflexValidator extends AbstractReflexValidator {
     if (_equals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Use \'stop\' without argument to stop current process");
-      this.warning(_builder.toString(), 
-        ReflexPackage.eINSTANCE.getStopProcStat_Process());
+      this.warning(_builder.toString(), ReflexValidator.ePackage.getStopProcStat_Process());
     }
   }
   
@@ -118,8 +128,7 @@ public class ReflexValidator extends AbstractReflexValidator {
     final String procName = errorStat.getProcess().getName();
     boolean _equals = selfProcess.getName().equals(procName);
     if (_equals) {
-      this.warning("Use \'error\' without argument to set current process state to error", 
-        ReflexPackage.eINSTANCE.getErrorStat_Process());
+      this.warning("Use \'error\' without argument to set current process state to error", ReflexValidator.ePackage.getErrorStat_Process());
     }
   }
   
@@ -133,8 +142,11 @@ public class ReflexValidator extends AbstractReflexValidator {
         boolean _equals = Objects.equal(_mappedPortType, RegisterType.INPUT);
         if (_equals) {
           this.warning("An attempt to assign value into variable mapped on input port", 
-            ReflexPackage.eINSTANCE.getAssignmentExpression_AssignVar());
+            ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
         }
+      }
+      if (((assignVar instanceof Const) || (assignVar instanceof EnumMember))) {
+        this.error("Can\'t assign values to constants or enum members", ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
       }
     }
   }
@@ -144,22 +156,146 @@ public class ReflexValidator extends AbstractReflexValidator {
     RegisterType _mappedPortType = ReflexModelUtil.getMappedPortType(physVar);
     boolean _equals = Objects.equal(_mappedPortType, RegisterType.OUTPUT);
     if (_equals) {
-      final Program container = EcoreUtil2.<Program>getContainerOfType(physVar, Program.class);
-      HashSet<PhysicalVariable> target = CollectionLiterals.<PhysicalVariable>newHashSet(physVar);
-      final ArrayList<EObject> refered = CollectionLiterals.<EObject>newArrayList();
-      final EcoreUtil2.ElementReferenceAcceptor _function = (EObject referrer, EObject referenced, EReference reference, int index) -> {
-        EReference _assignmentExpression_AssignVar = ReflexPackage.eINSTANCE.getAssignmentExpression_AssignVar();
-        boolean _equals_1 = Objects.equal(reference, _assignmentExpression_AssignVar);
-        if (_equals_1) {
-          refered.add(referrer);
-        }
+      final Program program = EcoreUtil2.<Program>getContainerOfType(physVar, Program.class);
+      boolean usedInAssignment = ReflexModelUtil.containsReferencesOfType(program, physVar, ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
+      if ((!usedInAssignment)) {
+        this.warning("Variable mapped on output port is not used in assignment", ReflexValidator.ePackage.getPhysicalVariable_Name());
+      }
+    }
+  }
+  
+  @Check
+  public void checkStateReachability(final ru.iaie.reflex.reflex.State state) {
+    final ru.iaie.reflex.reflex.Process process = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(state, ru.iaie.reflex.reflex.Process.class);
+    int curStateIndex = process.getStates().indexOf(state);
+    if ((curStateIndex == 0)) {
+      return;
+    }
+    boolean transitionExists = ReflexModelUtil.containsReferencesOfType(process, state, ReflexValidator.ePackage.getSetStateStat_State());
+    if ((!transitionExists)) {
+      final ru.iaie.reflex.reflex.State prevState = process.getStates().get((curStateIndex - 1));
+      final Function1<SetStateStat, Boolean> _function = (SetStateStat it) -> {
+        return Boolean.valueOf(it.isNext());
       };
-      final EcoreUtil2.ElementReferenceAcceptor acceptor = _function;
-      EcoreUtil2.findCrossReferences(container, target, acceptor);
-      boolean _isEmpty = refered.isEmpty();
-      if (_isEmpty) {
-        this.warning("Variable mapped on output port is not used in assignment", 
-          ReflexPackage.eINSTANCE.getPhysicalVariable_Name());
+      final Iterable<SetStateStat> nextStateTransitions = IterableExtensions.<SetStateStat>filter(EcoreUtil2.<SetStateStat>eAllOfType(prevState, SetStateStat.class), _function);
+      transitionExists = (transitionExists || (!IterableExtensions.isEmpty(nextStateTransitions)));
+    }
+    if ((!transitionExists)) {
+      this.warning("State is unreachable", ReflexValidator.ePackage.getState_Name());
+    }
+  }
+  
+  @Check
+  public void checkTimeoutVariable(final TimeoutFunction func) {
+    boolean _isReferencedTimeout = ReflexModelUtil.isReferencedTimeout(func);
+    if (_isReferencedTimeout) {
+      final Program program = EcoreUtil2.<Program>getContainerOfType(func, Program.class);
+      final IdReference timeContainer = func.getRef();
+      if ((timeContainer instanceof ProgramVariable)) {
+        boolean _containsReferencesOfType = ReflexModelUtil.containsReferencesOfType(program, timeContainer, ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
+        boolean _not = (!_containsReferencesOfType);
+        if (_not) {
+          this.warning("Uninitialized variable is used in timeout", ReflexValidator.ePackage.getTimeAmountOrRef_Ref());
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkNameShadowing(final ru.iaie.reflex.reflex.Process process) {
+    final Map<String, EObject> globalCtx = CollectionLiterals.<String, EObject>newHashMap();
+    final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
+    final Function1<GlobalVariable, String> _function = (GlobalVariable it) -> {
+      return ReflexModelUtil.getName(it);
+    };
+    final Function1<GlobalVariable, GlobalVariable> _function_1 = (GlobalVariable v) -> {
+      return v;
+    };
+    globalCtx.putAll(IterableExtensions.<GlobalVariable, String, GlobalVariable>toMap(program.getGlobalVars(), _function, _function_1));
+    final Function1<Register, String> _function_2 = (Register it) -> {
+      return it.getName();
+    };
+    final Function1<Register, Register> _function_3 = (Register v) -> {
+      return v;
+    };
+    globalCtx.putAll(IterableExtensions.<Register, String, Register>toMap(program.getRegisters(), _function_2, _function_3));
+    final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function_4 = (ru.iaie.reflex.reflex.Enum it) -> {
+      return it.getEnumMembers();
+    };
+    final Function1<EnumMember, String> _function_5 = (EnumMember it) -> {
+      return it.getName();
+    };
+    final Function1<EnumMember, EnumMember> _function_6 = (EnumMember v) -> {
+      return v;
+    };
+    globalCtx.putAll(IterableExtensions.<EnumMember, String, EnumMember>toMap(Iterables.<EnumMember>concat(ListExtensions.<ru.iaie.reflex.reflex.Enum, EList<EnumMember>>map(program.getEnums(), _function_4)), _function_5, _function_6));
+    final Function1<Const, String> _function_7 = (Const it) -> {
+      return it.getName();
+    };
+    final Function1<Const, Const> _function_8 = (Const v) -> {
+      return v;
+    };
+    globalCtx.putAll(IterableExtensions.<Const, String, Const>toMap(program.getConsts(), _function_7, _function_8));
+    List<DeclaredVariable> _declaredVariables = ReflexModelUtil.getDeclaredVariables(process);
+    for (final DeclaredVariable variable : _declaredVariables) {
+      {
+        EAttribute _xifexpression = null;
+        boolean _isPhysical = ReflexModelUtil.isPhysical(variable);
+        if (_isPhysical) {
+          _xifexpression = ReflexValidator.ePackage.getPhysicalVariable_Name();
+        } else {
+          _xifexpression = ReflexValidator.ePackage.getProgramVariable_Name();
+        }
+        EAttribute ref = _xifexpression;
+        boolean _containsKey = globalCtx.containsKey(ReflexModelUtil.getName(variable));
+        if (_containsKey) {
+          EObject shadowed = globalCtx.get(ReflexModelUtil.getName(variable));
+          String errorMessage = null;
+          boolean _matched = false;
+          if (shadowed instanceof GlobalVariable) {
+            _matched=true;
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("Process variable shadows global variable \"");
+            String _name = ReflexModelUtil.getName(((GlobalVariable)shadowed));
+            _builder.append(_name);
+            _builder.append("\"");
+            errorMessage = _builder.toString();
+          }
+          if (!_matched) {
+            if (shadowed instanceof Register) {
+              _matched=true;
+              StringConcatenation _builder = new StringConcatenation();
+              _builder.append("Process variable shadows port name \"");
+              String _name = ((Register)shadowed).getName();
+              _builder.append(_name);
+              _builder.append("\"");
+              errorMessage = _builder.toString();
+            }
+          }
+          if (!_matched) {
+            if (shadowed instanceof EnumMember) {
+              _matched=true;
+              StringConcatenation _builder = new StringConcatenation();
+              _builder.append("Process variable shadows enum member name \"");
+              String _name = ((EnumMember)shadowed).getName();
+              _builder.append(_name);
+              _builder.append("\"");
+              errorMessage = _builder.toString();
+            }
+          }
+          if (!_matched) {
+            if (shadowed instanceof Const) {
+              _matched=true;
+              StringConcatenation _builder = new StringConcatenation();
+              _builder.append("Process variable shadows constant name \"");
+              String _name = ((Const)shadowed).getName();
+              _builder.append(_name);
+              _builder.append("\"");
+              errorMessage = _builder.toString();
+            }
+          }
+          this.error(errorMessage, variable, ref);
+        }
       }
     }
   }

@@ -16,20 +16,14 @@ import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.TimeoutFunction
 import ru.iaie.reflex.reflex.DeclaredVariable
 import ru.iaie.reflex.reflex.RegisterType
+import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
+import static org.eclipse.xtext.EcoreUtil2.*
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import ru.iaie.reflex.reflex.GlobalVariable
+import java.util.List
 
 class ReflexModelUtil {
-	def static State findStateByName(Process proc, String stateName) {
-		val matchingStates = proc.states.filter[name.equals(stateName)].toList
-		if(matchingStates.isEmpty) return null;
-		return matchingStates.get(0)
-	}
-
-	def static Process findProcessByName(Program prog, String procName) {
-		val matchingProcs = prog.processes.filter[name.equals(procName)].toList
-		if(matchingProcs.isEmpty) return null;
-		return matchingProcs.get(0)
-	}
-
 	def static Program getProgram(Resource resource) {
 		return resource.allContents.toIterable.filter(Program).get(0);
 	}
@@ -45,19 +39,19 @@ class ReflexModelUtil {
 	def static boolean selfError(ErrorStat es) {
 		return es.process === null
 	}
-	
+
 	def static boolean isClearTimeout(TimeoutFunction f) {
 		return f.time !== null
 	}
-	
+
 	def static boolean isReferencedTimeout(TimeoutFunction f) {
 		return f.ref !== null
 	}
-	
+
 	def static boolean hasTimeout(State s) {
 		return s.timeoutFunction !== null
 	}
-	
+
 	def static boolean isShared(ProcessVariable v) {
 		switch v {
 			ProgramVariable:
@@ -68,22 +62,53 @@ class ReflexModelUtil {
 		return false
 	}
 	
+	def static List<DeclaredVariable> getDeclaredVariables(Process p) {
+		return p.variables.filter(DeclaredVariable).toList
+	}
+	
+	def static List<ImportedVariableList> getImports(Process p) {
+		return p.variables.filter(ImportedVariableList).toList
+	}
+
 	def static boolean isDeclared(ProcessVariable v) {
 		return v instanceof DeclaredVariable
 	}
 	
+	def static String getName(GlobalVariable v) {
+		if (v instanceof ProgramVariable) return v.name
+		if (v instanceof PhysicalVariable) return v.name
+	}
+	
+	def static String getName(DeclaredVariable v) {
+		if (v instanceof ProgramVariable) return v.name
+		if (v instanceof PhysicalVariable) return v.name
+	}
+	 
+
 	def static boolean isImportedList(ProcessVariable v) {
 		return v instanceof ImportedVariableList
 	}
-	
+
 	def static boolean isPhysical(ProcessVariable v) {
 		return v instanceof PhysicalVariable
 	}
-	
+
 	def static RegisterType getMappedPortType(PhysicalVariable v) {
 		return v.port.register.type
 	}
-	
+
+	def static boolean containsReferencesOfType(EObject context, EObject target, EReference refType) {
+		val targetSet = newHashSet(target)
+		val refered = newArrayList()
+		val ElementReferenceAcceptor acceptor = [ EObject referrer, EObject referenced, EReference reference, int index |
+			if (reference == refType) {
+				refered.add(referrer)
+			}
+		]
+		findCrossReferences(context, targetSet, acceptor)
+		return !refered.empty
+	}
+
 	def static String resolveName(IdReference ref) {
 		switch ref {
 			ProgramVariable:

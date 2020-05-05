@@ -25,6 +25,7 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.scoping.AbstractReflexScopeProvider;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
@@ -50,53 +51,31 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
       final Iterable<ProcessVariable> candidates_1 = IterableExtensions.<ProcessVariable>filter(((ImportedVariableList) ctx).getProcess().getVariables(), _function);
       return Scopes.scopeFor(candidates_1);
     }
-    if ((ctx instanceof PrimaryExpression)) {
-      EReference _primaryExpression_Reference = this.ePackage.getPrimaryExpression_Reference();
-      boolean _equals = Objects.equal(ref, _primaryExpression_Reference);
-      if (_equals) {
-        final Program prog = EcoreUtil2.<Program>getContainerOfType(ctx, Program.class);
-        final ru.iaie.reflex.reflex.Process proc = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ctx, ru.iaie.reflex.reflex.Process.class);
-        final ArrayList<EObject> candidates_2 = new ArrayList<EObject>();
-        final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function_1 = (ru.iaie.reflex.reflex.Enum it) -> {
-          return it.getEnumMembers();
-        };
-        Iterables.<EObject>addAll(candidates_2, Iterables.<EObject>concat(ListExtensions.<ru.iaie.reflex.reflex.Enum, EList<EnumMember>>map(prog.getEnums(), _function_1)));
-        candidates_2.addAll(prog.getConsts());
-        candidates_2.addAll(prog.getGlobalVars());
-        if ((proc != null)) {
-          final Function1<ProcessVariable, Boolean> _function_2 = (ProcessVariable it) -> {
-            return Boolean.valueOf(ReflexModelUtil.isDeclared(it));
-          };
-          Iterables.<EObject>addAll(candidates_2, IterableExtensions.<ProcessVariable>filter(proc.getVariables(), _function_2));
-          final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_3 = (ImportedVariableList it) -> {
-            return it.getVariables();
-          };
-          Iterables.<EObject>addAll(candidates_2, Iterables.<EObject>concat(IterableExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(Iterables.<ImportedVariableList>filter(proc.getVariables(), ImportedVariableList.class), _function_3)));
-        }
-        return Scopes.scopeFor(candidates_2);
-      }
-    }
-    if ((ctx instanceof AssignmentExpression)) {
-      EReference _assignmentExpression_AssignVar = this.ePackage.getAssignmentExpression_AssignVar();
-      boolean _equals_1 = Objects.equal(ref, _assignmentExpression_AssignVar);
-      if (_equals_1) {
-        final Program prog_1 = EcoreUtil2.<Program>getContainerOfType(ctx, Program.class);
-        final ru.iaie.reflex.reflex.Process proc_1 = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ctx, ru.iaie.reflex.reflex.Process.class);
-        final ArrayList<EObject> candidates_3 = new ArrayList<EObject>();
-        candidates_3.addAll(prog_1.getGlobalVars());
-        if ((proc_1 != null)) {
-          final Function1<ProcessVariable, Boolean> _function_4 = (ProcessVariable it) -> {
-            return Boolean.valueOf(ReflexModelUtil.isDeclared(it));
-          };
-          Iterables.<EObject>addAll(candidates_3, IterableExtensions.<ProcessVariable>filter(proc_1.getVariables(), _function_4));
-          final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_5 = (ImportedVariableList it) -> {
-            return it.getVariables();
-          };
-          Iterables.<EObject>addAll(candidates_3, Iterables.<EObject>concat(IterableExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(Iterables.<ImportedVariableList>filter(proc_1.getVariables(), ImportedVariableList.class), _function_5)));
-        }
-        return Scopes.scopeFor(candidates_3);
-      }
+    if (((((ctx instanceof PrimaryExpression) && Objects.equal(ref, this.ePackage.getPrimaryExpression_Reference())) || 
+      ((ctx instanceof AssignmentExpression) && Objects.equal(ref, this.ePackage.getAssignmentExpression_AssignVar()))) || 
+      ((ctx instanceof TimeAmountOrRef) && Objects.equal(ref, this.ePackage.getTimeAmountOrRef_Ref())))) {
+      return this.getIdReferenceScope(ctx);
     }
     return super.getScope(ctx, ref);
+  }
+  
+  private IScope getIdReferenceScope(final EObject ctx) {
+    final Program prog = EcoreUtil2.<Program>getContainerOfType(ctx, Program.class);
+    final ru.iaie.reflex.reflex.Process proc = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ctx, ru.iaie.reflex.reflex.Process.class);
+    final ArrayList<EObject> candidates = new ArrayList<EObject>();
+    final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function = (ru.iaie.reflex.reflex.Enum it) -> {
+      return it.getEnumMembers();
+    };
+    Iterables.<EObject>addAll(candidates, Iterables.<EObject>concat(ListExtensions.<ru.iaie.reflex.reflex.Enum, EList<EnumMember>>map(prog.getEnums(), _function)));
+    candidates.addAll(prog.getConsts());
+    candidates.addAll(prog.getGlobalVars());
+    if ((proc != null)) {
+      candidates.addAll(ReflexModelUtil.getDeclaredVariables(proc));
+      final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_1 = (ImportedVariableList it) -> {
+        return it.getVariables();
+      };
+      Iterables.<EObject>addAll(candidates, Iterables.<EObject>concat(ListExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(ReflexModelUtil.getImports(proc), _function_1)));
+    }
+    return Scopes.scopeFor(candidates);
   }
 }

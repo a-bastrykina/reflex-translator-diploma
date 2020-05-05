@@ -18,9 +18,18 @@ import ru.iaie.reflex.reflex.AssignmentExpression
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.RegisterType
 import ru.iaie.reflex.reflex.Program
-import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
+import ru.iaie.reflex.reflex.TimeoutFunction
+import ru.iaie.reflex.reflex.ProgramVariable
+import ru.iaie.reflex.reflex.Const
+import ru.iaie.reflex.reflex.EnumMember
+import java.util.Set
+import java.util.List
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EReference
+import ru.iaie.reflex.reflex.ImportedVariableList
+import ru.iaie.reflex.reflex.DeclaredVariable
+import java.util.Map
+import ru.iaie.reflex.reflex.GlobalVariable
+import ru.iaie.reflex.reflex.Register
 
 /** 
  * This class contains custom validation rules. 
@@ -28,14 +37,15 @@ import org.eclipse.emf.ecore.EReference
  */
 class ReflexValidator extends AbstractReflexValidator {
 
+	static ReflexPackage ePackage = ReflexPackage.eINSTANCE
+
 	@Check def void checkForNextState(SetStateStat setStateStat) {
 		if (setStateStat.isNext()) {
 			val state = setStateStat.getContainerOfType(ru.iaie.reflex.reflex.State)
 			val process = setStateStat.getContainerOfType(Process)
 			val callingStateIndex = process.states.indexOf(state)
 			if (callingStateIndex + 1 >= process.states.length) {
-				error("Invalid state transition: no next state in the process",
-					ReflexPackage.eINSTANCE.setStateStat_Next)
+				error("Invalid state transition: no next state in the process", ePackage.setStateStat_Next)
 			}
 		}
 	}
@@ -49,7 +59,7 @@ class ReflexValidator extends AbstractReflexValidator {
 				val selfErrorTransitions = state.eAllContents.filter(ErrorStat).filter[selfError]
 				if (selfErrorTransitions.isEmpty) {
 					error('''Potential cycle in state «state.name»: no state transitions declared''',
-						ReflexPackage.eINSTANCE.state_Name)
+						ePackage.state_Name)
 				}
 			}
 		}
@@ -59,8 +69,7 @@ class ReflexValidator extends AbstractReflexValidator {
 		val selfProcess = startStat.getContainerOfType(Process)
 		val procName = startStat.process.name;
 		if (selfProcess.name.equals(procName)) {
-			warning('''Use 'restart' statement for restarting current process''',
-				ReflexPackage.eINSTANCE.startProcStat_Process)
+			warning('''Use 'restart' statement for restarting current process''', ePackage.startProcStat_Process)
 		}
 	}
 
@@ -68,8 +77,7 @@ class ReflexValidator extends AbstractReflexValidator {
 		val selfProcess = stopStat.getContainerOfType(Process)
 		val procName = stopStat.process.name;
 		if (selfProcess.name.equals(procName)) {
-			warning('''Use 'stop' without argument to stop current process''',
-				ReflexPackage.eINSTANCE.stopProcStat_Process)
+			warning('''Use 'stop' without argument to stop current process''', ePackage.stopProcStat_Process)
 		}
 	}
 
@@ -77,8 +85,7 @@ class ReflexValidator extends AbstractReflexValidator {
 		val selfProcess = errorStat.getContainerOfType(Process)
 		val procName = errorStat.process.name;
 		if (selfProcess.name.equals(procName)) {
-			warning("Use 'error' without argument to set current process state to error",
-				ReflexPackage.eINSTANCE.errorStat_Process)
+			warning("Use 'error' without argument to set current process state to error", ePackage.errorStat_Process)
 		}
 	}
 
@@ -88,26 +95,79 @@ class ReflexValidator extends AbstractReflexValidator {
 			if (assignVar instanceof PhysicalVariable) {
 				if (assignVar.mappedPortType == RegisterType.INPUT) {
 					warning("An attempt to assign value into variable mapped on input port",
-						ReflexPackage.eINSTANCE.assignmentExpression_AssignVar);
+						ePackage.assignmentExpression_AssignVar);
 				}
+			}
+			if (assignVar instanceof Const || assignVar instanceof EnumMember) {
+				error("Can't assign values to constants or enum members", ePackage.assignmentExpression_AssignVar)
 			}
 		}
 	}
 
 	@Check def void checkOutputVarUsagesInAssignment(PhysicalVariable physVar) {
 		if (physVar.mappedPortType == RegisterType.OUTPUT) {
-			val container = physVar.getContainerOfType(Program)
-			var target = newHashSet(physVar)
-			val refered = newArrayList()
-			val ElementReferenceAcceptor acceptor = [ EObject referrer, EObject referenced, EReference reference, int index |
-				if (reference == ReflexPackage.eINSTANCE.assignmentExpression_AssignVar) {
-					refered.add(referrer)
+			val program = physVar.getContainerOfType(Program)
+			var usedInAssignment = program.containsReferencesOfType(physVar, ePackage.assignmentExpression_AssignVar)
+
+			if (!usedInAssignment) {
+				warning("Variable mapped on output port is not used in assignment", ePackage.physicalVariable_Name)
+			}
+		}
+	}
+
+	@Check def void checkStateReachability(ru.iaie.reflex.reflex.State state) {
+		val process = state.getContainerOfType(Process)
+		var curStateIndex = process.states.indexOf(state)
+		if(curStateIndex == 0) return
+		var transitionExists = process.containsReferencesOfType(state, ePackage.setStateStat_State)
+		if (!transitionExists) {
+			// Try check in previous state
+			val prevState = process.states.get(curStateIndex - 1)
+			val nextStateTransitions = prevState.eAllOfType(SetStateStat).filter[isNext]
+			transitionExists = transitionExists || !nextStateTransitions.empty
+		}
+		if (!transitionExists) {
+			warning("State is unreachable", ePackage.state_Name)
+		}
+	}
+
+	@Check def void checkTimeoutVariable(TimeoutFunction func) {
+		if (func.isReferencedTimeout) {
+			val program = func.getContainerOfType(Program)
+			val timeContainer = func.ref
+			if (timeContainer instanceof ProgramVariable) {
+				if (!program.containsReferencesOfType(timeContainer, ePackage.assignmentExpression_AssignVar)) {
+					warning("Uninitialized variable is used in timeout", ePackage.timeAmountOrRef_Ref)
 				}
-			]
-			findCrossReferences(container, target, acceptor)
-			if (refered.empty) {
-				warning("Variable mapped on output port is not used in assignment",
-					ReflexPackage.eINSTANCE.physicalVariable_Name)
+			}
+		}
+	}
+
+	@Check def void checkNameShadowing(Process process) {
+		val Map<String, EObject> globalCtx = newHashMap()
+
+		val program = process.getContainerOfType(Program)
+		globalCtx.putAll(program.globalVars.toMap([name], [v|v]))
+		globalCtx.putAll(program.registers.toMap([name], [v|v]))
+		globalCtx.putAll(program.enums.map[enumMembers].flatten.toMap([name], [v|v]))
+		globalCtx.putAll(program.consts.toMap([name], [v|v]))
+
+		for (variable : process.declaredVariables) {
+			var ref = variable.isPhysical ? ePackage.physicalVariable_Name : ePackage.programVariable_Name
+			if (globalCtx.containsKey(variable.name)) {
+				var shadowed = globalCtx.get(variable.name)
+				var String errorMessage
+				switch shadowed {
+					GlobalVariable:
+						errorMessage = '''Process variable shadows global variable "«shadowed.name»"'''
+					Register:
+						errorMessage = '''Process variable shadows port name "«shadowed.name»"'''
+					EnumMember:
+						errorMessage = '''Process variable shadows enum member name "«shadowed.name»"'''
+					Const:
+						errorMessage = '''Process variable shadows constant name "«shadowed.name»"'''
+				}
+				error(errorMessage, variable, ref)
 			}
 		}
 	}

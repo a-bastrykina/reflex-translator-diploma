@@ -1,11 +1,16 @@
 package ru.iaie.reflex.utils;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import ru.iaie.reflex.reflex.Const;
@@ -13,6 +18,7 @@ import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
+import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
@@ -27,30 +33,6 @@ import ru.iaie.reflex.reflex.TimeoutFunction;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
-  public static State findStateByName(final ru.iaie.reflex.reflex.Process proc, final String stateName) {
-    final Function1<State, Boolean> _function = (State it) -> {
-      return Boolean.valueOf(it.getName().equals(stateName));
-    };
-    final List<State> matchingStates = IterableExtensions.<State>toList(IterableExtensions.<State>filter(proc.getStates(), _function));
-    boolean _isEmpty = matchingStates.isEmpty();
-    if (_isEmpty) {
-      return null;
-    }
-    return matchingStates.get(0);
-  }
-  
-  public static ru.iaie.reflex.reflex.Process findProcessByName(final Program prog, final String procName) {
-    final Function1<ru.iaie.reflex.reflex.Process, Boolean> _function = (ru.iaie.reflex.reflex.Process it) -> {
-      return Boolean.valueOf(it.getName().equals(procName));
-    };
-    final List<ru.iaie.reflex.reflex.Process> matchingProcs = IterableExtensions.<ru.iaie.reflex.reflex.Process>toList(IterableExtensions.<ru.iaie.reflex.reflex.Process>filter(prog.getProcesses(), _function));
-    boolean _isEmpty = matchingProcs.isEmpty();
-    if (_isEmpty) {
-      return null;
-    }
-    return matchingProcs.get(0);
-  }
-  
   public static Program getProgram(final Resource resource) {
     return ((Program[])Conversions.unwrapArray((Iterables.<Program>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Program.class)), Program.class))[0];
   }
@@ -100,8 +82,36 @@ public class ReflexModelUtil {
     return false;
   }
   
+  public static List<DeclaredVariable> getDeclaredVariables(final ru.iaie.reflex.reflex.Process p) {
+    return IterableExtensions.<DeclaredVariable>toList(Iterables.<DeclaredVariable>filter(p.getVariables(), DeclaredVariable.class));
+  }
+  
+  public static List<ImportedVariableList> getImports(final ru.iaie.reflex.reflex.Process p) {
+    return IterableExtensions.<ImportedVariableList>toList(Iterables.<ImportedVariableList>filter(p.getVariables(), ImportedVariableList.class));
+  }
+  
   public static boolean isDeclared(final ProcessVariable v) {
     return (v instanceof DeclaredVariable);
+  }
+  
+  public static String getName(final GlobalVariable v) {
+    if ((v instanceof ProgramVariable)) {
+      return ((ProgramVariable)v).getName();
+    }
+    if ((v instanceof PhysicalVariable)) {
+      return ((PhysicalVariable)v).getName();
+    }
+    return null;
+  }
+  
+  public static String getName(final DeclaredVariable v) {
+    if ((v instanceof ProgramVariable)) {
+      return ((ProgramVariable)v).getName();
+    }
+    if ((v instanceof PhysicalVariable)) {
+      return ((PhysicalVariable)v).getName();
+    }
+    return null;
   }
   
   public static boolean isImportedList(final ProcessVariable v) {
@@ -114,6 +124,21 @@ public class ReflexModelUtil {
   
   public static RegisterType getMappedPortType(final PhysicalVariable v) {
     return v.getPort().getRegister().getType();
+  }
+  
+  public static boolean containsReferencesOfType(final EObject context, final EObject target, final EReference refType) {
+    final HashSet<EObject> targetSet = CollectionLiterals.<EObject>newHashSet(target);
+    final ArrayList<EObject> refered = CollectionLiterals.<EObject>newArrayList();
+    final EcoreUtil2.ElementReferenceAcceptor _function = (EObject referrer, EObject referenced, EReference reference, int index) -> {
+      boolean _equals = Objects.equal(reference, refType);
+      if (_equals) {
+        refered.add(referrer);
+      }
+    };
+    final EcoreUtil2.ElementReferenceAcceptor acceptor = _function;
+    EcoreUtil2.findCrossReferences(context, targetSet, acceptor);
+    boolean _isEmpty = refered.isEmpty();
+    return (!_isEmpty);
   }
   
   public static String resolveName(final IdReference ref) {
