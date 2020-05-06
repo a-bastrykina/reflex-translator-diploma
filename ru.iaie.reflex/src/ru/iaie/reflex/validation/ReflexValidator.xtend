@@ -22,14 +22,13 @@ import ru.iaie.reflex.reflex.TimeoutFunction
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.EnumMember
-import java.util.Set
-import java.util.List
 import org.eclipse.emf.ecore.EObject
-import ru.iaie.reflex.reflex.ImportedVariableList
-import ru.iaie.reflex.reflex.DeclaredVariable
 import java.util.Map
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.Register
+import ru.iaie.reflex.reflex.ImportedVariableList
+import static java.util.function.Function.identity;
+import ru.iaie.reflex.reflex.DeclaredVariable
 
 /** 
  * This class contains custom validation rules. 
@@ -147,10 +146,10 @@ class ReflexValidator extends AbstractReflexValidator {
 		val Map<String, EObject> globalCtx = newHashMap()
 
 		val program = process.getContainerOfType(Program)
-		globalCtx.putAll(program.globalVars.toMap([name], [v|v]))
-		globalCtx.putAll(program.registers.toMap([name], [v|v]))
-		globalCtx.putAll(program.enums.map[enumMembers].flatten.toMap([name], [v|v]))
-		globalCtx.putAll(program.consts.toMap([name], [v|v]))
+		globalCtx.putAll(program.globalVars.toMap([name], identity))
+		globalCtx.putAll(program.registers.toMap([name], identity))
+		globalCtx.putAll(program.enums.map[enumMembers].flatten.toMap([name], identity))
+		globalCtx.putAll(program.consts.toMap([name], identity))
 
 		for (variable : process.declaredVariables) {
 			var ref = variable.isPhysical ? ePackage.physicalVariable_Name : ePackage.programVariable_Name
@@ -159,15 +158,49 @@ class ReflexValidator extends AbstractReflexValidator {
 				var String errorMessage
 				switch shadowed {
 					GlobalVariable:
-						errorMessage = '''Process variable shadows global variable "«shadowed.name»"'''
+						errorMessage = '''Process variable shadows global variable with name "«shadowed.name»"'''
 					Register:
-						errorMessage = '''Process variable shadows port name "«shadowed.name»"'''
+						errorMessage = '''Process variable shadows port with name "«shadowed.name»"'''
 					EnumMember:
-						errorMessage = '''Process variable shadows enum member name "«shadowed.name»"'''
+						errorMessage = '''Process variable shadows enum member with name "«shadowed.name»"'''
 					Const:
-						errorMessage = '''Process variable shadows constant name "«shadowed.name»"'''
+						errorMessage = '''Process variable shadows constant with name "«shadowed.name»"'''
 				}
 				error(errorMessage, variable, ref)
+			}
+		}
+	}
+
+	@Check def void checkImportedVariablesConflictsProcessVariables(ImportedVariableList imports) {
+		val Map<String, DeclaredVariable> ctx = imports.getContainerOfType(Process).declaredVariables.toMap([name],
+			identity);
+		for (variable : imports.variables) {
+			if (ctx.containsKey(variable.name)) {
+				var conflicted = ctx.get(variable.name)
+				var ref = conflicted.isPhysical ? ePackage.physicalVariable_Name : ePackage.programVariable_Name
+				error("Process variable conflicts with imported variable", conflicted, ref)
+				error('''Name "«variable.name»" conflicts with process variable name''',
+					ePackage.importedVariableList_Variables)
+			}
+		}
+	}
+
+	@Check def void checkImportedVariablesConflictsOtherImports(ImportedVariableList importToCheck) {
+		var Map<String, ImportedVariableList> ctx = newHashMap()
+		for (imp : importToCheck.getContainerOfType(Process).imports.reject[equals(importToCheck)]) {
+			for (variable : imp.variables) {
+				ctx.put(variable.name, imp)
+			}
+		}
+
+		for (variable : importToCheck.variables) {
+			if (ctx.containsKey(variable.name)) {
+				var conflicted = ctx.get(variable.name)
+				error('''Conflict for name «variable.name» in imports''', conflicted,
+					ePackage.importedVariableList_Variables)
+				error('''Conflict for name «variable.name» in imports''', importToCheck,
+					ePackage.importedVariableList_Variables)
+
 			}
 		}
 	}

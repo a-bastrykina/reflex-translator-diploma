@@ -5,14 +5,17 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -84,6 +87,13 @@ public class ReflexModelUtil {
   
   public static List<DeclaredVariable> getDeclaredVariables(final ru.iaie.reflex.reflex.Process p) {
     return IterableExtensions.<DeclaredVariable>toList(Iterables.<DeclaredVariable>filter(p.getVariables(), DeclaredVariable.class));
+  }
+  
+  public static List<DeclaredVariable> getImportedVariables(final ru.iaie.reflex.reflex.Process p) {
+    final Function1<ImportedVariableList, EList<DeclaredVariable>> _function = (ImportedVariableList it) -> {
+      return it.getVariables();
+    };
+    return IterableExtensions.<DeclaredVariable>toList(Iterables.<DeclaredVariable>concat(ListExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(ReflexModelUtil.getImports(p), _function)));
   }
   
   public static List<ImportedVariableList> getImports(final ru.iaie.reflex.reflex.Process p) {

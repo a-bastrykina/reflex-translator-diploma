@@ -16,7 +16,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.AssignmentExpression;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PrimaryExpression;
@@ -71,10 +70,7 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
     candidates.addAll(prog.getGlobalVars());
     if ((proc != null)) {
       candidates.addAll(ReflexModelUtil.getDeclaredVariables(proc));
-      final Function1<ImportedVariableList, EList<DeclaredVariable>> _function_1 = (ImportedVariableList it) -> {
-        return it.getVariables();
-      };
-      Iterables.<EObject>addAll(candidates, Iterables.<EObject>concat(ListExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(ReflexModelUtil.getImports(proc), _function_1)));
+      candidates.addAll(ReflexModelUtil.getImportedVariables(proc));
     }
     return Scopes.scopeFor(candidates);
   }

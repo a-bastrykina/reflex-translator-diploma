@@ -25,6 +25,7 @@ import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
+import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
@@ -57,6 +58,7 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.ShiftOp;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StopProcStat;
@@ -73,10 +75,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   private Program program;
   
-  private List<String> commonResources = CollectionLiterals.<String>newArrayList("CA_dll_interface.cpp", "CA_dll_interface.h", "CA_queue_const.h", 
-    "CAio.h", "CAports.h", "CAusr1.cpp", "CAusr1.h", "CAusr2.h", "custom_dll_interface.cpp", "dll_interface.h", 
-    "LabVIEWData.h", "dll_interface.h", "lib.cpp", "lib.h", "msg_queue.cpp", "msg_queue.h", "proc.h", "R_CNST.H", 
-    "r_io.cpp", "r_io.h", "r_lib.cpp", "R_LIB.H", "r_main.h");
+  private List<String> commonResources = CollectionLiterals.<String>newArrayList("io.h", "ports.h", "usr.cpp", "usr.h", "proc.h", 
+    "r_cnst.h", "r_io.cpp", "r_io.h", "r_lib.cpp", "r_lib.h", "r_main.h");
   
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -136,7 +136,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/CAcnst.h");
+    _builder_1.append("c-code/cnst.h");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
@@ -200,37 +200,69 @@ public class R2CReflexGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/*           Variables          */");
     _builder.newLine();
-    _builder.append("/* CAGVAR.H = Global Variables Image-File. */");
+    _builder.append("/* GVAR.H = Global Variables Image-File. */");
     _builder.newLine();
     _builder.append("#pragma once");
     _builder.newLine();
     _builder.append("/*       Process variables     */");
     _builder.newLine();
-    String _generateProcessVariables = this.generateProcessVariables(resource);
+    String _generateProcessVariables = this.generateProcessVariables(resource, false);
     _builder.append(_generateProcessVariables);
     _builder.newLineIfNotEmpty();
     _builder.append("/*          Input Ports         */");
     _builder.newLine();
-    String _generateInputPorts = this.generateInputPorts(resource);
+    String _generateInputPorts = this.generateInputPorts(resource, false);
     _builder.append(_generateInputPorts);
     _builder.newLineIfNotEmpty();
     _builder.append("/*         Output Ports         */");
     _builder.newLine();
-    String _generateOutputPorts = this.generateOutputPorts(resource);
+    String _generateOutputPorts = this.generateOutputPorts(resource, false);
     _builder.append(_generateOutputPorts);
     _builder.newLineIfNotEmpty();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/CAgvar.cpp");
+    _builder_1.append("c-code/gvar.cpp");
     fsa.generateFile(_builder_1.toString(), fileContent);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("/*           Variables          */");
+    _builder_2.newLine();
+    _builder_2.append("/* xvar.h = Extern Variables Image-File. */");
+    _builder_2.newLine();
+    _builder_2.append("#pragma once");
+    _builder_2.newLine();
+    _builder_2.append("/*       Process variables     */");
+    _builder_2.newLine();
+    String _generateProcessVariables_1 = this.generateProcessVariables(resource, true);
+    _builder_2.append(_generateProcessVariables_1);
+    _builder_2.newLineIfNotEmpty();
+    _builder_2.append("/*          Input Ports         */");
+    _builder_2.newLine();
+    String _generateInputPorts_1 = this.generateInputPorts(resource, true);
+    _builder_2.append(_generateInputPorts_1);
+    _builder_2.newLineIfNotEmpty();
+    _builder_2.append("/*         Output Ports         */");
+    _builder_2.newLine();
+    String _generateOutputPorts_1 = this.generateOutputPorts(resource, true);
+    _builder_2.append(_generateOutputPorts_1);
+    _builder_2.newLineIfNotEmpty();
+    final String externFileContent = _builder_2.toString();
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("c-code/xvar.h");
+    fsa.generateFile(_builder_3.toString(), externFileContent);
   }
   
-  public String generateProcessVariables(final Resource resource) {
+  public String generateProcessVariables(final Resource resource, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<GlobalVariable> _globalVars = this.program.getGlobalVars();
       for(final GlobalVariable variable : _globalVars) {
-        String _generateGlobalVariableDefinition = this.generateGlobalVariableDefinition(variable);
+        {
+          if (externDef) {
+            _builder.append("extern");
+          }
+        }
+        _builder.append(" ");
+        String _generateGlobalVariableDefinition = this.generateGlobalVariableDefinition(variable, externDef);
         _builder.append(_generateGlobalVariableDefinition);
         _builder.newLineIfNotEmpty();
       }
@@ -241,7 +273,13 @@ public class R2CReflexGenerator extends AbstractGenerator {
         {
           EList<ProcessVariable> _variables = proc.getVariables();
           for(final ProcessVariable variable_1 : _variables) {
-            String _generateProcessVariableDefinition = this.generateProcessVariableDefinition(proc, variable_1);
+            {
+              if (externDef) {
+                _builder.append("extern");
+              }
+            }
+            _builder.append(" ");
+            String _generateProcessVariableDefinition = this.generateProcessVariableDefinition(proc, variable_1, externDef);
             _builder.append(_generateProcessVariableDefinition);
             _builder.newLineIfNotEmpty();
           }
@@ -251,12 +289,18 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateProcessVariableDefinition(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable variable) {
+  public String generateProcessVariableDefinition(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable variable, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       if ((variable instanceof ProgramVariable)) {
         _builder.append("// TODO: fix type getting");
         _builder.newLine();
+        {
+          if (externDef) {
+            _builder.append("extern");
+          }
+        }
+        _builder.append(" ");
         String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
         _builder.append(_trim);
         _builder.append(" ");
@@ -268,6 +312,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
     {
       if ((variable instanceof PhysicalVariable)) {
+        {
+          if (externDef) {
+            _builder.append("extern");
+          }
+        }
+        _builder.append(" ");
         String _type = ((PhysicalVariable)variable).getType();
         _builder.append(_type);
         _builder.append(" ");
@@ -280,10 +330,16 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateGlobalVariableDefinition(final GlobalVariable variable) {
+  public String generateGlobalVariableDefinition(final GlobalVariable variable, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       if ((variable instanceof ProgramVariable)) {
+        {
+          if (externDef) {
+            _builder.append("extern");
+          }
+        }
+        _builder.append(" ");
         String _trim = NodeModelUtils.getNode(((ProgramVariable)variable).getType()).getText().trim();
         _builder.append(_trim);
         _builder.append(" ");
@@ -295,6 +351,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
     {
       if ((variable instanceof PhysicalVariable)) {
+        {
+          if (externDef) {
+            _builder.append("extern");
+          }
+        }
+        _builder.append(" ");
         String _type = ((PhysicalVariable)variable).getType();
         _builder.append(_type);
         _builder.append(" ");
@@ -307,7 +369,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateInputPorts(final Resource resource) {
+  public String generateInputPorts(final Resource resource, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Register> _registers = this.program.getRegisters();
@@ -316,7 +378,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
           RegisterType _type = reg.getType();
           boolean _equals = Objects.equal(_type, RegisterType.INPUT);
           if (_equals) {
-            _builder.append("char ");
+            {
+              if (externDef) {
+                _builder.append("extern");
+              }
+            }
+            _builder.append(" char ");
             String _portId = this.identifiersHelper.getPortId(reg);
             _builder.append(_portId);
             _builder.append(";");
@@ -328,7 +395,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateOutputPorts(final Resource resource) {
+  public String generateOutputPorts(final Resource resource, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Register> _registers = this.program.getRegisters();
@@ -337,7 +404,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
           RegisterType _type = reg.getType();
           boolean _equals = Objects.equal(_type, RegisterType.OUTPUT);
           if (_equals) {
-            _builder.append("char ");
+            {
+              if (externDef) {
+                _builder.append("extern");
+              }
+            }
+            _builder.append(" char ");
             String _portId = this.identifiersHelper.getPortId(reg);
             _builder.append(_portId);
             _builder.append(";");
@@ -353,9 +425,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/* FILE OF PROC-IMAGES OF THE PROJECT */");
     _builder.newLine();
-    _builder.append("#include \"CAext.h\" /* Common files for all generated c-files */");
+    _builder.append("#include \"ext.h\" /* Common files for all generated c-files */");
     _builder.newLine();
-    _builder.append("#include \"CAxvar.h\"  /* Var-images */");
+    _builder.append("#include \"xvar.h\"  /* Var-images */");
     _builder.newLine();
     _builder.newLine();
     {
@@ -368,7 +440,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/CA0001.cpp");
+    _builder_1.append("c-code/proc.cpp");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
@@ -376,13 +448,13 @@ public class R2CReflexGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/* MAIN FILE OF THE PROJECT */");
     _builder.newLine();
-    _builder.append("#include \"CAext.h\" /* Common files for all generated c-files */");
+    _builder.append("#include \"ext.h\" /* Common files for all generated c-files */");
     _builder.newLine();
-    _builder.append("#include \"CAproc.h\"  /* Process-functions desription */");
+    _builder.append("#include \"proc.h\"  /* Process-functions desription */");
     _builder.newLine();
-    _builder.append("#include \"CAgvar.h\"  /* Project variables images */");
+    _builder.append("#include \"gvar.h\"  /* Project variables images */");
     _builder.newLine();
-    _builder.append("#include \"CAio.h\"    /* Scan-input/output functions */");
+    _builder.append("#include \"io.h\"    /* Scan-input/output functions */");
     _builder.newLine();
     _builder.append("void Control_Loop(void);  /* for r_main.h */");
     _builder.newLine();
@@ -419,7 +491,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/CAmain.cpp");
+    _builder_1.append("c-code/main.cpp");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
@@ -506,6 +578,59 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append(_translateStatement, "\t");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
+  }
+  
+  public String translateStateStopCheck(final ru.iaie.reflex.reflex.Process proc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Check_State(");
+    String _processId = this.identifiersHelper.getProcessId(proc);
+    _builder.append(_processId);
+    _builder.append(") == STATE_OF_STOP");
+    return _builder.toString();
+  }
+  
+  public String translateStateErrorCheck(final ru.iaie.reflex.reflex.Process proc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Check_State(");
+    String _processId = this.identifiersHelper.getProcessId(proc);
+    _builder.append(_processId);
+    _builder.append(") == STATE_OF_ERROR");
+    return _builder.toString();
+  }
+  
+  public String translateCheckStateExpression(final CheckStateExpression cse) {
+    StateQualifier _qualfier = cse.getQualfier();
+    if (_qualfier != null) {
+      switch (_qualfier) {
+        case STOP:
+          return this.translateStateStopCheck(cse.getProcess());
+        case ERROR:
+          return this.translateStateErrorCheck(cse.getProcess());
+        case ACTIVE:
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("!(");
+          String _translateStateStopCheck = this.translateStateStopCheck(cse.getProcess());
+          _builder.append(_translateStateStopCheck);
+          _builder.append(" || ");
+          String _translateStateErrorCheck = this.translateStateErrorCheck(cse.getProcess());
+          _builder.append(_translateStateErrorCheck);
+          _builder.append(")");
+          return _builder.toString();
+        case INACTIVE:
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("(");
+          String _translateStateStopCheck_1 = this.translateStateStopCheck(cse.getProcess());
+          _builder_1.append(_translateStateStopCheck_1);
+          _builder_1.append(" || ");
+          String _translateStateErrorCheck_1 = this.translateStateErrorCheck(cse.getProcess());
+          _builder_1.append(_translateStateErrorCheck_1);
+          _builder_1.append(")");
+          return _builder_1.toString();
+        default:
+          break;
+      }
+    }
+    return null;
   }
   
   public String translateTimeout(final TimeoutFunction func) {
@@ -858,6 +983,12 @@ public class R2CReflexGenerator extends AbstractGenerator {
         String _translateExpr_1 = this.translateExpr(((AdditiveExpression)expr).getRight());
         _builder.append(_translateExpr_1);
         return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (expr instanceof CheckStateExpression) {
+        _matched=true;
+        return this.translateCheckStateExpression(((CheckStateExpression)expr));
       }
     }
     if (!_matched) {

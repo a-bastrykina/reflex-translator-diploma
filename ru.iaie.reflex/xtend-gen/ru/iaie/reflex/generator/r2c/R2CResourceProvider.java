@@ -5,8 +5,6 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class R2CResourceProvider {
-  private String filePrefix;
-  
   private static final String MAIN_FILE_NAME = "%smain.cpp";
   
   private static final String VARIABLES_FILE_NAME = "%sgvar.cpp";

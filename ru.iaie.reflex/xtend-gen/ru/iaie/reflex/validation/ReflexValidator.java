@@ -9,6 +9,7 @@ import com.google.common.collect.Iterators;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -28,6 +29,7 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
@@ -208,34 +210,38 @@ public class ReflexValidator extends AbstractReflexValidator {
     final Function1<GlobalVariable, String> _function = (GlobalVariable it) -> {
       return ReflexModelUtil.getName(it);
     };
-    final Function1<GlobalVariable, GlobalVariable> _function_1 = (GlobalVariable v) -> {
-      return v;
-    };
-    globalCtx.putAll(IterableExtensions.<GlobalVariable, String, GlobalVariable>toMap(program.getGlobalVars(), _function, _function_1));
-    final Function1<Register, String> _function_2 = (Register it) -> {
+    globalCtx.putAll(IterableExtensions.<GlobalVariable, String, EObject>toMap(program.getGlobalVars(), _function, new Function1<GlobalVariable, EObject>() {
+        public EObject apply(GlobalVariable p) {
+          return Function.<GlobalVariable>identity().apply(p);
+        }
+    }));
+    final Function1<Register, String> _function_1 = (Register it) -> {
       return it.getName();
     };
-    final Function1<Register, Register> _function_3 = (Register v) -> {
-      return v;
-    };
-    globalCtx.putAll(IterableExtensions.<Register, String, Register>toMap(program.getRegisters(), _function_2, _function_3));
-    final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function_4 = (ru.iaie.reflex.reflex.Enum it) -> {
+    globalCtx.putAll(IterableExtensions.<Register, String, EObject>toMap(program.getRegisters(), _function_1, new Function1<Register, EObject>() {
+        public EObject apply(Register p) {
+          return Function.<Register>identity().apply(p);
+        }
+    }));
+    final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function_2 = (ru.iaie.reflex.reflex.Enum it) -> {
       return it.getEnumMembers();
     };
-    final Function1<EnumMember, String> _function_5 = (EnumMember it) -> {
+    final Function1<EnumMember, String> _function_3 = (EnumMember it) -> {
       return it.getName();
     };
-    final Function1<EnumMember, EnumMember> _function_6 = (EnumMember v) -> {
-      return v;
-    };
-    globalCtx.putAll(IterableExtensions.<EnumMember, String, EnumMember>toMap(Iterables.<EnumMember>concat(ListExtensions.<ru.iaie.reflex.reflex.Enum, EList<EnumMember>>map(program.getEnums(), _function_4)), _function_5, _function_6));
-    final Function1<Const, String> _function_7 = (Const it) -> {
+    globalCtx.putAll(IterableExtensions.<EnumMember, String, EObject>toMap(Iterables.<EnumMember>concat(ListExtensions.<ru.iaie.reflex.reflex.Enum, EList<EnumMember>>map(program.getEnums(), _function_2)), _function_3, new Function1<EnumMember, EObject>() {
+        public EObject apply(EnumMember p) {
+          return Function.<EnumMember>identity().apply(p);
+        }
+    }));
+    final Function1<Const, String> _function_4 = (Const it) -> {
       return it.getName();
     };
-    final Function1<Const, Const> _function_8 = (Const v) -> {
-      return v;
-    };
-    globalCtx.putAll(IterableExtensions.<Const, String, Const>toMap(program.getConsts(), _function_7, _function_8));
+    globalCtx.putAll(IterableExtensions.<Const, String, EObject>toMap(program.getConsts(), _function_4, new Function1<Const, EObject>() {
+        public EObject apply(Const p) {
+          return Function.<Const>identity().apply(p);
+        }
+    }));
     List<DeclaredVariable> _declaredVariables = ReflexModelUtil.getDeclaredVariables(process);
     for (final DeclaredVariable variable : _declaredVariables) {
       {
@@ -255,7 +261,7 @@ public class ReflexValidator extends AbstractReflexValidator {
           if (shadowed instanceof GlobalVariable) {
             _matched=true;
             StringConcatenation _builder = new StringConcatenation();
-            _builder.append("Process variable shadows global variable \"");
+            _builder.append("Process variable shadows global variable with name \"");
             String _name = ReflexModelUtil.getName(((GlobalVariable)shadowed));
             _builder.append(_name);
             _builder.append("\"");
@@ -265,7 +271,7 @@ public class ReflexValidator extends AbstractReflexValidator {
             if (shadowed instanceof Register) {
               _matched=true;
               StringConcatenation _builder = new StringConcatenation();
-              _builder.append("Process variable shadows port name \"");
+              _builder.append("Process variable shadows port with name \"");
               String _name = ((Register)shadowed).getName();
               _builder.append(_name);
               _builder.append("\"");
@@ -276,7 +282,7 @@ public class ReflexValidator extends AbstractReflexValidator {
             if (shadowed instanceof EnumMember) {
               _matched=true;
               StringConcatenation _builder = new StringConcatenation();
-              _builder.append("Process variable shadows enum member name \"");
+              _builder.append("Process variable shadows enum member with name \"");
               String _name = ((EnumMember)shadowed).getName();
               _builder.append(_name);
               _builder.append("\"");
@@ -287,7 +293,7 @@ public class ReflexValidator extends AbstractReflexValidator {
             if (shadowed instanceof Const) {
               _matched=true;
               StringConcatenation _builder = new StringConcatenation();
-              _builder.append("Process variable shadows constant name \"");
+              _builder.append("Process variable shadows constant with name \"");
               String _name = ((Const)shadowed).getName();
               _builder.append(_name);
               _builder.append("\"");
@@ -296,6 +302,78 @@ public class ReflexValidator extends AbstractReflexValidator {
           }
           this.error(errorMessage, variable, ref);
         }
+      }
+    }
+  }
+  
+  @Check
+  public void checkImportedVariablesConflictsProcessVariables(final ImportedVariableList imports) {
+    final Function1<DeclaredVariable, String> _function = (DeclaredVariable it) -> {
+      return ReflexModelUtil.getName(it);
+    };
+    final Map<String, DeclaredVariable> ctx = IterableExtensions.<DeclaredVariable, String, DeclaredVariable>toMap(ReflexModelUtil.getDeclaredVariables(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(imports, ru.iaie.reflex.reflex.Process.class)), _function, 
+      new Function1<DeclaredVariable, DeclaredVariable>() {
+          public DeclaredVariable apply(DeclaredVariable p) {
+            return Function.<DeclaredVariable>identity().apply(p);
+          }
+      });
+    EList<DeclaredVariable> _variables = imports.getVariables();
+    for (final DeclaredVariable variable : _variables) {
+      boolean _containsKey = ctx.containsKey(ReflexModelUtil.getName(variable));
+      if (_containsKey) {
+        DeclaredVariable conflicted = ctx.get(ReflexModelUtil.getName(variable));
+        EAttribute _xifexpression = null;
+        boolean _isPhysical = ReflexModelUtil.isPhysical(conflicted);
+        if (_isPhysical) {
+          _xifexpression = ReflexValidator.ePackage.getPhysicalVariable_Name();
+        } else {
+          _xifexpression = ReflexValidator.ePackage.getProgramVariable_Name();
+        }
+        EAttribute ref = _xifexpression;
+        this.error("Process variable conflicts with imported variable", conflicted, ref);
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Name \"");
+        String _name = ReflexModelUtil.getName(variable);
+        _builder.append(_name);
+        _builder.append("\" conflicts with process variable name");
+        this.error(_builder.toString(), 
+          ReflexValidator.ePackage.getImportedVariableList_Variables());
+      }
+    }
+  }
+  
+  @Check
+  public void checkImportedVariablesConflictsOtherImports(final ImportedVariableList importToCheck) {
+    Map<String, ImportedVariableList> ctx = CollectionLiterals.<String, ImportedVariableList>newHashMap();
+    final Function1<ImportedVariableList, Boolean> _function = (ImportedVariableList it) -> {
+      return Boolean.valueOf(it.equals(importToCheck));
+    };
+    Iterable<ImportedVariableList> _reject = IterableExtensions.<ImportedVariableList>reject(ReflexModelUtil.getImports(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(importToCheck, ru.iaie.reflex.reflex.Process.class)), _function);
+    for (final ImportedVariableList imp : _reject) {
+      EList<DeclaredVariable> _variables = imp.getVariables();
+      for (final DeclaredVariable variable : _variables) {
+        ctx.put(ReflexModelUtil.getName(variable), imp);
+      }
+    }
+    EList<DeclaredVariable> _variables_1 = importToCheck.getVariables();
+    for (final DeclaredVariable variable_1 : _variables_1) {
+      boolean _containsKey = ctx.containsKey(ReflexModelUtil.getName(variable_1));
+      if (_containsKey) {
+        ImportedVariableList conflicted = ctx.get(ReflexModelUtil.getName(variable_1));
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Conflict for name ");
+        String _name = ReflexModelUtil.getName(variable_1);
+        _builder.append(_name);
+        _builder.append(" in imports");
+        this.error(_builder.toString(), conflicted, 
+          ReflexValidator.ePackage.getImportedVariableList_Variables());
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("Conflict for name ");
+        String _name_1 = ReflexModelUtil.getName(variable_1);
+        _builder_1.append(_name_1);
+        _builder_1.append(" in imports");
+        this.error(_builder_1.toString(), importToCheck, 
+          ReflexValidator.ePackage.getImportedVariableList_Variables());
       }
     }
   }

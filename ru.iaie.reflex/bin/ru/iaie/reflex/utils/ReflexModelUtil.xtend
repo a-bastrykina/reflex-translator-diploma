@@ -66,6 +66,10 @@ class ReflexModelUtil {
 		return p.variables.filter(DeclaredVariable).toList
 	}
 	
+	def static List<DeclaredVariable> getImportedVariables(Process p) {
+		return p.imports.map[variables].flatten.toList
+	}
+	
 	def static List<ImportedVariableList> getImports(Process p) {
 		return p.variables.filter(ImportedVariableList).toList
 	}

@@ -3,8 +3,6 @@
  */
 package ru.iaie.reflex;
 
-import org.eclipse.xtext.resource.XtextResourceSet;
-
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */

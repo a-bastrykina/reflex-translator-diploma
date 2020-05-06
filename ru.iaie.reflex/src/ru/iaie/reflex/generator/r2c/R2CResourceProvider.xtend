@@ -7,7 +7,6 @@ class R2CResourceProvider {
 	// TODO: copy resources under names depends on program file name
 	// TODO: replace headers in files with updated file names 
 	
-	private String filePrefix
 	
 	static final String MAIN_FILE_NAME = "%smain.cpp"
 	static final String VARIABLES_FILE_NAME = "%sgvar.cpp"
