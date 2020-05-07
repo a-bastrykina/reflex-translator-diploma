@@ -14,7 +14,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -43,7 +42,6 @@ import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
@@ -61,6 +59,7 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.reflex.UnaryExpression;
 
 /**
@@ -130,6 +129,13 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         Program program = (Program)theEObject;
         T result = caseProgram(program);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.TACT:
+      {
+        Tact tact = (Tact)theEObject;
+        T result = caseTact(tact);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -615,25 +621,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.CTYPE:
+      case ReflexPackage.TYPE:
       {
-        CType cType = (CType)theEObject;
-        T result = caseCType(cType);
-        if (result == null) result = caseReflexType(cType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.REFLEX_TYPE:
-      {
-        ReflexType reflexType = (ReflexType)theEObject;
-        T result = caseReflexType(reflexType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.TACT:
-      {
-        Tact tact = (Tact)theEObject;
-        T result = caseTact(tact);
+        Type type = (Type)theEObject;
+        T result = caseType(type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -676,6 +667,22 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProgram(Program object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tact</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tact</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTact(Tact object)
   {
     return null;
   }
@@ -1449,22 +1456,6 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>CType</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>CType</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCType(CType object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1475,23 +1466,7 @@ public class ReflexSwitch<T> extends Switch<T>
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseReflexType(ReflexType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Tact</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Tact</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTact(Tact object)
+  public T caseType(Type object)
   {
     return null;
   }

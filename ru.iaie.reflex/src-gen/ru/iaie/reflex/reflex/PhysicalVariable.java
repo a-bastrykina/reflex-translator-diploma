@@ -48,26 +48,26 @@ public interface PhysicalVariable extends DeclaredVariable, GlobalVariable, IdRe
   void setShared(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Type()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getType();
+  Type getType();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-  void setType(String value);
+  void setType(Type value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

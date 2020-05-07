@@ -1,6 +1,7 @@
 package ru.iaie.reflex.utils;
 
 import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PrimaryExpression;
@@ -20,5 +21,10 @@ public class ExpressionUtil {
   public static boolean isNestedExpr(final PrimaryExpression e) {
     Expression _nestedExpr = e.getNestedExpr();
     return (_nestedExpr != null);
+  }
+  
+  public static boolean isBoolean(final PrimaryExpression e) {
+    BoolLiteral _bool = e.getBool();
+    return (_bool != null);
   }
 }

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
+import ru.iaie.reflex.reflex.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,24 +55,14 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   protected boolean shared = SHARED_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected Type type;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -155,7 +146,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * @generated
    */
   @Override
-  public String getType()
+  public Type getType()
   {
     return type;
   }
@@ -165,13 +156,38 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setType(String newType)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    String oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(Type newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, newType, newType));
   }
 
   /**
@@ -259,6 +275,8 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
   {
     switch (featureID)
     {
+      case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
+        return basicSetType(null, msgs);
       case ReflexPackage.PHYSICAL_VARIABLE__PORT:
         return basicSetPort(null, msgs);
     }
@@ -301,7 +319,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
         setShared((Boolean)newValue);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        setType((String)newValue);
+        setType((Type)newValue);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         setName((String)newValue);
@@ -327,7 +345,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
         setShared(SHARED_EDEFAULT);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType((Type)null);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         setName(NAME_EDEFAULT);
@@ -352,7 +370,7 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
       case ReflexPackage.PHYSICAL_VARIABLE__SHARED:
         return shared != SHARED_EDEFAULT;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != null;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.PHYSICAL_VARIABLE__PORT:
@@ -374,8 +392,6 @@ public class PhysicalVariableImpl extends DeclaredVariableImpl implements Physic
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (shared: ");
     result.append(shared);
-    result.append(", type: ");
-    result.append(type);
     result.append(", name: ");
     result.append(name);
     result.append(')');

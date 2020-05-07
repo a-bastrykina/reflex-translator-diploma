@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
+import ru.iaie.reflex.reflex.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
    * @generated
    * @ordered
    */
-  protected ReflexType type;
+  protected Type type;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
    * @generated
    */
   @Override
-  public ReflexType getType()
+  public Type getType()
   {
     return type;
   }
@@ -77,9 +77,9 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(ReflexType newType, NotificationChain msgs)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    ReflexType oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -95,7 +95,7 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
    * @generated
    */
   @Override
-  public void setType(ReflexType newType)
+  public void setType(Type newType)
   {
     if (newType != type)
     {
@@ -154,7 +154,7 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
     switch (featureID)
     {
       case ReflexPackage.CAST_EXPRESSION__TYPE:
-        setType((ReflexType)newValue);
+        setType((Type)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,7 +171,7 @@ public class CastExpressionImpl extends MultiplicativeExpressionImpl implements 
     switch (featureID)
     {
       case ReflexPackage.CAST_EXPRESSION__TYPE:
-        setType((ReflexType)null);
+        setType((Type)null);
         return;
     }
     super.eUnset(featureID);

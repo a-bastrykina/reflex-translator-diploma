@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import ru.iaie.reflex.reflex.GlobalVariable
 import java.util.List
+import ru.iaie.reflex.reflex.Type
+import ru.iaie.reflex.reflex.ReflexPackage
+import ru.iaie.reflex.reflex.Types
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -61,15 +64,15 @@ class ReflexModelUtil {
 		}
 		return false
 	}
-	
+
 	def static List<DeclaredVariable> getDeclaredVariables(Process p) {
 		return p.variables.filter(DeclaredVariable).toList
 	}
-	
+
 	def static List<DeclaredVariable> getImportedVariables(Process p) {
 		return p.imports.map[variables].flatten.toList
 	}
-	
+
 	def static List<ImportedVariableList> getImports(Process p) {
 		return p.variables.filter(ImportedVariableList).toList
 	}
@@ -77,17 +80,26 @@ class ReflexModelUtil {
 	def static boolean isDeclared(ProcessVariable v) {
 		return v instanceof DeclaredVariable
 	}
+
+	def static Type getType(ProcessVariable v) {
+		if (v instanceof PhysicalVariable) return v.type
+		if (v instanceof ProgramVariable) return v.type
+	}
 	
+	def static Type getType(GlobalVariable v) {
+		if (v instanceof PhysicalVariable) return v.type
+		if (v instanceof ProgramVariable) return v.type
+	}
+
 	def static String getName(GlobalVariable v) {
 		if (v instanceof ProgramVariable) return v.name
 		if (v instanceof PhysicalVariable) return v.name
 	}
-	
+
 	def static String getName(DeclaredVariable v) {
-		if (v instanceof ProgramVariable) return v.name
-		if (v instanceof PhysicalVariable) return v.name
+		if(v instanceof ProgramVariable) return v.name
+		if(v instanceof PhysicalVariable) return v.name
 	}
-	 
 
 	def static boolean isImportedList(ProcessVariable v) {
 		return v instanceof ImportedVariableList
@@ -126,4 +138,11 @@ class ReflexModelUtil {
 		}
 	}
 
+	def static boolean isCType(Type type) {
+		return type.name != Types.BOOL_TYPE
+	}
+
+	def static hasModifier(Type type) {
+		return type.sign !== null
+	}
 }

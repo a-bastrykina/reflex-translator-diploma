@@ -32,12 +32,12 @@ public interface Function extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Return Type</em>' containment reference.
-   * @see #setReturnType(CType)
+   * @see #setReturnType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getFunction_ReturnType()
    * @model containment="true"
    * @generated
    */
-  CType getReturnType();
+  Type getReturnType();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.Function#getReturnType <em>Return Type</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface Function extends EObject
    * @see #getReturnType()
    * @generated
    */
-  void setReturnType(CType value);
+  void setReturnType(Type value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -73,7 +73,7 @@ public interface Function extends EObject
 
   /**
    * Returns the value of the '<em><b>Arg Types</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.CType}.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Type}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg Types</em>' containment reference list.
@@ -81,6 +81,6 @@ public interface Function extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<CType> getArgTypes();
+  EList<Type> getArgTypes();
 
 } // Function

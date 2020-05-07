@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
+import ru.iaie.reflex.reflex.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +41,7 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * @generated
    * @ordered
    */
-  protected ReflexType type;
+  protected Type type;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -100,7 +100,7 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * @generated
    */
   @Override
-  public ReflexType getType()
+  public Type getType()
   {
     return type;
   }
@@ -110,9 +110,9 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(ReflexType newType, NotificationChain msgs)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    ReflexType oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -128,7 +128,7 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * @generated
    */
   @Override
-  public void setType(ReflexType newType)
+  public void setType(Type newType)
   {
     if (newType != type)
     {
@@ -268,7 +268,7 @@ public class ConstImpl extends IdReferenceImpl implements Const
     switch (featureID)
     {
       case ReflexPackage.CONST__TYPE:
-        setType((ReflexType)newValue);
+        setType((Type)newValue);
         return;
       case ReflexPackage.CONST__NAME:
         setName((String)newValue);
@@ -291,7 +291,7 @@ public class ConstImpl extends IdReferenceImpl implements Const
     switch (featureID)
     {
       case ReflexPackage.CONST__TYPE:
-        setType((ReflexType)null);
+        setType((Type)null);
         return;
       case ReflexPackage.CONST__NAME:
         setName(NAME_EDEFAULT);

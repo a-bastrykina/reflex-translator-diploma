@@ -16,4 +16,7 @@ class ExpressionUtil {
 		return e.nestedExpr !== null
 	}
 	
+	static def boolean isBoolean(PrimaryExpression e) {
+		return e.bool !== null
+	} 	
 }

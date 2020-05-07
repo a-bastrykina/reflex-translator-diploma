@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.ReflexPackage;
+import ru.iaie.reflex.reflex.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * @generated
    * @ordered
    */
-  protected CType returnType;
+  protected Type returnType;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -78,7 +78,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * @generated
    * @ordered
    */
-  protected EList<CType> argTypes;
+  protected EList<Type> argTypes;
 
   /**
    * <!-- begin-user-doc -->
@@ -107,7 +107,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * @generated
    */
   @Override
-  public CType getReturnType()
+  public Type getReturnType()
   {
     return returnType;
   }
@@ -117,9 +117,9 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetReturnType(CType newReturnType, NotificationChain msgs)
+  public NotificationChain basicSetReturnType(Type newReturnType, NotificationChain msgs)
   {
-    CType oldReturnType = returnType;
+    Type oldReturnType = returnType;
     returnType = newReturnType;
     if (eNotificationRequired())
     {
@@ -135,7 +135,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * @generated
    */
   @Override
-  public void setReturnType(CType newReturnType)
+  public void setReturnType(Type newReturnType)
   {
     if (newReturnType != returnType)
     {
@@ -182,11 +182,11 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * @generated
    */
   @Override
-  public EList<CType> getArgTypes()
+  public EList<Type> getArgTypes()
   {
     if (argTypes == null)
     {
-      argTypes = new EObjectContainmentEList<CType>(CType.class, this, ReflexPackage.FUNCTION__ARG_TYPES);
+      argTypes = new EObjectContainmentEList<Type>(Type.class, this, ReflexPackage.FUNCTION__ARG_TYPES);
     }
     return argTypes;
   }
@@ -241,14 +241,14 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     switch (featureID)
     {
       case ReflexPackage.FUNCTION__RETURN_TYPE:
-        setReturnType((CType)newValue);
+        setReturnType((Type)newValue);
         return;
       case ReflexPackage.FUNCTION__NAME:
         setName((String)newValue);
         return;
       case ReflexPackage.FUNCTION__ARG_TYPES:
         getArgTypes().clear();
-        getArgTypes().addAll((Collection<? extends CType>)newValue);
+        getArgTypes().addAll((Collection<? extends Type>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -265,7 +265,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     switch (featureID)
     {
       case ReflexPackage.FUNCTION__RETURN_TYPE:
-        setReturnType((CType)null);
+        setReturnType((Type)null);
         return;
       case ReflexPackage.FUNCTION__NAME:
         setName(NAME_EDEFAULT);

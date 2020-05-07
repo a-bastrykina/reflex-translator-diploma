@@ -15,6 +15,9 @@ Program:
 	processes+=Process)*
 	"}";
 
+Tact:
+	"clock" value=INTEGER ";";
+
 Process:
 	("[" annotations+=Annotation "]")*
 	"process" name=ID "{"
@@ -42,13 +45,13 @@ GlobalVariable:
 	(PhysicalVariable | ProgramVariable) ";";
 
 PhysicalVariable:
-	type=IntegerType name=ID "=" port=RegisterPortMapping;
+	type=Type name=ID "=" port=RegisterPortMapping;
 
 RegisterPortMapping:
 	register=[Register] ("[" portBit=INTEGER "]")?;
 
 ProgramVariable:
-	type=ReflexType name=ID;
+	type=Type name=ID;
 
 StatementSequence:
 	{StatementSequence} statements+=Statement*;
@@ -100,7 +103,7 @@ SetStateStat:
 	{SetStateStat} "set" ((next?="next" "state") | ("state" state=[State])) ";";
 
 Function:
-	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
+	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
 
 enum RegisterType:
 	INPUT='input' | OUTPUT='output';
@@ -109,7 +112,7 @@ Register:
 	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
-	"const" type=ReflexType name=ID "=" constValue=Expression ";";
+	"const" type=Type name=ID "=" constValue=Expression ";";
 
 Enum:
 	"enum" identifier=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
@@ -128,7 +131,7 @@ FunctionCall:
 
 IdReference:
 	PhysicalVariable | ProgramVariable | EnumMember | Const;
-	
+
 CheckStateExpression:
 	"process" process=[Process] "in" "state" qualfier=StateQualifier;
 
@@ -137,7 +140,7 @@ enum StateQualifier:
 
 PrimaryExpression:
 	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-	{PrimaryExpression} boolean=BoolLiteral | "(" nestedExpr=Expression ")";
+	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -148,7 +151,7 @@ UnaryExpression:
 
 CastExpression:
 	UnaryExpression |
-	"(" type=ReflexType ")" right=CastExpression;
+	"(" type=Type ")" right=CastExpression;
 
 MultiplicativeExpression:
 	CastExpression ({MultiplicativeExpression.left=current} mulOp=MultiplicativeOp right=CastExpression)*;
@@ -214,19 +217,15 @@ enum MultiplicativeOp:
 enum BoolLiteral:
 	TRUE="true" | FALSE="false";
 
-	// TODO: fix types
-CType:
-	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} (signSpec?=CTypeSignSpec)? (SHORT_C_TYPE
-	| INT_C_TYPE | LONG_C_TYPE);
+Type:
+	(sign=TypeSignSpec)? name=Types;
 
-enum CTypeSignSpec:
+enum Types:
+	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
+	LONG_C_TYPE="long" | BOOL_TYPE="bool";
+
+enum TypeSignSpec:
 	SIGNED="signed" | UNSIGNED="unsigned";
-
-IntegerType:
-	BOOL_TYPE | INT_C_TYPE | SHORT_C_TYPE | LONG_C_TYPE;
-
-ReflexType:
-	CType | {ReflexType} BOOL_TYPE;
 
 terminal LOGICAL_OR:
 	"||";
@@ -242,30 +241,6 @@ terminal BIT_XOR:
 
 terminal BIT_AND:
 	"&";
-
-terminal VOID_C_TYPE:
-	"void";
-
-terminal FLOAT_C_TYPE:
-	"float";
-
-terminal DOUBLE_C_TYPE:
-	"double";
-
-terminal SHORT_C_TYPE:
-	"short";
-
-terminal INT_C_TYPE:
-	"int";
-
-terminal LONG_C_TYPE:
-	"long";
-
-terminal BOOL_TYPE:
-	"bool";
-
-Tact:
-	"clock" value=INTEGER ";";
 
 	// LITERALS
 terminal INTEGER:
@@ -310,7 +285,6 @@ terminal fragment HEX_PREFIX:
 Time:
 	ticks=INTEGER;
 
-	//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
 terminal fragment LONG:
 	"L" | "l";
 
@@ -326,7 +300,8 @@ Annotation:
 AnnotationKey:
 	ID "." ID | ID;
 
-	//terminal fragment DAY:
+//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
+//terminal fragment DAY:
 //	"D" | "d";
 //
 //terminal fragment HOUR:

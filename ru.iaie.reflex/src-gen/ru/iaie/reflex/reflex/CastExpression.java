@@ -27,12 +27,12 @@ public interface CastExpression extends MultiplicativeExpression
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(ReflexType)
+   * @see #setType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getCastExpression_Type()
    * @model containment="true"
    * @generated
    */
-  ReflexType getType();
+  Type getType();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.CastExpression#getType <em>Type</em>}' containment reference.
@@ -42,6 +42,6 @@ public interface CastExpression extends MultiplicativeExpression
    * @see #getType()
    * @generated
    */
-  void setType(ReflexType value);
+  void setType(Type value);
 
 } // CastExpression

@@ -28,7 +28,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getReference <em>Reference</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getInteger <em>Integer</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getFloating <em>Floating</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getBoolean <em>Boolean</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getBool <em>Bool</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -87,24 +87,24 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
   protected String floating = FLOATING_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * The default value of the '{@link #getBool() <em>Bool</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBoolean()
+   * @see #getBool()
    * @generated
    * @ordered
    */
-  protected static final BoolLiteral BOOLEAN_EDEFAULT = BoolLiteral.TRUE;
+  protected static final BoolLiteral BOOL_EDEFAULT = BoolLiteral.TRUE;
 
   /**
-   * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * The cached value of the '{@link #getBool() <em>Bool</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBoolean()
+   * @see #getBool()
    * @generated
    * @ordered
    */
-  protected BoolLiteral boolean_ = BOOLEAN_EDEFAULT;
+  protected BoolLiteral bool = BOOL_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getNestedExpr() <em>Nested Expr</em>}' containment reference.
@@ -238,9 +238,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public BoolLiteral getBoolean()
+  public BoolLiteral getBool()
   {
-    return boolean_;
+    return bool;
   }
 
   /**
@@ -249,12 +249,12 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public void setBoolean(BoolLiteral newBoolean)
+  public void setBool(BoolLiteral newBool)
   {
-    BoolLiteral oldBoolean = boolean_;
-    boolean_ = newBoolean == null ? BOOLEAN_EDEFAULT : newBoolean;
+    BoolLiteral oldBool = bool;
+    bool = newBool == null ? BOOL_EDEFAULT : newBool;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__BOOLEAN, oldBoolean, boolean_));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__BOOL, oldBool, bool));
   }
 
   /**
@@ -340,8 +340,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return getInteger();
       case ReflexPackage.PRIMARY_EXPRESSION__FLOATING:
         return getFloating();
-      case ReflexPackage.PRIMARY_EXPRESSION__BOOLEAN:
-        return getBoolean();
+      case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
+        return getBool();
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return getNestedExpr();
     }
@@ -367,8 +367,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__FLOATING:
         setFloating((String)newValue);
         return;
-      case ReflexPackage.PRIMARY_EXPRESSION__BOOLEAN:
-        setBoolean((BoolLiteral)newValue);
+      case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
+        setBool((BoolLiteral)newValue);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)newValue);
@@ -396,8 +396,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__FLOATING:
         setFloating(FLOATING_EDEFAULT);
         return;
-      case ReflexPackage.PRIMARY_EXPRESSION__BOOLEAN:
-        setBoolean(BOOLEAN_EDEFAULT);
+      case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
+        setBool(BOOL_EDEFAULT);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)null);
@@ -422,8 +422,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return INTEGER_EDEFAULT == null ? integer != null : !INTEGER_EDEFAULT.equals(integer);
       case ReflexPackage.PRIMARY_EXPRESSION__FLOATING:
         return FLOATING_EDEFAULT == null ? floating != null : !FLOATING_EDEFAULT.equals(floating);
-      case ReflexPackage.PRIMARY_EXPRESSION__BOOLEAN:
-        return boolean_ != BOOLEAN_EDEFAULT;
+      case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
+        return bool != BOOL_EDEFAULT;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return nestedExpr != null;
     }
@@ -445,8 +445,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     result.append(integer);
     result.append(", floating: ");
     result.append(floating);
-    result.append(", boolean: ");
-    result.append(boolean_);
+    result.append(", bool: ");
+    result.append(bool);
     result.append(')');
     return result.toString();
   }

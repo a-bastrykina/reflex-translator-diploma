@@ -65,9 +65,18 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/TRUE"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/FALSE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//CTypeSignSpec">
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/SIGNED"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//CTypeSignSpec/UNSIGNED"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//Types">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/VOID_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/FLOAT_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/DOUBLE_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/SHORT_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/INT_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/LONG_C_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/BOOL_TYPE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//TypeSignSpec">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//TypeSignSpec/SIGNED"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//TypeSignSpec/UNSIGNED"/>
     </genEnums>
     <genClasses ecoreClass="Reflex.ecore#//Program">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/annotations"/>
@@ -79,6 +88,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/globalVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/registers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/processes"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//Tact">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/value"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Process">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/annotations"/>
@@ -102,7 +114,7 @@
     <genClasses ecoreClass="Reflex.ecore#//GlobalVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//PhysicalVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/shared"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/port"/>
     </genClasses>
@@ -202,7 +214,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/reference"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/integer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/floating"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/boolean"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PrimaryExpression/bool"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PrimaryExpression/nestedExpr"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//UnaryExpression">
@@ -240,12 +252,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//AssignmentExpression/expr"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Expression"/>
-    <genClasses ecoreClass="Reflex.ecore#//CType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CType/signSpec"/>
-    </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//ReflexType"/>
-    <genClasses ecoreClass="Reflex.ecore#//Tact">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/value"/>
+    <genClasses ecoreClass="Reflex.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Type/sign"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Type/name"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Time">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Time/ticks"/>

@@ -16,7 +16,7 @@ package ru.iaie.reflex.reflex;
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getReference <em>Reference</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getInteger <em>Integer</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getFloating <em>Floating</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getBoolean <em>Boolean</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getBool <em>Bool</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -93,29 +93,29 @@ public interface PrimaryExpression extends UnaryExpression
   void setFloating(String value);
 
   /**
-   * Returns the value of the '<em><b>Boolean</b></em>' attribute.
+   * Returns the value of the '<em><b>Bool</b></em>' attribute.
    * The literals are from the enumeration {@link ru.iaie.reflex.reflex.BoolLiteral}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Boolean</em>' attribute.
+   * @return the value of the '<em>Bool</em>' attribute.
    * @see ru.iaie.reflex.reflex.BoolLiteral
-   * @see #setBoolean(BoolLiteral)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Boolean()
+   * @see #setBool(BoolLiteral)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Bool()
    * @model
    * @generated
    */
-  BoolLiteral getBoolean();
+  BoolLiteral getBool();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getBoolean <em>Boolean</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getBool <em>Bool</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Boolean</em>' attribute.
+   * @param value the new value of the '<em>Bool</em>' attribute.
    * @see ru.iaie.reflex.reflex.BoolLiteral
-   * @see #getBoolean()
+   * @see #getBool()
    * @generated
    */
-  void setBoolean(BoolLiteral value);
+  void setBool(BoolLiteral value);
 
   /**
    * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.

@@ -144,6 +144,33 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
+	public class TactElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Tact");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cClockKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueINTEGERTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Tact:
+		//	"clock" value=INTEGER ";";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"clock" value=INTEGER ";"
+		public Group getGroup() { return cGroup; }
+		
+		//"clock"
+		public Keyword getClockKeyword_0() { return cClockKeyword_0; }
+		
+		//value=INTEGER
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//INTEGER
+		public RuleCall getValueINTEGERTerminalRuleCall_1_0() { return cValueINTEGERTerminalRuleCall_1_0; }
+		
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
 	public class ProcessElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Process");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -455,7 +482,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.PhysicalVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeIntegerTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypeTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -463,17 +490,17 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPortRegisterPortMappingParserRuleCall_3_0 = (RuleCall)cPortAssignment_3.eContents().get(0);
 		
 		//PhysicalVariable:
-		//	type=IntegerType name=ID "=" port=RegisterPortMapping;
+		//	type=Type name=ID "=" port=RegisterPortMapping;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=IntegerType name=ID "=" port=RegisterPortMapping
+		//type=Type name=ID "=" port=RegisterPortMapping
 		public Group getGroup() { return cGroup; }
 		
-		//type=IntegerType
+		//type=Type
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
-		//IntegerType
-		public RuleCall getTypeIntegerTypeParserRuleCall_0_0() { return cTypeIntegerTypeParserRuleCall_0_0; }
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_0_0() { return cTypeTypeParserRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -537,22 +564,22 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ProgramVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeReflexTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypeTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//ProgramVariable:
-		//	type=ReflexType name=ID;
+		//	type=Type name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=ReflexType name=ID
+		//type=Type name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//type=ReflexType
+		//type=Type
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
-		//ReflexType
-		public RuleCall getTypeReflexTypeParserRuleCall_0_0() { return cTypeReflexTypeParserRuleCall_0_0; }
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_0_0() { return cTypeTypeParserRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1172,31 +1199,31 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Function");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cReturnTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cReturnTypeCTypeParserRuleCall_0_0 = (RuleCall)cReturnTypeAssignment_0.eContents().get(0);
+		private final RuleCall cReturnTypeTypeParserRuleCall_0_0 = (RuleCall)cReturnTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cArgTypesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cArgTypesCTypeParserRuleCall_3_0 = (RuleCall)cArgTypesAssignment_3.eContents().get(0);
+		private final RuleCall cArgTypesTypeParserRuleCall_3_0 = (RuleCall)cArgTypesAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cArgTypesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cArgTypesCTypeParserRuleCall_4_1_0 = (RuleCall)cArgTypesAssignment_4_1.eContents().get(0);
+		private final RuleCall cArgTypesTypeParserRuleCall_4_1_0 = (RuleCall)cArgTypesAssignment_4_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Function:
-		//	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
+		//	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";"
+		//returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";"
 		public Group getGroup() { return cGroup; }
 		
-		//returnType=CType
+		//returnType=Type
 		public Assignment getReturnTypeAssignment_0() { return cReturnTypeAssignment_0; }
 		
-		//CType
-		public RuleCall getReturnTypeCTypeParserRuleCall_0_0() { return cReturnTypeCTypeParserRuleCall_0_0; }
+		//Type
+		public RuleCall getReturnTypeTypeParserRuleCall_0_0() { return cReturnTypeTypeParserRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1207,23 +1234,23 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//argTypes+=CType
+		//argTypes+=Type
 		public Assignment getArgTypesAssignment_3() { return cArgTypesAssignment_3; }
 		
-		//CType
-		public RuleCall getArgTypesCTypeParserRuleCall_3_0() { return cArgTypesCTypeParserRuleCall_3_0; }
+		//Type
+		public RuleCall getArgTypesTypeParserRuleCall_3_0() { return cArgTypesTypeParserRuleCall_3_0; }
 		
-		//("," argTypes+=CType)*
+		//("," argTypes+=Type)*
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//","
 		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
 		
-		//argTypes+=CType
+		//argTypes+=Type
 		public Assignment getArgTypesAssignment_4_1() { return cArgTypesAssignment_4_1; }
 		
-		//CType
-		public RuleCall getArgTypesCTypeParserRuleCall_4_1_0() { return cArgTypesCTypeParserRuleCall_4_1_0; }
+		//Type
+		public RuleCall getArgTypesTypeParserRuleCall_4_1_0() { return cArgTypesTypeParserRuleCall_4_1_0; }
 		
 		//")"
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -1291,7 +1318,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cConstKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeReflexTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -1300,20 +1327,20 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Const:
-		//	"const" type=ReflexType name=ID "=" constValue=Expression ";";
+		//	"const" type=Type name=ID "=" constValue=Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"const" type=ReflexType name=ID "=" constValue=Expression ";"
+		//"const" type=Type name=ID "=" constValue=Expression ";"
 		public Group getGroup() { return cGroup; }
 		
 		//"const"
 		public Keyword getConstKeyword_0() { return cConstKeyword_0; }
 		
-		//type=ReflexType
+		//type=Type
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
 		
-		//ReflexType
-		public RuleCall getTypeReflexTypeParserRuleCall_1_0() { return cTypeReflexTypeParserRuleCall_1_0; }
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_1_0() { return cTypeTypeParserRuleCall_1_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -1622,8 +1649,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFloatingFLOATTerminalRuleCall_2_1_0 = (RuleCall)cFloatingAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cPrimaryExpressionAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Assignment cBooleanAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cBooleanBoolLiteralEnumRuleCall_3_1_0 = (RuleCall)cBooleanAssignment_3_1.eContents().get(0);
+		private final Assignment cBoolAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cBoolBoolLiteralEnumRuleCall_3_1_0 = (RuleCall)cBoolAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cNestedExprAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
@@ -1632,11 +1659,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PrimaryExpression:
 		//	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-		//	{PrimaryExpression} boolean=BoolLiteral | "(" nestedExpr=Expression ")";
+		//	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
 		@Override public ParserRule getRule() { return rule; }
 		
 		//reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT | {PrimaryExpression}
-		//boolean=BoolLiteral | "(" nestedExpr=Expression ")"
+		//bool=BoolLiteral | "(" nestedExpr=Expression ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//reference=[IdReference]
@@ -1672,17 +1699,17 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//FLOAT
 		public RuleCall getFloatingFLOATTerminalRuleCall_2_1_0() { return cFloatingFLOATTerminalRuleCall_2_1_0; }
 		
-		//{PrimaryExpression} boolean=BoolLiteral
+		//{PrimaryExpression} bool=BoolLiteral
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//{PrimaryExpression}
 		public Action getPrimaryExpressionAction_3_0() { return cPrimaryExpressionAction_3_0; }
 		
-		//boolean=BoolLiteral
-		public Assignment getBooleanAssignment_3_1() { return cBooleanAssignment_3_1; }
+		//bool=BoolLiteral
+		public Assignment getBoolAssignment_3_1() { return cBoolAssignment_3_1; }
 		
 		//BoolLiteral
-		public RuleCall getBooleanBoolLiteralEnumRuleCall_3_1_0() { return cBooleanBoolLiteralEnumRuleCall_3_1_0; }
+		public RuleCall getBoolBoolLiteralEnumRuleCall_3_1_0() { return cBoolBoolLiteralEnumRuleCall_3_1_0; }
 		
 		//"(" nestedExpr=Expression ")"
 		public Group getGroup_4() { return cGroup_4; }
@@ -1753,33 +1780,33 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cTypeReflexTypeParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
+		private final RuleCall cTypeTypeParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		private final Assignment cRightAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final RuleCall cRightCastExpressionParserRuleCall_1_3_0 = (RuleCall)cRightAssignment_1_3.eContents().get(0);
 		
 		//CastExpression:
 		//	UnaryExpression |
-		//	"(" type=ReflexType ")" right=CastExpression;
+		//	"(" type=Type ")" right=CastExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UnaryExpression | "(" type=ReflexType ")" right=CastExpression
+		//UnaryExpression | "(" type=Type ")" right=CastExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//UnaryExpression
 		public RuleCall getUnaryExpressionParserRuleCall_0() { return cUnaryExpressionParserRuleCall_0; }
 		
-		//"(" type=ReflexType ")" right=CastExpression
+		//"(" type=Type ")" right=CastExpression
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 		
-		//type=ReflexType
+		//type=Type
 		public Assignment getTypeAssignment_1_1() { return cTypeAssignment_1_1; }
 		
-		//ReflexType
-		public RuleCall getTypeReflexTypeParserRuleCall_1_1_0() { return cTypeReflexTypeParserRuleCall_1_1_0; }
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_1_1_0() { return cTypeTypeParserRuleCall_1_1_0; }
 		
 		//")"
 		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
@@ -2222,168 +2249,32 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//AssignmentExpression
 		public RuleCall getAssignmentExpressionParserRuleCall() { return cAssignmentExpressionParserRuleCall; }
 	}
-	public class CTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.CType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cCTypeAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cVOID_C_TYPETerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cCTypeAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final RuleCall cFLOAT_C_TYPETerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cCTypeAction_2_0 = (Action)cGroup_2.eContents().get(0);
-		private final RuleCall cDOUBLE_C_TYPETerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cCTypeAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Assignment cSignSpecAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cSignSpecCTypeSignSpecEnumRuleCall_3_1_0 = (RuleCall)cSignSpecAssignment_3_1.eContents().get(0);
-		private final Alternatives cAlternatives_3_2 = (Alternatives)cGroup_3.eContents().get(2);
-		private final RuleCall cSHORT_C_TYPETerminalRuleCall_3_2_0 = (RuleCall)cAlternatives_3_2.eContents().get(0);
-		private final RuleCall cINT_C_TYPETerminalRuleCall_3_2_1 = (RuleCall)cAlternatives_3_2.eContents().get(1);
-		private final RuleCall cLONG_C_TYPETerminalRuleCall_3_2_2 = (RuleCall)cAlternatives_3_2.eContents().get(2);
-		
-		//// TODO: fix types
-		//CType:
-		//	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE
-		//	| INT_C_TYPE | LONG_C_TYPE);
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE |
-		//INT_C_TYPE | LONG_C_TYPE)
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//{CType} VOID_C_TYPE
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{CType}
-		public Action getCTypeAction_0_0() { return cCTypeAction_0_0; }
-		
-		//VOID_C_TYPE
-		public RuleCall getVOID_C_TYPETerminalRuleCall_0_1() { return cVOID_C_TYPETerminalRuleCall_0_1; }
-		
-		//{CType} FLOAT_C_TYPE
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{CType}
-		public Action getCTypeAction_1_0() { return cCTypeAction_1_0; }
-		
-		//FLOAT_C_TYPE
-		public RuleCall getFLOAT_C_TYPETerminalRuleCall_1_1() { return cFLOAT_C_TYPETerminalRuleCall_1_1; }
-		
-		//{CType} DOUBLE_C_TYPE
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//{CType}
-		public Action getCTypeAction_2_0() { return cCTypeAction_2_0; }
-		
-		//DOUBLE_C_TYPE
-		public RuleCall getDOUBLE_C_TYPETerminalRuleCall_2_1() { return cDOUBLE_C_TYPETerminalRuleCall_2_1; }
-		
-		//{CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE | INT_C_TYPE | LONG_C_TYPE)
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//{CType}
-		public Action getCTypeAction_3_0() { return cCTypeAction_3_0; }
-		
-		//signSpec?=CTypeSignSpec?
-		public Assignment getSignSpecAssignment_3_1() { return cSignSpecAssignment_3_1; }
-		
-		//CTypeSignSpec
-		public RuleCall getSignSpecCTypeSignSpecEnumRuleCall_3_1_0() { return cSignSpecCTypeSignSpecEnumRuleCall_3_1_0; }
-		
-		//(SHORT_C_TYPE | INT_C_TYPE | LONG_C_TYPE)
-		public Alternatives getAlternatives_3_2() { return cAlternatives_3_2; }
-		
-		//SHORT_C_TYPE
-		public RuleCall getSHORT_C_TYPETerminalRuleCall_3_2_0() { return cSHORT_C_TYPETerminalRuleCall_3_2_0; }
-		
-		//INT_C_TYPE
-		public RuleCall getINT_C_TYPETerminalRuleCall_3_2_1() { return cINT_C_TYPETerminalRuleCall_3_2_1; }
-		
-		//LONG_C_TYPE
-		public RuleCall getLONG_C_TYPETerminalRuleCall_3_2_2() { return cLONG_C_TYPETerminalRuleCall_3_2_2; }
-	}
-	public class IntegerTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.IntegerType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cBOOL_TYPETerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINT_C_TYPETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSHORT_C_TYPETerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cLONG_C_TYPETerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		
-		//IntegerType:
-		//	BOOL_TYPE | INT_C_TYPE | SHORT_C_TYPE | LONG_C_TYPE;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//BOOL_TYPE | INT_C_TYPE | SHORT_C_TYPE | LONG_C_TYPE
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//BOOL_TYPE
-		public RuleCall getBOOL_TYPETerminalRuleCall_0() { return cBOOL_TYPETerminalRuleCall_0; }
-		
-		//INT_C_TYPE
-		public RuleCall getINT_C_TYPETerminalRuleCall_1() { return cINT_C_TYPETerminalRuleCall_1; }
-		
-		//SHORT_C_TYPE
-		public RuleCall getSHORT_C_TYPETerminalRuleCall_2() { return cSHORT_C_TYPETerminalRuleCall_2; }
-		
-		//LONG_C_TYPE
-		public RuleCall getLONG_C_TYPETerminalRuleCall_3() { return cLONG_C_TYPETerminalRuleCall_3; }
-	}
-	public class ReflexTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ReflexType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cCTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cReflexTypeAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final RuleCall cBOOL_TYPETerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		
-		//ReflexType:
-		//	CType | {ReflexType} BOOL_TYPE;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//CType | {ReflexType} BOOL_TYPE
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//CType
-		public RuleCall getCTypeParserRuleCall_0() { return cCTypeParserRuleCall_0; }
-		
-		//{ReflexType} BOOL_TYPE
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{ReflexType}
-		public Action getReflexTypeAction_1_0() { return cReflexTypeAction_1_0; }
-		
-		//BOOL_TYPE
-		public RuleCall getBOOL_TYPETerminalRuleCall_1_1() { return cBOOL_TYPETerminalRuleCall_1_1; }
-	}
-	public class TactElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Tact");
+	public class TypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Type");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cClockKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueINTEGERTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSignAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSignTypeSignSpecEnumRuleCall_0_0 = (RuleCall)cSignAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameTypesEnumRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//Tact:
-		//	"clock" value=INTEGER ";";
+		//Type:
+		//	sign=TypeSignSpec? name=Types;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"clock" value=INTEGER ";"
+		//sign=TypeSignSpec? name=Types
 		public Group getGroup() { return cGroup; }
 		
-		//"clock"
-		public Keyword getClockKeyword_0() { return cClockKeyword_0; }
+		//sign=TypeSignSpec?
+		public Assignment getSignAssignment_0() { return cSignAssignment_0; }
 		
-		//value=INTEGER
-		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		//TypeSignSpec
+		public RuleCall getSignTypeSignSpecEnumRuleCall_0_0() { return cSignTypeSignSpecEnumRuleCall_0_0; }
 		
-		//INTEGER
-		public RuleCall getValueINTEGERTerminalRuleCall_1_0() { return cValueINTEGERTerminalRuleCall_1_0; }
+		//name=Types
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//";"
-		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+		//Types
+		public RuleCall getNameTypesEnumRuleCall_1_0() { return cNameTypesEnumRuleCall_1_0; }
 	}
 	public class TimeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Time");
@@ -2894,15 +2785,84 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"false"
 		public Keyword getFALSEFalseKeyword_1_0() { return cFALSEFalseKeyword_1_0; }
 	}
-	public class CTypeSignSpecElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.CTypeSignSpec");
+	public class TypesElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Types");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cVOID_C_TYPEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cVOID_C_TYPEVoidKeyword_0_0 = (Keyword)cVOID_C_TYPEEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cFLOAT_C_TYPEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cFLOAT_C_TYPEFloatKeyword_1_0 = (Keyword)cFLOAT_C_TYPEEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cDOUBLE_C_TYPEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cDOUBLE_C_TYPEDoubleKeyword_2_0 = (Keyword)cDOUBLE_C_TYPEEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cSHORT_C_TYPEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cSHORT_C_TYPEShortKeyword_3_0 = (Keyword)cSHORT_C_TYPEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cINT_C_TYPEEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cINT_C_TYPEIntKeyword_4_0 = (Keyword)cINT_C_TYPEEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cLONG_C_TYPEEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cLONG_C_TYPELongKeyword_5_0 = (Keyword)cLONG_C_TYPEEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOL_TYPEEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cBOOL_TYPEBoolKeyword_6_0 = (Keyword)cBOOL_TYPEEnumLiteralDeclaration_6.eContents().get(0);
+		
+		//enum Types:
+		//	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
+		//	LONG_C_TYPE="long" | BOOL_TYPE="bool";
+		public EnumRule getRule() { return rule; }
+		
+		//VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
+		//LONG_C_TYPE="long" | BOOL_TYPE="bool"
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//VOID_C_TYPE="void"
+		public EnumLiteralDeclaration getVOID_C_TYPEEnumLiteralDeclaration_0() { return cVOID_C_TYPEEnumLiteralDeclaration_0; }
+		
+		//"void"
+		public Keyword getVOID_C_TYPEVoidKeyword_0_0() { return cVOID_C_TYPEVoidKeyword_0_0; }
+		
+		//FLOAT_C_TYPE="float"
+		public EnumLiteralDeclaration getFLOAT_C_TYPEEnumLiteralDeclaration_1() { return cFLOAT_C_TYPEEnumLiteralDeclaration_1; }
+		
+		//"float"
+		public Keyword getFLOAT_C_TYPEFloatKeyword_1_0() { return cFLOAT_C_TYPEFloatKeyword_1_0; }
+		
+		//DOUBLE_C_TYPE="double"
+		public EnumLiteralDeclaration getDOUBLE_C_TYPEEnumLiteralDeclaration_2() { return cDOUBLE_C_TYPEEnumLiteralDeclaration_2; }
+		
+		//"double"
+		public Keyword getDOUBLE_C_TYPEDoubleKeyword_2_0() { return cDOUBLE_C_TYPEDoubleKeyword_2_0; }
+		
+		//SHORT_C_TYPE="short"
+		public EnumLiteralDeclaration getSHORT_C_TYPEEnumLiteralDeclaration_3() { return cSHORT_C_TYPEEnumLiteralDeclaration_3; }
+		
+		//"short"
+		public Keyword getSHORT_C_TYPEShortKeyword_3_0() { return cSHORT_C_TYPEShortKeyword_3_0; }
+		
+		//INT_C_TYPE="int"
+		public EnumLiteralDeclaration getINT_C_TYPEEnumLiteralDeclaration_4() { return cINT_C_TYPEEnumLiteralDeclaration_4; }
+		
+		//"int"
+		public Keyword getINT_C_TYPEIntKeyword_4_0() { return cINT_C_TYPEIntKeyword_4_0; }
+		
+		//LONG_C_TYPE="long"
+		public EnumLiteralDeclaration getLONG_C_TYPEEnumLiteralDeclaration_5() { return cLONG_C_TYPEEnumLiteralDeclaration_5; }
+		
+		//"long"
+		public Keyword getLONG_C_TYPELongKeyword_5_0() { return cLONG_C_TYPELongKeyword_5_0; }
+		
+		//BOOL_TYPE="bool"
+		public EnumLiteralDeclaration getBOOL_TYPEEnumLiteralDeclaration_6() { return cBOOL_TYPEEnumLiteralDeclaration_6; }
+		
+		//"bool"
+		public Keyword getBOOL_TYPEBoolKeyword_6_0() { return cBOOL_TYPEBoolKeyword_6_0; }
+	}
+	public class TypeSignSpecElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.TypeSignSpec");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cSIGNEDEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cSIGNEDSignedKeyword_0_0 = (Keyword)cSIGNEDEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cUNSIGNEDEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cUNSIGNEDUnsignedKeyword_1_0 = (Keyword)cUNSIGNEDEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum CTypeSignSpec:
+		//enum TypeSignSpec:
 		//	SIGNED="signed" | UNSIGNED="unsigned";
 		public EnumRule getRule() { return rule; }
 		
@@ -2923,6 +2883,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final ProgramElements pProgram;
+	private final TactElements pTact;
 	private final ProcessElements pProcess;
 	private final StateElements pState;
 	private final ProcessVariableElements pProcessVariable;
@@ -2983,23 +2944,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final AdditiveOpElements eAdditiveOp;
 	private final MultiplicativeOpElements eMultiplicativeOp;
 	private final BoolLiteralElements eBoolLiteral;
-	private final CTypeElements pCType;
-	private final CTypeSignSpecElements eCTypeSignSpec;
-	private final IntegerTypeElements pIntegerType;
-	private final ReflexTypeElements pReflexType;
+	private final TypeElements pType;
+	private final TypesElements eTypes;
+	private final TypeSignSpecElements eTypeSignSpec;
 	private final TerminalRule tLOGICAL_OR;
 	private final TerminalRule tLOGICAL_AND;
 	private final TerminalRule tBIT_OR;
 	private final TerminalRule tBIT_XOR;
 	private final TerminalRule tBIT_AND;
-	private final TerminalRule tVOID_C_TYPE;
-	private final TerminalRule tFLOAT_C_TYPE;
-	private final TerminalRule tDOUBLE_C_TYPE;
-	private final TerminalRule tSHORT_C_TYPE;
-	private final TerminalRule tINT_C_TYPE;
-	private final TerminalRule tLONG_C_TYPE;
-	private final TerminalRule tBOOL_TYPE;
-	private final TactElements pTact;
 	private final TerminalRule tINTEGER;
 	private final TerminalRule tFLOAT;
 	private final TerminalRule tDEC_FLOAT;
@@ -3030,6 +2982,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pProgram = new ProgramElements();
+		this.pTact = new TactElements();
 		this.pProcess = new ProcessElements();
 		this.pState = new StateElements();
 		this.pProcessVariable = new ProcessVariableElements();
@@ -3090,23 +3043,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.eAdditiveOp = new AdditiveOpElements();
 		this.eMultiplicativeOp = new MultiplicativeOpElements();
 		this.eBoolLiteral = new BoolLiteralElements();
-		this.pCType = new CTypeElements();
-		this.eCTypeSignSpec = new CTypeSignSpecElements();
-		this.pIntegerType = new IntegerTypeElements();
-		this.pReflexType = new ReflexTypeElements();
+		this.pType = new TypeElements();
+		this.eTypes = new TypesElements();
+		this.eTypeSignSpec = new TypeSignSpecElements();
 		this.tLOGICAL_OR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LOGICAL_OR");
 		this.tLOGICAL_AND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LOGICAL_AND");
 		this.tBIT_OR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BIT_OR");
 		this.tBIT_XOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BIT_XOR");
 		this.tBIT_AND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BIT_AND");
-		this.tVOID_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.VOID_C_TYPE");
-		this.tFLOAT_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.FLOAT_C_TYPE");
-		this.tDOUBLE_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.DOUBLE_C_TYPE");
-		this.tSHORT_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.SHORT_C_TYPE");
-		this.tINT_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.INT_C_TYPE");
-		this.tLONG_C_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.LONG_C_TYPE");
-		this.tBOOL_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BOOL_TYPE");
-		this.pTact = new TactElements();
 		this.tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.INTEGER");
 		this.tFLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.FLOAT");
 		this.tDEC_FLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.DEC_FLOAT");
@@ -3167,6 +3111,16 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getProgramRule() {
 		return getProgramAccess().getRule();
+	}
+	
+	//Tact:
+	//	"clock" value=INTEGER ";";
+	public TactElements getTactAccess() {
+		return pTact;
+	}
+	
+	public ParserRule getTactRule() {
+		return getTactAccess().getRule();
 	}
 	
 	//Process:
@@ -3238,7 +3192,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PhysicalVariable:
-	//	type=IntegerType name=ID "=" port=RegisterPortMapping;
+	//	type=Type name=ID "=" port=RegisterPortMapping;
 	public PhysicalVariableElements getPhysicalVariableAccess() {
 		return pPhysicalVariable;
 	}
@@ -3258,7 +3212,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ProgramVariable:
-	//	type=ReflexType name=ID;
+	//	type=Type name=ID;
 	public ProgramVariableElements getProgramVariableAccess() {
 		return pProgramVariable;
 	}
@@ -3420,7 +3374,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Function:
-	//	returnType=CType name=ID "(" argTypes+=CType ("," argTypes+=CType)* ")" ";";
+	//	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
 	public FunctionElements getFunctionAccess() {
 		return pFunction;
 	}
@@ -3450,7 +3404,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Const:
-	//	"const" type=ReflexType name=ID "=" constValue=Expression ";";
+	//	"const" type=Type name=ID "=" constValue=Expression ";";
 	public ConstElements getConstAccess() {
 		return pConst;
 	}
@@ -3541,7 +3495,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PrimaryExpression:
 	//	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-	//	{PrimaryExpression} boolean=BoolLiteral | "(" nestedExpr=Expression ")";
+	//	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -3562,7 +3516,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//CastExpression:
 	//	UnaryExpression |
-	//	"(" type=ReflexType ")" right=CastExpression;
+	//	"(" type=Type ")" right=CastExpression;
 	public CastExpressionElements getCastExpressionAccess() {
 		return pCastExpression;
 	}
@@ -3782,46 +3736,35 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getBoolLiteralAccess().getRule();
 	}
 	
-	//// TODO: fix types
-	//CType:
-	//	{CType} VOID_C_TYPE | {CType} FLOAT_C_TYPE | {CType} DOUBLE_C_TYPE | {CType} signSpec?=CTypeSignSpec? (SHORT_C_TYPE
-	//	| INT_C_TYPE | LONG_C_TYPE);
-	public CTypeElements getCTypeAccess() {
-		return pCType;
+	//Type:
+	//	sign=TypeSignSpec? name=Types;
+	public TypeElements getTypeAccess() {
+		return pType;
 	}
 	
-	public ParserRule getCTypeRule() {
-		return getCTypeAccess().getRule();
+	public ParserRule getTypeRule() {
+		return getTypeAccess().getRule();
 	}
 	
-	//enum CTypeSignSpec:
+	//enum Types:
+	//	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
+	//	LONG_C_TYPE="long" | BOOL_TYPE="bool";
+	public TypesElements getTypesAccess() {
+		return eTypes;
+	}
+	
+	public EnumRule getTypesRule() {
+		return getTypesAccess().getRule();
+	}
+	
+	//enum TypeSignSpec:
 	//	SIGNED="signed" | UNSIGNED="unsigned";
-	public CTypeSignSpecElements getCTypeSignSpecAccess() {
-		return eCTypeSignSpec;
+	public TypeSignSpecElements getTypeSignSpecAccess() {
+		return eTypeSignSpec;
 	}
 	
-	public EnumRule getCTypeSignSpecRule() {
-		return getCTypeSignSpecAccess().getRule();
-	}
-	
-	//IntegerType:
-	//	BOOL_TYPE | INT_C_TYPE | SHORT_C_TYPE | LONG_C_TYPE;
-	public IntegerTypeElements getIntegerTypeAccess() {
-		return pIntegerType;
-	}
-	
-	public ParserRule getIntegerTypeRule() {
-		return getIntegerTypeAccess().getRule();
-	}
-	
-	//ReflexType:
-	//	CType | {ReflexType} BOOL_TYPE;
-	public ReflexTypeElements getReflexTypeAccess() {
-		return pReflexType;
-	}
-	
-	public ParserRule getReflexTypeRule() {
-		return getReflexTypeAccess().getRule();
+	public EnumRule getTypeSignSpecRule() {
+		return getTypeSignSpecAccess().getRule();
 	}
 	
 	//terminal LOGICAL_OR:
@@ -3852,58 +3795,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	//	"&";
 	public TerminalRule getBIT_ANDRule() {
 		return tBIT_AND;
-	}
-	
-	//terminal VOID_C_TYPE:
-	//	"void";
-	public TerminalRule getVOID_C_TYPERule() {
-		return tVOID_C_TYPE;
-	}
-	
-	//terminal FLOAT_C_TYPE:
-	//	"float";
-	public TerminalRule getFLOAT_C_TYPERule() {
-		return tFLOAT_C_TYPE;
-	}
-	
-	//terminal DOUBLE_C_TYPE:
-	//	"double";
-	public TerminalRule getDOUBLE_C_TYPERule() {
-		return tDOUBLE_C_TYPE;
-	}
-	
-	//terminal SHORT_C_TYPE:
-	//	"short";
-	public TerminalRule getSHORT_C_TYPERule() {
-		return tSHORT_C_TYPE;
-	}
-	
-	//terminal INT_C_TYPE:
-	//	"int";
-	public TerminalRule getINT_C_TYPERule() {
-		return tINT_C_TYPE;
-	}
-	
-	//terminal LONG_C_TYPE:
-	//	"long";
-	public TerminalRule getLONG_C_TYPERule() {
-		return tLONG_C_TYPE;
-	}
-	
-	//terminal BOOL_TYPE:
-	//	"bool";
-	public TerminalRule getBOOL_TYPERule() {
-		return tBOOL_TYPE;
-	}
-	
-	//Tact:
-	//	"clock" value=INTEGER ";";
-	public TactElements getTactAccess() {
-		return pTact;
-	}
-	
-	public ParserRule getTactRule() {
-		return getTactAccess().getRule();
 	}
 	
 	//terminal INTEGER:

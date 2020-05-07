@@ -21,8 +21,6 @@ import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.BoolLiteral;
-import ru.iaie.reflex.reflex.CType;
-import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -56,7 +54,6 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.RegisterType;
@@ -77,6 +74,9 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
+import ru.iaie.reflex.reflex.TypeSignSpec;
+import ru.iaie.reflex.reflex.Types;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
 
@@ -133,6 +133,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     switch (eClass.getClassifierID())
     {
       case ReflexPackage.PROGRAM: return createProgram();
+      case ReflexPackage.TACT: return createTact();
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
       case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
@@ -181,9 +182,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case ReflexPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case ReflexPackage.EXPRESSION: return createExpression();
-      case ReflexPackage.CTYPE: return createCType();
-      case ReflexPackage.REFLEX_TYPE: return createReflexType();
-      case ReflexPackage.TACT: return createTact();
+      case ReflexPackage.TYPE: return createType();
       case ReflexPackage.TIME: return createTime();
       case ReflexPackage.ANNOTATION: return createAnnotation();
       case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
@@ -224,8 +223,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return createMultiplicativeOpFromString(eDataType, initialValue);
       case ReflexPackage.BOOL_LITERAL:
         return createBoolLiteralFromString(eDataType, initialValue);
-      case ReflexPackage.CTYPE_SIGN_SPEC:
-        return createCTypeSignSpecFromString(eDataType, initialValue);
+      case ReflexPackage.TYPES:
+        return createTypesFromString(eDataType, initialValue);
+      case ReflexPackage.TYPE_SIGN_SPEC:
+        return createTypeSignSpecFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -263,8 +264,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return convertMultiplicativeOpToString(eDataType, instanceValue);
       case ReflexPackage.BOOL_LITERAL:
         return convertBoolLiteralToString(eDataType, instanceValue);
-      case ReflexPackage.CTYPE_SIGN_SPEC:
-        return convertCTypeSignSpecToString(eDataType, instanceValue);
+      case ReflexPackage.TYPES:
+        return convertTypesToString(eDataType, instanceValue);
+      case ReflexPackage.TYPE_SIGN_SPEC:
+        return convertTypeSignSpecToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -280,6 +283,18 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     ProgramImpl program = new ProgramImpl();
     return program;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Tact createTact()
+  {
+    TactImpl tact = new TactImpl();
+    return tact;
   }
 
   /**
@@ -864,34 +879,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public CType createCType()
+  public Type createType()
   {
-    CTypeImpl cType = new CTypeImpl();
-    return cType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ReflexType createReflexType()
-  {
-    ReflexTypeImpl reflexType = new ReflexTypeImpl();
-    return reflexType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Tact createTact()
-  {
-    TactImpl tact = new TactImpl();
-    return tact;
+    TypeImpl type = new TypeImpl();
+    return type;
   }
 
   /**
@@ -1177,9 +1168,9 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public CTypeSignSpec createCTypeSignSpecFromString(EDataType eDataType, String initialValue)
+  public Types createTypesFromString(EDataType eDataType, String initialValue)
   {
-    CTypeSignSpec result = CTypeSignSpec.get(initialValue);
+    Types result = Types.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -1189,7 +1180,29 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertCTypeSignSpecToString(EDataType eDataType, Object instanceValue)
+  public String convertTypesToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeSignSpec createTypeSignSpecFromString(EDataType eDataType, String initialValue)
+  {
+    TypeSignSpec result = TypeSignSpec.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTypeSignSpecToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

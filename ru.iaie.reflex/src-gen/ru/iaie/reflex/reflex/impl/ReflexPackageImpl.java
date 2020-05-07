@@ -20,8 +20,6 @@ import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.BoolLiteral;
-import ru.iaie.reflex.reflex.CType;
-import ru.iaie.reflex.reflex.CTypeSignSpec;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -55,7 +53,6 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.RegisterType;
@@ -76,6 +73,9 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
+import ru.iaie.reflex.reflex.TypeSignSpec;
+import ru.iaie.reflex.reflex.Types;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
 
@@ -93,6 +93,13 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EClass programEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tactEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -435,21 +442,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass cTypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass reflexTypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass tactEClass = null;
+  private EClass typeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -554,7 +547,14 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum cTypeSignSpecEEnum = null;
+  private EEnum typesEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum typeSignSpecEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -727,6 +727,28 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   public EReference getProgram_Processes()
   {
     return (EReference)programEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTact()
+  {
+    return tactEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTact_Value()
+  {
+    return (EAttribute)tactEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -944,9 +966,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getPhysicalVariable_Type()
+  public EReference getPhysicalVariable_Type()
   {
-    return (EAttribute)physicalVariableEClass.getEStructuralFeatures().get(1);
+    return (EReference)physicalVariableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1802,7 +1824,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getPrimaryExpression_Boolean()
+  public EAttribute getPrimaryExpression_Bool()
   {
     return (EAttribute)primaryExpressionEClass.getEStructuralFeatures().get(3);
   }
@@ -2110,9 +2132,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getCType()
+  public EClass getType()
   {
-    return cTypeEClass;
+    return typeEClass;
   }
 
   /**
@@ -2121,9 +2143,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getCType_SignSpec()
+  public EAttribute getType_Sign()
   {
-    return (EAttribute)cTypeEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2132,31 +2154,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getReflexType()
+  public EAttribute getType_Name()
   {
-    return reflexTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getTact()
-  {
-    return tactEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getTact_Value()
-  {
-    return (EAttribute)tactEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2363,9 +2363,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EEnum getCTypeSignSpec()
+  public EEnum getTypes()
   {
-    return cTypeSignSpecEEnum;
+    return typesEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getTypeSignSpec()
+  {
+    return typeSignSpecEEnum;
   }
 
   /**
@@ -2410,6 +2421,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(programEClass, PROGRAM__REGISTERS);
     createEReference(programEClass, PROGRAM__PROCESSES);
 
+    tactEClass = createEClass(TACT);
+    createEAttribute(tactEClass, TACT__VALUE);
+
     processEClass = createEClass(PROCESS);
     createEReference(processEClass, PROCESS__ANNOTATIONS);
     createEAttribute(processEClass, PROCESS__NAME);
@@ -2435,7 +2449,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     physicalVariableEClass = createEClass(PHYSICAL_VARIABLE);
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__SHARED);
-    createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__TYPE);
+    createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__TYPE);
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__NAME);
     createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__PORT);
 
@@ -2540,7 +2554,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__REFERENCE);
     createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__INTEGER);
     createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__FLOATING);
-    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__BOOLEAN);
+    createEAttribute(primaryExpressionEClass, PRIMARY_EXPRESSION__BOOL);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__NESTED_EXPR);
 
     unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
@@ -2583,13 +2597,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     expressionEClass = createEClass(EXPRESSION);
 
-    cTypeEClass = createEClass(CTYPE);
-    createEAttribute(cTypeEClass, CTYPE__SIGN_SPEC);
-
-    reflexTypeEClass = createEClass(REFLEX_TYPE);
-
-    tactEClass = createEClass(TACT);
-    createEAttribute(tactEClass, TACT__VALUE);
+    typeEClass = createEClass(TYPE);
+    createEAttribute(typeEClass, TYPE__SIGN);
+    createEAttribute(typeEClass, TYPE__NAME);
 
     timeEClass = createEClass(TIME);
     createEAttribute(timeEClass, TIME__TICKS);
@@ -2613,7 +2623,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     additiveOpEEnum = createEEnum(ADDITIVE_OP);
     multiplicativeOpEEnum = createEEnum(MULTIPLICATIVE_OP);
     boolLiteralEEnum = createEEnum(BOOL_LITERAL);
-    cTypeSignSpecEEnum = createEEnum(CTYPE_SIGN_SPEC);
+    typesEEnum = createEEnum(TYPES);
+    typeSignSpecEEnum = createEEnum(TYPE_SIGN_SPEC);
   }
 
   /**
@@ -2683,7 +2694,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     logicalAndExpressionEClass.getESuperTypes().add(this.getLogicalOrExpression());
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
     expressionEClass.getESuperTypes().add(this.getStatement());
-    cTypeEClass.getESuperTypes().add(this.getReflexType());
     statementBlockEClass.getESuperTypes().add(this.getCompoundStatement());
 
     // Initialize classes and features; add operations and parameters
@@ -2697,6 +2707,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getProgram_GlobalVars(), this.getGlobalVariable(), null, "globalVars", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Registers(), this.getRegister(), null, "registers", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Processes(), this.getProcess(), null, "processes", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTact_Value(), ecorePackage.getEString(), "value", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processEClass, ru.iaie.reflex.reflex.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcess_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2723,7 +2736,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(physicalVariableEClass, PhysicalVariable.class, "PhysicalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPhysicalVariable_Shared(), ecorePackage.getEBoolean(), "shared", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPhysicalVariable_Type(), ecorePackage.getEString(), "type", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPhysicalVariable_Type(), this.getType(), null, "type", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPhysicalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPhysicalVariable_Port(), this.getRegisterPortMapping(), null, "port", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2733,7 +2746,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(programVariableEClass, ProgramVariable.class, "ProgramVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgramVariable_Shared(), ecorePackage.getEBoolean(), "shared", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgramVariable_Type(), this.getReflexType(), null, "type", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgramVariable_Type(), this.getType(), null, "type", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProgramVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementSequenceEClass, StatementSequence.class, "StatementSequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2782,9 +2795,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getSetStateStat_State(), this.getState(), null, "state", null, 0, 1, SetStateStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFunction_ReturnType(), this.getCType(), null, "returnType", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_ReturnType(), this.getType(), null, "returnType", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunction_ArgTypes(), this.getCType(), null, "argTypes", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_ArgTypes(), this.getType(), null, "argTypes", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(registerEClass, Register.class, "Register", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRegister_Type(), this.getRegisterType(), "type", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2794,7 +2807,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getRegister_RegSize(), ecorePackage.getEString(), "regSize", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constEClass, Const.class, "Const", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConst_Type(), this.getReflexType(), null, "type", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConst_Type(), this.getType(), null, "type", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConst_Name(), ecorePackage.getEString(), "name", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConst_ConstValue(), this.getExpression(), null, "constValue", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2828,14 +2841,14 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getPrimaryExpression_Reference(), this.getIdReference(), null, "reference", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimaryExpression_Integer(), ecorePackage.getEString(), "integer", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimaryExpression_Floating(), ecorePackage.getEString(), "floating", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPrimaryExpression_Boolean(), this.getBoolLiteral(), "boolean", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimaryExpression_Bool(), this.getBoolLiteral(), "bool", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_NestedExpr(), this.getExpression(), null, "nestedExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnaryExpression_UnaryOp(), this.getUnaryOp(), "unaryOp", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(castExpressionEClass, CastExpression.class, "CastExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCastExpression_Type(), this.getReflexType(), null, "type", null, 0, 1, CastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCastExpression_Type(), this.getType(), null, "type", null, 0, 1, CastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multiplicativeExpressionEClass, MultiplicativeExpression.class, "MultiplicativeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMultiplicativeExpression_MulOp(), this.getMultiplicativeOp(), "mulOp", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2871,13 +2884,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(cTypeEClass, CType.class, "CType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCType_SignSpec(), ecorePackage.getEBoolean(), "signSpec", null, 0, 1, CType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(reflexTypeEClass, ReflexType.class, "ReflexType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTact_Value(), ecorePackage.getEString(), "value", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getType_Sign(), this.getTypeSignSpec(), "sign", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getType_Name(), this.getTypes(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(timeEClass, Time.class, "Time", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTime_Ticks(), ecorePackage.getEString(), "ticks", null, 0, 1, Time.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2949,9 +2958,18 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     addEEnumLiteral(boolLiteralEEnum, BoolLiteral.TRUE);
     addEEnumLiteral(boolLiteralEEnum, BoolLiteral.FALSE);
 
-    initEEnum(cTypeSignSpecEEnum, CTypeSignSpec.class, "CTypeSignSpec");
-    addEEnumLiteral(cTypeSignSpecEEnum, CTypeSignSpec.SIGNED);
-    addEEnumLiteral(cTypeSignSpecEEnum, CTypeSignSpec.UNSIGNED);
+    initEEnum(typesEEnum, Types.class, "Types");
+    addEEnumLiteral(typesEEnum, Types.VOID_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.FLOAT_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.DOUBLE_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.SHORT_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.INT_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.LONG_CTYPE);
+    addEEnumLiteral(typesEEnum, Types.BOOL_TYPE);
+
+    initEEnum(typeSignSpecEEnum, TypeSignSpec.class, "TypeSignSpec");
+    addEEnumLiteral(typeSignSpecEEnum, TypeSignSpec.SIGNED);
+    addEEnumLiteral(typeSignSpecEEnum, TypeSignSpec.UNSIGNED);
 
     // Create resource
     createResource(eNS_URI);

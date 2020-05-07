@@ -1,19 +1,18 @@
 package ru.iaie.reflex.generator;
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
-import ru.iaie.reflex.reflex.*;
-
-import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper
 import ru.iaie.reflex.reflex.Program
-
+import ru.iaie.reflex.reflex.ProcessVariable
+import ru.iaie.reflex.reflex.Process
+import ru.iaie.reflex.reflex.ProgramVariable
+import ru.iaie.reflex.reflex.PhysicalVariable
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 
 class ImperativeLangGenerator extends AbstractGenerator {
@@ -34,7 +33,7 @@ class ImperativeLangGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 //		generateVariables(resource, fsa, context)
-		generateConstantDefinitions(resource, fsa, context)
+		generateConstantDefinitions()
 //		generateProcessImplementations(resource, fsa, context)
 		generateInput(resource, fsa, context)
 		generateOutput(resource, fsa, context)
@@ -49,82 +48,40 @@ class ImperativeLangGenerator extends AbstractGenerator {
 		
 	}
 
-
-	def generateConstantDefinitions(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		// all will be added by builder
-
-		//		val fileContent = '''
-//			#pragma once
-			/*           Constant definitions          */
-//			«generateConstants(resource)»
-			/*                Enums                    */
-//			«generateEnums(resource)»
-//		'''
-		// string builder is parameter
-		 
-		builder.withConstantDefinitions(generateConstants(resource));
-	}
-
-	def String generateConstants(Resource resource) {
-		return '''
+	def generateConstantDefinitions() {
+		builder.withConstantDefinitions('''
 			«FOR constant : program.consts»
-				strategy.translateConstDefinition(constant);
+			«strategy.translateConstDefinition(constant)»«strategy.separator»
 			«ENDFOR»
-		'''
+		''')
 	}
 
-//	def generateEnums(Resource resource) {
-//		return '''
-//			«FOR en : program.enums»
-//				enum «identifiersHelper.getEnumId(en)» {
-//					 «FOR enumMember: en.enumMembers»
-//					 	«identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
-//					 «ENDFOR»
-//				}
-//			«ENDFOR»
-//		'''
-//	}
-//
-//	def generateVariables(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		val fileContent = '''
-//			/*           Variables          */
-//			/* CAGVAR.H = Global Variables Image-File. */
-//			#pragma once
-//			/*       Process variables     */
-//			«generateProcessVariables(resource)»
-//			/*          Input Ports         */
-//			«generateInputPorts(resource)»
-//			/*         Output Ports         */
-//			«generateOutputPorts(resource)»
-//		'''
-//		fsa.generateFile('''c-code/CAgvar.cpp''', fileContent)
-//	}
-//
-//	// TODO: split to global and process
-//	def generateProcessVariables(Resource resource) {
-//		return '''
-//			«FOR variable: program.globalVars»
-//				«generateGlobalVariableDefinition(variable)»
-//			«ENDFOR»
-//			«FOR proc : program.processes»
-//				«FOR variable: proc.variables»
-//					«generateProcessVariableDefinition(proc, variable)»
-//				«ENDFOR»
-//			«ENDFOR»
-//		'''
-//	}
-//	
-//	def generateProcessVariableDefinition(Process proc, ProcessVariable variable) {
-//		return '''
-//			«IF (variable instanceof ProgramVariable)»
-//			// TODO: fix type getting
-//			«NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
-//			«ENDIF»
-//			«IF (variable instanceof PhysicalVariable)»
-//			«variable.type» «identifiersHelper.getProcessVariableId(proc, variable)»;
-//			«ENDIF»
-//		'''
-//	}
+	def generateEnumDefifinions() {
+		builder.withEnumDefinitions('''
+			«FOR en : program.enums»
+				«strategy.translateEnumDefinition(en)»
+			«ENDFOR»
+		''')
+	}
+
+	// TODO: split to global and process
+	def generateProcessVarDefifinitions(Resource resource) {
+		builder.withGlobalVariableDefinitions('''
+			«FOR proc : program.processes»
+				«FOR variable: proc.variables»
+					«strategy.translateProcessVarDefinition(proc, variable)»
+				«ENDFOR»
+			«ENDFOR»
+		''')
+	}
+	
+	def generateGlobalVarDefinitions(Resource resource) {
+		builder.withProcessVariableDefinitions('''
+			«FOR variable: program.globalVars»
+				«strategy.translateGlobalVarDefinition(variable)»
+			«ENDFOR»
+		''')
+	}
 //	
 //	def generateGlobalVariableDefinition(GlobalVariable variable) {
 //		return '''

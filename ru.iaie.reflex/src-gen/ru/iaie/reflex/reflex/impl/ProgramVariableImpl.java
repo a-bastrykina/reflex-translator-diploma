@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
+import ru.iaie.reflex.reflex.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    * @ordered
    */
-  protected ReflexType type;
+  protected Type type;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -134,7 +134,7 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    */
   @Override
-  public ReflexType getType()
+  public Type getType()
   {
     return type;
   }
@@ -144,9 +144,9 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(ReflexType newType, NotificationChain msgs)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    ReflexType oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -162,7 +162,7 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
    * @generated
    */
   @Override
-  public void setType(ReflexType newType)
+  public void setType(Type newType)
   {
     if (newType != type)
     {
@@ -253,7 +253,7 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
         setShared((Boolean)newValue);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
-        setType((ReflexType)newValue);
+        setType((Type)newValue);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
         setName((String)newValue);
@@ -276,7 +276,7 @@ public class ProgramVariableImpl extends DeclaredVariableImpl implements Program
         setShared(SHARED_EDEFAULT);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
-        setType((ReflexType)null);
+        setType((Type)null);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
         setName(NAME_EDEFAULT);

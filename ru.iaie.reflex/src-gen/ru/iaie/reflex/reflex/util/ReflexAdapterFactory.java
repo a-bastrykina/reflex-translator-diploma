@@ -16,7 +16,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -45,7 +44,6 @@ import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
@@ -63,6 +61,7 @@ import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.reflex.UnaryExpression;
 
 /**
@@ -132,6 +131,11 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseProgram(Program object)
       {
         return createProgramAdapter();
+      }
+      @Override
+      public Adapter caseTact(Tact object)
+      {
+        return createTactAdapter();
       }
       @Override
       public Adapter caseProcess(ru.iaie.reflex.reflex.Process object)
@@ -374,19 +378,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseCType(CType object)
+      public Adapter caseType(Type object)
       {
-        return createCTypeAdapter();
-      }
-      @Override
-      public Adapter caseReflexType(ReflexType object)
-      {
-        return createReflexTypeAdapter();
-      }
-      @Override
-      public Adapter caseTact(Tact object)
-      {
-        return createTactAdapter();
+        return createTypeAdapter();
       }
       @Override
       public Adapter caseTime(Time object)
@@ -436,6 +430,21 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProgramAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Tact <em>Tact</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Tact
+   * @generated
+   */
+  public Adapter createTactAdapter()
   {
     return null;
   }
@@ -1161,46 +1170,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.CType <em>CType</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.CType
+   * @see ru.iaie.reflex.reflex.Type
    * @generated
    */
-  public Adapter createCTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ReflexType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.ReflexType
-   * @generated
-   */
-  public Adapter createReflexTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Tact <em>Tact</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Tact
-   * @generated
-   */
-  public Adapter createTactAdapter()
+  public Adapter createTypeAdapter()
   {
     return null;
   }

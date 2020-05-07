@@ -279,6 +279,51 @@ ruleProgram returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleTact
+entryRuleTact returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTactRule()); }
+	iv_ruleTact=ruleTact
+	{ $current=$iv_ruleTact.current; }
+	EOF;
+
+// Rule Tact
+ruleTact returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='clock'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTactAccess().getClockKeyword_0());
+		}
+		(
+			(
+				lv_value_1_0=RULE_INTEGER
+				{
+					newLeafNode(lv_value_1_0, grammarAccess.getTactAccess().getValueINTEGERTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTactRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_1_0,
+						"ru.iaie.reflex.Reflex.INTEGER");
+				}
+			)
+		)
+		otherlv_2=';'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getTactAccess().getSemicolonKeyword_2());
+		}
+	)
+;
+
 // Entry rule entryRuleProcess
 entryRuleProcess returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getProcessRule()); }
@@ -758,9 +803,9 @@ rulePhysicalVariable returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getTypeIntegerTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getTypeTypeParserRuleCall_0_0());
 				}
-				lv_type_0_0=ruleIntegerType
+				lv_type_0_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPhysicalVariableRule());
@@ -769,7 +814,7 @@ rulePhysicalVariable returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_0,
-						"ru.iaie.reflex.Reflex.IntegerType");
+						"ru.iaie.reflex.Reflex.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -897,9 +942,9 @@ ruleProgramVariable returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProgramVariableAccess().getTypeReflexTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getProgramVariableAccess().getTypeTypeParserRuleCall_0_0());
 				}
-				lv_type_0_0=ruleReflexType
+				lv_type_0_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProgramVariableRule());
@@ -908,7 +953,7 @@ ruleProgramVariable returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_0_0,
-						"ru.iaie.reflex.Reflex.ReflexType");
+						"ru.iaie.reflex.Reflex.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1890,9 +1935,9 @@ ruleFunction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionAccess().getReturnTypeCTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getFunctionAccess().getReturnTypeTypeParserRuleCall_0_0());
 				}
-				lv_returnType_0_0=ruleCType
+				lv_returnType_0_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFunctionRule());
@@ -1901,7 +1946,7 @@ ruleFunction returns [EObject current=null]
 						$current,
 						"returnType",
 						lv_returnType_0_0,
-						"ru.iaie.reflex.Reflex.CType");
+						"ru.iaie.reflex.Reflex.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1931,9 +1976,9 @@ ruleFunction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesCTypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeParserRuleCall_3_0());
 				}
-				lv_argTypes_3_0=ruleCType
+				lv_argTypes_3_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFunctionRule());
@@ -1942,7 +1987,7 @@ ruleFunction returns [EObject current=null]
 						$current,
 						"argTypes",
 						lv_argTypes_3_0,
-						"ru.iaie.reflex.Reflex.CType");
+						"ru.iaie.reflex.Reflex.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1955,9 +2000,9 @@ ruleFunction returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesCTypeParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeParserRuleCall_4_1_0());
 					}
-					lv_argTypes_5_0=ruleCType
+					lv_argTypes_5_0=ruleType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFunctionRule());
@@ -1966,7 +2011,7 @@ ruleFunction returns [EObject current=null]
 							$current,
 							"argTypes",
 							lv_argTypes_5_0,
-							"ru.iaie.reflex.Reflex.CType");
+							"ru.iaie.reflex.Reflex.Type");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -2120,9 +2165,9 @@ ruleConst returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConstAccess().getTypeReflexTypeParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConstAccess().getTypeTypeParserRuleCall_1_0());
 				}
-				lv_type_1_0=ruleReflexType
+				lv_type_1_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConstRule());
@@ -2131,7 +2176,7 @@ ruleConst returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_1_0,
-						"ru.iaie.reflex.Reflex.ReflexType");
+						"ru.iaie.reflex.Reflex.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2697,17 +2742,17 @@ rulePrimaryExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBooleanBoolLiteralEnumRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBoolBoolLiteralEnumRuleCall_3_1_0());
 					}
-					lv_boolean_6_0=ruleBoolLiteral
+					lv_bool_6_0=ruleBoolLiteral
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 						}
 						set(
 							$current,
-							"boolean",
-							lv_boolean_6_0,
+							"bool",
+							lv_bool_6_0,
 							"ru.iaie.reflex.Reflex.BoolLiteral");
 						afterParserOrEnumRuleCall();
 					}
@@ -2875,9 +2920,9 @@ ruleCastExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getCastExpressionAccess().getTypeReflexTypeParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getCastExpressionAccess().getTypeTypeParserRuleCall_1_1_0());
 					}
-					lv_type_2_0=ruleReflexType
+					lv_type_2_0=ruleType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getCastExpressionRule());
@@ -2886,7 +2931,7 @@ ruleCastExpression returns [EObject current=null]
 							$current,
 							"type",
 							lv_type_2_0,
-							"ru.iaie.reflex.Reflex.ReflexType");
+							"ru.iaie.reflex.Reflex.Type");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -3691,15 +3736,15 @@ ruleExpression returns [EObject current=null]
 	}
 ;
 
-// Entry rule entryRuleCType
-entryRuleCType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCTypeRule()); }
-	iv_ruleCType=ruleCType
-	{ $current=$iv_ruleCType.current; }
+// Entry rule entryRuleType
+entryRuleType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypeRule()); }
+	iv_ruleType=ruleType
+	{ $current=$iv_ruleType.current; }
 	EOF;
 
-// Rule CType
-ruleCType returns [EObject current=null]
+// Rule Type
+ruleType returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -3710,225 +3755,41 @@ ruleCType returns [EObject current=null]
 		(
 			(
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getCTypeAccess().getCTypeAction_0_0(),
-						$current);
+					newCompositeNode(grammarAccess.getTypeAccess().getSignTypeSignSpecEnumRuleCall_0_0());
 				}
-			)
-			this_VOID_C_TYPE_1=RULE_VOID_C_TYPE
-			{
-				newLeafNode(this_VOID_C_TYPE_1, grammarAccess.getCTypeAccess().getVOID_C_TYPETerminalRuleCall_0_1());
-			}
-		)
-		    |
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getCTypeAccess().getCTypeAction_1_0(),
-						$current);
-				}
-			)
-			this_FLOAT_C_TYPE_3=RULE_FLOAT_C_TYPE
-			{
-				newLeafNode(this_FLOAT_C_TYPE_3, grammarAccess.getCTypeAccess().getFLOAT_C_TYPETerminalRuleCall_1_1());
-			}
-		)
-		    |
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getCTypeAccess().getCTypeAction_2_0(),
-						$current);
-				}
-			)
-			this_DOUBLE_C_TYPE_5=RULE_DOUBLE_C_TYPE
-			{
-				newLeafNode(this_DOUBLE_C_TYPE_5, grammarAccess.getCTypeAccess().getDOUBLE_C_TYPETerminalRuleCall_2_1());
-			}
-		)
-		    |
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getCTypeAccess().getCTypeAction_3_0(),
-						$current);
-				}
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getCTypeAccess().getSignSpecCTypeSignSpecEnumRuleCall_3_1_0());
-					}
-					lv_signSpec_7_0=ruleCTypeSignSpec
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getCTypeRule());
-						}
-						set(
-							$current,
-							"signSpec",
-							true,
-							"ru.iaie.reflex.Reflex.CTypeSignSpec");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)?
-			(
-				this_SHORT_C_TYPE_8=RULE_SHORT_C_TYPE
-				{
-					newLeafNode(this_SHORT_C_TYPE_8, grammarAccess.getCTypeAccess().getSHORT_C_TYPETerminalRuleCall_3_2_0());
-				}
-				    |
-				this_INT_C_TYPE_9=RULE_INT_C_TYPE
-				{
-					newLeafNode(this_INT_C_TYPE_9, grammarAccess.getCTypeAccess().getINT_C_TYPETerminalRuleCall_3_2_1());
-				}
-				    |
-				this_LONG_C_TYPE_10=RULE_LONG_C_TYPE
-				{
-					newLeafNode(this_LONG_C_TYPE_10, grammarAccess.getCTypeAccess().getLONG_C_TYPETerminalRuleCall_3_2_2());
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleIntegerType
-entryRuleIntegerType returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getIntegerTypeRule()); }
-	iv_ruleIntegerType=ruleIntegerType
-	{ $current=$iv_ruleIntegerType.current.getText(); }
-	EOF;
-
-// Rule IntegerType
-ruleIntegerType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		this_BOOL_TYPE_0=RULE_BOOL_TYPE
-		{
-			$current.merge(this_BOOL_TYPE_0);
-		}
-		{
-			newLeafNode(this_BOOL_TYPE_0, grammarAccess.getIntegerTypeAccess().getBOOL_TYPETerminalRuleCall_0());
-		}
-		    |
-		this_INT_C_TYPE_1=RULE_INT_C_TYPE
-		{
-			$current.merge(this_INT_C_TYPE_1);
-		}
-		{
-			newLeafNode(this_INT_C_TYPE_1, grammarAccess.getIntegerTypeAccess().getINT_C_TYPETerminalRuleCall_1());
-		}
-		    |
-		this_SHORT_C_TYPE_2=RULE_SHORT_C_TYPE
-		{
-			$current.merge(this_SHORT_C_TYPE_2);
-		}
-		{
-			newLeafNode(this_SHORT_C_TYPE_2, grammarAccess.getIntegerTypeAccess().getSHORT_C_TYPETerminalRuleCall_2());
-		}
-		    |
-		this_LONG_C_TYPE_3=RULE_LONG_C_TYPE
-		{
-			$current.merge(this_LONG_C_TYPE_3);
-		}
-		{
-			newLeafNode(this_LONG_C_TYPE_3, grammarAccess.getIntegerTypeAccess().getLONG_C_TYPETerminalRuleCall_3());
-		}
-	)
-;
-
-// Entry rule entryRuleReflexType
-entryRuleReflexType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getReflexTypeRule()); }
-	iv_ruleReflexType=ruleReflexType
-	{ $current=$iv_ruleReflexType.current; }
-	EOF;
-
-// Rule ReflexType
-ruleReflexType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getReflexTypeAccess().getCTypeParserRuleCall_0());
-		}
-		this_CType_0=ruleCType
-		{
-			$current = $this_CType_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getReflexTypeAccess().getReflexTypeAction_1_0(),
-						$current);
-				}
-			)
-			this_BOOL_TYPE_2=RULE_BOOL_TYPE
-			{
-				newLeafNode(this_BOOL_TYPE_2, grammarAccess.getReflexTypeAccess().getBOOL_TYPETerminalRuleCall_1_1());
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTact
-entryRuleTact returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTactRule()); }
-	iv_ruleTact=ruleTact
-	{ $current=$iv_ruleTact.current; }
-	EOF;
-
-// Rule Tact
-ruleTact returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='clock'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getTactAccess().getClockKeyword_0());
-		}
-		(
-			(
-				lv_value_1_0=RULE_INTEGER
-				{
-					newLeafNode(lv_value_1_0, grammarAccess.getTactAccess().getValueINTEGERTerminalRuleCall_1_0());
-				}
+				lv_sign_0_0=ruleTypeSignSpec
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTactRule());
+						$current = createModelElementForParent(grammarAccess.getTypeRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
-						"value",
-						lv_value_1_0,
-						"ru.iaie.reflex.Reflex.INTEGER");
+						"sign",
+						lv_sign_0_0,
+						"ru.iaie.reflex.Reflex.TypeSignSpec");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTypeAccess().getNameTypesEnumRuleCall_1_0());
+				}
+				lv_name_1_0=ruleTypes
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTypeRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_1_0,
+						"ru.iaie.reflex.Reflex.Types");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2=';'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getTactAccess().getSemicolonKeyword_2());
-		}
 	)
 ;
 
@@ -4514,8 +4375,75 @@ ruleBoolLiteral returns [Enumerator current=null]
 	)
 ;
 
-// Rule CTypeSignSpec
-ruleCTypeSignSpec returns [Enumerator current=null]
+// Rule Types
+ruleTypes returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='void'
+			{
+				$current = grammarAccess.getTypesAccess().getVOID_C_TYPEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getTypesAccess().getVOID_C_TYPEEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='float'
+			{
+				$current = grammarAccess.getTypesAccess().getFLOAT_C_TYPEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getTypesAccess().getFLOAT_C_TYPEEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='double'
+			{
+				$current = grammarAccess.getTypesAccess().getDOUBLE_C_TYPEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getTypesAccess().getDOUBLE_C_TYPEEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='short'
+			{
+				$current = grammarAccess.getTypesAccess().getSHORT_C_TYPEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getTypesAccess().getSHORT_C_TYPEEnumLiteralDeclaration_3());
+			}
+		)
+		    |
+		(
+			enumLiteral_4='int'
+			{
+				$current = grammarAccess.getTypesAccess().getINT_C_TYPEEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getTypesAccess().getINT_C_TYPEEnumLiteralDeclaration_4());
+			}
+		)
+		    |
+		(
+			enumLiteral_5='long'
+			{
+				$current = grammarAccess.getTypesAccess().getLONG_C_TYPEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getTypesAccess().getLONG_C_TYPEEnumLiteralDeclaration_5());
+			}
+		)
+		    |
+		(
+			enumLiteral_6='bool'
+			{
+				$current = grammarAccess.getTypesAccess().getBOOL_TYPEEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getTypesAccess().getBOOL_TYPEEnumLiteralDeclaration_6());
+			}
+		)
+	)
+;
+
+// Rule TypeSignSpec
+ruleTypeSignSpec returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -4526,16 +4454,16 @@ ruleCTypeSignSpec returns [Enumerator current=null]
 		(
 			enumLiteral_0='signed'
 			{
-				$current = grammarAccess.getCTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getCTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0());
+				$current = grammarAccess.getTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
 			enumLiteral_1='unsigned'
 			{
-				$current = grammarAccess.getCTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getCTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1());
+				$current = grammarAccess.getTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1());
 			}
 		)
 	)
@@ -4550,20 +4478,6 @@ RULE_BIT_OR : '|';
 RULE_BIT_XOR : '^';
 
 RULE_BIT_AND : '&';
-
-RULE_VOID_C_TYPE : 'void';
-
-RULE_FLOAT_C_TYPE : 'float';
-
-RULE_DOUBLE_C_TYPE : 'double';
-
-RULE_SHORT_C_TYPE : 'short';
-
-RULE_INT_C_TYPE : 'int';
-
-RULE_LONG_C_TYPE : 'long';
-
-RULE_BOOL_TYPE : 'bool';
 
 RULE_INTEGER : (RULE_HEX|RULE_OCTAL|RULE_DECIMAL) (RULE_LONG|RULE_UNSIGNED)?;
 

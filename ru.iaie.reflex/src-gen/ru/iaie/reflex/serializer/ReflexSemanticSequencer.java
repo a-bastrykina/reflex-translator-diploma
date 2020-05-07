@@ -20,7 +20,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.CType;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -43,7 +42,6 @@ import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.ReflexType;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
@@ -60,6 +58,7 @@ import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
 
@@ -94,9 +93,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.BIT_XOR_EXPRESSION:
 				sequence_BitXorExpression(context, (BitXorExpression) semanticObject); 
-				return; 
-			case ReflexPackage.CTYPE:
-				sequence_CType(context, (CType) semanticObject); 
 				return; 
 			case ReflexPackage.CASE_STAT:
 				sequence_CaseStat(context, (CaseStat) semanticObject); 
@@ -187,9 +183,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
-			case ReflexPackage.REFLEX_TYPE:
-				sequence_ReflexType(context, (ReflexType) semanticObject); 
-				return; 
 			case ReflexPackage.REGISTER:
 				sequence_Register(context, (Register) semanticObject); 
 				return; 
@@ -237,6 +230,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.TIMEOUT_FUNCTION:
 				sequence_TimeAmountOrRef_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
+				return; 
+			case ReflexPackage.TYPE:
+				sequence_Type(context, (Type) semanticObject); 
 				return; 
 			case ReflexPackage.UNARY_EXPRESSION:
 				sequence_UnaryExpression(context, (UnaryExpression) semanticObject); 
@@ -399,19 +395,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     CType returns CType
-	 *     ReflexType returns CType
-	 *
-	 * Constraint:
-	 *     signSpec?=CTypeSignSpec?
-	 */
-	protected void sequence_CType(ISerializationContext context, CType semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     CaseStat returns CaseStat
 	 *
 	 * Constraint:
@@ -459,7 +442,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CastExpression
 	 *
 	 * Constraint:
-	 *     (type=ReflexType right=CastExpression)
+	 *     (type=Type right=CastExpression)
 	 */
 	protected void sequence_CastExpression(ISerializationContext context, CastExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -469,7 +452,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCastExpressionAccess().getTypeReflexTypeParserRuleCall_1_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getCastExpressionAccess().getTypeTypeParserRuleCall_1_1_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getCastExpressionAccess().getRightCastExpressionParserRuleCall_1_3_0(), semanticObject.getRight());
 		feeder.finish();
 	}
@@ -565,7 +548,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns Const
 	 *
 	 * Constraint:
-	 *     (type=ReflexType name=ID constValue=Expression)
+	 *     (type=Type name=ID constValue=Expression)
 	 */
 	protected void sequence_Const(ISerializationContext context, Const semanticObject) {
 		if (errorAcceptor != null) {
@@ -577,7 +560,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__CONST_VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConstAccess().getTypeReflexTypeParserRuleCall_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getConstAccess().getTypeTypeParserRuleCall_1_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getConstAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getConstAccess().getConstValueExpressionParserRuleCall_4_0(), semanticObject.getConstValue());
 		feeder.finish();
@@ -590,7 +573,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     DeclaredVariable returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=IntegerType name=ID port=RegisterPortMapping shared?='shared'?)
+	 *     (type=Type name=ID port=RegisterPortMapping shared?='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -603,7 +586,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     DeclaredVariable returns ProgramVariable
 	 *
 	 * Constraint:
-	 *     (type=ReflexType name=ID shared?='shared'?)
+	 *     (type=Type name=ID shared?='shared'?)
 	 */
 	protected void sequence_DeclaredVariable_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -722,7 +705,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Function returns Function
 	 *
 	 * Constraint:
-	 *     (returnType=CType name=ID argTypes+=CType argTypes+=CType*)
+	 *     (returnType=Type name=ID argTypes+=Type argTypes+=Type*)
 	 */
 	protected void sequence_Function(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -894,7 +877,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=IntegerType name=ID port=RegisterPortMapping)
+	 *     (type=Type name=ID port=RegisterPortMapping)
 	 */
 	protected void sequence_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
 		if (errorAcceptor != null) {
@@ -906,7 +889,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__PORT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPhysicalVariableAccess().getTypeIntegerTypeParserRuleCall_0_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getPhysicalVariableAccess().getTypeTypeParserRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getPhysicalVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0(), semanticObject.getPort());
 		feeder.finish();
@@ -983,7 +966,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | boolean=BoolLiteral | nestedExpr=Expression)
+	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | bool=BoolLiteral | nestedExpr=Expression)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1009,7 +992,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns ProgramVariable
 	 *
 	 * Constraint:
-	 *     (type=ReflexType name=ID)
+	 *     (type=Type name=ID)
 	 */
 	protected void sequence_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
 		if (errorAcceptor != null) {
@@ -1019,7 +1002,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PROGRAM_VARIABLE__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProgramVariableAccess().getTypeReflexTypeParserRuleCall_0_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getProgramVariableAccess().getTypeTypeParserRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getProgramVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
@@ -1045,18 +1028,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     )
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ReflexType returns ReflexType
-	 *
-	 * Constraint:
-	 *     {ReflexType}
-	 */
-	protected void sequence_ReflexType(ISerializationContext context, ReflexType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1307,6 +1278,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTimeAccess().getTicksINTEGERTerminalRuleCall_0(), semanticObject.getTicks());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Type returns Type
+	 *
+	 * Constraint:
+	 *     (sign=TypeSignSpec? name=Types)
+	 */
+	protected void sequence_Type(ISerializationContext context, Type semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

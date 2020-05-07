@@ -33,6 +33,15 @@ public interface ReflexFactory extends EFactory
   Program createProgram();
 
   /**
+   * Returns a new object of class '<em>Tact</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tact</em>'.
+   * @generated
+   */
+  Tact createTact();
+
+  /**
    * Returns a new object of class '<em>Process</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -465,31 +474,13 @@ public interface ReflexFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>CType</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>CType</em>'.
-   * @generated
-   */
-  CType createCType();
-
-  /**
    * Returns a new object of class '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return a new object of class '<em>Type</em>'.
    * @generated
    */
-  ReflexType createReflexType();
-
-  /**
-   * Returns a new object of class '<em>Tact</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Tact</em>'.
-   * @generated
-   */
-  Tact createTact();
+  Type createType();
 
   /**
    * Returns a new object of class '<em>Time</em>'.

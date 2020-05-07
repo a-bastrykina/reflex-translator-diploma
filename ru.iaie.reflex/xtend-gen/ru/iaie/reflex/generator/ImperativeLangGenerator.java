@@ -10,6 +10,8 @@ import ru.iaie.reflex.generator.ISourceBuilder;
 import ru.iaie.reflex.generator.ITranslationStrategy;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
@@ -35,7 +37,7 @@ public class ImperativeLangGenerator extends AbstractGenerator {
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.generateConstantDefinitions(resource, fsa, context);
+    this.generateConstantDefinitions();
     this.generateInput(resource, fsa, context);
     this.generateOutput(resource, fsa, context);
     this.builder.build();
@@ -49,19 +51,62 @@ public class ImperativeLangGenerator extends AbstractGenerator {
     return null;
   }
   
-  public void generateConstantDefinitions(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.builder.withConstantDefinitions(this.generateConstants(resource));
-  }
-  
-  public String generateConstants(final Resource resource) {
+  public void generateConstantDefinitions() {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Const> _consts = this.program.getConsts();
       for(final Const constant : _consts) {
-        _builder.append("strategy.translateConstDefinition(constant);");
-        _builder.newLine();
+        String _translateConstDefinition = this.strategy.translateConstDefinition(constant);
+        _builder.append(_translateConstDefinition);
+        String _separator = this.strategy.getSeparator();
+        _builder.append(_separator);
+        _builder.newLineIfNotEmpty();
       }
     }
-    return _builder.toString();
+    this.builder.withConstantDefinitions(_builder.toString());
+  }
+  
+  public void generateEnumDefifinions() {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<ru.iaie.reflex.reflex.Enum> _enums = this.program.getEnums();
+      for(final ru.iaie.reflex.reflex.Enum en : _enums) {
+        String _translateEnumDefinition = this.strategy.translateEnumDefinition(en);
+        _builder.append(_translateEnumDefinition);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    this.builder.withEnumDefinitions(_builder.toString());
+  }
+  
+  public void generateProcessVarDefifinitions(final Resource resource) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
+      for(final ru.iaie.reflex.reflex.Process proc : _processes) {
+        {
+          EList<ProcessVariable> _variables = proc.getVariables();
+          for(final ProcessVariable variable : _variables) {
+            String _translateProcessVarDefinition = this.strategy.translateProcessVarDefinition(proc, variable);
+            _builder.append(_translateProcessVarDefinition);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    this.builder.withGlobalVariableDefinitions(_builder.toString());
+  }
+  
+  public void generateGlobalVarDefinitions(final Resource resource) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<GlobalVariable> _globalVars = this.program.getGlobalVars();
+      for(final GlobalVariable variable : _globalVars) {
+        String _translateGlobalVarDefinition = this.strategy.translateGlobalVarDefinition(variable);
+        _builder.append(_translateGlobalVarDefinition);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    this.builder.withProcessVariableDefinitions(_builder.toString());
   }
 }

@@ -33,6 +33,9 @@ import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
+import ru.iaie.reflex.reflex.TypeSignSpec;
+import ru.iaie.reflex.reflex.Types;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
@@ -102,6 +105,26 @@ public class ReflexModelUtil {
   
   public static boolean isDeclared(final ProcessVariable v) {
     return (v instanceof DeclaredVariable);
+  }
+  
+  public static Type getType(final ProcessVariable v) {
+    if ((v instanceof PhysicalVariable)) {
+      return ((PhysicalVariable)v).getType();
+    }
+    if ((v instanceof ProgramVariable)) {
+      return ((ProgramVariable)v).getType();
+    }
+    return null;
+  }
+  
+  public static Type getType(final GlobalVariable v) {
+    if ((v instanceof PhysicalVariable)) {
+      return ((PhysicalVariable)v).getType();
+    }
+    if ((v instanceof ProgramVariable)) {
+      return ((ProgramVariable)v).getType();
+    }
+    return null;
   }
   
   public static String getName(final GlobalVariable v) {
@@ -176,5 +199,15 @@ public class ReflexModelUtil {
       }
     }
     return null;
+  }
+  
+  public static boolean isCType(final Type type) {
+    Types _name = type.getName();
+    return (!Objects.equal(_name, Types.BOOL_TYPE));
+  }
+  
+  public static boolean hasModifier(final Type type) {
+    TypeSignSpec _sign = type.getSign();
+    return (_sign != null);
   }
 }

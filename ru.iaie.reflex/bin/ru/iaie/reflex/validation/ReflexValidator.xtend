@@ -204,5 +204,7 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		}
 	}
+	
+	// TODO: add checks for types
 
 }

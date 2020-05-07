@@ -22,12 +22,10 @@ import ru.iaie.reflex.reflex.InfixOp
 import ru.iaie.reflex.reflex.LogicalAndExpression
 import ru.iaie.reflex.reflex.LogicalOrExpression
 import ru.iaie.reflex.reflex.MultiplicativeExpression
-import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PostfixOp
 import ru.iaie.reflex.reflex.PrimaryExpression
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.Program
-import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.RegisterType
 import ru.iaie.reflex.reflex.ResetStat
 import ru.iaie.reflex.reflex.RestartStat
@@ -39,6 +37,7 @@ import ru.iaie.reflex.reflex.StatementBlock
 import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.SwitchStat
 import ru.iaie.reflex.reflex.TimeoutFunction
+import ru.iaie.reflex.reflex.Type
 import ru.iaie.reflex.reflex.UnaryExpression
 
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
@@ -47,6 +46,8 @@ import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
+import ru.iaie.reflex.reflex.Types
+import ru.iaie.reflex.reflex.BoolLiteral
 
 // TODO: abstract class with same doGenerate and abstract
 // 		generateVariables(resource, fsa, context)
@@ -65,8 +66,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 // These files are common, they are just need to be copied to target c-code dir 
 // TODO: replace with reading config
 // TODO: move to singleton with configuration
-	List<String> commonResources = newArrayList("io.h", "ports.h", "usr.cpp", "usr.h", "proc.h",
-		"r_cnst.h", "r_io.cpp", "r_io.h", "r_lib.cpp", "r_lib.h", "r_main.h")
+	List<String> commonResources = newArrayList("usr/usr.cpp", "usr/usr.h",
+		"lib/r_cnst.h", "lib/r_io.cpp", "lib/r_io.h", "lib/r_lib.cpp", "lib/r_lib.h", "lib/r_main.h",
+		"generated/ext.h", "generated/io.h",
+		"CMakeLists.txt")
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		program = resource.getProgram()
@@ -81,8 +84,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		generateVariables(resource, fsa, context)
 		generateConstantsFile(resource, fsa, context)
 		generateProcessImplementations(resource, fsa, context)
-		generateInput(resource, fsa, context)
-		generateOutput(resource, fsa, context)
+		generateIO(resource, fsa, context)
 		generateMain(resource, fsa, context)
 	}
 
@@ -92,12 +94,22 @@ class R2CReflexGenerator extends AbstractGenerator {
 		}
 	}
 
-	def generateInput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		// TODO
-	}
-
-	def generateOutput(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		// TODO
+	def generateIO(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+		#include "io.h"
+		#include "xvar.h"	
+		#include "stdio.h"
+		
+		void Input(void) {
+			P0V0 = 1;
+		    printf("input\n");
+		}  /* Reading IO func */
+		
+		void Output(void) {
+		    printf("output\n");
+		} /* Writing IO func */
+		'''
+		fsa.generateFile('''c-code/generated/io.cpp''', fileContent)
 	}
 
 // TODO: rename
@@ -109,14 +121,14 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/*                Enums                    */
 			«generateEnums(resource)»
 		'''
-		fsa.generateFile('''c-code/cnst.h''', fileContent)
+		fsa.generateFile('''c-code/generated/cnst.h''', fileContent)
 	}
 
 	def generateConstants(Resource resource) {
 		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
-				#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.constValue)» 
+			#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.constValue)» 
 			«ENDFOR»
 		'''
 	}
@@ -126,7 +138,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			«FOR en : program.enums»
 				enum «identifiersHelper.getEnumId(en)» {
 					 «FOR enumMember: en.enumMembers»
-					 	«identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
+					 «identifiersHelper.getEnumMemberId(enumMember)»«IF enumMember.hasValue»=«translateExpr(enumMember.value)»«ENDIF», 
 					 «ENDFOR»
 				}
 			«ENDFOR»
@@ -145,7 +157,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/*         Output Ports         */
 			«generateOutputPorts(resource, false)»
 		'''
-		fsa.generateFile('''c-code/gvar.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/gvar.cpp''', fileContent)
 		val externFileContent = '''
 			/*           Variables          */
 			/* xvar.h = Extern Variables Image-File. */
@@ -157,43 +169,34 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/*         Output Ports         */
 			«generateOutputPorts(resource, true)»
 		'''
-		fsa.generateFile('''c-code/xvar.h''', externFileContent)
+		fsa.generateFile('''c-code/generated/xvar.h''', externFileContent)
 	}
 
 	// TODO: split to global and process
 	def generateProcessVariables(Resource resource, boolean externDef) {
 		return '''
 			«FOR variable : program.globalVars»
-				«IF externDef»extern«ENDIF» «generateGlobalVariableDefinition(variable, externDef)»
+			«IF externDef»extern«ENDIF» «generateGlobalVariableDefinition(variable)»
 			«ENDFOR»
 			«FOR proc : program.processes»
-				«FOR variable: proc.variables»
-					«IF externDef»extern«ENDIF» «generateProcessVariableDefinition(proc, variable, externDef)»
-				«ENDFOR»
+			«FOR variable: proc.variables»
+			«IF externDef»extern«ENDIF» «generateProcessVariableDefinition(proc, variable)»
+			«ENDFOR»
 			«ENDFOR»
 		'''
 	}
 
-	def generateProcessVariableDefinition(Process proc, ProcessVariable variable, boolean externDef) {
-		return '''
-			«IF (variable instanceof ProgramVariable)»
-				// TODO: fix type getting
-				«IF externDef»extern«ENDIF» «NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getProcessVariableId(proc, variable)»;
-			«ENDIF»
-			«IF (variable instanceof PhysicalVariable)»
-				«IF externDef»extern«ENDIF» «variable.type» «identifiersHelper.getProcessVariableId(proc, variable)»;
-			«ENDIF»
-		'''
+	def generateProcessVariableDefinition(Process proc, ProcessVariable variable) {
+		if (!variable.isImportedList) {
+			return '''
+				«translateType(variable.type)» «identifiersHelper.getProcessVariableId(proc, variable)»;
+			'''
+		}
 	}
 
-	def generateGlobalVariableDefinition(GlobalVariable variable, boolean externDef) {
+	def generateGlobalVariableDefinition(GlobalVariable variable) {
 		return '''
-			«IF (variable instanceof ProgramVariable)»
-				«IF externDef»extern«ENDIF» «NodeModelUtils.getNode(variable.type).text.trim» «identifiersHelper.getGlobalVariableId(variable)»;
-			«ENDIF»
-			«IF (variable instanceof PhysicalVariable)»
-				«IF externDef»extern«ENDIF» «variable.type» «identifiersHelper.getGlobalVariableId(variable)»;
-			«ENDIF»
+			«translateType(variable.type)» «identifiersHelper.getGlobalVariableId(variable)»;
 		'''
 	}
 
@@ -201,9 +204,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 		// TODO: specify port type
 		return '''
 			«FOR reg : program.registers»
-				«IF reg.type == RegisterType.INPUT»
-					«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
-				«ENDIF»
+			«IF reg.type == RegisterType.INPUT»
+			«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
+			«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -212,11 +215,23 @@ class R2CReflexGenerator extends AbstractGenerator {
 		// TODO: specify port type
 		return '''
 			«FOR reg : program.registers»
-				«IF reg.type == RegisterType.OUTPUT»
-					«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
-				«ENDIF»
+			«IF reg.type == RegisterType.OUTPUT»
+			«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
+			«ENDIF»
 			«ENDFOR»
 		'''
+	}
+
+	def generateProcessDefinitions(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+			#pragma once
+			«FOR process : program.processes»
+			void «identifiersHelper.getProcessFuncId(process)»();
+			«ENDFOR»
+			#define PROCESS_Nn «program.processes.size - 1»
+			#define PROCESS_N1 0
+		'''
+		fsa.generateFile('''c-code/generated/proc.h''', fileContent)
 	}
 
 	def generateProcessImplementations(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -224,12 +239,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/* FILE OF PROC-IMAGES OF THE PROJECT */
 			#include "ext.h" /* Common files for all generated c-files */
 			#include "xvar.h"  /* Var-images */
-			
 			«FOR proc : program.processes»
-				«translateProcess(proc)»
+			«translateProcess(proc)»
 			«ENDFOR»
 		'''
-		fsa.generateFile('''c-code/proc.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/proc.cpp''', fileContent)
 	}
 
 	def generateMain(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -239,21 +253,27 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#include "proc.h"  /* Process-functions desription */
 			#include "gvar.h"  /* Project variables images */
 			#include "io.h"    /* Scan-input/output functions */
-			void Control_Loop(void);  /* for r_main.h */
-			#include "r_main.h"  /* Codes of the main-function that calls Control_Loop */
+			#include "../reflex_lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
 			
 			void Control_Loop (void)    /* Control algorithm */
 			{
-				Input();
-				«FOR proc : program.processes»
+				Init_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+				for (int i = 0; i < 10; i++) {
+					Input();
+					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
-				«ENDFOR»
-				Output();
-				Prepare_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+					«ENDFOR»
+					Output();
+					Prepare_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+				}
+			}
+			
+			int main() {
+			    Control_Loop();
 			}
 		'''
 
-		fsa.generateFile('''c-code/main.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/main.cpp''', fileContent)
 	}
 
 	def translateProcess(Process proc) {
@@ -335,11 +355,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return translateRestartProcStat(proc)
 			StatementBlock:
 				return '''
-					«IF statement.statements.length > 1»{«ENDIF»
+					{
 					«FOR stat : statement.statements»
-						«translateStatement(proc, state, stat)»
+					«translateStatement(proc, state, stat)»
 					«ENDFOR»
-					«IF statement.statements.length > 1»}«ENDIF»
+					}
 				'''
 		}
 	}
@@ -387,9 +407,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''
 			switch («translateExpr(stat.expr)») {
 				«FOR variant : stat.options»
-					case («variant.option»):
-						«translateStatement(proc, state, stat)»
-						«IF variant.hasBreak»break;«ENDIF»
+				case («variant.option»):
+					«translateStatement(proc, state, stat)»
+					«IF variant.hasBreak»break;«ENDIF»
 				«ENDFOR»
 			}
 		'''
@@ -407,12 +427,15 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return '''«identifiersHelper.getId(expr.resolveName)»'''
 			PrimaryExpression: {
 				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
+				if (expr.isBoolean) {
+					return translateBoolLiteral(expr.bool)
+				}
 				return NodeModelUtils.getNode(expr).text.trim
 			}
 			UnaryExpression:
 				return '''«expr.unaryOp» «translateExpr(expr.right)»'''
 			CastExpression:
-				return '''(«NodeModelUtils.getNode(expr.type).text.trim») «translateExpr(expr.right)»'''
+				return '''(«translateType(expr.type)») «translateExpr(expr.right)»'''
 			MultiplicativeExpression:
 				return '''«translateExpr(expr.left)» «expr.mulOp» «translateExpr(expr.right)»'''
 			AdditiveExpression:
@@ -440,6 +463,18 @@ class R2CReflexGenerator extends AbstractGenerator {
 					return '''«translateExpr(expr.assignVar)» «expr.assignOp» «translateExpr(expr.expr)»'''
 				return '''«translateExpr(expr.expr)»'''
 			}
+		}
+	}
+	
+	def translateType(Type t) {
+		if (t.name == Types.BOOL_TYPE) return "char"
+		return '''«IF t.hasModifier»«t.sign»«ENDIF» «t.name»'''
+	}
+	
+	def translateBoolLiteral(BoolLiteral l) {
+		switch l {
+			case TRUE: return "TRUE"
+			case FALSE: return "FALSE"
 		}
 	}
 }

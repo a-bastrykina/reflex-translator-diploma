@@ -51,12 +51,12 @@ public interface ProgramVariable extends DeclaredVariable, GlobalVariable, IdRef
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(ReflexType)
+   * @see #setType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Type()
    * @model containment="true"
    * @generated
    */
-  ReflexType getType();
+  Type getType();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}' containment reference.
@@ -66,7 +66,7 @@ public interface ProgramVariable extends DeclaredVariable, GlobalVariable, IdRef
    * @see #getType()
    * @generated
    */
-  void setType(ReflexType value);
+  void setType(Type value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
