@@ -177,7 +177,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//IdReference"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="floating" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bool" eType="#//BoolLiteral"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bool" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedExpr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -263,10 +263,6 @@
     <eLiterals name="MUL" literal="*"/>
     <eLiterals name="DIV" value="1" literal="/"/>
     <eLiterals name="MOD" value="2" literal="%"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="BoolLiteral">
-    <eLiterals name="TRUE" literal="true"/>
-    <eLiterals name="FALSE" value="1" literal="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" eType="#//TypeSignSpec"/>

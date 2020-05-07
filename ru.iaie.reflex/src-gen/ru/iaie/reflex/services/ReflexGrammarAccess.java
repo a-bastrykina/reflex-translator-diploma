@@ -1650,7 +1650,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cPrimaryExpressionAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Assignment cBoolAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cBoolBoolLiteralEnumRuleCall_3_1_0 = (RuleCall)cBoolAssignment_3_1.eContents().get(0);
+		private final RuleCall cBoolBOOL_LITERALTerminalRuleCall_3_1_0 = (RuleCall)cBoolAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cNestedExprAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
@@ -1659,11 +1659,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PrimaryExpression:
 		//	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-		//	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
+		//	{PrimaryExpression} bool=BOOL_LITERAL | "(" nestedExpr=Expression ")";
 		@Override public ParserRule getRule() { return rule; }
 		
 		//reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT | {PrimaryExpression}
-		//bool=BoolLiteral | "(" nestedExpr=Expression ")"
+		//bool=BOOL_LITERAL | "(" nestedExpr=Expression ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//reference=[IdReference]
@@ -1699,17 +1699,17 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//FLOAT
 		public RuleCall getFloatingFLOATTerminalRuleCall_2_1_0() { return cFloatingFLOATTerminalRuleCall_2_1_0; }
 		
-		//{PrimaryExpression} bool=BoolLiteral
+		//{PrimaryExpression} bool=BOOL_LITERAL
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//{PrimaryExpression}
 		public Action getPrimaryExpressionAction_3_0() { return cPrimaryExpressionAction_3_0; }
 		
-		//bool=BoolLiteral
+		//bool=BOOL_LITERAL
 		public Assignment getBoolAssignment_3_1() { return cBoolAssignment_3_1; }
 		
-		//BoolLiteral
-		public RuleCall getBoolBoolLiteralEnumRuleCall_3_1_0() { return cBoolBoolLiteralEnumRuleCall_3_1_0; }
+		//BOOL_LITERAL
+		public RuleCall getBoolBOOL_LITERALTerminalRuleCall_3_1_0() { return cBoolBOOL_LITERALTerminalRuleCall_3_1_0; }
 		
 		//"(" nestedExpr=Expression ")"
 		public Group getGroup_4() { return cGroup_4; }
@@ -2758,33 +2758,6 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"%"
 		public Keyword getMODPercentSignKeyword_2_0() { return cMODPercentSignKeyword_2_0; }
 	}
-	public class BoolLiteralElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BoolLiteral");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cTRUEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cTRUETrueKeyword_0_0 = (Keyword)cTRUEEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFALSEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFALSEFalseKeyword_1_0 = (Keyword)cFALSEEnumLiteralDeclaration_1.eContents().get(0);
-		
-		//enum BoolLiteral:
-		//	TRUE="true" | FALSE="false";
-		public EnumRule getRule() { return rule; }
-		
-		//TRUE="true" | FALSE="false"
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//TRUE="true"
-		public EnumLiteralDeclaration getTRUEEnumLiteralDeclaration_0() { return cTRUEEnumLiteralDeclaration_0; }
-		
-		//"true"
-		public Keyword getTRUETrueKeyword_0_0() { return cTRUETrueKeyword_0_0; }
-		
-		//FALSE="false"
-		public EnumLiteralDeclaration getFALSEEnumLiteralDeclaration_1() { return cFALSEEnumLiteralDeclaration_1; }
-		
-		//"false"
-		public Keyword getFALSEFalseKeyword_1_0() { return cFALSEFalseKeyword_1_0; }
-	}
 	public class TypesElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Types");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -2943,7 +2916,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ShiftOpElements eShiftOp;
 	private final AdditiveOpElements eAdditiveOp;
 	private final MultiplicativeOpElements eMultiplicativeOp;
-	private final BoolLiteralElements eBoolLiteral;
+	private final TerminalRule tBOOL_LITERAL;
 	private final TypeElements pType;
 	private final TypesElements eTypes;
 	private final TypeSignSpecElements eTypeSignSpec;
@@ -3042,7 +3015,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.eShiftOp = new ShiftOpElements();
 		this.eAdditiveOp = new AdditiveOpElements();
 		this.eMultiplicativeOp = new MultiplicativeOpElements();
-		this.eBoolLiteral = new BoolLiteralElements();
+		this.tBOOL_LITERAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BOOL_LITERAL");
 		this.pType = new TypeElements();
 		this.eTypes = new TypesElements();
 		this.eTypeSignSpec = new TypeSignSpecElements();
@@ -3495,7 +3468,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PrimaryExpression:
 	//	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-	//	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
+	//	{PrimaryExpression} bool=BOOL_LITERAL | "(" nestedExpr=Expression ")";
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -3726,14 +3699,10 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicativeOpAccess().getRule();
 	}
 	
-	//enum BoolLiteral:
-	//	TRUE="true" | FALSE="false";
-	public BoolLiteralElements getBoolLiteralAccess() {
-		return eBoolLiteral;
-	}
-	
-	public EnumRule getBoolLiteralRule() {
-		return getBoolLiteralAccess().getRule();
+	//terminal BOOL_LITERAL returns ecore::EBooleanObject:
+	//	"true" | "false";
+	public TerminalRule getBOOL_LITERALRule() {
+		return tBOOL_LITERAL;
 	}
 	
 	//Type:

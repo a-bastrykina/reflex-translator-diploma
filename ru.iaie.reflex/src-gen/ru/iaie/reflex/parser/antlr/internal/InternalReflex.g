@@ -2741,20 +2741,19 @@ rulePrimaryExpression returns [EObject current=null]
 			)
 			(
 				(
+					lv_bool_6_0=RULE_BOOL_LITERAL
 					{
-						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBoolBoolLiteralEnumRuleCall_3_1_0());
+						newLeafNode(lv_bool_6_0, grammarAccess.getPrimaryExpressionAccess().getBoolBOOL_LITERALTerminalRuleCall_3_1_0());
 					}
-					lv_bool_6_0=ruleBoolLiteral
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+							$current = createModelElement(grammarAccess.getPrimaryExpressionRule());
 						}
-						set(
+						setWithLastConsumed(
 							$current,
 							"bool",
 							lv_bool_6_0,
-							"ru.iaie.reflex.Reflex.BoolLiteral");
-						afterParserOrEnumRuleCall();
+							"ru.iaie.reflex.Reflex.BOOL_LITERAL");
 					}
 				)
 			)
@@ -4348,33 +4347,6 @@ ruleMultiplicativeOp returns [Enumerator current=null]
 	)
 ;
 
-// Rule BoolLiteral
-ruleBoolLiteral returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='true'
-			{
-				$current = grammarAccess.getBoolLiteralAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getBoolLiteralAccess().getTRUEEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='false'
-			{
-				$current = grammarAccess.getBoolLiteralAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getBoolLiteralAccess().getFALSEEnumLiteralDeclaration_1());
-			}
-		)
-	)
-;
-
 // Rule Types
 ruleTypes returns [Enumerator current=null]
 @init {
@@ -4468,6 +4440,8 @@ ruleTypeSignSpec returns [Enumerator current=null]
 		)
 	)
 ;
+
+RULE_BOOL_LITERAL : ('true'|'false');
 
 RULE_LOGICAL_OR : '||';
 

@@ -2787,16 +2787,6 @@ public interface ReflexPackage extends EPackage
   int MULTIPLICATIVE_OP = 63;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.BoolLiteral
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBoolLiteral()
-   * @generated
-   */
-  int BOOL_LITERAL = 64;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2804,7 +2794,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypes()
    * @generated
    */
-  int TYPES = 65;
+  int TYPES = 64;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.TypeSignSpec <em>Type Sign Spec</em>}' enum.
@@ -2814,7 +2804,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypeSignSpec()
    * @generated
    */
-  int TYPE_SIGN_SPEC = 66;
+  int TYPE_SIGN_SPEC = 65;
 
 
   /**
@@ -4481,16 +4471,6 @@ public interface ReflexPackage extends EPackage
   EEnum getMultiplicativeOp();
 
   /**
-   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Bool Literal</em>'.
-   * @see ru.iaie.reflex.reflex.BoolLiteral
-   * @generated
-   */
-  EEnum getBoolLiteral();
-
-  /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5916,16 +5896,6 @@ public interface ReflexPackage extends EPackage
      * @generated
      */
     EEnum MULTIPLICATIVE_OP = eINSTANCE.getMultiplicativeOp();
-
-    /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.BoolLiteral <em>Bool Literal</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.BoolLiteral
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBoolLiteral()
-     * @generated
-     */
-    EEnum BOOL_LITERAL = eINSTANCE.getBoolLiteral();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}' enum.

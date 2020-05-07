@@ -56,7 +56,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getShiftOpAccess().getAlternatives(), "rule__ShiftOp__Alternatives");
 			builder.put(grammarAccess.getAdditiveOpAccess().getAlternatives(), "rule__AdditiveOp__Alternatives");
 			builder.put(grammarAccess.getMultiplicativeOpAccess().getAlternatives(), "rule__MultiplicativeOp__Alternatives");
-			builder.put(grammarAccess.getBoolLiteralAccess().getAlternatives(), "rule__BoolLiteral__Alternatives");
 			builder.put(grammarAccess.getTypesAccess().getAlternatives(), "rule__Types__Alternatives");
 			builder.put(grammarAccess.getTypeSignSpecAccess().getAlternatives(), "rule__TypeSignSpec__Alternatives");
 			builder.put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PrimaryExpression;
@@ -94,7 +93,7 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    * @ordered
    */
-  protected static final BoolLiteral BOOL_EDEFAULT = BoolLiteral.TRUE;
+  protected static final Boolean BOOL_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getBool() <em>Bool</em>}' attribute.
@@ -104,7 +103,7 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    * @ordered
    */
-  protected BoolLiteral bool = BOOL_EDEFAULT;
+  protected Boolean bool = BOOL_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getNestedExpr() <em>Nested Expr</em>}' containment reference.
@@ -238,7 +237,7 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public BoolLiteral getBool()
+  public Boolean getBool()
   {
     return bool;
   }
@@ -249,10 +248,10 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
-  public void setBool(BoolLiteral newBool)
+  public void setBool(Boolean newBool)
   {
-    BoolLiteral oldBool = bool;
-    bool = newBool == null ? BOOL_EDEFAULT : newBool;
+    Boolean oldBool = bool;
+    bool = newBool;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__BOOL, oldBool, bool));
   }
@@ -368,7 +367,7 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         setFloating((String)newValue);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
-        setBool((BoolLiteral)newValue);
+        setBool((Boolean)newValue);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)newValue);
@@ -423,7 +422,7 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__FLOATING:
         return FLOATING_EDEFAULT == null ? floating != null : !FLOATING_EDEFAULT.equals(floating);
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
-        return bool != BOOL_EDEFAULT;
+        return BOOL_EDEFAULT == null ? bool != null : !BOOL_EDEFAULT.equals(bool);
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return nestedExpr != null;
     }

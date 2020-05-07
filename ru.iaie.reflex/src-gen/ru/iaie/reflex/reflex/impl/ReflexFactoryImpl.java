@@ -20,7 +20,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -221,8 +220,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return createAdditiveOpFromString(eDataType, initialValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return createMultiplicativeOpFromString(eDataType, initialValue);
-      case ReflexPackage.BOOL_LITERAL:
-        return createBoolLiteralFromString(eDataType, initialValue);
       case ReflexPackage.TYPES:
         return createTypesFromString(eDataType, initialValue);
       case ReflexPackage.TYPE_SIGN_SPEC:
@@ -262,8 +259,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return convertAdditiveOpToString(eDataType, instanceValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return convertMultiplicativeOpToString(eDataType, instanceValue);
-      case ReflexPackage.BOOL_LITERAL:
-        return convertBoolLiteralToString(eDataType, instanceValue);
       case ReflexPackage.TYPES:
         return convertTypesToString(eDataType, instanceValue);
       case ReflexPackage.TYPE_SIGN_SPEC:
@@ -1137,28 +1132,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   public String convertMultiplicativeOpToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BoolLiteral createBoolLiteralFromString(EDataType eDataType, String initialValue)
-  {
-    BoolLiteral result = BoolLiteral.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertBoolLiteralToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

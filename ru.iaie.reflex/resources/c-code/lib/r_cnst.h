@@ -14,8 +14,10 @@
 
 #ifndef NULL
 #define NULL 0
-#define ZERO 0
 #endif
+#define ZERO 0
+#define TRUE 1
+#define FALSE 0
 
 /*========= МАСКИ ДЛЯ ГЕНЕРАЦИИ ЛОГИЧЕСКИХ ПЕРЕМЕННЫХ ====*/
 #define MASK1_S8 1

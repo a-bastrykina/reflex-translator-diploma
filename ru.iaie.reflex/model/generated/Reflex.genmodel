@@ -61,10 +61,6 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/DIV"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//MultiplicativeOp/MOD"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//BoolLiteral">
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/TRUE"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//BoolLiteral/FALSE"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//Types">
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/VOID_C_TYPE"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Types/FLOAT_C_TYPE"/>

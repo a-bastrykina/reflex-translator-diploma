@@ -47,7 +47,6 @@ import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.reflex.Types
-import ru.iaie.reflex.reflex.BoolLiteral
 
 // TODO: abstract class with same doGenerate and abstract
 // 		generateVariables(resource, fsa, context)
@@ -68,8 +67,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 // TODO: move to singleton with configuration
 	List<String> commonResources = newArrayList("usr/usr.cpp", "usr/usr.h",
 		"lib/r_cnst.h", "lib/r_io.cpp", "lib/r_io.h", "lib/r_lib.cpp", "lib/r_lib.h", "lib/r_main.h",
-		"generated/ext.h", "generated/io.h",
-		"CMakeLists.txt")
+		"generated/ext.h", "generated/io.h")
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		program = resource.getProgram()
@@ -83,15 +81,29 @@ class R2CReflexGenerator extends AbstractGenerator {
 		copyResources(program.name.toLowerCase, fsa)
 		generateVariables(resource, fsa, context)
 		generateConstantsFile(resource, fsa, context)
+		generateProcessDefinitions(resource, fsa, context)
 		generateProcessImplementations(resource, fsa, context)
 		generateIO(resource, fsa, context)
 		generateMain(resource, fsa, context)
+		generateCMake(resource, fsa, context)
 	}
 
 	def copyResources(String fileNamePrefix, IFileSystemAccess2 fsa) {
 		for (resource : commonResources) {
 			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
 		}
+	}
+	
+	def generateCMake(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		var fileContent = '''
+			cmake_minimum_required(VERSION 3.15)
+			project(«program.name.toLowerCase»)
+			
+			set(CMAKE_CXX_STANDARD 98)
+			
+			add_executable(«program.name.toLowerCase» generated/main.cpp generated/proc.cpp lib/r_io.cpp lib/r_lib.cpp usr/usr.cpp generated/io.cpp)
+		'''
+		fsa.generateFile('''c-code/CMakeLists.txt''', fileContent)
 	}
 
 	def generateIO(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -157,7 +169,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/*         Output Ports         */
 			«generateOutputPorts(resource, false)»
 		'''
-		fsa.generateFile('''c-code/generated/gvar.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/gvar.h''', fileContent)
 		val externFileContent = '''
 			/*           Variables          */
 			/* xvar.h = Extern Variables Image-File. */
@@ -253,7 +265,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#include "proc.h"  /* Process-functions desription */
 			#include "gvar.h"  /* Project variables images */
 			#include "io.h"    /* Scan-input/output functions */
-			#include "../reflex_lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
+			#include "../lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
 			
 			void Control_Loop (void)    /* Control algorithm */
 			{
@@ -426,9 +438,12 @@ class R2CReflexGenerator extends AbstractGenerator {
 			IdReference:
 				return '''«identifiersHelper.getId(expr.resolveName)»'''
 			PrimaryExpression: {
-				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
+				if (expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
 				if (expr.isBoolean) {
 					return translateBoolLiteral(expr.bool)
+				}
+				if (expr.isReference) {
+					return translateExpr(expr.reference)
 				}
 				return NodeModelUtils.getNode(expr).text.trim
 			}
@@ -471,10 +486,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''«IF t.hasModifier»«t.sign»«ENDIF» «t.name»'''
 	}
 	
-	def translateBoolLiteral(BoolLiteral l) {
-		switch l {
-			case TRUE: return "TRUE"
-			case FALSE: return "FALSE"
-		}
+	def translateBoolLiteral(Boolean l) {
+		return l.booleanValue ? "TRUE" : "FALSE"
 	}
 }

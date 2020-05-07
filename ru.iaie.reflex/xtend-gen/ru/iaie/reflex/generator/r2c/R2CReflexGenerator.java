@@ -22,7 +22,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -78,8 +77,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   private List<String> commonResources = CollectionLiterals.<String>newArrayList("usr/usr.cpp", "usr/usr.h", 
     "lib/r_cnst.h", "lib/r_io.cpp", "lib/r_io.h", "lib/r_lib.cpp", "lib/r_lib.h", "lib/r_main.h", 
-    "generated/ext.h", "generated/io.h", 
-    "CMakeLists.txt");
+    "generated/ext.h", "generated/io.h");
   
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -96,9 +94,11 @@ public class R2CReflexGenerator extends AbstractGenerator {
     this.copyResources(this.program.getName().toLowerCase(), fsa);
     this.generateVariables(resource, fsa, context);
     this.generateConstantsFile(resource, fsa, context);
+    this.generateProcessDefinitions(resource, fsa, context);
     this.generateProcessImplementations(resource, fsa, context);
     this.generateIO(resource, fsa, context);
     this.generateMain(resource, fsa, context);
+    this.generateCMake(resource, fsa, context);
   }
   
   public void copyResources(final String fileNamePrefix, final IFileSystemAccess2 fsa) {
@@ -112,6 +112,30 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder_1.append(resource);
       fsa.generateFile(_builder.toString(), _class.getResourceAsStream(_builder_1.toString()));
     }
+  }
+  
+  public void generateCMake(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("cmake_minimum_required(VERSION 3.15)");
+    _builder.newLine();
+    _builder.append("project(");
+    String _lowerCase = this.program.getName().toLowerCase();
+    _builder.append(_lowerCase);
+    _builder.append(")");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("set(CMAKE_CXX_STANDARD 98)");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("add_executable(");
+    String _lowerCase_1 = this.program.getName().toLowerCase();
+    _builder.append(_lowerCase_1);
+    _builder.append(" generated/main.cpp generated/proc.cpp lib/r_io.cpp lib/r_lib.cpp usr/usr.cpp generated/io.cpp)");
+    _builder.newLineIfNotEmpty();
+    String fileContent = _builder.toString();
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("c-code/CMakeLists.txt");
+    fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
   public void generateIO(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -248,7 +272,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/generated/gvar.cpp");
+    _builder_1.append("c-code/generated/gvar.h");
     fsa.generateFile(_builder_1.toString(), fileContent);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("/*           Variables          */");
@@ -458,7 +482,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include \"io.h\"    /* Scan-input/output functions */");
     _builder.newLine();
-    _builder.append("#include \"../reflex_lib/r_main.h\"  /* Code of the main-function that calls Control_Loop */");
+    _builder.append("#include \"../lib/r_main.h\"  /* Code of the main-function that calls Control_Loop */");
     _builder.newLine();
     _builder.newLine();
     _builder.append("void Control_Loop (void)    /* Control algorithm */");
@@ -936,6 +960,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
         if (_isBoolean) {
           return this.translateBoolLiteral(((PrimaryExpression)expr).getBool());
         }
+        boolean _isReference = ExpressionUtil.isReference(((PrimaryExpression)expr));
+        if (_isReference) {
+          return this.translateExpr(((PrimaryExpression)expr).getReference());
+        }
         return NodeModelUtils.getNode(expr).getText().trim();
       }
     }
@@ -1150,17 +1178,14 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String translateBoolLiteral(final BoolLiteral l) {
-    if (l != null) {
-      switch (l) {
-        case TRUE:
-          return "TRUE";
-        case FALSE:
-          return "FALSE";
-        default:
-          break;
-      }
+  public String translateBoolLiteral(final Boolean l) {
+    String _xifexpression = null;
+    boolean _booleanValue = l.booleanValue();
+    if (_booleanValue) {
+      _xifexpression = "TRUE";
+    } else {
+      _xifexpression = "FALSE";
     }
-    return null;
+    return _xifexpression;
   }
 }

@@ -19,7 +19,6 @@ import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.BitAndExpression;
 import ru.iaie.reflex.reflex.BitOrExpression;
 import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.BoolLiteral;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
@@ -534,13 +533,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EEnum multiplicativeOpEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum boolLiteralEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2352,17 +2344,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EEnum getBoolLiteral()
-  {
-    return boolLiteralEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getTypes()
   {
     return typesEEnum;
@@ -2622,7 +2603,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     shiftOpEEnum = createEEnum(SHIFT_OP);
     additiveOpEEnum = createEEnum(ADDITIVE_OP);
     multiplicativeOpEEnum = createEEnum(MULTIPLICATIVE_OP);
-    boolLiteralEEnum = createEEnum(BOOL_LITERAL);
     typesEEnum = createEEnum(TYPES);
     typeSignSpecEEnum = createEEnum(TYPE_SIGN_SPEC);
   }
@@ -2841,7 +2821,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getPrimaryExpression_Reference(), this.getIdReference(), null, "reference", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimaryExpression_Integer(), ecorePackage.getEString(), "integer", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrimaryExpression_Floating(), ecorePackage.getEString(), "floating", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPrimaryExpression_Bool(), this.getBoolLiteral(), "bool", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrimaryExpression_Bool(), ecorePackage.getEBooleanObject(), "bool", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_NestedExpr(), this.getExpression(), null, "nestedExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2953,10 +2933,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MUL);
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.DIV);
     addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MOD);
-
-    initEEnum(boolLiteralEEnum, BoolLiteral.class, "BoolLiteral");
-    addEEnumLiteral(boolLiteralEEnum, BoolLiteral.TRUE);
-    addEEnumLiteral(boolLiteralEEnum, BoolLiteral.FALSE);
 
     initEEnum(typesEEnum, Types.class, "Types");
     addEEnumLiteral(typesEEnum, Types.VOID_CTYPE);

@@ -966,7 +966,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | bool=BoolLiteral | nestedExpr=Expression)
+	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | bool=BOOL_LITERAL | nestedExpr=Expression)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

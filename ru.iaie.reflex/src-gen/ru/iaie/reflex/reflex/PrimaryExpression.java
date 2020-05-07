@@ -94,28 +94,25 @@ public interface PrimaryExpression extends UnaryExpression
 
   /**
    * Returns the value of the '<em><b>Bool</b></em>' attribute.
-   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.BoolLiteral}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Bool</em>' attribute.
-   * @see ru.iaie.reflex.reflex.BoolLiteral
-   * @see #setBool(BoolLiteral)
+   * @see #setBool(Boolean)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Bool()
    * @model
    * @generated
    */
-  BoolLiteral getBool();
+  Boolean getBool();
 
   /**
    * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getBool <em>Bool</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Bool</em>' attribute.
-   * @see ru.iaie.reflex.reflex.BoolLiteral
    * @see #getBool()
    * @generated
    */
-  void setBool(BoolLiteral value);
+  void setBool(Boolean value);
 
   /**
    * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.

@@ -1552,22 +1552,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Rule BoolLiteral
-ruleBoolLiteral
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getBoolLiteralAccess().getAlternatives()); }
-		(rule__BoolLiteral__Alternatives)
-		{ after(grammarAccess.getBoolLiteralAccess().getAlternatives()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Rule Types
 ruleTypes
 	@init {
@@ -2302,27 +2286,6 @@ rule__MultiplicativeOp__Alternatives
 		{ before(grammarAccess.getMultiplicativeOpAccess().getMODEnumLiteralDeclaration_2()); }
 		('%')
 		{ after(grammarAccess.getMultiplicativeOpAccess().getMODEnumLiteralDeclaration_2()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__BoolLiteral__Alternatives
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getBoolLiteralAccess().getTRUEEnumLiteralDeclaration_0()); }
-		('true')
-		{ after(grammarAccess.getBoolLiteralAccess().getTRUEEnumLiteralDeclaration_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getBoolLiteralAccess().getFALSEEnumLiteralDeclaration_1()); }
-		('false')
-		{ after(grammarAccess.getBoolLiteralAccess().getFALSEEnumLiteralDeclaration_1()); }
 	)
 ;
 finally {
@@ -10561,9 +10524,9 @@ rule__PrimaryExpression__BoolAssignment_3_1
 	}
 :
 	(
-		{ before(grammarAccess.getPrimaryExpressionAccess().getBoolBoolLiteralEnumRuleCall_3_1_0()); }
-		ruleBoolLiteral
-		{ after(grammarAccess.getPrimaryExpressionAccess().getBoolBoolLiteralEnumRuleCall_3_1_0()); }
+		{ before(grammarAccess.getPrimaryExpressionAccess().getBoolBOOL_LITERALTerminalRuleCall_3_1_0()); }
+		RULE_BOOL_LITERAL
+		{ after(grammarAccess.getPrimaryExpressionAccess().getBoolBOOL_LITERALTerminalRuleCall_3_1_0()); }
 	)
 ;
 finally {
@@ -11008,6 +10971,8 @@ rule__Annotation__KeyAssignment_1
 finally {
 	restoreStackSize(stackSize);
 }
+
+RULE_BOOL_LITERAL : ('true'|'false');
 
 RULE_LOGICAL_OR : '||';
 

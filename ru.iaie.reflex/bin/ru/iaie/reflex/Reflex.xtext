@@ -140,7 +140,7 @@ enum StateQualifier:
 
 PrimaryExpression:
 	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-	{PrimaryExpression} bool=BoolLiteral | "(" nestedExpr=Expression ")";
+	{PrimaryExpression} bool=BOOL_LITERAL | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -214,8 +214,8 @@ enum AdditiveOp:
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
 
-enum BoolLiteral:
-	TRUE="true" | FALSE="false";
+terminal BOOL_LITERAL returns ecore::EBooleanObject:
+	"true" | "false";
 
 Type:
 	(sign=TypeSignSpec)? name=Types;
