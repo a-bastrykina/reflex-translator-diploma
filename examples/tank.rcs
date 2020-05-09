@@ -5,10 +5,10 @@ const float T_H = 0.1;
 const float X_MIN = 0.1;
 const float X_MAX = 0.5;
 const float H = 0.6;
-const float U_MIN =0.0;
-const float U_MAX	= 15.0;
+const float U_MIN = 0.0;
+const float U_MAX = 15.0;
 const float DELTA_U = 3.0;
-const float K_P   = 31.2634; 
+const float K_P  = 31.2634; 
 const float K_I   = 0.4016;
 //
 enum  COM2CA { COM2CA_XD=1 }
@@ -39,15 +39,15 @@ float U;
 float X;
 float XD;
 
-int X_BIT0 = X_BIT0_PORT;
-int X_BIT1 = X_BIT1_PORT;
-int X_BIT2 = X_BIT2_PORT; 
-int X_BIT3 = X_BIT3_PORT; 
+int X_BIT0 = X_BIT0_PORT[];
+int X_BIT1 = X_BIT1_PORT[];
+int X_BIT2 = X_BIT2_PORT[]; 
+int X_BIT3 = X_BIT3_PORT[]; 
 	
-int U_BIT0 = U_BIT0_PORT; 
-int U_BIT1 = U_BIT1_PORT; 
-int U_BIT2 = U_BIT2_PORT; 
-int U_BIT3 = U_BIT3_PORT;
+int U_BIT0 = U_BIT0_PORT[]; 
+int U_BIT1 = U_BIT1_PORT[]; 
+int U_BIT2 = U_BIT2_PORT[]; 
+int U_BIT3 = U_BIT3_PORT[];
 
 int msg_code;
 

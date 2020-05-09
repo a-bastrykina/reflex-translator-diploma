@@ -28,6 +28,7 @@ import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
+import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
@@ -57,7 +58,6 @@ import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -548,8 +548,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("switch (Check_State(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId, "\t");
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index, "\t");
     _builder.append(")) {");
     _builder.newLineIfNotEmpty();
     {
@@ -572,8 +572,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateState(final ru.iaie.reflex.reflex.Process proc, final State state) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("case ");
-    String _stateId = this.identifiersHelper.getStateId(proc, state);
-    _builder.append(_stateId);
+    int _index = ReflexModelUtil.getIndex(state);
+    _builder.append(_index);
     _builder.append(": { /* State: ");
     String _name = state.getName();
     _builder.append(_name);
@@ -607,8 +607,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateTimeoutFunction(final ru.iaie.reflex.reflex.Process proc, final State state, final TimeoutFunction func) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("if (Timeout(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     _builder.append(", ");
     String _translateTimeout = this.translateTimeout(func);
     _builder.append(_translateTimeout);
@@ -624,8 +624,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateStateStopCheck(final ru.iaie.reflex.reflex.Process proc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Check_State(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     _builder.append(") == STATE_OF_STOP");
     return _builder.toString();
   }
@@ -633,8 +633,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateStateErrorCheck(final ru.iaie.reflex.reflex.Process proc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Check_State(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     _builder.append(") == STATE_OF_ERROR");
     return _builder.toString();
   }
@@ -744,13 +744,13 @@ public class R2CReflexGenerator extends AbstractGenerator {
       }
     }
     if (!_matched) {
-      if (statement instanceof StatementBlock) {
+      if (statement instanceof CompoundStatement) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("{");
         _builder.newLine();
         {
-          EList<Statement> _statements = ((StatementBlock)statement).getStatements();
+          EList<Statement> _statements = ((CompoundStatement)statement).getStatements();
           for(final Statement stat : _statements) {
             String _translateStatement = this.translateStatement(proc, state, stat);
             _builder.append(_translateStatement);
@@ -790,8 +790,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateResetTimer(final ru.iaie.reflex.reflex.Process proc, final State state) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Reset_Timer(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     _builder.append(");");
     return _builder.toString();
   }
@@ -801,21 +801,22 @@ public class R2CReflexGenerator extends AbstractGenerator {
     if (_isNext) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Set_State(");
-      String _processId = this.identifiersHelper.getProcessId(proc);
-      _builder.append(_processId);
+      int _index = ReflexModelUtil.getIndex(proc);
+      _builder.append(_index);
       _builder.append(", ");
-      String _stateId = this.identifiersHelper.getStateId(proc, state);
-      _builder.append(_stateId);
-      _builder.append(" + 1);");
+      int _index_1 = ReflexModelUtil.getIndex(state);
+      int _plus = (_index_1 + 1);
+      _builder.append(_plus);
+      _builder.append(");");
       return _builder.toString();
     }
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("Set_State(");
-    String _processId_1 = this.identifiersHelper.getProcessId(proc);
-    _builder_1.append(_processId_1);
+    int _index_2 = ReflexModelUtil.getIndex(proc);
+    _builder_1.append(_index_2);
     _builder_1.append(", ");
-    String _stateId_1 = this.identifiersHelper.getStateId(proc, sss.getState());
-    _builder_1.append(_stateId_1);
+    int _index_3 = ReflexModelUtil.getIndex(sss.getState());
+    _builder_1.append(_index_3);
     _builder_1.append(");");
     return _builder_1.toString();
   }
@@ -831,8 +832,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     final ru.iaie.reflex.reflex.Process procToStop = _xifexpression;
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Stop(");
-    String _processId = this.identifiersHelper.getProcessId(procToStop);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(procToStop);
+    _builder.append(_index);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
@@ -841,8 +842,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateStartProcStat(final ru.iaie.reflex.reflex.Process proc, final State state, final StartProcStat sps) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Start(");
-    String _processId = this.identifiersHelper.getProcessId(sps.getProcess());
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(sps.getProcess());
+    _builder.append(_index);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
@@ -851,8 +852,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   public String translateRestartProcStat(final ru.iaie.reflex.reflex.Process proc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set_Start(");
-    String _processId = this.identifiersHelper.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder.toString();

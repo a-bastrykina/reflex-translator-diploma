@@ -17,14 +17,15 @@ import ru.iaie.reflex.reflex.TimeoutFunction
 import ru.iaie.reflex.reflex.DeclaredVariable
 import ru.iaie.reflex.reflex.RegisterType
 import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
-import static org.eclipse.xtext.EcoreUtil2.*
+import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import ru.iaie.reflex.reflex.GlobalVariable
 import java.util.List
 import ru.iaie.reflex.reflex.Type
-import ru.iaie.reflex.reflex.ReflexPackage
 import ru.iaie.reflex.reflex.Types
+import ru.iaie.reflex.reflex.CompoundStatement
+import ru.iaie.reflex.reflex.Statement
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -82,18 +83,18 @@ class ReflexModelUtil {
 	}
 
 	def static Type getType(ProcessVariable v) {
-		if (v instanceof PhysicalVariable) return v.type
-		if (v instanceof ProgramVariable) return v.type
+		if(v instanceof PhysicalVariable) return v.type
+		if(v instanceof ProgramVariable) return v.type
 	}
-	
+
 	def static Type getType(GlobalVariable v) {
-		if (v instanceof PhysicalVariable) return v.type
-		if (v instanceof ProgramVariable) return v.type
+		if(v instanceof PhysicalVariable) return v.type
+		if(v instanceof ProgramVariable) return v.type
 	}
 
 	def static String getName(GlobalVariable v) {
-		if (v instanceof ProgramVariable) return v.name
-		if (v instanceof PhysicalVariable) return v.name
+		if(v instanceof ProgramVariable) return v.name
+		if(v instanceof PhysicalVariable) return v.name
 	}
 
 	def static String getName(DeclaredVariable v) {
@@ -111,6 +112,23 @@ class ReflexModelUtil {
 
 	def static RegisterType getMappedPortType(PhysicalVariable v) {
 		return v.port.register.type
+	}
+
+	def static boolean isEmpty(CompoundStatement compStat) {
+		// Check recursively, for cases with nested empty compound statements
+		return compStat.eAllOfType(Statement).reject(CompoundStatement).empty
+	}
+	
+	def static boolean hasTimeoutReaction(State state) {
+		return state.timeoutFunction !== null
+	}
+	
+	def static int getIndex(Process p) {
+		return p.getContainerOfType(Program).processes.indexOf(p)
+	}
+	
+	def static int getIndex(State s) {
+		return s.getContainerOfType(Process).states.indexOf(s)
 	}
 
 	def static boolean containsReferencesOfType(EObject context, EObject target, EReference refType) {

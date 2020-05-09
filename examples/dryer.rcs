@@ -1,4 +1,3 @@
-	
 program Dryer {
 	input inp 0x01 0x02 16;
  	output out 0x03 0x04 16;
@@ -14,7 +13,7 @@ program Dryer {
 		state Wait {		
 			if (hands_under_dryer) {
 				dryer_control = ON;
-				set state Work;		
+				set state Work;	
 			}	
 		} 
 		state Work {

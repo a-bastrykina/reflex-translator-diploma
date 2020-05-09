@@ -73,7 +73,6 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGlobalVariableAccess().getGroup(), "rule__GlobalVariable__Group__0");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getGroup(), "rule__PhysicalVariable__Group__0");
 			builder.put(grammarAccess.getRegisterPortMappingAccess().getGroup(), "rule__RegisterPortMapping__Group__0");
-			builder.put(grammarAccess.getRegisterPortMappingAccess().getGroup_1(), "rule__RegisterPortMapping__Group_1__0");
 			builder.put(grammarAccess.getProgramVariableAccess().getGroup(), "rule__ProgramVariable__Group__0");
 			builder.put(grammarAccess.getStatementSequenceAccess().getGroup(), "rule__StatementSequence__Group__0");
 			builder.put(grammarAccess.getCompoundStatementAccess().getGroup(), "rule__CompoundStatement__Group__0");
@@ -168,7 +167,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPhysicalVariableAccess().getNameAssignment_1(), "rule__PhysicalVariable__NameAssignment_1");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getPortAssignment_3(), "rule__PhysicalVariable__PortAssignment_3");
 			builder.put(grammarAccess.getRegisterPortMappingAccess().getRegisterAssignment_0(), "rule__RegisterPortMapping__RegisterAssignment_0");
-			builder.put(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_1_1(), "rule__RegisterPortMapping__PortBitAssignment_1_1");
+			builder.put(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2(), "rule__RegisterPortMapping__PortBitAssignment_2");
 			builder.put(grammarAccess.getProgramVariableAccess().getTypeAssignment_0(), "rule__ProgramVariable__TypeAssignment_0");
 			builder.put(grammarAccess.getProgramVariableAccess().getNameAssignment_1(), "rule__ProgramVariable__NameAssignment_1");
 			builder.put(grammarAccess.getStatementSequenceAccess().getStatementsAssignment_1(), "rule__StatementSequence__StatementsAssignment_1");

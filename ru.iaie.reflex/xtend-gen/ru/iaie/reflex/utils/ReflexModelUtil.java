@@ -16,6 +16,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -30,6 +31,7 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -157,6 +159,23 @@ public class ReflexModelUtil {
   
   public static RegisterType getMappedPortType(final PhysicalVariable v) {
     return v.getPort().getRegister().getType();
+  }
+  
+  public static boolean isEmpty(final CompoundStatement compStat) {
+    return IterableExtensions.isEmpty(IterableExtensions.<Statement>reject(EcoreUtil2.<Statement>eAllOfType(compStat, Statement.class), CompoundStatement.class));
+  }
+  
+  public static boolean hasTimeoutReaction(final State state) {
+    TimeoutFunction _timeoutFunction = state.getTimeoutFunction();
+    return (_timeoutFunction != null);
+  }
+  
+  public static int getIndex(final ru.iaie.reflex.reflex.Process p) {
+    return EcoreUtil2.<Program>getContainerOfType(p, Program.class).getProcesses().indexOf(p);
+  }
+  
+  public static int getIndex(final State s) {
+    return EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(s, ru.iaie.reflex.reflex.Process.class).getStates().indexOf(s);
   }
   
   public static boolean containsReferencesOfType(final EObject context, final EObject target, final EReference refType) {

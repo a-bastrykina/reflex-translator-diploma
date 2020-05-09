@@ -33,7 +33,6 @@ import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.ShiftExpression
 import ru.iaie.reflex.reflex.StartProcStat
 import ru.iaie.reflex.reflex.State
-import ru.iaie.reflex.reflex.StatementBlock
 import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.SwitchStat
 import ru.iaie.reflex.reflex.TimeoutFunction
@@ -47,6 +46,7 @@ import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.reflex.Types
+import ru.iaie.reflex.reflex.CompoundStatement
 
 // TODO: abstract class with same doGenerate and abstract
 // 		generateVariables(resource, fsa, context)
@@ -291,7 +291,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def translateProcess(Process proc) {
 		return '''
 			void «identifiersHelper.getProcessFuncId(proc)»() { /* Process: «proc.name» */
-				switch (Check_State(«identifiersHelper.getProcessId(proc)»)) {
+				switch (Check_State(«proc.index»)) {
 					«FOR state : proc.states»
 						«translateState(proc, state)»
 					«ENDFOR»
@@ -302,7 +302,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateState(Process proc, State state) {
 		return '''
-			case «identifiersHelper.getStateId(proc, state)»: { /* State: «state.name» */
+			case «state.index»: { /* State: «state.name» */
 			«FOR stat : state.stateFunction.statements»
 				«translateStatement(proc, state, stat)»
 			«ENDFOR»
@@ -316,17 +316,17 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateTimeoutFunction(Process proc, State state, TimeoutFunction func) {
 		return '''
-			if (Timeout(«identifiersHelper.getProcessId(proc)», «translateTimeout(func)»))
+			if (Timeout(«proc.index», «translateTimeout(func)»))
 				«translateStatement(proc, state, func.body)»
 		'''
 	}
 	
 	def translateStateStopCheck(Process proc) {
-		return '''Check_State(«identifiersHelper.getProcessId(proc)») == STATE_OF_STOP'''
+		return '''Check_State(«proc.index») == STATE_OF_STOP'''
 	}
 	
 	def translateStateErrorCheck(Process proc) {
-		return '''Check_State(«identifiersHelper.getProcessId(proc)») == STATE_OF_ERROR'''
+		return '''Check_State(«proc.index») == STATE_OF_ERROR'''
 	}
 	
 	def translateCheckStateExpression(CheckStateExpression cse) {
@@ -365,7 +365,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return translateResetTimer(proc, state)
 			RestartStat:
 				return translateRestartProcStat(proc)
-			StatementBlock:
+			CompoundStatement:
 				return '''
 					{
 					«FOR stat : statement.statements»
@@ -386,32 +386,32 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateResetTimer(Process proc, State state) {
-		return '''Reset_Timer(«identifiersHelper.getProcessId(proc)»);'''
+		return '''Reset_Timer(«proc.index»);'''
 	}
 
 	def translateSetStateStat(Process proc, State state, SetStateStat sss) {
 		if (sss.isNext) {
-			return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, state)» + 1);'''
+			return '''Set_State(«proc.index», «state.index + 1»);'''
 		}
-		return '''Set_State(«identifiersHelper.getProcessId(proc)», «identifiersHelper.getStateId(proc, sss.state)»);'''
+		return '''Set_State(«proc.index», «sss.state.index»);'''
 	}
 
 	def translateStopProcStat(Process proc, State state, StopProcStat sps) {
 		val procToStop = sps.selfStop ? proc : sps.process
 		return '''
-			Set_Stop(«identifiersHelper.getProcessId(procToStop)»);
+			Set_Stop(«procToStop.index»);
 		'''
 	}
 
 	def translateStartProcStat(Process proc, State state, StartProcStat sps) {
 		return '''
-			Set_Start(«identifiersHelper.getProcessId(sps.process)»);
+			Set_Start(«sps.process.index»);
 		'''
 	}
 
 	def translateRestartProcStat(Process proc) {
 		return '''
-			Set_Start(«identifiersHelper.getProcessId(proc)»);
+			Set_Start(«proc.index»);
 		'''
 	}
 

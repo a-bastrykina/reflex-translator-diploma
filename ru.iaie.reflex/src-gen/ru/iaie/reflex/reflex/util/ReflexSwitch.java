@@ -51,7 +51,6 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -639,15 +638,6 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         Annotation annotation = (Annotation)theEObject;
         T result = caseAnnotation(annotation);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReflexPackage.STATEMENT_BLOCK:
-      {
-        StatementBlock statementBlock = (StatementBlock)theEObject;
-        T result = caseStatementBlock(statementBlock);
-        if (result == null) result = caseCompoundStatement(statementBlock);
-        if (result == null) result = caseStatement(statementBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1499,22 +1489,6 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAnnotation(Annotation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Statement Block</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Statement Block</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStatementBlock(StatementBlock object)
   {
     return null;
   }

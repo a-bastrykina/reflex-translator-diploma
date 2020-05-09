@@ -64,7 +64,6 @@ import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -456,13 +455,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EClass annotationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass statementBlockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1093,6 +1085,17 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
   public EClass getCompoundStatement()
   {
     return compoundStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCompoundStatement_Statements()
+  {
+    return (EReference)compoundStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2212,28 +2215,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getStatementBlock()
-  {
-    return statementBlockEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getStatementBlock_Statements()
-  {
-    return (EReference)statementBlockEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getRegisterType()
   {
     return registerTypeEEnum;
@@ -2447,6 +2428,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(statementSequenceEClass, STATEMENT_SEQUENCE__STATEMENTS);
 
     compoundStatementEClass = createEClass(COMPOUND_STATEMENT);
+    createEReference(compoundStatementEClass, COMPOUND_STATEMENT__STATEMENTS);
 
     timeoutFunctionEClass = createEClass(TIMEOUT_FUNCTION);
     createEReference(timeoutFunctionEClass, TIMEOUT_FUNCTION__BODY);
@@ -2589,9 +2571,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(annotationEClass, ANNOTATION__KEY);
     createEAttribute(annotationEClass, ANNOTATION__VALUE);
 
-    statementBlockEClass = createEClass(STATEMENT_BLOCK);
-    createEReference(statementBlockEClass, STATEMENT_BLOCK__STATEMENTS);
-
     // Create enums
     registerTypeEEnum = createEEnum(REGISTER_TYPE);
     stateQualifierEEnum = createEEnum(STATE_QUALIFIER);
@@ -2674,7 +2653,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     logicalAndExpressionEClass.getESuperTypes().add(this.getLogicalOrExpression());
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
     expressionEClass.getESuperTypes().add(this.getStatement());
-    statementBlockEClass.getESuperTypes().add(this.getCompoundStatement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2733,6 +2711,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getStatementSequence_Statements(), this.getStatement(), null, "statements", null, 0, -1, StatementSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compoundStatementEClass, CompoundStatement.class, "CompoundStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCompoundStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, CompoundStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(timeoutFunctionEClass, TimeoutFunction.class, "TimeoutFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTimeoutFunction_Body(), this.getStatement(), null, "body", null, 0, 1, TimeoutFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2874,9 +2853,6 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAnnotation_Key(), ecorePackage.getEString(), "key", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAnnotation_Value(), ecorePackage.getEString(), "value", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(statementBlockEClass, StatementBlock.class, "StatementBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStatementBlock_Statements(), this.getStatement(), null, "statements", null, 0, -1, StatementBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");

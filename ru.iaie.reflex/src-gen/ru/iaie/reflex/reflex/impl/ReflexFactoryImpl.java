@@ -65,7 +65,6 @@ import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -184,7 +183,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.TYPE: return createType();
       case ReflexPackage.TIME: return createTime();
       case ReflexPackage.ANNOTATION: return createAnnotation();
-      case ReflexPackage.STATEMENT_BLOCK: return createStatementBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -902,18 +900,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     AnnotationImpl annotation = new AnnotationImpl();
     return annotation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public StatementBlock createStatementBlock()
-  {
-    StatementBlockImpl statementBlock = new StatementBlockImpl();
-    return statementBlock;
   }
 
   /**

@@ -53,7 +53,6 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -391,11 +390,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAnnotation(Annotation object)
       {
         return createAnnotationAdapter();
-      }
-      @Override
-      public Adapter caseStatementBlock(StatementBlock object)
-      {
-        return createStatementBlockAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1210,21 +1204,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAnnotationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StatementBlock <em>Statement Block</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.StatementBlock
-   * @generated
-   */
-  public Adapter createStatementBlockAdapter()
   {
     return null;
   }

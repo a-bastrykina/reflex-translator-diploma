@@ -10,9 +10,7 @@ import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.ProcessVariable
 
 interface IReflexCachedIdentifiersHelper {
-	def String getProcessId(Process proc)
 	def String getProcessFuncId(Process proc)
-	def String getStateId(Process proc, State state)
 	def String getProcessVariableId(Process proc, ProcessVariable v)
 	def String getConstantId(Const c)
 	def String getPortId(Register reg)

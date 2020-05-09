@@ -5,15 +5,10 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.State;
 
 @SuppressWarnings("all")
 public interface IReflexCachedIdentifiersHelper {
-  public abstract String getProcessId(final ru.iaie.reflex.reflex.Process proc);
-  
   public abstract String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc);
-  
-  public abstract String getStateId(final ru.iaie.reflex.reflex.Process proc, final State state);
   
   public abstract String getProcessVariableId(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable v);
   

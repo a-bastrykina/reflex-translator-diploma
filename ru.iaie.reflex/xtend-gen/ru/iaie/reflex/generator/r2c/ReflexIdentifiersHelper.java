@@ -14,6 +14,7 @@ import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
@@ -62,45 +63,6 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   @Override
-  public String getProcessId(final ru.iaie.reflex.reflex.Process proc) {
-    boolean _containsKey = this.procIdentifiers.containsKey(this.getKey(proc));
-    if (_containsKey) {
-      return this.procIdentifiers.get(this.getKey(proc));
-    } else {
-      StringConcatenation _builder = new StringConcatenation();
-      int _size = this.procIdentifiers.size();
-      _builder.append(_size);
-      final String value = _builder.toString();
-      this.procIdentifiers.put(this.getKey(proc), value);
-      return value;
-    }
-  }
-  
-  @Override
-  public String getStateId(final ru.iaie.reflex.reflex.Process proc, final State state) {
-    final String procKey = this.getKey(proc);
-    final String stateKey = this.getKey(state);
-    boolean _containsKey = this.stateIdentifiers.containsKey(procKey);
-    boolean _not = (!_containsKey);
-    if (_not) {
-      HashMap<String, String> _hashMap = new HashMap<String, String>();
-      this.stateIdentifiers.put(procKey, _hashMap);
-    }
-    final Map<String, String> procMap = this.stateIdentifiers.get(procKey);
-    boolean _containsKey_1 = procMap.containsKey(stateKey);
-    if (_containsKey_1) {
-      return procMap.get(stateKey);
-    } else {
-      StringConcatenation _builder = new StringConcatenation();
-      int _size = procMap.size();
-      _builder.append(_size);
-      final String value = _builder.toString();
-      procMap.put(stateKey, value);
-      return value;
-    }
-  }
-  
-  @Override
   public String getProcessVariableId(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable v) {
     final String procKey = this.getKey(proc);
     final String varKey = this.getKey(v);
@@ -117,8 +79,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
     } else {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("P");
-      String _processId = this.getProcessId(proc);
-      _builder.append(_processId);
+      int _index = ReflexModelUtil.getIndex(proc);
+      _builder.append(_index);
       _builder.append("V");
       int _size = procMap.size();
       _builder.append(_size);
@@ -170,8 +132,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   public String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("P");
-    String _processId = this.getProcessId(proc);
-    _builder.append(_processId);
+    int _index = ReflexModelUtil.getIndex(proc);
+    _builder.append(_index);
     return _builder.toString();
   }
   
@@ -247,7 +209,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Name ");
       _builder.append(original);
-      _builder.append(" wasn\'t declared");
+      _builder.append(" wasn\'t declared: error in codegenerator (should never happen)");
       throw new IllegalArgumentException(_builder.toString());
     }
     return this.identifiers.get(original);

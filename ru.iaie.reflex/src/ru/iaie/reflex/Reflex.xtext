@@ -48,7 +48,7 @@ PhysicalVariable:
 	type=Type name=ID "=" port=RegisterPortMapping;
 
 RegisterPortMapping:
-	register=[Register] ("[" portBit=INTEGER "]")?;
+	register=[Register] "[" (portBit=INTEGER)? "]";
 
 ProgramVariable:
 	type=Type name=ID;
@@ -57,7 +57,7 @@ StatementSequence:
 	{StatementSequence} statements+=Statement*;
 
 CompoundStatement:
-	{StatementBlock} "{" statements+=Statement* "}";
+	{CompoundStatement} "{" statements+=Statement* "}";
 
 TimeoutFunction:
 	"timeout" (TimeAmountOrRef | "(" TimeAmountOrRef ")") body=Statement;

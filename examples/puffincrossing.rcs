@@ -17,9 +17,9 @@ output OUTPUTS 0 0 8;
 process WaitingButton{ 
 	bool I_BUTTON = INPUTS[0] shared;
 	bool O_CROSSWALK = OUTPUTS[0] shared;
-  	state Begin{
-    	O_CROSSWALK = OFF;
-    	set next state; 
+  	state Begin {
+    	O_CROSSWALK = 1;
+    	set next state;
   	}
   	state CheckButton looped {
     	if (I_BUTTON) { /* Vehicle ? */
@@ -30,8 +30,8 @@ process WaitingButton{
  }
 
 process TrafficLightCycle {
-  shared O_CROSSWALK from process WaitingButton;                       
-  state Pause1min{
+  shared O_CROSSWALK from process WaitingButton;                      
+  state Pause1min {
     O_CROSSWALK = ON;
     timeout MINUTE set next state;
   }

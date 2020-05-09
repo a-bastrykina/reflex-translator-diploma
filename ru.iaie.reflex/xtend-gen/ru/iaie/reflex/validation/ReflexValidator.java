@@ -23,12 +23,14 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.AssignmentExpression;
+import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
+import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Program;
@@ -38,6 +40,7 @@ import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
+import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.utils.ExpressionUtil;
@@ -58,9 +61,10 @@ public class ReflexValidator extends AbstractReflexValidator {
     if (_isNext) {
       final ru.iaie.reflex.reflex.State state = EcoreUtil2.<ru.iaie.reflex.reflex.State>getContainerOfType(setStateStat, ru.iaie.reflex.reflex.State.class);
       final ru.iaie.reflex.reflex.Process process = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(setStateStat, ru.iaie.reflex.reflex.Process.class);
-      final int callingStateIndex = process.getStates().indexOf(state);
+      int _index = ReflexModelUtil.getIndex(state);
+      int _plus = (_index + 1);
       int _length = ((Object[])Conversions.unwrapArray(process.getStates(), Object.class)).length;
-      boolean _greaterEqualsThan = ((callingStateIndex + 1) >= _length);
+      boolean _greaterEqualsThan = (_plus >= _length);
       if (_greaterEqualsThan) {
         this.error("Invalid state transition: no next state in the process", ReflexValidator.ePackage.getSetStateStat_Next());
       }
@@ -376,5 +380,63 @@ public class ReflexValidator extends AbstractReflexValidator {
           ReflexValidator.ePackage.getImportedVariableList_Variables());
       }
     }
+  }
+  
+  @Check
+  public void checkProcessHasStates(final ru.iaie.reflex.reflex.Process proc) {
+    boolean _isEmpty = proc.getStates().isEmpty();
+    if (_isEmpty) {
+      this.error("No states declared in process", ReflexValidator.ePackage.getProcess_Name());
+    }
+  }
+  
+  @Check
+  public void checkTimeoutHasReaction(final TimeoutFunction func) {
+    final Statement rootStat = func.getBody();
+    if ((rootStat instanceof CompoundStatement)) {
+      boolean _isEmpty = ReflexModelUtil.isEmpty(((CompoundStatement)rootStat));
+      if (_isEmpty) {
+        this.error("Timeout reaction has no statements", null);
+      }
+    }
+  }
+  
+  @Check
+  public void checkIfStat(final IfElseStat stat) {
+    final Statement ifRootStat = stat.getThen();
+    if ((ifRootStat instanceof CompoundStatement)) {
+      boolean _isEmpty = ReflexModelUtil.isEmpty(((CompoundStatement)ifRootStat));
+      if (_isEmpty) {
+        this.warning("Empty body", null);
+      }
+    }
+  }
+  
+  @Check
+  public void checkStateBody(final ru.iaie.reflex.reflex.State state) {
+    if ((state.getStateFunction().getStatements().isEmpty() && (!ReflexModelUtil.hasTimeoutReaction(state)))) {
+      this.error("State body has no statements", null);
+    }
+  }
+  
+  @Check
+  public void checkProcessIsReachable(final ru.iaie.reflex.reflex.Process process) {
+    int _index = ReflexModelUtil.getIndex(process);
+    boolean _equals = (_index == 0);
+    if (_equals) {
+      return;
+    }
+    final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
+    final Function1<ru.iaie.reflex.reflex.Process, Boolean> _function = (ru.iaie.reflex.reflex.Process it) -> {
+      return Boolean.valueOf(it.equals(process));
+    };
+    Iterable<ru.iaie.reflex.reflex.Process> _reject = IterableExtensions.<ru.iaie.reflex.reflex.Process>reject(program.getProcesses(), _function);
+    for (final ru.iaie.reflex.reflex.Process outsideProcess : _reject) {
+      boolean _containsReferencesOfType = ReflexModelUtil.containsReferencesOfType(outsideProcess, process, ReflexValidator.ePackage.getStartProcStat_Process());
+      if (_containsReferencesOfType) {
+        return;
+      }
+    }
+    this.warning("Process is unreachable (never started by another process)", ReflexValidator.ePackage.getProcess_Name());
   }
 }

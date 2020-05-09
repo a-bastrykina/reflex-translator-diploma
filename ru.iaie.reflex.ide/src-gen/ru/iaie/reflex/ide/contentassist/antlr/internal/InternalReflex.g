@@ -3828,6 +3828,7 @@ rule__RegisterPortMapping__Group__1
 	}
 :
 	rule__RegisterPortMapping__Group__1__Impl
+	rule__RegisterPortMapping__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3839,90 +3840,62 @@ rule__RegisterPortMapping__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRegisterPortMappingAccess().getGroup_1()); }
-	(rule__RegisterPortMapping__Group_1__0)?
-	{ after(grammarAccess.getRegisterPortMappingAccess().getGroup_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__RegisterPortMapping__Group_1__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__RegisterPortMapping__Group_1__0__Impl
-	rule__RegisterPortMapping__Group_1__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__RegisterPortMapping__Group_1__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1_0()); }
+	{ before(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1()); }
 	'['
-	{ after(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1_0()); }
+	{ after(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RegisterPortMapping__Group_1__1
+rule__RegisterPortMapping__Group__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RegisterPortMapping__Group_1__1__Impl
-	rule__RegisterPortMapping__Group_1__2
+	rule__RegisterPortMapping__Group__2__Impl
+	rule__RegisterPortMapping__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RegisterPortMapping__Group_1__1__Impl
+rule__RegisterPortMapping__Group__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_1_1()); }
-	(rule__RegisterPortMapping__PortBitAssignment_1_1)
-	{ after(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_1_1()); }
+	{ before(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2()); }
+	(rule__RegisterPortMapping__PortBitAssignment_2)?
+	{ after(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RegisterPortMapping__Group_1__2
+rule__RegisterPortMapping__Group__3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RegisterPortMapping__Group_1__2__Impl
+	rule__RegisterPortMapping__Group__3__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RegisterPortMapping__Group_1__2__Impl
+rule__RegisterPortMapping__Group__3__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_1_2()); }
+	{ before(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3()); }
 	']'
-	{ after(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_1_2()); }
+	{ after(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3()); }
 )
 ;
 finally {
@@ -4056,9 +4029,9 @@ rule__CompoundStatement__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCompoundStatementAccess().getStatementBlockAction_0()); }
+	{ before(grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0()); }
 	()
-	{ after(grammarAccess.getCompoundStatementAccess().getStatementBlockAction_0()); }
+	{ after(grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0()); }
 )
 ;
 finally {
@@ -9732,15 +9705,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RegisterPortMapping__PortBitAssignment_1_1
+rule__RegisterPortMapping__PortBitAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_1_1_0()); }
+		{ before(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0()); }
 		RULE_INTEGER
-		{ after(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_1_1_0()); }
+		{ after(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0()); }
 	)
 ;
 finally {

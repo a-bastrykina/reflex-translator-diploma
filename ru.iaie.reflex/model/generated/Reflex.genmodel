@@ -126,7 +126,9 @@
     <genClasses ecoreClass="Reflex.ecore#//StatementSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementSequence/statements"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//CompoundStatement"/>
+    <genClasses ecoreClass="Reflex.ecore#//CompoundStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CompoundStatement/statements"/>
+    </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//TimeoutFunction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//TimeoutFunction/body"/>
     </genClasses>
@@ -258,9 +260,6 @@
     <genClasses ecoreClass="Reflex.ecore#//Annotation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Annotation/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Annotation/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//StatementBlock">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//StatementBlock/statements"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

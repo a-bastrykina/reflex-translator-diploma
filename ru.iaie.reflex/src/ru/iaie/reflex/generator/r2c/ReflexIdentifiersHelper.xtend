@@ -13,6 +13,8 @@ import ru.iaie.reflex.reflex.EnumMember
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.ProcessVariable
 
+import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
+
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
 	// TODO: final
@@ -55,32 +57,6 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		return en.identifier
 	}
 
-	override getProcessId(Process proc) {
-		if (procIdentifiers.containsKey(getKey(proc))) {
-			return procIdentifiers.get(getKey(proc))
-		} else {
-			val value = '''«procIdentifiers.size»'''
-			procIdentifiers.put(getKey(proc), value)
-			return value
-		}
-	}
-	
-	override getStateId(Process proc, State state) {
-		val procKey = getKey(proc)
-		val stateKey = getKey(state)
-		if (!stateIdentifiers.containsKey(procKey)) {
-			stateIdentifiers.put(procKey, new HashMap)
-		}
-		val procMap = stateIdentifiers.get(procKey)
-		if (procMap.containsKey(stateKey)) {
-			return procMap.get(stateKey)
-		} else {
-			val value = '''«procMap.size»'''
-			procMap.put(stateKey, value)
-			return value
-		}
-	}
-
 	override getProcessVariableId(Process proc, ProcessVariable v) {
 		val procKey = getKey(proc)
 		val varKey = getKey(v)
@@ -91,7 +67,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		if (procMap.containsKey(varKey)) {
 			return procMap.get(varKey)
 		} else {
-			val value = '''P«getProcessId(proc)»V«procMap.size»'''
+			val value = '''P«proc.index»V«procMap.size»'''
 			procMap.put(varKey, value)
 			identifiers.put(varKey, value)
 			return value
@@ -122,7 +98,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	}
 
 	override getProcessFuncId(Process proc) {
-		return '''P«getProcessId(proc)»'''
+		return '''P«proc.index»'''
 	}
 	
 	override clearCaches() {
@@ -172,7 +148,7 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 	
 	override getId(String original) {
 		if (!identifiers.containsKey(original)) 
-			throw new IllegalArgumentException('''Name «original» wasn't declared''')
+			throw new IllegalArgumentException('''Name «original» wasn't declared: error in codegenerator (should never happen)''')
 		return identifiers.get(original)
 	}
 	

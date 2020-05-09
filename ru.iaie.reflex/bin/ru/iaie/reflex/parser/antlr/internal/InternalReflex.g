@@ -892,34 +892,32 @@ ruleRegisterPortMapping returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1());
+		}
 		(
-			otherlv_1='['
-			{
-				newLeafNode(otherlv_1, grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1_0());
-			}
 			(
-				(
-					lv_portBit_2_0=RULE_INTEGER
-					{
-						newLeafNode(lv_portBit_2_0, grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_1_1_0());
+				lv_portBit_2_0=RULE_INTEGER
+				{
+					newLeafNode(lv_portBit_2_0, grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRegisterPortMappingRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRegisterPortMappingRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"portBit",
-							lv_portBit_2_0,
-							"ru.iaie.reflex.Reflex.INTEGER");
-					}
-				)
+					setWithLastConsumed(
+						$current,
+						"portBit",
+						lv_portBit_2_0,
+						"ru.iaie.reflex.Reflex.INTEGER");
+				}
 			)
-			otherlv_3=']'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_1_2());
-			}
 		)?
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3());
+		}
 	)
 ;
 
@@ -1043,7 +1041,7 @@ ruleCompoundStatement returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getCompoundStatementAccess().getStatementBlockAction_0(),
+					grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0(),
 					$current);
 			}
 		)

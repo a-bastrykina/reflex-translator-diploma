@@ -501,15 +501,6 @@ public interface ReflexFactory extends EFactory
   Annotation createAnnotation();
 
   /**
-   * Returns a new object of class '<em>Statement Block</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Statement Block</em>'.
-   * @generated
-   */
-  StatementBlock createStatementBlock();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

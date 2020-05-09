@@ -24,6 +24,7 @@ import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareExpression;
+import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
@@ -51,7 +52,6 @@ import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
-import ru.iaie.reflex.reflex.StatementBlock;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -105,6 +105,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.COMPARE_EXPRESSION:
 				sequence_CompareExpression(context, (CompareExpression) semanticObject); 
+				return; 
+			case ReflexPackage.COMPOUND_STATEMENT:
+				sequence_CompoundStatement(context, (CompoundStatement) semanticObject); 
 				return; 
 			case ReflexPackage.CONST:
 				sequence_Const(context, (Const) semanticObject); 
@@ -209,9 +212,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.STATEMENT:
 				sequence_Statement(context, (Statement) semanticObject); 
-				return; 
-			case ReflexPackage.STATEMENT_BLOCK:
-				sequence_CompoundStatement(context, (StatementBlock) semanticObject); 
 				return; 
 			case ReflexPackage.STATEMENT_SEQUENCE:
 				sequence_StatementSequence(context, (StatementSequence) semanticObject); 
@@ -531,13 +531,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     CompoundStatement returns StatementBlock
-	 *     Statement returns StatementBlock
+	 *     CompoundStatement returns CompoundStatement
+	 *     Statement returns CompoundStatement
 	 *
 	 * Constraint:
 	 *     statements+=Statement*
 	 */
-	protected void sequence_CompoundStatement(ISerializationContext context, StatementBlock semanticObject) {
+	protected void sequence_CompoundStatement(ISerializationContext context, CompoundStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

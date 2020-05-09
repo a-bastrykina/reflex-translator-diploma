@@ -523,17 +523,16 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRegisterAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cRegisterRegisterCrossReference_0_0 = (CrossReference)cRegisterAssignment_0.eContents().get(0);
 		private final RuleCall cRegisterRegisterIDTerminalRuleCall_0_0_1 = (RuleCall)cRegisterRegisterCrossReference_0_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cPortBitAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPortBitINTEGERTerminalRuleCall_1_1_0 = (RuleCall)cPortBitAssignment_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPortBitAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPortBitINTEGERTerminalRuleCall_2_0 = (RuleCall)cPortBitAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//RegisterPortMapping:
-		//	register=[Register] ("[" portBit=INTEGER "]")?;
+		//	register=[Register] "[" portBit=INTEGER? "]";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//register=[Register] ("[" portBit=INTEGER "]")?
+		//register=[Register] "[" portBit=INTEGER? "]"
 		public Group getGroup() { return cGroup; }
 		
 		//register=[Register]
@@ -545,20 +544,17 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getRegisterRegisterIDTerminalRuleCall_0_0_1() { return cRegisterRegisterIDTerminalRuleCall_0_0_1; }
 		
-		//("[" portBit=INTEGER "]")?
-		public Group getGroup_1() { return cGroup_1; }
-		
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//portBit=INTEGER
-		public Assignment getPortBitAssignment_1_1() { return cPortBitAssignment_1_1; }
+		//portBit=INTEGER?
+		public Assignment getPortBitAssignment_2() { return cPortBitAssignment_2; }
 		
 		//INTEGER
-		public RuleCall getPortBitINTEGERTerminalRuleCall_1_1_0() { return cPortBitINTEGERTerminalRuleCall_1_1_0; }
+		public RuleCall getPortBitINTEGERTerminalRuleCall_2_0() { return cPortBitINTEGERTerminalRuleCall_2_0; }
 		
 		//"]"
-		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	public class ProgramVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ProgramVariable");
@@ -613,21 +609,21 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	public class CompoundStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.CompoundStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cStatementBlockAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cCompoundStatementAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStatementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cStatementsStatementParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//CompoundStatement:
-		//	{StatementBlock} "{" statements+=Statement* "}";
+		//	{CompoundStatement} "{" statements+=Statement* "}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{StatementBlock} "{" statements+=Statement* "}"
+		//{CompoundStatement} "{" statements+=Statement* "}"
 		public Group getGroup() { return cGroup; }
 		
-		//{StatementBlock}
-		public Action getStatementBlockAction_0() { return cStatementBlockAction_0; }
+		//{CompoundStatement}
+		public Action getCompoundStatementAction_0() { return cCompoundStatementAction_0; }
 		
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
@@ -3175,7 +3171,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RegisterPortMapping:
-	//	register=[Register] ("[" portBit=INTEGER "]")?;
+	//	register=[Register] "[" portBit=INTEGER? "]";
 	public RegisterPortMappingElements getRegisterPortMappingAccess() {
 		return pRegisterPortMapping;
 	}
@@ -3205,7 +3201,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CompoundStatement:
-	//	{StatementBlock} "{" statements+=Statement* "}";
+	//	{CompoundStatement} "{" statements+=Statement* "}";
 	public CompoundStatementElements getCompoundStatementAccess() {
 		return pCompoundStatement;
 	}
