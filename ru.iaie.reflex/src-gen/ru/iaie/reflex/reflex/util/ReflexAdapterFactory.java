@@ -22,7 +22,6 @@ import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -147,19 +146,14 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
-      public Adapter caseProcessVariable(ProcessVariable object)
-      {
-        return createProcessVariableAdapter();
-      }
-      @Override
       public Adapter caseImportedVariableList(ImportedVariableList object)
       {
         return createImportedVariableListAdapter();
       }
       @Override
-      public Adapter caseDeclaredVariable(DeclaredVariable object)
+      public Adapter caseProcessVariable(ProcessVariable object)
       {
-        return createDeclaredVariableAdapter();
+        return createProcessVariableAdapter();
       }
       @Override
       public Adapter caseGlobalVariable(GlobalVariable object)
@@ -474,21 +468,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ProcessVariable <em>Process Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.ProcessVariable
-   * @generated
-   */
-  public Adapter createProcessVariableAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ImportedVariableList <em>Imported Variable List</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -504,16 +483,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.DeclaredVariable <em>Declared Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ProcessVariable <em>Process Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.DeclaredVariable
+   * @see ru.iaie.reflex.reflex.ProcessVariable
    * @generated
    */
-  public Adapter createDeclaredVariableAdapter()
+  public Adapter createProcessVariableAdapter()
   {
     return null;
   }

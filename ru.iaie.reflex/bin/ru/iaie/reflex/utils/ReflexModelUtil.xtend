@@ -14,7 +14,6 @@ import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.TimeoutFunction
-import ru.iaie.reflex.reflex.DeclaredVariable
 import ru.iaie.reflex.reflex.RegisterType
 import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
 import static extension org.eclipse.xtext.EcoreUtil2.*
@@ -66,20 +65,8 @@ class ReflexModelUtil {
 		return false
 	}
 
-	def static List<DeclaredVariable> getDeclaredVariables(Process p) {
-		return p.variables.filter(DeclaredVariable).toList
-	}
-
-	def static List<DeclaredVariable> getImportedVariables(Process p) {
+	def static List<ProcessVariable> getImportedVariables(Process p) {
 		return p.imports.map[variables].flatten.toList
-	}
-
-	def static List<ImportedVariableList> getImports(Process p) {
-		return p.variables.filter(ImportedVariableList).toList
-	}
-
-	def static boolean isDeclared(ProcessVariable v) {
-		return v instanceof DeclaredVariable
 	}
 
 	def static Type getType(ProcessVariable v) {
@@ -97,7 +84,7 @@ class ReflexModelUtil {
 		if(v instanceof PhysicalVariable) return v.name
 	}
 
-	def static String getName(DeclaredVariable v) {
+	def static String getName(ProcessVariable v) {
 		if(v instanceof ProgramVariable) return v.name
 		if(v instanceof PhysicalVariable) return v.name
 	}

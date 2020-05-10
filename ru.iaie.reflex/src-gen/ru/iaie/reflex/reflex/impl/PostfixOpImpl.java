@@ -6,9 +6,11 @@ package ru.iaie.reflex.reflex.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -21,7 +23,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PostfixOpImpl#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PostfixOpImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PostfixOpImpl#getOp <em>Op</em>}</li>
  * </ul>
  *
@@ -30,24 +32,14 @@ import ru.iaie.reflex.reflex.ReflexPackage;
 public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
 {
   /**
-   * The default value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVarId()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected static final String VAR_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVarId()
-   * @generated
-   * @ordered
-   */
-  protected String varId = VAR_ID_EDEFAULT;
+  protected IdReference ref;
 
   /**
    * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
@@ -96,9 +88,29 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
    * @generated
    */
   @Override
-  public String getVarId()
+  public IdReference getRef()
   {
-    return varId;
+    if (ref != null && ref.eIsProxy())
+    {
+      InternalEObject oldRef = (InternalEObject)ref;
+      ref = (IdReference)eResolveProxy(oldRef);
+      if (ref != oldRef)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.POSTFIX_OP__REF, oldRef, ref));
+      }
+    }
+    return ref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IdReference basicGetRef()
+  {
+    return ref;
   }
 
   /**
@@ -107,12 +119,12 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
    * @generated
    */
   @Override
-  public void setVarId(String newVarId)
+  public void setRef(IdReference newRef)
   {
-    String oldVarId = varId;
-    varId = newVarId;
+    IdReference oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.POSTFIX_OP__VAR_ID, oldVarId, varId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.POSTFIX_OP__REF, oldRef, ref));
   }
 
   /**
@@ -150,8 +162,9 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
   {
     switch (featureID)
     {
-      case ReflexPackage.POSTFIX_OP__VAR_ID:
-        return getVarId();
+      case ReflexPackage.POSTFIX_OP__REF:
+        if (resolve) return getRef();
+        return basicGetRef();
       case ReflexPackage.POSTFIX_OP__OP:
         return getOp();
     }
@@ -168,8 +181,8 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
   {
     switch (featureID)
     {
-      case ReflexPackage.POSTFIX_OP__VAR_ID:
-        setVarId((String)newValue);
+      case ReflexPackage.POSTFIX_OP__REF:
+        setRef((IdReference)newValue);
         return;
       case ReflexPackage.POSTFIX_OP__OP:
         setOp((InfixPostfixOp)newValue);
@@ -188,8 +201,8 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
   {
     switch (featureID)
     {
-      case ReflexPackage.POSTFIX_OP__VAR_ID:
-        setVarId(VAR_ID_EDEFAULT);
+      case ReflexPackage.POSTFIX_OP__REF:
+        setRef((IdReference)null);
         return;
       case ReflexPackage.POSTFIX_OP__OP:
         setOp(OP_EDEFAULT);
@@ -208,8 +221,8 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
   {
     switch (featureID)
     {
-      case ReflexPackage.POSTFIX_OP__VAR_ID:
-        return VAR_ID_EDEFAULT == null ? varId != null : !VAR_ID_EDEFAULT.equals(varId);
+      case ReflexPackage.POSTFIX_OP__REF:
+        return ref != null;
       case ReflexPackage.POSTFIX_OP__OP:
         return op != OP_EDEFAULT;
     }
@@ -227,9 +240,7 @@ public class PostfixOpImpl extends UnaryExpressionImpl implements PostfixOp
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (varId: ");
-    result.append(varId);
-    result.append(", op: ");
+    result.append(" (op: ");
     result.append(op);
     result.append(')');
     return result.toString();

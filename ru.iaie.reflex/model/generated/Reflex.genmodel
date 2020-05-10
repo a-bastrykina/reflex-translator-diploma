@@ -91,6 +91,7 @@
     <genClasses ecoreClass="Reflex.ecore#//Process">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/annotations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Process/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/states"/>
     </genClasses>
@@ -101,12 +102,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/stateFunction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//State/timeoutFunction"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//ProcessVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//ImportedVariableList">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariableList/variables"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//ImportedVariableList/process"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//DeclaredVariable"/>
+    <genClasses ecoreClass="Reflex.ecore#//ProcessVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//GlobalVariable"/>
     <genClasses ecoreClass="Reflex.ecore#//PhysicalVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/shared"/>
@@ -181,7 +181,7 @@
     <genClasses ecoreClass="Reflex.ecore#//Const">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Const/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/constValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/value"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Enum">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Enum/identifier"/>
@@ -193,10 +193,10 @@
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//InfixOp">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//InfixOp/op"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//InfixOp/varId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//InfixOp/ref"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//PostfixOp">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PostfixOp/varId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//PostfixOp/ref"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PostfixOp/op"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//FunctionCall">

@@ -20,7 +20,6 @@ import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -152,26 +151,17 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.PROCESS_VARIABLE:
-      {
-        ProcessVariable processVariable = (ProcessVariable)theEObject;
-        T result = caseProcessVariable(processVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ReflexPackage.IMPORTED_VARIABLE_LIST:
       {
         ImportedVariableList importedVariableList = (ImportedVariableList)theEObject;
         T result = caseImportedVariableList(importedVariableList);
-        if (result == null) result = caseProcessVariable(importedVariableList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.DECLARED_VARIABLE:
+      case ReflexPackage.PROCESS_VARIABLE:
       {
-        DeclaredVariable declaredVariable = (DeclaredVariable)theEObject;
-        T result = caseDeclaredVariable(declaredVariable);
-        if (result == null) result = caseProcessVariable(declaredVariable);
+        ProcessVariable processVariable = (ProcessVariable)theEObject;
+        T result = caseProcessVariable(processVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -186,10 +176,9 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         PhysicalVariable physicalVariable = (PhysicalVariable)theEObject;
         T result = casePhysicalVariable(physicalVariable);
-        if (result == null) result = caseDeclaredVariable(physicalVariable);
+        if (result == null) result = caseProcessVariable(physicalVariable);
         if (result == null) result = caseGlobalVariable(physicalVariable);
         if (result == null) result = caseIdReference(physicalVariable);
-        if (result == null) result = caseProcessVariable(physicalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,10 +193,9 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         ProgramVariable programVariable = (ProgramVariable)theEObject;
         T result = caseProgramVariable(programVariable);
-        if (result == null) result = caseDeclaredVariable(programVariable);
+        if (result == null) result = caseProcessVariable(programVariable);
         if (result == null) result = caseGlobalVariable(programVariable);
         if (result == null) result = caseIdReference(programVariable);
-        if (result == null) result = caseProcessVariable(programVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -710,22 +698,6 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Process Variable</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Process Variable</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProcessVariable(ProcessVariable object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Imported Variable List</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -742,17 +714,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Declared Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Process Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Declared Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Process Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDeclaredVariable(DeclaredVariable object)
+  public T caseProcessVariable(ProcessVariable object)
   {
     return null;
   }

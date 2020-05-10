@@ -56,7 +56,7 @@ class ReflexScopeProvider extends AbstractReflexScopeProvider {
 		candidates.addAll(prog.consts)
 		candidates.addAll(prog.globalVars)
 		if (proc !== null) {
-			candidates.addAll(proc.declaredVariables)
+			candidates.addAll(proc.variables)
 			candidates.addAll(proc.importedVariables)
 		}
 

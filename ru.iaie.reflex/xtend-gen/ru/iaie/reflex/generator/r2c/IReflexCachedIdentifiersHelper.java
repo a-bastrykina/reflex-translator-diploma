@@ -3,6 +3,7 @@ package ru.iaie.reflex.generator.r2c;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Register;
 
@@ -22,7 +23,7 @@ public interface IReflexCachedIdentifiersHelper {
   
   public abstract String getGlobalVariableId(final GlobalVariable v);
   
-  public abstract String getId(final String original);
+  public abstract String getMapping(final IdReference original);
   
   public abstract void clearCaches();
 }

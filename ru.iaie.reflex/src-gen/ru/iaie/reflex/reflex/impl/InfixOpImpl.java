@@ -6,9 +6,11 @@ package ru.iaie.reflex.reflex.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.InfixOp;
 import ru.iaie.reflex.reflex.InfixPostfixOp;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -22,7 +24,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.InfixOpImpl#getOp <em>Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.InfixOpImpl#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.InfixOpImpl#getRef <em>Ref</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,24 +52,14 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
   protected InfixPostfixOp op = OP_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVarId()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected static final String VAR_ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVarId() <em>Var Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVarId()
-   * @generated
-   * @ordered
-   */
-  protected String varId = VAR_ID_EDEFAULT;
+  protected IdReference ref;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,9 +113,29 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
    * @generated
    */
   @Override
-  public String getVarId()
+  public IdReference getRef()
   {
-    return varId;
+    if (ref != null && ref.eIsProxy())
+    {
+      InternalEObject oldRef = (InternalEObject)ref;
+      ref = (IdReference)eResolveProxy(oldRef);
+      if (ref != oldRef)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.INFIX_OP__REF, oldRef, ref));
+      }
+    }
+    return ref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IdReference basicGetRef()
+  {
+    return ref;
   }
 
   /**
@@ -132,12 +144,12 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
    * @generated
    */
   @Override
-  public void setVarId(String newVarId)
+  public void setRef(IdReference newRef)
   {
-    String oldVarId = varId;
-    varId = newVarId;
+    IdReference oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.INFIX_OP__VAR_ID, oldVarId, varId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.INFIX_OP__REF, oldRef, ref));
   }
 
   /**
@@ -152,8 +164,9 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
     {
       case ReflexPackage.INFIX_OP__OP:
         return getOp();
-      case ReflexPackage.INFIX_OP__VAR_ID:
-        return getVarId();
+      case ReflexPackage.INFIX_OP__REF:
+        if (resolve) return getRef();
+        return basicGetRef();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -171,8 +184,8 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
       case ReflexPackage.INFIX_OP__OP:
         setOp((InfixPostfixOp)newValue);
         return;
-      case ReflexPackage.INFIX_OP__VAR_ID:
-        setVarId((String)newValue);
+      case ReflexPackage.INFIX_OP__REF:
+        setRef((IdReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -191,8 +204,8 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
       case ReflexPackage.INFIX_OP__OP:
         setOp(OP_EDEFAULT);
         return;
-      case ReflexPackage.INFIX_OP__VAR_ID:
-        setVarId(VAR_ID_EDEFAULT);
+      case ReflexPackage.INFIX_OP__REF:
+        setRef((IdReference)null);
         return;
     }
     super.eUnset(featureID);
@@ -210,8 +223,8 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
     {
       case ReflexPackage.INFIX_OP__OP:
         return op != OP_EDEFAULT;
-      case ReflexPackage.INFIX_OP__VAR_ID:
-        return VAR_ID_EDEFAULT == null ? varId != null : !VAR_ID_EDEFAULT.equals(varId);
+      case ReflexPackage.INFIX_OP__REF:
+        return ref != null;
     }
     return super.eIsSet(featureID);
   }
@@ -229,8 +242,6 @@ public class InfixOpImpl extends UnaryExpressionImpl implements InfixOp
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", varId: ");
-    result.append(varId);
     result.append(')');
     return result.toString();
   }

@@ -30,7 +30,7 @@ import ru.iaie.reflex.reflex.Type;
  *
  * @generated
  */
-public class ProgramVariableImpl extends DeclaredVariableImpl implements ProgramVariable
+public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramVariable
 {
   /**
    * The default value of the '{@link #isShared() <em>Shared</em>}' attribute.

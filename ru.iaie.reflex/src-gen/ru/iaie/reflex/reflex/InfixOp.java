@@ -14,7 +14,7 @@ package ru.iaie.reflex.reflex;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.InfixOp#getOp <em>Op</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.InfixOp#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.InfixOp#getRef <em>Ref</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getInfixOp()
@@ -49,25 +49,25 @@ public interface InfixOp extends UnaryExpression
   void setOp(InfixPostfixOp value);
 
   /**
-   * Returns the value of the '<em><b>Var Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Id</em>' attribute.
-   * @see #setVarId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getInfixOp_VarId()
+   * @return the value of the '<em>Ref</em>' reference.
+   * @see #setRef(IdReference)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getInfixOp_Ref()
    * @model
    * @generated
    */
-  String getVarId();
+  IdReference getRef();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.InfixOp#getVarId <em>Var Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.InfixOp#getRef <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var Id</em>' attribute.
-   * @see #getVarId()
+   * @param value the new value of the '<em>Ref</em>' reference.
+   * @see #getRef()
    * @generated
    */
-  void setVarId(String value);
+  void setRef(IdReference value);
 
 } // InfixOp

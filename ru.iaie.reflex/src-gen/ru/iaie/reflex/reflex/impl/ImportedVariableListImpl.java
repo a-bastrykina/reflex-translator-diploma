@@ -13,11 +13,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.ImportedVariableList;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 
 /**
@@ -34,7 +35,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *
  * @generated
  */
-public class ImportedVariableListImpl extends ProcessVariableImpl implements ImportedVariableList
+public class ImportedVariableListImpl extends MinimalEObjectImpl.Container implements ImportedVariableList
 {
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
@@ -44,7 +45,7 @@ public class ImportedVariableListImpl extends ProcessVariableImpl implements Imp
    * @generated
    * @ordered
    */
-  protected EList<DeclaredVariable> variables;
+  protected EList<ProcessVariable> variables;
 
   /**
    * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
@@ -83,11 +84,11 @@ public class ImportedVariableListImpl extends ProcessVariableImpl implements Imp
    * @generated
    */
   @Override
-  public EList<DeclaredVariable> getVariables()
+  public EList<ProcessVariable> getVariables()
   {
     if (variables == null)
     {
-      variables = new EObjectResolvingEList<DeclaredVariable>(DeclaredVariable.class, this, ReflexPackage.IMPORTED_VARIABLE_LIST__VARIABLES);
+      variables = new EObjectResolvingEList<ProcessVariable>(ProcessVariable.class, this, ReflexPackage.IMPORTED_VARIABLE_LIST__VARIABLES);
     }
     return variables;
   }
@@ -169,7 +170,7 @@ public class ImportedVariableListImpl extends ProcessVariableImpl implements Imp
     {
       case ReflexPackage.IMPORTED_VARIABLE_LIST__VARIABLES:
         getVariables().clear();
-        getVariables().addAll((Collection<? extends DeclaredVariable>)newValue);
+        getVariables().addAll((Collection<? extends ProcessVariable>)newValue);
         return;
       case ReflexPackage.IMPORTED_VARIABLE_LIST__PROCESS:
         setProcess((ru.iaie.reflex.reflex.Process)newValue);

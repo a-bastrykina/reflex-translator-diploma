@@ -21,7 +21,7 @@ Tact:
 Process:
 	("[" annotations+=Annotation "]")*
 	"process" name=ID "{"
-	(variables+=ProcessVariable)*
+	((imports+=ImportedVariableList | variables+=ProcessVariable) ";")*
 	states+=State*
 	"}";
 
@@ -32,13 +32,10 @@ State:
 	(timeoutFunction=TimeoutFunction)?
 	"}";
 
-ProcessVariable:
-	(ImportedVariableList | DeclaredVariable) ";";
-
 ImportedVariableList:
-	"shared" (variables+=[DeclaredVariable] ("," variables+=[DeclaredVariable])*) "from" "process" process=[Process];
+	"shared" (variables+=[ProcessVariable] ("," variables+=[ProcessVariable])*) "from" "process" process=[Process];
 
-DeclaredVariable:
+ProcessVariable:
 	(PhysicalVariable | ProgramVariable) (shared?="shared")?;
 
 GlobalVariable:
@@ -112,7 +109,7 @@ Register:
 	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
-	"const" type=Type name=ID "=" constValue=Expression ";";
+	"const" type=Type name=ID "=" value=Expression ";";
 
 Enum:
 	"enum" identifier=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
@@ -121,10 +118,10 @@ EnumMember:
 	name=ID ("=" value=Expression)?;
 
 InfixOp:
-	op=InfixPostfixOp varId=ID;
+	op=InfixPostfixOp ref=[IdReference];
 
 PostfixOp:
-	varId=ID op=InfixPostfixOp;
+	ref=[IdReference] op=InfixPostfixOp;
 
 FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";

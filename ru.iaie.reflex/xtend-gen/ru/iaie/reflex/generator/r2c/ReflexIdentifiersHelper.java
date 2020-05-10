@@ -1,127 +1,114 @@
 package ru.iaie.reflex.generator.r2c;
 
-import java.util.Arrays;
+import com.google.common.base.Objects;
 import java.util.HashMap;
 import java.util.Map;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.State;
+import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
-  private Map<String, String> procIdentifiers = new HashMap<String, String>();
+  private Map<String, String> procIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, Map<String, String>> stateIdentifiers = new HashMap<String, Map<String, String>>();
+  private Map<String, Map<String, String>> stateIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
   
-  private Map<String, Map<String, String>> varIdentifiers = new HashMap<String, Map<String, String>>();
+  private Map<String, Map<String, String>> procVarIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
   
-  private Map<String, String> globalVarIdentifiers = new HashMap<String, String>();
+  private Map<String, String> globalVarIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> constIdentifiers = new HashMap<String, String>();
+  private Map<String, String> constIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> portIdentifiers = new HashMap<String, String>();
+  private Map<String, String> portIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> enumIdentifiers = new HashMap<String, String>();
+  private Map<String, String> enumIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> identifiers = new HashMap<String, String>();
-  
-  private String _getKey(final ru.iaie.reflex.reflex.Process proc) {
-    return proc.getName();
-  }
-  
-  private String _getKey(final State state) {
-    return state.getName();
-  }
-  
-  private String _getKey(final PhysicalVariable v) {
-    return v.getName();
-  }
-  
-  private String _getKey(final ProgramVariable v) {
-    return v.getName();
-  }
-  
-  private String _getKey(final Const c) {
-    return c.getName();
-  }
-  
-  private String _getKey(final Register r) {
-    return r.getName();
-  }
-  
-  private String _getKey(final ru.iaie.reflex.reflex.Enum en) {
-    return en.getIdentifier();
+  @Override
+  public String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("_p_");
+    String _name = proc.getName();
+    _builder.append(_name);
+    return _builder.toString();
   }
   
   @Override
   public String getProcessVariableId(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable v) {
-    final String procKey = this.getKey(proc);
-    final String varKey = this.getKey(v);
-    boolean _containsKey = this.varIdentifiers.containsKey(procKey);
+    final String procKey = proc.getName();
+    final String varKey = ReflexModelUtil.getName(v);
+    boolean _containsKey = this.procVarIdentifiers.containsKey(procKey);
     boolean _not = (!_containsKey);
     if (_not) {
       HashMap<String, String> _hashMap = new HashMap<String, String>();
-      this.varIdentifiers.put(procKey, _hashMap);
+      this.procVarIdentifiers.put(procKey, _hashMap);
     }
-    final Map<String, String> procMap = this.varIdentifiers.get(procKey);
+    final Map<String, String> procMap = this.procVarIdentifiers.get(procKey);
     boolean _containsKey_1 = procMap.containsKey(varKey);
     if (_containsKey_1) {
       return procMap.get(varKey);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("P");
-      int _index = ReflexModelUtil.getIndex(proc);
-      _builder.append(_index);
-      _builder.append("V");
-      int _size = procMap.size();
-      _builder.append(_size);
+      _builder.append("_p_");
+      String _name = proc.getName();
+      _builder.append(_name);
+      _builder.append("_v_");
+      String _name_1 = ReflexModelUtil.getName(v);
+      _builder.append(_name_1);
       final String value = _builder.toString();
       procMap.put(varKey, value);
-      this.identifiers.put(varKey, value);
       return value;
     }
   }
   
   @Override
   public String getConstantId(final Const c) {
-    final String key = this.getKey(c).toString();
+    final String key = c.getName();
     boolean _containsKey = this.constIdentifiers.containsKey(key);
     if (_containsKey) {
       return this.constIdentifiers.get(key);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("C_");
-      int _size = this.constIdentifiers.size();
-      _builder.append(_size);
+      _builder.append("_c_");
+      String _name = c.getName();
+      _builder.append(_name);
       final String value = _builder.toString();
       this.constIdentifiers.put(key, value);
-      this.identifiers.put(key, value);
       return value;
     }
   }
   
   @Override
   public String getPortId(final Register reg) {
-    final String key = this.getKey(reg);
+    final String key = reg.getName();
     boolean _containsKey = this.portIdentifiers.containsKey(key);
     if (_containsKey) {
       return this.portIdentifiers.get(key);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("P");
-      char _charAt = reg.getType().getLiteral().toUpperCase().charAt(0);
-      _builder.append(_charAt);
-      int _size = this.portIdentifiers.size();
-      _builder.append(_size);
+      _builder.append("_");
+      String _xifexpression = null;
+      RegisterType _type = reg.getType();
+      boolean _equals = Objects.equal(_type, RegisterType.INPUT);
+      if (_equals) {
+        _xifexpression = "i";
+      } else {
+        _xifexpression = "o";
+      }
+      _builder.append(_xifexpression);
+      _builder.append("_");
+      String _name = reg.getName();
+      _builder.append(_name);
       final String value = _builder.toString();
       this.portIdentifiers.put(key, value);
       return value;
@@ -129,36 +116,16 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   @Override
-  public String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("P");
-    int _index = ReflexModelUtil.getIndex(proc);
-    _builder.append(_index);
-    return _builder.toString();
-  }
-  
-  @Override
-  public void clearCaches() {
-    this.procIdentifiers.clear();
-    this.stateIdentifiers.clear();
-    this.varIdentifiers.clear();
-    this.constIdentifiers.clear();
-    this.portIdentifiers.clear();
-    this.enumIdentifiers.clear();
-    this.globalVarIdentifiers.clear();
-  }
-  
-  @Override
   public String getEnumId(final ru.iaie.reflex.reflex.Enum en) {
-    final String key = this.getKey(en);
+    final String key = en.getIdentifier();
     boolean _containsKey = this.enumIdentifiers.containsKey(key);
     if (_containsKey) {
       return this.enumIdentifiers.get(key);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("EN");
-      int _size = this.enumIdentifiers.size();
-      _builder.append(_size);
+      _builder.append("_e_");
+      String _identifier = en.getIdentifier();
+      _builder.append(_identifier);
       final String value = _builder.toString();
       this.enumIdentifiers.put(key, value);
       return value;
@@ -173,66 +140,58 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       return this.constIdentifiers.get(key);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("C_");
-      int _size = this.constIdentifiers.size();
-      _builder.append(_size);
+      _builder.append("_e_em_");
+      String _name = em.getName();
+      _builder.append(_name);
       final String value = _builder.toString();
       this.constIdentifiers.put(key, value);
-      this.identifiers.put(key, value);
       return value;
     }
   }
   
   @Override
   public String getGlobalVariableId(final GlobalVariable v) {
-    final String key = this.getKey(v);
+    final String key = ReflexModelUtil.getName(v);
     boolean _containsKey = this.globalVarIdentifiers.containsKey(key);
     if (_containsKey) {
       return this.globalVarIdentifiers.get(key);
     } else {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("GV");
-      int _size = this.globalVarIdentifiers.size();
-      _builder.append(_size);
+      _builder.append("_g_");
+      String _name = ReflexModelUtil.getName(v);
+      _builder.append(_name);
       final String value = _builder.toString();
       this.globalVarIdentifiers.put(key, value);
-      this.identifiers.put(key, value);
       return value;
     }
   }
   
   @Override
-  public String getId(final String original) {
-    boolean _containsKey = this.identifiers.containsKey(original);
-    boolean _not = (!_containsKey);
-    if (_not) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Name ");
-      _builder.append(original);
-      _builder.append(" wasn\'t declared: error in codegenerator (should never happen)");
-      throw new IllegalArgumentException(_builder.toString());
+  public String getMapping(final IdReference ref) {
+    if (((ref instanceof PhysicalVariable) || (ref instanceof ProgramVariable))) {
+      final ru.iaie.reflex.reflex.Process proc = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ref, ru.iaie.reflex.reflex.Process.class);
+      if ((proc == null)) {
+        return this.getGlobalVariableId(((GlobalVariable) ref));
+      }
+      return this.getProcessVariableId(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(ref, ru.iaie.reflex.reflex.Process.class), ((ProcessVariable) ref));
     }
-    return this.identifiers.get(original);
+    if ((ref instanceof Const)) {
+      return this.getConstantId(((Const)ref));
+    }
+    if ((ref instanceof EnumMember)) {
+      return this.getEnumMemberId(((EnumMember)ref));
+    }
+    return null;
   }
   
-  private String getKey(final EObject v) {
-    if (v instanceof PhysicalVariable) {
-      return _getKey((PhysicalVariable)v);
-    } else if (v instanceof ProgramVariable) {
-      return _getKey((ProgramVariable)v);
-    } else if (v instanceof Const) {
-      return _getKey((Const)v);
-    } else if (v instanceof ru.iaie.reflex.reflex.Enum) {
-      return _getKey((ru.iaie.reflex.reflex.Enum)v);
-    } else if (v instanceof ru.iaie.reflex.reflex.Process) {
-      return _getKey((ru.iaie.reflex.reflex.Process)v);
-    } else if (v instanceof Register) {
-      return _getKey((Register)v);
-    } else if (v instanceof State) {
-      return _getKey((State)v);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(v).toString());
-    }
+  @Override
+  public void clearCaches() {
+    this.procIdentifiers.clear();
+    this.stateIdentifiers.clear();
+    this.procVarIdentifiers.clear();
+    this.constIdentifiers.clear();
+    this.portIdentifiers.clear();
+    this.enumIdentifiers.clear();
+    this.globalVarIdentifiers.clear();
   }
 }

@@ -28,7 +28,6 @@ import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -134,9 +133,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.TACT: return createTact();
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
-      case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
       case ReflexPackage.IMPORTED_VARIABLE_LIST: return createImportedVariableList();
-      case ReflexPackage.DECLARED_VARIABLE: return createDeclaredVariable();
+      case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
       case ReflexPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       case ReflexPackage.PHYSICAL_VARIABLE: return createPhysicalVariable();
       case ReflexPackage.REGISTER_PORT_MAPPING: return createRegisterPortMapping();
@@ -320,18 +318,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public ProcessVariable createProcessVariable()
-  {
-    ProcessVariableImpl processVariable = new ProcessVariableImpl();
-    return processVariable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public ImportedVariableList createImportedVariableList()
   {
     ImportedVariableListImpl importedVariableList = new ImportedVariableListImpl();
@@ -344,10 +330,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public DeclaredVariable createDeclaredVariable()
+  public ProcessVariable createProcessVariable()
   {
-    DeclaredVariableImpl declaredVariable = new DeclaredVariableImpl();
-    return declaredVariable;
+    ProcessVariableImpl processVariable = new ProcessVariableImpl();
+    return processVariable;
   }
 
   /**

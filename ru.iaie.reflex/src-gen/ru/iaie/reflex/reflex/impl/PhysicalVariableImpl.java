@@ -32,7 +32,7 @@ import ru.iaie.reflex.reflex.Type;
  *
  * @generated
  */
-public class PhysicalVariableImpl extends DeclaredVariableImpl implements PhysicalVariable
+public class PhysicalVariableImpl extends ProcessVariableImpl implements PhysicalVariable
 {
   /**
    * The default value of the '{@link #isShared() <em>Shared</em>}' attribute.

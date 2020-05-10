@@ -69,7 +69,7 @@ public class ReflexScopeProvider extends AbstractReflexScopeProvider {
     candidates.addAll(prog.getConsts());
     candidates.addAll(prog.getGlobalVars());
     if ((proc != null)) {
-      candidates.addAll(ReflexModelUtil.getDeclaredVariables(proc));
+      candidates.addAll(proc.getVariables());
       candidates.addAll(ReflexModelUtil.getImportedVariables(proc));
     }
     return Scopes.scopeFor(candidates);

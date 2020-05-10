@@ -113,7 +113,6 @@ class R2CReflexGenerator extends AbstractGenerator {
 		#include "stdio.h"
 		
 		void Input(void) {
-			P0V0 = 1;
 		    printf("input\n");
 		}  /* Reading IO func */
 		
@@ -140,7 +139,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
-			#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.constValue)» 
+			#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.value)» 
 			«ENDFOR»
 		'''
 	}
@@ -344,7 +343,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateTimeout(TimeoutFunction func) {
 		if(func.isClearTimeout) return func.time.ticks
-		if(func.isReferencedTimeout) identifiersHelper.getId(func.ref.resolveName);
+		if(func.isReferencedTimeout) identifiersHelper.getMapping(func.ref);
 	}
 
 	def String translateStatement(Process proc, State state, EObject statement) {
@@ -431,13 +430,13 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def String translateExpr(EObject expr) {
 		switch (expr) {
 			InfixOp:
-				return '''«expr.op» «identifiersHelper.getId(expr.varId)»'''
+				return '''«expr.op» «identifiersHelper.getMapping(expr.ref)»'''
 			PostfixOp:
-				return '''«identifiersHelper.getId(expr.varId)» «expr.op»'''
+				return '''«identifiersHelper.getMapping(expr.ref)» «expr.op»'''
 			FunctionCall:
 				return '''«expr.function.name»(«String.join(",", expr.args.map[translateExpr])»)'''
 			IdReference:
-				return '''«identifiersHelper.getId(expr.resolveName)»'''
+				return '''«identifiersHelper.getMapping(expr)»'''
 			PrimaryExpression: {
 				if (expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
 				if (expr.isBoolean) {

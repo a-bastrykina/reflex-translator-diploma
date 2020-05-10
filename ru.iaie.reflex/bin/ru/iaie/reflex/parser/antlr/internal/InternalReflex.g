@@ -397,29 +397,57 @@ ruleProcess returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getProcessAccess().getVariablesProcessVariableParserRuleCall_4_0());
-				}
-				lv_variables_6_0=ruleProcessVariable
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getProcessRule());
-					}
-					add(
-						$current,
-						"variables",
-						lv_variables_6_0,
-						"ru.iaie.reflex.Reflex.ProcessVariable");
-					afterParserOrEnumRuleCall();
-				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getProcessAccess().getImportsImportedVariableListParserRuleCall_4_0_0_0());
+						}
+						lv_imports_6_0=ruleImportedVariableList
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getProcessRule());
+							}
+							add(
+								$current,
+								"imports",
+								lv_imports_6_0,
+								"ru.iaie.reflex.Reflex.ImportedVariableList");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getProcessAccess().getVariablesProcessVariableParserRuleCall_4_0_1_0());
+						}
+						lv_variables_7_0=ruleProcessVariable
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getProcessRule());
+							}
+							add(
+								$current,
+								"variables",
+								lv_variables_7_0,
+								"ru.iaie.reflex.Reflex.ProcessVariable");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
 			)
+			otherlv_8=';'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getProcessAccess().getSemicolonKeyword_4_1());
+			}
 		)*
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getProcessAccess().getStatesStateParserRuleCall_5_0());
 				}
-				lv_states_7_0=ruleState
+				lv_states_9_0=ruleState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProcessRule());
@@ -427,15 +455,15 @@ ruleProcess returns [EObject current=null]
 					add(
 						$current,
 						"states",
-						lv_states_7_0,
+						lv_states_9_0,
 						"ru.iaie.reflex.Reflex.State");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_8='}'
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getProcessAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_10, grammarAccess.getProcessAccess().getRightCurlyBracketKeyword_6());
 		}
 	)
 ;
@@ -570,48 +598,6 @@ ruleState returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleProcessVariable
-entryRuleProcessVariable returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getProcessVariableRule()); }
-	iv_ruleProcessVariable=ruleProcessVariable
-	{ $current=$iv_ruleProcessVariable.current; }
-	EOF;
-
-// Rule ProcessVariable
-ruleProcessVariable returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getProcessVariableAccess().getImportedVariableListParserRuleCall_0_0());
-			}
-			this_ImportedVariableList_0=ruleImportedVariableList
-			{
-				$current = $this_ImportedVariableList_0.current;
-				afterParserOrEnumRuleCall();
-			}
-			    |
-			{
-				newCompositeNode(grammarAccess.getProcessVariableAccess().getDeclaredVariableParserRuleCall_0_1());
-			}
-			this_DeclaredVariable_1=ruleDeclaredVariable
-			{
-				$current = $this_DeclaredVariable_1.current;
-				afterParserOrEnumRuleCall();
-			}
-		)
-		otherlv_2=';'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getProcessVariableAccess().getSemicolonKeyword_1());
-		}
-	)
-;
-
 // Entry rule entryRuleImportedVariableList
 entryRuleImportedVariableList returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getImportedVariableListRule()); }
@@ -642,7 +628,7 @@ ruleImportedVariableList returns [EObject current=null]
 					}
 					otherlv_1=RULE_ID
 					{
-						newLeafNode(otherlv_1, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_0_0());
+						newLeafNode(otherlv_1, grammarAccess.getImportedVariableListAccess().getVariablesProcessVariableCrossReference_1_0_0());
 					}
 				)
 			)
@@ -660,7 +646,7 @@ ruleImportedVariableList returns [EObject current=null]
 						}
 						otherlv_3=RULE_ID
 						{
-							newLeafNode(otherlv_3, grammarAccess.getImportedVariableListAccess().getVariablesDeclaredVariableCrossReference_1_1_1_0());
+							newLeafNode(otherlv_3, grammarAccess.getImportedVariableListAccess().getVariablesProcessVariableCrossReference_1_1_1_0());
 						}
 					)
 				)
@@ -690,15 +676,15 @@ ruleImportedVariableList returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleDeclaredVariable
-entryRuleDeclaredVariable returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getDeclaredVariableRule()); }
-	iv_ruleDeclaredVariable=ruleDeclaredVariable
-	{ $current=$iv_ruleDeclaredVariable.current; }
+// Entry rule entryRuleProcessVariable
+entryRuleProcessVariable returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProcessVariableRule()); }
+	iv_ruleProcessVariable=ruleProcessVariable
+	{ $current=$iv_ruleProcessVariable.current; }
 	EOF;
 
-// Rule DeclaredVariable
-ruleDeclaredVariable returns [EObject current=null]
+// Rule ProcessVariable
+ruleProcessVariable returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -708,7 +694,7 @@ ruleDeclaredVariable returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getDeclaredVariableAccess().getPhysicalVariableParserRuleCall_0_0());
+				newCompositeNode(grammarAccess.getProcessVariableAccess().getPhysicalVariableParserRuleCall_0_0());
 			}
 			this_PhysicalVariable_0=rulePhysicalVariable
 			{
@@ -717,7 +703,7 @@ ruleDeclaredVariable returns [EObject current=null]
 			}
 			    |
 			{
-				newCompositeNode(grammarAccess.getDeclaredVariableAccess().getProgramVariableParserRuleCall_0_1());
+				newCompositeNode(grammarAccess.getProcessVariableAccess().getProgramVariableParserRuleCall_0_1());
 			}
 			this_ProgramVariable_1=ruleProgramVariable
 			{
@@ -729,11 +715,11 @@ ruleDeclaredVariable returns [EObject current=null]
 			(
 				lv_shared_2_0='shared'
 				{
-					newLeafNode(lv_shared_2_0, grammarAccess.getDeclaredVariableAccess().getSharedSharedKeyword_1_0());
+					newLeafNode(lv_shared_2_0, grammarAccess.getProcessVariableAccess().getSharedSharedKeyword_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDeclaredVariableRule());
+						$current = createModelElement(grammarAccess.getProcessVariableRule());
 					}
 					setWithLastConsumed($current, "shared", true, "shared");
 				}
@@ -2204,17 +2190,17 @@ ruleConst returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConstAccess().getConstValueExpressionParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getConstAccess().getValueExpressionParserRuleCall_4_0());
 				}
-				lv_constValue_4_0=ruleExpression
+				lv_value_4_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConstRule());
 					}
 					set(
 						$current,
-						"constValue",
-						lv_constValue_4_0,
+						"value",
+						lv_value_4_0,
 						"ru.iaie.reflex.Reflex.Expression");
 					afterParserOrEnumRuleCall();
 				}
@@ -2419,19 +2405,14 @@ ruleInfixOp returns [EObject current=null]
 		)
 		(
 			(
-				lv_varId_1_0=RULE_ID
-				{
-					newLeafNode(lv_varId_1_0, grammarAccess.getInfixOpAccess().getVarIdIDTerminalRuleCall_1_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getInfixOpRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"varId",
-						lv_varId_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getInfixOpAccess().getRefIdReferenceCrossReference_1_0());
 				}
 			)
 		)
@@ -2456,19 +2437,14 @@ rulePostfixOp returns [EObject current=null]
 	(
 		(
 			(
-				lv_varId_0_0=RULE_ID
-				{
-					newLeafNode(lv_varId_0_0, grammarAccess.getPostfixOpAccess().getVarIdIDTerminalRuleCall_0_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getPostfixOpRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"varId",
-						lv_varId_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getPostfixOpAccess().getRefIdReferenceCrossReference_0_0());
 				}
 			)
 		)

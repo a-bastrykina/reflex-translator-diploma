@@ -60,15 +60,6 @@ public interface ReflexFactory extends EFactory
   State createState();
 
   /**
-   * Returns a new object of class '<em>Process Variable</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process Variable</em>'.
-   * @generated
-   */
-  ProcessVariable createProcessVariable();
-
-  /**
    * Returns a new object of class '<em>Imported Variable List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,13 +69,13 @@ public interface ReflexFactory extends EFactory
   ImportedVariableList createImportedVariableList();
 
   /**
-   * Returns a new object of class '<em>Declared Variable</em>'.
+   * Returns a new object of class '<em>Process Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Declared Variable</em>'.
+   * @return a new object of class '<em>Process Variable</em>'.
    * @generated
    */
-  DeclaredVariable createDeclaredVariable();
+  ProcessVariable createProcessVariable();
 
   /**
    * Returns a new object of class '<em>Global Variable</em>'.

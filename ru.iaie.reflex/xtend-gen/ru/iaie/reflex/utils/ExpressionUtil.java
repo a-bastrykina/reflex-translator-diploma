@@ -39,9 +39,8 @@ public class ExpressionUtil {
   }
   
   public static boolean isConstExpr(final Expression e) {
-    final Function1<IdReference, Boolean> _function = (IdReference ref) -> {
+    return (IterableExtensions.isEmpty(IterableExtensions.<IdReference>filter(EcoreUtil2.<IdReference>eAllOfType(e, IdReference.class), ((Function1<IdReference, Boolean>) (IdReference ref) -> {
       return Boolean.valueOf(((ref instanceof ProgramVariable) || (ref instanceof PhysicalVariable)));
-    };
-    return IterableExtensions.isEmpty(IterableExtensions.<IdReference>filter(EcoreUtil2.<IdReference>eAllOfType(e, IdReference.class), _function));
+    }))) && EcoreUtil2.<FunctionCall>eAllOfType(e, FunctionCall.class).isEmpty());
   }
 }

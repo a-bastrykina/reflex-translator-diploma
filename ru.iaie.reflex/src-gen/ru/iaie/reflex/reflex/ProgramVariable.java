@@ -22,7 +22,7 @@ package ru.iaie.reflex.reflex;
  * @model
  * @generated
  */
-public interface ProgramVariable extends DeclaredVariable, GlobalVariable, IdReference
+public interface ProgramVariable extends ProcessVariable, GlobalVariable, IdReference
 {
   /**
    * Returns the value of the '<em><b>Shared</b></em>' attribute.

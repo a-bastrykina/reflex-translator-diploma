@@ -15,7 +15,7 @@ package ru.iaie.reflex.reflex;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Const#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Const#getConstValue <em>Const Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Const#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getConst()
@@ -69,25 +69,25 @@ public interface Const extends IdReference
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Const Value</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Const Value</em>' containment reference.
-   * @see #setConstValue(Expression)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getConst_ConstValue()
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(Expression)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getConst_Value()
    * @model containment="true"
    * @generated
    */
-  Expression getConstValue();
+  Expression getValue();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Const#getConstValue <em>Const Value</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Const#getValue <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Const Value</em>' containment reference.
-   * @see #getConstValue()
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
    * @generated
    */
-  void setConstValue(Expression value);
+  void setValue(Expression value);
 
 } // Const

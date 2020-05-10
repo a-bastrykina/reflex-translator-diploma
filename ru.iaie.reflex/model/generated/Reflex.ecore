@@ -27,6 +27,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//ImportedVariableList" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//ProcessVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
@@ -42,15 +44,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFunction" eType="#//TimeoutFunction"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariableList" eSuperTypes="#//ProcessVariable">
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedVariableList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
-        upperBound="-1" eType="#//DeclaredVariable"/>
+        upperBound="-1" eType="#//ProcessVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeclaredVariable" eSuperTypes="#//ProcessVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable #//IdReference">
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//ProcessVariable #//GlobalVariable #//IdReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -61,7 +62,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="register" eType="#//Register"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="portBit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//DeclaredVariable #//GlobalVariable #//IdReference">
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//ProcessVariable #//GlobalVariable #//IdReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -139,7 +140,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Const" eSuperTypes="#//IdReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constValue" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Enum">
@@ -154,10 +155,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfixOp" eSuperTypes="#//UnaryExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#//InfixPostfixOp"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="varId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//IdReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PostfixOp" eSuperTypes="#//UnaryExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="varId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//IdReference"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#//InfixPostfixOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//UnaryExpression">

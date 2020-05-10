@@ -3,10 +3,10 @@ package ru.iaie.reflex.generator.r2c
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Enum
 import ru.iaie.reflex.reflex.Process
-import ru.iaie.reflex.reflex.State
 import ru.iaie.reflex.reflex.Register
 import ru.iaie.reflex.reflex.EnumMember
 import ru.iaie.reflex.reflex.GlobalVariable
+import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.ProcessVariable
 
 interface IReflexCachedIdentifiersHelper {
@@ -18,7 +18,7 @@ interface IReflexCachedIdentifiersHelper {
 	def String getEnumMemberId(EnumMember em)
 	def String getGlobalVariableId(GlobalVariable v) 
 	
-	def String getId(String original)
+	def String getMapping(IdReference original)
 	
 	def void clearCaches()
 }

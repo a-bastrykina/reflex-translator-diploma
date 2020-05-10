@@ -5,6 +5,8 @@ package ru.iaie.reflex.reflex;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Imported Variable List</b></em>'.
@@ -22,11 +24,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ImportedVariableList extends ProcessVariable
+public interface ImportedVariableList extends EObject
 {
   /**
    * Returns the value of the '<em><b>Variables</b></em>' reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.DeclaredVariable}.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.ProcessVariable}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variables</em>' reference list.
@@ -34,7 +36,7 @@ public interface ImportedVariableList extends ProcessVariable
    * @model
    * @generated
    */
-  EList<DeclaredVariable> getVariables();
+  EList<ProcessVariable> getVariables();
 
   /**
    * Returns the value of the '<em><b>Process</b></em>' reference.

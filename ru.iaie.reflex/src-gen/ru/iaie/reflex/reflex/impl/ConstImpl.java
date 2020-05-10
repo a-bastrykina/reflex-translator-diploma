@@ -26,7 +26,7 @@ import ru.iaie.reflex.reflex.Type;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getConstValue <em>Const Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ConstImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,14 +64,14 @@ public class ConstImpl extends IdReferenceImpl implements Const
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getConstValue() <em>Const Value</em>}' containment reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConstValue()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected Expression constValue;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -175,9 +175,9 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * @generated
    */
   @Override
-  public Expression getConstValue()
+  public Expression getValue()
   {
-    return constValue;
+    return value;
   }
 
   /**
@@ -185,13 +185,13 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetConstValue(Expression newConstValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    Expression oldConstValue = constValue;
-    constValue = newConstValue;
+    Expression oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__CONST_VALUE, oldConstValue, newConstValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -203,20 +203,20 @@ public class ConstImpl extends IdReferenceImpl implements Const
    * @generated
    */
   @Override
-  public void setConstValue(Expression newConstValue)
+  public void setValue(Expression newValue)
   {
-    if (newConstValue != constValue)
+    if (newValue != value)
     {
       NotificationChain msgs = null;
-      if (constValue != null)
-        msgs = ((InternalEObject)constValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__CONST_VALUE, null, msgs);
-      if (newConstValue != null)
-        msgs = ((InternalEObject)newConstValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__CONST_VALUE, null, msgs);
-      msgs = basicSetConstValue(newConstValue, msgs);
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CONST__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__CONST_VALUE, newConstValue, newConstValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CONST__VALUE, newValue, newValue));
   }
 
   /**
@@ -231,8 +231,8 @@ public class ConstImpl extends IdReferenceImpl implements Const
     {
       case ReflexPackage.CONST__TYPE:
         return basicSetType(null, msgs);
-      case ReflexPackage.CONST__CONST_VALUE:
-        return basicSetConstValue(null, msgs);
+      case ReflexPackage.CONST__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -251,8 +251,8 @@ public class ConstImpl extends IdReferenceImpl implements Const
         return getType();
       case ReflexPackage.CONST__NAME:
         return getName();
-      case ReflexPackage.CONST__CONST_VALUE:
-        return getConstValue();
+      case ReflexPackage.CONST__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -273,8 +273,8 @@ public class ConstImpl extends IdReferenceImpl implements Const
       case ReflexPackage.CONST__NAME:
         setName((String)newValue);
         return;
-      case ReflexPackage.CONST__CONST_VALUE:
-        setConstValue((Expression)newValue);
+      case ReflexPackage.CONST__VALUE:
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -296,8 +296,8 @@ public class ConstImpl extends IdReferenceImpl implements Const
       case ReflexPackage.CONST__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReflexPackage.CONST__CONST_VALUE:
-        setConstValue((Expression)null);
+      case ReflexPackage.CONST__VALUE:
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -317,8 +317,8 @@ public class ConstImpl extends IdReferenceImpl implements Const
         return type != null;
       case ReflexPackage.CONST__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReflexPackage.CONST__CONST_VALUE:
-        return constValue != null;
+      case ReflexPackage.CONST__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }

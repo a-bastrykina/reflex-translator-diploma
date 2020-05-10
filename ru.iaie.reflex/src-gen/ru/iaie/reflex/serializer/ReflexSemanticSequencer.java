@@ -149,15 +149,14 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_MultiplicativeExpression(context, (MultiplicativeExpression) semanticObject); 
 				return; 
 			case ReflexPackage.PHYSICAL_VARIABLE:
-				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()) {
-					sequence_DeclaredVariable_PhysicalVariable(context, (PhysicalVariable) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getGlobalVariableRule()
+				if (rule == grammarAccess.getGlobalVariableRule()
 						|| rule == grammarAccess.getPhysicalVariableRule()
 						|| rule == grammarAccess.getIdReferenceRule()) {
 					sequence_PhysicalVariable(context, (PhysicalVariable) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getProcessVariableRule()) {
+					sequence_PhysicalVariable_ProcessVariable(context, (PhysicalVariable) semanticObject); 
 					return; 
 				}
 				else break;
@@ -174,9 +173,8 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Program(context, (Program) semanticObject); 
 				return; 
 			case ReflexPackage.PROGRAM_VARIABLE:
-				if (rule == grammarAccess.getProcessVariableRule()
-						|| rule == grammarAccess.getDeclaredVariableRule()) {
-					sequence_DeclaredVariable_ProgramVariable(context, (ProgramVariable) semanticObject); 
+				if (rule == grammarAccess.getProcessVariableRule()) {
+					sequence_ProcessVariable_ProgramVariable(context, (ProgramVariable) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getGlobalVariableRule()
@@ -548,7 +546,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns Const
 	 *
 	 * Constraint:
-	 *     (type=Type name=ID constValue=Expression)
+	 *     (type=Type name=ID value=Expression)
 	 */
 	protected void sequence_Const(ISerializationContext context, Const semanticObject) {
 		if (errorAcceptor != null) {
@@ -556,40 +554,14 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__TYPE));
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__CONST_VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__CONST_VALUE));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CONST__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CONST__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getConstAccess().getTypeTypeParserRuleCall_1_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getConstAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getConstAccess().getConstValueExpressionParserRuleCall_4_0(), semanticObject.getConstValue());
+		feeder.accept(grammarAccess.getConstAccess().getValueExpressionParserRuleCall_4_0(), semanticObject.getValue());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ProcessVariable returns PhysicalVariable
-	 *     DeclaredVariable returns PhysicalVariable
-	 *
-	 * Constraint:
-	 *     (type=Type name=ID port=RegisterPortMapping shared?='shared'?)
-	 */
-	protected void sequence_DeclaredVariable_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ProcessVariable returns ProgramVariable
-	 *     DeclaredVariable returns ProgramVariable
-	 *
-	 * Constraint:
-	 *     (type=Type name=ID shared?='shared'?)
-	 */
-	protected void sequence_DeclaredVariable_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -727,11 +699,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ProcessVariable returns ImportedVariableList
 	 *     ImportedVariableList returns ImportedVariableList
 	 *
 	 * Constraint:
-	 *     (variables+=[DeclaredVariable|ID] variables+=[DeclaredVariable|ID]* process=[Process|ID])
+	 *     (variables+=[ProcessVariable|ID] variables+=[ProcessVariable|ID]* process=[Process|ID])
 	 */
 	protected void sequence_ImportedVariableList(ISerializationContext context, ImportedVariableList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -765,18 +736,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns InfixOp
 	 *
 	 * Constraint:
-	 *     (op=InfixPostfixOp varId=ID)
+	 *     (op=InfixPostfixOp ref=[IdReference|ID])
 	 */
 	protected void sequence_InfixOp(ISerializationContext context, InfixOp semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.INFIX_OP__OP) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.INFIX_OP__OP));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.INFIX_OP__VAR_ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.INFIX_OP__VAR_ID));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.INFIX_OP__REF) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.INFIX_OP__REF));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getInfixOpAccess().getOpInfixPostfixOpEnumRuleCall_0_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getInfixOpAccess().getVarIdIDTerminalRuleCall_1_0(), semanticObject.getVarId());
+		feeder.accept(grammarAccess.getInfixOpAccess().getRefIdReferenceIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexPackage.Literals.INFIX_OP__REF, false));
 		feeder.finish();
 	}
 	
@@ -898,6 +869,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     ProcessVariable returns PhysicalVariable
+	 *
+	 * Constraint:
+	 *     (type=Type name=ID port=RegisterPortMapping shared?='shared'?)
+	 */
+	protected void sequence_PhysicalVariable_ProcessVariable(ISerializationContext context, PhysicalVariable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PostfixOp returns PostfixOp
 	 *     UnaryExpression returns PostfixOp
 	 *     CastExpression returns PostfixOp
@@ -923,17 +906,17 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PostfixOp
 	 *
 	 * Constraint:
-	 *     (varId=ID op=InfixPostfixOp)
+	 *     (ref=[IdReference|ID] op=InfixPostfixOp)
 	 */
 	protected void sequence_PostfixOp(ISerializationContext context, PostfixOp semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.POSTFIX_OP__VAR_ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.POSTFIX_OP__VAR_ID));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.POSTFIX_OP__REF) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.POSTFIX_OP__REF));
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.POSTFIX_OP__OP) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.POSTFIX_OP__OP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPostfixOpAccess().getVarIdIDTerminalRuleCall_0_0(), semanticObject.getVarId());
+		feeder.accept(grammarAccess.getPostfixOpAccess().getRefIdReferenceIDTerminalRuleCall_0_0_1(), semanticObject.eGet(ReflexPackage.Literals.POSTFIX_OP__REF, false));
 		feeder.accept(grammarAccess.getPostfixOpAccess().getOpInfixPostfixOpEnumRuleCall_1_0(), semanticObject.getOp());
 		feeder.finish();
 	}
@@ -975,10 +958,22 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     ProcessVariable returns ProgramVariable
+	 *
+	 * Constraint:
+	 *     (type=Type name=ID shared?='shared'?)
+	 */
+	protected void sequence_ProcessVariable_ProgramVariable(ISerializationContext context, ProgramVariable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (annotations+=Annotation* name=ID variables+=ProcessVariable* states+=State*)
+	 *     (annotations+=Annotation* name=ID (imports+=ImportedVariableList | variables+=ProcessVariable)* states+=State*)
 	 */
 	protected void sequence_Process(ISerializationContext context, ru.iaie.reflex.reflex.Process semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.Annotation;
+import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.State;
@@ -34,6 +35,7 @@ import ru.iaie.reflex.reflex.State;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProcessImpl#getStates <em>States</em>}</li>
  * </ul>
@@ -71,6 +73,16 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getImports()
+   * @generated
+   * @ordered
+   */
+  protected EList<ImportedVariableList> imports;
 
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
@@ -159,6 +171,21 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
    * @generated
    */
   @Override
+  public EList<ImportedVariableList> getImports()
+  {
+    if (imports == null)
+    {
+      imports = new EObjectContainmentEList<ImportedVariableList>(ImportedVariableList.class, this, ReflexPackage.PROCESS__IMPORTS);
+    }
+    return imports;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<ProcessVariable> getVariables()
   {
     if (variables == null)
@@ -195,6 +222,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
     {
       case ReflexPackage.PROCESS__ANNOTATIONS:
         return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.PROCESS__IMPORTS:
+        return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROCESS__VARIABLES:
         return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROCESS__STATES:
@@ -217,6 +246,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
         return getAnnotations();
       case ReflexPackage.PROCESS__NAME:
         return getName();
+      case ReflexPackage.PROCESS__IMPORTS:
+        return getImports();
       case ReflexPackage.PROCESS__VARIABLES:
         return getVariables();
       case ReflexPackage.PROCESS__STATES:
@@ -242,6 +273,10 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
         return;
       case ReflexPackage.PROCESS__NAME:
         setName((String)newValue);
+        return;
+      case ReflexPackage.PROCESS__IMPORTS:
+        getImports().clear();
+        getImports().addAll((Collection<? extends ImportedVariableList>)newValue);
         return;
       case ReflexPackage.PROCESS__VARIABLES:
         getVariables().clear();
@@ -271,6 +306,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
       case ReflexPackage.PROCESS__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ReflexPackage.PROCESS__IMPORTS:
+        getImports().clear();
+        return;
       case ReflexPackage.PROCESS__VARIABLES:
         getVariables().clear();
         return;
@@ -295,6 +333,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements ru.iaie
         return annotations != null && !annotations.isEmpty();
       case ReflexPackage.PROCESS__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReflexPackage.PROCESS__IMPORTS:
+        return imports != null && !imports.isEmpty();
       case ReflexPackage.PROCESS__VARIABLES:
         return variables != null && !variables.isEmpty();
       case ReflexPackage.PROCESS__STATES:

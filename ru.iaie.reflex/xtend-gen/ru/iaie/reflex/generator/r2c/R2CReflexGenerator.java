@@ -148,9 +148,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("void Input(void) {");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.append("P0V0 = 1;");
-    _builder.newLine();
     _builder.append("    ");
     _builder.append("printf(\"input\\n\");");
     _builder.newLine();
@@ -202,7 +199,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
         String _name = constant.getName();
         _builder.append(_name);
         _builder.append("*/ ");
-        String _translateExpr = this.translateExpr(constant.getConstValue());
+        String _translateExpr = this.translateExpr(constant.getValue());
         _builder.append(_translateExpr);
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
@@ -685,7 +682,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
       String _xifexpression = null;
       boolean _isReferencedTimeout = ReflexModelUtil.isReferencedTimeout(func);
       if (_isReferencedTimeout) {
-        _xifexpression = this.identifiersHelper.getId(ReflexModelUtil.resolveName(func.getRef()));
+        _xifexpression = this.identifiersHelper.getMapping(func.getRef());
       }
       _xblockexpression = _xifexpression;
     }
@@ -907,16 +904,16 @@ public class R2CReflexGenerator extends AbstractGenerator {
       InfixPostfixOp _op = ((InfixOp)expr).getOp();
       _builder.append(_op);
       _builder.append(" ");
-      String _id = this.identifiersHelper.getId(((InfixOp)expr).getVarId());
-      _builder.append(_id);
+      String _mapping = this.identifiersHelper.getMapping(((InfixOp)expr).getRef());
+      _builder.append(_mapping);
       return _builder.toString();
     }
     if (!_matched) {
       if (expr instanceof PostfixOp) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        String _id = this.identifiersHelper.getId(((PostfixOp)expr).getVarId());
-        _builder.append(_id);
+        String _mapping = this.identifiersHelper.getMapping(((PostfixOp)expr).getRef());
+        _builder.append(_mapping);
         _builder.append(" ");
         InfixPostfixOp _op = ((PostfixOp)expr).getOp();
         _builder.append(_op);
@@ -943,8 +940,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
       if (expr instanceof IdReference) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        String _id = this.identifiersHelper.getId(ReflexModelUtil.resolveName(((IdReference)expr)));
-        _builder.append(_id);
+        String _mapping = this.identifiersHelper.getMapping(((IdReference)expr));
+        _builder.append(_mapping);
         return _builder.toString();
       }
     }

@@ -13,7 +13,7 @@ package ru.iaie.reflex.reflex;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.PostfixOp#getVarId <em>Var Id</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PostfixOp#getRef <em>Ref</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PostfixOp#getOp <em>Op</em>}</li>
  * </ul>
  *
@@ -24,26 +24,26 @@ package ru.iaie.reflex.reflex;
 public interface PostfixOp extends UnaryExpression
 {
   /**
-   * Returns the value of the '<em><b>Var Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Id</em>' attribute.
-   * @see #setVarId(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPostfixOp_VarId()
+   * @return the value of the '<em>Ref</em>' reference.
+   * @see #setRef(IdReference)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPostfixOp_Ref()
    * @model
    * @generated
    */
-  String getVarId();
+  IdReference getRef();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PostfixOp#getVarId <em>Var Id</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PostfixOp#getRef <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var Id</em>' attribute.
-   * @see #getVarId()
+   * @param value the new value of the '<em>Ref</em>' reference.
+   * @see #getRef()
    * @generated
    */
-  void setVarId(String value);
+  void setRef(IdReference value);
 
   /**
    * Returns the value of the '<em><b>Op</b></em>' attribute.

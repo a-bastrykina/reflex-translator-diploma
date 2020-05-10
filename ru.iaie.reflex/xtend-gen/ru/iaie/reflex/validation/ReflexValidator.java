@@ -7,7 +7,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import org.eclipse.emf.common.util.EList;
@@ -25,7 +24,6 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.AssignmentExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.GlobalVariable;
@@ -33,6 +31,7 @@ import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -247,8 +246,8 @@ public class ReflexValidator extends AbstractReflexValidator {
           return Function.<Const>identity().apply(p);
         }
     }));
-    List<DeclaredVariable> _declaredVariables = ReflexModelUtil.getDeclaredVariables(process);
-    for (final DeclaredVariable variable : _declaredVariables) {
+    EList<ProcessVariable> _variables = process.getVariables();
+    for (final ProcessVariable variable : _variables) {
       {
         EAttribute _xifexpression = null;
         boolean _isPhysical = ReflexModelUtil.isPhysical(variable);
@@ -313,20 +312,20 @@ public class ReflexValidator extends AbstractReflexValidator {
   
   @Check
   public void checkImportedVariablesConflictsProcessVariables(final ImportedVariableList imports) {
-    final Function1<DeclaredVariable, String> _function = (DeclaredVariable it) -> {
+    final Function1<ProcessVariable, String> _function = (ProcessVariable it) -> {
       return ReflexModelUtil.getName(it);
     };
-    final Map<String, DeclaredVariable> ctx = IterableExtensions.<DeclaredVariable, String, DeclaredVariable>toMap(ReflexModelUtil.getDeclaredVariables(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(imports, ru.iaie.reflex.reflex.Process.class)), _function, 
-      new Function1<DeclaredVariable, DeclaredVariable>() {
-          public DeclaredVariable apply(DeclaredVariable p) {
-            return Function.<DeclaredVariable>identity().apply(p);
+    final Map<String, ProcessVariable> ctx = IterableExtensions.<ProcessVariable, String, ProcessVariable>toMap(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(imports, ru.iaie.reflex.reflex.Process.class).getVariables(), _function, 
+      new Function1<ProcessVariable, ProcessVariable>() {
+          public ProcessVariable apply(ProcessVariable p) {
+            return Function.<ProcessVariable>identity().apply(p);
           }
       });
-    EList<DeclaredVariable> _variables = imports.getVariables();
-    for (final DeclaredVariable variable : _variables) {
+    EList<ProcessVariable> _variables = imports.getVariables();
+    for (final ProcessVariable variable : _variables) {
       boolean _containsKey = ctx.containsKey(ReflexModelUtil.getName(variable));
       if (_containsKey) {
-        DeclaredVariable conflicted = ctx.get(ReflexModelUtil.getName(variable));
+        ProcessVariable conflicted = ctx.get(ReflexModelUtil.getName(variable));
         EAttribute _xifexpression = null;
         boolean _isPhysical = ReflexModelUtil.isPhysical(conflicted);
         if (_isPhysical) {
@@ -353,15 +352,15 @@ public class ReflexValidator extends AbstractReflexValidator {
     final Function1<ImportedVariableList, Boolean> _function = (ImportedVariableList it) -> {
       return Boolean.valueOf(it.equals(importToCheck));
     };
-    Iterable<ImportedVariableList> _reject = IterableExtensions.<ImportedVariableList>reject(ReflexModelUtil.getImports(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(importToCheck, ru.iaie.reflex.reflex.Process.class)), _function);
+    Iterable<ImportedVariableList> _reject = IterableExtensions.<ImportedVariableList>reject(EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(importToCheck, ru.iaie.reflex.reflex.Process.class).getImports(), _function);
     for (final ImportedVariableList imp : _reject) {
-      EList<DeclaredVariable> _variables = imp.getVariables();
-      for (final DeclaredVariable variable : _variables) {
+      EList<ProcessVariable> _variables = imp.getVariables();
+      for (final ProcessVariable variable : _variables) {
         ctx.put(ReflexModelUtil.getName(variable), imp);
       }
     }
-    EList<DeclaredVariable> _variables_1 = importToCheck.getVariables();
-    for (final DeclaredVariable variable_1 : _variables_1) {
+    EList<ProcessVariable> _variables_1 = importToCheck.getVariables();
+    for (final ProcessVariable variable_1 : _variables_1) {
       boolean _containsKey = ctx.containsKey(ReflexModelUtil.getName(variable_1));
       if (_containsKey) {
         ImportedVariableList conflicted = ctx.get(ReflexModelUtil.getName(variable_1));
@@ -455,6 +454,27 @@ public class ReflexValidator extends AbstractReflexValidator {
     boolean _isEmpty = IterableExtensions.isEmpty(meaningful);
     if (_isEmpty) {
       this.warning("State body has no start | stop | error process statements or assign expressions", null);
+    }
+  }
+  
+  @Check
+  public void checkConstValue(final Const c) {
+    boolean _isConstExpr = ExpressionUtil.isConstExpr(c.getValue());
+    boolean _not = (!_isConstExpr);
+    if (_not) {
+      this.error("Only constant expressions allowed", ReflexValidator.ePackage.getConst_Value());
+    }
+  }
+  
+  @Check
+  public void checkEnumMemberValue(final EnumMember em) {
+    boolean _hasValue = ReflexModelUtil.hasValue(em);
+    if (_hasValue) {
+      boolean _isConstExpr = ExpressionUtil.isConstExpr(em.getValue());
+      boolean _not = (!_isConstExpr);
+      if (_not) {
+        this.error("Only constant expressions allowed", ReflexValidator.ePackage.getEnumMember_Value());
+      }
     }
   }
 }

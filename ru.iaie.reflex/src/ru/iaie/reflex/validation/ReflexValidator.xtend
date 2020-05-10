@@ -28,11 +28,11 @@ import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.Register
 import ru.iaie.reflex.reflex.ImportedVariableList
 import static java.util.function.Function.identity;
-import ru.iaie.reflex.reflex.DeclaredVariable
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.IfElseStat
 import ru.iaie.reflex.reflex.Statement
 import ru.iaie.reflex.reflex.SwitchStat
+import ru.iaie.reflex.reflex.ProcessVariable
 
 /** 
  * This class contains custom validation rules. 
@@ -154,7 +154,7 @@ class ReflexValidator extends AbstractReflexValidator {
 		globalCtx.putAll(program.enums.map[enumMembers].flatten.toMap([name], identity))
 		globalCtx.putAll(program.consts.toMap([name], identity))
 
-		for (variable : process.declaredVariables) {
+		for (variable : process.variables) {
 			var ref = variable.isPhysical ? ePackage.physicalVariable_Name : ePackage.programVariable_Name
 			if (globalCtx.containsKey(variable.name)) {
 				var shadowed = globalCtx.get(variable.name)
@@ -175,7 +175,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 
 	@Check def void checkImportedVariablesConflictsProcessVariables(ImportedVariableList imports) {
-		val Map<String, DeclaredVariable> ctx = imports.getContainerOfType(Process).declaredVariables.toMap([name],
+		val Map<String, ProcessVariable> ctx = imports.getContainerOfType(Process).variables.toMap([name],
 			identity);
 		for (variable : imports.variables) {
 			if (ctx.containsKey(variable.name)) {
@@ -262,6 +262,22 @@ class ReflexValidator extends AbstractReflexValidator {
 			warning("State body has no start | stop | error process statements or assign expressions", null)
 		}
 	}
+	
+	@Check def void checkConstValue(Const c) {
+		if (!c.value.isConstExpr) {
+			error("Only constant expressions allowed", ePackage.const_Value) 
+		}
+	}
+	
+	@Check def void checkEnumMemberValue(EnumMember em) {
+		if (em.hasValue) {
+			if (!em.value.isConstExpr) {
+				error("Only constant expressions allowed", ePackage.enumMember_Value)
+			}
+		}
+	}
+	
+	
 
 // TODO: add checks for types
 }

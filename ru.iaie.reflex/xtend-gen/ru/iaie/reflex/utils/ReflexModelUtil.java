@@ -18,7 +18,6 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
-import ru.iaie.reflex.reflex.DeclaredVariable;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
@@ -90,23 +89,11 @@ public class ReflexModelUtil {
     return false;
   }
   
-  public static List<DeclaredVariable> getDeclaredVariables(final ru.iaie.reflex.reflex.Process p) {
-    return IterableExtensions.<DeclaredVariable>toList(Iterables.<DeclaredVariable>filter(p.getVariables(), DeclaredVariable.class));
-  }
-  
-  public static List<DeclaredVariable> getImportedVariables(final ru.iaie.reflex.reflex.Process p) {
-    final Function1<ImportedVariableList, EList<DeclaredVariable>> _function = (ImportedVariableList it) -> {
+  public static List<ProcessVariable> getImportedVariables(final ru.iaie.reflex.reflex.Process p) {
+    final Function1<ImportedVariableList, EList<ProcessVariable>> _function = (ImportedVariableList it) -> {
       return it.getVariables();
     };
-    return IterableExtensions.<DeclaredVariable>toList(Iterables.<DeclaredVariable>concat(ListExtensions.<ImportedVariableList, EList<DeclaredVariable>>map(ReflexModelUtil.getImports(p), _function)));
-  }
-  
-  public static List<ImportedVariableList> getImports(final ru.iaie.reflex.reflex.Process p) {
-    return IterableExtensions.<ImportedVariableList>toList(Iterables.<ImportedVariableList>filter(p.getVariables(), ImportedVariableList.class));
-  }
-  
-  public static boolean isDeclared(final ProcessVariable v) {
-    return (v instanceof DeclaredVariable);
+    return IterableExtensions.<ProcessVariable>toList(Iterables.<ProcessVariable>concat(ListExtensions.<ImportedVariableList, EList<ProcessVariable>>map(p.getImports(), _function)));
   }
   
   public static Type getType(final ProcessVariable v) {
@@ -139,7 +126,7 @@ public class ReflexModelUtil {
     return null;
   }
   
-  public static String getName(final DeclaredVariable v) {
+  public static String getName(final ProcessVariable v) {
     if ((v instanceof ProgramVariable)) {
       return ((ProgramVariable)v).getName();
     }
