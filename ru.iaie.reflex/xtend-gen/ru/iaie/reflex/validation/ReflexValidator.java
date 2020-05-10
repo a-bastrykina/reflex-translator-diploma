@@ -42,6 +42,7 @@ import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.ReflexModelUtil;
@@ -173,7 +174,7 @@ public class ReflexValidator extends AbstractReflexValidator {
   @Check
   public void checkStateReachability(final ru.iaie.reflex.reflex.State state) {
     final ru.iaie.reflex.reflex.Process process = EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(state, ru.iaie.reflex.reflex.Process.class);
-    int curStateIndex = process.getStates().indexOf(state);
+    int curStateIndex = ReflexModelUtil.getIndex(state);
     if ((curStateIndex == 0)) {
       return;
     }
@@ -438,5 +439,22 @@ public class ReflexValidator extends AbstractReflexValidator {
       }
     }
     this.warning("Process is unreachable (never started by another process)", ReflexValidator.ePackage.getProcess_Name());
+  }
+  
+  @Check
+  public void checkStateContainsMeaningfulStatements(final ru.iaie.reflex.reflex.State state) {
+    final Function1<Statement, Boolean> _function = (Statement stat) -> {
+      return Boolean.valueOf(((((((stat instanceof StartProcStat) || 
+        ((stat instanceof StopProcStat) && (!ReflexModelUtil.selfStop(((StopProcStat) stat))))) || 
+        ((stat instanceof ErrorStat) && (!ReflexModelUtil.selfError(((ErrorStat) stat))))) || 
+        ((stat instanceof AssignmentExpression) && (ExpressionUtil.hasAssignment(((AssignmentExpression) stat)) || ExpressionUtil.hasFunctionCall(((AssignmentExpression) stat))))) || 
+        (stat instanceof IfElseStat)) || 
+        (stat instanceof SwitchStat)));
+    };
+    final Iterable<Statement> meaningful = IterableExtensions.<Statement>filter(EcoreUtil2.<Statement>eAllOfType(state, Statement.class), _function);
+    boolean _isEmpty = IterableExtensions.isEmpty(meaningful);
+    if (_isEmpty) {
+      this.warning("State body has no start | stop | error process statements or assign expressions", null);
+    }
   }
 }

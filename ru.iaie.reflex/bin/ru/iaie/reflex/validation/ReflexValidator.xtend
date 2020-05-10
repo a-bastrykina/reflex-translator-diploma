@@ -31,6 +31,8 @@ import static java.util.function.Function.identity;
 import ru.iaie.reflex.reflex.DeclaredVariable
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.IfElseStat
+import ru.iaie.reflex.reflex.Statement
+import ru.iaie.reflex.reflex.SwitchStat
 
 /** 
  * This class contains custom validation rules. 
@@ -51,7 +53,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 
 	@Check def void checkStateTransitions(ru.iaie.reflex.reflex.State state) {
-		if (state.isLooped) return;
+		if(state.isLooped) return;
 		val stateTransitions = state.eAllContents.filter(SetStateStat)
 		if (stateTransitions.isEmpty) {
 			val selfStopTransitions = state.eAllContents.filter(StopProcStat).filter[selfStop]
@@ -117,7 +119,7 @@ class ReflexValidator extends AbstractReflexValidator {
 
 	@Check def void checkStateReachability(ru.iaie.reflex.reflex.State state) {
 		val process = state.getContainerOfType(Process)
-		var curStateIndex = process.states.indexOf(state)
+		var curStateIndex = state.index
 		if(curStateIndex == 0) return
 		var transitionExists = process.containsReferencesOfType(state, ePackage.setStateStat_State)
 		if (!transitionExists) {
@@ -205,13 +207,13 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		}
 	}
-	
+
 	@Check def void checkProcessHasStates(Process proc) {
 		if (proc.states.empty) {
 			error("No states declared in process", ePackage.process_Name)
 		}
 	}
-	
+
 	@Check def void checkTimeoutHasReaction(TimeoutFunction func) {
 		val rootStat = func.body;
 		if (rootStat instanceof CompoundStatement) {
@@ -220,7 +222,7 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		}
 	}
-	
+
 	@Check def void checkIfStat(IfElseStat stat) {
 		val ifRootStat = stat.then
 		if (ifRootStat instanceof CompoundStatement) {
@@ -229,22 +231,37 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		}
 	}
-	
+
 	@Check def void checkStateBody(ru.iaie.reflex.reflex.State state) {
 		if (state.stateFunction.statements.empty && !state.hasTimeoutReaction) {
 			error("State body has no statements", null)
 		}
 	}
-	
+
 	@Check def void checkProcessIsReachable(Process process) {
-		if (process.index == 0) return
+		if(process.index == 0) return
 		val program = process.getContainerOfType(Program)
 		for (outsideProcess : program.processes.reject[equals(process)]) {
-			if (outsideProcess.containsReferencesOfType(process, ePackage.startProcStat_Process)) return
+			if(outsideProcess.containsReferencesOfType(process, ePackage.startProcStat_Process)) return
 		}
 		warning("Process is unreachable (never started by another process)", ePackage.process_Name)
 	}
-	
-	// TODO: add checks for types
 
+	@Check def void checkStateContainsMeaningfulStatements(ru.iaie.reflex.reflex.State state) {
+		val meaningful = state.eAllOfType(Statement).filter(
+			stat |
+				stat instanceof StartProcStat || 
+				stat instanceof StopProcStat && !(stat as StopProcStat).selfStop ||
+				stat instanceof ErrorStat && !(stat as ErrorStat).selfError ||
+				stat instanceof AssignmentExpression &&
+				((stat as AssignmentExpression).hasAssignment || (stat as AssignmentExpression).hasFunctionCall) || 
+				stat instanceof IfElseStat ||
+				stat instanceof SwitchStat
+		)
+		if (meaningful.empty) {
+			warning("State body has no start | stop | error process statements or assign expressions", null)
+		}
+	}
+
+// TODO: add checks for types
 }

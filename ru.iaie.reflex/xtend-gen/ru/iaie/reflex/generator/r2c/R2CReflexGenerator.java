@@ -62,7 +62,6 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
-import ru.iaie.reflex.reflex.TypeSignSpec;
 import ru.iaie.reflex.reflex.Types;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
@@ -493,7 +492,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("Init_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (int i = 0; i < 10; i++) {");
+    _builder.append("for (;;) {");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("Input();");
@@ -582,8 +581,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     {
       EList<Statement> _statements = state.getStateFunction().getStatements();
       for(final Statement stat : _statements) {
+        _builder.append("\t");
         String _translateStatement = this.translateStatement(proc, state, stat);
-        _builder.append(_translateStatement);
+        _builder.append(_translateStatement, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -591,8 +591,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
       TimeoutFunction _timeoutFunction = state.getTimeoutFunction();
       boolean _tripleNotEquals = (_timeoutFunction != null);
       if (_tripleNotEquals) {
+        _builder.append("\t");
         String _translateTimeoutFunction = this.translateTimeoutFunction(proc, state, state.getTimeoutFunction());
-        _builder.append(_translateTimeoutFunction);
+        _builder.append(_translateTimeoutFunction, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -771,8 +772,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _translateExpr = this.translateExpr(stat.getCond());
     _builder.append(_translateExpr);
     _builder.append(") ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     String _translateStatement = this.translateStatement(proc, state, stat.getThen());
-    _builder.append(_translateStatement);
+    _builder.append(_translateStatement, "\t");
     _builder.newLineIfNotEmpty();
     {
       Statement _else = stat.getElse();
@@ -1166,14 +1169,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
       return "char";
     }
     StringConcatenation _builder = new StringConcatenation();
-    {
-      boolean _hasModifier = ReflexModelUtil.hasModifier(t);
-      if (_hasModifier) {
-        TypeSignSpec _sign = t.getSign();
-        _builder.append(_sign);
-      }
-    }
-    _builder.append(" ");
     Types _name_1 = t.getName();
     _builder.append(_name_1);
     return _builder.toString();

@@ -270,7 +270,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			void Control_Loop (void)    /* Control algorithm */
 			{
 				Init_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
-				for (int i = 0; i < 10; i++) {
+				for (;;) {
 					Input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
@@ -303,12 +303,12 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def translateState(Process proc, State state) {
 		return '''
 			case «state.index»: { /* State: «state.name» */
-			«FOR stat : state.stateFunction.statements»
-				«translateStatement(proc, state, stat)»
-			«ENDFOR»
-			«IF state.timeoutFunction !== null »
-				«translateTimeoutFunction(proc, state, state.timeoutFunction)»
-			«ENDIF»
+				«FOR stat : state.stateFunction.statements»
+					«translateStatement(proc, state, stat)»
+				«ENDFOR»
+				«IF state.timeoutFunction !== null »
+					«translateTimeoutFunction(proc, state, state.timeoutFunction)»
+				«ENDIF»
 				break;
 			}
 		'''
@@ -366,10 +366,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 			RestartStat:
 				return translateRestartProcStat(proc)
 			CompoundStatement:
-				return '''
+				return ''' 
 					{
 					«FOR stat : statement.statements»
-					«translateStatement(proc, state, stat)»
+						«translateStatement(proc, state, stat)»
 					«ENDFOR»
 					}
 				'''
@@ -378,9 +378,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def translateIfElseStat(Process proc, State state, IfElseStat stat) {
 		return '''
-			if («translateExpr(stat.cond)») «translateStatement(proc, state, stat.then)»
+			if («translateExpr(stat.cond)») 
+				«translateStatement(proc, state, stat.then)»
 			«IF stat.getElse !== null»	
-				else «translateStatement(proc, state, stat.getElse)»
+			else «translateStatement(proc, state, stat.getElse)»
 			«ENDIF»
 		'''
 	}
@@ -483,7 +484,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	
 	def translateType(Type t) {
 		if (t.name == Types.BOOL_TYPE) return "char"
-		return '''«IF t.hasModifier»«t.sign»«ENDIF» «t.name»'''
+		return '''«t.name»'''
 	}
 	
 	def translateBoolLiteral(Boolean l) {
