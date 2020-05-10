@@ -21,7 +21,6 @@ struct St_Word
     INT8U cur_state;     /* текущее состояние */
 };
 
-
 extern struct St_Word *Pr_States;                          /* Указатель для связи с R_LIB.C */
 extern struct St_Word Original_Pr_States[PROCESS_Nn + 1];  /* место под структуры PSW */
 

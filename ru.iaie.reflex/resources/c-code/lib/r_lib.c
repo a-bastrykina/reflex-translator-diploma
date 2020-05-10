@@ -25,8 +25,8 @@
 //#include "r_main.h"
 
 
-St_Word *Pr_States;                          /* ��������� ��� ����� � R_LIB.C */
-St_Word Original_Pr_States[PROCESS_Nn + 1];  /* ����� ��� ��������� PSW */
+struct St_Word *Pr_States;                          /* ��������� ��� ����� � R_LIB.C */
+struct St_Word Original_Pr_States[PROCESS_Nn + 1];  /* ����� ��� ��������� PSW */
 
 
 /*================ Set State Of Process ===================*/

@@ -74,8 +74,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   private Program program;
   
-  private List<String> commonResources = CollectionLiterals.<String>newArrayList("usr/usr.cpp", "usr/usr.h", 
-    "lib/r_cnst.h", "lib/r_io.cpp", "lib/r_io.h", "lib/r_lib.cpp", "lib/r_lib.h", "lib/r_main.h", 
+  private List<String> commonResources = CollectionLiterals.<String>newArrayList("usr/usr.c", "usr/usr.h", 
+    "lib/r_cnst.h", "lib/r_io.c", "lib/r_io.h", "lib/r_lib.c", "lib/r_lib.h", "lib/r_main.h", 
     "generated/ext.h", "generated/io.h");
   
   @Override
@@ -123,13 +123,13 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append(")");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("set(CMAKE_CXX_STANDARD 98)");
+    _builder.append("set(CMAKE_C_STANDARD 99)");
     _builder.newLine();
     _builder.newLine();
     _builder.append("add_executable(");
     String _lowerCase_1 = this.program.getName().toLowerCase();
     _builder.append(_lowerCase_1);
-    _builder.append(" generated/main.cpp generated/proc.cpp lib/r_io.cpp lib/r_lib.cpp usr/usr.cpp generated/io.cpp)");
+    _builder.append(" generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c)");
     _builder.newLineIfNotEmpty();
     String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
@@ -163,13 +163,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/generated/io.cpp");
+    _builder_1.append("c-code/generated/io.c");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
   public void generateConstantsFile(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("#pragma once");
+    _builder.append("#ifndef _cnst_h");
+    _builder.newLine();
+    _builder.append("#define _cnst_h 1");
     _builder.newLine();
     _builder.append("/*           Constant definitions          */");
     _builder.newLine();
@@ -181,6 +183,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _generateEnums = this.generateEnums(resource);
     _builder.append(_generateEnums);
     _builder.newLineIfNotEmpty();
+    _builder.append("#endif");
+    _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("c-code/generated/cnst.h");
@@ -195,10 +199,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
         _builder.append("#define ");
         String _constantId = this.identifiersHelper.getConstantId(constant);
         _builder.append(_constantId);
-        _builder.append(" /*");
-        String _name = constant.getName();
-        _builder.append(_name);
-        _builder.append("*/ ");
+        _builder.append(" ");
         String _translateExpr = this.translateExpr(constant.getValue());
         _builder.append(_translateExpr);
         _builder.append(" ");
@@ -249,7 +250,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("/* GVAR.H = Global Variables Image-File. */");
     _builder.newLine();
-    _builder.append("#pragma once");
+    _builder.append("#ifndef _gvar_h");
+    _builder.newLine();
+    _builder.append("#define _gvar_h 1");
     _builder.newLine();
     _builder.append("/*       Process variables     */");
     _builder.newLine();
@@ -266,6 +269,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _generateOutputPorts = this.generateOutputPorts(resource, false);
     _builder.append(_generateOutputPorts);
     _builder.newLineIfNotEmpty();
+    _builder.append("#endif");
+    _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("c-code/generated/gvar.h");
@@ -275,7 +280,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder_2.newLine();
     _builder_2.append("/* xvar.h = Extern Variables Image-File. */");
     _builder_2.newLine();
-    _builder_2.append("#pragma once");
+    _builder_2.append("#ifndef _xvar_h");
+    _builder_2.newLine();
+    _builder_2.append("#define _xvar_h 1");
     _builder_2.newLine();
     _builder_2.append("/*       Process variables     */");
     _builder_2.newLine();
@@ -292,6 +299,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _generateOutputPorts_1 = this.generateOutputPorts(resource, true);
     _builder_2.append(_generateOutputPorts_1);
     _builder_2.newLineIfNotEmpty();
+    _builder_2.append("#endif");
+    _builder_2.newLine();
     final String externFileContent = _builder_2.toString();
     StringConcatenation _builder_3 = new StringConcatenation();
     _builder_3.append("c-code/generated/xvar.h");
@@ -305,10 +314,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
       for(final GlobalVariable variable : _globalVars) {
         {
           if (externDef) {
-            _builder.append("extern");
+            _builder.append("extern ");
           }
         }
-        _builder.append(" ");
         String _generateGlobalVariableDefinition = this.generateGlobalVariableDefinition(variable);
         _builder.append(_generateGlobalVariableDefinition);
         _builder.newLineIfNotEmpty();
@@ -322,10 +330,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
           for(final ProcessVariable variable_1 : _variables) {
             {
               if (externDef) {
-                _builder.append("extern");
+                _builder.append("extern ");
               }
             }
-            _builder.append(" ");
             String _generateProcessVariableDefinition = this.generateProcessVariableDefinition(proc, variable_1);
             _builder.append(_generateProcessVariableDefinition);
             _builder.newLineIfNotEmpty();
@@ -376,10 +383,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
           if (_equals) {
             {
               if (externDef) {
-                _builder.append("extern");
+                _builder.append("extern ");
               }
             }
-            _builder.append(" char ");
+            _builder.append("char ");
             String _portId = this.identifiersHelper.getPortId(reg);
             _builder.append(_portId);
             _builder.append(";");
@@ -402,10 +409,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
           if (_equals) {
             {
               if (externDef) {
-                _builder.append("extern");
+                _builder.append("extern ");
               }
             }
-            _builder.append(" char ");
+            _builder.append("char ");
             String _portId = this.identifiersHelper.getPortId(reg);
             _builder.append(_portId);
             _builder.append(";");
@@ -419,7 +426,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   public void generateProcessDefinitions(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("#pragma once");
+    _builder.append("#ifndef _proc_h");
+    _builder.newLine();
+    _builder.append("#define _proc_h 1");
     _builder.newLine();
     {
       EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
@@ -437,6 +446,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append(_minus);
     _builder.newLineIfNotEmpty();
     _builder.append("#define PROCESS_N1 0");
+    _builder.newLine();
+    _builder.append("#endif");
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
@@ -462,7 +473,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     }
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/generated/proc.cpp");
+    _builder_1.append("c-code/generated/proc.c");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
@@ -528,7 +539,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/generated/main.cpp");
+    _builder_1.append("c-code/generated/main.c");
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   

@@ -65,8 +65,8 @@ class R2CReflexGenerator extends AbstractGenerator {
 // These files are common, they are just need to be copied to target c-code dir 
 // TODO: replace with reading config
 // TODO: move to singleton with configuration
-	List<String> commonResources = newArrayList("usr/usr.cpp", "usr/usr.h",
-		"lib/r_cnst.h", "lib/r_io.cpp", "lib/r_io.h", "lib/r_lib.cpp", "lib/r_lib.h", "lib/r_main.h",
+	List<String> commonResources = newArrayList("usr/usr.c", "usr/usr.h",
+		"lib/r_cnst.h", "lib/r_io.c", "lib/r_io.h", "lib/r_lib.c", "lib/r_lib.h", "lib/r_main.h",
 		"generated/ext.h", "generated/io.h")
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -99,9 +99,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 			cmake_minimum_required(VERSION 3.15)
 			project(«program.name.toLowerCase»)
 			
-			set(CMAKE_CXX_STANDARD 98)
+			set(CMAKE_C_STANDARD 99)
 			
-			add_executable(«program.name.toLowerCase» generated/main.cpp generated/proc.cpp lib/r_io.cpp lib/r_lib.cpp usr/usr.cpp generated/io.cpp)
+			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c)
 		'''
 		fsa.generateFile('''c-code/CMakeLists.txt''', fileContent)
 	}
@@ -120,17 +120,19 @@ class R2CReflexGenerator extends AbstractGenerator {
 		    printf("output\n");
 		} /* Writing IO func */
 		'''
-		fsa.generateFile('''c-code/generated/io.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/io.c''', fileContent)
 	}
 
 // TODO: rename
 	def generateConstantsFile(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
-			#pragma once
+			#ifndef _cnst_h
+			#define _cnst_h 1
 			/*           Constant definitions          */
 			«generateConstants(resource)»
 			/*                Enums                    */
 			«generateEnums(resource)»
+			#endif
 		'''
 		fsa.generateFile('''c-code/generated/cnst.h''', fileContent)
 	}
@@ -139,7 +141,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
-			#define «identifiersHelper.getConstantId(constant)» /*«constant.name»*/ «translateExpr(constant.value)» 
+			#define «identifiersHelper.getConstantId(constant)» «translateExpr(constant.value)» 
 			«ENDFOR»
 		'''
 	}
@@ -160,25 +162,29 @@ class R2CReflexGenerator extends AbstractGenerator {
 		val fileContent = '''
 			/*           Variables          */
 			/* GVAR.H = Global Variables Image-File. */
-			#pragma once
+			#ifndef _gvar_h
+			#define _gvar_h 1
 			/*       Process variables     */
 			«generateProcessVariables(resource, false)»
 			/*          Input Ports         */
 			«generateInputPorts(resource, false)»
 			/*         Output Ports         */
 			«generateOutputPorts(resource, false)»
+			#endif
 		'''
 		fsa.generateFile('''c-code/generated/gvar.h''', fileContent)
 		val externFileContent = '''
 			/*           Variables          */
 			/* xvar.h = Extern Variables Image-File. */
-			#pragma once
+			#ifndef _xvar_h
+			#define _xvar_h 1
 			/*       Process variables     */
 			«generateProcessVariables(resource, true)»
 			/*          Input Ports         */
 			«generateInputPorts(resource, true)»
 			/*         Output Ports         */
 			«generateOutputPorts(resource, true)»
+			#endif
 		'''
 		fsa.generateFile('''c-code/generated/xvar.h''', externFileContent)
 	}
@@ -187,11 +193,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 	def generateProcessVariables(Resource resource, boolean externDef) {
 		return '''
 			«FOR variable : program.globalVars»
-			«IF externDef»extern«ENDIF» «generateGlobalVariableDefinition(variable)»
+			«IF externDef»extern «ENDIF»«generateGlobalVariableDefinition(variable)»
 			«ENDFOR»
 			«FOR proc : program.processes»
 			«FOR variable: proc.variables»
-			«IF externDef»extern«ENDIF» «generateProcessVariableDefinition(proc, variable)»
+			«IF externDef»extern «ENDIF»«generateProcessVariableDefinition(proc, variable)»
 			«ENDFOR»
 			«ENDFOR»
 		'''
@@ -216,7 +222,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''
 			«FOR reg : program.registers»
 			«IF reg.type == RegisterType.INPUT»
-			«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
+			«IF externDef»extern «ENDIF»char «identifiersHelper.getPortId(reg)»;
 			«ENDIF»
 			«ENDFOR»
 		'''
@@ -227,7 +233,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''
 			«FOR reg : program.registers»
 			«IF reg.type == RegisterType.OUTPUT»
-			«IF externDef»extern«ENDIF» char «identifiersHelper.getPortId(reg)»;
+			«IF externDef»extern «ENDIF»char «identifiersHelper.getPortId(reg)»;
 			«ENDIF»
 			«ENDFOR»
 		'''
@@ -235,12 +241,14 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateProcessDefinitions(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
-			#pragma once
+			#ifndef _proc_h
+			#define _proc_h 1
 			«FOR process : program.processes»
 			void «identifiersHelper.getProcessFuncId(process)»();
 			«ENDFOR»
 			#define PROCESS_Nn «program.processes.size - 1»
 			#define PROCESS_N1 0
+			#endif
 		'''
 		fsa.generateFile('''c-code/generated/proc.h''', fileContent)
 	}
@@ -254,7 +262,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			«translateProcess(proc)»
 			«ENDFOR»
 		'''
-		fsa.generateFile('''c-code/generated/proc.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/proc.c''', fileContent)
 	}
 
 	def generateMain(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -284,7 +292,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			}
 		'''
 
-		fsa.generateFile('''c-code/generated/main.cpp''', fileContent)
+		fsa.generateFile('''c-code/generated/main.c''', fileContent)
 	}
 
 	def translateProcess(Process proc) {
