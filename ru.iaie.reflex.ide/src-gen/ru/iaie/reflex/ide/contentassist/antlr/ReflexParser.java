@@ -46,7 +46,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCompareExpressionAccess().getAlternatives(), "rule__CompareExpression__Alternatives");
 			builder.put(grammarAccess.getAnnotationAccess().getAlternatives(), "rule__Annotation__Alternatives");
 			builder.put(grammarAccess.getAnnotationKeyAccess().getAlternatives(), "rule__AnnotationKey__Alternatives");
-			builder.put(grammarAccess.getRegisterTypeAccess().getAlternatives(), "rule__RegisterType__Alternatives");
+			builder.put(grammarAccess.getPortTypeAccess().getAlternatives(), "rule__PortType__Alternatives");
 			builder.put(grammarAccess.getStateQualifierAccess().getAlternatives(), "rule__StateQualifier__Alternatives");
 			builder.put(grammarAccess.getInfixPostfixOpAccess().getAlternatives(), "rule__InfixPostfixOp__Alternatives");
 			builder.put(grammarAccess.getAssignOperatorAccess().getAlternatives(), "rule__AssignOperator__Alternatives");
@@ -72,7 +72,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProcessVariableAccess().getGroup(), "rule__ProcessVariable__Group__0");
 			builder.put(grammarAccess.getGlobalVariableAccess().getGroup(), "rule__GlobalVariable__Group__0");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getGroup(), "rule__PhysicalVariable__Group__0");
-			builder.put(grammarAccess.getRegisterPortMappingAccess().getGroup(), "rule__RegisterPortMapping__Group__0");
+			builder.put(grammarAccess.getPortMappingAccess().getGroup(), "rule__PortMapping__Group__0");
 			builder.put(grammarAccess.getProgramVariableAccess().getGroup(), "rule__ProgramVariable__Group__0");
 			builder.put(grammarAccess.getStatementSequenceAccess().getGroup(), "rule__StatementSequence__Group__0");
 			builder.put(grammarAccess.getCompoundStatementAccess().getGroup(), "rule__CompoundStatement__Group__0");
@@ -97,7 +97,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSetStateStatAccess().getGroup_2_1(), "rule__SetStateStat__Group_2_1__0");
 			builder.put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
 			builder.put(grammarAccess.getFunctionAccess().getGroup_4(), "rule__Function__Group_4__0");
-			builder.put(grammarAccess.getRegisterAccess().getGroup(), "rule__Register__Group__0");
+			builder.put(grammarAccess.getPortAccess().getGroup(), "rule__Port__Group__0");
 			builder.put(grammarAccess.getConstAccess().getGroup(), "rule__Const__Group__0");
 			builder.put(grammarAccess.getEnumAccess().getGroup(), "rule__Enum__Group__0");
 			builder.put(grammarAccess.getEnumAccess().getGroup_4(), "rule__Enum__Group_4__0");
@@ -147,7 +147,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProgramAccess().getEnumsAssignment_5_1(), "rule__Program__EnumsAssignment_5_1");
 			builder.put(grammarAccess.getProgramAccess().getFunctionsAssignment_5_2(), "rule__Program__FunctionsAssignment_5_2");
 			builder.put(grammarAccess.getProgramAccess().getGlobalVarsAssignment_5_3(), "rule__Program__GlobalVarsAssignment_5_3");
-			builder.put(grammarAccess.getProgramAccess().getRegistersAssignment_5_4(), "rule__Program__RegistersAssignment_5_4");
+			builder.put(grammarAccess.getProgramAccess().getPortsAssignment_5_4(), "rule__Program__PortsAssignment_5_4");
 			builder.put(grammarAccess.getProgramAccess().getProcessesAssignment_5_5(), "rule__Program__ProcessesAssignment_5_5");
 			builder.put(grammarAccess.getTactAccess().getValueAssignment_1(), "rule__Tact__ValueAssignment_1");
 			builder.put(grammarAccess.getProcessAccess().getAnnotationsAssignment_0_1(), "rule__Process__AnnotationsAssignment_0_1");
@@ -166,9 +166,9 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProcessVariableAccess().getSharedAssignment_1(), "rule__ProcessVariable__SharedAssignment_1");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getTypeAssignment_0(), "rule__PhysicalVariable__TypeAssignment_0");
 			builder.put(grammarAccess.getPhysicalVariableAccess().getNameAssignment_1(), "rule__PhysicalVariable__NameAssignment_1");
-			builder.put(grammarAccess.getPhysicalVariableAccess().getPortAssignment_3(), "rule__PhysicalVariable__PortAssignment_3");
-			builder.put(grammarAccess.getRegisterPortMappingAccess().getRegisterAssignment_0(), "rule__RegisterPortMapping__RegisterAssignment_0");
-			builder.put(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2(), "rule__RegisterPortMapping__PortBitAssignment_2");
+			builder.put(grammarAccess.getPhysicalVariableAccess().getMappingAssignment_3(), "rule__PhysicalVariable__MappingAssignment_3");
+			builder.put(grammarAccess.getPortMappingAccess().getPortAssignment_0(), "rule__PortMapping__PortAssignment_0");
+			builder.put(grammarAccess.getPortMappingAccess().getBitAssignment_2(), "rule__PortMapping__BitAssignment_2");
 			builder.put(grammarAccess.getProgramVariableAccess().getTypeAssignment_0(), "rule__ProgramVariable__TypeAssignment_0");
 			builder.put(grammarAccess.getProgramVariableAccess().getNameAssignment_1(), "rule__ProgramVariable__NameAssignment_1");
 			builder.put(grammarAccess.getStatementSequenceAccess().getStatementsAssignment_1(), "rule__StatementSequence__StatementsAssignment_1");
@@ -193,11 +193,11 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionAccess().getNameAssignment_1(), "rule__Function__NameAssignment_1");
 			builder.put(grammarAccess.getFunctionAccess().getArgTypesAssignment_3(), "rule__Function__ArgTypesAssignment_3");
 			builder.put(grammarAccess.getFunctionAccess().getArgTypesAssignment_4_1(), "rule__Function__ArgTypesAssignment_4_1");
-			builder.put(grammarAccess.getRegisterAccess().getTypeAssignment_0(), "rule__Register__TypeAssignment_0");
-			builder.put(grammarAccess.getRegisterAccess().getNameAssignment_1(), "rule__Register__NameAssignment_1");
-			builder.put(grammarAccess.getRegisterAccess().getAddr1Assignment_2(), "rule__Register__Addr1Assignment_2");
-			builder.put(grammarAccess.getRegisterAccess().getAddr2Assignment_3(), "rule__Register__Addr2Assignment_3");
-			builder.put(grammarAccess.getRegisterAccess().getRegSizeAssignment_4(), "rule__Register__RegSizeAssignment_4");
+			builder.put(grammarAccess.getPortAccess().getTypeAssignment_0(), "rule__Port__TypeAssignment_0");
+			builder.put(grammarAccess.getPortAccess().getNameAssignment_1(), "rule__Port__NameAssignment_1");
+			builder.put(grammarAccess.getPortAccess().getAddr1Assignment_2(), "rule__Port__Addr1Assignment_2");
+			builder.put(grammarAccess.getPortAccess().getAddr2Assignment_3(), "rule__Port__Addr2Assignment_3");
+			builder.put(grammarAccess.getPortAccess().getRegSizeAssignment_4(), "rule__Port__RegSizeAssignment_4");
 			builder.put(grammarAccess.getConstAccess().getTypeAssignment_1(), "rule__Const__TypeAssignment_1");
 			builder.put(grammarAccess.getConstAccess().getNameAssignment_2(), "rule__Const__NameAssignment_2");
 			builder.put(grammarAccess.getConstAccess().getValueAssignment_4(), "rule__Const__ValueAssignment_4");

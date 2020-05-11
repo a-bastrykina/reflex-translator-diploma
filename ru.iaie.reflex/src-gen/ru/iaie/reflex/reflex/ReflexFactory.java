@@ -96,13 +96,13 @@ public interface ReflexFactory extends EFactory
   PhysicalVariable createPhysicalVariable();
 
   /**
-   * Returns a new object of class '<em>Register Port Mapping</em>'.
+   * Returns a new object of class '<em>Port Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Register Port Mapping</em>'.
+   * @return a new object of class '<em>Port Mapping</em>'.
    * @generated
    */
-  RegisterPortMapping createRegisterPortMapping();
+  PortMapping createPortMapping();
 
   /**
    * Returns a new object of class '<em>Program Variable</em>'.
@@ -249,13 +249,13 @@ public interface ReflexFactory extends EFactory
   Function createFunction();
 
   /**
-   * Returns a new object of class '<em>Register</em>'.
+   * Returns a new object of class '<em>Port</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Register</em>'.
+   * @return a new object of class '<em>Port</em>'.
    * @generated
    */
-  Register createRegister();
+  Port createPort();
 
   /**
    * Returns a new object of class '<em>Const</em>'.

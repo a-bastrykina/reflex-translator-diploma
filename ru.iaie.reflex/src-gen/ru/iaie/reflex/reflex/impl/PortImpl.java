@@ -10,28 +10,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Register</b></em>'.
+ * An implementation of the model object '<em><b>Port</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterImpl#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterImpl#getAddr1 <em>Addr1</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterImpl#getAddr2 <em>Addr2</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterImpl#getRegSize <em>Reg Size</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getType <em>Type</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getAddr1 <em>Addr1</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getAddr2 <em>Addr2</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getRegSize <em>Reg Size</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RegisterImpl extends MinimalEObjectImpl.Container implements Register
+public class PortImpl extends MinimalEObjectImpl.Container implements Port
 {
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -41,7 +41,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    * @ordered
    */
-  protected static final RegisterType TYPE_EDEFAULT = RegisterType.INPUT;
+  protected static final PortType TYPE_EDEFAULT = PortType.INPUT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -51,7 +51,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    * @ordered
    */
-  protected RegisterType type = TYPE_EDEFAULT;
+  protected PortType type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -138,7 +138,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RegisterImpl()
+  protected PortImpl()
   {
     super();
   }
@@ -151,7 +151,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.REGISTER;
+    return ReflexPackage.Literals.PORT;
   }
 
   /**
@@ -160,7 +160,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public RegisterType getType()
+  public PortType getType()
   {
     return type;
   }
@@ -171,12 +171,12 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
    * @generated
    */
   @Override
-  public void setType(RegisterType newType)
+  public void setType(PortType newType)
   {
-    RegisterType oldType = type;
+    PortType oldType = type;
     type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__TYPE, oldType, type));
   }
 
   /**
@@ -201,7 +201,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__NAME, oldName, name));
   }
 
   /**
@@ -226,7 +226,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     String oldAddr1 = addr1;
     addr1 = newAddr1;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR1, oldAddr1, addr1));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__ADDR1, oldAddr1, addr1));
   }
 
   /**
@@ -251,7 +251,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     String oldAddr2 = addr2;
     addr2 = newAddr2;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__ADDR2, oldAddr2, addr2));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__ADDR2, oldAddr2, addr2));
   }
 
   /**
@@ -276,7 +276,7 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     String oldRegSize = regSize;
     regSize = newRegSize;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER__REG_SIZE, oldRegSize, regSize));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__REG_SIZE, oldRegSize, regSize));
   }
 
   /**
@@ -289,15 +289,15 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER__TYPE:
+      case ReflexPackage.PORT__TYPE:
         return getType();
-      case ReflexPackage.REGISTER__NAME:
+      case ReflexPackage.PORT__NAME:
         return getName();
-      case ReflexPackage.REGISTER__ADDR1:
+      case ReflexPackage.PORT__ADDR1:
         return getAddr1();
-      case ReflexPackage.REGISTER__ADDR2:
+      case ReflexPackage.PORT__ADDR2:
         return getAddr2();
-      case ReflexPackage.REGISTER__REG_SIZE:
+      case ReflexPackage.PORT__REG_SIZE:
         return getRegSize();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -313,19 +313,19 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER__TYPE:
-        setType((RegisterType)newValue);
+      case ReflexPackage.PORT__TYPE:
+        setType((PortType)newValue);
         return;
-      case ReflexPackage.REGISTER__NAME:
+      case ReflexPackage.PORT__NAME:
         setName((String)newValue);
         return;
-      case ReflexPackage.REGISTER__ADDR1:
+      case ReflexPackage.PORT__ADDR1:
         setAddr1((String)newValue);
         return;
-      case ReflexPackage.REGISTER__ADDR2:
+      case ReflexPackage.PORT__ADDR2:
         setAddr2((String)newValue);
         return;
-      case ReflexPackage.REGISTER__REG_SIZE:
+      case ReflexPackage.PORT__REG_SIZE:
         setRegSize((String)newValue);
         return;
     }
@@ -342,19 +342,19 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER__TYPE:
+      case ReflexPackage.PORT__TYPE:
         setType(TYPE_EDEFAULT);
         return;
-      case ReflexPackage.REGISTER__NAME:
+      case ReflexPackage.PORT__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReflexPackage.REGISTER__ADDR1:
+      case ReflexPackage.PORT__ADDR1:
         setAddr1(ADDR1_EDEFAULT);
         return;
-      case ReflexPackage.REGISTER__ADDR2:
+      case ReflexPackage.PORT__ADDR2:
         setAddr2(ADDR2_EDEFAULT);
         return;
-      case ReflexPackage.REGISTER__REG_SIZE:
+      case ReflexPackage.PORT__REG_SIZE:
         setRegSize(REG_SIZE_EDEFAULT);
         return;
     }
@@ -371,15 +371,15 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER__TYPE:
+      case ReflexPackage.PORT__TYPE:
         return type != TYPE_EDEFAULT;
-      case ReflexPackage.REGISTER__NAME:
+      case ReflexPackage.PORT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReflexPackage.REGISTER__ADDR1:
+      case ReflexPackage.PORT__ADDR1:
         return ADDR1_EDEFAULT == null ? addr1 != null : !ADDR1_EDEFAULT.equals(addr1);
-      case ReflexPackage.REGISTER__ADDR2:
+      case ReflexPackage.PORT__ADDR2:
         return ADDR2_EDEFAULT == null ? addr2 != null : !ADDR2_EDEFAULT.equals(addr2);
-      case ReflexPackage.REGISTER__REG_SIZE:
+      case ReflexPackage.PORT__REG_SIZE:
         return REG_SIZE_EDEFAULT == null ? regSize != null : !REG_SIZE_EDEFAULT.equals(regSize);
     }
     return super.eIsSet(featureID);
@@ -410,4 +410,4 @@ public class RegisterImpl extends MinimalEObjectImpl.Container implements Regist
     return result.toString();
   }
 
-} //RegisterImpl
+} //PortImpl

@@ -11,9 +11,9 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
-import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
@@ -56,7 +56,7 @@ public class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiers
     return c.getName();
   }
   
-  private String _getKey(final Register r) {
+  private String _getKey(final Port r) {
     return r.getName();
   }
   
@@ -112,7 +112,7 @@ public class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiers
   }
   
   @Override
-  public String getPortId(final Register reg) {
+  public String getPortId(final Port reg) {
     final String key = this.getKey(reg);
     boolean _containsKey = this.portIdentifiers.containsKey(key);
     if (_containsKey) {
@@ -217,10 +217,10 @@ public class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiers
       return _getKey((ProgramVariable)c);
     } else if (c instanceof ru.iaie.reflex.reflex.Enum) {
       return _getKey((ru.iaie.reflex.reflex.Enum)c);
+    } else if (c instanceof Port) {
+      return _getKey((Port)c);
     } else if (c instanceof ru.iaie.reflex.reflex.Process) {
       return _getKey((ru.iaie.reflex.reflex.Process)c);
-    } else if (c instanceof Register) {
-      return _getKey((Register)c);
     } else if (c instanceof State) {
       return _getKey((State)c);
     } else {

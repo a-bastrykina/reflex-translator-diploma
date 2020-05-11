@@ -235,18 +235,18 @@ ruleProgram returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getProgramAccess().getRegistersRegisterParserRuleCall_5_4_0());
+						newCompositeNode(grammarAccess.getProgramAccess().getPortsPortParserRuleCall_5_4_0());
 					}
-					lv_registers_11_0=ruleRegister
+					lv_ports_11_0=rulePort
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getProgramRule());
 						}
 						add(
 							$current,
-							"registers",
-							lv_registers_11_0,
-							"ru.iaie.reflex.Reflex.Register");
+							"ports",
+							lv_ports_11_0,
+							"ru.iaie.reflex.Reflex.Port");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -830,18 +830,18 @@ rulePhysicalVariable returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getMappingPortMappingParserRuleCall_3_0());
 				}
-				lv_port_3_0=ruleRegisterPortMapping
+				lv_mapping_3_0=rulePortMapping
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPhysicalVariableRule());
 					}
 					set(
 						$current,
-						"port",
-						lv_port_3_0,
-						"ru.iaie.reflex.Reflex.RegisterPortMapping");
+						"mapping",
+						lv_mapping_3_0,
+						"ru.iaie.reflex.Reflex.PortMapping");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -849,15 +849,15 @@ rulePhysicalVariable returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleRegisterPortMapping
-entryRuleRegisterPortMapping returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRegisterPortMappingRule()); }
-	iv_ruleRegisterPortMapping=ruleRegisterPortMapping
-	{ $current=$iv_ruleRegisterPortMapping.current; }
+// Entry rule entryRulePortMapping
+entryRulePortMapping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPortMappingRule()); }
+	iv_rulePortMapping=rulePortMapping
+	{ $current=$iv_rulePortMapping.current; }
 	EOF;
 
-// Rule RegisterPortMapping
-ruleRegisterPortMapping returns [EObject current=null]
+// Rule PortMapping
+rulePortMapping returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -869,40 +869,40 @@ ruleRegisterPortMapping returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterPortMappingRule());
+						$current = createModelElement(grammarAccess.getPortMappingRule());
 					}
 				}
 				otherlv_0=RULE_ID
 				{
-					newLeafNode(otherlv_0, grammarAccess.getRegisterPortMappingAccess().getRegisterRegisterCrossReference_0_0());
+					newLeafNode(otherlv_0, grammarAccess.getPortMappingAccess().getPortPortCrossReference_0_0());
 				}
 			)
 		)
 		otherlv_1='['
 		{
-			newLeafNode(otherlv_1, grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getPortMappingAccess().getLeftSquareBracketKeyword_1());
 		}
 		(
 			(
-				lv_portBit_2_0=RULE_INTEGER
+				lv_bit_2_0=RULE_INTEGER
 				{
-					newLeafNode(lv_portBit_2_0, grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0());
+					newLeafNode(lv_bit_2_0, grammarAccess.getPortMappingAccess().getBitINTEGERTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterPortMappingRule());
+						$current = createModelElement(grammarAccess.getPortMappingRule());
 					}
 					setWithLastConsumed(
 						$current,
-						"portBit",
-						lv_portBit_2_0,
+						"bit",
+						lv_bit_2_0,
 						"ru.iaie.reflex.Reflex.INTEGER");
 				}
 			)
 		)?
 		otherlv_3=']'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3());
+			newLeafNode(otherlv_3, grammarAccess.getPortMappingAccess().getRightSquareBracketKeyword_3());
 		}
 	)
 ;
@@ -2012,15 +2012,15 @@ ruleFunction returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleRegister
-entryRuleRegister returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRegisterRule()); }
-	iv_ruleRegister=ruleRegister
-	{ $current=$iv_ruleRegister.current; }
+// Entry rule entryRulePort
+entryRulePort returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPortRule()); }
+	iv_rulePort=rulePort
+	{ $current=$iv_rulePort.current; }
 	EOF;
 
-// Rule Register
-ruleRegister returns [EObject current=null]
+// Rule Port
+rulePort returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2031,18 +2031,18 @@ ruleRegister returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRegisterAccess().getTypeRegisterTypeEnumRuleCall_0_0());
+					newCompositeNode(grammarAccess.getPortAccess().getTypePortTypeEnumRuleCall_0_0());
 				}
-				lv_type_0_0=ruleRegisterType
+				lv_type_0_0=rulePortType
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRegisterRule());
+						$current = createModelElementForParent(grammarAccess.getPortRule());
 					}
 					set(
 						$current,
 						"type",
 						lv_type_0_0,
-						"ru.iaie.reflex.Reflex.RegisterType");
+						"ru.iaie.reflex.Reflex.PortType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2051,11 +2051,11 @@ ruleRegister returns [EObject current=null]
 			(
 				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getPortAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterRule());
+						$current = createModelElement(grammarAccess.getPortRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -2069,11 +2069,11 @@ ruleRegister returns [EObject current=null]
 			(
 				lv_addr1_2_0=RULE_INTEGER
 				{
-					newLeafNode(lv_addr1_2_0, grammarAccess.getRegisterAccess().getAddr1INTEGERTerminalRuleCall_2_0());
+					newLeafNode(lv_addr1_2_0, grammarAccess.getPortAccess().getAddr1INTEGERTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterRule());
+						$current = createModelElement(grammarAccess.getPortRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -2087,11 +2087,11 @@ ruleRegister returns [EObject current=null]
 			(
 				lv_addr2_3_0=RULE_INTEGER
 				{
-					newLeafNode(lv_addr2_3_0, grammarAccess.getRegisterAccess().getAddr2INTEGERTerminalRuleCall_3_0());
+					newLeafNode(lv_addr2_3_0, grammarAccess.getPortAccess().getAddr2INTEGERTerminalRuleCall_3_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterRule());
+						$current = createModelElement(grammarAccess.getPortRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -2105,11 +2105,11 @@ ruleRegister returns [EObject current=null]
 			(
 				lv_regSize_4_0=RULE_INTEGER
 				{
-					newLeafNode(lv_regSize_4_0, grammarAccess.getRegisterAccess().getRegSizeINTEGERTerminalRuleCall_4_0());
+					newLeafNode(lv_regSize_4_0, grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRegisterRule());
+						$current = createModelElement(grammarAccess.getPortRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -2121,7 +2121,7 @@ ruleRegister returns [EObject current=null]
 		)
 		otherlv_5=';'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getRegisterAccess().getSemicolonKeyword_5());
+			newLeafNode(otherlv_5, grammarAccess.getPortAccess().getSemicolonKeyword_5());
 		}
 	)
 ;
@@ -3931,8 +3931,8 @@ ruleAnnotationKey returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 	)
 ;
 
-// Rule RegisterType
-ruleRegisterType returns [Enumerator current=null]
+// Rule PortType
+rulePortType returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -3943,16 +3943,16 @@ ruleRegisterType returns [Enumerator current=null]
 		(
 			enumLiteral_0='input'
 			{
-				$current = grammarAccess.getRegisterTypeAccess().getINPUTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getRegisterTypeAccess().getINPUTEnumLiteralDeclaration_0());
+				$current = grammarAccess.getPortTypeAccess().getINPUTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getPortTypeAccess().getINPUTEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
 			enumLiteral_1='output'
 			{
-				$current = grammarAccess.getRegisterTypeAccess().getOUTPUTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getRegisterTypeAccess().getOUTPUTEnumLiteralDeclaration_1());
+				$current = grammarAccess.getPortTypeAccess().getOUTPUTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getPortTypeAccess().getOUTPUTEnumLiteralDeclaration_1());
 			}
 		)
 	)

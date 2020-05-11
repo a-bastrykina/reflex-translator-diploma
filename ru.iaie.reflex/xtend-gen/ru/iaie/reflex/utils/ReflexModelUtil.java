@@ -17,7 +17,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.CompoundStatement;
-import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
@@ -25,10 +24,11 @@ import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PortMapping;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
@@ -144,8 +144,13 @@ public class ReflexModelUtil {
     return (v instanceof PhysicalVariable);
   }
   
-  public static RegisterType getMappedPortType(final PhysicalVariable v) {
-    return v.getPort().getRegister().getType();
+  public static PortType getMappedPortType(final PhysicalVariable v) {
+    return v.getMapping().getPort().getType();
+  }
+  
+  public static boolean isFullMapping(final PortMapping m) {
+    String _bit = m.getBit();
+    return (_bit == null);
   }
   
   public static boolean isEmpty(final CompoundStatement compStat) {
@@ -178,33 +183,6 @@ public class ReflexModelUtil {
     EcoreUtil2.findCrossReferences(context, targetSet, acceptor);
     boolean _isEmpty = refered.isEmpty();
     return (!_isEmpty);
-  }
-  
-  public static String resolveName(final IdReference ref) {
-    boolean _matched = false;
-    if (ref instanceof ProgramVariable) {
-      _matched=true;
-      return ((ProgramVariable)ref).getName();
-    }
-    if (!_matched) {
-      if (ref instanceof PhysicalVariable) {
-        _matched=true;
-        return ((PhysicalVariable)ref).getName();
-      }
-    }
-    if (!_matched) {
-      if (ref instanceof EnumMember) {
-        _matched=true;
-        return ((EnumMember)ref).getName();
-      }
-    }
-    if (!_matched) {
-      if (ref instanceof Const) {
-        _matched=true;
-        return ((Const)ref).getName();
-      }
-    }
-    return null;
   }
   
   public static boolean isCType(final Type type) {

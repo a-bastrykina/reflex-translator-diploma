@@ -845,23 +845,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rulePhysicalVariable"
 
 
-    // $ANTLR start "entryRuleRegisterPortMapping"
-    // InternalReflex.g:254:1: entryRuleRegisterPortMapping : ruleRegisterPortMapping EOF ;
-    public final void entryRuleRegisterPortMapping() throws RecognitionException {
+    // $ANTLR start "entryRulePortMapping"
+    // InternalReflex.g:254:1: entryRulePortMapping : rulePortMapping EOF ;
+    public final void entryRulePortMapping() throws RecognitionException {
         try {
-            // InternalReflex.g:255:1: ( ruleRegisterPortMapping EOF )
-            // InternalReflex.g:256:1: ruleRegisterPortMapping EOF
+            // InternalReflex.g:255:1: ( rulePortMapping EOF )
+            // InternalReflex.g:256:1: rulePortMapping EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingRule()); 
+               before(grammarAccess.getPortMappingRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRegisterPortMapping();
+            rulePortMapping();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingRule()); 
+               after(grammarAccess.getPortMappingRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -876,30 +876,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRegisterPortMapping"
+    // $ANTLR end "entryRulePortMapping"
 
 
-    // $ANTLR start "ruleRegisterPortMapping"
-    // InternalReflex.g:263:1: ruleRegisterPortMapping : ( ( rule__RegisterPortMapping__Group__0 ) ) ;
-    public final void ruleRegisterPortMapping() throws RecognitionException {
+    // $ANTLR start "rulePortMapping"
+    // InternalReflex.g:263:1: rulePortMapping : ( ( rule__PortMapping__Group__0 ) ) ;
+    public final void rulePortMapping() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:267:2: ( ( ( rule__RegisterPortMapping__Group__0 ) ) )
-            // InternalReflex.g:268:2: ( ( rule__RegisterPortMapping__Group__0 ) )
+            // InternalReflex.g:267:2: ( ( ( rule__PortMapping__Group__0 ) ) )
+            // InternalReflex.g:268:2: ( ( rule__PortMapping__Group__0 ) )
             {
-            // InternalReflex.g:268:2: ( ( rule__RegisterPortMapping__Group__0 ) )
-            // InternalReflex.g:269:3: ( rule__RegisterPortMapping__Group__0 )
+            // InternalReflex.g:268:2: ( ( rule__PortMapping__Group__0 ) )
+            // InternalReflex.g:269:3: ( rule__PortMapping__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getGroup()); 
+               before(grammarAccess.getPortMappingAccess().getGroup()); 
             }
-            // InternalReflex.g:270:3: ( rule__RegisterPortMapping__Group__0 )
-            // InternalReflex.g:270:4: rule__RegisterPortMapping__Group__0
+            // InternalReflex.g:270:3: ( rule__PortMapping__Group__0 )
+            // InternalReflex.g:270:4: rule__PortMapping__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__Group__0();
+            rule__PortMapping__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -907,7 +907,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getGroup()); 
+               after(grammarAccess.getPortMappingAccess().getGroup()); 
             }
 
             }
@@ -927,7 +927,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRegisterPortMapping"
+    // $ANTLR end "rulePortMapping"
 
 
     // $ANTLR start "entryRuleProgramVariable"
@@ -2341,23 +2341,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleFunction"
 
 
-    // $ANTLR start "entryRuleRegister"
-    // InternalReflex.g:696:1: entryRuleRegister : ruleRegister EOF ;
-    public final void entryRuleRegister() throws RecognitionException {
+    // $ANTLR start "entryRulePort"
+    // InternalReflex.g:696:1: entryRulePort : rulePort EOF ;
+    public final void entryRulePort() throws RecognitionException {
         try {
-            // InternalReflex.g:697:1: ( ruleRegister EOF )
-            // InternalReflex.g:698:1: ruleRegister EOF
+            // InternalReflex.g:697:1: ( rulePort EOF )
+            // InternalReflex.g:698:1: rulePort EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterRule()); 
+               before(grammarAccess.getPortRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRegister();
+            rulePort();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterRule()); 
+               after(grammarAccess.getPortRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -2372,30 +2372,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRegister"
+    // $ANTLR end "entryRulePort"
 
 
-    // $ANTLR start "ruleRegister"
-    // InternalReflex.g:705:1: ruleRegister : ( ( rule__Register__Group__0 ) ) ;
-    public final void ruleRegister() throws RecognitionException {
+    // $ANTLR start "rulePort"
+    // InternalReflex.g:705:1: rulePort : ( ( rule__Port__Group__0 ) ) ;
+    public final void rulePort() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:709:2: ( ( ( rule__Register__Group__0 ) ) )
-            // InternalReflex.g:710:2: ( ( rule__Register__Group__0 ) )
+            // InternalReflex.g:709:2: ( ( ( rule__Port__Group__0 ) ) )
+            // InternalReflex.g:710:2: ( ( rule__Port__Group__0 ) )
             {
-            // InternalReflex.g:710:2: ( ( rule__Register__Group__0 ) )
-            // InternalReflex.g:711:3: ( rule__Register__Group__0 )
+            // InternalReflex.g:710:2: ( ( rule__Port__Group__0 ) )
+            // InternalReflex.g:711:3: ( rule__Port__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getGroup()); 
+               before(grammarAccess.getPortAccess().getGroup()); 
             }
-            // InternalReflex.g:712:3: ( rule__Register__Group__0 )
-            // InternalReflex.g:712:4: rule__Register__Group__0
+            // InternalReflex.g:712:3: ( rule__Port__Group__0 )
+            // InternalReflex.g:712:4: rule__Port__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Register__Group__0();
+            rule__Port__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -2403,7 +2403,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getGroup()); 
+               after(grammarAccess.getPortAccess().getGroup()); 
             }
 
             }
@@ -2423,7 +2423,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRegister"
+    // $ANTLR end "rulePort"
 
 
     // $ANTLR start "entryRuleConst"
@@ -4630,27 +4630,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleAnnotationKey"
 
 
-    // $ANTLR start "ruleRegisterType"
-    // InternalReflex.g:1371:1: ruleRegisterType : ( ( rule__RegisterType__Alternatives ) ) ;
-    public final void ruleRegisterType() throws RecognitionException {
+    // $ANTLR start "rulePortType"
+    // InternalReflex.g:1371:1: rulePortType : ( ( rule__PortType__Alternatives ) ) ;
+    public final void rulePortType() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:1375:1: ( ( ( rule__RegisterType__Alternatives ) ) )
-            // InternalReflex.g:1376:2: ( ( rule__RegisterType__Alternatives ) )
+            // InternalReflex.g:1375:1: ( ( ( rule__PortType__Alternatives ) ) )
+            // InternalReflex.g:1376:2: ( ( rule__PortType__Alternatives ) )
             {
-            // InternalReflex.g:1376:2: ( ( rule__RegisterType__Alternatives ) )
-            // InternalReflex.g:1377:3: ( rule__RegisterType__Alternatives )
+            // InternalReflex.g:1376:2: ( ( rule__PortType__Alternatives ) )
+            // InternalReflex.g:1377:3: ( rule__PortType__Alternatives )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterTypeAccess().getAlternatives()); 
+               before(grammarAccess.getPortTypeAccess().getAlternatives()); 
             }
-            // InternalReflex.g:1378:3: ( rule__RegisterType__Alternatives )
-            // InternalReflex.g:1378:4: rule__RegisterType__Alternatives
+            // InternalReflex.g:1378:3: ( rule__PortType__Alternatives )
+            // InternalReflex.g:1378:4: rule__PortType__Alternatives
             {
             pushFollow(FOLLOW_2);
-            rule__RegisterType__Alternatives();
+            rule__PortType__Alternatives();
 
             state._fsp--;
             if (state.failed) return ;
@@ -4658,7 +4658,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterTypeAccess().getAlternatives()); 
+               after(grammarAccess.getPortTypeAccess().getAlternatives()); 
             }
 
             }
@@ -4678,7 +4678,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRegisterType"
+    // $ANTLR end "rulePortType"
 
 
     // $ANTLR start "ruleStateQualifier"
@@ -5243,13 +5243,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Alternatives_5"
-    // InternalReflex.g:1562:1: rule__Program__Alternatives_5 : ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__RegistersAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) );
+    // InternalReflex.g:1562:1: rule__Program__Alternatives_5 : ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__PortsAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) );
     public final void rule__Program__Alternatives_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:1566:1: ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__RegistersAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) )
+            // InternalReflex.g:1566:1: ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__PortsAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) )
             int alt1=6;
             alt1 = dfa1.predict(input);
             switch (alt1) {
@@ -5370,19 +5370,19 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // InternalReflex.g:1591:2: ( ( rule__Program__RegistersAssignment_5_4 ) )
+                    // InternalReflex.g:1591:2: ( ( rule__Program__PortsAssignment_5_4 ) )
                     {
-                    // InternalReflex.g:1591:2: ( ( rule__Program__RegistersAssignment_5_4 ) )
-                    // InternalReflex.g:1592:3: ( rule__Program__RegistersAssignment_5_4 )
+                    // InternalReflex.g:1591:2: ( ( rule__Program__PortsAssignment_5_4 ) )
+                    // InternalReflex.g:1592:3: ( rule__Program__PortsAssignment_5_4 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getProgramAccess().getRegistersAssignment_5_4()); 
+                       before(grammarAccess.getProgramAccess().getPortsAssignment_5_4()); 
                     }
-                    // InternalReflex.g:1593:3: ( rule__Program__RegistersAssignment_5_4 )
-                    // InternalReflex.g:1593:4: rule__Program__RegistersAssignment_5_4
+                    // InternalReflex.g:1593:3: ( rule__Program__PortsAssignment_5_4 )
+                    // InternalReflex.g:1593:4: rule__Program__PortsAssignment_5_4
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Program__RegistersAssignment_5_4();
+                    rule__Program__PortsAssignment_5_4();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -5390,7 +5390,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getProgramAccess().getRegistersAssignment_5_4()); 
+                       after(grammarAccess.getProgramAccess().getPortsAssignment_5_4()); 
                     }
 
                     }
@@ -7238,9 +7238,9 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AnnotationKey__Alternatives"
 
 
-    // $ANTLR start "rule__RegisterType__Alternatives"
-    // InternalReflex.g:1970:1: rule__RegisterType__Alternatives : ( ( ( 'input' ) ) | ( ( 'output' ) ) );
-    public final void rule__RegisterType__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__PortType__Alternatives"
+    // InternalReflex.g:1970:1: rule__PortType__Alternatives : ( ( ( 'input' ) ) | ( ( 'output' ) ) );
+    public final void rule__PortType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -7270,7 +7270,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     // InternalReflex.g:1976:3: ( 'input' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getRegisterTypeAccess().getINPUTEnumLiteralDeclaration_0()); 
+                       before(grammarAccess.getPortTypeAccess().getINPUTEnumLiteralDeclaration_0()); 
                     }
                     // InternalReflex.g:1977:3: ( 'input' )
                     // InternalReflex.g:1977:4: 'input'
@@ -7280,7 +7280,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getRegisterTypeAccess().getINPUTEnumLiteralDeclaration_0()); 
+                       after(grammarAccess.getPortTypeAccess().getINPUTEnumLiteralDeclaration_0()); 
                     }
 
                     }
@@ -7295,7 +7295,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     // InternalReflex.g:1982:3: ( 'output' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getRegisterTypeAccess().getOUTPUTEnumLiteralDeclaration_1()); 
+                       before(grammarAccess.getPortTypeAccess().getOUTPUTEnumLiteralDeclaration_1()); 
                     }
                     // InternalReflex.g:1983:3: ( 'output' )
                     // InternalReflex.g:1983:4: 'output'
@@ -7305,7 +7305,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getRegisterTypeAccess().getOUTPUTEnumLiteralDeclaration_1()); 
+                       after(grammarAccess.getPortTypeAccess().getOUTPUTEnumLiteralDeclaration_1()); 
                     }
 
                     }
@@ -7327,7 +7327,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterType__Alternatives"
+    // $ANTLR end "rule__PortType__Alternatives"
 
 
     // $ANTLR start "rule__StateQualifier__Alternatives"
@@ -13493,26 +13493,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PhysicalVariable__Group__3__Impl"
-    // InternalReflex.g:3757:1: rule__PhysicalVariable__Group__3__Impl : ( ( rule__PhysicalVariable__PortAssignment_3 ) ) ;
+    // InternalReflex.g:3757:1: rule__PhysicalVariable__Group__3__Impl : ( ( rule__PhysicalVariable__MappingAssignment_3 ) ) ;
     public final void rule__PhysicalVariable__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3761:1: ( ( ( rule__PhysicalVariable__PortAssignment_3 ) ) )
-            // InternalReflex.g:3762:1: ( ( rule__PhysicalVariable__PortAssignment_3 ) )
+            // InternalReflex.g:3761:1: ( ( ( rule__PhysicalVariable__MappingAssignment_3 ) ) )
+            // InternalReflex.g:3762:1: ( ( rule__PhysicalVariable__MappingAssignment_3 ) )
             {
-            // InternalReflex.g:3762:1: ( ( rule__PhysicalVariable__PortAssignment_3 ) )
-            // InternalReflex.g:3763:2: ( rule__PhysicalVariable__PortAssignment_3 )
+            // InternalReflex.g:3762:1: ( ( rule__PhysicalVariable__MappingAssignment_3 ) )
+            // InternalReflex.g:3763:2: ( rule__PhysicalVariable__MappingAssignment_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPhysicalVariableAccess().getPortAssignment_3()); 
+               before(grammarAccess.getPhysicalVariableAccess().getMappingAssignment_3()); 
             }
-            // InternalReflex.g:3764:2: ( rule__PhysicalVariable__PortAssignment_3 )
-            // InternalReflex.g:3764:3: rule__PhysicalVariable__PortAssignment_3
+            // InternalReflex.g:3764:2: ( rule__PhysicalVariable__MappingAssignment_3 )
+            // InternalReflex.g:3764:3: rule__PhysicalVariable__MappingAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__PhysicalVariable__PortAssignment_3();
+            rule__PhysicalVariable__MappingAssignment_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13520,7 +13520,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPhysicalVariableAccess().getPortAssignment_3()); 
+               after(grammarAccess.getPhysicalVariableAccess().getMappingAssignment_3()); 
             }
 
             }
@@ -13543,23 +13543,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PhysicalVariable__Group__3__Impl"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__0"
-    // InternalReflex.g:3773:1: rule__RegisterPortMapping__Group__0 : rule__RegisterPortMapping__Group__0__Impl rule__RegisterPortMapping__Group__1 ;
-    public final void rule__RegisterPortMapping__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__0"
+    // InternalReflex.g:3773:1: rule__PortMapping__Group__0 : rule__PortMapping__Group__0__Impl rule__PortMapping__Group__1 ;
+    public final void rule__PortMapping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3777:1: ( rule__RegisterPortMapping__Group__0__Impl rule__RegisterPortMapping__Group__1 )
-            // InternalReflex.g:3778:2: rule__RegisterPortMapping__Group__0__Impl rule__RegisterPortMapping__Group__1
+            // InternalReflex.g:3777:1: ( rule__PortMapping__Group__0__Impl rule__PortMapping__Group__1 )
+            // InternalReflex.g:3778:2: rule__PortMapping__Group__0__Impl rule__PortMapping__Group__1
             {
             pushFollow(FOLLOW_26);
-            rule__RegisterPortMapping__Group__0__Impl();
+            rule__PortMapping__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__Group__1();
+            rule__PortMapping__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13578,30 +13578,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__0"
+    // $ANTLR end "rule__PortMapping__Group__0"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__0__Impl"
-    // InternalReflex.g:3785:1: rule__RegisterPortMapping__Group__0__Impl : ( ( rule__RegisterPortMapping__RegisterAssignment_0 ) ) ;
-    public final void rule__RegisterPortMapping__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__0__Impl"
+    // InternalReflex.g:3785:1: rule__PortMapping__Group__0__Impl : ( ( rule__PortMapping__PortAssignment_0 ) ) ;
+    public final void rule__PortMapping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3789:1: ( ( ( rule__RegisterPortMapping__RegisterAssignment_0 ) ) )
-            // InternalReflex.g:3790:1: ( ( rule__RegisterPortMapping__RegisterAssignment_0 ) )
+            // InternalReflex.g:3789:1: ( ( ( rule__PortMapping__PortAssignment_0 ) ) )
+            // InternalReflex.g:3790:1: ( ( rule__PortMapping__PortAssignment_0 ) )
             {
-            // InternalReflex.g:3790:1: ( ( rule__RegisterPortMapping__RegisterAssignment_0 ) )
-            // InternalReflex.g:3791:2: ( rule__RegisterPortMapping__RegisterAssignment_0 )
+            // InternalReflex.g:3790:1: ( ( rule__PortMapping__PortAssignment_0 ) )
+            // InternalReflex.g:3791:2: ( rule__PortMapping__PortAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getRegisterAssignment_0()); 
+               before(grammarAccess.getPortMappingAccess().getPortAssignment_0()); 
             }
-            // InternalReflex.g:3792:2: ( rule__RegisterPortMapping__RegisterAssignment_0 )
-            // InternalReflex.g:3792:3: rule__RegisterPortMapping__RegisterAssignment_0
+            // InternalReflex.g:3792:2: ( rule__PortMapping__PortAssignment_0 )
+            // InternalReflex.g:3792:3: rule__PortMapping__PortAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__RegisterAssignment_0();
+            rule__PortMapping__PortAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13609,7 +13609,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getRegisterAssignment_0()); 
+               after(grammarAccess.getPortMappingAccess().getPortAssignment_0()); 
             }
 
             }
@@ -13629,26 +13629,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__0__Impl"
+    // $ANTLR end "rule__PortMapping__Group__0__Impl"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__1"
-    // InternalReflex.g:3800:1: rule__RegisterPortMapping__Group__1 : rule__RegisterPortMapping__Group__1__Impl rule__RegisterPortMapping__Group__2 ;
-    public final void rule__RegisterPortMapping__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__1"
+    // InternalReflex.g:3800:1: rule__PortMapping__Group__1 : rule__PortMapping__Group__1__Impl rule__PortMapping__Group__2 ;
+    public final void rule__PortMapping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3804:1: ( rule__RegisterPortMapping__Group__1__Impl rule__RegisterPortMapping__Group__2 )
-            // InternalReflex.g:3805:2: rule__RegisterPortMapping__Group__1__Impl rule__RegisterPortMapping__Group__2
+            // InternalReflex.g:3804:1: ( rule__PortMapping__Group__1__Impl rule__PortMapping__Group__2 )
+            // InternalReflex.g:3805:2: rule__PortMapping__Group__1__Impl rule__PortMapping__Group__2
             {
             pushFollow(FOLLOW_27);
-            rule__RegisterPortMapping__Group__1__Impl();
+            rule__PortMapping__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__Group__2();
+            rule__PortMapping__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13667,12 +13667,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__1"
+    // $ANTLR end "rule__PortMapping__Group__1"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__1__Impl"
-    // InternalReflex.g:3812:1: rule__RegisterPortMapping__Group__1__Impl : ( '[' ) ;
-    public final void rule__RegisterPortMapping__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__1__Impl"
+    // InternalReflex.g:3812:1: rule__PortMapping__Group__1__Impl : ( '[' ) ;
+    public final void rule__PortMapping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13684,11 +13684,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3818:2: '['
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1()); 
+               before(grammarAccess.getPortMappingAccess().getLeftSquareBracketKeyword_1()); 
             }
             match(input,78,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getLeftSquareBracketKeyword_1()); 
+               after(grammarAccess.getPortMappingAccess().getLeftSquareBracketKeyword_1()); 
             }
 
             }
@@ -13708,26 +13708,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__1__Impl"
+    // $ANTLR end "rule__PortMapping__Group__1__Impl"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__2"
-    // InternalReflex.g:3827:1: rule__RegisterPortMapping__Group__2 : rule__RegisterPortMapping__Group__2__Impl rule__RegisterPortMapping__Group__3 ;
-    public final void rule__RegisterPortMapping__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__2"
+    // InternalReflex.g:3827:1: rule__PortMapping__Group__2 : rule__PortMapping__Group__2__Impl rule__PortMapping__Group__3 ;
+    public final void rule__PortMapping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3831:1: ( rule__RegisterPortMapping__Group__2__Impl rule__RegisterPortMapping__Group__3 )
-            // InternalReflex.g:3832:2: rule__RegisterPortMapping__Group__2__Impl rule__RegisterPortMapping__Group__3
+            // InternalReflex.g:3831:1: ( rule__PortMapping__Group__2__Impl rule__PortMapping__Group__3 )
+            // InternalReflex.g:3832:2: rule__PortMapping__Group__2__Impl rule__PortMapping__Group__3
             {
             pushFollow(FOLLOW_27);
-            rule__RegisterPortMapping__Group__2__Impl();
+            rule__PortMapping__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__Group__3();
+            rule__PortMapping__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13746,26 +13746,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__2"
+    // $ANTLR end "rule__PortMapping__Group__2"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__2__Impl"
-    // InternalReflex.g:3839:1: rule__RegisterPortMapping__Group__2__Impl : ( ( rule__RegisterPortMapping__PortBitAssignment_2 )? ) ;
-    public final void rule__RegisterPortMapping__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__2__Impl"
+    // InternalReflex.g:3839:1: rule__PortMapping__Group__2__Impl : ( ( rule__PortMapping__BitAssignment_2 )? ) ;
+    public final void rule__PortMapping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3843:1: ( ( ( rule__RegisterPortMapping__PortBitAssignment_2 )? ) )
-            // InternalReflex.g:3844:1: ( ( rule__RegisterPortMapping__PortBitAssignment_2 )? )
+            // InternalReflex.g:3843:1: ( ( ( rule__PortMapping__BitAssignment_2 )? ) )
+            // InternalReflex.g:3844:1: ( ( rule__PortMapping__BitAssignment_2 )? )
             {
-            // InternalReflex.g:3844:1: ( ( rule__RegisterPortMapping__PortBitAssignment_2 )? )
-            // InternalReflex.g:3845:2: ( rule__RegisterPortMapping__PortBitAssignment_2 )?
+            // InternalReflex.g:3844:1: ( ( rule__PortMapping__BitAssignment_2 )? )
+            // InternalReflex.g:3845:2: ( rule__PortMapping__BitAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2()); 
+               before(grammarAccess.getPortMappingAccess().getBitAssignment_2()); 
             }
-            // InternalReflex.g:3846:2: ( rule__RegisterPortMapping__PortBitAssignment_2 )?
+            // InternalReflex.g:3846:2: ( rule__PortMapping__BitAssignment_2 )?
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -13774,10 +13774,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
             switch (alt38) {
                 case 1 :
-                    // InternalReflex.g:3846:3: rule__RegisterPortMapping__PortBitAssignment_2
+                    // InternalReflex.g:3846:3: rule__PortMapping__BitAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__RegisterPortMapping__PortBitAssignment_2();
+                    rule__PortMapping__BitAssignment_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13788,7 +13788,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getPortBitAssignment_2()); 
+               after(grammarAccess.getPortMappingAccess().getBitAssignment_2()); 
             }
 
             }
@@ -13808,21 +13808,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__2__Impl"
+    // $ANTLR end "rule__PortMapping__Group__2__Impl"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__3"
-    // InternalReflex.g:3854:1: rule__RegisterPortMapping__Group__3 : rule__RegisterPortMapping__Group__3__Impl ;
-    public final void rule__RegisterPortMapping__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__3"
+    // InternalReflex.g:3854:1: rule__PortMapping__Group__3 : rule__PortMapping__Group__3__Impl ;
+    public final void rule__PortMapping__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:3858:1: ( rule__RegisterPortMapping__Group__3__Impl )
-            // InternalReflex.g:3859:2: rule__RegisterPortMapping__Group__3__Impl
+            // InternalReflex.g:3858:1: ( rule__PortMapping__Group__3__Impl )
+            // InternalReflex.g:3859:2: rule__PortMapping__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RegisterPortMapping__Group__3__Impl();
+            rule__PortMapping__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13841,12 +13841,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__3"
+    // $ANTLR end "rule__PortMapping__Group__3"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__Group__3__Impl"
-    // InternalReflex.g:3865:1: rule__RegisterPortMapping__Group__3__Impl : ( ']' ) ;
-    public final void rule__RegisterPortMapping__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__Group__3__Impl"
+    // InternalReflex.g:3865:1: rule__PortMapping__Group__3__Impl : ( ']' ) ;
+    public final void rule__PortMapping__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13858,11 +13858,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3871:2: ']'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3()); 
+               before(grammarAccess.getPortMappingAccess().getRightSquareBracketKeyword_3()); 
             }
             match(input,79,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getRightSquareBracketKeyword_3()); 
+               after(grammarAccess.getPortMappingAccess().getRightSquareBracketKeyword_3()); 
             }
 
             }
@@ -13882,7 +13882,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__Group__3__Impl"
+    // $ANTLR end "rule__PortMapping__Group__3__Impl"
 
 
     // $ANTLR start "rule__ProgramVariable__Group__0"
@@ -20567,23 +20567,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Function__Group_4__1__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__0"
-    // InternalReflex.g:6068:1: rule__Register__Group__0 : rule__Register__Group__0__Impl rule__Register__Group__1 ;
-    public final void rule__Register__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__0"
+    // InternalReflex.g:6068:1: rule__Port__Group__0 : rule__Port__Group__0__Impl rule__Port__Group__1 ;
+    public final void rule__Port__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6072:1: ( rule__Register__Group__0__Impl rule__Register__Group__1 )
-            // InternalReflex.g:6073:2: rule__Register__Group__0__Impl rule__Register__Group__1
+            // InternalReflex.g:6072:1: ( rule__Port__Group__0__Impl rule__Port__Group__1 )
+            // InternalReflex.g:6073:2: rule__Port__Group__0__Impl rule__Port__Group__1
             {
             pushFollow(FOLLOW_5);
-            rule__Register__Group__0__Impl();
+            rule__Port__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Register__Group__1();
+            rule__Port__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20602,30 +20602,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__0"
+    // $ANTLR end "rule__Port__Group__0"
 
 
-    // $ANTLR start "rule__Register__Group__0__Impl"
-    // InternalReflex.g:6080:1: rule__Register__Group__0__Impl : ( ( rule__Register__TypeAssignment_0 ) ) ;
-    public final void rule__Register__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__0__Impl"
+    // InternalReflex.g:6080:1: rule__Port__Group__0__Impl : ( ( rule__Port__TypeAssignment_0 ) ) ;
+    public final void rule__Port__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6084:1: ( ( ( rule__Register__TypeAssignment_0 ) ) )
-            // InternalReflex.g:6085:1: ( ( rule__Register__TypeAssignment_0 ) )
+            // InternalReflex.g:6084:1: ( ( ( rule__Port__TypeAssignment_0 ) ) )
+            // InternalReflex.g:6085:1: ( ( rule__Port__TypeAssignment_0 ) )
             {
-            // InternalReflex.g:6085:1: ( ( rule__Register__TypeAssignment_0 ) )
-            // InternalReflex.g:6086:2: ( rule__Register__TypeAssignment_0 )
+            // InternalReflex.g:6085:1: ( ( rule__Port__TypeAssignment_0 ) )
+            // InternalReflex.g:6086:2: ( rule__Port__TypeAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getTypeAssignment_0()); 
+               before(grammarAccess.getPortAccess().getTypeAssignment_0()); 
             }
-            // InternalReflex.g:6087:2: ( rule__Register__TypeAssignment_0 )
-            // InternalReflex.g:6087:3: rule__Register__TypeAssignment_0
+            // InternalReflex.g:6087:2: ( rule__Port__TypeAssignment_0 )
+            // InternalReflex.g:6087:3: rule__Port__TypeAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__Register__TypeAssignment_0();
+            rule__Port__TypeAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20633,7 +20633,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getTypeAssignment_0()); 
+               after(grammarAccess.getPortAccess().getTypeAssignment_0()); 
             }
 
             }
@@ -20653,26 +20653,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__0__Impl"
+    // $ANTLR end "rule__Port__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__1"
-    // InternalReflex.g:6095:1: rule__Register__Group__1 : rule__Register__Group__1__Impl rule__Register__Group__2 ;
-    public final void rule__Register__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__1"
+    // InternalReflex.g:6095:1: rule__Port__Group__1 : rule__Port__Group__1__Impl rule__Port__Group__2 ;
+    public final void rule__Port__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6099:1: ( rule__Register__Group__1__Impl rule__Register__Group__2 )
-            // InternalReflex.g:6100:2: rule__Register__Group__1__Impl rule__Register__Group__2
+            // InternalReflex.g:6099:1: ( rule__Port__Group__1__Impl rule__Port__Group__2 )
+            // InternalReflex.g:6100:2: rule__Port__Group__1__Impl rule__Port__Group__2
             {
             pushFollow(FOLLOW_10);
-            rule__Register__Group__1__Impl();
+            rule__Port__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Register__Group__2();
+            rule__Port__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20691,30 +20691,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__1"
+    // $ANTLR end "rule__Port__Group__1"
 
 
-    // $ANTLR start "rule__Register__Group__1__Impl"
-    // InternalReflex.g:6107:1: rule__Register__Group__1__Impl : ( ( rule__Register__NameAssignment_1 ) ) ;
-    public final void rule__Register__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__1__Impl"
+    // InternalReflex.g:6107:1: rule__Port__Group__1__Impl : ( ( rule__Port__NameAssignment_1 ) ) ;
+    public final void rule__Port__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6111:1: ( ( ( rule__Register__NameAssignment_1 ) ) )
-            // InternalReflex.g:6112:1: ( ( rule__Register__NameAssignment_1 ) )
+            // InternalReflex.g:6111:1: ( ( ( rule__Port__NameAssignment_1 ) ) )
+            // InternalReflex.g:6112:1: ( ( rule__Port__NameAssignment_1 ) )
             {
-            // InternalReflex.g:6112:1: ( ( rule__Register__NameAssignment_1 ) )
-            // InternalReflex.g:6113:2: ( rule__Register__NameAssignment_1 )
+            // InternalReflex.g:6112:1: ( ( rule__Port__NameAssignment_1 ) )
+            // InternalReflex.g:6113:2: ( rule__Port__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getNameAssignment_1()); 
+               before(grammarAccess.getPortAccess().getNameAssignment_1()); 
             }
-            // InternalReflex.g:6114:2: ( rule__Register__NameAssignment_1 )
-            // InternalReflex.g:6114:3: rule__Register__NameAssignment_1
+            // InternalReflex.g:6114:2: ( rule__Port__NameAssignment_1 )
+            // InternalReflex.g:6114:3: rule__Port__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Register__NameAssignment_1();
+            rule__Port__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20722,7 +20722,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getNameAssignment_1()); 
+               after(grammarAccess.getPortAccess().getNameAssignment_1()); 
             }
 
             }
@@ -20742,26 +20742,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__1__Impl"
+    // $ANTLR end "rule__Port__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__2"
-    // InternalReflex.g:6122:1: rule__Register__Group__2 : rule__Register__Group__2__Impl rule__Register__Group__3 ;
-    public final void rule__Register__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__2"
+    // InternalReflex.g:6122:1: rule__Port__Group__2 : rule__Port__Group__2__Impl rule__Port__Group__3 ;
+    public final void rule__Port__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6126:1: ( rule__Register__Group__2__Impl rule__Register__Group__3 )
-            // InternalReflex.g:6127:2: rule__Register__Group__2__Impl rule__Register__Group__3
+            // InternalReflex.g:6126:1: ( rule__Port__Group__2__Impl rule__Port__Group__3 )
+            // InternalReflex.g:6127:2: rule__Port__Group__2__Impl rule__Port__Group__3
             {
             pushFollow(FOLLOW_10);
-            rule__Register__Group__2__Impl();
+            rule__Port__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Register__Group__3();
+            rule__Port__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20780,30 +20780,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__2"
+    // $ANTLR end "rule__Port__Group__2"
 
 
-    // $ANTLR start "rule__Register__Group__2__Impl"
-    // InternalReflex.g:6134:1: rule__Register__Group__2__Impl : ( ( rule__Register__Addr1Assignment_2 ) ) ;
-    public final void rule__Register__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__2__Impl"
+    // InternalReflex.g:6134:1: rule__Port__Group__2__Impl : ( ( rule__Port__Addr1Assignment_2 ) ) ;
+    public final void rule__Port__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6138:1: ( ( ( rule__Register__Addr1Assignment_2 ) ) )
-            // InternalReflex.g:6139:1: ( ( rule__Register__Addr1Assignment_2 ) )
+            // InternalReflex.g:6138:1: ( ( ( rule__Port__Addr1Assignment_2 ) ) )
+            // InternalReflex.g:6139:1: ( ( rule__Port__Addr1Assignment_2 ) )
             {
-            // InternalReflex.g:6139:1: ( ( rule__Register__Addr1Assignment_2 ) )
-            // InternalReflex.g:6140:2: ( rule__Register__Addr1Assignment_2 )
+            // InternalReflex.g:6139:1: ( ( rule__Port__Addr1Assignment_2 ) )
+            // InternalReflex.g:6140:2: ( rule__Port__Addr1Assignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getAddr1Assignment_2()); 
+               before(grammarAccess.getPortAccess().getAddr1Assignment_2()); 
             }
-            // InternalReflex.g:6141:2: ( rule__Register__Addr1Assignment_2 )
-            // InternalReflex.g:6141:3: rule__Register__Addr1Assignment_2
+            // InternalReflex.g:6141:2: ( rule__Port__Addr1Assignment_2 )
+            // InternalReflex.g:6141:3: rule__Port__Addr1Assignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__Register__Addr1Assignment_2();
+            rule__Port__Addr1Assignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20811,7 +20811,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getAddr1Assignment_2()); 
+               after(grammarAccess.getPortAccess().getAddr1Assignment_2()); 
             }
 
             }
@@ -20831,26 +20831,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__2__Impl"
+    // $ANTLR end "rule__Port__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__3"
-    // InternalReflex.g:6149:1: rule__Register__Group__3 : rule__Register__Group__3__Impl rule__Register__Group__4 ;
-    public final void rule__Register__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__3"
+    // InternalReflex.g:6149:1: rule__Port__Group__3 : rule__Port__Group__3__Impl rule__Port__Group__4 ;
+    public final void rule__Port__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6153:1: ( rule__Register__Group__3__Impl rule__Register__Group__4 )
-            // InternalReflex.g:6154:2: rule__Register__Group__3__Impl rule__Register__Group__4
+            // InternalReflex.g:6153:1: ( rule__Port__Group__3__Impl rule__Port__Group__4 )
+            // InternalReflex.g:6154:2: rule__Port__Group__3__Impl rule__Port__Group__4
             {
             pushFollow(FOLLOW_10);
-            rule__Register__Group__3__Impl();
+            rule__Port__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Register__Group__4();
+            rule__Port__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20869,30 +20869,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__3"
+    // $ANTLR end "rule__Port__Group__3"
 
 
-    // $ANTLR start "rule__Register__Group__3__Impl"
-    // InternalReflex.g:6161:1: rule__Register__Group__3__Impl : ( ( rule__Register__Addr2Assignment_3 ) ) ;
-    public final void rule__Register__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__3__Impl"
+    // InternalReflex.g:6161:1: rule__Port__Group__3__Impl : ( ( rule__Port__Addr2Assignment_3 ) ) ;
+    public final void rule__Port__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6165:1: ( ( ( rule__Register__Addr2Assignment_3 ) ) )
-            // InternalReflex.g:6166:1: ( ( rule__Register__Addr2Assignment_3 ) )
+            // InternalReflex.g:6165:1: ( ( ( rule__Port__Addr2Assignment_3 ) ) )
+            // InternalReflex.g:6166:1: ( ( rule__Port__Addr2Assignment_3 ) )
             {
-            // InternalReflex.g:6166:1: ( ( rule__Register__Addr2Assignment_3 ) )
-            // InternalReflex.g:6167:2: ( rule__Register__Addr2Assignment_3 )
+            // InternalReflex.g:6166:1: ( ( rule__Port__Addr2Assignment_3 ) )
+            // InternalReflex.g:6167:2: ( rule__Port__Addr2Assignment_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getAddr2Assignment_3()); 
+               before(grammarAccess.getPortAccess().getAddr2Assignment_3()); 
             }
-            // InternalReflex.g:6168:2: ( rule__Register__Addr2Assignment_3 )
-            // InternalReflex.g:6168:3: rule__Register__Addr2Assignment_3
+            // InternalReflex.g:6168:2: ( rule__Port__Addr2Assignment_3 )
+            // InternalReflex.g:6168:3: rule__Port__Addr2Assignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__Register__Addr2Assignment_3();
+            rule__Port__Addr2Assignment_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20900,7 +20900,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getAddr2Assignment_3()); 
+               after(grammarAccess.getPortAccess().getAddr2Assignment_3()); 
             }
 
             }
@@ -20920,26 +20920,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__3__Impl"
+    // $ANTLR end "rule__Port__Group__3__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__4"
-    // InternalReflex.g:6176:1: rule__Register__Group__4 : rule__Register__Group__4__Impl rule__Register__Group__5 ;
-    public final void rule__Register__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__4"
+    // InternalReflex.g:6176:1: rule__Port__Group__4 : rule__Port__Group__4__Impl rule__Port__Group__5 ;
+    public final void rule__Port__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6180:1: ( rule__Register__Group__4__Impl rule__Register__Group__5 )
-            // InternalReflex.g:6181:2: rule__Register__Group__4__Impl rule__Register__Group__5
+            // InternalReflex.g:6180:1: ( rule__Port__Group__4__Impl rule__Port__Group__5 )
+            // InternalReflex.g:6181:2: rule__Port__Group__4__Impl rule__Port__Group__5
             {
             pushFollow(FOLLOW_11);
-            rule__Register__Group__4__Impl();
+            rule__Port__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Register__Group__5();
+            rule__Port__Group__5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20958,30 +20958,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__4"
+    // $ANTLR end "rule__Port__Group__4"
 
 
-    // $ANTLR start "rule__Register__Group__4__Impl"
-    // InternalReflex.g:6188:1: rule__Register__Group__4__Impl : ( ( rule__Register__RegSizeAssignment_4 ) ) ;
-    public final void rule__Register__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__4__Impl"
+    // InternalReflex.g:6188:1: rule__Port__Group__4__Impl : ( ( rule__Port__RegSizeAssignment_4 ) ) ;
+    public final void rule__Port__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6192:1: ( ( ( rule__Register__RegSizeAssignment_4 ) ) )
-            // InternalReflex.g:6193:1: ( ( rule__Register__RegSizeAssignment_4 ) )
+            // InternalReflex.g:6192:1: ( ( ( rule__Port__RegSizeAssignment_4 ) ) )
+            // InternalReflex.g:6193:1: ( ( rule__Port__RegSizeAssignment_4 ) )
             {
-            // InternalReflex.g:6193:1: ( ( rule__Register__RegSizeAssignment_4 ) )
-            // InternalReflex.g:6194:2: ( rule__Register__RegSizeAssignment_4 )
+            // InternalReflex.g:6193:1: ( ( rule__Port__RegSizeAssignment_4 ) )
+            // InternalReflex.g:6194:2: ( rule__Port__RegSizeAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getRegSizeAssignment_4()); 
+               before(grammarAccess.getPortAccess().getRegSizeAssignment_4()); 
             }
-            // InternalReflex.g:6195:2: ( rule__Register__RegSizeAssignment_4 )
-            // InternalReflex.g:6195:3: rule__Register__RegSizeAssignment_4
+            // InternalReflex.g:6195:2: ( rule__Port__RegSizeAssignment_4 )
+            // InternalReflex.g:6195:3: rule__Port__RegSizeAssignment_4
             {
             pushFollow(FOLLOW_2);
-            rule__Register__RegSizeAssignment_4();
+            rule__Port__RegSizeAssignment_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20989,7 +20989,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getRegSizeAssignment_4()); 
+               after(grammarAccess.getPortAccess().getRegSizeAssignment_4()); 
             }
 
             }
@@ -21009,21 +21009,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__4__Impl"
+    // $ANTLR end "rule__Port__Group__4__Impl"
 
 
-    // $ANTLR start "rule__Register__Group__5"
-    // InternalReflex.g:6203:1: rule__Register__Group__5 : rule__Register__Group__5__Impl ;
-    public final void rule__Register__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__5"
+    // InternalReflex.g:6203:1: rule__Port__Group__5 : rule__Port__Group__5__Impl ;
+    public final void rule__Port__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:6207:1: ( rule__Register__Group__5__Impl )
-            // InternalReflex.g:6208:2: rule__Register__Group__5__Impl
+            // InternalReflex.g:6207:1: ( rule__Port__Group__5__Impl )
+            // InternalReflex.g:6208:2: rule__Port__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Register__Group__5__Impl();
+            rule__Port__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -21042,12 +21042,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__5"
+    // $ANTLR end "rule__Port__Group__5"
 
 
-    // $ANTLR start "rule__Register__Group__5__Impl"
-    // InternalReflex.g:6214:1: rule__Register__Group__5__Impl : ( ';' ) ;
-    public final void rule__Register__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Port__Group__5__Impl"
+    // InternalReflex.g:6214:1: rule__Port__Group__5__Impl : ( ';' ) ;
+    public final void rule__Port__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21059,11 +21059,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6220:2: ';'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getSemicolonKeyword_5()); 
+               before(grammarAccess.getPortAccess().getSemicolonKeyword_5()); 
             }
             match(input,81,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getSemicolonKeyword_5()); 
+               after(grammarAccess.getPortAccess().getSemicolonKeyword_5()); 
             }
 
             }
@@ -21083,7 +21083,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Group__5__Impl"
+    // $ANTLR end "rule__Port__Group__5__Impl"
 
 
     // $ANTLR start "rule__Const__Group__0"
@@ -31075,29 +31075,29 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Program__GlobalVarsAssignment_5_3"
 
 
-    // $ANTLR start "rule__Program__RegistersAssignment_5_4"
-    // InternalReflex.g:9359:1: rule__Program__RegistersAssignment_5_4 : ( ruleRegister ) ;
-    public final void rule__Program__RegistersAssignment_5_4() throws RecognitionException {
+    // $ANTLR start "rule__Program__PortsAssignment_5_4"
+    // InternalReflex.g:9359:1: rule__Program__PortsAssignment_5_4 : ( rulePort ) ;
+    public final void rule__Program__PortsAssignment_5_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:9363:1: ( ( ruleRegister ) )
-            // InternalReflex.g:9364:2: ( ruleRegister )
+            // InternalReflex.g:9363:1: ( ( rulePort ) )
+            // InternalReflex.g:9364:2: ( rulePort )
             {
-            // InternalReflex.g:9364:2: ( ruleRegister )
-            // InternalReflex.g:9365:3: ruleRegister
+            // InternalReflex.g:9364:2: ( rulePort )
+            // InternalReflex.g:9365:3: rulePort
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProgramAccess().getRegistersRegisterParserRuleCall_5_4_0()); 
+               before(grammarAccess.getProgramAccess().getPortsPortParserRuleCall_5_4_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRegister();
+            rulePort();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProgramAccess().getRegistersRegisterParserRuleCall_5_4_0()); 
+               after(grammarAccess.getProgramAccess().getPortsPortParserRuleCall_5_4_0()); 
             }
 
             }
@@ -31117,7 +31117,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Program__RegistersAssignment_5_4"
+    // $ANTLR end "rule__Program__PortsAssignment_5_4"
 
 
     // $ANTLR start "rule__Program__ProcessesAssignment_5_5"
@@ -31954,29 +31954,29 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PhysicalVariable__NameAssignment_1"
 
 
-    // $ANTLR start "rule__PhysicalVariable__PortAssignment_3"
-    // InternalReflex.g:9664:1: rule__PhysicalVariable__PortAssignment_3 : ( ruleRegisterPortMapping ) ;
-    public final void rule__PhysicalVariable__PortAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__PhysicalVariable__MappingAssignment_3"
+    // InternalReflex.g:9664:1: rule__PhysicalVariable__MappingAssignment_3 : ( rulePortMapping ) ;
+    public final void rule__PhysicalVariable__MappingAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:9668:1: ( ( ruleRegisterPortMapping ) )
-            // InternalReflex.g:9669:2: ( ruleRegisterPortMapping )
+            // InternalReflex.g:9668:1: ( ( rulePortMapping ) )
+            // InternalReflex.g:9669:2: ( rulePortMapping )
             {
-            // InternalReflex.g:9669:2: ( ruleRegisterPortMapping )
-            // InternalReflex.g:9670:3: ruleRegisterPortMapping
+            // InternalReflex.g:9669:2: ( rulePortMapping )
+            // InternalReflex.g:9670:3: rulePortMapping
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0()); 
+               before(grammarAccess.getPhysicalVariableAccess().getMappingPortMappingParserRuleCall_3_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRegisterPortMapping();
+            rulePortMapping();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0()); 
+               after(grammarAccess.getPhysicalVariableAccess().getMappingPortMappingParserRuleCall_3_0()); 
             }
 
             }
@@ -31996,12 +31996,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PhysicalVariable__PortAssignment_3"
+    // $ANTLR end "rule__PhysicalVariable__MappingAssignment_3"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__RegisterAssignment_0"
-    // InternalReflex.g:9679:1: rule__RegisterPortMapping__RegisterAssignment_0 : ( ( RULE_ID ) ) ;
-    public final void rule__RegisterPortMapping__RegisterAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__PortAssignment_0"
+    // InternalReflex.g:9679:1: rule__PortMapping__PortAssignment_0 : ( ( RULE_ID ) ) ;
+    public final void rule__PortMapping__PortAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -32013,23 +32013,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9685:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getRegisterRegisterCrossReference_0_0()); 
+               before(grammarAccess.getPortMappingAccess().getPortPortCrossReference_0_0()); 
             }
             // InternalReflex.g:9686:3: ( RULE_ID )
             // InternalReflex.g:9687:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getRegisterRegisterIDTerminalRuleCall_0_0_1()); 
+               before(grammarAccess.getPortMappingAccess().getPortPortIDTerminalRuleCall_0_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getRegisterRegisterIDTerminalRuleCall_0_0_1()); 
+               after(grammarAccess.getPortMappingAccess().getPortPortIDTerminalRuleCall_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getRegisterRegisterCrossReference_0_0()); 
+               after(grammarAccess.getPortMappingAccess().getPortPortCrossReference_0_0()); 
             }
 
             }
@@ -32049,12 +32049,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__RegisterAssignment_0"
+    // $ANTLR end "rule__PortMapping__PortAssignment_0"
 
 
-    // $ANTLR start "rule__RegisterPortMapping__PortBitAssignment_2"
-    // InternalReflex.g:9698:1: rule__RegisterPortMapping__PortBitAssignment_2 : ( RULE_INTEGER ) ;
-    public final void rule__RegisterPortMapping__PortBitAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__PortMapping__BitAssignment_2"
+    // InternalReflex.g:9698:1: rule__PortMapping__BitAssignment_2 : ( RULE_INTEGER ) ;
+    public final void rule__PortMapping__BitAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -32066,11 +32066,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9704:3: RULE_INTEGER
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0()); 
+               before(grammarAccess.getPortMappingAccess().getBitINTEGERTerminalRuleCall_2_0()); 
             }
             match(input,RULE_INTEGER,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterPortMappingAccess().getPortBitINTEGERTerminalRuleCall_2_0()); 
+               after(grammarAccess.getPortMappingAccess().getBitINTEGERTerminalRuleCall_2_0()); 
             }
 
             }
@@ -32090,7 +32090,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RegisterPortMapping__PortBitAssignment_2"
+    // $ANTLR end "rule__PortMapping__BitAssignment_2"
 
 
     // $ANTLR start "rule__ProgramVariable__TypeAssignment_0"
@@ -33209,29 +33209,29 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Function__ArgTypesAssignment_4_1"
 
 
-    // $ANTLR start "rule__Register__TypeAssignment_0"
-    // InternalReflex.g:10097:1: rule__Register__TypeAssignment_0 : ( ruleRegisterType ) ;
-    public final void rule__Register__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Port__TypeAssignment_0"
+    // InternalReflex.g:10097:1: rule__Port__TypeAssignment_0 : ( rulePortType ) ;
+    public final void rule__Port__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:10101:1: ( ( ruleRegisterType ) )
-            // InternalReflex.g:10102:2: ( ruleRegisterType )
+            // InternalReflex.g:10101:1: ( ( rulePortType ) )
+            // InternalReflex.g:10102:2: ( rulePortType )
             {
-            // InternalReflex.g:10102:2: ( ruleRegisterType )
-            // InternalReflex.g:10103:3: ruleRegisterType
+            // InternalReflex.g:10102:2: ( rulePortType )
+            // InternalReflex.g:10103:3: rulePortType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getTypeRegisterTypeEnumRuleCall_0_0()); 
+               before(grammarAccess.getPortAccess().getTypePortTypeEnumRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRegisterType();
+            rulePortType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getTypeRegisterTypeEnumRuleCall_0_0()); 
+               after(grammarAccess.getPortAccess().getTypePortTypeEnumRuleCall_0_0()); 
             }
 
             }
@@ -33251,12 +33251,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__TypeAssignment_0"
+    // $ANTLR end "rule__Port__TypeAssignment_0"
 
 
-    // $ANTLR start "rule__Register__NameAssignment_1"
-    // InternalReflex.g:10112:1: rule__Register__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Register__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Port__NameAssignment_1"
+    // InternalReflex.g:10112:1: rule__Port__NameAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Port__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33268,11 +33268,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:10118:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_1_0()); 
+               before(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_1_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_1_0()); 
+               after(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_1_0()); 
             }
 
             }
@@ -33292,12 +33292,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__NameAssignment_1"
+    // $ANTLR end "rule__Port__NameAssignment_1"
 
 
-    // $ANTLR start "rule__Register__Addr1Assignment_2"
-    // InternalReflex.g:10127:1: rule__Register__Addr1Assignment_2 : ( RULE_INTEGER ) ;
-    public final void rule__Register__Addr1Assignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Port__Addr1Assignment_2"
+    // InternalReflex.g:10127:1: rule__Port__Addr1Assignment_2 : ( RULE_INTEGER ) ;
+    public final void rule__Port__Addr1Assignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33309,11 +33309,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:10133:3: RULE_INTEGER
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getAddr1INTEGERTerminalRuleCall_2_0()); 
+               before(grammarAccess.getPortAccess().getAddr1INTEGERTerminalRuleCall_2_0()); 
             }
             match(input,RULE_INTEGER,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getAddr1INTEGERTerminalRuleCall_2_0()); 
+               after(grammarAccess.getPortAccess().getAddr1INTEGERTerminalRuleCall_2_0()); 
             }
 
             }
@@ -33333,12 +33333,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Addr1Assignment_2"
+    // $ANTLR end "rule__Port__Addr1Assignment_2"
 
 
-    // $ANTLR start "rule__Register__Addr2Assignment_3"
-    // InternalReflex.g:10142:1: rule__Register__Addr2Assignment_3 : ( RULE_INTEGER ) ;
-    public final void rule__Register__Addr2Assignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Port__Addr2Assignment_3"
+    // InternalReflex.g:10142:1: rule__Port__Addr2Assignment_3 : ( RULE_INTEGER ) ;
+    public final void rule__Port__Addr2Assignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33350,11 +33350,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:10148:3: RULE_INTEGER
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getAddr2INTEGERTerminalRuleCall_3_0()); 
+               before(grammarAccess.getPortAccess().getAddr2INTEGERTerminalRuleCall_3_0()); 
             }
             match(input,RULE_INTEGER,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getAddr2INTEGERTerminalRuleCall_3_0()); 
+               after(grammarAccess.getPortAccess().getAddr2INTEGERTerminalRuleCall_3_0()); 
             }
 
             }
@@ -33374,12 +33374,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__Addr2Assignment_3"
+    // $ANTLR end "rule__Port__Addr2Assignment_3"
 
 
-    // $ANTLR start "rule__Register__RegSizeAssignment_4"
-    // InternalReflex.g:10157:1: rule__Register__RegSizeAssignment_4 : ( RULE_INTEGER ) ;
-    public final void rule__Register__RegSizeAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__Port__RegSizeAssignment_4"
+    // InternalReflex.g:10157:1: rule__Port__RegSizeAssignment_4 : ( RULE_INTEGER ) ;
+    public final void rule__Port__RegSizeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -33391,11 +33391,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:10163:3: RULE_INTEGER
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRegisterAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); 
+               before(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); 
             }
             match(input,RULE_INTEGER,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRegisterAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); 
+               after(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); 
             }
 
             }
@@ -33415,7 +33415,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Register__RegSizeAssignment_4"
+    // $ANTLR end "rule__Port__RegSizeAssignment_4"
 
 
     // $ANTLR start "rule__Const__TypeAssignment_1"
@@ -36026,7 +36026,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1562:1: rule__Program__Alternatives_5 : ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__RegistersAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) );";
+            return "1562:1: rule__Program__Alternatives_5 : ( ( ( rule__Program__ConstsAssignment_5_0 ) ) | ( ( rule__Program__EnumsAssignment_5_1 ) ) | ( ( rule__Program__FunctionsAssignment_5_2 ) ) | ( ( rule__Program__GlobalVarsAssignment_5_3 ) ) | ( ( rule__Program__PortsAssignment_5_4 ) ) | ( ( rule__Program__ProcessesAssignment_5_5 ) ) );";
         }
     }
     static final String dfa_7s = "\15\uffff";

@@ -45,6 +45,9 @@ import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
@@ -52,9 +55,6 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -137,7 +137,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
       case ReflexPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       case ReflexPackage.PHYSICAL_VARIABLE: return createPhysicalVariable();
-      case ReflexPackage.REGISTER_PORT_MAPPING: return createRegisterPortMapping();
+      case ReflexPackage.PORT_MAPPING: return createPortMapping();
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
       case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
       case ReflexPackage.COMPOUND_STATEMENT: return createCompoundStatement();
@@ -154,7 +154,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.RESET_STAT: return createResetStat();
       case ReflexPackage.SET_STATE_STAT: return createSetStateStat();
       case ReflexPackage.FUNCTION: return createFunction();
-      case ReflexPackage.REGISTER: return createRegister();
+      case ReflexPackage.PORT: return createPort();
       case ReflexPackage.CONST: return createConst();
       case ReflexPackage.ENUM: return createEnum();
       case ReflexPackage.ENUM_MEMBER: return createEnumMember();
@@ -196,8 +196,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case ReflexPackage.REGISTER_TYPE:
-        return createRegisterTypeFromString(eDataType, initialValue);
+      case ReflexPackage.PORT_TYPE:
+        return createPortTypeFromString(eDataType, initialValue);
       case ReflexPackage.STATE_QUALIFIER:
         return createStateQualifierFromString(eDataType, initialValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
@@ -235,8 +235,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case ReflexPackage.REGISTER_TYPE:
-        return convertRegisterTypeToString(eDataType, instanceValue);
+      case ReflexPackage.PORT_TYPE:
+        return convertPortTypeToString(eDataType, instanceValue);
       case ReflexPackage.STATE_QUALIFIER:
         return convertStateQualifierToString(eDataType, instanceValue);
       case ReflexPackage.INFIX_POSTFIX_OP:
@@ -366,10 +366,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public RegisterPortMapping createRegisterPortMapping()
+  public PortMapping createPortMapping()
   {
-    RegisterPortMappingImpl registerPortMapping = new RegisterPortMappingImpl();
-    return registerPortMapping;
+    PortMappingImpl portMapping = new PortMappingImpl();
+    return portMapping;
   }
 
   /**
@@ -570,10 +570,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Register createRegister()
+  public Port createPort()
   {
-    RegisterImpl register = new RegisterImpl();
-    return register;
+    PortImpl port = new PortImpl();
+    return port;
   }
 
   /**
@@ -893,9 +893,9 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RegisterType createRegisterTypeFromString(EDataType eDataType, String initialValue)
+  public PortType createPortTypeFromString(EDataType eDataType, String initialValue)
   {
-    RegisterType result = RegisterType.get(initialValue);
+    PortType result = PortType.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -905,7 +905,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertRegisterTypeToString(EDataType eDataType, Object instanceValue)
+  public String convertPortTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

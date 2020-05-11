@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ru.iaie.reflex.reflex.Program#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getFunctions <em>Functions</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getGlobalVars <em>Global Vars</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Program#getRegisters <em>Registers</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Program#getPorts <em>Ports</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getProcesses <em>Processes</em>}</li>
  * </ul>
  *
@@ -138,16 +138,16 @@ public interface Program extends EObject
   EList<GlobalVariable> getGlobalVars();
 
   /**
-   * Returns the value of the '<em><b>Registers</b></em>' containment reference list.
-   * The list contents are of type {@link ru.iaie.reflex.reflex.Register}.
+   * Returns the value of the '<em><b>Ports</b></em>' containment reference list.
+   * The list contents are of type {@link ru.iaie.reflex.reflex.Port}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Registers</em>' containment reference list.
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Registers()
+   * @return the value of the '<em>Ports</em>' containment reference list.
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Ports()
    * @model containment="true"
    * @generated
    */
-  EList<Register> getRegisters();
+  EList<Port> getPorts();
 
   /**
    * Returns the value of the '<em><b>Processes</b></em>' containment reference list.

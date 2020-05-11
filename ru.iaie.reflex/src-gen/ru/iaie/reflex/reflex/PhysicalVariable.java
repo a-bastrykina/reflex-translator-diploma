@@ -16,7 +16,7 @@ package ru.iaie.reflex.reflex;
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#isShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PhysicalVariable#getMapping <em>Mapping</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable()
@@ -92,25 +92,25 @@ public interface PhysicalVariable extends ProcessVariable, GlobalVariable, IdRef
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Port</b></em>' containment reference.
+   * Returns the value of the '<em><b>Mapping</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Port</em>' containment reference.
-   * @see #setPort(RegisterPortMapping)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Port()
+   * @return the value of the '<em>Mapping</em>' containment reference.
+   * @see #setMapping(PortMapping)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPhysicalVariable_Mapping()
    * @model containment="true"
    * @generated
    */
-  RegisterPortMapping getPort();
+  PortMapping getMapping();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PhysicalVariable#getMapping <em>Mapping</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Port</em>' containment reference.
-   * @see #getPort()
+   * @param value the new value of the '<em>Mapping</em>' containment reference.
+   * @see #getMapping()
    * @generated
    */
-  void setPort(RegisterPortMapping value);
+  void setMapping(PortMapping value);
 
 } // PhysicalVariable

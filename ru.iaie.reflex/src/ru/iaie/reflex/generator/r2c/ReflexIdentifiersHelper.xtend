@@ -3,19 +3,19 @@ package ru.iaie.reflex.generator.r2c
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.Const
-import ru.iaie.reflex.reflex.Register
 import ru.iaie.reflex.reflex.Enum
 import ru.iaie.reflex.reflex.EnumMember
 import ru.iaie.reflex.reflex.GlobalVariable
 import java.util.Map
 import java.util.HashMap
-import ru.iaie.reflex.reflex.RegisterType
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.ProcessVariable
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.ProgramVariable
+import ru.iaie.reflex.reflex.Port
+import ru.iaie.reflex.reflex.PortType
 
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
@@ -58,12 +58,12 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		}
 	}
 
-	override getPortId(Register reg) {
-		val key = reg.name
+	override getPortId(Port port) {
+		val key = port.name
 		if (portIdentifiers.containsKey(key)) {
 			return portIdentifiers.get(key)
 		} else {
-			val value = '''_«reg.type == RegisterType.INPUT ? "i" : "o"»_«reg.name»'''
+			val value = '''_«port.type == PortType.INPUT ? "i" : "o"»_«port.name»'''
 			portIdentifiers.put(key, value)
 			return value
 		}

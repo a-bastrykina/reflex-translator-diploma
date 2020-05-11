@@ -132,13 +132,13 @@ public interface ReflexPackage extends EPackage
   int PROGRAM__GLOBAL_VARS = 6;
 
   /**
-   * The feature id for the '<em><b>Registers</b></em>' containment reference list.
+   * The feature id for the '<em><b>Ports</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROGRAM__REGISTERS = 7;
+  int PROGRAM__PORTS = 7;
 
   /**
    * The feature id for the '<em><b>Processes</b></em>' containment reference list.
@@ -427,13 +427,13 @@ public interface ReflexPackage extends EPackage
   int PHYSICAL_VARIABLE__NAME = PROCESS_VARIABLE_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Port</b></em>' containment reference.
+   * The feature id for the '<em><b>Mapping</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PHYSICAL_VARIABLE__PORT = PROCESS_VARIABLE_FEATURE_COUNT + 3;
+  int PHYSICAL_VARIABLE__MAPPING = PROCESS_VARIABLE_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Physical Variable</em>' class.
@@ -445,41 +445,41 @@ public interface ReflexPackage extends EPackage
   int PHYSICAL_VARIABLE_FEATURE_COUNT = PROCESS_VARIABLE_FEATURE_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl <em>Register Port Mapping</em>}' class.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.PortMappingImpl <em>Port Mapping</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterPortMapping()
+   * @see ru.iaie.reflex.reflex.impl.PortMappingImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortMapping()
    * @generated
    */
-  int REGISTER_PORT_MAPPING = 8;
+  int PORT_MAPPING = 8;
 
   /**
-   * The feature id for the '<em><b>Register</b></em>' reference.
+   * The feature id for the '<em><b>Port</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REGISTER_PORT_MAPPING__REGISTER = 0;
+  int PORT_MAPPING__PORT = 0;
 
   /**
-   * The feature id for the '<em><b>Port Bit</b></em>' attribute.
+   * The feature id for the '<em><b>Bit</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REGISTER_PORT_MAPPING__PORT_BIT = 1;
+  int PORT_MAPPING__BIT = 1;
 
   /**
-   * The number of structural features of the '<em>Register Port Mapping</em>' class.
+   * The number of structural features of the '<em>Port Mapping</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REGISTER_PORT_MAPPING_FEATURE_COUNT = 2;
+  int PORT_MAPPING_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl <em>Program Variable</em>}' class.
@@ -1020,14 +1020,14 @@ public interface ReflexPackage extends EPackage
   int FUNCTION_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.RegisterImpl <em>Register</em>}' class.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.PortImpl <em>Port</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.RegisterImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegister()
+   * @see ru.iaie.reflex.reflex.impl.PortImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPort()
    * @generated
    */
-  int REGISTER = 25;
+  int PORT = 25;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1036,7 +1036,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGISTER__TYPE = 0;
+  int PORT__TYPE = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1045,7 +1045,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGISTER__NAME = 1;
+  int PORT__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Addr1</b></em>' attribute.
@@ -1054,7 +1054,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGISTER__ADDR1 = 2;
+  int PORT__ADDR1 = 2;
 
   /**
    * The feature id for the '<em><b>Addr2</b></em>' attribute.
@@ -1063,7 +1063,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGISTER__ADDR2 = 3;
+  int PORT__ADDR2 = 3;
 
   /**
    * The feature id for the '<em><b>Reg Size</b></em>' attribute.
@@ -1072,16 +1072,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REGISTER__REG_SIZE = 4;
+  int PORT__REG_SIZE = 4;
 
   /**
-   * The number of structural features of the '<em>Register</em>' class.
+   * The number of structural features of the '<em>Port</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REGISTER_FEATURE_COUNT = 5;
+  int PORT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.IdReferenceImpl <em>Id Reference</em>}' class.
@@ -2658,14 +2658,14 @@ public interface ReflexPackage extends EPackage
   int ANNOTATION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.PortType <em>Port Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.RegisterType
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterType()
+   * @see ru.iaie.reflex.reflex.PortType
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortType()
    * @generated
    */
-  int REGISTER_TYPE = 52;
+  int PORT_TYPE = 52;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.
@@ -2866,15 +2866,15 @@ public interface ReflexPackage extends EPackage
   EReference getProgram_GlobalVars();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Program#getRegisters <em>Registers</em>}'.
+   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Program#getPorts <em>Ports</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Registers</em>'.
-   * @see ru.iaie.reflex.reflex.Program#getRegisters()
+   * @return the meta object for the containment reference list '<em>Ports</em>'.
+   * @see ru.iaie.reflex.reflex.Program#getPorts()
    * @see #getProgram()
    * @generated
    */
-  EReference getProgram_Registers();
+  EReference getProgram_Ports();
 
   /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Program#getProcesses <em>Processes</em>}'.
@@ -3134,47 +3134,47 @@ public interface ReflexPackage extends EPackage
   EAttribute getPhysicalVariable_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PhysicalVariable#getPort <em>Port</em>}'.
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PhysicalVariable#getMapping <em>Mapping</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Port</em>'.
-   * @see ru.iaie.reflex.reflex.PhysicalVariable#getPort()
+   * @return the meta object for the containment reference '<em>Mapping</em>'.
+   * @see ru.iaie.reflex.reflex.PhysicalVariable#getMapping()
    * @see #getPhysicalVariable()
    * @generated
    */
-  EReference getPhysicalVariable_Port();
+  EReference getPhysicalVariable_Mapping();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.RegisterPortMapping <em>Register Port Mapping</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.PortMapping <em>Port Mapping</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Register Port Mapping</em>'.
-   * @see ru.iaie.reflex.reflex.RegisterPortMapping
+   * @return the meta object for class '<em>Port Mapping</em>'.
+   * @see ru.iaie.reflex.reflex.PortMapping
    * @generated
    */
-  EClass getRegisterPortMapping();
+  EClass getPortMapping();
 
   /**
-   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.RegisterPortMapping#getRegister <em>Register</em>}'.
+   * Returns the meta object for the reference '{@link ru.iaie.reflex.reflex.PortMapping#getPort <em>Port</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Register</em>'.
-   * @see ru.iaie.reflex.reflex.RegisterPortMapping#getRegister()
-   * @see #getRegisterPortMapping()
+   * @return the meta object for the reference '<em>Port</em>'.
+   * @see ru.iaie.reflex.reflex.PortMapping#getPort()
+   * @see #getPortMapping()
    * @generated
    */
-  EReference getRegisterPortMapping_Register();
+  EReference getPortMapping_Port();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.RegisterPortMapping#getPortBit <em>Port Bit</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PortMapping#getBit <em>Bit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Port Bit</em>'.
-   * @see ru.iaie.reflex.reflex.RegisterPortMapping#getPortBit()
-   * @see #getRegisterPortMapping()
+   * @return the meta object for the attribute '<em>Bit</em>'.
+   * @see ru.iaie.reflex.reflex.PortMapping#getBit()
+   * @see #getPortMapping()
    * @generated
    */
-  EAttribute getRegisterPortMapping_PortBit();
+  EAttribute getPortMapping_Bit();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ProgramVariable <em>Program Variable</em>}'.
@@ -3601,69 +3601,69 @@ public interface ReflexPackage extends EPackage
   EReference getFunction_ArgTypes();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Register <em>Register</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Port <em>Port</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Register</em>'.
-   * @see ru.iaie.reflex.reflex.Register
+   * @return the meta object for class '<em>Port</em>'.
+   * @see ru.iaie.reflex.reflex.Port
    * @generated
    */
-  EClass getRegister();
+  EClass getPort();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see ru.iaie.reflex.reflex.Register#getType()
-   * @see #getRegister()
+   * @see ru.iaie.reflex.reflex.Port#getType()
+   * @see #getPort()
    * @generated
    */
-  EAttribute getRegister_Type();
+  EAttribute getPort_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see ru.iaie.reflex.reflex.Register#getName()
-   * @see #getRegister()
+   * @see ru.iaie.reflex.reflex.Port#getName()
+   * @see #getPort()
    * @generated
    */
-  EAttribute getRegister_Name();
+  EAttribute getPort_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getAddr1 <em>Addr1</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getAddr1 <em>Addr1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Addr1</em>'.
-   * @see ru.iaie.reflex.reflex.Register#getAddr1()
-   * @see #getRegister()
+   * @see ru.iaie.reflex.reflex.Port#getAddr1()
+   * @see #getPort()
    * @generated
    */
-  EAttribute getRegister_Addr1();
+  EAttribute getPort_Addr1();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getAddr2 <em>Addr2</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getAddr2 <em>Addr2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Addr2</em>'.
-   * @see ru.iaie.reflex.reflex.Register#getAddr2()
-   * @see #getRegister()
+   * @see ru.iaie.reflex.reflex.Port#getAddr2()
+   * @see #getPort()
    * @generated
    */
-  EAttribute getRegister_Addr2();
+  EAttribute getPort_Addr2();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Reg Size</em>'.
-   * @see ru.iaie.reflex.reflex.Register#getRegSize()
-   * @see #getRegister()
+   * @see ru.iaie.reflex.reflex.Port#getRegSize()
+   * @see #getPort()
    * @generated
    */
-  EAttribute getRegister_RegSize();
+  EAttribute getPort_RegSize();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Const <em>Const</em>}'.
@@ -4333,14 +4333,14 @@ public interface ReflexPackage extends EPackage
   EAttribute getAnnotation_Value();
 
   /**
-   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}'.
+   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.PortType <em>Port Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Register Type</em>'.
-   * @see ru.iaie.reflex.reflex.RegisterType
+   * @return the meta object for enum '<em>Port Type</em>'.
+   * @see ru.iaie.reflex.reflex.PortType
    * @generated
    */
-  EEnum getRegisterType();
+  EEnum getPortType();
 
   /**
    * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}'.
@@ -4542,12 +4542,12 @@ public interface ReflexPackage extends EPackage
     EReference PROGRAM__GLOBAL_VARS = eINSTANCE.getProgram_GlobalVars();
 
     /**
-     * The meta object literal for the '<em><b>Registers</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Ports</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROGRAM__REGISTERS = eINSTANCE.getProgram_Registers();
+    EReference PROGRAM__PORTS = eINSTANCE.getProgram_Ports();
 
     /**
      * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
@@ -4756,38 +4756,38 @@ public interface ReflexPackage extends EPackage
     EAttribute PHYSICAL_VARIABLE__NAME = eINSTANCE.getPhysicalVariable_Name();
 
     /**
-     * The meta object literal for the '<em><b>Port</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Mapping</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PHYSICAL_VARIABLE__PORT = eINSTANCE.getPhysicalVariable_Port();
+    EReference PHYSICAL_VARIABLE__MAPPING = eINSTANCE.getPhysicalVariable_Mapping();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl <em>Register Port Mapping</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.PortMappingImpl <em>Port Mapping</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterPortMapping()
+     * @see ru.iaie.reflex.reflex.impl.PortMappingImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortMapping()
      * @generated
      */
-    EClass REGISTER_PORT_MAPPING = eINSTANCE.getRegisterPortMapping();
+    EClass PORT_MAPPING = eINSTANCE.getPortMapping();
 
     /**
-     * The meta object literal for the '<em><b>Register</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Port</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REGISTER_PORT_MAPPING__REGISTER = eINSTANCE.getRegisterPortMapping_Register();
+    EReference PORT_MAPPING__PORT = eINSTANCE.getPortMapping_Port();
 
     /**
-     * The meta object literal for the '<em><b>Port Bit</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Bit</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER_PORT_MAPPING__PORT_BIT = eINSTANCE.getRegisterPortMapping_PortBit();
+    EAttribute PORT_MAPPING__BIT = eINSTANCE.getPortMapping_Bit();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ProgramVariableImpl <em>Program Variable</em>}' class.
@@ -5142,14 +5142,14 @@ public interface ReflexPackage extends EPackage
     EReference FUNCTION__ARG_TYPES = eINSTANCE.getFunction_ArgTypes();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.RegisterImpl <em>Register</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.PortImpl <em>Port</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.RegisterImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegister()
+     * @see ru.iaie.reflex.reflex.impl.PortImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPort()
      * @generated
      */
-    EClass REGISTER = eINSTANCE.getRegister();
+    EClass PORT = eINSTANCE.getPort();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -5157,7 +5157,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__TYPE = eINSTANCE.getRegister_Type();
+    EAttribute PORT__TYPE = eINSTANCE.getPort_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -5165,7 +5165,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__NAME = eINSTANCE.getRegister_Name();
+    EAttribute PORT__NAME = eINSTANCE.getPort_Name();
 
     /**
      * The meta object literal for the '<em><b>Addr1</b></em>' attribute feature.
@@ -5173,7 +5173,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__ADDR1 = eINSTANCE.getRegister_Addr1();
+    EAttribute PORT__ADDR1 = eINSTANCE.getPort_Addr1();
 
     /**
      * The meta object literal for the '<em><b>Addr2</b></em>' attribute feature.
@@ -5181,7 +5181,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__ADDR2 = eINSTANCE.getRegister_Addr2();
+    EAttribute PORT__ADDR2 = eINSTANCE.getPort_Addr2();
 
     /**
      * The meta object literal for the '<em><b>Reg Size</b></em>' attribute feature.
@@ -5189,7 +5189,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REGISTER__REG_SIZE = eINSTANCE.getRegister_RegSize();
+    EAttribute PORT__REG_SIZE = eINSTANCE.getPort_RegSize();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ConstImpl <em>Const</em>}' class.
@@ -5748,14 +5748,14 @@ public interface ReflexPackage extends EPackage
     EAttribute ANNOTATION__VALUE = eINSTANCE.getAnnotation_Value();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.RegisterType <em>Register Type</em>}' enum.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.PortType <em>Port Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.RegisterType
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRegisterType()
+     * @see ru.iaie.reflex.reflex.PortType
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortType()
      * @generated
      */
-    EEnum REGISTER_TYPE = eINSTANCE.getRegisterType();
+    EEnum PORT_TYPE = eINSTANCE.getPortType();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.

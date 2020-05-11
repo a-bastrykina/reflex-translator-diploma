@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.Type;
 
 /**
@@ -27,7 +27,7 @@ import ru.iaie.reflex.reflex.Type;
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#isShared <em>Shared</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getType <em>Type</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PhysicalVariableImpl#getMapping <em>Mapping</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,14 +85,14 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPort() <em>Port</em>}' containment reference.
+   * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPort()
+   * @see #getMapping()
    * @generated
    * @ordered
    */
-  protected RegisterPortMapping port;
+  protected PortMapping mapping;
 
   /**
    * <!-- begin-user-doc -->
@@ -221,9 +221,9 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
    * @generated
    */
   @Override
-  public RegisterPortMapping getPort()
+  public PortMapping getMapping()
   {
-    return port;
+    return mapping;
   }
 
   /**
@@ -231,13 +231,13 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPort(RegisterPortMapping newPort, NotificationChain msgs)
+  public NotificationChain basicSetMapping(PortMapping newMapping, NotificationChain msgs)
   {
-    RegisterPortMapping oldPort = port;
-    port = newPort;
+    PortMapping oldMapping = mapping;
+    mapping = newMapping;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__PORT, oldPort, newPort);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__MAPPING, oldMapping, newMapping);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -249,20 +249,20 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
    * @generated
    */
   @Override
-  public void setPort(RegisterPortMapping newPort)
+  public void setMapping(PortMapping newMapping)
   {
-    if (newPort != port)
+    if (newMapping != mapping)
     {
       NotificationChain msgs = null;
-      if (port != null)
-        msgs = ((InternalEObject)port).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__PORT, null, msgs);
-      if (newPort != null)
-        msgs = ((InternalEObject)newPort).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__PORT, null, msgs);
-      msgs = basicSetPort(newPort, msgs);
+      if (mapping != null)
+        msgs = ((InternalEObject)mapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__MAPPING, null, msgs);
+      if (newMapping != null)
+        msgs = ((InternalEObject)newMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__MAPPING, null, msgs);
+      msgs = basicSetMapping(newMapping, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__PORT, newPort, newPort));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__MAPPING, newMapping, newMapping));
   }
 
   /**
@@ -277,8 +277,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
     {
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
         return basicSetType(null, msgs);
-      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
-        return basicSetPort(null, msgs);
+      case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
+        return basicSetMapping(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -299,8 +299,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
         return getType();
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         return getName();
-      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
-        return getPort();
+      case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
+        return getMapping();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -324,8 +324,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         setName((String)newValue);
         return;
-      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
-        setPort((RegisterPortMapping)newValue);
+      case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
+        setMapping((PortMapping)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -350,8 +350,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
-        setPort((RegisterPortMapping)null);
+      case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
+        setMapping((PortMapping)null);
         return;
     }
     super.eUnset(featureID);
@@ -373,8 +373,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
         return type != null;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReflexPackage.PHYSICAL_VARIABLE__PORT:
-        return port != null;
+      case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
+        return mapping != null;
     }
     return super.eIsSet(featureID);
   }

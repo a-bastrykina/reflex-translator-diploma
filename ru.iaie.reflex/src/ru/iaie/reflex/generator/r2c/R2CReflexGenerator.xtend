@@ -26,7 +26,6 @@ import ru.iaie.reflex.reflex.PostfixOp
 import ru.iaie.reflex.reflex.PrimaryExpression
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.Program
-import ru.iaie.reflex.reflex.RegisterType
 import ru.iaie.reflex.reflex.ResetStat
 import ru.iaie.reflex.reflex.RestartStat
 import ru.iaie.reflex.reflex.SetStateStat
@@ -41,12 +40,16 @@ import ru.iaie.reflex.reflex.UnaryExpression
 
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
+import static extension org.eclipse.xtext.EcoreUtil2.*
+
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.reflex.Types
 import ru.iaie.reflex.reflex.CompoundStatement
+import ru.iaie.reflex.reflex.PhysicalVariable
+import ru.iaie.reflex.reflex.PortType
 
 // TODO: abstract class with same doGenerate and abstract
 // 		generateVariables(resource, fsa, context)
@@ -107,13 +110,23 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def generateIO(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val inputVars = newArrayList()
+		val outputVars = newArrayList()
+		program.eAllOfType(PhysicalVariable).forEach [ v |
+			v.mappedPortType == PortType.INPUT
+				? inputVars.add(v)
+				: outputVars.add(v)
+		]
 		val fileContent = '''
 		#include "io.h"
-		#include "xvar.h"	
+		#include "xvar.h"
+		#include "../lib/r_cnst.h"	
 		#include "stdio.h"
 		
 		void Input(void) {
-		    printf("input\n");
+		    «FOR physVar : inputVars»
+		    «translateReadingFromInput(physVar)»;
+		    «ENDFOR»
 		}  /* Reading IO func */
 		
 		void Output(void) {
@@ -121,6 +134,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 		} /* Writing IO func */
 		'''
 		fsa.generateFile('''c-code/generated/io.c''', fileContent)
+	}
+	
+	def translateReadingFromInput(PhysicalVariable v) {
+		val mapping = v.mapping
+		return '''«identifiersHelper.getMapping(v)» = «identifiersHelper.getPortId(mapping.port)»«IF !mapping.fullMapping» & MASK«mapping.bit»_S«mapping.port.regSize»«ENDIF»'''
 	}
 
 // TODO: rename
@@ -160,37 +178,26 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateVariables(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
-			/*           Variables          */
 			/* GVAR.H = Global Variables Image-File. */
 			#ifndef _gvar_h
 			#define _gvar_h 1
-			/*       Process variables     */
-			«generateProcessVariables(resource, false)»
-			/*          Input Ports         */
-			«generateInputPorts(resource, false)»
-			/*         Output Ports         */
-			«generateOutputPorts(resource, false)»
+			«generateVariables(resource, false)»
+			«generatePorts(resource, false)»
 			#endif
 		'''
 		fsa.generateFile('''c-code/generated/gvar.h''', fileContent)
 		val externFileContent = '''
-			/*           Variables          */
 			/* xvar.h = Extern Variables Image-File. */
 			#ifndef _xvar_h
 			#define _xvar_h 1
-			/*       Process variables     */
-			«generateProcessVariables(resource, true)»
-			/*          Input Ports         */
-			«generateInputPorts(resource, true)»
-			/*         Output Ports         */
-			«generateOutputPorts(resource, true)»
+			«generateVariables(resource, true)»
+			«generatePorts(resource, true)»
 			#endif
 		'''
 		fsa.generateFile('''c-code/generated/xvar.h''', externFileContent)
 	}
-
-	// TODO: split to global and process
-	def generateProcessVariables(Resource resource, boolean externDef) {
+	
+	def generateVariables(Resource resource, boolean externDef) {
 		return '''
 			«FOR variable : program.globalVars»
 			«IF externDef»extern «ENDIF»«generateGlobalVariableDefinition(variable)»
@@ -217,24 +224,11 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 
-	def generateInputPorts(Resource resource, boolean externDef) {
+	def generatePorts(Resource resource, boolean externDef) {
 		// TODO: specify port type
 		return '''
-			«FOR reg : program.registers»
-			«IF reg.type == RegisterType.INPUT»
+			«FOR reg : program.ports»
 			«IF externDef»extern «ENDIF»char «identifiersHelper.getPortId(reg)»;
-			«ENDIF»
-			«ENDFOR»
-		'''
-	}
-
-	def generateOutputPorts(Resource resource, boolean externDef) {
-		// TODO: specify port type
-		return '''
-			«FOR reg : program.registers»
-			«IF reg.type == RegisterType.OUTPUT»
-			«IF externDef»extern «ENDIF»char «identifiersHelper.getPortId(reg)»;
-			«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -328,24 +322,16 @@ class R2CReflexGenerator extends AbstractGenerator {
 		'''
 	}
 	
-	def translateStateStopCheck(Process proc) {
-		return '''Check_State(«proc.index») == STATE_OF_STOP'''
-	}
-	
-	def translateStateErrorCheck(Process proc) {
-		return '''Check_State(«proc.index») == STATE_OF_ERROR'''
-	}
-	
 	def translateCheckStateExpression(CheckStateExpression cse) {
 		switch (cse.qualfier) {
 			case STOP:
-				return translateStateStopCheck(cse.process)
+				return '''Is_Stop(«cse.process.index»)'''
 			case ERROR:
-				return translateStateErrorCheck(cse.process)
+				return '''Is_Error(«cse.process.index»)'''
 			case ACTIVE:
-				return '''!(«translateStateStopCheck(cse.process)» || «translateStateErrorCheck(cse.process)»)'''
+				return '''Is_Active(«cse.process.index»)'''
 			case INACTIVE:
-				return '''(«translateStateStopCheck(cse.process)» || «translateStateErrorCheck(cse.process)»)'''
+				return '''Is_Inactive(«cse.process.index»)'''
 		}
 	}
 

@@ -38,13 +38,13 @@ import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -160,6 +160,12 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case ReflexPackage.PORT:
+				sequence_Port(context, (Port) semanticObject); 
+				return; 
+			case ReflexPackage.PORT_MAPPING:
+				sequence_PortMapping(context, (PortMapping) semanticObject); 
+				return; 
 			case ReflexPackage.POSTFIX_OP:
 				sequence_PostfixOp(context, (PostfixOp) semanticObject); 
 				return; 
@@ -184,12 +190,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
-			case ReflexPackage.REGISTER:
-				sequence_Register(context, (Register) semanticObject); 
-				return; 
-			case ReflexPackage.REGISTER_PORT_MAPPING:
-				sequence_RegisterPortMapping(context, (RegisterPortMapping) semanticObject); 
-				return; 
 			case ReflexPackage.RESET_STAT:
 				sequence_ResetStat(context, (ResetStat) semanticObject); 
 				return; 
@@ -848,7 +848,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     IdReference returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=Type name=ID port=RegisterPortMapping)
+	 *     (type=Type name=ID mapping=PortMapping)
 	 */
 	protected void sequence_PhysicalVariable(ISerializationContext context, PhysicalVariable semanticObject) {
 		if (errorAcceptor != null) {
@@ -856,13 +856,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__TYPE));
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__PORT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__PORT));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__MAPPING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PHYSICAL_VARIABLE__MAPPING));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPhysicalVariableAccess().getTypeTypeParserRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getPhysicalVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPhysicalVariableAccess().getPortRegisterPortMappingParserRuleCall_3_0(), semanticObject.getPort());
+		feeder.accept(grammarAccess.getPhysicalVariableAccess().getMappingPortMappingParserRuleCall_3_0(), semanticObject.getMapping());
 		feeder.finish();
 	}
 	
@@ -872,10 +872,52 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ProcessVariable returns PhysicalVariable
 	 *
 	 * Constraint:
-	 *     (type=Type name=ID port=RegisterPortMapping shared?='shared'?)
+	 *     (type=Type name=ID mapping=PortMapping shared?='shared'?)
 	 */
 	protected void sequence_PhysicalVariable_ProcessVariable(ISerializationContext context, PhysicalVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PortMapping returns PortMapping
+	 *
+	 * Constraint:
+	 *     (port=[Port|ID] bit=INTEGER?)
+	 */
+	protected void sequence_PortMapping(ISerializationContext context, PortMapping semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Port returns Port
+	 *
+	 * Constraint:
+	 *     (type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER)
+	 */
+	protected void sequence_Port(ISerializationContext context, Port semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__TYPE));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__NAME));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__ADDR1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__ADDR1));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__ADDR2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__ADDR2));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__REG_SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__REG_SIZE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPortAccess().getTypePortTypeEnumRuleCall_0_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPortAccess().getAddr1INTEGERTerminalRuleCall_2_0(), semanticObject.getAddr1());
+		feeder.accept(grammarAccess.getPortAccess().getAddr2INTEGERTerminalRuleCall_3_0(), semanticObject.getAddr2());
+		feeder.accept(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0(), semanticObject.getRegSize());
+		feeder.finish();
 	}
 	
 	
@@ -1017,55 +1059,13 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             enums+=Enum | 
 	 *             functions+=Function | 
 	 *             globalVars+=GlobalVariable | 
-	 *             registers+=Register | 
+	 *             ports+=Port | 
 	 *             processes+=Process
 	 *         )*
 	 *     )
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RegisterPortMapping returns RegisterPortMapping
-	 *
-	 * Constraint:
-	 *     (register=[Register|ID] portBit=INTEGER?)
-	 */
-	protected void sequence_RegisterPortMapping(ISerializationContext context, RegisterPortMapping semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Register returns Register
-	 *
-	 * Constraint:
-	 *     (type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER)
-	 */
-	protected void sequence_Register(ISerializationContext context, Register semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.REGISTER__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.REGISTER__TYPE));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.REGISTER__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.REGISTER__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.REGISTER__ADDR1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.REGISTER__ADDR1));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.REGISTER__ADDR2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.REGISTER__ADDR2));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.REGISTER__REG_SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.REGISTER__REG_SIZE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRegisterAccess().getTypeRegisterTypeEnumRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRegisterAccess().getAddr1INTEGERTerminalRuleCall_2_0(), semanticObject.getAddr1());
-		feeder.accept(grammarAccess.getRegisterAccess().getAddr2INTEGERTerminalRuleCall_3_0(), semanticObject.getAddr2());
-		feeder.accept(grammarAccess.getRegisterAccess().getRegSizeINTEGERTerminalRuleCall_4_0(), semanticObject.getRegSize());
-		feeder.finish();
 	}
 	
 	

@@ -11,62 +11,62 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Register Port Mapping</b></em>'.
+ * An implementation of the model object '<em><b>Port Mapping</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl#getRegister <em>Register</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.RegisterPortMappingImpl#getPortBit <em>Port Bit</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortMappingImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortMappingImpl#getBit <em>Bit</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implements RegisterPortMapping
+public class PortMappingImpl extends MinimalEObjectImpl.Container implements PortMapping
 {
   /**
-   * The cached value of the '{@link #getRegister() <em>Register</em>}' reference.
+   * The cached value of the '{@link #getPort() <em>Port</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRegister()
+   * @see #getPort()
    * @generated
    * @ordered
    */
-  protected Register register;
+  protected Port port;
 
   /**
-   * The default value of the '{@link #getPortBit() <em>Port Bit</em>}' attribute.
+   * The default value of the '{@link #getBit() <em>Bit</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPortBit()
+   * @see #getBit()
    * @generated
    * @ordered
    */
-  protected static final String PORT_BIT_EDEFAULT = null;
+  protected static final String BIT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPortBit() <em>Port Bit</em>}' attribute.
+   * The cached value of the '{@link #getBit() <em>Bit</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPortBit()
+   * @see #getBit()
    * @generated
    * @ordered
    */
-  protected String portBit = PORT_BIT_EDEFAULT;
+  protected String bit = BIT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RegisterPortMappingImpl()
+  protected PortMappingImpl()
   {
     super();
   }
@@ -79,7 +79,7 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.REGISTER_PORT_MAPPING;
+    return ReflexPackage.Literals.PORT_MAPPING;
   }
 
   /**
@@ -88,19 +88,19 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
-  public Register getRegister()
+  public Port getPort()
   {
-    if (register != null && register.eIsProxy())
+    if (port != null && port.eIsProxy())
     {
-      InternalEObject oldRegister = (InternalEObject)register;
-      register = (Register)eResolveProxy(oldRegister);
-      if (register != oldRegister)
+      InternalEObject oldPort = (InternalEObject)port;
+      port = (Port)eResolveProxy(oldPort);
+      if (port != oldPort)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.REGISTER_PORT_MAPPING__REGISTER, oldRegister, register));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReflexPackage.PORT_MAPPING__PORT, oldPort, port));
       }
     }
-    return register;
+    return port;
   }
 
   /**
@@ -108,9 +108,9 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public Register basicGetRegister()
+  public Port basicGetPort()
   {
-    return register;
+    return port;
   }
 
   /**
@@ -119,12 +119,12 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
-  public void setRegister(Register newRegister)
+  public void setPort(Port newPort)
   {
-    Register oldRegister = register;
-    register = newRegister;
+    Port oldPort = port;
+    port = newPort;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT_MAPPING__REGISTER, oldRegister, register));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT_MAPPING__PORT, oldPort, port));
   }
 
   /**
@@ -133,9 +133,9 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
-  public String getPortBit()
+  public String getBit()
   {
-    return portBit;
+    return bit;
   }
 
   /**
@@ -144,12 +144,12 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
-  public void setPortBit(String newPortBit)
+  public void setBit(String newBit)
   {
-    String oldPortBit = portBit;
-    portBit = newPortBit;
+    String oldBit = bit;
+    bit = newBit;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT, oldPortBit, portBit));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT_MAPPING__BIT, oldBit, bit));
   }
 
   /**
@@ -162,11 +162,11 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT_MAPPING__REGISTER:
-        if (resolve) return getRegister();
-        return basicGetRegister();
-      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
-        return getPortBit();
+      case ReflexPackage.PORT_MAPPING__PORT:
+        if (resolve) return getPort();
+        return basicGetPort();
+      case ReflexPackage.PORT_MAPPING__BIT:
+        return getBit();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -181,11 +181,11 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT_MAPPING__REGISTER:
-        setRegister((Register)newValue);
+      case ReflexPackage.PORT_MAPPING__PORT:
+        setPort((Port)newValue);
         return;
-      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
-        setPortBit((String)newValue);
+      case ReflexPackage.PORT_MAPPING__BIT:
+        setBit((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -201,11 +201,11 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT_MAPPING__REGISTER:
-        setRegister((Register)null);
+      case ReflexPackage.PORT_MAPPING__PORT:
+        setPort((Port)null);
         return;
-      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
-        setPortBit(PORT_BIT_EDEFAULT);
+      case ReflexPackage.PORT_MAPPING__BIT:
+        setBit(BIT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -221,10 +221,10 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ReflexPackage.REGISTER_PORT_MAPPING__REGISTER:
-        return register != null;
-      case ReflexPackage.REGISTER_PORT_MAPPING__PORT_BIT:
-        return PORT_BIT_EDEFAULT == null ? portBit != null : !PORT_BIT_EDEFAULT.equals(portBit);
+      case ReflexPackage.PORT_MAPPING__PORT:
+        return port != null;
+      case ReflexPackage.PORT_MAPPING__BIT:
+        return BIT_EDEFAULT == null ? bit != null : !BIT_EDEFAULT.equals(bit);
     }
     return super.eIsSet(featureID);
   }
@@ -240,10 +240,10 @@ public class RegisterPortMappingImpl extends MinimalEObjectImpl.Container implem
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (portBit: ");
-    result.append(portBit);
+    result.append(" (bit: ");
+    result.append(bit);
     result.append(')');
     return result.toString();
   }
 
-} //RegisterPortMappingImpl
+} //PortMappingImpl

@@ -6,9 +6,9 @@
     copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="Reflex" basePackage="ru.iaie.reflex" disposableProviderFactory="true"
       fileExtensions="rcs" ecorePackage="Reflex.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//RegisterType">
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/INPUT"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//RegisterType/OUTPUT"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//PortType">
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//PortType/INPUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//PortType/OUTPUT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Reflex.ecore#//StateQualifier">
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//StateQualifier/ACTIVE"/>
@@ -82,7 +82,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/enums"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/functions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/globalVars"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/registers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/ports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/processes"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Tact">
@@ -112,11 +112,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/shared"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PhysicalVariable/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//PhysicalVariable/mapping"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//RegisterPortMapping">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//RegisterPortMapping/register"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//RegisterPortMapping/portBit"/>
+    <genClasses ecoreClass="Reflex.ecore#//PortMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//PortMapping/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//PortMapping/bit"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//ProgramVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ProgramVariable/shared"/>
@@ -171,12 +171,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Function/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Function/argTypes"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//Register">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/addr1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/addr2"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Register/regSize"/>
+    <genClasses ecoreClass="Reflex.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/addr1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/addr2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/regSize"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Const">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/type"/>

@@ -3,7 +3,7 @@ package ru.iaie.reflex.generator.r2c
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.State
 import ru.iaie.reflex.reflex.Const
-import ru.iaie.reflex.reflex.Register
+import ru.iaie.reflex.reflex.Port
 import java.util.Map
 import java.util.HashMap
 import ru.iaie.reflex.reflex.PhysicalVariable
@@ -51,7 +51,7 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 		return c.name
 	}
 	
-	private def dispatch getKey(Register r) {
+	private def dispatch getKey(Port r) {
 		return r.name
 	}
 	
@@ -88,7 +88,7 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 		}
 	}
 
-	override getPortId(Register reg) {
+	override getPortId(Port reg) {
 		val key = getKey(reg)
 		if (portIdentifiers.containsKey(key)) {
 			return portIdentifiers.get(key)

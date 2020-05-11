@@ -23,9 +23,9 @@ import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.GlobalVariable;
+import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
 import ru.iaie.reflex.reflex.Tact;
 
 /**
@@ -43,7 +43,7 @@ import ru.iaie.reflex.reflex.Tact;
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getFunctions <em>Functions</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getGlobalVars <em>Global Vars</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getRegisters <em>Registers</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getPorts <em>Ports</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
  *
@@ -132,14 +132,14 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   protected EList<GlobalVariable> globalVars;
 
   /**
-   * The cached value of the '{@link #getRegisters() <em>Registers</em>}' containment reference list.
+   * The cached value of the '{@link #getPorts() <em>Ports</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRegisters()
+   * @see #getPorts()
    * @generated
    * @ordered
    */
-  protected EList<Register> registers;
+  protected EList<Port> ports;
 
   /**
    * The cached value of the '{@link #getProcesses() <em>Processes</em>}' containment reference list.
@@ -328,13 +328,13 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    */
   @Override
-  public EList<Register> getRegisters()
+  public EList<Port> getPorts()
   {
-    if (registers == null)
+    if (ports == null)
     {
-      registers = new EObjectContainmentEList<Register>(Register.class, this, ReflexPackage.PROGRAM__REGISTERS);
+      ports = new EObjectContainmentEList<Port>(Port.class, this, ReflexPackage.PROGRAM__PORTS);
     }
-    return registers;
+    return ports;
   }
 
   /**
@@ -374,8 +374,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__GLOBAL_VARS:
         return ((InternalEList<?>)getGlobalVars()).basicRemove(otherEnd, msgs);
-      case ReflexPackage.PROGRAM__REGISTERS:
-        return ((InternalEList<?>)getRegisters()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.PROGRAM__PORTS:
+        return ((InternalEList<?>)getPorts()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__PROCESSES:
         return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
     }
@@ -406,8 +406,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return getFunctions();
       case ReflexPackage.PROGRAM__GLOBAL_VARS:
         return getGlobalVars();
-      case ReflexPackage.PROGRAM__REGISTERS:
-        return getRegisters();
+      case ReflexPackage.PROGRAM__PORTS:
+        return getPorts();
       case ReflexPackage.PROGRAM__PROCESSES:
         return getProcesses();
     }
@@ -451,9 +451,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         getGlobalVars().clear();
         getGlobalVars().addAll((Collection<? extends GlobalVariable>)newValue);
         return;
-      case ReflexPackage.PROGRAM__REGISTERS:
-        getRegisters().clear();
-        getRegisters().addAll((Collection<? extends Register>)newValue);
+      case ReflexPackage.PROGRAM__PORTS:
+        getPorts().clear();
+        getPorts().addAll((Collection<? extends Port>)newValue);
         return;
       case ReflexPackage.PROGRAM__PROCESSES:
         getProcesses().clear();
@@ -494,8 +494,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__GLOBAL_VARS:
         getGlobalVars().clear();
         return;
-      case ReflexPackage.PROGRAM__REGISTERS:
-        getRegisters().clear();
+      case ReflexPackage.PROGRAM__PORTS:
+        getPorts().clear();
         return;
       case ReflexPackage.PROGRAM__PROCESSES:
         getProcesses().clear();
@@ -528,8 +528,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return functions != null && !functions.isEmpty();
       case ReflexPackage.PROGRAM__GLOBAL_VARS:
         return globalVars != null && !globalVars.isEmpty();
-      case ReflexPackage.PROGRAM__REGISTERS:
-        return registers != null && !registers.isEmpty();
+      case ReflexPackage.PROGRAM__PORTS:
+        return ports != null && !ports.isEmpty();
       case ReflexPackage.PROGRAM__PROCESSES:
         return processes != null && !processes.isEmpty();
     }

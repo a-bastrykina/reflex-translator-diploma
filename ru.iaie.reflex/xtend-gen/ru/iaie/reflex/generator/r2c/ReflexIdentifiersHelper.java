@@ -12,10 +12,10 @@ import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.ProgramVariable;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
@@ -89,8 +89,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
   }
   
   @Override
-  public String getPortId(final Register reg) {
-    final String key = reg.getName();
+  public String getPortId(final Port port) {
+    final String key = port.getName();
     boolean _containsKey = this.portIdentifiers.containsKey(key);
     if (_containsKey) {
       return this.portIdentifiers.get(key);
@@ -98,8 +98,8 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("_");
       String _xifexpression = null;
-      RegisterType _type = reg.getType();
-      boolean _equals = Objects.equal(_type, RegisterType.INPUT);
+      PortType _type = port.getType();
+      boolean _equals = Objects.equal(_type, PortType.INPUT);
       if (_equals) {
         _xifexpression = "i";
       } else {
@@ -107,7 +107,7 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       }
       _builder.append(_xifexpression);
       _builder.append("_");
-      String _name = reg.getName();
+      String _name = port.getName();
       _builder.append(_name);
       final String value = _builder.toString();
       this.portIdentifiers.put(key, value);

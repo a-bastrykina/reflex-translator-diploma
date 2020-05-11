@@ -1,11 +1,14 @@
 package ru.iaie.reflex.generator.r2c;
 
 import com.google.common.base.Objects;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
@@ -43,12 +46,14 @@ import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
+import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -138,19 +143,39 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public void generateIO(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final ArrayList<PhysicalVariable> inputVars = CollectionLiterals.<PhysicalVariable>newArrayList();
+    final ArrayList<PhysicalVariable> outputVars = CollectionLiterals.<PhysicalVariable>newArrayList();
+    final Consumer<PhysicalVariable> _function = (PhysicalVariable v) -> {
+      PortType _mappedPortType = ReflexModelUtil.getMappedPortType(v);
+      boolean _equals = Objects.equal(_mappedPortType, PortType.INPUT);
+      if (_equals) {
+        inputVars.add(v);
+      } else {
+        outputVars.add(v);
+      }
+    };
+    EcoreUtil2.<PhysicalVariable>eAllOfType(this.program, PhysicalVariable.class).forEach(_function);
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#include \"io.h\"");
     _builder.newLine();
-    _builder.append("#include \"xvar.h\"\t");
+    _builder.append("#include \"xvar.h\"");
+    _builder.newLine();
+    _builder.append("#include \"../lib/r_cnst.h\"\t");
     _builder.newLine();
     _builder.append("#include \"stdio.h\"");
     _builder.newLine();
     _builder.newLine();
     _builder.append("void Input(void) {");
     _builder.newLine();
-    _builder.append("    ");
-    _builder.append("printf(\"input\\n\");");
-    _builder.newLine();
+    {
+      for(final PhysicalVariable physVar : inputVars) {
+        _builder.append("    ");
+        String _translateReadingFromInput = this.translateReadingFromInput(physVar);
+        _builder.append(_translateReadingFromInput, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("}  /* Reading IO func */");
     _builder.newLine();
     _builder.newLine();
@@ -165,6 +190,29 @@ public class R2CReflexGenerator extends AbstractGenerator {
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("c-code/generated/io.c");
     fsa.generateFile(_builder_1.toString(), fileContent);
+  }
+  
+  public String translateReadingFromInput(final PhysicalVariable v) {
+    final PortMapping mapping = v.getMapping();
+    StringConcatenation _builder = new StringConcatenation();
+    String _mapping = this.identifiersHelper.getMapping(v);
+    _builder.append(_mapping);
+    _builder.append(" = ");
+    String _portId = this.identifiersHelper.getPortId(mapping.getPort());
+    _builder.append(_portId);
+    {
+      boolean _isFullMapping = ReflexModelUtil.isFullMapping(mapping);
+      boolean _not = (!_isFullMapping);
+      if (_not) {
+        _builder.append(" & MASK");
+        String _bit = mapping.getBit();
+        _builder.append(_bit);
+        _builder.append("_S");
+        String _regSize = mapping.getPort().getRegSize();
+        _builder.append(_regSize);
+      }
+    }
+    return _builder.toString();
   }
   
   public void generateConstantsFile(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -246,28 +294,17 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   public void generateVariables(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/*           Variables          */");
-    _builder.newLine();
     _builder.append("/* GVAR.H = Global Variables Image-File. */");
     _builder.newLine();
     _builder.append("#ifndef _gvar_h");
     _builder.newLine();
     _builder.append("#define _gvar_h 1");
     _builder.newLine();
-    _builder.append("/*       Process variables     */");
-    _builder.newLine();
-    String _generateProcessVariables = this.generateProcessVariables(resource, false);
-    _builder.append(_generateProcessVariables);
+    String _generateVariables = this.generateVariables(resource, false);
+    _builder.append(_generateVariables);
     _builder.newLineIfNotEmpty();
-    _builder.append("/*          Input Ports         */");
-    _builder.newLine();
-    String _generateInputPorts = this.generateInputPorts(resource, false);
-    _builder.append(_generateInputPorts);
-    _builder.newLineIfNotEmpty();
-    _builder.append("/*         Output Ports         */");
-    _builder.newLine();
-    String _generateOutputPorts = this.generateOutputPorts(resource, false);
-    _builder.append(_generateOutputPorts);
+    String _generatePorts = this.generatePorts(resource, false);
+    _builder.append(_generatePorts);
     _builder.newLineIfNotEmpty();
     _builder.append("#endif");
     _builder.newLine();
@@ -276,28 +313,17 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder_1.append("c-code/generated/gvar.h");
     fsa.generateFile(_builder_1.toString(), fileContent);
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("/*           Variables          */");
-    _builder_2.newLine();
     _builder_2.append("/* xvar.h = Extern Variables Image-File. */");
     _builder_2.newLine();
     _builder_2.append("#ifndef _xvar_h");
     _builder_2.newLine();
     _builder_2.append("#define _xvar_h 1");
     _builder_2.newLine();
-    _builder_2.append("/*       Process variables     */");
-    _builder_2.newLine();
-    String _generateProcessVariables_1 = this.generateProcessVariables(resource, true);
-    _builder_2.append(_generateProcessVariables_1);
+    String _generateVariables_1 = this.generateVariables(resource, true);
+    _builder_2.append(_generateVariables_1);
     _builder_2.newLineIfNotEmpty();
-    _builder_2.append("/*          Input Ports         */");
-    _builder_2.newLine();
-    String _generateInputPorts_1 = this.generateInputPorts(resource, true);
-    _builder_2.append(_generateInputPorts_1);
-    _builder_2.newLineIfNotEmpty();
-    _builder_2.append("/*         Output Ports         */");
-    _builder_2.newLine();
-    String _generateOutputPorts_1 = this.generateOutputPorts(resource, true);
-    _builder_2.append(_generateOutputPorts_1);
+    String _generatePorts_1 = this.generatePorts(resource, true);
+    _builder_2.append(_generatePorts_1);
     _builder_2.newLineIfNotEmpty();
     _builder_2.append("#endif");
     _builder_2.newLine();
@@ -307,7 +333,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     fsa.generateFile(_builder_3.toString(), externFileContent);
   }
   
-  public String generateProcessVariables(final Resource resource, final boolean externDef) {
+  public String generateVariables(final Resource resource, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<GlobalVariable> _globalVars = this.program.getGlobalVars();
@@ -372,53 +398,21 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateInputPorts(final Resource resource, final boolean externDef) {
+  public String generatePorts(final Resource resource, final boolean externDef) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Register> _registers = this.program.getRegisters();
-      for(final Register reg : _registers) {
+      EList<Port> _ports = this.program.getPorts();
+      for(final Port reg : _ports) {
         {
-          RegisterType _type = reg.getType();
-          boolean _equals = Objects.equal(_type, RegisterType.INPUT);
-          if (_equals) {
-            {
-              if (externDef) {
-                _builder.append("extern ");
-              }
-            }
-            _builder.append("char ");
-            String _portId = this.identifiersHelper.getPortId(reg);
-            _builder.append(_portId);
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
+          if (externDef) {
+            _builder.append("extern ");
           }
         }
-      }
-    }
-    return _builder.toString();
-  }
-  
-  public String generateOutputPorts(final Resource resource, final boolean externDef) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<Register> _registers = this.program.getRegisters();
-      for(final Register reg : _registers) {
-        {
-          RegisterType _type = reg.getType();
-          boolean _equals = Objects.equal(_type, RegisterType.OUTPUT);
-          if (_equals) {
-            {
-              if (externDef) {
-                _builder.append("extern ");
-              }
-            }
-            _builder.append("char ");
-            String _portId = this.identifiersHelper.getPortId(reg);
-            _builder.append(_portId);
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
+        _builder.append("char ");
+        String _portId = this.identifiersHelper.getPortId(reg);
+        _builder.append(_portId);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
       }
     }
     return _builder.toString();
@@ -630,52 +624,38 @@ public class R2CReflexGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String translateStateStopCheck(final ru.iaie.reflex.reflex.Process proc) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Check_State(");
-    int _index = ReflexModelUtil.getIndex(proc);
-    _builder.append(_index);
-    _builder.append(") == STATE_OF_STOP");
-    return _builder.toString();
-  }
-  
-  public String translateStateErrorCheck(final ru.iaie.reflex.reflex.Process proc) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Check_State(");
-    int _index = ReflexModelUtil.getIndex(proc);
-    _builder.append(_index);
-    _builder.append(") == STATE_OF_ERROR");
-    return _builder.toString();
-  }
-  
   public String translateCheckStateExpression(final CheckStateExpression cse) {
     StateQualifier _qualfier = cse.getQualfier();
     if (_qualfier != null) {
       switch (_qualfier) {
         case STOP:
-          return this.translateStateStopCheck(cse.getProcess());
-        case ERROR:
-          return this.translateStateErrorCheck(cse.getProcess());
-        case ACTIVE:
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("!(");
-          String _translateStateStopCheck = this.translateStateStopCheck(cse.getProcess());
-          _builder.append(_translateStateStopCheck);
-          _builder.append(" || ");
-          String _translateStateErrorCheck = this.translateStateErrorCheck(cse.getProcess());
-          _builder.append(_translateStateErrorCheck);
+          _builder.append("Is_Stop(");
+          int _index = ReflexModelUtil.getIndex(cse.getProcess());
+          _builder.append(_index);
           _builder.append(")");
           return _builder.toString();
-        case INACTIVE:
+        case ERROR:
           StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("(");
-          String _translateStateStopCheck_1 = this.translateStateStopCheck(cse.getProcess());
-          _builder_1.append(_translateStateStopCheck_1);
-          _builder_1.append(" || ");
-          String _translateStateErrorCheck_1 = this.translateStateErrorCheck(cse.getProcess());
-          _builder_1.append(_translateStateErrorCheck_1);
+          _builder_1.append("Is_Error(");
+          int _index_1 = ReflexModelUtil.getIndex(cse.getProcess());
+          _builder_1.append(_index_1);
           _builder_1.append(")");
           return _builder_1.toString();
+        case ACTIVE:
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("Is_Active(");
+          int _index_2 = ReflexModelUtil.getIndex(cse.getProcess());
+          _builder_2.append(_index_2);
+          _builder_2.append(")");
+          return _builder_2.toString();
+        case INACTIVE:
+          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append("Is_Inactive(");
+          int _index_3 = ReflexModelUtil.getIndex(cse.getProcess());
+          _builder_3.append(_index_3);
+          _builder_3.append(")");
+          return _builder_3.toString();
         default:
           break;
       }

@@ -11,12 +11,8 @@ import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.ImportedVariableList
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.PhysicalVariable
-import ru.iaie.reflex.reflex.IdReference
-import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.TimeoutFunction
-import ru.iaie.reflex.reflex.RegisterType
 import org.eclipse.xtext.EcoreUtil2.ElementReferenceAcceptor
-import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import ru.iaie.reflex.reflex.GlobalVariable
@@ -25,6 +21,9 @@ import ru.iaie.reflex.reflex.Type
 import ru.iaie.reflex.reflex.Types
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.Statement
+import ru.iaie.reflex.reflex.PortType
+import static extension org.eclipse.xtext.EcoreUtil2.*
+import ru.iaie.reflex.reflex.PortMapping
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -97,10 +96,14 @@ class ReflexModelUtil {
 		return v instanceof PhysicalVariable
 	}
 
-	def static RegisterType getMappedPortType(PhysicalVariable v) {
-		return v.port.register.type
+	def static PortType getMappedPortType(PhysicalVariable v) {
+		return v.mapping.port.type
 	}
-
+	
+	def static isFullMapping(PortMapping m) {
+		return m.bit === null
+	}
+	
 	def static boolean isEmpty(CompoundStatement compStat) {
 		// Check recursively, for cases with nested empty compound statements
 		return compStat.eAllOfType(Statement).reject(CompoundStatement).empty
@@ -128,19 +131,6 @@ class ReflexModelUtil {
 		]
 		findCrossReferences(context, targetSet, acceptor)
 		return !refered.empty
-	}
-
-	def static String resolveName(IdReference ref) {
-		switch ref {
-			ProgramVariable:
-				return ref.name
-			PhysicalVariable:
-				return ref.name
-			EnumMember:
-				return ref.name
-			Const:
-				return ref.name
-		}
 	}
 
 	def static boolean isCType(Type type) {

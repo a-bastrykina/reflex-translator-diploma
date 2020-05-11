@@ -50,8 +50,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionsFunctionParserRuleCall_5_2_0 = (RuleCall)cFunctionsAssignment_5_2.eContents().get(0);
 		private final Assignment cGlobalVarsAssignment_5_3 = (Assignment)cAlternatives_5.eContents().get(3);
 		private final RuleCall cGlobalVarsGlobalVariableParserRuleCall_5_3_0 = (RuleCall)cGlobalVarsAssignment_5_3.eContents().get(0);
-		private final Assignment cRegistersAssignment_5_4 = (Assignment)cAlternatives_5.eContents().get(4);
-		private final RuleCall cRegistersRegisterParserRuleCall_5_4_0 = (RuleCall)cRegistersAssignment_5_4.eContents().get(0);
+		private final Assignment cPortsAssignment_5_4 = (Assignment)cAlternatives_5.eContents().get(4);
+		private final RuleCall cPortsPortParserRuleCall_5_4_0 = (RuleCall)cPortsAssignment_5_4.eContents().get(0);
 		private final Assignment cProcessesAssignment_5_5 = (Assignment)cAlternatives_5.eContents().get(5);
 		private final RuleCall cProcessesProcessParserRuleCall_5_5_0 = (RuleCall)cProcessesAssignment_5_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
@@ -59,13 +59,13 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//Program:
 		//	("[" annotations+=Annotation "]")*
 		//	"program" name=ID "{"
-		//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
+		//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
 		//	processes+=Process)*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
 		//("[" annotations+=Annotation "]")* "program" name=ID "{" ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function
-		//| globalVars+=GlobalVariable | registers+=Register | processes+=Process)* "}"
+		//| globalVars+=GlobalVariable | ports+=Port | processes+=Process)* "}"
 		public Group getGroup() { return cGroup; }
 		
 		//("[" annotations+=Annotation "]")*
@@ -101,8 +101,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//Tact
 		public RuleCall getTicksTactParserRuleCall_4_0() { return cTicksTactParserRuleCall_4_0; }
 		
-		//(consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
-		//processes+=Process)*
+		//(consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port | processes+=Process)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 		
 		//consts+=Const
@@ -129,11 +128,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//GlobalVariable
 		public RuleCall getGlobalVarsGlobalVariableParserRuleCall_5_3_0() { return cGlobalVarsGlobalVariableParserRuleCall_5_3_0; }
 		
-		//registers+=Register
-		public Assignment getRegistersAssignment_5_4() { return cRegistersAssignment_5_4; }
+		//ports+=Port
+		public Assignment getPortsAssignment_5_4() { return cPortsAssignment_5_4; }
 		
-		//Register
-		public RuleCall getRegistersRegisterParserRuleCall_5_4_0() { return cRegistersRegisterParserRuleCall_5_4_0; }
+		//Port
+		public RuleCall getPortsPortParserRuleCall_5_4_0() { return cPortsPortParserRuleCall_5_4_0; }
 		
 		//processes+=Process
 		public Assignment getProcessesAssignment_5_5() { return cProcessesAssignment_5_5; }
@@ -479,14 +478,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPortAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPortRegisterPortMappingParserRuleCall_3_0 = (RuleCall)cPortAssignment_3.eContents().get(0);
+		private final Assignment cMappingAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMappingPortMappingParserRuleCall_3_0 = (RuleCall)cMappingAssignment_3.eContents().get(0);
 		
 		//PhysicalVariable:
-		//	type=Type name=ID "=" port=RegisterPortMapping;
+		//	type=Type name=ID "=" mapping=PortMapping;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=Type name=ID "=" port=RegisterPortMapping
+		//type=Type name=ID "=" mapping=PortMapping
 		public Group getGroup() { return cGroup; }
 		
 		//type=Type
@@ -504,47 +503,47 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 		
-		//port=RegisterPortMapping
-		public Assignment getPortAssignment_3() { return cPortAssignment_3; }
+		//mapping=PortMapping
+		public Assignment getMappingAssignment_3() { return cMappingAssignment_3; }
 		
-		//RegisterPortMapping
-		public RuleCall getPortRegisterPortMappingParserRuleCall_3_0() { return cPortRegisterPortMappingParserRuleCall_3_0; }
+		//PortMapping
+		public RuleCall getMappingPortMappingParserRuleCall_3_0() { return cMappingPortMappingParserRuleCall_3_0; }
 	}
-	public class RegisterPortMappingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RegisterPortMapping");
+	public class PortMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.PortMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cRegisterAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cRegisterRegisterCrossReference_0_0 = (CrossReference)cRegisterAssignment_0.eContents().get(0);
-		private final RuleCall cRegisterRegisterIDTerminalRuleCall_0_0_1 = (RuleCall)cRegisterRegisterCrossReference_0_0.eContents().get(1);
+		private final Assignment cPortAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cPortPortCrossReference_0_0 = (CrossReference)cPortAssignment_0.eContents().get(0);
+		private final RuleCall cPortPortIDTerminalRuleCall_0_0_1 = (RuleCall)cPortPortCrossReference_0_0.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPortBitAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPortBitINTEGERTerminalRuleCall_2_0 = (RuleCall)cPortBitAssignment_2.eContents().get(0);
+		private final Assignment cBitAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBitINTEGERTerminalRuleCall_2_0 = (RuleCall)cBitAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//RegisterPortMapping:
-		//	register=[Register] "[" portBit=INTEGER? "]";
+		//PortMapping:
+		//	port=[Port] "[" bit=INTEGER? "]";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//register=[Register] "[" portBit=INTEGER? "]"
+		//port=[Port] "[" bit=INTEGER? "]"
 		public Group getGroup() { return cGroup; }
 		
-		//register=[Register]
-		public Assignment getRegisterAssignment_0() { return cRegisterAssignment_0; }
+		//port=[Port]
+		public Assignment getPortAssignment_0() { return cPortAssignment_0; }
 		
-		//[Register]
-		public CrossReference getRegisterRegisterCrossReference_0_0() { return cRegisterRegisterCrossReference_0_0; }
+		//[Port]
+		public CrossReference getPortPortCrossReference_0_0() { return cPortPortCrossReference_0_0; }
 		
 		//ID
-		public RuleCall getRegisterRegisterIDTerminalRuleCall_0_0_1() { return cRegisterRegisterIDTerminalRuleCall_0_0_1; }
+		public RuleCall getPortPortIDTerminalRuleCall_0_0_1() { return cPortPortIDTerminalRuleCall_0_0_1; }
 		
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//portBit=INTEGER?
-		public Assignment getPortBitAssignment_2() { return cPortBitAssignment_2; }
+		//bit=INTEGER?
+		public Assignment getBitAssignment_2() { return cBitAssignment_2; }
 		
 		//INTEGER
-		public RuleCall getPortBitINTEGERTerminalRuleCall_2_0() { return cPortBitINTEGERTerminalRuleCall_2_0; }
+		public RuleCall getBitINTEGERTerminalRuleCall_2_0() { return cBitINTEGERTerminalRuleCall_2_0; }
 		
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
@@ -1247,11 +1246,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
-	public class RegisterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Register");
+	public class PortElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Port");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeRegisterTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypePortTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cAddr1Assignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -1262,18 +1261,18 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRegSizeINTEGERTerminalRuleCall_4_0 = (RuleCall)cRegSizeAssignment_4.eContents().get(0);
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//Register:
-		//	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+		//Port:
+		//	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";"
+		//type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";"
 		public Group getGroup() { return cGroup; }
 		
-		//type=RegisterType
+		//type=PortType
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
-		//RegisterType
-		public RuleCall getTypeRegisterTypeEnumRuleCall_0_0() { return cTypeRegisterTypeEnumRuleCall_0_0; }
+		//PortType
+		public RuleCall getTypePortTypeEnumRuleCall_0_0() { return cTypePortTypeEnumRuleCall_0_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -2363,15 +2362,15 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1() { return cIDTerminalRuleCall_1; }
 	}
 	
-	public class RegisterTypeElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.RegisterType");
+	public class PortTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.PortType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cINPUTEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cINPUTInputKeyword_0_0 = (Keyword)cINPUTEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cOUTPUTEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cOUTPUTOutputKeyword_1_0 = (Keyword)cOUTPUTEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum RegisterType:
+		//enum PortType:
 		//	INPUT='input' | OUTPUT='output';
 		public EnumRule getRule() { return rule; }
 		
@@ -2860,7 +2859,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ProcessVariableElements pProcessVariable;
 	private final GlobalVariableElements pGlobalVariable;
 	private final PhysicalVariableElements pPhysicalVariable;
-	private final RegisterPortMappingElements pRegisterPortMapping;
+	private final PortMappingElements pPortMapping;
 	private final ProgramVariableElements pProgramVariable;
 	private final StatementSequenceElements pStatementSequence;
 	private final CompoundStatementElements pCompoundStatement;
@@ -2878,8 +2877,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final ResetStatElements pResetStat;
 	private final SetStateStatElements pSetStateStat;
 	private final FunctionElements pFunction;
-	private final RegisterTypeElements eRegisterType;
-	private final RegisterElements pRegister;
+	private final PortTypeElements ePortType;
+	private final PortElements pPort;
 	private final ConstElements pConst;
 	private final EnumElements pEnum;
 	private final EnumMemberElements pEnumMember;
@@ -2958,7 +2957,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProcessVariable = new ProcessVariableElements();
 		this.pGlobalVariable = new GlobalVariableElements();
 		this.pPhysicalVariable = new PhysicalVariableElements();
-		this.pRegisterPortMapping = new RegisterPortMappingElements();
+		this.pPortMapping = new PortMappingElements();
 		this.pProgramVariable = new ProgramVariableElements();
 		this.pStatementSequence = new StatementSequenceElements();
 		this.pCompoundStatement = new CompoundStatementElements();
@@ -2976,8 +2975,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pResetStat = new ResetStatElements();
 		this.pSetStateStat = new SetStateStatElements();
 		this.pFunction = new FunctionElements();
-		this.eRegisterType = new RegisterTypeElements();
-		this.pRegister = new RegisterElements();
+		this.ePortType = new PortTypeElements();
+		this.pPort = new PortElements();
 		this.pConst = new ConstElements();
 		this.pEnum = new EnumElements();
 		this.pEnumMember = new EnumMemberElements();
@@ -3070,7 +3069,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	//Program:
 	//	("[" annotations+=Annotation "]")*
 	//	"program" name=ID "{"
-	//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | registers+=Register |
+	//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
 	//	processes+=Process)*
 	//	"}";
 	public ProgramElements getProgramAccess() {
@@ -3149,7 +3148,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PhysicalVariable:
-	//	type=Type name=ID "=" port=RegisterPortMapping;
+	//	type=Type name=ID "=" mapping=PortMapping;
 	public PhysicalVariableElements getPhysicalVariableAccess() {
 		return pPhysicalVariable;
 	}
@@ -3158,14 +3157,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getPhysicalVariableAccess().getRule();
 	}
 	
-	//RegisterPortMapping:
-	//	register=[Register] "[" portBit=INTEGER? "]";
-	public RegisterPortMappingElements getRegisterPortMappingAccess() {
-		return pRegisterPortMapping;
+	//PortMapping:
+	//	port=[Port] "[" bit=INTEGER? "]";
+	public PortMappingElements getPortMappingAccess() {
+		return pPortMapping;
 	}
 	
-	public ParserRule getRegisterPortMappingRule() {
-		return getRegisterPortMappingAccess().getRule();
+	public ParserRule getPortMappingRule() {
+		return getPortMappingAccess().getRule();
 	}
 	
 	//ProgramVariable:
@@ -3340,24 +3339,24 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionAccess().getRule();
 	}
 	
-	//enum RegisterType:
+	//enum PortType:
 	//	INPUT='input' | OUTPUT='output';
-	public RegisterTypeElements getRegisterTypeAccess() {
-		return eRegisterType;
+	public PortTypeElements getPortTypeAccess() {
+		return ePortType;
 	}
 	
-	public EnumRule getRegisterTypeRule() {
-		return getRegisterTypeAccess().getRule();
+	public EnumRule getPortTypeRule() {
+		return getPortTypeAccess().getRule();
 	}
 	
-	//Register:
-	//	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
-	public RegisterElements getRegisterAccess() {
-		return pRegister;
+	//Port:
+	//	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+	public PortElements getPortAccess() {
+		return pPort;
 	}
 	
-	public ParserRule getRegisterRule() {
-		return getRegisterAccess().getRule();
+	public ParserRule getPortRule() {
+		return getPortAccess().getRule();
 	}
 	
 	//Const:

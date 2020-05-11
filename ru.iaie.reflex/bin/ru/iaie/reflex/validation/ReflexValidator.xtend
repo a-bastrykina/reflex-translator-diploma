@@ -16,7 +16,6 @@ import ru.iaie.reflex.reflex.StopProcStat
 import ru.iaie.reflex.reflex.StartProcStat
 import ru.iaie.reflex.reflex.AssignmentExpression
 import ru.iaie.reflex.reflex.PhysicalVariable
-import ru.iaie.reflex.reflex.RegisterType
 import ru.iaie.reflex.reflex.Program
 import ru.iaie.reflex.reflex.TimeoutFunction
 import ru.iaie.reflex.reflex.ProgramVariable
@@ -25,7 +24,6 @@ import ru.iaie.reflex.reflex.EnumMember
 import org.eclipse.emf.ecore.EObject
 import java.util.Map
 import ru.iaie.reflex.reflex.GlobalVariable
-import ru.iaie.reflex.reflex.Register
 import ru.iaie.reflex.reflex.ImportedVariableList
 import static java.util.function.Function.identity;
 import ru.iaie.reflex.reflex.CompoundStatement
@@ -33,6 +31,8 @@ import ru.iaie.reflex.reflex.IfElseStat
 import ru.iaie.reflex.reflex.Statement
 import ru.iaie.reflex.reflex.SwitchStat
 import ru.iaie.reflex.reflex.ProcessVariable
+import ru.iaie.reflex.reflex.PortType
+import ru.iaie.reflex.reflex.Port
 
 /** 
  * This class contains custom validation rules. 
@@ -95,7 +95,7 @@ class ReflexValidator extends AbstractReflexValidator {
 		if (expr.hasAssignment) {
 			val assignVar = expr.assignVar
 			if (assignVar instanceof PhysicalVariable) {
-				if (assignVar.mappedPortType == RegisterType.INPUT) {
+				if (assignVar.mappedPortType == PortType.INPUT) {
 					warning("An attempt to assign value into variable mapped on input port",
 						ePackage.assignmentExpression_AssignVar);
 				}
@@ -107,7 +107,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 
 	@Check def void checkOutputVarUsagesInAssignment(PhysicalVariable physVar) {
-		if (physVar.mappedPortType == RegisterType.OUTPUT) {
+		if (physVar.mappedPortType == PortType.OUTPUT) {
 			val program = physVar.getContainerOfType(Program)
 			var usedInAssignment = program.containsReferencesOfType(physVar, ePackage.assignmentExpression_AssignVar)
 
@@ -150,7 +150,7 @@ class ReflexValidator extends AbstractReflexValidator {
 
 		val program = process.getContainerOfType(Program)
 		globalCtx.putAll(program.globalVars.toMap([name], identity))
-		globalCtx.putAll(program.registers.toMap([name], identity))
+		globalCtx.putAll(program.ports.toMap([name], identity))
 		globalCtx.putAll(program.enums.map[enumMembers].flatten.toMap([name], identity))
 		globalCtx.putAll(program.consts.toMap([name], identity))
 
@@ -162,7 +162,7 @@ class ReflexValidator extends AbstractReflexValidator {
 				switch shadowed {
 					GlobalVariable:
 						errorMessage = '''Process variable shadows global variable with name "«shadowed.name»"'''
-					Register:
+					Port:
 						errorMessage = '''Process variable shadows port with name "«shadowed.name»"'''
 					EnumMember:
 						errorMessage = '''Process variable shadows enum member with name "«shadowed.name»"'''

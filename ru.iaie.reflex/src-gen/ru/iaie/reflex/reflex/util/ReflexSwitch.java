@@ -35,14 +35,14 @@ import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -182,10 +182,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.REGISTER_PORT_MAPPING:
+      case ReflexPackage.PORT_MAPPING:
       {
-        RegisterPortMapping registerPortMapping = (RegisterPortMapping)theEObject;
-        T result = caseRegisterPortMapping(registerPortMapping);
+        PortMapping portMapping = (PortMapping)theEObject;
+        T result = casePortMapping(portMapping);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -314,10 +314,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.REGISTER:
+      case ReflexPackage.PORT:
       {
-        Register register = (Register)theEObject;
-        T result = caseRegister(register);
+        Port port = (Port)theEObject;
+        T result = casePort(port);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -762,17 +762,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Register Port Mapping</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Port Mapping</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Register Port Mapping</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Port Mapping</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRegisterPortMapping(RegisterPortMapping object)
+  public T casePortMapping(PortMapping object)
   {
     return null;
   }
@@ -1034,17 +1034,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Register</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Port</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Register</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Port</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRegister(Register object)
+  public T casePort(Port object)
   {
     return null;
   }

@@ -11,14 +11,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Register Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Port Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see ru.iaie.reflex.reflex.ReflexPackage#getRegisterType()
+ * @see ru.iaie.reflex.reflex.ReflexPackage#getPortType()
  * @model
  * @generated
  */
-public enum RegisterType implements Enumerator
+public enum PortType implements Enumerator
 {
   /**
    * The '<em><b>INPUT</b></em>' literal object.
@@ -63,39 +63,39 @@ public enum RegisterType implements Enumerator
   public static final int OUTPUT_VALUE = 1;
 
   /**
-   * An array of all the '<em><b>Register Type</b></em>' enumerators.
+   * An array of all the '<em><b>Port Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final RegisterType[] VALUES_ARRAY =
-    new RegisterType[]
+  private static final PortType[] VALUES_ARRAY =
+    new PortType[]
     {
       INPUT,
       OUTPUT,
     };
 
   /**
-   * A public read-only list of all the '<em><b>Register Type</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>Port Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<RegisterType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<PortType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Register Type</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>Port Type</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static RegisterType get(String literal)
+  public static PortType get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      RegisterType result = VALUES_ARRAY[i];
+      PortType result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -105,18 +105,18 @@ public enum RegisterType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Register Type</b></em>' literal with the specified name.
+   * Returns the '<em><b>Port Type</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static RegisterType getByName(String name)
+  public static PortType getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      RegisterType result = VALUES_ARRAY[i];
+      PortType result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -126,14 +126,14 @@ public enum RegisterType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Register Type</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>Port Type</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static RegisterType get(int value)
+  public static PortType get(int value)
   {
     switch (value)
     {
@@ -170,7 +170,7 @@ public enum RegisterType implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private RegisterType(int value, String name, String literal)
+  private PortType(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -222,4 +222,4 @@ public enum RegisterType implements Enumerator
     return literal;
   }
   
-} //RegisterType
+} //PortType

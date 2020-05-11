@@ -44,6 +44,9 @@ import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.MultiplicativeOp;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
@@ -51,9 +54,6 @@ import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexFactory;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -145,7 +145,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass registerPortMappingEClass = null;
+  private EClass portMappingEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -264,7 +264,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass registerEClass = null;
+  private EClass portEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -453,7 +453,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum registerTypeEEnum = null;
+  private EEnum portTypeEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -689,7 +689,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getProgram_Registers()
+  public EReference getProgram_Ports()
   {
     return (EReference)programEClass.getEStructuralFeatures().get(7);
   }
@@ -964,7 +964,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getPhysicalVariable_Port()
+  public EReference getPhysicalVariable_Mapping()
   {
     return (EReference)physicalVariableEClass.getEStructuralFeatures().get(3);
   }
@@ -975,9 +975,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getRegisterPortMapping()
+  public EClass getPortMapping()
   {
-    return registerPortMappingEClass;
+    return portMappingEClass;
   }
 
   /**
@@ -986,9 +986,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getRegisterPortMapping_Register()
+  public EReference getPortMapping_Port()
   {
-    return (EReference)registerPortMappingEClass.getEStructuralFeatures().get(0);
+    return (EReference)portMappingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -997,9 +997,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegisterPortMapping_PortBit()
+  public EAttribute getPortMapping_Bit()
   {
-    return (EAttribute)registerPortMappingEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)portMappingEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1448,9 +1448,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getRegister()
+  public EClass getPort()
   {
-    return registerEClass;
+    return portEClass;
   }
 
   /**
@@ -1459,9 +1459,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegister_Type()
+  public EAttribute getPort_Type()
   {
-    return (EAttribute)registerEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)portEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1470,9 +1470,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegister_Name()
+  public EAttribute getPort_Name()
   {
-    return (EAttribute)registerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)portEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1481,9 +1481,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegister_Addr1()
+  public EAttribute getPort_Addr1()
   {
-    return (EAttribute)registerEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)portEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1492,9 +1492,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegister_Addr2()
+  public EAttribute getPort_Addr2()
   {
-    return (EAttribute)registerEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)portEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1503,9 +1503,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getRegister_RegSize()
+  public EAttribute getPort_RegSize()
   {
-    return (EAttribute)registerEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)portEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -2207,9 +2207,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EEnum getRegisterType()
+  public EEnum getPortType()
   {
-    return registerTypeEEnum;
+    return portTypeEEnum;
   }
 
   /**
@@ -2372,7 +2372,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(programEClass, PROGRAM__ENUMS);
     createEReference(programEClass, PROGRAM__FUNCTIONS);
     createEReference(programEClass, PROGRAM__GLOBAL_VARS);
-    createEReference(programEClass, PROGRAM__REGISTERS);
+    createEReference(programEClass, PROGRAM__PORTS);
     createEReference(programEClass, PROGRAM__PROCESSES);
 
     tactEClass = createEClass(TACT);
@@ -2404,11 +2404,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__SHARED);
     createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__TYPE);
     createEAttribute(physicalVariableEClass, PHYSICAL_VARIABLE__NAME);
-    createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__PORT);
+    createEReference(physicalVariableEClass, PHYSICAL_VARIABLE__MAPPING);
 
-    registerPortMappingEClass = createEClass(REGISTER_PORT_MAPPING);
-    createEReference(registerPortMappingEClass, REGISTER_PORT_MAPPING__REGISTER);
-    createEAttribute(registerPortMappingEClass, REGISTER_PORT_MAPPING__PORT_BIT);
+    portMappingEClass = createEClass(PORT_MAPPING);
+    createEReference(portMappingEClass, PORT_MAPPING__PORT);
+    createEAttribute(portMappingEClass, PORT_MAPPING__BIT);
 
     programVariableEClass = createEClass(PROGRAM_VARIABLE);
     createEAttribute(programVariableEClass, PROGRAM_VARIABLE__SHARED);
@@ -2466,12 +2466,12 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(functionEClass, FUNCTION__NAME);
     createEReference(functionEClass, FUNCTION__ARG_TYPES);
 
-    registerEClass = createEClass(REGISTER);
-    createEAttribute(registerEClass, REGISTER__TYPE);
-    createEAttribute(registerEClass, REGISTER__NAME);
-    createEAttribute(registerEClass, REGISTER__ADDR1);
-    createEAttribute(registerEClass, REGISTER__ADDR2);
-    createEAttribute(registerEClass, REGISTER__REG_SIZE);
+    portEClass = createEClass(PORT);
+    createEAttribute(portEClass, PORT__TYPE);
+    createEAttribute(portEClass, PORT__NAME);
+    createEAttribute(portEClass, PORT__ADDR1);
+    createEAttribute(portEClass, PORT__ADDR2);
+    createEAttribute(portEClass, PORT__REG_SIZE);
 
     constEClass = createEClass(CONST);
     createEReference(constEClass, CONST__TYPE);
@@ -2563,7 +2563,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(annotationEClass, ANNOTATION__VALUE);
 
     // Create enums
-    registerTypeEEnum = createEEnum(REGISTER_TYPE);
+    portTypeEEnum = createEEnum(PORT_TYPE);
     stateQualifierEEnum = createEEnum(STATE_QUALIFIER);
     infixPostfixOpEEnum = createEEnum(INFIX_POSTFIX_OP);
     assignOperatorEEnum = createEEnum(ASSIGN_OPERATOR);
@@ -2652,7 +2652,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getProgram_Enums(), this.getEnum(), null, "enums", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Functions(), this.getFunction(), null, "functions", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_GlobalVars(), this.getGlobalVariable(), null, "globalVars", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgram_Registers(), this.getRegister(), null, "registers", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Ports(), this.getPort(), null, "ports", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Processes(), this.getProcess(), null, "processes", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2684,11 +2684,11 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getPhysicalVariable_Shared(), ecorePackage.getEBoolean(), "shared", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPhysicalVariable_Type(), this.getType(), null, "type", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPhysicalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPhysicalVariable_Port(), this.getRegisterPortMapping(), null, "port", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPhysicalVariable_Mapping(), this.getPortMapping(), null, "mapping", null, 0, 1, PhysicalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(registerPortMappingEClass, RegisterPortMapping.class, "RegisterPortMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRegisterPortMapping_Register(), this.getRegister(), null, "register", null, 0, 1, RegisterPortMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegisterPortMapping_PortBit(), ecorePackage.getEString(), "portBit", null, 0, 1, RegisterPortMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(portMappingEClass, PortMapping.class, "PortMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPortMapping_Port(), this.getPort(), null, "port", null, 0, 1, PortMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPortMapping_Bit(), ecorePackage.getEString(), "bit", null, 0, 1, PortMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programVariableEClass, ProgramVariable.class, "ProgramVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgramVariable_Shared(), ecorePackage.getEBoolean(), "shared", null, 0, 1, ProgramVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2746,12 +2746,12 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunction_ArgTypes(), this.getType(), null, "argTypes", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(registerEClass, Register.class, "Register", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRegister_Type(), this.getRegisterType(), "type", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegister_Name(), ecorePackage.getEString(), "name", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegister_Addr1(), ecorePackage.getEString(), "addr1", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegister_Addr2(), ecorePackage.getEString(), "addr2", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegister_RegSize(), ecorePackage.getEString(), "regSize", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPort_Type(), this.getPortType(), "type", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPort_Name(), ecorePackage.getEString(), "name", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPort_Addr1(), ecorePackage.getEString(), "addr1", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPort_Addr2(), ecorePackage.getEString(), "addr2", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPort_RegSize(), ecorePackage.getEString(), "regSize", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constEClass, Const.class, "Const", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConst_Type(), this.getType(), null, "type", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2843,9 +2843,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getAnnotation_Value(), ecorePackage.getEString(), "value", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(registerTypeEEnum, RegisterType.class, "RegisterType");
-    addEEnumLiteral(registerTypeEEnum, RegisterType.INPUT);
-    addEEnumLiteral(registerTypeEEnum, RegisterType.OUTPUT);
+    initEEnum(portTypeEEnum, PortType.class, "PortType");
+    addEEnumLiteral(portTypeEEnum, PortType.INPUT);
+    addEEnumLiteral(portTypeEEnum, PortType.OUTPUT);
 
     initEEnum(stateQualifierEEnum, StateQualifier.class, "StateQualifier");
     addEEnumLiteral(stateQualifierEEnum, StateQualifier.ACTIVE);

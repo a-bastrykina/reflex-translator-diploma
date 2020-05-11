@@ -7,50 +7,50 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Register</b></em>'.
+ * A representation of the model object '<em><b>Port</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Register#getType <em>Type</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Register#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Register#getAddr1 <em>Addr1</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Register#getAddr2 <em>Addr2</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getType <em>Type</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getName <em>Name</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getAddr1 <em>Addr1</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getAddr2 <em>Addr2</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}</li>
  * </ul>
  *
- * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister()
+ * @see ru.iaie.reflex.reflex.ReflexPackage#getPort()
  * @model
  * @generated
  */
-public interface Register extends EObject
+public interface Port extends EObject
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
-   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.RegisterType}.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.PortType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' attribute.
-   * @see ru.iaie.reflex.reflex.RegisterType
-   * @see #setType(RegisterType)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Type()
+   * @see ru.iaie.reflex.reflex.PortType
+   * @see #setType(PortType)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_Type()
    * @model
    * @generated
    */
-  RegisterType getType();
+  PortType getType();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
-   * @see ru.iaie.reflex.reflex.RegisterType
+   * @see ru.iaie.reflex.reflex.PortType
    * @see #getType()
    * @generated
    */
-  void setType(RegisterType value);
+  void setType(PortType value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -58,14 +58,14 @@ public interface Register extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Name()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -80,14 +80,14 @@ public interface Register extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Addr1</em>' attribute.
    * @see #setAddr1(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Addr1()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_Addr1()
    * @model
    * @generated
    */
   String getAddr1();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr1 <em>Addr1</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getAddr1 <em>Addr1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Addr1</em>' attribute.
@@ -102,14 +102,14 @@ public interface Register extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Addr2</em>' attribute.
    * @see #setAddr2(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_Addr2()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_Addr2()
    * @model
    * @generated
    */
   String getAddr2();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getAddr2 <em>Addr2</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getAddr2 <em>Addr2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Addr2</em>' attribute.
@@ -124,14 +124,14 @@ public interface Register extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Reg Size</em>' attribute.
    * @see #setRegSize(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getRegister_RegSize()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_RegSize()
    * @model
    * @generated
    */
   String getRegSize();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Register#getRegSize <em>Reg Size</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Reg Size</em>' attribute.
@@ -140,4 +140,4 @@ public interface Register extends EObject
    */
   void setRegSize(String value);
 
-} // Register
+} // Port

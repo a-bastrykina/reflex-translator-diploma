@@ -15,8 +15,8 @@
         eType="#//Function" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalVars" upperBound="-1"
         eType="#//GlobalVariable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="registers" upperBound="-1"
-        eType="#//Register" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Port" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
         eType="#//Process" containment="true"/>
   </eClassifiers>
@@ -55,12 +55,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//RegisterPortMapping"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" eType="#//PortMapping"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RegisterPortMapping">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="register" eType="#//Register"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="portBit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PortMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//Port"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//ProcessVariable #//GlobalVariable #//IdReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -126,12 +126,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="argTypes" upperBound="-1"
         eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="RegisterType">
+  <eClassifiers xsi:type="ecore:EEnum" name="PortType">
     <eLiterals name="INPUT" literal="input"/>
     <eLiterals name="OUTPUT" value="1" literal="output"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Register">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RegisterType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Port">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PortType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="addr1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="addr2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

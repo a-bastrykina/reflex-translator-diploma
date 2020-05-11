@@ -11,7 +11,7 @@ Program:
 	enums+=Enum |
 	functions+=Function |
 	globalVars+=GlobalVariable |
-	registers+=Register |
+	ports+=Port |
 	processes+=Process)*
 	"}";
 
@@ -42,10 +42,10 @@ GlobalVariable:
 	(PhysicalVariable | ProgramVariable) ";";
 
 PhysicalVariable:
-	type=Type name=ID "=" port=RegisterPortMapping;
+	type=Type name=ID "=" mapping=PortMapping;
 
-RegisterPortMapping:
-	register=[Register] "[" (portBit=INTEGER)? "]";
+PortMapping:
+	port=[Port] "[" (bit=INTEGER)? "]";
 
 ProgramVariable:
 	type=Type name=ID;
@@ -102,11 +102,11 @@ SetStateStat:
 Function:
 	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
 
-enum RegisterType:
+enum PortType:
 	INPUT='input' | OUTPUT='output';
 
-Register:
-	type=RegisterType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+Port:
+	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
 
 Const:
 	"const" type=Type name=ID "=" value=Expression ";";

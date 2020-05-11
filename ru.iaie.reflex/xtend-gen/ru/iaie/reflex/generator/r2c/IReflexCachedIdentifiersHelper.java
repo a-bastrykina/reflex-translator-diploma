@@ -4,8 +4,8 @@ import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
+import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.ProcessVariable;
-import ru.iaie.reflex.reflex.Register;
 
 @SuppressWarnings("all")
 public interface IReflexCachedIdentifiersHelper {
@@ -15,7 +15,7 @@ public interface IReflexCachedIdentifiersHelper {
   
   public abstract String getConstantId(final Const c);
   
-  public abstract String getPortId(final Register reg);
+  public abstract String getPortId(final Port p);
   
   public abstract String getEnumId(final ru.iaie.reflex.reflex.Enum en);
   

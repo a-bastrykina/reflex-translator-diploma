@@ -31,12 +31,12 @@ import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterType;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.Statement;
@@ -144,8 +144,8 @@ public class ReflexValidator extends AbstractReflexValidator {
     if (_hasAssignment) {
       final IdReference assignVar = expr.getAssignVar();
       if ((assignVar instanceof PhysicalVariable)) {
-        RegisterType _mappedPortType = ReflexModelUtil.getMappedPortType(((PhysicalVariable)assignVar));
-        boolean _equals = Objects.equal(_mappedPortType, RegisterType.INPUT);
+        PortType _mappedPortType = ReflexModelUtil.getMappedPortType(((PhysicalVariable)assignVar));
+        boolean _equals = Objects.equal(_mappedPortType, PortType.INPUT);
         if (_equals) {
           this.warning("An attempt to assign value into variable mapped on input port", 
             ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
@@ -159,8 +159,8 @@ public class ReflexValidator extends AbstractReflexValidator {
   
   @Check
   public void checkOutputVarUsagesInAssignment(final PhysicalVariable physVar) {
-    RegisterType _mappedPortType = ReflexModelUtil.getMappedPortType(physVar);
-    boolean _equals = Objects.equal(_mappedPortType, RegisterType.OUTPUT);
+    PortType _mappedPortType = ReflexModelUtil.getMappedPortType(physVar);
+    boolean _equals = Objects.equal(_mappedPortType, PortType.OUTPUT);
     if (_equals) {
       final Program program = EcoreUtil2.<Program>getContainerOfType(physVar, Program.class);
       boolean usedInAssignment = ReflexModelUtil.containsReferencesOfType(program, physVar, ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
@@ -219,12 +219,12 @@ public class ReflexValidator extends AbstractReflexValidator {
           return Function.<GlobalVariable>identity().apply(p);
         }
     }));
-    final Function1<Register, String> _function_1 = (Register it) -> {
+    final Function1<Port, String> _function_1 = (Port it) -> {
       return it.getName();
     };
-    globalCtx.putAll(IterableExtensions.<Register, String, EObject>toMap(program.getRegisters(), _function_1, new Function1<Register, EObject>() {
-        public EObject apply(Register p) {
-          return Function.<Register>identity().apply(p);
+    globalCtx.putAll(IterableExtensions.<Port, String, EObject>toMap(program.getPorts(), _function_1, new Function1<Port, EObject>() {
+        public EObject apply(Port p) {
+          return Function.<Port>identity().apply(p);
         }
     }));
     final Function1<ru.iaie.reflex.reflex.Enum, EList<EnumMember>> _function_2 = (ru.iaie.reflex.reflex.Enum it) -> {
@@ -272,11 +272,11 @@ public class ReflexValidator extends AbstractReflexValidator {
             errorMessage = _builder.toString();
           }
           if (!_matched) {
-            if (shadowed instanceof Register) {
+            if (shadowed instanceof Port) {
               _matched=true;
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("Process variable shadows port with name \"");
-              String _name = ((Register)shadowed).getName();
+              String _name = ((Port)shadowed).getName();
               _builder.append(_name);
               _builder.append("\"");
               errorMessage = _builder.toString();

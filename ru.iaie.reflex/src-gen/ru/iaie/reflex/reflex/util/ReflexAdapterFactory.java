@@ -37,14 +37,14 @@ import ru.iaie.reflex.reflex.LogicalAndExpression;
 import ru.iaie.reflex.reflex.LogicalOrExpression;
 import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.PostfixOp;
 import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Register;
-import ru.iaie.reflex.reflex.RegisterPortMapping;
 import ru.iaie.reflex.reflex.ResetStat;
 import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
@@ -166,9 +166,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createPhysicalVariableAdapter();
       }
       @Override
-      public Adapter caseRegisterPortMapping(RegisterPortMapping object)
+      public Adapter casePortMapping(PortMapping object)
       {
-        return createRegisterPortMappingAdapter();
+        return createPortMappingAdapter();
       }
       @Override
       public Adapter caseProgramVariable(ProgramVariable object)
@@ -251,9 +251,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createFunctionAdapter();
       }
       @Override
-      public Adapter caseRegister(Register object)
+      public Adapter casePort(Port object)
       {
-        return createRegisterAdapter();
+        return createPortAdapter();
       }
       @Override
       public Adapter caseConst(Const object)
@@ -528,16 +528,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.RegisterPortMapping <em>Register Port Mapping</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.PortMapping <em>Port Mapping</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.RegisterPortMapping
+   * @see ru.iaie.reflex.reflex.PortMapping
    * @generated
    */
-  public Adapter createRegisterPortMappingAdapter()
+  public Adapter createPortMappingAdapter()
   {
     return null;
   }
@@ -783,16 +783,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Register <em>Register</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Port <em>Port</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Register
+   * @see ru.iaie.reflex.reflex.Port
    * @generated
    */
-  public Adapter createRegisterAdapter()
+  public Adapter createPortAdapter()
   {
     return null;
   }
