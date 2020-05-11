@@ -176,7 +176,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/addr1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/addr2"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/regSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Port/size"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Const">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Const/type"/>

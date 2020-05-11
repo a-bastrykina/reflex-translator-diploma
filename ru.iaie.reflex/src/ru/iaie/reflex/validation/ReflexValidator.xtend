@@ -277,7 +277,11 @@ class ReflexValidator extends AbstractReflexValidator {
 		}
 	}
 	
-	
+	@Check def void checkPortSize(Port p) {
+		if (!(p.size.equals("8") || p.size.equals("16"))) {
+			error("Only 8 or 16 values allowed", ePackage.port_Size)
+		}
+	}
 
 // TODO: add checks for types
 }

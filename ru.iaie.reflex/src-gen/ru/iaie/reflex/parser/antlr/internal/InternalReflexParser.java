@@ -5631,14 +5631,14 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePort"
-    // InternalReflex.g:2023:1: rulePort returns [EObject current=null] : ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_regSize_4_0= RULE_INTEGER ) ) otherlv_5= ';' ) ;
+    // InternalReflex.g:2023:1: rulePort returns [EObject current=null] : ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_size_4_0= RULE_INTEGER ) ) otherlv_5= ';' ) ;
     public final EObject rulePort() throws RecognitionException {
         EObject current = null;
 
         Token lv_name_1_0=null;
         Token lv_addr1_2_0=null;
         Token lv_addr2_3_0=null;
-        Token lv_regSize_4_0=null;
+        Token lv_size_4_0=null;
         Token otherlv_5=null;
         Enumerator lv_type_0_0 = null;
 
@@ -5647,11 +5647,11 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReflex.g:2029:2: ( ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_regSize_4_0= RULE_INTEGER ) ) otherlv_5= ';' ) )
-            // InternalReflex.g:2030:2: ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_regSize_4_0= RULE_INTEGER ) ) otherlv_5= ';' )
+            // InternalReflex.g:2029:2: ( ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_size_4_0= RULE_INTEGER ) ) otherlv_5= ';' ) )
+            // InternalReflex.g:2030:2: ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_size_4_0= RULE_INTEGER ) ) otherlv_5= ';' )
             {
-            // InternalReflex.g:2030:2: ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_regSize_4_0= RULE_INTEGER ) ) otherlv_5= ';' )
-            // InternalReflex.g:2031:3: ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_regSize_4_0= RULE_INTEGER ) ) otherlv_5= ';'
+            // InternalReflex.g:2030:2: ( ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_size_4_0= RULE_INTEGER ) ) otherlv_5= ';' )
+            // InternalReflex.g:2031:3: ( (lv_type_0_0= rulePortType ) ) ( (lv_name_1_0= RULE_ID ) ) ( (lv_addr1_2_0= RULE_INTEGER ) ) ( (lv_addr2_3_0= RULE_INTEGER ) ) ( (lv_size_4_0= RULE_INTEGER ) ) otherlv_5= ';'
             {
             // InternalReflex.g:2031:3: ( (lv_type_0_0= rulePortType ) )
             // InternalReflex.g:2032:4: (lv_type_0_0= rulePortType )
@@ -5778,16 +5778,16 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReflex.g:2104:3: ( (lv_regSize_4_0= RULE_INTEGER ) )
-            // InternalReflex.g:2105:4: (lv_regSize_4_0= RULE_INTEGER )
+            // InternalReflex.g:2104:3: ( (lv_size_4_0= RULE_INTEGER ) )
+            // InternalReflex.g:2105:4: (lv_size_4_0= RULE_INTEGER )
             {
-            // InternalReflex.g:2105:4: (lv_regSize_4_0= RULE_INTEGER )
-            // InternalReflex.g:2106:5: lv_regSize_4_0= RULE_INTEGER
+            // InternalReflex.g:2105:4: (lv_size_4_0= RULE_INTEGER )
+            // InternalReflex.g:2106:5: lv_size_4_0= RULE_INTEGER
             {
-            lv_regSize_4_0=(Token)match(input,RULE_INTEGER,FOLLOW_10); if (state.failed) return current;
+            lv_size_4_0=(Token)match(input,RULE_INTEGER,FOLLOW_10); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              					newLeafNode(lv_regSize_4_0, grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0());
+              					newLeafNode(lv_size_4_0, grammarAccess.getPortAccess().getSizeINTEGERTerminalRuleCall_4_0());
               				
             }
             if ( state.backtracking==0 ) {
@@ -5797,8 +5797,8 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
               					}
               					setWithLastConsumed(
               						current,
-              						"regSize",
-              						lv_regSize_4_0,
+              						"size",
+              						lv_size_4_0,
               						"ru.iaie.reflex.Reflex.INTEGER");
               				
             }

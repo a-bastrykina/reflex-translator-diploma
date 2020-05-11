@@ -50,6 +50,7 @@ import ru.iaie.reflex.reflex.Types
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PortType
+import ru.iaie.reflex.reflex.PortMapping
 
 // TODO: abstract class with same doGenerate and abstract
 // 		generateVariables(resource, fsa, context)
@@ -103,6 +104,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			project(«program.name.toLowerCase»)
 			
 			set(CMAKE_C_STANDARD 99)
+			set(CMAKE_C_FLAGS "-Wall")
 			
 			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c)
 		'''
@@ -125,11 +127,14 @@ class R2CReflexGenerator extends AbstractGenerator {
 		
 		void Input(void) {
 		    «FOR physVar : inputVars»
-		    «translateReadingFromInput(physVar)»;
+		    	«translateReadingFromInput(physVar)»;
 		    «ENDFOR»
 		}  /* Reading IO func */
 		
 		void Output(void) {
+			«FOR physVar : outputVars»
+			    «translateReadingFromOutput(physVar)»;
+		    «ENDFOR»
 		    printf("output\n");
 		} /* Writing IO func */
 		'''
@@ -138,7 +143,43 @@ class R2CReflexGenerator extends AbstractGenerator {
 	
 	def translateReadingFromInput(PhysicalVariable v) {
 		val mapping = v.mapping
-		return '''«identifiersHelper.getMapping(v)» = «identifiersHelper.getPortId(mapping.port)»«IF !mapping.fullMapping» & MASK«mapping.bit»_S«mapping.port.regSize»«ENDIF»'''
+		val varName = identifiersHelper.getMapping(v) 
+		if (mapping.fullMapping) {
+			return '''«varName» = «identifiersHelper.getPortId(mapping.port)»'''
+		} else {
+			return 
+			'''
+			if («identifiersHelper.getPortId(mapping.port)» & «generatePortMappingMask(mapping)») {
+				«varName» = TRUE;
+			}
+			else {
+				«varName» = FALSE;
+			} 
+			'''
+		}
+	}
+	
+	def translateReadingFromOutput(PhysicalVariable v) {
+		val mapping = v.mapping
+		val portVariableName = identifiersHelper.getPortId(mapping.port)
+		val varName = identifiersHelper.getMapping(v)
+		val mask =  generatePortMappingMask(mapping)
+		if (mapping.fullMapping) {
+			return '''«portVariableName» = «varName»'''
+		} else {
+			return 
+			'''
+			if («varName») {
+				«portVariableName» |= «mask»; 
+			} else {
+				«portVariableName» &= ~«mask»; 
+			}
+			'''
+		}	
+	}
+	
+	def generatePortMappingMask(PortMapping mapping) {
+		return '''MASK«mapping.bit»_S«mapping.port.size»'''
 	}
 
 // TODO: rename

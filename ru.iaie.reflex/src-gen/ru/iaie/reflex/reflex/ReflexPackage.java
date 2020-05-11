@@ -1066,13 +1066,13 @@ public interface ReflexPackage extends EPackage
   int PORT__ADDR2 = 3;
 
   /**
-   * The feature id for the '<em><b>Reg Size</b></em>' attribute.
+   * The feature id for the '<em><b>Size</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PORT__REG_SIZE = 4;
+  int PORT__SIZE = 4;
 
   /**
    * The number of structural features of the '<em>Port</em>' class.
@@ -3655,15 +3655,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getPort_Addr2();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Port#getSize <em>Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Reg Size</em>'.
-   * @see ru.iaie.reflex.reflex.Port#getRegSize()
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see ru.iaie.reflex.reflex.Port#getSize()
    * @see #getPort()
    * @generated
    */
-  EAttribute getPort_RegSize();
+  EAttribute getPort_Size();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Const <em>Const</em>}'.
@@ -5184,12 +5184,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PORT__ADDR2 = eINSTANCE.getPort_Addr2();
 
     /**
-     * The meta object literal for the '<em><b>Reg Size</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PORT__REG_SIZE = eINSTANCE.getPort_RegSize();
+    EAttribute PORT__SIZE = eINSTANCE.getPort_Size();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ConstImpl <em>Const</em>}' class.

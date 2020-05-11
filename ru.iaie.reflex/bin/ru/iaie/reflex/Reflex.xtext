@@ -106,7 +106,7 @@ enum PortType:
 	INPUT='input' | OUTPUT='output';
 
 Port:
-	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
 
 Const:
 	"const" type=Type name=ID "=" value=Expression ";";

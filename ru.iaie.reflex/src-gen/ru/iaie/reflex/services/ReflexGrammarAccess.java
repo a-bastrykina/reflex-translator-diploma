@@ -1257,15 +1257,15 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAddr1INTEGERTerminalRuleCall_2_0 = (RuleCall)cAddr1Assignment_2.eContents().get(0);
 		private final Assignment cAddr2Assignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cAddr2INTEGERTerminalRuleCall_3_0 = (RuleCall)cAddr2Assignment_3.eContents().get(0);
-		private final Assignment cRegSizeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRegSizeINTEGERTerminalRuleCall_4_0 = (RuleCall)cRegSizeAssignment_4.eContents().get(0);
+		private final Assignment cSizeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cSizeINTEGERTerminalRuleCall_4_0 = (RuleCall)cSizeAssignment_4.eContents().get(0);
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Port:
-		//	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+		//	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";"
+		//type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";"
 		public Group getGroup() { return cGroup; }
 		
 		//type=PortType
@@ -1292,11 +1292,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//INTEGER
 		public RuleCall getAddr2INTEGERTerminalRuleCall_3_0() { return cAddr2INTEGERTerminalRuleCall_3_0; }
 		
-		//regSize=INTEGER
-		public Assignment getRegSizeAssignment_4() { return cRegSizeAssignment_4; }
+		//size=INTEGER
+		public Assignment getSizeAssignment_4() { return cSizeAssignment_4; }
 		
 		//INTEGER
-		public RuleCall getRegSizeINTEGERTerminalRuleCall_4_0() { return cRegSizeINTEGERTerminalRuleCall_4_0; }
+		public RuleCall getSizeINTEGERTerminalRuleCall_4_0() { return cSizeINTEGERTerminalRuleCall_4_0; }
 		
 		//";"
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
@@ -3350,7 +3350,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Port:
-	//	type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER ";";
+	//	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
 	public PortElements getPortAccess() {
 		return pPort;
 	}

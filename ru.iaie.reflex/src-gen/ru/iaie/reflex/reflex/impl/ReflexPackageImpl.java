@@ -1503,7 +1503,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getPort_RegSize()
+  public EAttribute getPort_Size()
   {
     return (EAttribute)portEClass.getEStructuralFeatures().get(4);
   }
@@ -2471,7 +2471,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEAttribute(portEClass, PORT__NAME);
     createEAttribute(portEClass, PORT__ADDR1);
     createEAttribute(portEClass, PORT__ADDR2);
-    createEAttribute(portEClass, PORT__REG_SIZE);
+    createEAttribute(portEClass, PORT__SIZE);
 
     constEClass = createEClass(CONST);
     createEReference(constEClass, CONST__TYPE);
@@ -2751,7 +2751,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEAttribute(getPort_Name(), ecorePackage.getEString(), "name", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPort_Addr1(), ecorePackage.getEString(), "addr1", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPort_Addr2(), ecorePackage.getEString(), "addr2", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPort_RegSize(), ecorePackage.getEString(), "regSize", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPort_Size(), ecorePackage.getEString(), "size", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constEClass, Const.class, "Const", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConst_Type(), this.getType(), null, "type", null, 0, 1, Const.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

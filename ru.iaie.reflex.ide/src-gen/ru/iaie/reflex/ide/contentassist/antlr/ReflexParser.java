@@ -197,7 +197,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPortAccess().getNameAssignment_1(), "rule__Port__NameAssignment_1");
 			builder.put(grammarAccess.getPortAccess().getAddr1Assignment_2(), "rule__Port__Addr1Assignment_2");
 			builder.put(grammarAccess.getPortAccess().getAddr2Assignment_3(), "rule__Port__Addr2Assignment_3");
-			builder.put(grammarAccess.getPortAccess().getRegSizeAssignment_4(), "rule__Port__RegSizeAssignment_4");
+			builder.put(grammarAccess.getPortAccess().getSizeAssignment_4(), "rule__Port__SizeAssignment_4");
 			builder.put(grammarAccess.getConstAccess().getTypeAssignment_1(), "rule__Const__TypeAssignment_1");
 			builder.put(grammarAccess.getConstAccess().getNameAssignment_2(), "rule__Const__NameAssignment_2");
 			builder.put(grammarAccess.getConstAccess().getValueAssignment_4(), "rule__Const__ValueAssignment_4");

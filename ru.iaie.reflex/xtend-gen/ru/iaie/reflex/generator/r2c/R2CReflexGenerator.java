@@ -130,6 +130,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("set(CMAKE_C_STANDARD 99)");
     _builder.newLine();
+    _builder.append("set(CMAKE_C_FLAGS \"-Wall\")");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("add_executable(");
     String _lowerCase_1 = this.program.getName().toLowerCase();
@@ -181,6 +183,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("void Output(void) {");
     _builder.newLine();
+    {
+      for(final PhysicalVariable physVar_1 : outputVars) {
+        _builder.append("\t");
+        String _translateReadingFromOutput = this.translateReadingFromOutput(physVar_1);
+        _builder.append(_translateReadingFromOutput, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("    ");
     _builder.append("printf(\"output\\n\");");
     _builder.newLine();
@@ -194,24 +205,89 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   public String translateReadingFromInput(final PhysicalVariable v) {
     final PortMapping mapping = v.getMapping();
-    StringConcatenation _builder = new StringConcatenation();
-    String _mapping = this.identifiersHelper.getMapping(v);
-    _builder.append(_mapping);
-    _builder.append(" = ");
-    String _portId = this.identifiersHelper.getPortId(mapping.getPort());
-    _builder.append(_portId);
-    {
-      boolean _isFullMapping = ReflexModelUtil.isFullMapping(mapping);
-      boolean _not = (!_isFullMapping);
-      if (_not) {
-        _builder.append(" & MASK");
-        String _bit = mapping.getBit();
-        _builder.append(_bit);
-        _builder.append("_S");
-        String _regSize = mapping.getPort().getRegSize();
-        _builder.append(_regSize);
-      }
+    final String varName = this.identifiersHelper.getMapping(v);
+    boolean _isFullMapping = ReflexModelUtil.isFullMapping(mapping);
+    if (_isFullMapping) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(varName);
+      _builder.append(" = ");
+      String _portId = this.identifiersHelper.getPortId(mapping.getPort());
+      _builder.append(_portId);
+      return _builder.toString();
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("if (");
+      String _portId_1 = this.identifiersHelper.getPortId(mapping.getPort());
+      _builder_1.append(_portId_1);
+      _builder_1.append(" & ");
+      String _generatePortMappingMask = this.generatePortMappingMask(mapping);
+      _builder_1.append(_generatePortMappingMask);
+      _builder_1.append(") {");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t");
+      _builder_1.append(varName, "\t");
+      _builder_1.append(" = TRUE;");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("}");
+      _builder_1.newLine();
+      _builder_1.append("else {");
+      _builder_1.newLine();
+      _builder_1.append("\t");
+      _builder_1.append(varName, "\t");
+      _builder_1.append(" = FALSE;");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("} ");
+      _builder_1.newLine();
+      return _builder_1.toString();
     }
+  }
+  
+  public String translateReadingFromOutput(final PhysicalVariable v) {
+    final PortMapping mapping = v.getMapping();
+    final String portVariableName = this.identifiersHelper.getPortId(mapping.getPort());
+    final String varName = this.identifiersHelper.getMapping(v);
+    final String mask = this.generatePortMappingMask(mapping);
+    boolean _isFullMapping = ReflexModelUtil.isFullMapping(mapping);
+    if (_isFullMapping) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(portVariableName);
+      _builder.append(" = ");
+      _builder.append(varName);
+      return _builder.toString();
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("if (");
+      _builder_1.append(varName);
+      _builder_1.append(") {");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t");
+      _builder_1.append(portVariableName, "\t");
+      _builder_1.append(" |= ");
+      _builder_1.append(mask, "\t");
+      _builder_1.append("; ");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("} else {");
+      _builder_1.newLine();
+      _builder_1.append("\t");
+      _builder_1.append(portVariableName, "\t");
+      _builder_1.append(" &= ~");
+      _builder_1.append(mask, "\t");
+      _builder_1.append("; ");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("}");
+      _builder_1.newLine();
+      return _builder_1.toString();
+    }
+  }
+  
+  public String generatePortMappingMask(final PortMapping mapping) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("MASK");
+    String _bit = mapping.getBit();
+    _builder.append(_bit);
+    _builder.append("_S");
+    String _size = mapping.getPort().getSize();
+    _builder.append(_size);
     return _builder.toString();
   }
   

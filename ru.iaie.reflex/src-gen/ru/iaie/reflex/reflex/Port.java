@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ru.iaie.reflex.reflex.Port#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Port#getAddr1 <em>Addr1</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Port#getAddr2 <em>Addr2</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Port#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getPort()
@@ -119,25 +119,25 @@ public interface Port extends EObject
   void setAddr2(String value);
 
   /**
-   * Returns the value of the '<em><b>Reg Size</b></em>' attribute.
+   * Returns the value of the '<em><b>Size</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg Size</em>' attribute.
-   * @see #setRegSize(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_RegSize()
+   * @return the value of the '<em>Size</em>' attribute.
+   * @see #setSize(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPort_Size()
    * @model
    * @generated
    */
-  String getRegSize();
+  String getSize();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getRegSize <em>Reg Size</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Port#getSize <em>Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg Size</em>' attribute.
-   * @see #getRegSize()
+   * @param value the new value of the '<em>Size</em>' attribute.
+   * @see #getSize()
    * @generated
    */
-  void setRegSize(String value);
+  void setSize(String value);
 
 } // Port

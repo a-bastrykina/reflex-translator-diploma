@@ -896,7 +896,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Port returns Port
 	 *
 	 * Constraint:
-	 *     (type=PortType name=ID addr1=INTEGER addr2=INTEGER regSize=INTEGER)
+	 *     (type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER)
 	 */
 	protected void sequence_Port(ISerializationContext context, Port semanticObject) {
 		if (errorAcceptor != null) {
@@ -908,15 +908,15 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__ADDR1));
 			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__ADDR2) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__ADDR2));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__REG_SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__REG_SIZE));
+			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.PORT__SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.PORT__SIZE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPortAccess().getTypePortTypeEnumRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPortAccess().getAddr1INTEGERTerminalRuleCall_2_0(), semanticObject.getAddr1());
 		feeder.accept(grammarAccess.getPortAccess().getAddr2INTEGERTerminalRuleCall_3_0(), semanticObject.getAddr2());
-		feeder.accept(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0(), semanticObject.getRegSize());
+		feeder.accept(grammarAccess.getPortAccess().getSizeINTEGERTerminalRuleCall_4_0(), semanticObject.getSize());
 		feeder.finish();
 	}
 	

@@ -26,7 +26,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getAddr1 <em>Addr1</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getAddr2 <em>Addr2</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getRegSize <em>Reg Size</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PortImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,24 +114,24 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
   protected String addr2 = ADDR2_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
+   * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRegSize()
+   * @see #getSize()
    * @generated
    * @ordered
    */
-  protected static final String REG_SIZE_EDEFAULT = null;
+  protected static final String SIZE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getRegSize() <em>Reg Size</em>}' attribute.
+   * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRegSize()
+   * @see #getSize()
    * @generated
    * @ordered
    */
-  protected String regSize = REG_SIZE_EDEFAULT;
+  protected String size = SIZE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -260,9 +260,9 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
    * @generated
    */
   @Override
-  public String getRegSize()
+  public String getSize()
   {
-    return regSize;
+    return size;
   }
 
   /**
@@ -271,12 +271,12 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
    * @generated
    */
   @Override
-  public void setRegSize(String newRegSize)
+  public void setSize(String newSize)
   {
-    String oldRegSize = regSize;
-    regSize = newRegSize;
+    String oldSize = size;
+    size = newSize;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__REG_SIZE, oldRegSize, regSize));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PORT__SIZE, oldSize, size));
   }
 
   /**
@@ -297,8 +297,8 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
         return getAddr1();
       case ReflexPackage.PORT__ADDR2:
         return getAddr2();
-      case ReflexPackage.PORT__REG_SIZE:
-        return getRegSize();
+      case ReflexPackage.PORT__SIZE:
+        return getSize();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -325,8 +325,8 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
       case ReflexPackage.PORT__ADDR2:
         setAddr2((String)newValue);
         return;
-      case ReflexPackage.PORT__REG_SIZE:
-        setRegSize((String)newValue);
+      case ReflexPackage.PORT__SIZE:
+        setSize((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -354,8 +354,8 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
       case ReflexPackage.PORT__ADDR2:
         setAddr2(ADDR2_EDEFAULT);
         return;
-      case ReflexPackage.PORT__REG_SIZE:
-        setRegSize(REG_SIZE_EDEFAULT);
+      case ReflexPackage.PORT__SIZE:
+        setSize(SIZE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -379,8 +379,8 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
         return ADDR1_EDEFAULT == null ? addr1 != null : !ADDR1_EDEFAULT.equals(addr1);
       case ReflexPackage.PORT__ADDR2:
         return ADDR2_EDEFAULT == null ? addr2 != null : !ADDR2_EDEFAULT.equals(addr2);
-      case ReflexPackage.PORT__REG_SIZE:
-        return REG_SIZE_EDEFAULT == null ? regSize != null : !REG_SIZE_EDEFAULT.equals(regSize);
+      case ReflexPackage.PORT__SIZE:
+        return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
     }
     return super.eIsSet(featureID);
   }
@@ -404,8 +404,8 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
     result.append(addr1);
     result.append(", addr2: ");
     result.append(addr2);
-    result.append(", regSize: ");
-    result.append(regSize);
+    result.append(", size: ");
+    result.append(size);
     result.append(')');
     return result.toString();
   }

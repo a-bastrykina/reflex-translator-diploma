@@ -6191,9 +6191,9 @@ rule__Port__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPortAccess().getRegSizeAssignment_4()); }
-	(rule__Port__RegSizeAssignment_4)
-	{ after(grammarAccess.getPortAccess().getRegSizeAssignment_4()); }
+	{ before(grammarAccess.getPortAccess().getSizeAssignment_4()); }
+	(rule__Port__SizeAssignment_4)
+	{ after(grammarAccess.getPortAccess().getSizeAssignment_4()); }
 )
 ;
 finally {
@@ -10154,15 +10154,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Port__RegSizeAssignment_4
+rule__Port__SizeAssignment_4
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); }
+		{ before(grammarAccess.getPortAccess().getSizeINTEGERTerminalRuleCall_4_0()); }
 		RULE_INTEGER
-		{ after(grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0()); }
+		{ after(grammarAccess.getPortAccess().getSizeINTEGERTerminalRuleCall_4_0()); }
 	)
 ;
 finally {

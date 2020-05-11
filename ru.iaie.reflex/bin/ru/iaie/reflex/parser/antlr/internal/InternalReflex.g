@@ -2103,9 +2103,9 @@ rulePort returns [EObject current=null]
 		)
 		(
 			(
-				lv_regSize_4_0=RULE_INTEGER
+				lv_size_4_0=RULE_INTEGER
 				{
-					newLeafNode(lv_regSize_4_0, grammarAccess.getPortAccess().getRegSizeINTEGERTerminalRuleCall_4_0());
+					newLeafNode(lv_size_4_0, grammarAccess.getPortAccess().getSizeINTEGERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -2113,8 +2113,8 @@ rulePort returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"regSize",
-						lv_regSize_4_0,
+						"size",
+						lv_size_4_0,
 						"ru.iaie.reflex.Reflex.INTEGER");
 				}
 			)
