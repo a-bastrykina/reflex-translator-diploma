@@ -3,12 +3,14 @@
  */
 package ru.iaie.reflex;
 
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */
 public class ReflexStandaloneSetup extends ReflexStandaloneSetupGenerated {
 
-	public static void doSetup() {
-		new ReflexStandaloneSetup().createInjectorAndDoEMFRegistration();
+	public static Injector doSetup() {
+		return (new ReflexStandaloneSetup()).createInjectorAndDoEMFRegistration();
 	}
 }

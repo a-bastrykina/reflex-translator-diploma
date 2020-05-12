@@ -33,6 +33,28 @@ import ru.iaie.reflex.reflex.SwitchStat
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.PortType
 import ru.iaie.reflex.reflex.Port
+import ru.iaie.reflex.utils.LiteralUtils
+import ru.iaie.reflex.reflex.Expression
+import ru.iaie.reflex.reflex.Type
+import ru.iaie.reflex.reflex.InfixOp
+import ru.iaie.reflex.reflex.PostfixOp
+import ru.iaie.reflex.reflex.FunctionCall
+import ru.iaie.reflex.reflex.IdReference
+import ru.iaie.reflex.reflex.PrimaryExpression
+import ru.iaie.reflex.reflex.CastExpression
+import ru.iaie.reflex.reflex.UnaryExpression
+import ru.iaie.reflex.reflex.MultiplicativeExpression
+import ru.iaie.reflex.reflex.AdditiveExpression
+import ru.iaie.reflex.reflex.CheckStateExpression
+import ru.iaie.reflex.reflex.ShiftExpression
+import ru.iaie.reflex.reflex.CompareExpression
+import ru.iaie.reflex.reflex.EqualityExpression
+import ru.iaie.reflex.reflex.BitAndExpression
+import ru.iaie.reflex.reflex.BitXorExpression
+import ru.iaie.reflex.reflex.BitOrExpression
+import ru.iaie.reflex.reflex.LogicalAndExpression
+import ru.iaie.reflex.reflex.LogicalOrExpression
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /** 
  * This class contains custom validation rules. 
@@ -175,8 +197,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 
 	@Check def void checkImportedVariablesConflictsProcessVariables(ImportedVariableList imports) {
-		val Map<String, ProcessVariable> ctx = imports.getContainerOfType(Process).variables.toMap([name],
-			identity);
+		val Map<String, ProcessVariable> ctx = imports.getContainerOfType(Process).variables.toMap([name], identity);
 		for (variable : imports.variables) {
 			if (ctx.containsKey(variable.name)) {
 				var conflicted = ctx.get(variable.name)
@@ -250,25 +271,24 @@ class ReflexValidator extends AbstractReflexValidator {
 	@Check def void checkStateContainsMeaningfulStatements(ru.iaie.reflex.reflex.State state) {
 		val meaningful = state.eAllOfType(Statement).filter(
 			stat |
-				stat instanceof StartProcStat || 
-				stat instanceof StopProcStat && !(stat as StopProcStat).selfStop ||
-				stat instanceof ErrorStat && !(stat as ErrorStat).selfError ||
-				stat instanceof AssignmentExpression &&
-				((stat as AssignmentExpression).hasAssignment || (stat as AssignmentExpression).hasFunctionCall) || 
-				stat instanceof IfElseStat ||
-				stat instanceof SwitchStat
+				stat instanceof StartProcStat || stat instanceof StopProcStat && !(stat as StopProcStat).selfStop ||
+					stat instanceof ErrorStat && !(stat as ErrorStat).selfError ||
+					stat instanceof AssignmentExpression &&
+						((stat as AssignmentExpression).hasAssignment ||
+							(stat as AssignmentExpression).hasFunctionCall) || stat instanceof IfElseStat ||
+					stat instanceof SwitchStat
 		)
 		if (meaningful.empty) {
 			warning("State body has no start | stop | error process statements or assign expressions", null)
 		}
 	}
-	
+
 	@Check def void checkConstValue(Const c) {
 		if (!c.value.isConstExpr) {
-			error("Only constant expressions allowed", ePackage.const_Value) 
+			error("Only constant expressions allowed", ePackage.const_Value)
 		}
 	}
-	
+
 	@Check def void checkEnumMemberValue(EnumMember em) {
 		if (em.hasValue) {
 			if (!em.value.isConstExpr) {
@@ -276,25 +296,130 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		}
 	}
-	
-//	@Check def void checkPortSize(Port p) {
-//		val size = Integer.decode(p.size)
-//		if (!(size == 8 || size == 16)) {
-//			error("Only 8 or 16 values allowed", ePackage.port_Size)
-//		}
-//	}
-//	
-//	@Check def void checkPortMapping(PhysicalVariable physVar) {
-//		if (!physVar.mapping.fullMapping) {
-//			// todo: add wrapper for Integer
-//			val portSize = Integer.decode(physVar.mapping.port.size)
-//			val bitNum = Integer.decode(physVar.mapping.bit)
-//			if (bitNum > portSize || bitNum <= 0) {
-//				error('''Port bit value must be in interval of 1..«portSize»''', physVar.mapping,
-//					ePackage.portMapping_Bit)
-//			}
-//		}
-//	}
 
-	// TODO: add checks for types
+	@Check def void checkPortSize(Port p) {
+		val size = LiteralUtils.parseInteger(p.size)
+		if (!(size == 8 || size == 16)) {
+			error("Only 8 or 16 values allowed", ePackage.port_Size)
+		}
+	}
+
+	@Check def void checkPortMapping(PhysicalVariable physVar) {
+		if (!physVar.mapping.fullMapping) {
+			val portSize = LiteralUtils.parseInteger(physVar.mapping.port.size)
+			val bitNum = LiteralUtils.parseInteger(physVar.mapping.bit)
+			if (bitNum > portSize || bitNum <= 0) {
+				error('''Port bit value must be in interval of 1..«portSize»''', physVar.mapping,
+					ePackage.portMapping_Bit)
+			}
+		}
+	}
+
+	@Check def void validateTypes(Expression e) {
+		doTypeValidation(e)
+	}
+
+	def Type doTypeValidation(EObject expr) {
+		switch (expr) {
+			InfixOp:
+				return doTypeValidation(expr.ref)
+			PostfixOp:
+				return doTypeValidation(expr.ref)
+			FunctionCall:
+				return expr.function.returnType
+			IdReference:
+				return expr.resolveType
+			PrimaryExpression: {
+				// todo: extension method PrimaryExpression.resolveType
+				if(expr.isNestedExpr) return doTypeValidation(expr.nestedExpr)
+				if (expr.isBoolean) {
+					return Type.BOOL
+				}
+				if (expr.isReference) {
+					return doTypeValidation(expr.reference)
+				}
+				if (expr.isInteger) {
+					return Type.INT32
+				}
+				if (expr.isFloating) {
+					return Type.FLOAT
+				}
+			}
+			UnaryExpression:
+				return doTypeValidation(expr.right)
+			CastExpression:
+				// Allow all casts for now
+				return expr.type
+			CheckStateExpression:
+				return Type.BOOL
+			AssignmentExpression: {
+				if (expr.hasAssignment) {
+					val assignType = doTypeValidation(expr.assignVar)
+					val valueType = doTypeValidation(expr.expr)
+					if (assignType != valueType) {
+						warning('''Assign variable type «assignType» is incompitable with assigned expression type «valueType»''',
+							expr, ePackage.assignmentExpression_AssignVar)
+					}
+					return assignType
+				}
+				return doTypeValidation(expr.expr)
+			}
+			default:
+				validateBinaryExpressinType(expr)
+		}
+	}
+
+	def validateBinaryExpressinType(EObject expr) {
+		var EObject left
+		var EObject right
+//			var EStructuralFeature leftRef
+//			var EStructuralFeature rightRef
+		switch (expr) {
+			MultiplicativeExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			AdditiveExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			ShiftExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			CompareExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			EqualityExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			BitAndExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			BitXorExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			BitOrExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			LogicalAndExpression: {
+				left = expr.left
+				right = expr.right
+			}
+			LogicalOrExpression: {
+				left = expr.left
+				right = expr.right
+			}
+		}
+		val leftType = doTypeValidation(left)
+		val rightType = doTypeValidation(right)
+		if (leftType != rightType)
+			warning('''Incompitable types in expression: «leftType» and «rightType»''', expr, null)
+		return leftType
+	}
 }

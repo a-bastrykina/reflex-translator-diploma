@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalReflexLexer extends Lexer {
-    public static final int RULE_HEX=14;
+    public static final int RULE_HEX=15;
     public static final int T__50=50;
-    public static final int RULE_SIGN=23;
-    public static final int RULE_DEC_SEQUENCE=21;
+    public static final int RULE_SIGN=14;
+    public static final int RULE_DEC_SEQUENCE=22;
     public static final int T__59=59;
     public static final int T__55=55;
     public static final int T__56=56;
@@ -28,7 +28,7 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__60=60;
     public static final int T__61=61;
     public static final int RULE_ID=4;
-    public static final int RULE_HEX_FLOAT=20;
+    public static final int RULE_HEX_FLOAT=21;
     public static final int RULE_INT=28;
     public static final int T__66=66;
     public static final int RULE_ML_COMMENT=29;
@@ -47,13 +47,13 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__35=35;
     public static final int T__36=36;
     public static final int RULE_HEX_SEQUENCE=25;
-    public static final int RULE_UNSIGNED=18;
+    public static final int RULE_UNSIGNED=19;
     public static final int RULE_BOOL_LITERAL=12;
     public static final int RULE_BIN_EXPONENT=26;
     public static final int RULE_LOGICAL_AND=8;
-    public static final int RULE_EXPONENT=22;
+    public static final int RULE_EXPONENT=23;
     public static final int T__48=48;
-    public static final int RULE_DEC_FLOAT=19;
+    public static final int RULE_DEC_FLOAT=20;
     public static final int T__49=49;
     public static final int T__44=44;
     public static final int T__45=45;
@@ -73,13 +73,13 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__94=94;
     public static final int T__101=101;
     public static final int T__90=90;
-    public static final int RULE_OCTAL=15;
+    public static final int RULE_OCTAL=16;
     public static final int T__99=99;
     public static final int T__95=95;
     public static final int T__96=96;
     public static final int T__97=97;
     public static final int T__98=98;
-    public static final int RULE_DECIMAL=16;
+    public static final int RULE_DECIMAL=17;
     public static final int RULE_LOGICAL_OR=9;
     public static final int RULE_FLOAT_SUFFIX=24;
     public static final int T__70=70;
@@ -108,7 +108,7 @@ public class InternalReflexLexer extends Lexer {
     public static final int T__89=89;
     public static final int T__107=107;
     public static final int RULE_BIT_OR=7;
-    public static final int RULE_LONG=17;
+    public static final int RULE_LONG=18;
     public static final int T__109=109;
     public static final int T__84=84;
     public static final int T__104=104;
@@ -1892,19 +1892,37 @@ public class InternalReflexLexer extends Lexer {
         try {
             int _type = RULE_INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReflex.g:10842:14: ( ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )? )
-            // InternalReflex.g:10842:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )?
+            // InternalReflex.g:10842:14: ( ( RULE_SIGN )? ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )? )
+            // InternalReflex.g:10842:16: ( RULE_SIGN )? ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL ) ( RULE_LONG | RULE_UNSIGNED )?
             {
-            // InternalReflex.g:10842:16: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL )
-            int alt2=3;
+            // InternalReflex.g:10842:16: ( RULE_SIGN )?
+            int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0=='0') ) {
+            if ( (LA2_0=='+'||LA2_0=='-') ) {
+                alt2=1;
+            }
+            switch (alt2) {
+                case 1 :
+                    // InternalReflex.g:10842:16: RULE_SIGN
+                    {
+                    mRULE_SIGN(); 
+
+                    }
+                    break;
+
+            }
+
+            // InternalReflex.g:10842:27: ( RULE_HEX | RULE_OCTAL | RULE_DECIMAL )
+            int alt3=3;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0=='0') ) {
                 switch ( input.LA(2) ) {
                 case 'X':
                 case 'x':
                     {
-                    alt2=1;
+                    alt3=1;
                     }
                     break;
                 case '0':
@@ -1916,39 +1934,39 @@ public class InternalReflexLexer extends Lexer {
                 case '6':
                 case '7':
                     {
-                    alt2=2;
+                    alt3=2;
                     }
                     break;
                 default:
-                    alt2=3;}
+                    alt3=3;}
 
             }
-            else if ( ((LA2_0>='1' && LA2_0<='9')) ) {
-                alt2=3;
+            else if ( ((LA3_0>='1' && LA3_0<='9')) ) {
+                alt3=3;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 2, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
-            switch (alt2) {
+            switch (alt3) {
                 case 1 :
-                    // InternalReflex.g:10842:17: RULE_HEX
+                    // InternalReflex.g:10842:28: RULE_HEX
                     {
                     mRULE_HEX(); 
 
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:10842:26: RULE_OCTAL
+                    // InternalReflex.g:10842:37: RULE_OCTAL
                     {
                     mRULE_OCTAL(); 
 
                     }
                     break;
                 case 3 :
-                    // InternalReflex.g:10842:37: RULE_DECIMAL
+                    // InternalReflex.g:10842:48: RULE_DECIMAL
                     {
                     mRULE_DECIMAL(); 
 
@@ -1957,14 +1975,14 @@ public class InternalReflexLexer extends Lexer {
 
             }
 
-            // InternalReflex.g:10842:51: ( RULE_LONG | RULE_UNSIGNED )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // InternalReflex.g:10842:62: ( RULE_LONG | RULE_UNSIGNED )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-            if ( (LA3_0=='L'||LA3_0=='U'||LA3_0=='l'||LA3_0=='u') ) {
-                alt3=1;
+            if ( (LA4_0=='L'||LA4_0=='U'||LA4_0=='l'||LA4_0=='u') ) {
+                alt4=1;
             }
-            switch (alt3) {
+            switch (alt4) {
                 case 1 :
                     // InternalReflex.g:
                     {
@@ -2003,9 +2021,9 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10844:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
             {
             // InternalReflex.g:10844:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )
-            int alt4=2;
-            alt4 = dfa4.predict(input);
-            switch (alt4) {
+            int alt5=2;
+            alt5 = dfa5.predict(input);
+            switch (alt5) {
                 case 1 :
                     // InternalReflex.g:10844:15: RULE_DEC_FLOAT
                     {
@@ -2041,13 +2059,13 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10846:27: ( RULE_DEC_SEQUENCE )? '.' RULE_DEC_SEQUENCE ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             {
             // InternalReflex.g:10846:27: ( RULE_DEC_SEQUENCE )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( ((LA5_0>='0' && LA5_0<='9')) ) {
-                alt5=1;
+            if ( ((LA6_0>='0' && LA6_0<='9')) ) {
+                alt6=1;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
                     // InternalReflex.g:10846:27: RULE_DEC_SEQUENCE
                     {
@@ -2061,13 +2079,13 @@ public class InternalReflexLexer extends Lexer {
             match('.'); 
             mRULE_DEC_SEQUENCE(); 
             // InternalReflex.g:10846:68: ( RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( (LA6_0=='E'||LA6_0=='e') ) {
-                alt6=1;
+            if ( (LA7_0=='E'||LA7_0=='e') ) {
+                alt7=1;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
                     // InternalReflex.g:10846:69: RULE_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
                     {
@@ -2081,13 +2099,13 @@ public class InternalReflexLexer extends Lexer {
             }
 
             // InternalReflex.g:10846:113: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA7_0=='F'||LA7_0=='L'||LA7_0=='f'||LA7_0=='l') ) {
-                alt7=1;
+            if ( (LA8_0=='F'||LA8_0=='L'||LA8_0=='f'||LA8_0=='l') ) {
+                alt8=1;
             }
-            switch (alt7) {
+            switch (alt8) {
                 case 1 :
                     // InternalReflex.g:
                     {
@@ -2122,13 +2140,13 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10848:27: ( RULE_HEX_SEQUENCE )? '.' RULE_HEX_SEQUENCE ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )? ( RULE_LONG | RULE_FLOAT_SUFFIX )?
             {
             // InternalReflex.g:10848:27: ( RULE_HEX_SEQUENCE )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( ((LA8_0>='0' && LA8_0<='9')||(LA8_0>='A' && LA8_0<='F')||(LA8_0>='a' && LA8_0<='f')) ) {
-                alt8=1;
+            if ( ((LA9_0>='0' && LA9_0<='9')||(LA9_0>='A' && LA9_0<='F')||(LA9_0>='a' && LA9_0<='f')) ) {
+                alt9=1;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
                     // InternalReflex.g:10848:27: RULE_HEX_SEQUENCE
                     {
@@ -2142,13 +2160,13 @@ public class InternalReflexLexer extends Lexer {
             match('.'); 
             mRULE_HEX_SEQUENCE(); 
             // InternalReflex.g:10848:68: ( RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0=='P'||LA9_0=='p') ) {
-                alt9=1;
+            if ( (LA10_0=='P'||LA10_0=='p') ) {
+                alt10=1;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
                     // InternalReflex.g:10848:69: RULE_BIN_EXPONENT RULE_SIGN RULE_DEC_SEQUENCE
                     {
@@ -2162,13 +2180,13 @@ public class InternalReflexLexer extends Lexer {
             }
 
             // InternalReflex.g:10848:117: ( RULE_LONG | RULE_FLOAT_SUFFIX )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0=='F'||LA10_0=='L'||LA10_0=='f'||LA10_0=='l') ) {
-                alt10=1;
+            if ( (LA11_0=='F'||LA11_0=='L'||LA11_0=='f'||LA11_0=='l') ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
                     // InternalReflex.g:
                     {
@@ -2203,18 +2221,18 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10850:30: ( '0' .. '9' )+
             {
             // InternalReflex.g:10850:30: ( '0' .. '9' )+
-            int cnt11=0;
-            loop11:
+            int cnt12=0;
+            loop12:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( ((LA11_0>='0' && LA11_0<='9')) ) {
-                    alt11=1;
+                if ( ((LA12_0>='0' && LA12_0<='9')) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt12) {
             	case 1 :
             	    // InternalReflex.g:10850:31: '0' .. '9'
             	    {
@@ -2224,12 +2242,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt11 >= 1 ) break loop11;
+            	    if ( cnt12 >= 1 ) break loop12;
                         EarlyExitException eee =
-                            new EarlyExitException(11, input);
+                            new EarlyExitException(12, input);
                         throw eee;
                 }
-                cnt11++;
+                cnt12++;
             } while (true);
 
 
@@ -2248,18 +2266,18 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10852:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
             // InternalReflex.g:10852:30: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
-            int cnt12=0;
-            loop12:
+            int cnt13=0;
+            loop13:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt13=2;
+                int LA13_0 = input.LA(1);
 
-                if ( ((LA12_0>='0' && LA12_0<='9')||(LA12_0>='A' && LA12_0<='F')||(LA12_0>='a' && LA12_0<='f')) ) {
-                    alt12=1;
+                if ( ((LA13_0>='0' && LA13_0<='9')||(LA13_0>='A' && LA13_0<='F')||(LA13_0>='a' && LA13_0<='f')) ) {
+                    alt13=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt13) {
             	case 1 :
             	    // InternalReflex.g:
             	    {
@@ -2277,12 +2295,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt12 >= 1 ) break loop12;
+            	    if ( cnt13 >= 1 ) break loop13;
                         EarlyExitException eee =
-                            new EarlyExitException(12, input);
+                            new EarlyExitException(13, input);
                         throw eee;
                 }
-                cnt12++;
+                cnt13++;
             } while (true);
 
 
@@ -2373,22 +2391,22 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10860:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
             // InternalReflex.g:10860:25: ( '0' | '1' .. '9' ( '0' .. '9' )* )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA14_0=='0') ) {
-                alt14=1;
+            if ( (LA15_0=='0') ) {
+                alt15=1;
             }
-            else if ( ((LA14_0>='1' && LA14_0<='9')) ) {
-                alt14=2;
+            else if ( ((LA15_0>='1' && LA15_0<='9')) ) {
+                alt15=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
                     // InternalReflex.g:10860:26: '0'
                     {
@@ -2401,17 +2419,17 @@ public class InternalReflexLexer extends Lexer {
                     {
                     matchRange('1','9'); 
                     // InternalReflex.g:10860:39: ( '0' .. '9' )*
-                    loop13:
+                    loop14:
                     do {
-                        int alt13=2;
-                        int LA13_0 = input.LA(1);
+                        int alt14=2;
+                        int LA14_0 = input.LA(1);
 
-                        if ( ((LA13_0>='0' && LA13_0<='9')) ) {
-                            alt13=1;
+                        if ( ((LA14_0>='0' && LA14_0<='9')) ) {
+                            alt14=1;
                         }
 
 
-                        switch (alt13) {
+                        switch (alt14) {
                     	case 1 :
                     	    // InternalReflex.g:10860:40: '0' .. '9'
                     	    {
@@ -2421,7 +2439,7 @@ public class InternalReflexLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop13;
+                    	    break loop14;
                         }
                     } while (true);
 
@@ -2448,18 +2466,18 @@ public class InternalReflexLexer extends Lexer {
             {
             match('0'); 
             // InternalReflex.g:10862:27: ( '0' .. '7' )+
-            int cnt15=0;
-            loop15:
+            int cnt16=0;
+            loop16:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( ((LA15_0>='0' && LA15_0<='7')) ) {
-                    alt15=1;
+                if ( ((LA16_0>='0' && LA16_0<='7')) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
             	    // InternalReflex.g:10862:28: '0' .. '7'
             	    {
@@ -2469,12 +2487,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt15 >= 1 ) break loop15;
+            	    if ( cnt16 >= 1 ) break loop16;
                         EarlyExitException eee =
-                            new EarlyExitException(15, input);
+                            new EarlyExitException(16, input);
                         throw eee;
                 }
-                cnt15++;
+                cnt16++;
             } while (true);
 
 
@@ -2609,13 +2627,13 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10874:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             // InternalReflex.g:10874:11: ( '^' )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0=='^') ) {
-                alt16=1;
+            if ( (LA17_0=='^') ) {
+                alt17=1;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
                     // InternalReflex.g:10874:11: '^'
                     {
@@ -2636,17 +2654,17 @@ public class InternalReflexLexer extends Lexer {
                 throw mse;}
 
             // InternalReflex.g:10874:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-            loop17:
+            loop18:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( ((LA17_0>='0' && LA17_0<='9')||(LA17_0>='A' && LA17_0<='Z')||LA17_0=='_'||(LA17_0>='a' && LA17_0<='z')) ) {
-                    alt17=1;
+                if ( ((LA18_0>='0' && LA18_0<='9')||(LA18_0>='A' && LA18_0<='Z')||LA18_0=='_'||(LA18_0>='a' && LA18_0<='z')) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt18) {
             	case 1 :
             	    // InternalReflex.g:
             	    {
@@ -2664,7 +2682,7 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2688,18 +2706,18 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10876:12: ( '0' .. '9' )+
             {
             // InternalReflex.g:10876:12: ( '0' .. '9' )+
-            int cnt18=0;
-            loop18:
+            int cnt19=0;
+            loop19:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( ((LA18_0>='0' && LA18_0<='9')) ) {
-                    alt18=1;
+                if ( ((LA19_0>='0' && LA19_0<='9')) ) {
+                    alt19=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt19) {
             	case 1 :
             	    // InternalReflex.g:10876:13: '0' .. '9'
             	    {
@@ -2709,12 +2727,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt18 >= 1 ) break loop18;
+            	    if ( cnt19 >= 1 ) break loop19;
                         EarlyExitException eee =
-                            new EarlyExitException(18, input);
+                            new EarlyExitException(19, input);
                         throw eee;
                 }
-                cnt18++;
+                cnt19++;
             } while (true);
 
 
@@ -2737,41 +2755,41 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10878:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
             // InternalReflex.g:10878:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0=='\"') ) {
-                alt21=1;
+            if ( (LA22_0=='\"') ) {
+                alt22=1;
             }
-            else if ( (LA21_0=='\'') ) {
-                alt21=2;
+            else if ( (LA22_0=='\'') ) {
+                alt22=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 21, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
                     // InternalReflex.g:10878:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
                     // InternalReflex.g:10878:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop19:
+                    loop20:
                     do {
-                        int alt19=3;
-                        int LA19_0 = input.LA(1);
+                        int alt20=3;
+                        int LA20_0 = input.LA(1);
 
-                        if ( (LA19_0=='\\') ) {
-                            alt19=1;
+                        if ( (LA20_0=='\\') ) {
+                            alt20=1;
                         }
-                        else if ( ((LA19_0>='\u0000' && LA19_0<='!')||(LA19_0>='#' && LA19_0<='[')||(LA19_0>=']' && LA19_0<='\uFFFF')) ) {
-                            alt19=2;
+                        else if ( ((LA20_0>='\u0000' && LA20_0<='!')||(LA20_0>='#' && LA20_0<='[')||(LA20_0>=']' && LA20_0<='\uFFFF')) ) {
+                            alt20=2;
                         }
 
 
-                        switch (alt19) {
+                        switch (alt20) {
                     	case 1 :
                     	    // InternalReflex.g:10878:21: '\\\\' .
                     	    {
@@ -2797,7 +2815,7 @@ public class InternalReflexLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop19;
+                    	    break loop20;
                         }
                     } while (true);
 
@@ -2810,20 +2828,20 @@ public class InternalReflexLexer extends Lexer {
                     {
                     match('\''); 
                     // InternalReflex.g:10878:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop20:
+                    loop21:
                     do {
-                        int alt20=3;
-                        int LA20_0 = input.LA(1);
+                        int alt21=3;
+                        int LA21_0 = input.LA(1);
 
-                        if ( (LA20_0=='\\') ) {
-                            alt20=1;
+                        if ( (LA21_0=='\\') ) {
+                            alt21=1;
                         }
-                        else if ( ((LA20_0>='\u0000' && LA20_0<='&')||(LA20_0>='(' && LA20_0<='[')||(LA20_0>=']' && LA20_0<='\uFFFF')) ) {
-                            alt20=2;
+                        else if ( ((LA21_0>='\u0000' && LA21_0<='&')||(LA21_0>='(' && LA21_0<='[')||(LA21_0>=']' && LA21_0<='\uFFFF')) ) {
+                            alt21=2;
                         }
 
 
-                        switch (alt20) {
+                        switch (alt21) {
                     	case 1 :
                     	    // InternalReflex.g:10878:54: '\\\\' .
                     	    {
@@ -2849,7 +2867,7 @@ public class InternalReflexLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop20;
+                    	    break loop21;
                         }
                     } while (true);
 
@@ -2882,29 +2900,29 @@ public class InternalReflexLexer extends Lexer {
             match("/*"); 
 
             // InternalReflex.g:10880:24: ( options {greedy=false; } : . )*
-            loop22:
+            loop23:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA22_0=='*') ) {
-                    int LA22_1 = input.LA(2);
+                if ( (LA23_0=='*') ) {
+                    int LA23_1 = input.LA(2);
 
-                    if ( (LA22_1=='/') ) {
-                        alt22=2;
+                    if ( (LA23_1=='/') ) {
+                        alt23=2;
                     }
-                    else if ( ((LA22_1>='\u0000' && LA22_1<='.')||(LA22_1>='0' && LA22_1<='\uFFFF')) ) {
-                        alt22=1;
+                    else if ( ((LA23_1>='\u0000' && LA23_1<='.')||(LA23_1>='0' && LA23_1<='\uFFFF')) ) {
+                        alt23=1;
                     }
 
 
                 }
-                else if ( ((LA22_0>='\u0000' && LA22_0<=')')||(LA22_0>='+' && LA22_0<='\uFFFF')) ) {
-                    alt22=1;
+                else if ( ((LA23_0>='\u0000' && LA23_0<=')')||(LA23_0>='+' && LA23_0<='\uFFFF')) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt23) {
             	case 1 :
             	    // InternalReflex.g:10880:52: .
             	    {
@@ -2914,7 +2932,7 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop23;
                 }
             } while (true);
 
@@ -2942,17 +2960,17 @@ public class InternalReflexLexer extends Lexer {
             match("//"); 
 
             // InternalReflex.g:10882:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop23:
+            loop24:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( ((LA23_0>='\u0000' && LA23_0<='\t')||(LA23_0>='\u000B' && LA23_0<='\f')||(LA23_0>='\u000E' && LA23_0<='\uFFFF')) ) {
-                    alt23=1;
+                if ( ((LA24_0>='\u0000' && LA24_0<='\t')||(LA24_0>='\u000B' && LA24_0<='\f')||(LA24_0>='\u000E' && LA24_0<='\uFFFF')) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt24) {
             	case 1 :
             	    // InternalReflex.g:10882:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
@@ -2970,29 +2988,29 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop24;
                 }
             } while (true);
 
             // InternalReflex.g:10882:40: ( ( '\\r' )? '\\n' )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0=='\n'||LA25_0=='\r') ) {
-                alt25=1;
+            if ( (LA26_0=='\n'||LA26_0=='\r') ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
                     // InternalReflex.g:10882:41: ( '\\r' )? '\\n'
                     {
                     // InternalReflex.g:10882:41: ( '\\r' )?
-                    int alt24=2;
-                    int LA24_0 = input.LA(1);
+                    int alt25=2;
+                    int LA25_0 = input.LA(1);
 
-                    if ( (LA24_0=='\r') ) {
-                        alt24=1;
+                    if ( (LA25_0=='\r') ) {
+                        alt25=1;
                     }
-                    switch (alt24) {
+                    switch (alt25) {
                         case 1 :
                             // InternalReflex.g:10882:41: '\\r'
                             {
@@ -3030,18 +3048,18 @@ public class InternalReflexLexer extends Lexer {
             // InternalReflex.g:10884:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // InternalReflex.g:10884:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt26=0;
-            loop26:
+            int cnt27=0;
+            loop27:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( ((LA26_0>='\t' && LA26_0<='\n')||LA26_0=='\r'||LA26_0==' ') ) {
-                    alt26=1;
+                if ( ((LA27_0>='\t' && LA27_0<='\n')||LA27_0=='\r'||LA27_0==' ') ) {
+                    alt27=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt27) {
             	case 1 :
             	    // InternalReflex.g:
             	    {
@@ -3059,12 +3077,12 @@ public class InternalReflexLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt26 >= 1 ) break loop26;
+            	    if ( cnt27 >= 1 ) break loop27;
                         EarlyExitException eee =
-                            new EarlyExitException(26, input);
+                            new EarlyExitException(27, input);
                         throw eee;
                 }
-                cnt26++;
+                cnt27++;
             } while (true);
 
 
@@ -3100,9 +3118,9 @@ public class InternalReflexLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // InternalReflex.g:1:8: ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_BOOL_LITERAL | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_INTEGER | RULE_FLOAT | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt27=92;
-        alt27 = dfa27.predict(input);
-        switch (alt27) {
+        int alt28=92;
+        alt28 = dfa28.predict(input);
+        switch (alt28) {
             case 1 :
                 // InternalReflex.g:1:10: T__33
                 {
@@ -3753,21 +3771,21 @@ public class InternalReflexLexer extends Lexer {
     }
 
 
-    protected DFA4 dfa4 = new DFA4(this);
-    protected DFA27 dfa27 = new DFA27(this);
-    static final String DFA4_eotS =
+    protected DFA5 dfa5 = new DFA5(this);
+    protected DFA28 dfa28 = new DFA28(this);
+    static final String DFA5_eotS =
         "\5\uffff";
-    static final String DFA4_eofS =
+    static final String DFA5_eofS =
         "\5\uffff";
-    static final String DFA4_minS =
+    static final String DFA5_minS =
         "\2\56\1\60\2\uffff";
-    static final String DFA4_maxS =
+    static final String DFA5_maxS =
         "\3\146\2\uffff";
-    static final String DFA4_acceptS =
+    static final String DFA5_acceptS =
         "\3\uffff\1\2\1\1";
-    static final String DFA4_specialS =
+    static final String DFA5_specialS =
         "\5\uffff}>";
-    static final String[] DFA4_transitionS = {
+    static final String[] DFA5_transitionS = {
             "\1\2\1\uffff\12\1\7\uffff\6\3\32\uffff\6\3",
             "\1\2\1\uffff\12\1\7\uffff\6\3\32\uffff\6\3",
             "\12\4\7\uffff\6\3\32\uffff\6\3",
@@ -3775,92 +3793,92 @@ public class InternalReflexLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA4_eot = DFA.unpackEncodedString(DFA4_eotS);
-    static final short[] DFA4_eof = DFA.unpackEncodedString(DFA4_eofS);
-    static final char[] DFA4_min = DFA.unpackEncodedStringToUnsignedChars(DFA4_minS);
-    static final char[] DFA4_max = DFA.unpackEncodedStringToUnsignedChars(DFA4_maxS);
-    static final short[] DFA4_accept = DFA.unpackEncodedString(DFA4_acceptS);
-    static final short[] DFA4_special = DFA.unpackEncodedString(DFA4_specialS);
-    static final short[][] DFA4_transition;
+    static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
+    static final short[] DFA5_eof = DFA.unpackEncodedString(DFA5_eofS);
+    static final char[] DFA5_min = DFA.unpackEncodedStringToUnsignedChars(DFA5_minS);
+    static final char[] DFA5_max = DFA.unpackEncodedStringToUnsignedChars(DFA5_maxS);
+    static final short[] DFA5_accept = DFA.unpackEncodedString(DFA5_acceptS);
+    static final short[] DFA5_special = DFA.unpackEncodedString(DFA5_specialS);
+    static final short[][] DFA5_transition;
 
     static {
-        int numStates = DFA4_transitionS.length;
-        DFA4_transition = new short[numStates][];
+        int numStates = DFA5_transitionS.length;
+        DFA5_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA4_transition[i] = DFA.unpackEncodedString(DFA4_transitionS[i]);
+            DFA5_transition[i] = DFA.unpackEncodedString(DFA5_transitionS[i]);
         }
     }
 
-    class DFA4 extends DFA {
+    class DFA5 extends DFA {
 
-        public DFA4(BaseRecognizer recognizer) {
+        public DFA5(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 4;
-            this.eot = DFA4_eot;
-            this.eof = DFA4_eof;
-            this.min = DFA4_min;
-            this.max = DFA4_max;
-            this.accept = DFA4_accept;
-            this.special = DFA4_special;
-            this.transition = DFA4_transition;
+            this.decisionNumber = 5;
+            this.eot = DFA5_eot;
+            this.eof = DFA5_eof;
+            this.min = DFA5_min;
+            this.max = DFA5_max;
+            this.accept = DFA5_accept;
+            this.special = DFA5_special;
+            this.transition = DFA5_transition;
         }
         public String getDescription() {
             return "10844:14: ( RULE_DEC_FLOAT | RULE_HEX_FLOAT )";
         }
     }
-    static final String DFA27_eotS =
-        "\1\uffff\5\62\1\100\1\103\1\106\1\110\1\114\1\116\1\121\1\124\1\126\1\131\1\uffff\1\134\1\uffff\6\62\4\uffff\1\62\2\uffff\1\62\3\uffff\1\62\1\166\2\62\2\171\1\62\1\uffff\2\57\2\uffff\1\u0082\1\u0083\1\uffff\2\62\1\uffff\10\62\17\uffff\1\u008f\1\uffff\1\u0091\16\uffff\11\62\4\uffff\3\62\2\uffff\2\62\3\uffff\1\62\1\uffff\2\62\1\uffff\1\171\1\u00a3\1\171\2\uffff\3\62\2\uffff\6\62\1\u00b1\3\62\4\uffff\21\62\1\uffff\2\62\1\u00ca\5\62\1\u00d0\4\62\1\uffff\1\62\1\u00d6\1\u00d7\1\u00d8\1\62\1\u00da\3\62\1\u00e1\4\62\1\u00e6\2\62\1\u00ea\3\62\1\u00ee\1\u00ef\1\62\1\uffff\1\u00f1\1\u00f2\1\u00f3\2\62\1\uffff\1\u00f6\1\u00f7\2\62\1\u00fa\3\uffff\1\u00fb\1\uffff\1\u00ea\1\62\1\u00fd\3\62\1\uffff\1\u0101\2\62\1\u0104\1\uffff\1\u0105\1\62\1\u0107\1\uffff\1\62\1\u0109\1\62\2\uffff\1\62\3\uffff\1\u010c\1\u010d\2\uffff\1\u010e\1\u010f\2\uffff\1\u0110\1\uffff\1\u0111\1\u0112\1\u0113\1\uffff\2\62\2\uffff\1\62\1\uffff\1\62\1\uffff\1\u0118\1\62\10\uffff\1\u011a\1\u011b\1\u011c\1\u011d\1\uffff\1\u011e\5\uffff";
-    static final String DFA27_eofS =
+    static final String DFA28_eotS =
+        "\1\uffff\5\62\1\100\1\104\1\107\1\111\1\115\1\117\1\122\1\125\1\127\1\132\1\uffff\1\135\1\uffff\6\62\4\uffff\1\62\2\uffff\1\62\3\uffff\1\62\1\167\2\62\2\101\1\62\1\uffff\2\57\2\uffff\1\u0082\1\u0083\1\uffff\2\62\1\uffff\10\62\20\uffff\1\u008f\1\uffff\1\u0091\16\uffff\11\62\4\uffff\3\62\2\uffff\2\62\3\uffff\1\62\1\uffff\2\62\1\101\1\u00a3\1\101\2\uffff\3\62\2\uffff\6\62\1\u00b1\3\62\4\uffff\21\62\1\uffff\2\62\1\u00ca\5\62\1\u00d0\4\62\1\uffff\1\62\1\u00d6\1\u00d7\1\u00d8\1\62\1\u00da\3\62\1\u00e1\4\62\1\u00e6\2\62\1\u00ea\3\62\1\u00ee\1\u00ef\1\62\1\uffff\1\u00f1\1\u00f2\1\u00f3\2\62\1\uffff\1\u00f6\1\u00f7\2\62\1\u00fa\3\uffff\1\u00fb\1\uffff\1\u00ea\1\62\1\u00fd\3\62\1\uffff\1\u0101\2\62\1\u0104\1\uffff\1\u0105\1\62\1\u0107\1\uffff\1\62\1\u0109\1\62\2\uffff\1\62\3\uffff\1\u010c\1\u010d\2\uffff\1\u010e\1\u010f\2\uffff\1\u0110\1\uffff\1\u0111\1\u0112\1\u0113\1\uffff\2\62\2\uffff\1\62\1\uffff\1\62\1\uffff\1\u0118\1\62\10\uffff\1\u011a\1\u011b\1\u011c\1\u011d\1\uffff\1\u011e\5\uffff";
+    static final String DFA28_eofS =
         "\u011f\uffff";
-    static final String DFA27_minS =
-        "\1\0\1\146\1\165\1\56\1\145\1\56\1\53\1\55\1\74\1\75\1\52\1\74\1\75\1\46\2\75\1\uffff\1\75\1\uffff\1\157\2\56\1\151\1\56\1\162\4\uffff\1\56\2\uffff\1\151\3\uffff\1\145\1\60\1\157\1\145\3\56\1\uffff\2\0\2\uffff\2\60\1\uffff\1\164\1\56\1\uffff\1\56\2\141\1\151\1\164\1\162\1\163\1\165\17\uffff\1\75\1\uffff\1\75\16\uffff\1\151\2\157\1\56\1\165\1\156\1\157\1\145\1\157\4\uffff\1\157\1\56\1\156\2\uffff\1\155\1\165\3\uffff\1\163\1\uffff\1\157\1\170\1\uffff\3\56\2\uffff\1\165\1\143\1\61\2\uffff\1\160\1\151\1\160\2\162\1\164\1\60\1\157\1\145\1\155\4\uffff\1\144\1\141\1\155\1\163\1\142\1\164\1\154\1\141\2\143\1\145\1\163\3\145\1\160\1\164\1\uffff\2\164\1\60\1\66\1\62\1\64\1\165\1\166\1\60\1\145\1\164\1\145\1\143\1\uffff\1\162\3\60\1\164\1\60\1\145\1\154\1\61\1\60\1\153\1\162\1\145\1\153\1\60\1\164\1\157\1\60\1\141\1\164\1\145\2\60\1\151\1\uffff\3\60\1\164\1\145\1\uffff\2\60\1\144\1\150\1\60\3\uffff\1\60\1\uffff\1\60\1\145\1\60\1\66\1\62\1\64\1\uffff\1\60\1\141\1\163\1\60\1\uffff\1\60\1\165\1\60\1\uffff\1\162\1\60\1\144\2\uffff\1\166\3\uffff\2\60\2\uffff\2\60\2\uffff\1\60\1\uffff\3\60\1\uffff\1\155\1\163\2\uffff\1\164\1\uffff\1\164\1\uffff\1\60\1\145\10\uffff\4\60\1\uffff\1\60\5\uffff";
-    static final String DFA27_maxS =
-        "\1\uffff\1\156\1\165\1\146\1\167\1\162\5\75\1\74\1\76\1\75\1\172\1\174\1\uffff\1\75\1\uffff\1\157\1\162\1\157\1\151\2\162\4\uffff\1\157\2\uffff\1\162\3\uffff\1\145\1\146\1\157\1\145\3\146\1\uffff\2\uffff\2\uffff\2\172\1\uffff\2\164\1\uffff\1\146\1\157\1\141\1\151\1\164\1\162\1\163\1\165\17\uffff\1\75\1\uffff\1\75\16\uffff\1\151\2\157\1\154\1\165\1\156\1\157\1\145\1\157\4\uffff\1\157\1\163\1\156\2\uffff\1\155\1\165\3\uffff\1\163\1\uffff\1\157\1\170\1\uffff\3\146\2\uffff\1\165\1\143\1\70\2\uffff\1\160\1\151\1\160\1\164\1\162\1\164\1\172\1\157\1\145\1\155\4\uffff\1\144\1\141\1\155\1\163\1\142\1\164\1\154\1\141\1\147\1\143\1\145\1\163\2\145\1\164\1\160\1\164\1\uffff\2\164\1\172\1\66\1\62\1\64\1\165\1\166\1\172\1\145\1\164\1\145\1\143\1\uffff\1\162\3\172\1\164\1\172\1\145\1\154\1\70\1\172\1\153\1\162\1\145\1\153\1\172\1\164\1\162\1\172\1\141\1\164\1\145\2\172\1\151\1\uffff\3\172\1\164\1\145\1\uffff\2\172\1\144\1\150\1\172\3\uffff\1\172\1\uffff\1\172\1\145\1\172\1\66\1\62\1\64\1\uffff\1\172\1\141\1\163\1\172\1\uffff\1\172\1\165\1\172\1\uffff\1\162\1\172\1\144\2\uffff\1\166\3\uffff\2\172\2\uffff\2\172\2\uffff\1\172\1\uffff\3\172\1\uffff\1\155\1\163\2\uffff\1\164\1\uffff\1\164\1\uffff\1\172\1\145\10\uffff\4\172\1\uffff\1\172\5\uffff";
-    static final String DFA27_acceptS =
-        "\20\uffff\1\25\1\uffff\1\41\6\uffff\1\57\1\60\1\61\1\62\1\uffff\1\64\1\71\1\uffff\1\73\1\74\1\101\7\uffff\1\126\2\uffff\1\133\1\134\2\uffff\1\126\2\uffff\1\125\10\uffff\1\7\1\14\1\23\1\10\1\15\1\24\1\31\1\33\1\11\1\12\1\37\1\13\1\131\1\132\1\40\1\uffff\1\27\1\uffff\1\32\1\30\1\20\1\120\1\123\1\21\1\122\1\22\1\117\1\121\1\25\1\34\1\26\1\41\11\uffff\1\57\1\60\1\61\1\62\3\uffff\1\64\1\71\2\uffff\1\73\1\74\1\101\1\uffff\1\113\2\uffff\1\124\3\uffff\1\130\1\133\3\uffff\1\112\1\75\12\uffff\1\16\1\36\1\17\1\35\21\uffff\1\127\15\uffff\1\107\30\uffff\1\45\5\uffff\1\5\5\uffff\1\76\1\111\1\42\1\uffff\1\70\6\uffff\1\55\4\uffff\1\100\3\uffff\1\116\3\uffff\1\115\1\1\1\uffff\1\47\1\51\1\53\2\uffff\1\66\1\103\2\uffff\1\6\1\43\1\uffff\1\46\3\uffff\1\102\2\uffff\1\63\1\110\1\uffff\1\106\1\uffff\1\105\2\uffff\1\2\1\3\1\67\1\77\1\44\1\50\1\52\1\54\4\uffff\1\114\1\uffff\1\56\1\65\1\72\1\104\1\4";
-    static final String DFA27_specialS =
+    static final String DFA28_minS =
+        "\1\0\1\146\1\165\1\56\1\145\1\56\1\53\1\55\1\74\1\75\1\52\1\74\1\75\1\46\2\75\1\uffff\1\75\1\uffff\1\157\2\56\1\151\1\56\1\162\4\uffff\1\56\2\uffff\1\151\3\uffff\1\145\1\60\1\157\1\145\3\56\1\uffff\2\0\2\uffff\2\60\1\uffff\1\164\1\56\1\uffff\1\56\2\141\1\151\1\164\1\162\1\163\1\165\20\uffff\1\75\1\uffff\1\75\16\uffff\1\151\2\157\1\56\1\165\1\156\1\157\1\145\1\157\4\uffff\1\157\1\56\1\156\2\uffff\1\155\1\165\3\uffff\1\163\1\uffff\1\157\1\170\3\56\2\uffff\1\165\1\143\1\61\2\uffff\1\160\1\151\1\160\2\162\1\164\1\60\1\157\1\145\1\155\4\uffff\1\144\1\141\1\155\1\163\1\142\1\164\1\154\1\141\2\143\1\145\1\163\3\145\1\160\1\164\1\uffff\2\164\1\60\1\66\1\62\1\64\1\165\1\166\1\60\1\145\1\164\1\145\1\143\1\uffff\1\162\3\60\1\164\1\60\1\145\1\154\1\61\1\60\1\153\1\162\1\145\1\153\1\60\1\164\1\157\1\60\1\141\1\164\1\145\2\60\1\151\1\uffff\3\60\1\164\1\145\1\uffff\2\60\1\144\1\150\1\60\3\uffff\1\60\1\uffff\1\60\1\145\1\60\1\66\1\62\1\64\1\uffff\1\60\1\141\1\163\1\60\1\uffff\1\60\1\165\1\60\1\uffff\1\162\1\60\1\144\2\uffff\1\166\3\uffff\2\60\2\uffff\2\60\2\uffff\1\60\1\uffff\3\60\1\uffff\1\155\1\163\2\uffff\1\164\1\uffff\1\164\1\uffff\1\60\1\145\10\uffff\4\60\1\uffff\1\60\5\uffff";
+    static final String DFA28_maxS =
+        "\1\uffff\1\156\1\165\1\146\1\167\1\162\5\75\1\74\1\76\1\75\1\172\1\174\1\uffff\1\75\1\uffff\1\157\1\162\1\157\1\151\2\162\4\uffff\1\157\2\uffff\1\162\3\uffff\1\145\1\146\1\157\1\145\3\146\1\uffff\2\uffff\2\uffff\2\172\1\uffff\2\164\1\uffff\1\146\1\157\1\141\1\151\1\164\1\162\1\163\1\165\20\uffff\1\75\1\uffff\1\75\16\uffff\1\151\2\157\1\154\1\165\1\156\1\157\1\145\1\157\4\uffff\1\157\1\163\1\156\2\uffff\1\155\1\165\3\uffff\1\163\1\uffff\1\157\1\170\3\146\2\uffff\1\165\1\143\1\70\2\uffff\1\160\1\151\1\160\1\164\1\162\1\164\1\172\1\157\1\145\1\155\4\uffff\1\144\1\141\1\155\1\163\1\142\1\164\1\154\1\141\1\147\1\143\1\145\1\163\2\145\1\164\1\160\1\164\1\uffff\2\164\1\172\1\66\1\62\1\64\1\165\1\166\1\172\1\145\1\164\1\145\1\143\1\uffff\1\162\3\172\1\164\1\172\1\145\1\154\1\70\1\172\1\153\1\162\1\145\1\153\1\172\1\164\1\162\1\172\1\141\1\164\1\145\2\172\1\151\1\uffff\3\172\1\164\1\145\1\uffff\2\172\1\144\1\150\1\172\3\uffff\1\172\1\uffff\1\172\1\145\1\172\1\66\1\62\1\64\1\uffff\1\172\1\141\1\163\1\172\1\uffff\1\172\1\165\1\172\1\uffff\1\162\1\172\1\144\2\uffff\1\166\3\uffff\2\172\2\uffff\2\172\2\uffff\1\172\1\uffff\3\172\1\uffff\1\155\1\163\2\uffff\1\164\1\uffff\1\164\1\uffff\1\172\1\145\10\uffff\4\172\1\uffff\1\172\5\uffff";
+    static final String DFA28_acceptS =
+        "\20\uffff\1\25\1\uffff\1\41\6\uffff\1\57\1\60\1\61\1\62\1\uffff\1\64\1\71\1\uffff\1\73\1\74\1\101\7\uffff\1\126\2\uffff\1\133\1\134\2\uffff\1\126\2\uffff\1\125\10\uffff\1\7\1\14\1\23\1\124\1\10\1\15\1\24\1\31\1\33\1\11\1\12\1\37\1\13\1\131\1\132\1\40\1\uffff\1\27\1\uffff\1\32\1\30\1\20\1\120\1\123\1\21\1\122\1\22\1\117\1\121\1\25\1\34\1\26\1\41\11\uffff\1\57\1\60\1\61\1\62\3\uffff\1\64\1\71\2\uffff\1\73\1\74\1\101\1\uffff\1\113\5\uffff\1\130\1\133\3\uffff\1\112\1\75\12\uffff\1\16\1\36\1\17\1\35\21\uffff\1\127\15\uffff\1\107\30\uffff\1\45\5\uffff\1\5\5\uffff\1\76\1\111\1\42\1\uffff\1\70\6\uffff\1\55\4\uffff\1\100\3\uffff\1\116\3\uffff\1\115\1\1\1\uffff\1\47\1\51\1\53\2\uffff\1\66\1\103\2\uffff\1\6\1\43\1\uffff\1\46\3\uffff\1\102\2\uffff\1\63\1\110\1\uffff\1\106\1\uffff\1\105\2\uffff\1\2\1\3\1\67\1\77\1\44\1\50\1\52\1\54\4\uffff\1\114\1\uffff\1\56\1\65\1\72\1\104\1\4";
+    static final String DFA28_specialS =
         "\1\1\53\uffff\1\0\1\2\u00f1\uffff}>";
-    static final String[] DFA27_transitionS = {
+    static final String[] DFA28_transitionS = {
             "\11\57\2\56\2\57\1\56\22\57\1\56\1\21\1\54\2\57\1\22\1\15\1\55\1\41\1\42\1\11\1\6\1\37\1\7\1\45\1\12\1\50\11\51\1\43\1\36\1\13\1\10\1\14\2\57\6\52\24\53\1\33\1\57\1\34\1\16\1\53\1\57\1\3\1\27\1\35\1\25\1\5\1\24\2\53\1\1\2\53\1\46\1\53\1\47\1\2\1\30\1\53\1\44\1\4\1\40\1\26\1\23\4\53\1\31\1\17\1\32\1\20\uff81\57",
             "\1\61\7\uffff\1\60",
             "\1\63",
             "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\2\66\1\64\3\66",
             "\1\72\2\uffff\1\70\13\uffff\1\67\2\uffff\1\71",
             "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66\5\uffff\1\74\1\uffff\1\75\3\uffff\1\73",
-            "\1\76\21\uffff\1\77",
-            "\1\101\17\uffff\1\102",
-            "\1\104\1\105",
-            "\1\107",
-            "\1\112\4\uffff\1\113\15\uffff\1\111",
-            "\1\115",
-            "\1\120\1\117",
-            "\1\123\26\uffff\1\122",
-            "\1\125\3\uffff\32\62\4\uffff\1\62\1\uffff\32\62",
-            "\1\127\76\uffff\1\130",
+            "\1\76\4\uffff\12\101\3\uffff\1\77",
+            "\1\102\2\uffff\12\101\3\uffff\1\103",
+            "\1\105\1\106",
+            "\1\110",
+            "\1\113\4\uffff\1\114\15\uffff\1\112",
+            "\1\116",
+            "\1\121\1\120",
+            "\1\124\26\uffff\1\123",
+            "\1\126\3\uffff\32\62\4\uffff\1\62\1\uffff\32\62",
+            "\1\130\76\uffff\1\131",
             "",
-            "\1\133",
+            "\1\134",
             "",
-            "\1\136",
-            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\1\141\5\66\5\uffff\1\137\5\uffff\1\140",
-            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66\10\uffff\1\142",
-            "\1\143",
-            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66\10\uffff\1\144\2\uffff\1\145",
-            "\1\146",
-            "",
-            "",
-            "",
-            "",
-            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\1\154\5\66\5\uffff\1\153\2\uffff\1\155",
-            "",
-            "",
-            "\1\160\10\uffff\1\161",
+            "\1\137",
+            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\1\142\5\66\5\uffff\1\140\5\uffff\1\141",
+            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66\10\uffff\1\143",
+            "\1\144",
+            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66\10\uffff\1\145\2\uffff\1\146",
+            "\1\147",
             "",
             "",
             "",
-            "\1\165",
+            "",
+            "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\1\155\5\66\5\uffff\1\154\2\uffff\1\156",
+            "",
+            "",
+            "\1\161\10\uffff\1\162",
+            "",
+            "",
+            "",
+            "\1\166",
             "\12\65\7\uffff\6\65\32\uffff\6\65",
-            "\1\167",
             "\1\170",
+            "\1\171",
             "\1\65\1\uffff\10\172\2\173\7\uffff\6\65\32\uffff\6\65",
             "\1\65\1\uffff\12\174\7\uffff\6\65\32\uffff\6\65",
             "\1\65\1\uffff\12\66\7\uffff\6\66\32\uffff\6\66",
@@ -3883,6 +3901,7 @@ public class InternalReflexLexer extends Lexer {
             "\1\u008b",
             "\1\u008c",
             "\1\u008d",
+            "",
             "",
             "",
             "",
@@ -3942,7 +3961,6 @@ public class InternalReflexLexer extends Lexer {
             "",
             "\1\u00a1",
             "\1\u00a2",
-            "",
             "\1\65\1\uffff\10\172\2\173\7\uffff\6\65\32\uffff\6\65",
             "\1\65\1\uffff\12\173\7\uffff\6\65\32\uffff\6\65",
             "\1\65\1\uffff\12\174\7\uffff\6\65\32\uffff\6\65",
@@ -4110,34 +4128,34 @@ public class InternalReflexLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA27_eot = DFA.unpackEncodedString(DFA27_eotS);
-    static final short[] DFA27_eof = DFA.unpackEncodedString(DFA27_eofS);
-    static final char[] DFA27_min = DFA.unpackEncodedStringToUnsignedChars(DFA27_minS);
-    static final char[] DFA27_max = DFA.unpackEncodedStringToUnsignedChars(DFA27_maxS);
-    static final short[] DFA27_accept = DFA.unpackEncodedString(DFA27_acceptS);
-    static final short[] DFA27_special = DFA.unpackEncodedString(DFA27_specialS);
-    static final short[][] DFA27_transition;
+    static final short[] DFA28_eot = DFA.unpackEncodedString(DFA28_eotS);
+    static final short[] DFA28_eof = DFA.unpackEncodedString(DFA28_eofS);
+    static final char[] DFA28_min = DFA.unpackEncodedStringToUnsignedChars(DFA28_minS);
+    static final char[] DFA28_max = DFA.unpackEncodedStringToUnsignedChars(DFA28_maxS);
+    static final short[] DFA28_accept = DFA.unpackEncodedString(DFA28_acceptS);
+    static final short[] DFA28_special = DFA.unpackEncodedString(DFA28_specialS);
+    static final short[][] DFA28_transition;
 
     static {
-        int numStates = DFA27_transitionS.length;
-        DFA27_transition = new short[numStates][];
+        int numStates = DFA28_transitionS.length;
+        DFA28_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA27_transition[i] = DFA.unpackEncodedString(DFA27_transitionS[i]);
+            DFA28_transition[i] = DFA.unpackEncodedString(DFA28_transitionS[i]);
         }
     }
 
-    class DFA27 extends DFA {
+    class DFA28 extends DFA {
 
-        public DFA27(BaseRecognizer recognizer) {
+        public DFA28(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 27;
-            this.eot = DFA27_eot;
-            this.eof = DFA27_eof;
-            this.min = DFA27_min;
-            this.max = DFA27_max;
-            this.accept = DFA27_accept;
-            this.special = DFA27_special;
-            this.transition = DFA27_transition;
+            this.decisionNumber = 28;
+            this.eot = DFA28_eot;
+            this.eof = DFA28_eof;
+            this.min = DFA28_min;
+            this.max = DFA28_max;
+            this.accept = DFA28_accept;
+            this.special = DFA28_special;
+            this.transition = DFA28_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | RULE_BOOL_LITERAL | RULE_LOGICAL_OR | RULE_LOGICAL_AND | RULE_BIT_OR | RULE_BIT_XOR | RULE_BIT_AND | RULE_INTEGER | RULE_FLOAT | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
@@ -4147,120 +4165,120 @@ public class InternalReflexLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA27_44 = input.LA(1);
+                        int LA28_44 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA27_44>='\u0000' && LA27_44<='\uFFFF')) ) {s = 125;}
+                        if ( ((LA28_44>='\u0000' && LA28_44<='\uFFFF')) ) {s = 125;}
 
                         else s = 47;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA27_0 = input.LA(1);
+                        int LA28_0 = input.LA(1);
 
                         s = -1;
-                        if ( (LA27_0=='i') ) {s = 1;}
+                        if ( (LA28_0=='i') ) {s = 1;}
 
-                        else if ( (LA27_0=='o') ) {s = 2;}
+                        else if ( (LA28_0=='o') ) {s = 2;}
 
-                        else if ( (LA27_0=='a') ) {s = 3;}
+                        else if ( (LA28_0=='a') ) {s = 3;}
 
-                        else if ( (LA27_0=='s') ) {s = 4;}
+                        else if ( (LA28_0=='s') ) {s = 4;}
 
-                        else if ( (LA27_0=='e') ) {s = 5;}
+                        else if ( (LA28_0=='e') ) {s = 5;}
 
-                        else if ( (LA27_0=='+') ) {s = 6;}
+                        else if ( (LA28_0=='+') ) {s = 6;}
 
-                        else if ( (LA27_0=='-') ) {s = 7;}
+                        else if ( (LA28_0=='-') ) {s = 7;}
 
-                        else if ( (LA27_0=='=') ) {s = 8;}
+                        else if ( (LA28_0=='=') ) {s = 8;}
 
-                        else if ( (LA27_0=='*') ) {s = 9;}
+                        else if ( (LA28_0=='*') ) {s = 9;}
 
-                        else if ( (LA27_0=='/') ) {s = 10;}
+                        else if ( (LA28_0=='/') ) {s = 10;}
 
-                        else if ( (LA27_0=='<') ) {s = 11;}
+                        else if ( (LA28_0=='<') ) {s = 11;}
 
-                        else if ( (LA27_0=='>') ) {s = 12;}
+                        else if ( (LA28_0=='>') ) {s = 12;}
 
-                        else if ( (LA27_0=='&') ) {s = 13;}
+                        else if ( (LA28_0=='&') ) {s = 13;}
 
-                        else if ( (LA27_0=='^') ) {s = 14;}
+                        else if ( (LA28_0=='^') ) {s = 14;}
 
-                        else if ( (LA27_0=='|') ) {s = 15;}
+                        else if ( (LA28_0=='|') ) {s = 15;}
 
-                        else if ( (LA27_0=='~') ) {s = 16;}
+                        else if ( (LA28_0=='~') ) {s = 16;}
 
-                        else if ( (LA27_0=='!') ) {s = 17;}
+                        else if ( (LA28_0=='!') ) {s = 17;}
 
-                        else if ( (LA27_0=='%') ) {s = 18;}
+                        else if ( (LA28_0=='%') ) {s = 18;}
 
-                        else if ( (LA27_0=='v') ) {s = 19;}
+                        else if ( (LA28_0=='v') ) {s = 19;}
 
-                        else if ( (LA27_0=='f') ) {s = 20;}
+                        else if ( (LA28_0=='f') ) {s = 20;}
 
-                        else if ( (LA27_0=='d') ) {s = 21;}
+                        else if ( (LA28_0=='d') ) {s = 21;}
 
-                        else if ( (LA27_0=='u') ) {s = 22;}
+                        else if ( (LA28_0=='u') ) {s = 22;}
 
-                        else if ( (LA27_0=='b') ) {s = 23;}
+                        else if ( (LA28_0=='b') ) {s = 23;}
 
-                        else if ( (LA27_0=='p') ) {s = 24;}
+                        else if ( (LA28_0=='p') ) {s = 24;}
 
-                        else if ( (LA27_0=='{') ) {s = 25;}
+                        else if ( (LA28_0=='{') ) {s = 25;}
 
-                        else if ( (LA27_0=='}') ) {s = 26;}
+                        else if ( (LA28_0=='}') ) {s = 26;}
 
-                        else if ( (LA27_0=='[') ) {s = 27;}
+                        else if ( (LA28_0=='[') ) {s = 27;}
 
-                        else if ( (LA27_0==']') ) {s = 28;}
+                        else if ( (LA28_0==']') ) {s = 28;}
 
-                        else if ( (LA27_0=='c') ) {s = 29;}
+                        else if ( (LA28_0=='c') ) {s = 29;}
 
-                        else if ( (LA27_0==';') ) {s = 30;}
+                        else if ( (LA28_0==';') ) {s = 30;}
 
-                        else if ( (LA27_0==',') ) {s = 31;}
+                        else if ( (LA28_0==',') ) {s = 31;}
 
-                        else if ( (LA27_0=='t') ) {s = 32;}
+                        else if ( (LA28_0=='t') ) {s = 32;}
 
-                        else if ( (LA27_0=='(') ) {s = 33;}
+                        else if ( (LA28_0=='(') ) {s = 33;}
 
-                        else if ( (LA27_0==')') ) {s = 34;}
+                        else if ( (LA28_0==')') ) {s = 34;}
 
-                        else if ( (LA27_0==':') ) {s = 35;}
+                        else if ( (LA28_0==':') ) {s = 35;}
 
-                        else if ( (LA27_0=='r') ) {s = 36;}
+                        else if ( (LA28_0=='r') ) {s = 36;}
 
-                        else if ( (LA27_0=='.') ) {s = 37;}
+                        else if ( (LA28_0=='.') ) {s = 37;}
 
-                        else if ( (LA27_0=='l') ) {s = 38;}
+                        else if ( (LA28_0=='l') ) {s = 38;}
 
-                        else if ( (LA27_0=='n') ) {s = 39;}
+                        else if ( (LA28_0=='n') ) {s = 39;}
 
-                        else if ( (LA27_0=='0') ) {s = 40;}
+                        else if ( (LA28_0=='0') ) {s = 40;}
 
-                        else if ( ((LA27_0>='1' && LA27_0<='9')) ) {s = 41;}
+                        else if ( ((LA28_0>='1' && LA28_0<='9')) ) {s = 41;}
 
-                        else if ( ((LA27_0>='A' && LA27_0<='F')) ) {s = 42;}
+                        else if ( ((LA28_0>='A' && LA28_0<='F')) ) {s = 42;}
 
-                        else if ( ((LA27_0>='G' && LA27_0<='Z')||LA27_0=='_'||(LA27_0>='g' && LA27_0<='h')||(LA27_0>='j' && LA27_0<='k')||LA27_0=='m'||LA27_0=='q'||(LA27_0>='w' && LA27_0<='z')) ) {s = 43;}
+                        else if ( ((LA28_0>='G' && LA28_0<='Z')||LA28_0=='_'||(LA28_0>='g' && LA28_0<='h')||(LA28_0>='j' && LA28_0<='k')||LA28_0=='m'||LA28_0=='q'||(LA28_0>='w' && LA28_0<='z')) ) {s = 43;}
 
-                        else if ( (LA27_0=='\"') ) {s = 44;}
+                        else if ( (LA28_0=='\"') ) {s = 44;}
 
-                        else if ( (LA27_0=='\'') ) {s = 45;}
+                        else if ( (LA28_0=='\'') ) {s = 45;}
 
-                        else if ( ((LA27_0>='\t' && LA27_0<='\n')||LA27_0=='\r'||LA27_0==' ') ) {s = 46;}
+                        else if ( ((LA28_0>='\t' && LA28_0<='\n')||LA28_0=='\r'||LA28_0==' ') ) {s = 46;}
 
-                        else if ( ((LA27_0>='\u0000' && LA27_0<='\b')||(LA27_0>='\u000B' && LA27_0<='\f')||(LA27_0>='\u000E' && LA27_0<='\u001F')||(LA27_0>='#' && LA27_0<='$')||(LA27_0>='?' && LA27_0<='@')||LA27_0=='\\'||LA27_0=='`'||(LA27_0>='\u007F' && LA27_0<='\uFFFF')) ) {s = 47;}
+                        else if ( ((LA28_0>='\u0000' && LA28_0<='\b')||(LA28_0>='\u000B' && LA28_0<='\f')||(LA28_0>='\u000E' && LA28_0<='\u001F')||(LA28_0>='#' && LA28_0<='$')||(LA28_0>='?' && LA28_0<='@')||LA28_0=='\\'||LA28_0=='`'||(LA28_0>='\u007F' && LA28_0<='\uFFFF')) ) {s = 47;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA27_45 = input.LA(1);
+                        int LA28_45 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA27_45>='\u0000' && LA27_45<='\uFFFF')) ) {s = 125;}
+                        if ( ((LA28_45>='\u0000' && LA28_45<='\uFFFF')) ) {s = 125;}
 
                         else s = 47;
 
@@ -4268,7 +4286,7 @@ public class InternalReflexLexer extends Lexer {
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 27, _s, input);
+                new NoViableAltException(getDescription(), 28, _s, input);
             error(nvae);
             throw nvae;
         }

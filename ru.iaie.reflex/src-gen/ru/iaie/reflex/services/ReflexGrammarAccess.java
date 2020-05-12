@@ -3712,7 +3712,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal INTEGER:
-	//	(HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
+	//	SIGN? (HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
 	public TerminalRule getINTEGERRule() {
 		return tINTEGER;
 	}

@@ -26,6 +26,14 @@ class ExpressionUtil {
 		return e.bool !== null
 	}
 
+	static def boolean isInteger(PrimaryExpression e) {
+		return e.integer !== null
+	}
+	
+	static def boolean isFloating(PrimaryExpression e) {
+		return e.floating !== null
+	}
+	
 	static def boolean hasFunctionCall(Expression e) {
 		!e.eAllOfType(FunctionCall).empty
 	}

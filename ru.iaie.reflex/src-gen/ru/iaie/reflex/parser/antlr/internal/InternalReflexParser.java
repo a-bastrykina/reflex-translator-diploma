@@ -23,12 +23,12 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalReflexParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER", "RULE_FLOAT", "RULE_BOOL_LITERAL", "RULE_BIT_AND", "RULE_BIT_XOR", "RULE_BIT_OR", "RULE_LOGICAL_AND", "RULE_LOGICAL_OR", "RULE_STRING", "RULE_HEX", "RULE_OCTAL", "RULE_DECIMAL", "RULE_LONG", "RULE_UNSIGNED", "RULE_DEC_FLOAT", "RULE_HEX_FLOAT", "RULE_DEC_SEQUENCE", "RULE_EXPONENT", "RULE_SIGN", "RULE_FLOAT_SUFFIX", "RULE_HEX_SEQUENCE", "RULE_BIN_EXPONENT", "RULE_HEX_PREFIX", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'['", "']'", "'program'", "'{'", "'}'", "'clock'", "';'", "'process'", "'state'", "'looped'", "'shared'", "','", "'from'", "'='", "'timeout'", "'('", "')'", "'if'", "'else'", "'switch'", "'case'", "':'", "'break'", "'start'", "'stop'", "'error'", "'restart'", "'reset'", "'timer'", "'set'", "'next'", "'const'", "'enum'", "'in'", "'.'", "'input'", "'output'", "'active'", "'inactive'", "'++'", "'--'", "'*='", "'/='", "'+='", "'-='", "'<<='", "'>>='", "'&='", "'^='", "'|='", "'+'", "'-'", "'~'", "'!'", "'<'", "'>'", "'=<'", "'>='", "'=='", "'!='", "'>>'", "'<<'", "'*'", "'/'", "'%'", "'void'", "'float'", "'double'", "'int8'", "'uint8'", "'int16'", "'uint16'", "'int32'", "'uint32'", "'int64'", "'uint64'", "'bool'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER", "RULE_FLOAT", "RULE_BOOL_LITERAL", "RULE_BIT_AND", "RULE_BIT_XOR", "RULE_BIT_OR", "RULE_LOGICAL_AND", "RULE_LOGICAL_OR", "RULE_STRING", "RULE_SIGN", "RULE_HEX", "RULE_OCTAL", "RULE_DECIMAL", "RULE_LONG", "RULE_UNSIGNED", "RULE_DEC_FLOAT", "RULE_HEX_FLOAT", "RULE_DEC_SEQUENCE", "RULE_EXPONENT", "RULE_FLOAT_SUFFIX", "RULE_HEX_SEQUENCE", "RULE_BIN_EXPONENT", "RULE_HEX_PREFIX", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'['", "']'", "'program'", "'{'", "'}'", "'clock'", "';'", "'process'", "'state'", "'looped'", "'shared'", "','", "'from'", "'='", "'timeout'", "'('", "')'", "'if'", "'else'", "'switch'", "'case'", "':'", "'break'", "'start'", "'stop'", "'error'", "'restart'", "'reset'", "'timer'", "'set'", "'next'", "'const'", "'enum'", "'in'", "'.'", "'input'", "'output'", "'active'", "'inactive'", "'++'", "'--'", "'*='", "'/='", "'+='", "'-='", "'<<='", "'>>='", "'&='", "'^='", "'|='", "'+'", "'-'", "'~'", "'!'", "'<'", "'>'", "'=<'", "'>='", "'=='", "'!='", "'>>'", "'<<'", "'*'", "'/'", "'%'", "'void'", "'float'", "'double'", "'int8'", "'uint8'", "'int16'", "'uint16'", "'int32'", "'uint32'", "'int64'", "'uint64'", "'bool'"
     };
-    public static final int RULE_HEX=14;
+    public static final int RULE_HEX=15;
     public static final int T__50=50;
-    public static final int RULE_SIGN=23;
-    public static final int RULE_DEC_SEQUENCE=21;
+    public static final int RULE_SIGN=14;
+    public static final int RULE_DEC_SEQUENCE=22;
     public static final int T__59=59;
     public static final int T__55=55;
     public static final int T__56=56;
@@ -41,7 +41,7 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
     public static final int T__60=60;
     public static final int T__61=61;
     public static final int RULE_ID=4;
-    public static final int RULE_HEX_FLOAT=20;
+    public static final int RULE_HEX_FLOAT=21;
     public static final int RULE_INT=28;
     public static final int T__66=66;
     public static final int RULE_ML_COMMENT=29;
@@ -60,13 +60,13 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
     public static final int T__35=35;
     public static final int T__36=36;
     public static final int RULE_HEX_SEQUENCE=25;
-    public static final int RULE_UNSIGNED=18;
+    public static final int RULE_UNSIGNED=19;
     public static final int RULE_BOOL_LITERAL=7;
     public static final int RULE_BIN_EXPONENT=26;
     public static final int RULE_LOGICAL_AND=11;
-    public static final int RULE_EXPONENT=22;
+    public static final int RULE_EXPONENT=23;
     public static final int T__48=48;
-    public static final int RULE_DEC_FLOAT=19;
+    public static final int RULE_DEC_FLOAT=20;
     public static final int T__49=49;
     public static final int T__44=44;
     public static final int T__45=45;
@@ -86,13 +86,13 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
     public static final int T__94=94;
     public static final int T__101=101;
     public static final int T__90=90;
-    public static final int RULE_OCTAL=15;
+    public static final int RULE_OCTAL=16;
     public static final int T__99=99;
     public static final int T__95=95;
     public static final int T__96=96;
     public static final int T__97=97;
     public static final int T__98=98;
-    public static final int RULE_DECIMAL=16;
+    public static final int RULE_DECIMAL=17;
     public static final int RULE_LOGICAL_OR=12;
     public static final int RULE_FLOAT_SUFFIX=24;
     public static final int T__70=70;
@@ -121,7 +121,7 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
     public static final int T__89=89;
     public static final int T__107=107;
     public static final int RULE_BIT_OR=10;
-    public static final int RULE_LONG=17;
+    public static final int RULE_LONG=18;
     public static final int T__109=109;
     public static final int T__84=84;
     public static final int T__104=104;

@@ -33,6 +33,16 @@ public class ExpressionUtil {
     return (_bool != null);
   }
   
+  public static boolean isInteger(final PrimaryExpression e) {
+    String _integer = e.getInteger();
+    return (_integer != null);
+  }
+  
+  public static boolean isFloating(final PrimaryExpression e) {
+    String _floating = e.getFloating();
+    return (_floating != null);
+  }
+  
   public static boolean hasFunctionCall(final Expression e) {
     boolean _isEmpty = EcoreUtil2.<FunctionCall>eAllOfType(e, FunctionCall.class).isEmpty();
     return (!_isEmpty);

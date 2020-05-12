@@ -23,6 +23,8 @@ import ru.iaie.reflex.reflex.Statement
 import ru.iaie.reflex.reflex.PortType
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.PortMapping
+import ru.iaie.reflex.reflex.IdReference
+import ru.iaie.reflex.reflex.Const
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -118,6 +120,20 @@ class ReflexModelUtil {
 	
 	def static int getIndex(State s) {
 		return s.getContainerOfType(Process).states.indexOf(s)
+	}
+	
+	def static Type resolveType(IdReference ref) {
+		switch ref {
+			Const:
+				return ref.type
+			PhysicalVariable:
+				return ref.type
+			ProgramVariable:
+				return ref.type
+			EnumMember:
+				// TODO: decide which type must enum members have
+				return Type.INT32_U
+		}
 	}
 
 	def static boolean containsReferencesOfType(EObject context, EObject target, EReference refType) {

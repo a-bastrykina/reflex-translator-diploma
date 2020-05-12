@@ -17,6 +17,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.CompoundStatement;
+import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
@@ -166,6 +167,33 @@ public class ReflexModelUtil {
   
   public static int getIndex(final State s) {
     return EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(s, ru.iaie.reflex.reflex.Process.class).getStates().indexOf(s);
+  }
+  
+  public static Type resolveType(final IdReference ref) {
+    boolean _matched = false;
+    if (ref instanceof Const) {
+      _matched=true;
+      return ((Const)ref).getType();
+    }
+    if (!_matched) {
+      if (ref instanceof PhysicalVariable) {
+        _matched=true;
+        return ((PhysicalVariable)ref).getType();
+      }
+    }
+    if (!_matched) {
+      if (ref instanceof ProgramVariable) {
+        _matched=true;
+        return ((ProgramVariable)ref).getType();
+      }
+    }
+    if (!_matched) {
+      if (ref instanceof EnumMember) {
+        _matched=true;
+        return Type.INT32_U;
+      }
+    }
+    return null;
   }
   
   public static boolean containsReferencesOfType(final EObject context, final EObject target, final EReference refType) {
