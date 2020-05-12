@@ -789,7 +789,7 @@ rulePhysicalVariable returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getTypeTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getPhysicalVariableAccess().getTypeTypeEnumRuleCall_0_0());
 				}
 				lv_type_0_0=ruleType
 				{
@@ -926,7 +926,7 @@ ruleProgramVariable returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProgramVariableAccess().getTypeTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getProgramVariableAccess().getTypeTypeEnumRuleCall_0_0());
 				}
 				lv_type_0_0=ruleType
 				{
@@ -1919,7 +1919,7 @@ ruleFunction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionAccess().getReturnTypeTypeParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getFunctionAccess().getReturnTypeTypeEnumRuleCall_0_0());
 				}
 				lv_returnType_0_0=ruleType
 				{
@@ -1960,7 +1960,7 @@ ruleFunction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeEnumRuleCall_3_0());
 				}
 				lv_argTypes_3_0=ruleType
 				{
@@ -1984,7 +1984,7 @@ ruleFunction returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getFunctionAccess().getArgTypesTypeEnumRuleCall_4_1_0());
 					}
 					lv_argTypes_5_0=ruleType
 					{
@@ -2149,7 +2149,7 @@ ruleConst returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConstAccess().getTypeTypeParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConstAccess().getTypeTypeEnumRuleCall_1_0());
 				}
 				lv_type_1_0=ruleType
 				{
@@ -2893,7 +2893,7 @@ ruleCastExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getCastExpressionAccess().getTypeTypeParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getCastExpressionAccess().getTypeTypeEnumRuleCall_1_1_0());
 					}
 					lv_type_2_0=ruleType
 					{
@@ -3709,63 +3709,6 @@ ruleExpression returns [EObject current=null]
 	}
 ;
 
-// Entry rule entryRuleType
-entryRuleType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeRule()); }
-	iv_ruleType=ruleType
-	{ $current=$iv_ruleType.current; }
-	EOF;
-
-// Rule Type
-ruleType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTypeAccess().getSignTypeSignSpecEnumRuleCall_0_0());
-				}
-				lv_sign_0_0=ruleTypeSignSpec
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTypeRule());
-					}
-					set(
-						$current,
-						"sign",
-						lv_sign_0_0,
-						"ru.iaie.reflex.Reflex.TypeSignSpec");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTypeAccess().getNameTypesEnumRuleCall_1_0());
-				}
-				lv_name_1_0=ruleTypes
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTypeRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_1_0,
-						"ru.iaie.reflex.Reflex.Types");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
 // Entry rule entryRuleTime
 entryRuleTime returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getTimeRule()); }
@@ -4321,8 +4264,8 @@ ruleMultiplicativeOp returns [Enumerator current=null]
 	)
 ;
 
-// Rule Types
-ruleTypes returns [Enumerator current=null]
+// Rule Type
+ruleType returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -4333,83 +4276,96 @@ ruleTypes returns [Enumerator current=null]
 		(
 			enumLiteral_0='void'
 			{
-				$current = grammarAccess.getTypesAccess().getVOID_C_TYPEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getTypesAccess().getVOID_C_TYPEEnumLiteralDeclaration_0());
+				$current = grammarAccess.getTypeAccess().getVOID_C_TYPEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getTypeAccess().getVOID_C_TYPEEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
 			enumLiteral_1='float'
 			{
-				$current = grammarAccess.getTypesAccess().getFLOAT_C_TYPEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getTypesAccess().getFLOAT_C_TYPEEnumLiteralDeclaration_1());
+				$current = grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_1());
 			}
 		)
 		    |
 		(
 			enumLiteral_2='double'
 			{
-				$current = grammarAccess.getTypesAccess().getDOUBLE_C_TYPEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getTypesAccess().getDOUBLE_C_TYPEEnumLiteralDeclaration_2());
+				$current = grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_2());
 			}
 		)
 		    |
 		(
-			enumLiteral_3='short'
+			enumLiteral_3='int8'
 			{
-				$current = grammarAccess.getTypesAccess().getSHORT_C_TYPEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getTypesAccess().getSHORT_C_TYPEEnumLiteralDeclaration_3());
+				$current = grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3());
 			}
 		)
 		    |
 		(
-			enumLiteral_4='int'
+			enumLiteral_4='uint8'
 			{
-				$current = grammarAccess.getTypesAccess().getINT_C_TYPEEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getTypesAccess().getINT_C_TYPEEnumLiteralDeclaration_4());
+				$current = grammarAccess.getTypeAccess().getINT8_UEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getTypeAccess().getINT8_UEnumLiteralDeclaration_4());
 			}
 		)
 		    |
 		(
-			enumLiteral_5='long'
+			enumLiteral_5='int16'
 			{
-				$current = grammarAccess.getTypesAccess().getLONG_C_TYPEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getTypesAccess().getLONG_C_TYPEEnumLiteralDeclaration_5());
+				$current = grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5());
 			}
 		)
 		    |
 		(
-			enumLiteral_6='bool'
+			enumLiteral_6='uint16'
 			{
-				$current = grammarAccess.getTypesAccess().getBOOL_TYPEEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getTypesAccess().getBOOL_TYPEEnumLiteralDeclaration_6());
-			}
-		)
-	)
-;
-
-// Rule TypeSignSpec
-ruleTypeSignSpec returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='signed'
-			{
-				$current = grammarAccess.getTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getTypeSignSpecAccess().getSIGNEDEnumLiteralDeclaration_0());
+				$current = grammarAccess.getTypeAccess().getINT16_UEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getTypeAccess().getINT16_UEnumLiteralDeclaration_6());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='unsigned'
+			enumLiteral_7='int32'
 			{
-				$current = grammarAccess.getTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getTypeSignSpecAccess().getUNSIGNEDEnumLiteralDeclaration_1());
+				$current = grammarAccess.getTypeAccess().getINT32EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_7, grammarAccess.getTypeAccess().getINT32EnumLiteralDeclaration_7());
+			}
+		)
+		    |
+		(
+			enumLiteral_8='uint32'
+			{
+				$current = grammarAccess.getTypeAccess().getINT32_UEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_8, grammarAccess.getTypeAccess().getINT32_UEnumLiteralDeclaration_8());
+			}
+		)
+		    |
+		(
+			enumLiteral_9='int64'
+			{
+				$current = grammarAccess.getTypeAccess().getINT64EnumLiteralDeclaration_9().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_9, grammarAccess.getTypeAccess().getINT64EnumLiteralDeclaration_9());
+			}
+		)
+		    |
+		(
+			enumLiteral_10='uint64'
+			{
+				$current = grammarAccess.getTypeAccess().getINT64_UEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_10, grammarAccess.getTypeAccess().getINT64_UEnumLiteralDeclaration_10());
+			}
+		)
+		    |
+		(
+			enumLiteral_11='bool'
+			{
+				$current = grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_11, grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11());
 			}
 		)
 	)

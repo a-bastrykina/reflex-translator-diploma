@@ -17,8 +17,8 @@
 
 struct St_Word
 {
-    INT32U TimeInState;  /* время нахождения в текущем состоянии обнуляется Старт и Set_State*/
-    INT8U cur_state;     /* текущее состояние */
+    INT32_U TimeInState;  /* время нахождения в текущем состоянии обнуляется Старт и Set_State*/
+    INT8_U cur_state;     /* текущее состояние */
 };
 
 extern struct St_Word *Pr_States;                          /* Указатель для связи с R_LIB.C */
@@ -26,30 +26,30 @@ extern struct St_Word Original_Pr_States[PROCESS_Nn + 1];  /* место под 
 
 
 /*================ Set State Of Process ===================*/
-void Set_State(INT16U, INT8U);
+void Set_State(INT16_U, INT8_U);
 /*================ Set Pause Of Process ===================*/
-INT16U Timeout(INT16U, INT32U); /* процесс, таймаут */
+INT16_U Timeout(INT16_U, INT32_U); /* процесс, таймаут */
 
 /*================ Set Stop Of Process ===================*/
-void Set_Stop(INT16U);
+void Set_Stop(INT16_U);
 
 /*================ Set Error Of Process ===================*/
-void Set_Error(INT16U);
+void Set_Error(INT16_U);
 
 /*================ Set Start Of Process ===================*/
-void Set_Start(INT16U);
+void Set_Start(INT16_U);
 
 /*================ Work Up Current State Of Process ===================*/
-INT16U Check_State(INT16U);
+INT16_U Check_State(INT16_U);
 
 /*=========== Prepare Of Process State Words For Next Tact =============*/
-void Prepare_PSW(INT16U, INT16U);
+void Prepare_PSW(INT16_U, INT16_U);
 
 /*================ Initialization Of Process State Words ===================*/
-void Init_PSW(INT16U, INT16U);
+void Init_PSW(INT16_U, INT16_U);
 
 /*================  Reset process timer ===================*/
-void Reset_Timer(INT16U pr_num);
+void Reset_Timer(INT16_U pr_num);
 
 void DebugInit(void);
 void Debug(void);

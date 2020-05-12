@@ -3,75 +3,453 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type</b></em>'.
+ * A representation of the literals of the enumeration '<em><b>Type</b></em>',
+ * and utility methods for working with them.
  * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Type#getSign <em>Sign</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Type#getName <em>Name</em>}</li>
- * </ul>
- *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getType()
  * @model
  * @generated
  */
-public interface Type extends EObject
+public enum Type implements Enumerator
 {
   /**
-   * Returns the value of the '<em><b>Sign</b></em>' attribute.
-   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.TypeSignSpec}.
+   * The '<em><b>VOID CTYPE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Sign</em>' attribute.
-   * @see ru.iaie.reflex.reflex.TypeSignSpec
-   * @see #setSign(TypeSignSpec)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getType_Sign()
-   * @model
+   * @see #VOID_CTYPE_VALUE
    * @generated
+   * @ordered
    */
-  TypeSignSpec getSign();
+  VOID_CTYPE(0, "VOID_C_TYPE", "void"),
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Type#getSign <em>Sign</em>}' attribute.
+   * The '<em><b>FLOAT</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Sign</em>' attribute.
-   * @see ru.iaie.reflex.reflex.TypeSignSpec
-   * @see #getSign()
+   * @see #FLOAT_VALUE
    * @generated
+   * @ordered
    */
-  void setSign(TypeSignSpec value);
+  FLOAT(1, "FLOAT", "float"),
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Types}.
+   * The '<em><b>DOUBLE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see ru.iaie.reflex.reflex.Types
-   * @see #setName(Types)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getType_Name()
-   * @model
+   * @see #DOUBLE_VALUE
    * @generated
+   * @ordered
    */
-  Types getName();
+  DOUBLE(2, "DOUBLE", "double"),
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Type#getName <em>Name</em>}' attribute.
+   * The '<em><b>INT8 S</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see ru.iaie.reflex.reflex.Types
-   * @see #getName()
+   * @see #INT8_S_VALUE
+   * @generated
+   * @ordered
+   */
+  INT8_S(3, "INT8_S", "int8"),
+
+  /**
+   * The '<em><b>INT8 U</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT8_U_VALUE
+   * @generated
+   * @ordered
+   */
+  INT8_U(4, "INT8_U", "uint8"),
+
+  /**
+   * The '<em><b>INT16 S</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT16_S_VALUE
+   * @generated
+   * @ordered
+   */
+  INT16_S(5, "INT16_S", "int16"),
+
+  /**
+   * The '<em><b>INT16 U</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT16_U_VALUE
+   * @generated
+   * @ordered
+   */
+  INT16_U(6, "INT16_U", "uint16"),
+
+  /**
+   * The '<em><b>INT32</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT32_VALUE
+   * @generated
+   * @ordered
+   */
+  INT32(7, "INT32", "int32"),
+
+  /**
+   * The '<em><b>INT32 U</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT32_U_VALUE
+   * @generated
+   * @ordered
+   */
+  INT32_U(8, "INT32_U", "uint32"),
+
+  /**
+   * The '<em><b>INT64</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT64_VALUE
+   * @generated
+   * @ordered
+   */
+  INT64(9, "INT64", "int64"),
+
+  /**
+   * The '<em><b>INT64 U</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT64_U_VALUE
+   * @generated
+   * @ordered
+   */
+  INT64_U(10, "INT64_U", "uint64"),
+
+  /**
+   * The '<em><b>BOOL TYPE</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #BOOL_TYPE_VALUE
+   * @generated
+   * @ordered
+   */
+  BOOL_TYPE(11, "BOOL_TYPE", "bool");
+
+  /**
+   * The '<em><b>VOID CTYPE</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #VOID_CTYPE
+   * @model name="VOID_C_TYPE" literal="void"
+   * @generated
+   * @ordered
+   */
+  public static final int VOID_CTYPE_VALUE = 0;
+
+  /**
+   * The '<em><b>FLOAT</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #FLOAT
+   * @model literal="float"
+   * @generated
+   * @ordered
+   */
+  public static final int FLOAT_VALUE = 1;
+
+  /**
+   * The '<em><b>DOUBLE</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #DOUBLE
+   * @model literal="double"
+   * @generated
+   * @ordered
+   */
+  public static final int DOUBLE_VALUE = 2;
+
+  /**
+   * The '<em><b>INT8 S</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT8_S
+   * @model literal="int8"
+   * @generated
+   * @ordered
+   */
+  public static final int INT8_S_VALUE = 3;
+
+  /**
+   * The '<em><b>INT8 U</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT8_U
+   * @model literal="uint8"
+   * @generated
+   * @ordered
+   */
+  public static final int INT8_U_VALUE = 4;
+
+  /**
+   * The '<em><b>INT16 S</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT16_S
+   * @model literal="int16"
+   * @generated
+   * @ordered
+   */
+  public static final int INT16_S_VALUE = 5;
+
+  /**
+   * The '<em><b>INT16 U</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT16_U
+   * @model literal="uint16"
+   * @generated
+   * @ordered
+   */
+  public static final int INT16_U_VALUE = 6;
+
+  /**
+   * The '<em><b>INT32</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT32
+   * @model literal="int32"
+   * @generated
+   * @ordered
+   */
+  public static final int INT32_VALUE = 7;
+
+  /**
+   * The '<em><b>INT32 U</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT32_U
+   * @model literal="uint32"
+   * @generated
+   * @ordered
+   */
+  public static final int INT32_U_VALUE = 8;
+
+  /**
+   * The '<em><b>INT64</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT64
+   * @model literal="int64"
+   * @generated
+   * @ordered
+   */
+  public static final int INT64_VALUE = 9;
+
+  /**
+   * The '<em><b>INT64 U</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #INT64_U
+   * @model literal="uint64"
+   * @generated
+   * @ordered
+   */
+  public static final int INT64_U_VALUE = 10;
+
+  /**
+   * The '<em><b>BOOL TYPE</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #BOOL_TYPE
+   * @model literal="bool"
+   * @generated
+   * @ordered
+   */
+  public static final int BOOL_TYPE_VALUE = 11;
+
+  /**
+   * An array of all the '<em><b>Type</b></em>' enumerators.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  void setName(Types value);
+  private static final Type[] VALUES_ARRAY =
+    new Type[]
+    {
+      VOID_CTYPE,
+      FLOAT,
+      DOUBLE,
+      INT8_S,
+      INT8_U,
+      INT16_S,
+      INT16_U,
+      INT32,
+      INT32_U,
+      INT64,
+      INT64_U,
+      BOOL_TYPE,
+    };
 
-} // Type
+  /**
+   * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static final List<Type> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+
+  /**
+   * Returns the '<em><b>Type</b></em>' literal with the specified literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param literal the literal.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
+  public static Type get(String literal)
+  {
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      Type result = VALUES_ARRAY[i];
+      if (result.toString().equals(literal))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Returns the '<em><b>Type</b></em>' literal with the specified name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param name the name.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
+  public static Type getByName(String name)
+  {
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      Type result = VALUES_ARRAY[i];
+      if (result.getName().equals(name))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Returns the '<em><b>Type</b></em>' literal with the specified integer value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the integer value.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
+  public static Type get(int value)
+  {
+    switch (value)
+    {
+      case VOID_CTYPE_VALUE: return VOID_CTYPE;
+      case FLOAT_VALUE: return FLOAT;
+      case DOUBLE_VALUE: return DOUBLE;
+      case INT8_S_VALUE: return INT8_S;
+      case INT8_U_VALUE: return INT8_U;
+      case INT16_S_VALUE: return INT16_S;
+      case INT16_U_VALUE: return INT16_U;
+      case INT32_VALUE: return INT32;
+      case INT32_U_VALUE: return INT32_U;
+      case INT64_VALUE: return INT64;
+      case INT64_U_VALUE: return INT64_U;
+      case BOOL_TYPE_VALUE: return BOOL_TYPE;
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final int value;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final String name;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private final String literal;
+
+  /**
+   * Only this class can construct instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private Type(int value, String name, String literal)
+  {
+    this.value = value;
+    this.name = name;
+    this.literal = literal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getLiteral()
+  {
+    return literal;
+  }
+
+  /**
+   * Returns the literal value of the enumerator, which is its string representation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    return literal;
+  }
+  
+} //Type

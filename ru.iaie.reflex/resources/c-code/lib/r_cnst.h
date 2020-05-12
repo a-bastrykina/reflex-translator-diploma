@@ -6,6 +6,8 @@
 #ifndef _R_CNST_H
 #define _R_CNST_H 1
 
+#include <stdint.h>
+
 #define MASK_OF_INACTIVITY 0x80 /* если в ячейке с текущим состоянием 1-ца в ст.разряде - процесс неактивен */
 #define STATE_OF_ERROR      254 /* Reserved state of error */
 #define STATE_OF_STOP       255 /* Reserved state of stop */
@@ -47,18 +49,16 @@
 #define BUFFER_LENGTH 128
 #define DEBUG_FLAG
 
-
-typedef unsigned char BOOLEAN;     /* Logical data type (TRUE or FALSE)   */
-typedef unsigned char INT8U;      /* Unsigned  8 bit value               */
-typedef signed   char INT8S;      /* Signed    8 bit value               */
-typedef unsigned int  INT16U;     /* Unsigned 16 bit value               */
-typedef signed   int  INT16S;     /* Signed   16 bit value               */
-typedef unsigned long INT32U;     /* Unsigned 32 bit value               */
-typedef signed   long INT32S;     /* Signed   32 bit value               */
-/* typedef unsigned long INT64U;      Unsigned 64 bit value (if available)*/
-/* typedef signed   long INT64S;      Signed   64 bit value (if available)*/
-typedef float         FP32;       /* 32 bit, single prec. floating-point */
-typedef double        FP64;       /* 64 bit, double prec. floating-point */
-
+typedef int8_t     BOOL;      /* Logical data type (TRUE or FALSE)   */
+typedef uint8_t    INT8_U;    /* Unsigned  8 bit value               */
+typedef int8_t     INT8;      /* Signed    8 bit value               */
+typedef uint16_t   INT16_U;   /* Unsigned 16 bit value               */
+typedef int16_t    INT16;     /* Signed   16 bit value               */
+typedef uint32_t   INT32_U;   /* Unsigned 32 bit value               */
+typedef int32_t    INT32;     /* Signed   32 bit value               */
+typedef uint64_t   INT64_U;   /* Unsigned 64 bit value (if available)*/
+typedef uint64_t   INT64;     /* Signed   64 bit value (if available)*/
+typedef float      FLOAT;     /* 32 bit, single prec. floating-point */
+typedef double     DOUBLE;    /* 64 bit, double prec. floating-point */
 
 #endif

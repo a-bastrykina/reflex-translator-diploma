@@ -55,14 +55,24 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
   protected boolean shared = SHARED_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected static final Type TYPE_EDEFAULT = Type.VOID_CTYPE;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected Type type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -156,38 +166,13 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
-  {
-    Type oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public void setType(Type newType)
   {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PHYSICAL_VARIABLE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, newType, newType));
+    Type oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PHYSICAL_VARIABLE__TYPE, oldType, type));
   }
 
   /**
@@ -275,8 +260,6 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
   {
     switch (featureID)
     {
-      case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        return basicSetType(null, msgs);
       case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
         return basicSetMapping(null, msgs);
     }
@@ -345,7 +328,7 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
         setShared(SHARED_EDEFAULT);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        setType((Type)null);
+        setType(TYPE_EDEFAULT);
         return;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         setName(NAME_EDEFAULT);
@@ -370,7 +353,7 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
       case ReflexPackage.PHYSICAL_VARIABLE__SHARED:
         return shared != SHARED_EDEFAULT;
       case ReflexPackage.PHYSICAL_VARIABLE__TYPE:
-        return type != null;
+        return type != TYPE_EDEFAULT;
       case ReflexPackage.PHYSICAL_VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.PHYSICAL_VARIABLE__MAPPING:
@@ -392,6 +375,8 @@ public class PhysicalVariableImpl extends ProcessVariableImpl implements Physica
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (shared: ");
     result.append(shared);
+    result.append(", type: ");
+    result.append(type);
     result.append(", name: ");
     result.append(name);
     result.append(')');

@@ -35,8 +35,6 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
-import ru.iaie.reflex.reflex.TypeSignSpec;
-import ru.iaie.reflex.reflex.Types;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
@@ -183,15 +181,5 @@ public class ReflexModelUtil {
     EcoreUtil2.findCrossReferences(context, targetSet, acceptor);
     boolean _isEmpty = refered.isEmpty();
     return (!_isEmpty);
-  }
-  
-  public static boolean isCType(final Type type) {
-    Types _name = type.getName();
-    return (!Objects.equal(_name, Types.BOOL_TYPE));
-  }
-  
-  public static boolean hasModifier(final Type type) {
-    TypeSignSpec _sign = type.getSign();
-    return (_sign != null);
   }
 }

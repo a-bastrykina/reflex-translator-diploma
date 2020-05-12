@@ -6,18 +6,15 @@ package ru.iaie.reflex.reflex.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.ReflexPackage;
@@ -41,14 +38,24 @@ import ru.iaie.reflex.reflex.Type;
 public class FunctionImpl extends MinimalEObjectImpl.Container implements Function
 {
   /**
-   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
+   * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getReturnType()
    * @generated
    * @ordered
    */
-  protected Type returnType;
+  protected static final Type RETURN_TYPE_EDEFAULT = Type.VOID_CTYPE;
+
+  /**
+   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReturnType()
+   * @generated
+   * @ordered
+   */
+  protected Type returnType = RETURN_TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -71,7 +78,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getArgTypes() <em>Arg Types</em>}' containment reference list.
+   * The cached value of the '{@link #getArgTypes() <em>Arg Types</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getArgTypes()
@@ -117,38 +124,13 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetReturnType(Type newReturnType, NotificationChain msgs)
-  {
-    Type oldReturnType = returnType;
-    returnType = newReturnType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.FUNCTION__RETURN_TYPE, oldReturnType, newReturnType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public void setReturnType(Type newReturnType)
   {
-    if (newReturnType != returnType)
-    {
-      NotificationChain msgs = null;
-      if (returnType != null)
-        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.FUNCTION__RETURN_TYPE, null, msgs);
-      if (newReturnType != null)
-        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.FUNCTION__RETURN_TYPE, null, msgs);
-      msgs = basicSetReturnType(newReturnType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.FUNCTION__RETURN_TYPE, newReturnType, newReturnType));
+    Type oldReturnType = returnType;
+    returnType = newReturnType == null ? RETURN_TYPE_EDEFAULT : newReturnType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.FUNCTION__RETURN_TYPE, oldReturnType, returnType));
   }
 
   /**
@@ -186,27 +168,9 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   {
     if (argTypes == null)
     {
-      argTypes = new EObjectContainmentEList<Type>(Type.class, this, ReflexPackage.FUNCTION__ARG_TYPES);
+      argTypes = new EDataTypeEList<Type>(Type.class, this, ReflexPackage.FUNCTION__ARG_TYPES);
     }
     return argTypes;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.FUNCTION__RETURN_TYPE:
-        return basicSetReturnType(null, msgs);
-      case ReflexPackage.FUNCTION__ARG_TYPES:
-        return ((InternalEList<?>)getArgTypes()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -265,7 +229,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     switch (featureID)
     {
       case ReflexPackage.FUNCTION__RETURN_TYPE:
-        setReturnType((Type)null);
+        setReturnType(RETURN_TYPE_EDEFAULT);
         return;
       case ReflexPackage.FUNCTION__NAME:
         setName(NAME_EDEFAULT);
@@ -288,7 +252,7 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     switch (featureID)
     {
       case ReflexPackage.FUNCTION__RETURN_TYPE:
-        return returnType != null;
+        return returnType != RETURN_TYPE_EDEFAULT;
       case ReflexPackage.FUNCTION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ReflexPackage.FUNCTION__ARG_TYPES:
@@ -308,8 +272,12 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
+    result.append(" (returnType: ");
+    result.append(returnType);
+    result.append(", name: ");
     result.append(name);
+    result.append(", argTypes: ");
+    result.append(argTypes);
     result.append(')');
     return result.toString();
   }

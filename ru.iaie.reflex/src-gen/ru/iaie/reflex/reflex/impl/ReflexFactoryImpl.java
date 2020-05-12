@@ -72,8 +72,6 @@ import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
-import ru.iaie.reflex.reflex.TypeSignSpec;
-import ru.iaie.reflex.reflex.Types;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
 
@@ -178,7 +176,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case ReflexPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case ReflexPackage.EXPRESSION: return createExpression();
-      case ReflexPackage.TYPE: return createType();
       case ReflexPackage.TIME: return createTime();
       case ReflexPackage.ANNOTATION: return createAnnotation();
       default:
@@ -216,10 +213,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return createAdditiveOpFromString(eDataType, initialValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return createMultiplicativeOpFromString(eDataType, initialValue);
-      case ReflexPackage.TYPES:
-        return createTypesFromString(eDataType, initialValue);
-      case ReflexPackage.TYPE_SIGN_SPEC:
-        return createTypeSignSpecFromString(eDataType, initialValue);
+      case ReflexPackage.TYPE:
+        return createTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -255,10 +250,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
         return convertAdditiveOpToString(eDataType, instanceValue);
       case ReflexPackage.MULTIPLICATIVE_OP:
         return convertMultiplicativeOpToString(eDataType, instanceValue);
-      case ReflexPackage.TYPES:
-        return convertTypesToString(eDataType, instanceValue);
-      case ReflexPackage.TYPE_SIGN_SPEC:
-        return convertTypeSignSpecToString(eDataType, instanceValue);
+      case ReflexPackage.TYPE:
+        return convertTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -858,18 +851,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Type createType()
-  {
-    TypeImpl type = new TypeImpl();
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Time createTime()
   {
     TimeImpl time = new TimeImpl();
@@ -1113,9 +1094,9 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Types createTypesFromString(EDataType eDataType, String initialValue)
+  public Type createTypeFromString(EDataType eDataType, String initialValue)
   {
-    Types result = Types.get(initialValue);
+    Type result = Type.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -1125,29 +1106,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertTypesToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeSignSpec createTypeSignSpecFromString(EDataType eDataType, String initialValue)
-  {
-    TypeSignSpec result = TypeSignSpec.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertTypeSignSpecToString(EDataType eDataType, Object instanceValue)
+  public String convertTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

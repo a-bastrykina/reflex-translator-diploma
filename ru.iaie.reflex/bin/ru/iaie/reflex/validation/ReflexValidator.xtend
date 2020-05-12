@@ -277,11 +277,24 @@ class ReflexValidator extends AbstractReflexValidator {
 		}
 	}
 	
-	@Check def void checkPortSize(Port p) {
-		if (!(p.size.equals("8") || p.size.equals("16"))) {
-			error("Only 8 or 16 values allowed", ePackage.port_Size)
-		}
-	}
+//	@Check def void checkPortSize(Port p) {
+//		val size = Integer.decode(p.size)
+//		if (!(size == 8 || size == 16)) {
+//			error("Only 8 or 16 values allowed", ePackage.port_Size)
+//		}
+//	}
+//	
+//	@Check def void checkPortMapping(PhysicalVariable physVar) {
+//		if (!physVar.mapping.fullMapping) {
+//			// todo: add wrapper for Integer
+//			val portSize = Integer.decode(physVar.mapping.port.size)
+//			val bitNum = Integer.decode(physVar.mapping.bit)
+//			if (bitNum > portSize || bitNum <= 0) {
+//				error('''Port bit value must be in interval of 1..«portSize»''', physVar.mapping,
+//					ePackage.portMapping_Bit)
+//			}
+//		}
+//	}
 
-// TODO: add checks for types
+	// TODO: add checks for types
 }

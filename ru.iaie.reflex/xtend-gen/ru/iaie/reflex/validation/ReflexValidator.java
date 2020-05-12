@@ -477,12 +477,4 @@ public class ReflexValidator extends AbstractReflexValidator {
       }
     }
   }
-  
-  @Check
-  public void checkPortSize(final Port p) {
-    boolean _not = (!(p.getSize().equals("8") || p.getSize().equals("16")));
-    if (_not) {
-      this.error("Only 8 or 16 values allowed", ReflexValidator.ePackage.getPort_Size());
-    }
-  }
 }

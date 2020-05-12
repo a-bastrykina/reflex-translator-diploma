@@ -409,7 +409,7 @@ public interface ReflexPackage extends EPackage
   int PHYSICAL_VARIABLE__SHARED = PROCESS_VARIABLE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -501,7 +501,7 @@ public interface ReflexPackage extends EPackage
   int PROGRAM_VARIABLE__SHARED = PROCESS_VARIABLE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -984,7 +984,7 @@ public interface ReflexPackage extends EPackage
   int FUNCTION = 24;
 
   /**
-   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Return Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1002,7 +1002,7 @@ public interface ReflexPackage extends EPackage
   int FUNCTION__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Arg Types</b></em>' containment reference list.
+   * The feature id for the '<em><b>Arg Types</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1113,7 +1113,7 @@ public interface ReflexPackage extends EPackage
   int CONST = 26;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1801,7 +1801,7 @@ public interface ReflexPackage extends EPackage
   int CAST_EXPRESSION__MUL_OP = MULTIPLICATIVE_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1892,7 +1892,7 @@ public interface ReflexPackage extends EPackage
   int UNARY_EXPRESSION__MUL_OP = CAST_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1992,7 +1992,7 @@ public interface ReflexPackage extends EPackage
   int INFIX_OP__MUL_OP = UNARY_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2110,7 +2110,7 @@ public interface ReflexPackage extends EPackage
   int POSTFIX_OP__MUL_OP = UNARY_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2228,7 +2228,7 @@ public interface ReflexPackage extends EPackage
   int FUNCTION_CALL__MUL_OP = UNARY_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2419,7 +2419,7 @@ public interface ReflexPackage extends EPackage
   int PRIMARY_EXPRESSION__MUL_OP = UNARY_EXPRESSION__MUL_OP;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2556,43 +2556,6 @@ public interface ReflexPackage extends EPackage
   int ASSIGNMENT_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TypeImpl <em>Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.TypeImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getType()
-   * @generated
-   */
-  int TYPE = 49;
-
-  /**
-   * The feature id for the '<em><b>Sign</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__SIGN = 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__NAME = 1;
-
-  /**
-   * The number of structural features of the '<em>Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2600,7 +2563,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTime()
    * @generated
    */
-  int TIME = 50;
+  int TIME = 49;
 
   /**
    * The feature id for the '<em><b>Ticks</b></em>' attribute.
@@ -2628,7 +2591,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 51;
+  int ANNOTATION = 50;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -2665,7 +2628,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortType()
    * @generated
    */
-  int PORT_TYPE = 52;
+  int PORT_TYPE = 51;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.
@@ -2675,7 +2638,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateQualifier()
    * @generated
    */
-  int STATE_QUALIFIER = 53;
+  int STATE_QUALIFIER = 52;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}' enum.
@@ -2685,7 +2648,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixPostfixOp()
    * @generated
    */
-  int INFIX_POSTFIX_OP = 54;
+  int INFIX_POSTFIX_OP = 53;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AssignOperator <em>Assign Operator</em>}' enum.
@@ -2695,7 +2658,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignOperator()
    * @generated
    */
-  int ASSIGN_OPERATOR = 55;
+  int ASSIGN_OPERATOR = 54;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.UnaryOp <em>Unary Op</em>}' enum.
@@ -2705,7 +2668,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryOp()
    * @generated
    */
-  int UNARY_OP = 56;
+  int UNARY_OP = 55;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareOp <em>Compare Op</em>}' enum.
@@ -2715,7 +2678,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareOp()
    * @generated
    */
-  int COMPARE_OP = 57;
+  int COMPARE_OP = 56;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareEqOp <em>Compare Eq Op</em>}' enum.
@@ -2725,7 +2688,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareEqOp()
    * @generated
    */
-  int COMPARE_EQ_OP = 58;
+  int COMPARE_EQ_OP = 57;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.ShiftOp <em>Shift Op</em>}' enum.
@@ -2735,7 +2698,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftOp()
    * @generated
    */
-  int SHIFT_OP = 59;
+  int SHIFT_OP = 58;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AdditiveOp <em>Additive Op</em>}' enum.
@@ -2745,7 +2708,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveOp()
    * @generated
    */
-  int ADDITIVE_OP = 60;
+  int ADDITIVE_OP = 59;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
@@ -2755,27 +2718,17 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeOp()
    * @generated
    */
-  int MULTIPLICATIVE_OP = 61;
+  int MULTIPLICATIVE_OP = 60;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}' enum.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.Types
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypes()
+   * @see ru.iaie.reflex.reflex.Type
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getType()
    * @generated
    */
-  int TYPES = 62;
-
-  /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.TypeSignSpec <em>Type Sign Spec</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.TypeSignSpec
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypeSignSpec()
-   * @generated
-   */
-  int TYPE_SIGN_SPEC = 63;
+  int TYPE = 61;
 
 
   /**
@@ -3112,15 +3065,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getPhysicalVariable_Shared();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PhysicalVariable#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @return the meta object for the attribute '<em>Type</em>'.
    * @see ru.iaie.reflex.reflex.PhysicalVariable#getType()
    * @see #getPhysicalVariable()
    * @generated
    */
-  EReference getPhysicalVariable_Type();
+  EAttribute getPhysicalVariable_Type();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.PhysicalVariable#getName <em>Name</em>}'.
@@ -3198,15 +3151,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getProgramVariable_Shared();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @return the meta object for the attribute '<em>Type</em>'.
    * @see ru.iaie.reflex.reflex.ProgramVariable#getType()
    * @see #getProgramVariable()
    * @generated
    */
-  EReference getProgramVariable_Type();
+  EAttribute getProgramVariable_Type();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ProgramVariable#getName <em>Name</em>}'.
@@ -3568,15 +3521,15 @@ public interface ReflexPackage extends EPackage
   EClass getFunction();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Function#getReturnType <em>Return Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Function#getReturnType <em>Return Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @return the meta object for the attribute '<em>Return Type</em>'.
    * @see ru.iaie.reflex.reflex.Function#getReturnType()
    * @see #getFunction()
    * @generated
    */
-  EReference getFunction_ReturnType();
+  EAttribute getFunction_ReturnType();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Function#getName <em>Name</em>}'.
@@ -3590,15 +3543,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getFunction_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Function#getArgTypes <em>Arg Types</em>}'.
+   * Returns the meta object for the attribute list '{@link ru.iaie.reflex.reflex.Function#getArgTypes <em>Arg Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Arg Types</em>'.
+   * @return the meta object for the attribute list '<em>Arg Types</em>'.
    * @see ru.iaie.reflex.reflex.Function#getArgTypes()
    * @see #getFunction()
    * @generated
    */
-  EReference getFunction_ArgTypes();
+  EAttribute getFunction_ArgTypes();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Port <em>Port</em>}'.
@@ -3676,15 +3629,15 @@ public interface ReflexPackage extends EPackage
   EClass getConst();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Const#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @return the meta object for the attribute '<em>Type</em>'.
    * @see ru.iaie.reflex.reflex.Const#getType()
    * @see #getConst()
    * @generated
    */
-  EReference getConst_Type();
+  EAttribute getConst_Type();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Const#getName <em>Name</em>}'.
@@ -4007,15 +3960,15 @@ public interface ReflexPackage extends EPackage
   EClass getCastExpression();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.CastExpression#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CastExpression#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @return the meta object for the attribute '<em>Type</em>'.
    * @see ru.iaie.reflex.reflex.CastExpression#getType()
    * @see #getCastExpression()
    * @generated
    */
-  EReference getCastExpression_Type();
+  EAttribute getCastExpression_Type();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.MultiplicativeExpression <em>Multiplicative Expression</em>}'.
@@ -4248,38 +4201,6 @@ public interface ReflexPackage extends EPackage
   EClass getExpression();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type</em>'.
-   * @see ru.iaie.reflex.reflex.Type
-   * @generated
-   */
-  EClass getType();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Type#getSign <em>Sign</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Sign</em>'.
-   * @see ru.iaie.reflex.reflex.Type#getSign()
-   * @see #getType()
-   * @generated
-   */
-  EAttribute getType_Sign();
-
-  /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Type#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see ru.iaie.reflex.reflex.Type#getName()
-   * @see #getType()
-   * @generated
-   */
-  EAttribute getType_Name();
-
-  /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4433,24 +4354,14 @@ public interface ReflexPackage extends EPackage
   EEnum getMultiplicativeOp();
 
   /**
-   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}'.
+   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Types</em>'.
-   * @see ru.iaie.reflex.reflex.Types
+   * @return the meta object for enum '<em>Type</em>'.
+   * @see ru.iaie.reflex.reflex.Type
    * @generated
    */
-  EEnum getTypes();
-
-  /**
-   * Returns the meta object for enum '{@link ru.iaie.reflex.reflex.TypeSignSpec <em>Type Sign Spec</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Type Sign Spec</em>'.
-   * @see ru.iaie.reflex.reflex.TypeSignSpec
-   * @generated
-   */
-  EEnum getTypeSignSpec();
+  EEnum getType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -4740,12 +4651,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PHYSICAL_VARIABLE__SHARED = eINSTANCE.getPhysicalVariable_Shared();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PHYSICAL_VARIABLE__TYPE = eINSTANCE.getPhysicalVariable_Type();
+    EAttribute PHYSICAL_VARIABLE__TYPE = eINSTANCE.getPhysicalVariable_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -4808,12 +4719,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PROGRAM_VARIABLE__SHARED = eINSTANCE.getProgramVariable_Shared();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROGRAM_VARIABLE__TYPE = eINSTANCE.getProgramVariable_Type();
+    EAttribute PROGRAM_VARIABLE__TYPE = eINSTANCE.getProgramVariable_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -5118,12 +5029,12 @@ public interface ReflexPackage extends EPackage
     EClass FUNCTION = eINSTANCE.getFunction();
 
     /**
-     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Return Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__RETURN_TYPE = eINSTANCE.getFunction_ReturnType();
+    EAttribute FUNCTION__RETURN_TYPE = eINSTANCE.getFunction_ReturnType();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -5134,12 +5045,12 @@ public interface ReflexPackage extends EPackage
     EAttribute FUNCTION__NAME = eINSTANCE.getFunction_Name();
 
     /**
-     * The meta object literal for the '<em><b>Arg Types</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Arg Types</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__ARG_TYPES = eINSTANCE.getFunction_ArgTypes();
+    EAttribute FUNCTION__ARG_TYPES = eINSTANCE.getFunction_ArgTypes();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.PortImpl <em>Port</em>}' class.
@@ -5202,12 +5113,12 @@ public interface ReflexPackage extends EPackage
     EClass CONST = eINSTANCE.getConst();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONST__TYPE = eINSTANCE.getConst_Type();
+    EAttribute CONST__TYPE = eINSTANCE.getConst_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -5470,12 +5381,12 @@ public interface ReflexPackage extends EPackage
     EClass CAST_EXPRESSION = eINSTANCE.getCastExpression();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CAST_EXPRESSION__TYPE = eINSTANCE.getCastExpression_Type();
+    EAttribute CAST_EXPRESSION__TYPE = eINSTANCE.getCastExpression_Type();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.MultiplicativeExpressionImpl <em>Multiplicative Expression</em>}' class.
@@ -5678,32 +5589,6 @@ public interface ReflexPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TypeImpl <em>Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.TypeImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getType()
-     * @generated
-     */
-    EClass TYPE = eINSTANCE.getType();
-
-    /**
-     * The meta object literal for the '<em><b>Sign</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TYPE__SIGN = eINSTANCE.getType_Sign();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TYPE__NAME = eINSTANCE.getType_Name();
-
-    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TimeImpl <em>Time</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5848,24 +5733,14 @@ public interface ReflexPackage extends EPackage
     EEnum MULTIPLICATIVE_OP = eINSTANCE.getMultiplicativeOp();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.Types <em>Types</em>}' enum.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.Types
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypes()
+     * @see ru.iaie.reflex.reflex.Type
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getType()
      * @generated
      */
-    EEnum TYPES = eINSTANCE.getTypes();
-
-    /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.TypeSignSpec <em>Type Sign Spec</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.TypeSignSpec
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTypeSignSpec()
-     * @generated
-     */
-    EEnum TYPE_SIGN_SPEC = eINSTANCE.getTypeSignSpec();
+    EEnum TYPE = eINSTANCE.getType();
 
   }
 

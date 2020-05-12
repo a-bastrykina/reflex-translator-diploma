@@ -46,7 +46,6 @@ import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
-import ru.iaie.reflex.reflex.Types
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PortType
@@ -127,13 +126,13 @@ class R2CReflexGenerator extends AbstractGenerator {
 		
 		void Input(void) {
 		    «FOR physVar : inputVars»
-		    	«translateReadingFromInput(physVar)»;
+		    	«translateReadingFromInput(physVar)»
 		    «ENDFOR»
 		}  /* Reading IO func */
 		
 		void Output(void) {
 			«FOR physVar : outputVars»
-			    «translateReadingFromOutput(physVar)»;
+			    «translateReadingFromOutput(physVar)»
 		    «ENDFOR»
 		    printf("output\n");
 		} /* Writing IO func */
@@ -145,7 +144,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		val mapping = v.mapping
 		val varName = identifiersHelper.getMapping(v) 
 		if (mapping.fullMapping) {
-			return '''«varName» = «identifiersHelper.getPortId(mapping.port)»'''
+			return '''«varName» = «identifiersHelper.getPortId(mapping.port)»;'''
 		} else {
 			return 
 			'''
@@ -165,7 +164,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		val varName = identifiersHelper.getMapping(v)
 		val mask =  generatePortMappingMask(mapping)
 		if (mapping.fullMapping) {
-			return '''«portVariableName» = «varName»'''
+			return '''«portVariableName» = «varName»;'''
 		} else {
 			return 
 			'''
@@ -517,8 +516,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 	
 	def translateType(Type t) {
-		if (t.name == Types.BOOL_TYPE) return "char"
-		return '''«t.name»'''
+		return '''«t»'''
 	}
 	
 	def translateBoolLiteral(Boolean l) {

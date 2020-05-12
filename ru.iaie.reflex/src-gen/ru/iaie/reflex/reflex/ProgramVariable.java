@@ -47,22 +47,25 @@ public interface ProgramVariable extends ProcessVariable, GlobalVariable, IdRefe
   void setShared(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Type}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Type
    * @see #setType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getProgramVariable_Type()
-   * @model containment="true"
+   * @model
    * @generated
    */
   Type getType();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ProgramVariable#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Type
    * @see #getType()
    * @generated
    */

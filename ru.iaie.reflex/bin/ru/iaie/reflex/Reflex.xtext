@@ -214,15 +214,19 @@ enum MultiplicativeOp:
 terminal BOOL_LITERAL returns ecore::EBooleanObject:
 	"true" | "false";
 
-Type:
-	(sign=TypeSignSpec)? name=Types;
+//	Type:
+//	(sign=TypeSignSpec)? name=Types;
 
-enum Types:
-	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
-	LONG_C_TYPE="long" | BOOL_TYPE="bool";
-
-enum TypeSignSpec:
-	SIGNED="signed" | UNSIGNED="unsigned";
+//enum Types:
+//	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
+//	LONG_C_TYPE="long" | BOOL_TYPE="bool";
+//
+//enum TypeSignSpec:
+//	SIGNED="signed" | UNSIGNED="unsigned";
+//	
+enum Type:
+	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8_S="int8" | INT8_U="uint8" | INT16_S="int16" |
+	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL_TYPE="bool";
 
 terminal LOGICAL_OR:
 	"||";
@@ -297,7 +301,7 @@ Annotation:
 AnnotationKey:
 	ID "." ID | ID;
 
-//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
+	//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
 //terminal fragment DAY:
 //	"D" | "d";
 //

@@ -53,7 +53,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="PhysicalVariable" eSuperTypes="#//ProcessVariable #//GlobalVariable #//IdReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" eType="#//PortMapping"
         containment="true"/>
@@ -64,7 +64,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProgramVariable" eSuperTypes="#//ProcessVariable #//GlobalVariable #//IdReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shared" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatementSequence">
@@ -120,11 +120,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="argTypes" upperBound="-1"
-        eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="argTypes" unique="false"
+        upperBound="-1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PortType">
     <eLiterals name="INPUT" literal="input"/>
@@ -138,7 +137,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Const" eSuperTypes="#//IdReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
@@ -189,7 +188,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unaryOp" eType="#//UnaryOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CastExpression" eSuperTypes="#//MultiplicativeExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression" eSuperTypes="#//AdditiveExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mulOp" eType="#//MultiplicativeOp"/>
@@ -268,22 +267,19 @@
     <eLiterals name="DIV" value="1" literal="/"/>
     <eLiterals name="MOD" value="2" literal="%"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" eType="#//TypeSignSpec"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//Types"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Types">
+  <eClassifiers xsi:type="ecore:EEnum" name="Type">
     <eLiterals name="VOID_C_TYPE" literal="void"/>
-    <eLiterals name="FLOAT_C_TYPE" value="1" literal="float"/>
-    <eLiterals name="DOUBLE_C_TYPE" value="2" literal="double"/>
-    <eLiterals name="SHORT_C_TYPE" value="3" literal="short"/>
-    <eLiterals name="INT_C_TYPE" value="4" literal="int"/>
-    <eLiterals name="LONG_C_TYPE" value="5" literal="long"/>
-    <eLiterals name="BOOL_TYPE" value="6" literal="bool"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TypeSignSpec">
-    <eLiterals name="SIGNED" literal="signed"/>
-    <eLiterals name="UNSIGNED" value="1" literal="unsigned"/>
+    <eLiterals name="FLOAT" value="1" literal="float"/>
+    <eLiterals name="DOUBLE" value="2" literal="double"/>
+    <eLiterals name="INT8_S" value="3" literal="int8"/>
+    <eLiterals name="INT8_U" value="4" literal="uint8"/>
+    <eLiterals name="INT16_S" value="5" literal="int16"/>
+    <eLiterals name="INT16_U" value="6" literal="uint16"/>
+    <eLiterals name="INT32" value="7" literal="int32"/>
+    <eLiterals name="INT32_U" value="8" literal="uint32"/>
+    <eLiterals name="INT64" value="9" literal="int64"/>
+    <eLiterals name="INT64_U" value="10" literal="uint64"/>
+    <eLiterals name="BOOL_TYPE" value="11" literal="bool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Time">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -67,7 +67,6 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
-import ru.iaie.reflex.reflex.Types;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.utils.ExpressionUtil;
@@ -174,7 +173,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
         _builder.append("    ");
         String _translateReadingFromInput = this.translateReadingFromInput(physVar);
         _builder.append(_translateReadingFromInput, "    ");
-        _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -188,7 +186,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
         _builder.append("\t");
         String _translateReadingFromOutput = this.translateReadingFromOutput(physVar_1);
         _builder.append(_translateReadingFromOutput, "\t");
-        _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -213,6 +210,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder.append(" = ");
       String _portId = this.identifiersHelper.getPortId(mapping.getPort());
       _builder.append(_portId);
+      _builder.append(";");
       return _builder.toString();
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -253,6 +251,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
       _builder.append(portVariableName);
       _builder.append(" = ");
       _builder.append(varName);
+      _builder.append(";");
       return _builder.toString();
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -1227,14 +1226,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public String translateType(final Type t) {
-    Types _name = t.getName();
-    boolean _equals = Objects.equal(_name, Types.BOOL_TYPE);
-    if (_equals) {
-      return "char";
-    }
     StringConcatenation _builder = new StringConcatenation();
-    Types _name_1 = t.getName();
-    _builder.append(_name_1);
+    _builder.append(t);
     return _builder.toString();
   }
   

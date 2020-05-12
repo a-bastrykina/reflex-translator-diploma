@@ -28,22 +28,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface Function extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Return Type</b></em>' attribute.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Type}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Return Type</em>' containment reference.
+   * @return the value of the '<em>Return Type</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Type
    * @see #setReturnType(Type)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getFunction_ReturnType()
-   * @model containment="true"
+   * @model
    * @generated
    */
   Type getReturnType();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Function#getReturnType <em>Return Type</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Function#getReturnType <em>Return Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Return Type</em>' containment reference.
+   * @param value the new value of the '<em>Return Type</em>' attribute.
+   * @see ru.iaie.reflex.reflex.Type
    * @see #getReturnType()
    * @generated
    */
@@ -72,13 +75,15 @@ public interface Function extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Arg Types</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Arg Types</b></em>' attribute list.
    * The list contents are of type {@link ru.iaie.reflex.reflex.Type}.
+   * The literals are from the enumeration {@link ru.iaie.reflex.reflex.Type}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Arg Types</em>' containment reference list.
+   * @return the value of the '<em>Arg Types</em>' attribute list.
+   * @see ru.iaie.reflex.reflex.Type
    * @see ru.iaie.reflex.reflex.ReflexPackage#getFunction_ArgTypes()
-   * @model containment="true"
+   * @model unique="false"
    * @generated
    */
   EList<Type> getArgTypes();

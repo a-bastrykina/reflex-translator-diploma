@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EReference
 import ru.iaie.reflex.reflex.GlobalVariable
 import java.util.List
 import ru.iaie.reflex.reflex.Type
-import ru.iaie.reflex.reflex.Types
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.Statement
 import ru.iaie.reflex.reflex.PortType
@@ -133,11 +132,11 @@ class ReflexModelUtil {
 		return !refered.empty
 	}
 
-	def static boolean isCType(Type type) {
-		return type.name != Types.BOOL_TYPE
-	}
-
-	def static hasModifier(Type type) {
-		return type.sign !== null
-	}
+//	def static boolean isCType(Type type) {
+//		return type.name != Types.BOOL_TYPE
+//	}
+//
+//	def static hasModifier(Type type) {
+//		return type.sign !== null
+//	}
 }

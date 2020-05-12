@@ -4,10 +4,8 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -53,14 +51,24 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
   protected boolean shared = SHARED_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected static final Type TYPE_EDEFAULT = Type.VOID_CTYPE;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected Type type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -144,38 +152,13 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
-  {
-    Type oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public void setType(Type newType)
   {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM_VARIABLE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM_VARIABLE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__TYPE, newType, newType));
+    Type oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__TYPE, oldType, type));
   }
 
   /**
@@ -201,22 +184,6 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM_VARIABLE__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.PROGRAM_VARIABLE__TYPE:
-        return basicSetType(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -276,7 +243,7 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
         setShared(SHARED_EDEFAULT);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
-        setType((Type)null);
+        setType(TYPE_EDEFAULT);
         return;
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
         setName(NAME_EDEFAULT);
@@ -298,7 +265,7 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
       case ReflexPackage.PROGRAM_VARIABLE__SHARED:
         return shared != SHARED_EDEFAULT;
       case ReflexPackage.PROGRAM_VARIABLE__TYPE:
-        return type != null;
+        return type != TYPE_EDEFAULT;
       case ReflexPackage.PROGRAM_VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
@@ -318,6 +285,8 @@ public class ProgramVariableImpl extends ProcessVariableImpl implements ProgramV
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (shared: ");
     result.append(shared);
+    result.append(", type: ");
+    result.append(type);
     result.append(", name: ");
     result.append(name);
     result.append(')');
