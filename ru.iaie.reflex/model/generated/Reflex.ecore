@@ -271,15 +271,15 @@
     <eLiterals name="VOID_C_TYPE" literal="void"/>
     <eLiterals name="FLOAT" value="1" literal="float"/>
     <eLiterals name="DOUBLE" value="2" literal="double"/>
-    <eLiterals name="INT8_S" value="3" literal="int8"/>
+    <eLiterals name="INT8" value="3" literal="int8"/>
     <eLiterals name="INT8_U" value="4" literal="uint8"/>
-    <eLiterals name="INT16_S" value="5" literal="int16"/>
+    <eLiterals name="INT16" value="5" literal="int16"/>
     <eLiterals name="INT16_U" value="6" literal="uint16"/>
     <eLiterals name="INT32" value="7" literal="int32"/>
     <eLiterals name="INT32_U" value="8" literal="uint32"/>
     <eLiterals name="INT64" value="9" literal="int64"/>
     <eLiterals name="INT64_U" value="10" literal="uint64"/>
-    <eLiterals name="BOOL_TYPE" value="11" literal="bool"/>
+    <eLiterals name="BOOL" value="11" literal="bool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Time">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

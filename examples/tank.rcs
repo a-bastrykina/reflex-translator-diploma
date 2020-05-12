@@ -15,13 +15,13 @@ enum  COM2CA { COM2CA_XD=1 }
 enum CA2GUI { CA2GUI_X_LEVEL=0,
 		CA2GUI_U_LEVEL=1 }
 
-int GetNextMsgGUI(void);
-int  GetMsgGUICode(void);
+int8 GetNextMsgGUI(void);
+int8  GetMsgGUICode(void);
 float  GetFloatParamGUI(void);	
-float  PortsToFloat(int , int , int , int);
-int GetBit(float, int);
-int  SendMsgFloatParamGUI(int, float);
-int SendMsgIntParamGUI(int, int);
+float  PortsToFloat(int32, int32 , int32 , int32);
+int8 GetBit(float, int32);
+int8  SendMsgFloatParamGUI(int32, float);
+int8 SendMsgIntParamGUI(int32, int32);
 
 input X_BIT0_PORT  0 0 8;
 input X_BIT1_PORT  0 1 8;
@@ -39,17 +39,17 @@ float U;
 float X;
 float XD;
 
-int X_BIT0 = X_BIT0_PORT[];
-int X_BIT1 = X_BIT1_PORT[];
-int X_BIT2 = X_BIT2_PORT[]; 
-int X_BIT3 = X_BIT3_PORT[]; 
+int8 X_BIT0 = X_BIT0_PORT[];
+int8 X_BIT1 = X_BIT1_PORT[];
+int8 X_BIT2 = X_BIT2_PORT[]; 
+int8 X_BIT3 = X_BIT3_PORT[]; 
 	
-int U_BIT0 = U_BIT0_PORT[]; 
-int U_BIT1 = U_BIT1_PORT[]; 
-int U_BIT2 = U_BIT2_PORT[]; 
-int U_BIT3 = U_BIT3_PORT[];
+int8 U_BIT0 = U_BIT0_PORT[]; 
+int8 U_BIT1 = U_BIT1_PORT[]; 
+int8 U_BIT2 = U_BIT2_PORT[]; 
+int8 U_BIT3 = U_BIT3_PORT[];
 
-int msg_code;
+int8 msg_code;
 
 process INIT {
 	state InitialSetup {		

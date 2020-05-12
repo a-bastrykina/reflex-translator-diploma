@@ -2736,12 +2736,12 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFLOATFloatKeyword_1_0 = (Keyword)cFLOATEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cDOUBLEDoubleKeyword_2_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cINT8_SEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cINT8_SInt8Keyword_3_0 = (Keyword)cINT8_SEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cINT8EnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cINT8Int8Keyword_3_0 = (Keyword)cINT8EnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cINT8_UEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cINT8_UUint8Keyword_4_0 = (Keyword)cINT8_UEnumLiteralDeclaration_4.eContents().get(0);
-		private final EnumLiteralDeclaration cINT16_SEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cINT16_SInt16Keyword_5_0 = (Keyword)cINT16_SEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cINT16EnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cINT16Int16Keyword_5_0 = (Keyword)cINT16EnumLiteralDeclaration_5.eContents().get(0);
 		private final EnumLiteralDeclaration cINT16_UEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
 		private final Keyword cINT16_UUint16Keyword_6_0 = (Keyword)cINT16_UEnumLiteralDeclaration_6.eContents().get(0);
 		private final EnumLiteralDeclaration cINT32EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
@@ -2752,16 +2752,16 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cINT64Int64Keyword_9_0 = (Keyword)cINT64EnumLiteralDeclaration_9.eContents().get(0);
 		private final EnumLiteralDeclaration cINT64_UEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
 		private final Keyword cINT64_UUint64Keyword_10_0 = (Keyword)cINT64_UEnumLiteralDeclaration_10.eContents().get(0);
-		private final EnumLiteralDeclaration cBOOL_TYPEEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
-		private final Keyword cBOOL_TYPEBoolKeyword_11_0 = (Keyword)cBOOL_TYPEEnumLiteralDeclaration_11.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cBOOLBoolKeyword_11_0 = (Keyword)cBOOLEnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum Type:
-		//	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8_S="int8" | INT8_U="uint8" | INT16_S="int16" |
-		//	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL_TYPE="bool";
+		//	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" |
+		//	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool";
 		public EnumRule getRule() { return rule; }
 		
-		//VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8_S="int8" | INT8_U="uint8" | INT16_S="int16" |
-		//INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL_TYPE="bool"
+		//VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" | INT16_U="uint16" |
+		//INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//VOID_C_TYPE="void"
@@ -2782,11 +2782,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"double"
 		public Keyword getDOUBLEDoubleKeyword_2_0() { return cDOUBLEDoubleKeyword_2_0; }
 		
-		//INT8_S="int8"
-		public EnumLiteralDeclaration getINT8_SEnumLiteralDeclaration_3() { return cINT8_SEnumLiteralDeclaration_3; }
+		//INT8="int8"
+		public EnumLiteralDeclaration getINT8EnumLiteralDeclaration_3() { return cINT8EnumLiteralDeclaration_3; }
 		
 		//"int8"
-		public Keyword getINT8_SInt8Keyword_3_0() { return cINT8_SInt8Keyword_3_0; }
+		public Keyword getINT8Int8Keyword_3_0() { return cINT8Int8Keyword_3_0; }
 		
 		//INT8_U="uint8"
 		public EnumLiteralDeclaration getINT8_UEnumLiteralDeclaration_4() { return cINT8_UEnumLiteralDeclaration_4; }
@@ -2794,11 +2794,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"uint8"
 		public Keyword getINT8_UUint8Keyword_4_0() { return cINT8_UUint8Keyword_4_0; }
 		
-		//INT16_S="int16"
-		public EnumLiteralDeclaration getINT16_SEnumLiteralDeclaration_5() { return cINT16_SEnumLiteralDeclaration_5; }
+		//INT16="int16"
+		public EnumLiteralDeclaration getINT16EnumLiteralDeclaration_5() { return cINT16EnumLiteralDeclaration_5; }
 		
 		//"int16"
-		public Keyword getINT16_SInt16Keyword_5_0() { return cINT16_SInt16Keyword_5_0; }
+		public Keyword getINT16Int16Keyword_5_0() { return cINT16Int16Keyword_5_0; }
 		
 		//INT16_U="uint16"
 		public EnumLiteralDeclaration getINT16_UEnumLiteralDeclaration_6() { return cINT16_UEnumLiteralDeclaration_6; }
@@ -2830,11 +2830,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"uint64"
 		public Keyword getINT64_UUint64Keyword_10_0() { return cINT64_UUint64Keyword_10_0; }
 		
-		//BOOL_TYPE="bool"
-		public EnumLiteralDeclaration getBOOL_TYPEEnumLiteralDeclaration_11() { return cBOOL_TYPEEnumLiteralDeclaration_11; }
+		//BOOL="bool"
+		public EnumLiteralDeclaration getBOOLEnumLiteralDeclaration_11() { return cBOOLEnumLiteralDeclaration_11; }
 		
 		//"bool"
-		public Keyword getBOOL_TYPEBoolKeyword_11_0() { return cBOOL_TYPEBoolKeyword_11_0; }
+		public Keyword getBOOLBoolKeyword_11_0() { return cBOOLBoolKeyword_11_0; }
 	}
 	
 	private final ProgramElements pProgram;
@@ -3671,8 +3671,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Type:
-	//	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8_S="int8" | INT8_U="uint8" | INT16_S="int16" |
-	//	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL_TYPE="bool";
+	//	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" |
+	//	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool";
 	public TypeElements getTypeAccess() {
 		return eType;
 	}

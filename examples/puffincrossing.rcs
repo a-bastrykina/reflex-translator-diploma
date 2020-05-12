@@ -3,12 +3,12 @@ program PuffinCrossing
 clock 10; 
 const bool ON=true;
 const bool OFF=false;
-const int SECOND=100;
-const int THIRTY_SECONDS=30*SECOND;
-const int MINUTE=60*SECOND;
+const int8 SECOND=100;
+const int8 THIRTY_SECONDS=30*SECOND;
+const int8 MINUTE=60*SECOND;
 
-const int BA_FPGA1_U1=0XA110; /* INPUT */
-const int BA_FPGA3_U1=0XA910; /* OUTPUT */
+const int8 BA_FPGA1_U1=0XA110; /* INPUT */
+const int8 BA_FPGA3_U1=0XA910; /* OUTPUT */
 
 input  INPUTS 0 0 8; 
 output OUTPUTS 0 0 8; 

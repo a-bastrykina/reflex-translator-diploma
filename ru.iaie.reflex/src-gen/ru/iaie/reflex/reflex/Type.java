@@ -51,14 +51,14 @@ public enum Type implements Enumerator
   DOUBLE(2, "DOUBLE", "double"),
 
   /**
-   * The '<em><b>INT8 S</b></em>' literal object.
+   * The '<em><b>INT8</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #INT8_S_VALUE
+   * @see #INT8_VALUE
    * @generated
    * @ordered
    */
-  INT8_S(3, "INT8_S", "int8"),
+  INT8(3, "INT8", "int8"),
 
   /**
    * The '<em><b>INT8 U</b></em>' literal object.
@@ -71,14 +71,14 @@ public enum Type implements Enumerator
   INT8_U(4, "INT8_U", "uint8"),
 
   /**
-   * The '<em><b>INT16 S</b></em>' literal object.
+   * The '<em><b>INT16</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #INT16_S_VALUE
+   * @see #INT16_VALUE
    * @generated
    * @ordered
    */
-  INT16_S(5, "INT16_S", "int16"),
+  INT16(5, "INT16", "int16"),
 
   /**
    * The '<em><b>INT16 U</b></em>' literal object.
@@ -131,14 +131,14 @@ public enum Type implements Enumerator
   INT64_U(10, "INT64_U", "uint64"),
 
   /**
-   * The '<em><b>BOOL TYPE</b></em>' literal object.
+   * The '<em><b>BOOL</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BOOL_TYPE_VALUE
+   * @see #BOOL_VALUE
    * @generated
    * @ordered
    */
-  BOOL_TYPE(11, "BOOL_TYPE", "bool");
+  BOOL(11, "BOOL", "bool");
 
   /**
    * The '<em><b>VOID CTYPE</b></em>' literal value.
@@ -174,15 +174,15 @@ public enum Type implements Enumerator
   public static final int DOUBLE_VALUE = 2;
 
   /**
-   * The '<em><b>INT8 S</b></em>' literal value.
+   * The '<em><b>INT8</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #INT8_S
+   * @see #INT8
    * @model literal="int8"
    * @generated
    * @ordered
    */
-  public static final int INT8_S_VALUE = 3;
+  public static final int INT8_VALUE = 3;
 
   /**
    * The '<em><b>INT8 U</b></em>' literal value.
@@ -196,15 +196,15 @@ public enum Type implements Enumerator
   public static final int INT8_U_VALUE = 4;
 
   /**
-   * The '<em><b>INT16 S</b></em>' literal value.
+   * The '<em><b>INT16</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #INT16_S
+   * @see #INT16
    * @model literal="int16"
    * @generated
    * @ordered
    */
-  public static final int INT16_S_VALUE = 5;
+  public static final int INT16_VALUE = 5;
 
   /**
    * The '<em><b>INT16 U</b></em>' literal value.
@@ -262,15 +262,15 @@ public enum Type implements Enumerator
   public static final int INT64_U_VALUE = 10;
 
   /**
-   * The '<em><b>BOOL TYPE</b></em>' literal value.
+   * The '<em><b>BOOL</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BOOL_TYPE
+   * @see #BOOL
    * @model literal="bool"
    * @generated
    * @ordered
    */
-  public static final int BOOL_TYPE_VALUE = 11;
+  public static final int BOOL_VALUE = 11;
 
   /**
    * An array of all the '<em><b>Type</b></em>' enumerators.
@@ -284,15 +284,15 @@ public enum Type implements Enumerator
       VOID_CTYPE,
       FLOAT,
       DOUBLE,
-      INT8_S,
+      INT8,
       INT8_U,
-      INT16_S,
+      INT16,
       INT16_U,
       INT32,
       INT32_U,
       INT64,
       INT64_U,
-      BOOL_TYPE,
+      BOOL,
     };
 
   /**
@@ -360,15 +360,15 @@ public enum Type implements Enumerator
       case VOID_CTYPE_VALUE: return VOID_CTYPE;
       case FLOAT_VALUE: return FLOAT;
       case DOUBLE_VALUE: return DOUBLE;
-      case INT8_S_VALUE: return INT8_S;
+      case INT8_VALUE: return INT8;
       case INT8_U_VALUE: return INT8_U;
-      case INT16_S_VALUE: return INT16_S;
+      case INT16_VALUE: return INT16;
       case INT16_U_VALUE: return INT16_U;
       case INT32_VALUE: return INT32;
       case INT32_U_VALUE: return INT32_U;
       case INT64_VALUE: return INT64;
       case INT64_U_VALUE: return INT64_U;
-      case BOOL_TYPE_VALUE: return BOOL_TYPE;
+      case BOOL_VALUE: return BOOL;
     }
     return null;
   }

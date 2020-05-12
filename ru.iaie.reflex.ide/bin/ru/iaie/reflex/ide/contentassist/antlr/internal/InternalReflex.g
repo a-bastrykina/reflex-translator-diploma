@@ -2250,9 +2250,9 @@ rule__Type__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3()); }
+		{ before(grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3()); }
 		('int8')
-		{ after(grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3()); }
+		{ after(grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3()); }
 	)
 	|
 	(
@@ -2262,9 +2262,9 @@ rule__Type__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5()); }
+		{ before(grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5()); }
 		('int16')
-		{ after(grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5()); }
+		{ after(grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5()); }
 	)
 	|
 	(
@@ -2298,9 +2298,9 @@ rule__Type__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11()); }
+		{ before(grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11()); }
 		('bool')
-		{ after(grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11()); }
+		{ after(grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11()); }
 	)
 ;
 finally {

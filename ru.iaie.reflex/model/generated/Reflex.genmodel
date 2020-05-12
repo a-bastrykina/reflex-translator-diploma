@@ -65,15 +65,15 @@
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/VOID_C_TYPE"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/FLOAT"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/DOUBLE"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT8_S"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT8"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT8_U"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT16_S"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT16"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT16_U"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT32"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT32_U"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT64"/>
       <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/INT64_U"/>
-      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/BOOL_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Reflex.ecore#//Type/BOOL"/>
     </genEnums>
     <genClasses ecoreClass="Reflex.ecore#//Program">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/annotations"/>

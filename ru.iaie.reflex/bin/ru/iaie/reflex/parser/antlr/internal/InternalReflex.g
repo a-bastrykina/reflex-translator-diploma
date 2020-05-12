@@ -4300,8 +4300,8 @@ ruleType returns [Enumerator current=null]
 		(
 			enumLiteral_3='int8'
 			{
-				$current = grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3());
+				$current = grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3());
 			}
 		)
 		    |
@@ -4316,8 +4316,8 @@ ruleType returns [Enumerator current=null]
 		(
 			enumLiteral_5='int16'
 			{
-				$current = grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5());
+				$current = grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5());
 			}
 		)
 		    |
@@ -4364,8 +4364,8 @@ ruleType returns [Enumerator current=null]
 		(
 			enumLiteral_11='bool'
 			{
-				$current = grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_11, grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11());
+				$current = grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_11, grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11());
 			}
 		)
 	)

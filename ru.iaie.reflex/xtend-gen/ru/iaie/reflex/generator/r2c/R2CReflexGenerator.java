@@ -375,6 +375,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#define _gvar_h 1");
     _builder.newLine();
+    _builder.append("#include \"../lib/r_cnst.h\"");
+    _builder.newLine();
     String _generateVariables = this.generateVariables(resource, false);
     _builder.append(_generateVariables);
     _builder.newLineIfNotEmpty();
@@ -393,6 +395,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder_2.append("#ifndef _xvar_h");
     _builder_2.newLine();
     _builder_2.append("#define _xvar_h 1");
+    _builder_2.newLine();
+    _builder_2.append("#include \"../lib/r_cnst.h\"");
     _builder_2.newLine();
     String _generateVariables_1 = this.generateVariables(resource, true);
     _builder_2.append(_generateVariables_1);
@@ -566,7 +570,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Init_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);");
+    _builder.append("Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("for (;;) {");
@@ -591,7 +595,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("Output();");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("Prepare_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);");
+    _builder.append("Prepare_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
@@ -1227,7 +1231,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   public String translateType(final Type t) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(t);
+    String _name = t.getName();
+    _builder.append(_name);
     return _builder.toString();
   }
   

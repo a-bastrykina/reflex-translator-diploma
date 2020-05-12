@@ -8656,7 +8656,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     // InternalReflex.g:2253:3: ( 'int8' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3()); 
+                       before(grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3()); 
                     }
                     // InternalReflex.g:2254:3: ( 'int8' )
                     // InternalReflex.g:2254:4: 'int8'
@@ -8666,7 +8666,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3()); 
+                       after(grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3()); 
                     }
 
                     }
@@ -8706,7 +8706,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     // InternalReflex.g:2265:3: ( 'int16' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5()); 
+                       before(grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5()); 
                     }
                     // InternalReflex.g:2266:3: ( 'int16' )
                     // InternalReflex.g:2266:4: 'int16'
@@ -8716,7 +8716,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5()); 
+                       after(grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5()); 
                     }
 
                     }
@@ -8856,7 +8856,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     // InternalReflex.g:2301:3: ( 'bool' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11()); 
+                       before(grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11()); 
                     }
                     // InternalReflex.g:2302:3: ( 'bool' )
                     // InternalReflex.g:2302:4: 'bool'
@@ -8866,7 +8866,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11()); 
+                       after(grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11()); 
                     }
 
                     }

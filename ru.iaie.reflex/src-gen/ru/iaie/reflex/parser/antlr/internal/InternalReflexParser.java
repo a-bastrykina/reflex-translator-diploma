@@ -12464,8 +12464,8 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
                     enumLiteral_3=(Token)match(input,101,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-                      				newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getINT8_SEnumLiteralDeclaration_3());
+                      				current = grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+                      				newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getINT8EnumLiteralDeclaration_3());
                       			
                     }
 
@@ -12502,8 +12502,8 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
                     enumLiteral_5=(Token)match(input,103,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-                      				newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getINT16_SEnumLiteralDeclaration_5());
+                      				current = grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+                      				newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getINT16EnumLiteralDeclaration_5());
                       			
                     }
 
@@ -12616,8 +12616,8 @@ public class InternalReflexParser extends AbstractInternalAntlrParser {
                     enumLiteral_11=(Token)match(input,109,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
-                      				newLeafNode(enumLiteral_11, grammarAccess.getTypeAccess().getBOOL_TYPEEnumLiteralDeclaration_11());
+                      				current = grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+                      				newLeafNode(enumLiteral_11, grammarAccess.getTypeAccess().getBOOLEnumLiteralDeclaration_11());
                       			
                     }
 

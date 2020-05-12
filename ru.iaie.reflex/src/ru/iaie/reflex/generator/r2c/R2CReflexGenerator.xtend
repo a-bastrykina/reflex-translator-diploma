@@ -221,6 +221,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/* GVAR.H = Global Variables Image-File. */
 			#ifndef _gvar_h
 			#define _gvar_h 1
+			#include "../lib/r_cnst.h"
 			«generateVariables(resource, false)»
 			«generatePorts(resource, false)»
 			#endif
@@ -230,6 +231,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			/* xvar.h = Extern Variables Image-File. */
 			#ifndef _xvar_h
 			#define _xvar_h 1
+			#include "../lib/r_cnst.h"
 			«generateVariables(resource, true)»
 			«generatePorts(resource, true)»
 			#endif
@@ -310,14 +312,14 @@ class R2CReflexGenerator extends AbstractGenerator {
 			
 			void Control_Loop (void)    /* Control algorithm */
 			{
-				Init_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+				Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
 				for (;;) {
 					Input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
 					«ENDFOR»
 					Output();
-					Prepare_PSW((INT16S)(PROCESS_N1), (INT16S)PROCESS_Nn);
+					Prepare_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
 				}
 			}
 			
@@ -516,7 +518,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 	
 	def translateType(Type t) {
-		return '''«t»'''
+		return '''«t.getName()»'''
 	}
 	
 	def translateBoolLiteral(Boolean l) {

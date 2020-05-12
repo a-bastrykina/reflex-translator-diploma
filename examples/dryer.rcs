@@ -1,11 +1,11 @@
 program Dryer {
-	input inp 0x01 0x02 16;
+	input inp 0x01 0x02 8;
  	output out 0x03 0x04 16;
   	
   	const bool ON = 1;
   	const bool OFF = 0;
   	  	
-  	const int TIMEOUT = 6;
+  	const int8 TIMEOUT = 6;
   	
 	process Dryer {
 		bool hands_under_dryer = inp[1];

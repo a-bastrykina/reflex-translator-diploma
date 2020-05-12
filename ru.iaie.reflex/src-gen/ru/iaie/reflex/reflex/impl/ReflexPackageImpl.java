@@ -2833,15 +2833,15 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     addEEnumLiteral(typeEEnum, Type.VOID_CTYPE);
     addEEnumLiteral(typeEEnum, Type.FLOAT);
     addEEnumLiteral(typeEEnum, Type.DOUBLE);
-    addEEnumLiteral(typeEEnum, Type.INT8_S);
+    addEEnumLiteral(typeEEnum, Type.INT8);
     addEEnumLiteral(typeEEnum, Type.INT8_U);
-    addEEnumLiteral(typeEEnum, Type.INT16_S);
+    addEEnumLiteral(typeEEnum, Type.INT16);
     addEEnumLiteral(typeEEnum, Type.INT16_U);
     addEEnumLiteral(typeEEnum, Type.INT32);
     addEEnumLiteral(typeEEnum, Type.INT32_U);
     addEEnumLiteral(typeEEnum, Type.INT64);
     addEEnumLiteral(typeEEnum, Type.INT64_U);
-    addEEnumLiteral(typeEEnum, Type.BOOL_TYPE);
+    addEEnumLiteral(typeEEnum, Type.BOOL);
 
     // Create resource
     createResource(eNS_URI);
