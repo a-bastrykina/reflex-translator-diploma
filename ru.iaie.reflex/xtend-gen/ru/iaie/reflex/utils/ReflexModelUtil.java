@@ -25,6 +25,7 @@ import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
+import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ProcessVariable;
@@ -36,6 +37,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
+import ru.iaie.reflex.utils.LiteralUtils;
 
 @SuppressWarnings("all")
 public class ReflexModelUtil {
@@ -194,6 +196,22 @@ public class ReflexModelUtil {
       }
     }
     return null;
+  }
+  
+  public static Type getSuitableTypeForPort(final Port p) {
+    long _parseInteger = LiteralUtils.parseInteger(p.getSize());
+    boolean _matched = false;
+    if (Objects.equal(_parseInteger, 8)) {
+      _matched=true;
+      return Type.INT8;
+    }
+    if (!_matched) {
+      if (Objects.equal(_parseInteger, 16)) {
+        _matched=true;
+        return Type.INT16;
+      }
+    }
+    throw new IllegalStateException();
   }
   
   public static boolean containsReferencesOfType(final EObject context, final EObject target, final EReference refType) {

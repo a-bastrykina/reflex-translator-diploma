@@ -25,6 +25,8 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.PortMapping
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.Const
+import ru.iaie.reflex.reflex.Port
+import ru.iaie.reflex.utils.LiteralUtils
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -134,6 +136,14 @@ class ReflexModelUtil {
 				// TODO: decide which type must enum members have
 				return Type.INT32_U
 		}
+	}
+	
+	def static Type getSuitableTypeForPort(Port p) {
+		switch (LiteralUtils.parseInteger(p.size)) {
+			case 8: return Type.INT8
+			case 16: return Type.INT16
+			default: throw new IllegalStateException()
+		} 
 	}
 
 	def static boolean containsReferencesOfType(EObject context, EObject target, EReference refType) {

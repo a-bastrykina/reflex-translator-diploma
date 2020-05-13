@@ -35,6 +35,7 @@ import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariableList;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Port;
+import ru.iaie.reflex.reflex.PortMapping;
 import ru.iaie.reflex.reflex.PortType;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
@@ -46,6 +47,7 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
+import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.typing.TypeWarning;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.LiteralUtils;
@@ -518,6 +520,76 @@ public class ReflexValidator extends AbstractReflexValidator {
       if (_t instanceof IllegalStateException) {
       } else {
         throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  @Check
+  public void checkConstAssignType(final Const const_) {
+    final Type assignType = ExpressionUtil.resolveType(const_.getValue());
+    Type _type = const_.getType();
+    boolean _notEquals = (!Objects.equal(assignType, _type));
+    if (_notEquals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Constant type ");
+      Type _type_1 = const_.getType();
+      _builder.append(_type_1);
+      _builder.append(" is not compitable with assigned value type ");
+      _builder.append(assignType);
+      this.warning(_builder.toString(), ReflexValidator.ePackage.getConst_Name());
+    }
+  }
+  
+  @Check
+  public void checkEnumMemberAssignType(final EnumMember em) {
+    final Type assignType = ExpressionUtil.resolveType(em.getValue());
+    boolean _notEquals = (!Objects.equal(assignType, Type.INT32_U));
+    if (_notEquals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Enum member type ");
+      _builder.append(Type.INT32_U);
+      _builder.append(" is not compitable with assigned value type ");
+      _builder.append(assignType);
+      this.warning(_builder.toString(), ReflexValidator.ePackage.getEnumMember_Name());
+    }
+  }
+  
+  @Check
+  public void checkPhysicalVariableType(final PhysicalVariable physVar) {
+    final PortMapping mapping = physVar.getMapping();
+    boolean _isFullMapping = ReflexModelUtil.isFullMapping(mapping);
+    if (_isFullMapping) {
+      try {
+        final Type expectedType = ReflexModelUtil.getSuitableTypeForPort(mapping.getPort());
+        Type _type = physVar.getType();
+        boolean _notEquals = (!Objects.equal(expectedType, _type));
+        if (_notEquals) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Variable mapped on port ");
+          String _name = mapping.getPort().getName();
+          _builder.append(_name);
+          _builder.append(" should have ");
+          _builder.append(expectedType);
+          _builder.append(" type");
+          this.warning(_builder.toString(), 
+            ReflexValidator.ePackage.getPhysicalVariable_Type());
+        }
+      } catch (final Throwable _t) {
+        if (_t instanceof IllegalStateException) {
+          return;
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+    } else {
+      Type _type = physVar.getType();
+      boolean _notEquals = (!Objects.equal(_type, Type.BOOL));
+      if (_notEquals) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("One bit mapped variables should be only ");
+        _builder.append(Type.BOOL);
+        _builder.append(" type");
+        this.warning(_builder.toString(), ReflexValidator.ePackage.getPhysicalVariable_Type());
       }
     }
   }

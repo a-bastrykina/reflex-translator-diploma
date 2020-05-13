@@ -9,7 +9,6 @@ import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.Process
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
-import static extension ru.iaie.reflex.typing.TypeUtils.*
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.ErrorStat
@@ -36,28 +35,9 @@ import ru.iaie.reflex.reflex.PortType
 import ru.iaie.reflex.reflex.Port
 import ru.iaie.reflex.utils.LiteralUtils
 import ru.iaie.reflex.reflex.Expression
-import ru.iaie.reflex.reflex.Type
-import ru.iaie.reflex.reflex.InfixOp
-import ru.iaie.reflex.reflex.PostfixOp
-import ru.iaie.reflex.reflex.FunctionCall
-import ru.iaie.reflex.reflex.IdReference
-import ru.iaie.reflex.reflex.PrimaryExpression
-import ru.iaie.reflex.reflex.CastExpression
-import ru.iaie.reflex.reflex.UnaryExpression
-import ru.iaie.reflex.reflex.MultiplicativeExpression
-import ru.iaie.reflex.reflex.AdditiveExpression
-import ru.iaie.reflex.reflex.CheckStateExpression
-import ru.iaie.reflex.reflex.ShiftExpression
-import ru.iaie.reflex.reflex.CompareExpression
-import ru.iaie.reflex.reflex.EqualityExpression
-import ru.iaie.reflex.reflex.BitAndExpression
-import ru.iaie.reflex.reflex.BitXorExpression
-import ru.iaie.reflex.reflex.BitOrExpression
-import ru.iaie.reflex.reflex.LogicalAndExpression
-import ru.iaie.reflex.reflex.LogicalOrExpression
-import org.eclipse.emf.ecore.EStructuralFeature
 import ru.iaie.reflex.typing.TypeWarning
 import java.util.List
+import ru.iaie.reflex.reflex.Type
 
 /** 
  * This class contains custom validation rules. 
@@ -327,6 +307,40 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 		} catch (IllegalStateException e) {
 			// Ignore
+		}
+	}
+	
+	@Check def void checkConstAssignType(Const const) {
+		val assignType = const.value.resolveType
+		if (assignType != const.type) {
+			warning('''Constant type «const.type» is not compitable with assigned value type «assignType»''', ePackage.const_Name)
+		}
+	}
+	
+	@Check def void checkEnumMemberAssignType(EnumMember em) {
+		val assignType = em.value.resolveType
+		// todo: determine type for enum
+		if (assignType != Type.INT32_U) {
+			warning('''Enum member type «Type.INT32_U» is not compitable with assigned value type «assignType»''', ePackage.enumMember_Name)
+		}
+	}
+	
+	@Check def void checkPhysicalVariableType(PhysicalVariable physVar) {
+		val mapping = physVar.mapping
+		if (mapping.isFullMapping) {
+			try {
+				val expectedType = mapping.port.suitableTypeForPort
+				if (expectedType != physVar.type) {
+					warning('''Variable mapped on port «mapping.port.name» should have «expectedType» type''',
+						ePackage.physicalVariable_Type)
+				}
+			} catch (IllegalStateException e) {
+				return;
+			// Ignore
+			}
+		} else {
+			if (physVar.type != Type.BOOL)
+				warning('''One bit mapped variables should be only «Type.BOOL» type''', ePackage.physicalVariable_Type)
 		}
 	}
 }
