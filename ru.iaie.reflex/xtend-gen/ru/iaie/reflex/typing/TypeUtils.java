@@ -1,4 +1,4 @@
-package ru.iaie.reflex.utils;
+package ru.iaie.reflex.typing;
 
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;

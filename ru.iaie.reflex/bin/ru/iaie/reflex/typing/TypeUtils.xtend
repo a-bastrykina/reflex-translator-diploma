@@ -1,4 +1,4 @@
-package ru.iaie.reflex.utils
+package ru.iaie.reflex.typing
 
 import ru.iaie.reflex.reflex.Type
 import java.util.Set

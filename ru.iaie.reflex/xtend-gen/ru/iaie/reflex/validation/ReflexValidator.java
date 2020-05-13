@@ -7,6 +7,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import org.eclipse.emf.common.util.EList;
@@ -22,51 +23,33 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AssignmentExpression;
-import ru.iaie.reflex.reflex.BitAndExpression;
-import ru.iaie.reflex.reflex.BitOrExpression;
-import ru.iaie.reflex.reflex.BitXorExpression;
-import ru.iaie.reflex.reflex.CastExpression;
-import ru.iaie.reflex.reflex.CheckStateExpression;
-import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
-import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
-import ru.iaie.reflex.reflex.FunctionCall;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.IfElseStat;
 import ru.iaie.reflex.reflex.ImportedVariableList;
-import ru.iaie.reflex.reflex.InfixOp;
-import ru.iaie.reflex.reflex.LogicalAndExpression;
-import ru.iaie.reflex.reflex.LogicalOrExpression;
-import ru.iaie.reflex.reflex.MultiplicativeExpression;
 import ru.iaie.reflex.reflex.PhysicalVariable;
 import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.PortType;
-import ru.iaie.reflex.reflex.PostfixOp;
-import ru.iaie.reflex.reflex.PrimaryExpression;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SetStateStat;
-import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
-import ru.iaie.reflex.reflex.Type;
-import ru.iaie.reflex.reflex.UnaryExpression;
+import ru.iaie.reflex.typing.TypeWarning;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.LiteralUtils;
 import ru.iaie.reflex.utils.ReflexModelUtil;
-import ru.iaie.reflex.utils.TypeUtils;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
 
 /**
@@ -526,209 +509,16 @@ public class ReflexValidator extends AbstractReflexValidator {
   @Check
   public void validateTypes(final Expression expr) {
     try {
-      this.doTypeValidation(expr);
+      final List<TypeWarning> warnings = CollectionLiterals.<TypeWarning>newArrayList();
+      ExpressionUtil.resolveType(expr, warnings);
+      for (final TypeWarning typeWarning : warnings) {
+        this.warning(typeWarning.message, typeWarning.expression, null);
+      }
     } catch (final Throwable _t) {
       if (_t instanceof IllegalStateException) {
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
     }
-  }
-  
-  public Type doTypeValidation(final EObject expr) {
-    Type _switchResult = null;
-    boolean _matched = false;
-    if (expr instanceof InfixOp) {
-      _matched=true;
-      return this.doTypeValidation(((InfixOp)expr).getRef());
-    }
-    if (!_matched) {
-      if (expr instanceof PostfixOp) {
-        _matched=true;
-        return this.doTypeValidation(((PostfixOp)expr).getRef());
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof FunctionCall) {
-        _matched=true;
-        return ((FunctionCall)expr).getFunction().getReturnType();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof IdReference) {
-        _matched=true;
-        return ReflexModelUtil.resolveType(((IdReference)expr));
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof PrimaryExpression) {
-        _matched=true;
-        boolean _isNestedExpr = ExpressionUtil.isNestedExpr(((PrimaryExpression)expr));
-        if (_isNestedExpr) {
-          return this.doTypeValidation(((PrimaryExpression)expr).getNestedExpr());
-        }
-        boolean _isBoolean = ExpressionUtil.isBoolean(((PrimaryExpression)expr));
-        if (_isBoolean) {
-          return Type.BOOL;
-        }
-        boolean _isReference = ExpressionUtil.isReference(((PrimaryExpression)expr));
-        if (_isReference) {
-          return this.doTypeValidation(((PrimaryExpression)expr).getReference());
-        }
-        boolean _isInteger = ExpressionUtil.isInteger(((PrimaryExpression)expr));
-        if (_isInteger) {
-          return Type.INT32;
-        }
-        boolean _isFloating = ExpressionUtil.isFloating(((PrimaryExpression)expr));
-        if (_isFloating) {
-          return Type.FLOAT;
-        }
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof UnaryExpression) {
-        _matched=true;
-        return this.doTypeValidation(((UnaryExpression)expr).getRight());
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof CastExpression) {
-        _matched=true;
-        final Type fromType = this.doTypeValidation(((CastExpression)expr).getRight());
-        boolean _canBeSafelyCastedTo = TypeUtils.canBeSafelyCastedTo(fromType, ((CastExpression)expr).getType());
-        boolean _not = (!_canBeSafelyCastedTo);
-        if (_not) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Cast from ");
-          _builder.append(fromType);
-          _builder.append(" to ");
-          Type _type = ((CastExpression)expr).getType();
-          _builder.append(_type);
-          _builder.append(" is not safe");
-          this.warning(_builder.toString(), expr, null);
-        }
-        return ((CastExpression)expr).getType();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof CheckStateExpression) {
-        _matched=true;
-        return Type.BOOL;
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof AssignmentExpression) {
-        _matched=true;
-        boolean _hasAssignment = ExpressionUtil.hasAssignment(((AssignmentExpression)expr));
-        if (_hasAssignment) {
-          final Type assignType = this.doTypeValidation(((AssignmentExpression)expr).getAssignVar());
-          final Type valueType = this.doTypeValidation(((AssignmentExpression)expr).getExpr());
-          boolean _notEquals = (!Objects.equal(assignType, valueType));
-          if (_notEquals) {
-            StringConcatenation _builder = new StringConcatenation();
-            _builder.append("Assign variable type ");
-            _builder.append(assignType);
-            _builder.append(" is incompitable with assigned expression type ");
-            _builder.append(valueType);
-            this.warning(_builder.toString(), expr, ReflexValidator.ePackage.getAssignmentExpression_AssignVar());
-          }
-          return assignType;
-        }
-        return this.doTypeValidation(((AssignmentExpression)expr).getExpr());
-      }
-    }
-    if (!_matched) {
-      _switchResult = this.validateBinaryExpressinType(expr);
-    }
-    return _switchResult;
-  }
-  
-  public Type validateBinaryExpressinType(final EObject expr) {
-    EObject left = null;
-    EObject right = null;
-    boolean _matched = false;
-    if (expr instanceof MultiplicativeExpression) {
-      _matched=true;
-      left = ((MultiplicativeExpression)expr).getLeft();
-      right = ((MultiplicativeExpression)expr).getRight();
-    }
-    if (!_matched) {
-      if (expr instanceof AdditiveExpression) {
-        _matched=true;
-        left = ((AdditiveExpression)expr).getLeft();
-        right = ((AdditiveExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof ShiftExpression) {
-        _matched=true;
-        left = ((ShiftExpression)expr).getLeft();
-        right = ((ShiftExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof CompareExpression) {
-        _matched=true;
-        left = ((CompareExpression)expr).getLeft();
-        right = ((CompareExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof EqualityExpression) {
-        _matched=true;
-        left = ((EqualityExpression)expr).getLeft();
-        right = ((EqualityExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof BitAndExpression) {
-        _matched=true;
-        left = ((BitAndExpression)expr).getLeft();
-        right = ((BitAndExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof BitXorExpression) {
-        _matched=true;
-        left = ((BitXorExpression)expr).getLeft();
-        right = ((BitXorExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof BitOrExpression) {
-        _matched=true;
-        left = ((BitOrExpression)expr).getLeft();
-        right = ((BitOrExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof LogicalAndExpression) {
-        _matched=true;
-        left = ((LogicalAndExpression)expr).getLeft();
-        right = ((LogicalAndExpression)expr).getRight();
-      }
-    }
-    if (!_matched) {
-      if (expr instanceof LogicalOrExpression) {
-        _matched=true;
-        left = ((LogicalOrExpression)expr).getLeft();
-        right = ((LogicalOrExpression)expr).getRight();
-      }
-    }
-    if (((left == null) || (right == null))) {
-      throw new IllegalStateException();
-    }
-    final Type leftType = this.doTypeValidation(left);
-    final Type rightType = this.doTypeValidation(right);
-    boolean _notEquals = (!Objects.equal(leftType, rightType));
-    if (_notEquals) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Incompitable types in expression: ");
-      _builder.append(leftType);
-      _builder.append(" and ");
-      _builder.append(rightType);
-      this.warning(_builder.toString(), expr, null);
-    }
-    return leftType;
   }
 }

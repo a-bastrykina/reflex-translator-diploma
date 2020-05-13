@@ -9,7 +9,7 @@ import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.Process
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
-import static extension ru.iaie.reflex.utils.TypeUtils.*
+import static extension ru.iaie.reflex.typing.TypeUtils.*
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.ErrorStat
@@ -56,6 +56,8 @@ import ru.iaie.reflex.reflex.BitOrExpression
 import ru.iaie.reflex.reflex.LogicalAndExpression
 import ru.iaie.reflex.reflex.LogicalOrExpression
 import org.eclipse.emf.ecore.EStructuralFeature
+import ru.iaie.reflex.typing.TypeWarning
+import java.util.List
 
 /** 
  * This class contains custom validation rules. 
@@ -318,121 +320,13 @@ class ReflexValidator extends AbstractReflexValidator {
 
 	@Check def void validateTypes(Expression expr) {
 		try {
-			doTypeValidation(expr)
+			val List<TypeWarning> warnings = newArrayList()
+			expr.resolveType(warnings)
+			for (typeWarning : warnings) {
+				warning(typeWarning.message, typeWarning.expression, null)
+			}
 		} catch (IllegalStateException e) {
 			// Ignore
 		}
-	}
-
-	def Type doTypeValidation(EObject expr) {
-		switch (expr) {
-			InfixOp:
-				return doTypeValidation(expr.ref)
-			PostfixOp:
-				return doTypeValidation(expr.ref)
-			FunctionCall:
-				return expr.function.returnType
-			IdReference:
-				return expr.resolveType
-			PrimaryExpression: {
-				if(expr.isNestedExpr) return doTypeValidation(expr.nestedExpr)
-				if (expr.isBoolean) {
-					return Type.BOOL
-				}
-				if (expr.isReference) {
-					return doTypeValidation(expr.reference)
-				}
-				if (expr.isInteger) {
-					return Type.INT32
-				}
-				if (expr.isFloating) {
-					return Type.FLOAT
-				}
-			}
-			UnaryExpression:
-				return doTypeValidation(expr.right)
-			CastExpression: {
-				// Allow all casts for now
-				val fromType = doTypeValidation(expr.right)
-				if (!fromType.canBeSafelyCastedTo(expr.type)) {
-					warning('''Cast from «fromType» to «expr.type» is not safe''', expr, null)
-				}
-				return expr.type
-				
-			}
-			CheckStateExpression:
-				return Type.BOOL
-			AssignmentExpression: {
-				if (expr.hasAssignment) {
-					val assignType = doTypeValidation(expr.assignVar)
-					val valueType = doTypeValidation(expr.expr)
-					if (assignType != valueType) {
-						warning('''Assign variable type «assignType» is incompitable with assigned expression type «valueType»''',
-							expr, ePackage.assignmentExpression_AssignVar)
-					}
-					return assignType
-				}
-				return doTypeValidation(expr.expr)
-			}
-			default:
-				validateBinaryExpressinType(expr)
-		}
-	}
-
-	def validateBinaryExpressinType(EObject expr) {
-		var EObject left
-		var EObject right
-		switch (expr) {
-			MultiplicativeExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			AdditiveExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			ShiftExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			CompareExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			EqualityExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			BitAndExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			BitXorExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			BitOrExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			LogicalAndExpression: {
-				left = expr.left
-				right = expr.right
-			}
-			LogicalOrExpression: {
-				left = expr.left
-				right = expr.right
-			}
-		}
-		if (left === null || right === null) {
-			// This only may happen during real-time source code editing 
-			// This means that code is syntactically incorrect 
-			throw new IllegalStateException();
-		}
-		val leftType = doTypeValidation(left)
-		val rightType = doTypeValidation(right)
-		if (leftType != rightType)
-			warning('''Incompitable types in expression: «leftType» and «rightType»''', expr, null)
-		return leftType
 	}
 }
