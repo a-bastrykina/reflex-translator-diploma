@@ -148,11 +148,4 @@ class ReflexModelUtil {
 		return !refered.empty
 	}
 
-//	def static boolean isCType(Type type) {
-//		return type.name != Types.BOOL_TYPE
-//	}
-//
-//	def static hasModifier(Type type) {
-//		return type.sign !== null
-//	}
 }

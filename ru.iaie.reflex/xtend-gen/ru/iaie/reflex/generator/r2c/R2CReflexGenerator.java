@@ -94,6 +94,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    resource.getContents();
     this.copyResources(this.program.getName().toLowerCase(), fsa);
     this.generateVariables(resource, fsa, context);
     this.generateConstantsFile(resource, fsa, context);

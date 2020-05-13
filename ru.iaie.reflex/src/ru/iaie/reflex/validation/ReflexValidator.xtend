@@ -372,8 +372,6 @@ class ReflexValidator extends AbstractReflexValidator {
 	def validateBinaryExpressinType(EObject expr) {
 		var EObject left
 		var EObject right
-//			var EStructuralFeature leftRef
-//			var EStructuralFeature rightRef
 		switch (expr) {
 			MultiplicativeExpression: {
 				left = expr.left

@@ -81,6 +81,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		resource.contents
 		copyResources(program.name.toLowerCase, fsa)
 		generateVariables(resource, fsa, context)
 		generateConstantsFile(resource, fsa, context)
