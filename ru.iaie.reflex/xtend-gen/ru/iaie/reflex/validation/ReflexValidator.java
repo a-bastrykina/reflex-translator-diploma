@@ -17,6 +17,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -65,6 +66,7 @@ import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.LiteralUtils;
 import ru.iaie.reflex.utils.ReflexModelUtil;
+import ru.iaie.reflex.utils.TypeUtils;
 import ru.iaie.reflex.validation.AbstractReflexValidator;
 
 /**
@@ -522,8 +524,15 @@ public class ReflexValidator extends AbstractReflexValidator {
   }
   
   @Check
-  public void validateTypes(final Expression e) {
-    this.doTypeValidation(e);
+  public void validateTypes(final Expression expr) {
+    try {
+      this.doTypeValidation(expr);
+    } catch (final Throwable _t) {
+      if (_t instanceof IllegalStateException) {
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   public Type doTypeValidation(final EObject expr) {
@@ -585,6 +594,19 @@ public class ReflexValidator extends AbstractReflexValidator {
     if (!_matched) {
       if (expr instanceof CastExpression) {
         _matched=true;
+        final Type fromType = this.doTypeValidation(((CastExpression)expr).getRight());
+        boolean _canBeSafelyCastedTo = TypeUtils.canBeSafelyCastedTo(fromType, ((CastExpression)expr).getType());
+        boolean _not = (!_canBeSafelyCastedTo);
+        if (_not) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Cast from ");
+          _builder.append(fromType);
+          _builder.append(" to ");
+          Type _type = ((CastExpression)expr).getType();
+          _builder.append(_type);
+          _builder.append(" is not safe");
+          this.warning(_builder.toString(), expr, null);
+        }
         return ((CastExpression)expr).getType();
       }
     }
@@ -692,6 +714,9 @@ public class ReflexValidator extends AbstractReflexValidator {
         left = ((LogicalOrExpression)expr).getLeft();
         right = ((LogicalOrExpression)expr).getRight();
       }
+    }
+    if (((left == null) || (right == null))) {
+      throw new IllegalStateException();
     }
     final Type leftType = this.doTypeValidation(left);
     final Type rightType = this.doTypeValidation(right);

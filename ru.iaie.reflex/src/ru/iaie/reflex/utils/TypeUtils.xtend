@@ -30,7 +30,7 @@ class TypeUtils {
 		return !isUnsigned(type)
 	}
 	
-	def static boolean canBeCastedTo(Type from, Type to) {
+	def static boolean canBeSafelyCastedTo(Type from, Type to) {
 		return ALLOWED_CASTS.contains(from -> to)
 	}
 }

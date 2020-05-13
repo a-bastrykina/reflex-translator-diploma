@@ -34,7 +34,7 @@ public class TypeUtils {
     return (!_isUnsigned);
   }
   
-  public static boolean canBeCastedTo(final Type from, final Type to) {
+  public static boolean canBeSafelyCastedTo(final Type from, final Type to) {
     Pair<Type, Type> _mappedTo = Pair.<Type, Type>of(from, to);
     return TypeUtils.ALLOWED_CASTS.contains(_mappedTo);
   }

@@ -9,6 +9,7 @@ import ru.iaie.reflex.reflex.SetStateStat
 import ru.iaie.reflex.reflex.Process
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
+import static extension ru.iaie.reflex.utils.TypeUtils.*
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.ErrorStat
@@ -315,8 +316,12 @@ class ReflexValidator extends AbstractReflexValidator {
 		}
 	}
 
-	@Check def void validateTypes(Expression e) {
-		doTypeValidation(e)
+	@Check def void validateTypes(Expression expr) {
+		try {
+			doTypeValidation(expr)
+		} catch (IllegalStateException e) {
+			// Ignore
+		}
 	}
 
 	def Type doTypeValidation(EObject expr) {
@@ -330,7 +335,6 @@ class ReflexValidator extends AbstractReflexValidator {
 			IdReference:
 				return expr.resolveType
 			PrimaryExpression: {
-				// todo: extension method PrimaryExpression.resolveType
 				if(expr.isNestedExpr) return doTypeValidation(expr.nestedExpr)
 				if (expr.isBoolean) {
 					return Type.BOOL
@@ -347,9 +351,15 @@ class ReflexValidator extends AbstractReflexValidator {
 			}
 			UnaryExpression:
 				return doTypeValidation(expr.right)
-			CastExpression:
+			CastExpression: {
 				// Allow all casts for now
+				val fromType = doTypeValidation(expr.right)
+				if (!fromType.canBeSafelyCastedTo(expr.type)) {
+					warning('''Cast from «fromType» to «expr.type» is not safe''', expr, null)
+				}
 				return expr.type
+				
+			}
 			CheckStateExpression:
 				return Type.BOOL
 			AssignmentExpression: {
@@ -413,6 +423,11 @@ class ReflexValidator extends AbstractReflexValidator {
 				left = expr.left
 				right = expr.right
 			}
+		}
+		if (left === null || right === null) {
+			// This only may happen during real-time source code editing 
+			// This means that code is syntactically incorrect 
+			throw new IllegalStateException();
 		}
 		val leftType = doTypeValidation(left)
 		val rightType = doTypeValidation(right)
