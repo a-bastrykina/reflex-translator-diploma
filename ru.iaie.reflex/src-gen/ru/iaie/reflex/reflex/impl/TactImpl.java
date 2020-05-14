@@ -21,7 +21,8 @@ import ru.iaie.reflex.reflex.Tact;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TactImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TactImpl#getIntValue <em>Int Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TactImpl#getTimeValue <em>Time Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +30,44 @@ import ru.iaie.reflex.reflex.Tact;
 public class TactImpl extends MinimalEObjectImpl.Container implements Tact
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The default value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getIntValue()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
+  protected static final String INT_VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getIntValue()
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected String intValue = INT_VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTimeValue() <em>Time Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTimeValue()
+   * @generated
+   * @ordered
+   */
+  protected static final String TIME_VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTimeValue() <em>Time Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTimeValue()
+   * @generated
+   * @ordered
+   */
+  protected String timeValue = TIME_VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +96,9 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
    * @generated
    */
   @Override
-  public String getValue()
+  public String getIntValue()
   {
-    return value;
+    return intValue;
   }
 
   /**
@@ -86,12 +107,37 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
    * @generated
    */
   @Override
-  public void setValue(String newValue)
+  public void setIntValue(String newIntValue)
   {
-    String oldValue = value;
-    value = newValue;
+    String oldIntValue = intValue;
+    intValue = newIntValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TACT__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TACT__INT_VALUE, oldIntValue, intValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getTimeValue()
+  {
+    return timeValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTimeValue(String newTimeValue)
+  {
+    String oldTimeValue = timeValue;
+    timeValue = newTimeValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TACT__TIME_VALUE, oldTimeValue, timeValue));
   }
 
   /**
@@ -104,8 +150,10 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__VALUE:
-        return getValue();
+      case ReflexPackage.TACT__INT_VALUE:
+        return getIntValue();
+      case ReflexPackage.TACT__TIME_VALUE:
+        return getTimeValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +168,11 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__VALUE:
-        setValue((String)newValue);
+      case ReflexPackage.TACT__INT_VALUE:
+        setIntValue((String)newValue);
+        return;
+      case ReflexPackage.TACT__TIME_VALUE:
+        setTimeValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +188,11 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__VALUE:
-        setValue(VALUE_EDEFAULT);
+      case ReflexPackage.TACT__INT_VALUE:
+        setIntValue(INT_VALUE_EDEFAULT);
+        return;
+      case ReflexPackage.TACT__TIME_VALUE:
+        setTimeValue(TIME_VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +208,10 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case ReflexPackage.TACT__INT_VALUE:
+        return INT_VALUE_EDEFAULT == null ? intValue != null : !INT_VALUE_EDEFAULT.equals(intValue);
+      case ReflexPackage.TACT__TIME_VALUE:
+        return TIME_VALUE_EDEFAULT == null ? timeValue != null : !TIME_VALUE_EDEFAULT.equals(timeValue);
     }
     return super.eIsSet(featureID);
   }
@@ -171,8 +227,10 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (value: ");
-    result.append(value);
+    result.append(" (intValue: ");
+    result.append(intValue);
+    result.append(", timeValue: ");
+    result.append(timeValue);
     result.append(')');
     return result.toString();
   }

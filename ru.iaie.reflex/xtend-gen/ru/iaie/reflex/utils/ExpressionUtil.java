@@ -1,6 +1,5 @@
 package ru.iaie.reflex.utils;
 
-import com.google.common.base.Objects;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -37,6 +36,18 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ExpressionUtil {
+  public enum ExpressionType {
+    ARITHMETIC,
+    
+    LOGICAL,
+    
+    BIT,
+    
+    COMPARE,
+    
+    EQ;
+  }
+  
   public static boolean hasAssignment(final AssignmentExpression e) {
     IdReference _assignVar = e.getAssignVar();
     return (_assignVar != null);
@@ -197,17 +208,20 @@ public class ExpressionUtil {
   private static Type resolveBinaryExprType(final EObject expr, final List<TypeWarning> warnings) {
     EObject left = null;
     EObject right = null;
+    ExpressionUtil.ExpressionType exprType = null;
     boolean _matched = false;
     if (expr instanceof MultiplicativeExpression) {
       _matched=true;
       left = ((MultiplicativeExpression)expr).getLeft();
       right = ((MultiplicativeExpression)expr).getRight();
+      exprType = ExpressionUtil.ExpressionType.ARITHMETIC;
     }
     if (!_matched) {
       if (expr instanceof AdditiveExpression) {
         _matched=true;
         left = ((AdditiveExpression)expr).getLeft();
         right = ((AdditiveExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.ARITHMETIC;
       }
     }
     if (!_matched) {
@@ -215,6 +229,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((ShiftExpression)expr).getLeft();
         right = ((ShiftExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.BIT;
       }
     }
     if (!_matched) {
@@ -222,6 +237,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((CompareExpression)expr).getLeft();
         right = ((CompareExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.COMPARE;
       }
     }
     if (!_matched) {
@@ -229,6 +245,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((EqualityExpression)expr).getLeft();
         right = ((EqualityExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.EQ;
       }
     }
     if (!_matched) {
@@ -236,6 +253,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitAndExpression)expr).getLeft();
         right = ((BitAndExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.BIT;
       }
     }
     if (!_matched) {
@@ -243,6 +261,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitXorExpression)expr).getLeft();
         right = ((BitXorExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.BIT;
       }
     }
     if (!_matched) {
@@ -250,6 +269,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitOrExpression)expr).getLeft();
         right = ((BitOrExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.BIT;
       }
     }
     if (!_matched) {
@@ -257,6 +277,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((LogicalAndExpression)expr).getLeft();
         right = ((LogicalAndExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.LOGICAL;
       }
     }
     if (!_matched) {
@@ -264,6 +285,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((LogicalOrExpression)expr).getLeft();
         right = ((LogicalOrExpression)expr).getRight();
+        exprType = ExpressionUtil.ExpressionType.LOGICAL;
       }
     }
     if (((left == null) || (right == null))) {
@@ -271,16 +293,6 @@ public class ExpressionUtil {
     }
     final Type leftType = ExpressionUtil.resolveExprType(left, warnings);
     final Type rightType = ExpressionUtil.resolveExprType(right, warnings);
-    boolean _notEquals = (!Objects.equal(leftType, rightType));
-    if (_notEquals) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Incompitable types in expression: ");
-      _builder.append(leftType);
-      _builder.append(" and ");
-      _builder.append(rightType);
-      TypeWarning _typeWarning = new TypeWarning(_builder.toString(), expr);
-      warnings.add(_typeWarning);
-    }
     return leftType;
   }
   

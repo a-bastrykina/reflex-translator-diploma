@@ -301,25 +301,46 @@ ruleTact returns [EObject current=null]
 		}
 		(
 			(
-				lv_value_1_0=RULE_INTEGER
-				{
-					newLeafNode(lv_value_1_0, grammarAccess.getTactAccess().getValueINTEGERTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTactRule());
+				(
+					lv_intValue_1_0=RULE_INTEGER
+					{
+						newLeafNode(lv_intValue_1_0, grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"value",
-						lv_value_1_0,
-						"ru.iaie.reflex.Reflex.INTEGER");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTactRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"intValue",
+							lv_intValue_1_0,
+							"ru.iaie.reflex.Reflex.INTEGER");
+					}
+				)
+			)
+			    |
+			(
+				(
+					lv_timeValue_2_0=RULE_TIME
+					{
+						newLeafNode(lv_timeValue_2_0, grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTactRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"timeValue",
+							lv_timeValue_2_0,
+							"ru.iaie.reflex.Reflex.TIME");
+					}
+				)
 			)
 		)
-		otherlv_2=';'
+		otherlv_3=';'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getTactAccess().getSemicolonKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getTactAccess().getSemicolonKeyword_2());
 		}
 	)
 ;

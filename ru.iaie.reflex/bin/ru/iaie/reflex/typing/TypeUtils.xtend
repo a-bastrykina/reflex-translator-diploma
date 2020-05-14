@@ -9,7 +9,8 @@ class TypeUtils {
 	static val Set<Type> UNSIGNED_TYPES = newHashSet(Type.INT8_U, Type.INT16_U, Type.INT32_U, Type.INT64_U)
 	static val Set<Type> INT_TYPES = newHashSet(Type.INT8_U, Type.INT16_U, Type.INT32_U, Type.INT64_U, Type.INT8,
 		Type.INT16, Type.INT32, Type.INT64, Type.TIME)
-		
+	static val Set<Type> FLOAT_TYPES = newHashSet(Type.FLOAT, Type.DOUBLE);
+
 	static val Map<Type, Integer> TYPE_ORDER = newHashMap(
 		Type.BOOL     -> 0,
 		Type.INT8     -> 1,
@@ -24,6 +25,18 @@ class TypeUtils {
 		Type.FLOAT    -> 9,
 		Type.DOUBLE   -> 10
 	) 
+	
+	static val Map<Type, Integer> INT_TYPE_SIZES = newHashMap(
+		Type.INT8     -> 8,
+		Type.INT8_U   -> 8,
+		Type.INT16    -> 16,
+		Type.INT16_U  -> 16,
+		Type.INT32    -> 32,
+		Type.INT32_U  -> 32,
+		Type.TIME     -> 32,
+		Type.INT64    -> 64,
+		Type.INT64_U  -> 64
+	) 
 
 	def static boolean isUnsigned(Type type) {
 		return UNSIGNED_TYPES.contains(type)
@@ -31,6 +44,21 @@ class TypeUtils {
 
 	def static boolean isIntType(Type type) {
 		return INT_TYPES.contains(type)
+	}
+	
+	def static boolean isFloatType(Type type) {
+		return FLOAT_TYPES.contains(type)
+	}
+	
+	def static boolean isBoolType(Type type) {
+		return FLOAT_TYPES.contains(type)
+	}
+	
+	def static int getSize(Type type) {
+		if (isIntType(type)) {
+			return INT_TYPE_SIZES.get(type)
+		}
+		throw new IllegalArgumentException('''Type size is undefined for «type»''');
 	}
 
 	def static boolean isSigned(Type type) {
@@ -62,7 +90,23 @@ class TypeUtils {
 	}
 	
 	def static Type max(Type t1, Type t2) {
+		if (t1.isIntType && t2.isIntType) {
+			if (t1.size == t2.size) {
+				if (t1.signed) return t1;
+				if (t2.signed) return t2;
+			}
+		}
 		return (TYPE_ORDER.get(t1) >= TYPE_ORDER.get(t2)) ? t1 : t2;
+	}
+	
+	def static isCompitableInArithmeticExpression(Type t1, Type t2) {
+		if (t1.isIntType && t2.isIntType) return true;
+		if (t1.isFloatType && t2.isFloatType) return true;
+		if (t1.isBoolType && t2.isBoolType) return true;
+	}
+		
+	def static isCompitableInLogicalExpression(Type t1, Type t2) {
+		return true;
 	}
 	
 }

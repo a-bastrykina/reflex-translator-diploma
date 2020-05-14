@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Tact#getValue <em>Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getTact()
@@ -24,25 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Tact extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * Returns the value of the '<em><b>Int Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTact_Value()
+   * @return the value of the '<em>Int Value</em>' attribute.
+   * @see #setIntValue(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTact_IntValue()
    * @model
    * @generated
    */
-  String getValue();
+  String getIntValue();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Tact#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
+   * @param value the new value of the '<em>Int Value</em>' attribute.
+   * @see #getIntValue()
    * @generated
    */
-  void setValue(String value);
+  void setIntValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Time Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Time Value</em>' attribute.
+   * @see #setTimeValue(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTact_TimeValue()
+   * @model
+   * @generated
+   */
+  String getTimeValue();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Time Value</em>' attribute.
+   * @see #getTimeValue()
+   * @generated
+   */
+  void setTimeValue(String value);
 
 } // Tact

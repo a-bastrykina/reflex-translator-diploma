@@ -169,13 +169,22 @@ public interface ReflexPackage extends EPackage
   int TACT = 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Int Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TACT__VALUE = 0;
+  int TACT__INT_VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Time Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TACT__TIME_VALUE = 1;
 
   /**
    * The number of structural features of the '<em>Tact</em>' class.
@@ -184,7 +193,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TACT_FEATURE_COUNT = 1;
+  int TACT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ProcessImpl <em>Process</em>}' class.
@@ -2850,15 +2859,26 @@ public interface ReflexPackage extends EPackage
   EClass getTact();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Tact#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see ru.iaie.reflex.reflex.Tact#getValue()
+   * @return the meta object for the attribute '<em>Int Value</em>'.
+   * @see ru.iaie.reflex.reflex.Tact#getIntValue()
    * @see #getTact()
    * @generated
    */
-  EAttribute getTact_Value();
+  EAttribute getTact_IntValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Time Value</em>'.
+   * @see ru.iaie.reflex.reflex.Tact#getTimeValue()
+   * @see #getTact()
+   * @generated
+   */
+  EAttribute getTact_TimeValue();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Process <em>Process</em>}'.
@@ -4479,12 +4499,20 @@ public interface ReflexPackage extends EPackage
     EClass TACT = eINSTANCE.getTact();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Int Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TACT__VALUE = eINSTANCE.getTact_Value();
+    EAttribute TACT__INT_VALUE = eINSTANCE.getTact_IntValue();
+
+    /**
+     * The meta object literal for the '<em><b>Time Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TACT__TIME_VALUE = eINSTANCE.getTact_TimeValue();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ProcessImpl <em>Process</em>}' class.

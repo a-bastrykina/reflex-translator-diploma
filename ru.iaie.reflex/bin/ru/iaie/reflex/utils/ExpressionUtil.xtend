@@ -128,46 +128,57 @@ class ExpressionUtil {
 	private static def Type resolveBinaryExprType(EObject expr, List<TypeWarning> warnings) {
 		var EObject left
 		var EObject right
+		var ExpressionType exprType
 		switch (expr) {
 			MultiplicativeExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.ARITHMETIC
 			}
 			AdditiveExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.ARITHMETIC
 			}
 			ShiftExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.BIT
 			}
 			CompareExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.COMPARE
 			}
 			EqualityExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.EQ
 			}
 			BitAndExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.BIT
 			}
 			BitXorExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.BIT
 			}
 			BitOrExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.BIT
 			}
 			LogicalAndExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.LOGICAL
 			}
 			LogicalOrExpression: {
 				left = expr.left
 				right = expr.right
+				exprType = ExpressionType.LOGICAL
 			}
 		}
 		if (left === null || right === null) {
@@ -177,8 +188,11 @@ class ExpressionUtil {
 		}
 		val leftType = resolveExprType(left, warnings)
 		val rightType = resolveExprType(right, warnings)
-		if (leftType != rightType)
-			warnings.add(new TypeWarning('''Incompitable types in expression: «leftType» and «rightType»''', expr))
+		
+//		switch (exprType)
+//		
+//		if (leftType != rightType)
+//			warnings.add(new TypeWarning('''Incompitable types in expression: «leftType» and «rightType»''', expr))
 		return leftType
 	}
 
@@ -188,5 +202,9 @@ class ExpressionUtil {
 
 	static def Type resolveType(Expression expr) {
 		return resolveExprType(expr, newArrayList())
+	}
+	
+	enum ExpressionType {
+		ARITHMETIC, LOGICAL, BIT, COMPARE, EQ
 	}
 }

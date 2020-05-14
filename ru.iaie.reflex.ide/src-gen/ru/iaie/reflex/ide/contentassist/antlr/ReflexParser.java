@@ -32,6 +32,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, ReflexGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getProgramAccess().getAlternatives_5(), "rule__Program__Alternatives_5");
+			builder.put(grammarAccess.getTactAccess().getAlternatives_1(), "rule__Tact__Alternatives_1");
 			builder.put(grammarAccess.getProcessAccess().getAlternatives_4_0(), "rule__Process__Alternatives_4_0");
 			builder.put(grammarAccess.getAnnotationAccess().getAlternatives(), "rule__Annotation__Alternatives");
 			builder.put(grammarAccess.getAnnotationKeyAccess().getAlternatives(), "rule__AnnotationKey__Alternatives");
@@ -148,7 +149,8 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProgramAccess().getGlobalVarsAssignment_5_3(), "rule__Program__GlobalVarsAssignment_5_3");
 			builder.put(grammarAccess.getProgramAccess().getPortsAssignment_5_4(), "rule__Program__PortsAssignment_5_4");
 			builder.put(grammarAccess.getProgramAccess().getProcessesAssignment_5_5(), "rule__Program__ProcessesAssignment_5_5");
-			builder.put(grammarAccess.getTactAccess().getValueAssignment_1(), "rule__Tact__ValueAssignment_1");
+			builder.put(grammarAccess.getTactAccess().getIntValueAssignment_1_0(), "rule__Tact__IntValueAssignment_1_0");
+			builder.put(grammarAccess.getTactAccess().getTimeValueAssignment_1_1(), "rule__Tact__TimeValueAssignment_1_1");
 			builder.put(grammarAccess.getProcessAccess().getAnnotationsAssignment_0_1(), "rule__Process__AnnotationsAssignment_0_1");
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_2(), "rule__Process__NameAssignment_2");
 			builder.put(grammarAccess.getProcessAccess().getImportsAssignment_4_0_0(), "rule__Process__ImportsAssignment_4_0_0");

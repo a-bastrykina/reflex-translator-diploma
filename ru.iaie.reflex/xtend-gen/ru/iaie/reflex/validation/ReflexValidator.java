@@ -529,7 +529,7 @@ public class ReflexValidator extends AbstractReflexValidator {
   public void checkConstAssignType(final Const const_) {
     try {
       final Type assignType = ExpressionUtil.resolveType(const_.getValue());
-      boolean _canBeSafelySignedTo = TypeUtils.canBeSafelySignedTo(const_.getType(), assignType);
+      boolean _canBeSafelySignedTo = TypeUtils.canBeSafelySignedTo(assignType, const_.getType());
       boolean _not = (!_canBeSafelySignedTo);
       if (_not) {
         StringConcatenation _builder = new StringConcatenation();

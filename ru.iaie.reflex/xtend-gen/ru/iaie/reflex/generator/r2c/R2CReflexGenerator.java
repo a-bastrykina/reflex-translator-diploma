@@ -70,6 +70,7 @@ import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.utils.ExpressionUtil;
+import ru.iaie.reflex.utils.LiteralUtils;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
@@ -748,7 +749,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     {
       boolean _isClearTimeout = ReflexModelUtil.isClearTimeout(func);
       if (_isClearTimeout) {
-        return func.getTime();
+        return this.translateTime(func.getTime());
       }
       String _xifexpression = null;
       boolean _isReferencedTimeout = ReflexModelUtil.isReferencedTimeout(func);
@@ -1036,6 +1037,10 @@ public class R2CReflexGenerator extends AbstractGenerator {
         if (_isReference) {
           return this.translateExpr(((PrimaryExpression)expr).getReference());
         }
+        boolean _isTime = ExpressionUtil.isTime(((PrimaryExpression)expr));
+        if (_isTime) {
+          return this.translateTime(((PrimaryExpression)expr).getTime());
+        }
         return NodeModelUtils.getNode(expr).getText().trim();
       }
     }
@@ -1228,6 +1233,15 @@ public class R2CReflexGenerator extends AbstractGenerator {
       }
     }
     return null;
+  }
+  
+  public String translateTime(final String timeLiteral) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("(INT32_U) ");
+    long _parseTime = LiteralUtils.parseTime(timeLiteral);
+    _builder.append(_parseTime);
+    _builder.append("UL");
+    return _builder.toString();
   }
   
   public String translateType(final Type t) {

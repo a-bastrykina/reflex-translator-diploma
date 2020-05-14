@@ -314,7 +314,7 @@ class ReflexValidator extends AbstractReflexValidator {
 	@Check def void checkConstAssignType(Const const) {
 		try {
 			val assignType = const.value.resolveType
-			if (!const.type.canBeSafelySignedTo(assignType)) {
+			if (!assignType.canBeSafelySignedTo(const.type)) {
 				warning('''Constant type «const.type» is not compitable with assigned value type «assignType»''',
 					ePackage.const_Name)
 			}

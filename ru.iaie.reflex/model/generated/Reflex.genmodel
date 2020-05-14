@@ -88,7 +88,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/processes"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Tact">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/intValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/timeValue"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Process">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/annotations"/>

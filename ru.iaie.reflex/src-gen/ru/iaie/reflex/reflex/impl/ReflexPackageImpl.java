@@ -698,9 +698,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getTact_Value()
+  public EAttribute getTact_IntValue()
   {
     return (EAttribute)tactEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTact_TimeValue()
+  {
+    return (EAttribute)tactEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2308,7 +2319,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(programEClass, PROGRAM__PROCESSES);
 
     tactEClass = createEClass(TACT);
-    createEAttribute(tactEClass, TACT__VALUE);
+    createEAttribute(tactEClass, TACT__INT_VALUE);
+    createEAttribute(tactEClass, TACT__TIME_VALUE);
 
     processEClass = createEClass(PROCESS);
     createEReference(processEClass, PROCESS__ANNOTATIONS);
@@ -2582,7 +2594,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getProgram_Processes(), this.getProcess(), null, "processes", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTact_Value(), ecorePackage.getEString(), "value", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTact_IntValue(), ecorePackage.getEString(), "intValue", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTact_TimeValue(), ecorePackage.getEString(), "timeValue", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processEClass, ru.iaie.reflex.reflex.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcess_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

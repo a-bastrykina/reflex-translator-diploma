@@ -147,25 +147,37 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Tact");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cClockKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueINTEGERTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cIntValueAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cIntValueINTEGERTerminalRuleCall_1_0_0 = (RuleCall)cIntValueAssignment_1_0.eContents().get(0);
+		private final Assignment cTimeValueAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cTimeValueTIMETerminalRuleCall_1_1_0 = (RuleCall)cTimeValueAssignment_1_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Tact:
-		//	"clock" value=INTEGER ";";
+		//	"clock" (intValue=INTEGER | timeValue=TIME) ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"clock" value=INTEGER ";"
+		//"clock" (intValue=INTEGER | timeValue=TIME) ";"
 		public Group getGroup() { return cGroup; }
 		
 		//"clock"
 		public Keyword getClockKeyword_0() { return cClockKeyword_0; }
 		
-		//value=INTEGER
-		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		//(intValue=INTEGER | timeValue=TIME)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//intValue=INTEGER
+		public Assignment getIntValueAssignment_1_0() { return cIntValueAssignment_1_0; }
 		
 		//INTEGER
-		public RuleCall getValueINTEGERTerminalRuleCall_1_0() { return cValueINTEGERTerminalRuleCall_1_0; }
+		public RuleCall getIntValueINTEGERTerminalRuleCall_1_0_0() { return cIntValueINTEGERTerminalRuleCall_1_0_0; }
+		
+		//timeValue=TIME
+		public Assignment getTimeValueAssignment_1_1() { return cTimeValueAssignment_1_1; }
+		
+		//TIME
+		public RuleCall getTimeValueTIMETerminalRuleCall_1_1_0() { return cTimeValueTIMETerminalRuleCall_1_1_0; }
 		
 		//";"
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
@@ -3092,7 +3104,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Tact:
-	//	"clock" value=INTEGER ";";
+	//	"clock" (intValue=INTEGER | timeValue=TIME) ";";
 	public TactElements getTactAccess() {
 		return pTact;
 	}

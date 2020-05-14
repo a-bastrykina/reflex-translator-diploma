@@ -1232,16 +1232,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Tact returns Tact
 	 *
 	 * Constraint:
-	 *     value=INTEGER
+	 *     (intValue=INTEGER | timeValue=TIME)
 	 */
 	protected void sequence_Tact(ISerializationContext context, Tact semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.TACT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.TACT__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTactAccess().getValueINTEGERTerminalRuleCall_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

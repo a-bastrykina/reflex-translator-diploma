@@ -39,6 +39,7 @@ import ru.iaie.reflex.reflex.Type
 import ru.iaie.reflex.reflex.UnaryExpression
 
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
+import static extension ru.iaie.reflex.utils.LiteralUtils.*
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 
@@ -379,7 +380,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateTimeout(TimeoutFunction func) {
-		if(func.isClearTimeout) return func.time
+		if(func.isClearTimeout) return translateTime(func.time)
 		if(func.isReferencedTimeout) identifiersHelper.getMapping(func.ref);
 	}
 
@@ -482,6 +483,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 				if (expr.isReference) {
 					return translateExpr(expr.reference)
 				}
+				if (expr.isTime) {
+					return translateTime(expr.time)
+				}
 				return NodeModelUtils.getNode(expr).text.trim
 			}
 			UnaryExpression:
@@ -516,6 +520,10 @@ class R2CReflexGenerator extends AbstractGenerator {
 				return '''«translateExpr(expr.expr)»'''
 			}
 		}
+	}
+	
+	def translateTime(String timeLiteral) {
+		return '''(INT32_U) «timeLiteral.parseTime»UL'''
 	}
 	
 	def translateType(Type t) {
