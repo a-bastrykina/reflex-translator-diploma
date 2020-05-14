@@ -138,7 +138,17 @@ public enum Type implements Enumerator
    * @generated
    * @ordered
    */
-  BOOL(11, "BOOL", "bool");
+  BOOL(11, "BOOL", "bool"),
+
+  /**
+   * The '<em><b>TIME</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #TIME_VALUE
+   * @generated
+   * @ordered
+   */
+  TIME(12, "TIME", "time");
 
   /**
    * The '<em><b>VOID CTYPE</b></em>' literal value.
@@ -273,6 +283,17 @@ public enum Type implements Enumerator
   public static final int BOOL_VALUE = 11;
 
   /**
+   * The '<em><b>TIME</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #TIME
+   * @model literal="time"
+   * @generated
+   * @ordered
+   */
+  public static final int TIME_VALUE = 12;
+
+  /**
    * An array of all the '<em><b>Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -293,6 +314,7 @@ public enum Type implements Enumerator
       INT64,
       INT64_U,
       BOOL,
+      TIME,
     };
 
   /**
@@ -369,6 +391,7 @@ public enum Type implements Enumerator
       case INT64_VALUE: return INT64;
       case INT64_U_VALUE: return INT64_U;
       case BOOL_VALUE: return BOOL;
+      case TIME_VALUE: return TIME;
     }
     return null;
   }

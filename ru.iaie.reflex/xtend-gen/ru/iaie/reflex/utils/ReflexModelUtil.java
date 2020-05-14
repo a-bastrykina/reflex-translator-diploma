@@ -34,7 +34,6 @@ import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.utils.LiteralUtils;
@@ -61,7 +60,7 @@ public class ReflexModelUtil {
   }
   
   public static boolean isClearTimeout(final TimeoutFunction f) {
-    Time _time = f.getTime();
+    String _time = f.getTime();
     return (_time != null);
   }
   

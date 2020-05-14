@@ -60,6 +60,15 @@ public interface ReflexFactory extends EFactory
   State createState();
 
   /**
+   * Returns a new object of class '<em>Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation</em>'.
+   * @generated
+   */
+  Annotation createAnnotation();
+
+  /**
    * Returns a new object of class '<em>Imported Variable List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,24 +123,6 @@ public interface ReflexFactory extends EFactory
   ProgramVariable createProgramVariable();
 
   /**
-   * Returns a new object of class '<em>Statement Sequence</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Statement Sequence</em>'.
-   * @generated
-   */
-  StatementSequence createStatementSequence();
-
-  /**
-   * Returns a new object of class '<em>Compound Statement</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Compound Statement</em>'.
-   * @generated
-   */
-  CompoundStatement createCompoundStatement();
-
-  /**
    * Returns a new object of class '<em>Timeout Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -150,6 +141,51 @@ public interface ReflexFactory extends EFactory
   TimeAmountOrRef createTimeAmountOrRef();
 
   /**
+   * Returns a new object of class '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function</em>'.
+   * @generated
+   */
+  Function createFunction();
+
+  /**
+   * Returns a new object of class '<em>Port</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Port</em>'.
+   * @generated
+   */
+  Port createPort();
+
+  /**
+   * Returns a new object of class '<em>Const</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Const</em>'.
+   * @generated
+   */
+  Const createConst();
+
+  /**
+   * Returns a new object of class '<em>Enum</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum</em>'.
+   * @generated
+   */
+  Enum createEnum();
+
+  /**
+   * Returns a new object of class '<em>Enum Member</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Member</em>'.
+   * @generated
+   */
+  EnumMember createEnumMember();
+
+  /**
    * Returns a new object of class '<em>Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,6 +193,24 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   Statement createStatement();
+
+  /**
+   * Returns a new object of class '<em>Statement Sequence</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Statement Sequence</em>'.
+   * @generated
+   */
+  StatementSequence createStatementSequence();
+
+  /**
+   * Returns a new object of class '<em>Compound Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Compound Statement</em>'.
+   * @generated
+   */
+  CompoundStatement createCompoundStatement();
 
   /**
    * Returns a new object of class '<em>If Else Stat</em>'.
@@ -240,49 +294,13 @@ public interface ReflexFactory extends EFactory
   SetStateStat createSetStateStat();
 
   /**
-   * Returns a new object of class '<em>Function</em>'.
+   * Returns a new object of class '<em>Id Reference</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function</em>'.
+   * @return a new object of class '<em>Id Reference</em>'.
    * @generated
    */
-  Function createFunction();
-
-  /**
-   * Returns a new object of class '<em>Port</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Port</em>'.
-   * @generated
-   */
-  Port createPort();
-
-  /**
-   * Returns a new object of class '<em>Const</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Const</em>'.
-   * @generated
-   */
-  Const createConst();
-
-  /**
-   * Returns a new object of class '<em>Enum</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum</em>'.
-   * @generated
-   */
-  Enum createEnum();
-
-  /**
-   * Returns a new object of class '<em>Enum Member</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Member</em>'.
-   * @generated
-   */
-  EnumMember createEnumMember();
+  IdReference createIdReference();
 
   /**
    * Returns a new object of class '<em>Infix Op</em>'.
@@ -310,15 +328,6 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   FunctionCall createFunctionCall();
-
-  /**
-   * Returns a new object of class '<em>Id Reference</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Id Reference</em>'.
-   * @generated
-   */
-  IdReference createIdReference();
 
   /**
    * Returns a new object of class '<em>Check State Expression</em>'.
@@ -463,24 +472,6 @@ public interface ReflexFactory extends EFactory
    * @generated
    */
   Expression createExpression();
-
-  /**
-   * Returns a new object of class '<em>Time</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Time</em>'.
-   * @generated
-   */
-  Time createTime();
-
-  /**
-   * Returns a new object of class '<em>Annotation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation</em>'.
-   * @generated
-   */
-  Annotation createAnnotation();
 
   /**
    * Returns the package supported by this factory.

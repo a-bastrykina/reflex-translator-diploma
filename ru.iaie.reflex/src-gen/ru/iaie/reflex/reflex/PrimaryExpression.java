@@ -17,6 +17,7 @@ package ru.iaie.reflex.reflex;
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getInteger <em>Integer</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getFloating <em>Floating</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getBool <em>Bool</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getTime <em>Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.PrimaryExpression#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -113,6 +114,28 @@ public interface PrimaryExpression extends UnaryExpression
    * @generated
    */
   void setBool(Boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Time</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Time</em>' attribute.
+   * @see #setTime(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getPrimaryExpression_Time()
+   * @model
+   * @generated
+   */
+  String getTime();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.PrimaryExpression#getTime <em>Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Time</em>' attribute.
+   * @see #getTime()
+   * @generated
+   */
+  void setTime(String value);
 
   /**
    * Returns the value of the '<em><b>Nested Expr</b></em>' containment reference.

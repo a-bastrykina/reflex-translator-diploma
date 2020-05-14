@@ -122,8 +122,9 @@ public class ReflexSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'timeout' (ambiguity) intTime=INTEGER
 	 *     (rule start) 'timeout' (ambiguity) ref=[IdReference|ID]
-	 *     (rule start) 'timeout' (ambiguity) time=Time
+	 *     (rule start) 'timeout' (ambiguity) time=TIME
 	 */
 	protected void emit_TimeoutFunction_LeftParenthesisKeyword_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -67,6 +67,11 @@ public class ExpressionUtil {
     return (_floating != null);
   }
   
+  public static boolean isTime(final PrimaryExpression e) {
+    String _time = e.getTime();
+    return (_time != null);
+  }
+  
   public static boolean hasFunctionCall(final Expression e) {
     boolean _isEmpty = EcoreUtil2.<FunctionCall>eAllOfType(e, FunctionCall.class).isEmpty();
     return (!_isEmpty);
@@ -120,7 +125,7 @@ public class ExpressionUtil {
         }
         boolean _isInteger = ExpressionUtil.isInteger(((PrimaryExpression)expr));
         if (_isInteger) {
-          return Type.INT32;
+          return TypeUtils.getDefaultIntLiteralType();
         }
         boolean _isFloating = ExpressionUtil.isFloating(((PrimaryExpression)expr));
         if (_isFloating) {
@@ -167,8 +172,9 @@ public class ExpressionUtil {
         if (_hasAssignment) {
           final Type assignType = ExpressionUtil.resolveExprType(((AssignmentExpression)expr).getAssignVar(), warnings);
           final Type valueType = ExpressionUtil.resolveExprType(((AssignmentExpression)expr).getExpr(), warnings);
-          boolean _notEquals = (!Objects.equal(assignType, valueType));
-          if (_notEquals) {
+          boolean _canBeSafelySignedTo = TypeUtils.canBeSafelySignedTo(valueType, assignType);
+          boolean _not = (!_canBeSafelySignedTo);
+          if (_not) {
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("Assign variable type ");
             _builder.append(assignType);

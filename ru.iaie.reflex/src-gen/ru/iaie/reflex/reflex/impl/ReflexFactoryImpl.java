@@ -68,7 +68,6 @@ import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Tact;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
@@ -131,17 +130,23 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.TACT: return createTact();
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
+      case ReflexPackage.ANNOTATION: return createAnnotation();
       case ReflexPackage.IMPORTED_VARIABLE_LIST: return createImportedVariableList();
       case ReflexPackage.PROCESS_VARIABLE: return createProcessVariable();
       case ReflexPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       case ReflexPackage.PHYSICAL_VARIABLE: return createPhysicalVariable();
       case ReflexPackage.PORT_MAPPING: return createPortMapping();
       case ReflexPackage.PROGRAM_VARIABLE: return createProgramVariable();
-      case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
-      case ReflexPackage.COMPOUND_STATEMENT: return createCompoundStatement();
       case ReflexPackage.TIMEOUT_FUNCTION: return createTimeoutFunction();
       case ReflexPackage.TIME_AMOUNT_OR_REF: return createTimeAmountOrRef();
+      case ReflexPackage.FUNCTION: return createFunction();
+      case ReflexPackage.PORT: return createPort();
+      case ReflexPackage.CONST: return createConst();
+      case ReflexPackage.ENUM: return createEnum();
+      case ReflexPackage.ENUM_MEMBER: return createEnumMember();
       case ReflexPackage.STATEMENT: return createStatement();
+      case ReflexPackage.STATEMENT_SEQUENCE: return createStatementSequence();
+      case ReflexPackage.COMPOUND_STATEMENT: return createCompoundStatement();
       case ReflexPackage.IF_ELSE_STAT: return createIfElseStat();
       case ReflexPackage.SWITCH_STAT: return createSwitchStat();
       case ReflexPackage.CASE_STAT: return createCaseStat();
@@ -151,15 +156,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.RESTART_STAT: return createRestartStat();
       case ReflexPackage.RESET_STAT: return createResetStat();
       case ReflexPackage.SET_STATE_STAT: return createSetStateStat();
-      case ReflexPackage.FUNCTION: return createFunction();
-      case ReflexPackage.PORT: return createPort();
-      case ReflexPackage.CONST: return createConst();
-      case ReflexPackage.ENUM: return createEnum();
-      case ReflexPackage.ENUM_MEMBER: return createEnumMember();
+      case ReflexPackage.ID_REFERENCE: return createIdReference();
       case ReflexPackage.INFIX_OP: return createInfixOp();
       case ReflexPackage.POSTFIX_OP: return createPostfixOp();
       case ReflexPackage.FUNCTION_CALL: return createFunctionCall();
-      case ReflexPackage.ID_REFERENCE: return createIdReference();
       case ReflexPackage.CHECK_STATE_EXPRESSION: return createCheckStateExpression();
       case ReflexPackage.PRIMARY_EXPRESSION: return createPrimaryExpression();
       case ReflexPackage.UNARY_EXPRESSION: return createUnaryExpression();
@@ -176,8 +176,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case ReflexPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case ReflexPackage.EXPRESSION: return createExpression();
-      case ReflexPackage.TIME: return createTime();
-      case ReflexPackage.ANNOTATION: return createAnnotation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -311,6 +309,18 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
+  public Annotation createAnnotation()
+  {
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public ImportedVariableList createImportedVariableList()
   {
     ImportedVariableListImpl importedVariableList = new ImportedVariableListImpl();
@@ -383,30 +393,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public StatementSequence createStatementSequence()
-  {
-    StatementSequenceImpl statementSequence = new StatementSequenceImpl();
-    return statementSequence;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public CompoundStatement createCompoundStatement()
-  {
-    CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
-    return compoundStatement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public TimeoutFunction createTimeoutFunction()
   {
     TimeoutFunctionImpl timeoutFunction = new TimeoutFunctionImpl();
@@ -431,10 +417,94 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
+  public Function createFunction()
+  {
+    FunctionImpl function = new FunctionImpl();
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Port createPort()
+  {
+    PortImpl port = new PortImpl();
+    return port;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Const createConst()
+  {
+    ConstImpl const_ = new ConstImpl();
+    return const_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ru.iaie.reflex.reflex.Enum createEnum()
+  {
+    EnumImpl enum_ = new EnumImpl();
+    return enum_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EnumMember createEnumMember()
+  {
+    EnumMemberImpl enumMember = new EnumMemberImpl();
+    return enumMember;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Statement createStatement()
   {
     StatementImpl statement = new StatementImpl();
     return statement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StatementSequence createStatementSequence()
+  {
+    StatementSequenceImpl statementSequence = new StatementSequenceImpl();
+    return statementSequence;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CompoundStatement createCompoundStatement()
+  {
+    CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
+    return compoundStatement;
   }
 
   /**
@@ -551,58 +621,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Function createFunction()
+  public IdReference createIdReference()
   {
-    FunctionImpl function = new FunctionImpl();
-    return function;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Port createPort()
-  {
-    PortImpl port = new PortImpl();
-    return port;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Const createConst()
-  {
-    ConstImpl const_ = new ConstImpl();
-    return const_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ru.iaie.reflex.reflex.Enum createEnum()
-  {
-    EnumImpl enum_ = new EnumImpl();
-    return enum_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EnumMember createEnumMember()
-  {
-    EnumMemberImpl enumMember = new EnumMemberImpl();
-    return enumMember;
+    IdReferenceImpl idReference = new IdReferenceImpl();
+    return idReference;
   }
 
   /**
@@ -639,18 +661,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     FunctionCallImpl functionCall = new FunctionCallImpl();
     return functionCall;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public IdReference createIdReference()
-  {
-    IdReferenceImpl idReference = new IdReferenceImpl();
-    return idReference;
   }
 
   /**
@@ -843,30 +853,6 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Time createTime()
-  {
-    TimeImpl time = new TimeImpl();
-    return time;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Annotation createAnnotation()
-  {
-    AnnotationImpl annotation = new AnnotationImpl();
-    return annotation;
   }
 
   /**

@@ -10,6 +10,7 @@ import ru.iaie.reflex.reflex.Process
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import static extension ru.iaie.reflex.utils.ExpressionUtil.*
+import static extension ru.iaie.reflex.typing.TypeUtils.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import ru.iaie.reflex.reflex.ErrorStat
 import ru.iaie.reflex.reflex.StopProcStat
@@ -311,16 +312,20 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 	
 	@Check def void checkConstAssignType(Const const) {
-		val assignType = const.value.resolveType
-		if (assignType != const.type) {
-			warning('''Constant type «const.type» is not compitable with assigned value type «assignType»''', ePackage.const_Name)
+		try {
+			val assignType = const.value.resolveType
+			if (!const.type.canBeSafelySignedTo(assignType)) {
+				warning('''Constant type «const.type» is not compitable with assigned value type «assignType»''',
+					ePackage.const_Name)
+			}
+		} catch (IllegalStateException e) {
+			// Ignore
 		}
 	}
 	
 	@Check def void checkEnumMemberAssignType(EnumMember em) {
 		val assignType = em.value.resolveType
-		// todo: determine type for enum
-		if (assignType != Type.INT32_U) {
+		if (assignType != em.defaultType) {
 			warning('''Enum member type «Type.INT32_U» is not compitable with assigned value type «assignType»''', ePackage.enumMember_Name)
 		}
 	}
@@ -335,8 +340,8 @@ class ReflexValidator extends AbstractReflexValidator {
 						ePackage.physicalVariable_Type)
 				}
 			} catch (IllegalStateException e) {
+				// Ignore
 				return;
-			// Ignore
 			}
 		} else {
 			if (physVar.type != Type.BOOL)

@@ -28,6 +28,7 @@ import ru.iaie.reflex.reflex.ReflexPackage;
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getInteger <em>Integer</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getFloating <em>Floating</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getBool <em>Bool</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getTime <em>Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.PrimaryExpressionImpl#getNestedExpr <em>Nested Expr</em>}</li>
  * </ul>
  *
@@ -104,6 +105,26 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @ordered
    */
   protected Boolean bool = BOOL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTime()
+   * @generated
+   * @ordered
+   */
+  protected static final String TIME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTime() <em>Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTime()
+   * @generated
+   * @ordered
+   */
+  protected String time = TIME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getNestedExpr() <em>Nested Expr</em>}' containment reference.
@@ -262,6 +283,31 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
+  public String getTime()
+  {
+    return time;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTime(String newTime)
+  {
+    String oldTime = time;
+    time = newTime;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PRIMARY_EXPRESSION__TIME, oldTime, time));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Expression getNestedExpr()
   {
     return nestedExpr;
@@ -341,6 +387,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return getFloating();
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
         return getBool();
+      case ReflexPackage.PRIMARY_EXPRESSION__TIME:
+        return getTime();
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return getNestedExpr();
     }
@@ -368,6 +416,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
         setBool((Boolean)newValue);
+        return;
+      case ReflexPackage.PRIMARY_EXPRESSION__TIME:
+        setTime((String)newValue);
         return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)newValue);
@@ -398,6 +449,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
         setBool(BOOL_EDEFAULT);
         return;
+      case ReflexPackage.PRIMARY_EXPRESSION__TIME:
+        setTime(TIME_EDEFAULT);
+        return;
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         setNestedExpr((Expression)null);
         return;
@@ -423,6 +477,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return FLOATING_EDEFAULT == null ? floating != null : !FLOATING_EDEFAULT.equals(floating);
       case ReflexPackage.PRIMARY_EXPRESSION__BOOL:
         return BOOL_EDEFAULT == null ? bool != null : !BOOL_EDEFAULT.equals(bool);
+      case ReflexPackage.PRIMARY_EXPRESSION__TIME:
+        return TIME_EDEFAULT == null ? time != null : !TIME_EDEFAULT.equals(time);
       case ReflexPackage.PRIMARY_EXPRESSION__NESTED_EXPR:
         return nestedExpr != null;
     }
@@ -446,6 +502,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
     result.append(floating);
     result.append(", bool: ");
     result.append(bool);
+    result.append(", time: ");
+    result.append(time);
     result.append(')');
     return result.toString();
   }

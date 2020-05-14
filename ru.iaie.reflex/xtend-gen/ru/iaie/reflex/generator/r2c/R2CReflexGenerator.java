@@ -748,7 +748,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     {
       boolean _isClearTimeout = ReflexModelUtil.isClearTimeout(func);
       if (_isClearTimeout) {
-        return func.getTime().getTicks();
+        return func.getTime();
       }
       String _xifexpression = null;
       boolean _isReferencedTimeout = ReflexModelUtil.isReferencedTimeout(func);

@@ -56,7 +56,6 @@ import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Tact;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
@@ -221,9 +220,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.TACT:
 				sequence_Tact(context, (Tact) semanticObject); 
-				return; 
-			case ReflexPackage.TIME:
-				sequence_Time(context, (Time) semanticObject); 
 				return; 
 			case ReflexPackage.TIMEOUT_FUNCTION:
 				sequence_TimeAmountOrRef_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
@@ -525,8 +521,8 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     CompoundStatement returns CompoundStatement
 	 *     Statement returns CompoundStatement
+	 *     CompoundStatement returns CompoundStatement
 	 *
 	 * Constraint:
 	 *     statements+=Statement*
@@ -987,7 +983,14 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (reference=[IdReference|ID] | integer=INTEGER | floating=FLOAT | bool=BOOL_LITERAL | nestedExpr=Expression)
+	 *     (
+	 *         reference=[IdReference|ID] | 
+	 *         integer=INTEGER | 
+	 *         floating=FLOAT | 
+	 *         bool=BOOL_LITERAL | 
+	 *         time=TIME | 
+	 *         nestedExpr=Expression
+	 *     )
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1247,28 +1250,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TimeoutFunction returns TimeoutFunction
 	 *
 	 * Constraint:
-	 *     ((time=Time | ref=[IdReference|ID]) body=Statement)
+	 *     ((time=TIME | intTime=INTEGER | ref=[IdReference|ID]) body=Statement)
 	 */
 	protected void sequence_TimeAmountOrRef_TimeoutFunction(ISerializationContext context, TimeoutFunction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Time returns Time
-	 *
-	 * Constraint:
-	 *     ticks=INTEGER
-	 */
-	protected void sequence_Time(ISerializationContext context, Time semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.TIME__TICKS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.TIME__TICKS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTimeAccess().getTicksINTEGERTerminalRuleCall_0(), semanticObject.getTicks());
-		feeder.finish();
 	}
 	
 	

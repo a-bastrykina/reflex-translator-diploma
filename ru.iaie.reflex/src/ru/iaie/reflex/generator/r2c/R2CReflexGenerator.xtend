@@ -379,7 +379,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def translateTimeout(TimeoutFunction func) {
-		if(func.isClearTimeout) return func.time.ticks
+		if(func.isClearTimeout) return func.time
 		if(func.isReferencedTimeout) identifiersHelper.getMapping(func.ref);
 	}
 

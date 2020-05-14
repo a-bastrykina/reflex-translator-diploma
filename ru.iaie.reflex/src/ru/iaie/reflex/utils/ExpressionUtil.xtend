@@ -55,6 +55,10 @@ class ExpressionUtil {
 	static def boolean isFloating(PrimaryExpression e) {
 		return e.floating !== null
 	}
+	
+	static def boolean isTime(PrimaryExpression e) {
+		return e.time !== null
+	}
 
 	static def boolean hasFunctionCall(Expression e) {
 		!e.eAllOfType(FunctionCall).empty
@@ -84,7 +88,7 @@ class ExpressionUtil {
 					return resolveExprType(expr.reference, warnings)
 				}
 				if (expr.isInteger) {
-					return Type.INT32
+					return defaultIntLiteralType
 				}
 				if (expr.isFloating) {
 					return Type.FLOAT
@@ -107,7 +111,7 @@ class ExpressionUtil {
 				if (expr.hasAssignment) {
 					val assignType = resolveExprType(expr.assignVar, warnings)
 					val valueType = resolveExprType(expr.expr, warnings)
-					if (assignType != valueType) {
+					if (!valueType.canBeSafelySignedTo(assignType)) {
 						warnings.add(
 							new TypeWarning('''Assign variable type «assignType» is incompitable with assigned expression type «valueType»''',
 								expr))

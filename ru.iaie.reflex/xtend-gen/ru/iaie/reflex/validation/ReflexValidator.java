@@ -48,6 +48,7 @@ import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
+import ru.iaie.reflex.typing.TypeUtils;
 import ru.iaie.reflex.typing.TypeWarning;
 import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.LiteralUtils;
@@ -526,24 +527,33 @@ public class ReflexValidator extends AbstractReflexValidator {
   
   @Check
   public void checkConstAssignType(final Const const_) {
-    final Type assignType = ExpressionUtil.resolveType(const_.getValue());
-    Type _type = const_.getType();
-    boolean _notEquals = (!Objects.equal(assignType, _type));
-    if (_notEquals) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Constant type ");
-      Type _type_1 = const_.getType();
-      _builder.append(_type_1);
-      _builder.append(" is not compitable with assigned value type ");
-      _builder.append(assignType);
-      this.warning(_builder.toString(), ReflexValidator.ePackage.getConst_Name());
+    try {
+      final Type assignType = ExpressionUtil.resolveType(const_.getValue());
+      boolean _canBeSafelySignedTo = TypeUtils.canBeSafelySignedTo(const_.getType(), assignType);
+      boolean _not = (!_canBeSafelySignedTo);
+      if (_not) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Constant type ");
+        Type _type = const_.getType();
+        _builder.append(_type);
+        _builder.append(" is not compitable with assigned value type ");
+        _builder.append(assignType);
+        this.warning(_builder.toString(), 
+          ReflexValidator.ePackage.getConst_Name());
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof IllegalStateException) {
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   
   @Check
   public void checkEnumMemberAssignType(final EnumMember em) {
     final Type assignType = ExpressionUtil.resolveType(em.getValue());
-    boolean _notEquals = (!Objects.equal(assignType, Type.INT32_U));
+    Type _defaultType = TypeUtils.getDefaultType(em);
+    boolean _notEquals = (!Objects.equal(assignType, _defaultType));
     if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Enum member type ");

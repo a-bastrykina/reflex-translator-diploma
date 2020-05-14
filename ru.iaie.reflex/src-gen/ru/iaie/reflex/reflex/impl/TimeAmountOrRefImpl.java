@@ -4,7 +4,6 @@
 package ru.iaie.reflex.reflex.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.IdReference;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 
 /**
@@ -26,6 +24,7 @@ import ru.iaie.reflex.reflex.TimeAmountOrRef;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.TimeAmountOrRefImpl#getTime <em>Time</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.TimeAmountOrRefImpl#getIntTime <em>Int Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.TimeAmountOrRefImpl#getRef <em>Ref</em>}</li>
  * </ul>
  *
@@ -34,14 +33,44 @@ import ru.iaie.reflex.reflex.TimeAmountOrRef;
 public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements TimeAmountOrRef
 {
   /**
-   * The cached value of the '{@link #getTime() <em>Time</em>}' containment reference.
+   * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTime()
    * @generated
    * @ordered
    */
-  protected Time time;
+  protected static final String TIME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTime() <em>Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTime()
+   * @generated
+   * @ordered
+   */
+  protected String time = TIME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getIntTime() <em>Int Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntTime()
+   * @generated
+   * @ordered
+   */
+  protected static final String INT_TIME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIntTime() <em>Int Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntTime()
+   * @generated
+   * @ordered
+   */
+  protected String intTime = INT_TIME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
@@ -80,7 +109,7 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public Time getTime()
+  public String getTime()
   {
     return time;
   }
@@ -90,16 +119,13 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTime(Time newTime, NotificationChain msgs)
+  @Override
+  public void setTime(String newTime)
   {
-    Time oldTime = time;
+    String oldTime = time;
     time = newTime;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME_AMOUNT_OR_REF__TIME, oldTime, newTime);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME_AMOUNT_OR_REF__TIME, oldTime, time));
   }
 
   /**
@@ -108,20 +134,23 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setTime(Time newTime)
+  public String getIntTime()
   {
-    if (newTime != time)
-    {
-      NotificationChain msgs = null;
-      if (time != null)
-        msgs = ((InternalEObject)time).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.TIME_AMOUNT_OR_REF__TIME, null, msgs);
-      if (newTime != null)
-        msgs = ((InternalEObject)newTime).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.TIME_AMOUNT_OR_REF__TIME, null, msgs);
-      msgs = basicSetTime(newTime, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME_AMOUNT_OR_REF__TIME, newTime, newTime));
+    return intTime;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setIntTime(String newIntTime)
+  {
+    String oldIntTime = intTime;
+    intTime = newIntTime;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TIME_AMOUNT_OR_REF__INT_TIME, oldIntTime, intTime));
   }
 
   /**
@@ -175,28 +204,14 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReflexPackage.TIME_AMOUNT_OR_REF__TIME:
-        return basicSetTime(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReflexPackage.TIME_AMOUNT_OR_REF__TIME:
         return getTime();
+      case ReflexPackage.TIME_AMOUNT_OR_REF__INT_TIME:
+        return getIntTime();
       case ReflexPackage.TIME_AMOUNT_OR_REF__REF:
         if (resolve) return getRef();
         return basicGetRef();
@@ -215,7 +230,10 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case ReflexPackage.TIME_AMOUNT_OR_REF__TIME:
-        setTime((Time)newValue);
+        setTime((String)newValue);
+        return;
+      case ReflexPackage.TIME_AMOUNT_OR_REF__INT_TIME:
+        setIntTime((String)newValue);
         return;
       case ReflexPackage.TIME_AMOUNT_OR_REF__REF:
         setRef((IdReference)newValue);
@@ -235,7 +253,10 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case ReflexPackage.TIME_AMOUNT_OR_REF__TIME:
-        setTime((Time)null);
+        setTime(TIME_EDEFAULT);
+        return;
+      case ReflexPackage.TIME_AMOUNT_OR_REF__INT_TIME:
+        setIntTime(INT_TIME_EDEFAULT);
         return;
       case ReflexPackage.TIME_AMOUNT_OR_REF__REF:
         setRef((IdReference)null);
@@ -255,11 +276,32 @@ public class TimeAmountOrRefImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case ReflexPackage.TIME_AMOUNT_OR_REF__TIME:
-        return time != null;
+        return TIME_EDEFAULT == null ? time != null : !TIME_EDEFAULT.equals(time);
+      case ReflexPackage.TIME_AMOUNT_OR_REF__INT_TIME:
+        return INT_TIME_EDEFAULT == null ? intTime != null : !INT_TIME_EDEFAULT.equals(intTime);
       case ReflexPackage.TIME_AMOUNT_OR_REF__REF:
         return ref != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (time: ");
+    result.append(time);
+    result.append(", intTime: ");
+    result.append(intTime);
+    result.append(')');
+    return result.toString();
   }
 
 } //TimeAmountOrRefImpl

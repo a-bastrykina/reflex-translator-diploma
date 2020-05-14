@@ -56,7 +56,6 @@ import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.Tact;
-import ru.iaie.reflex.reflex.Time;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
@@ -145,6 +144,11 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
+      public Adapter caseAnnotation(Annotation object)
+      {
+        return createAnnotationAdapter();
+      }
+      @Override
       public Adapter caseImportedVariableList(ImportedVariableList object)
       {
         return createImportedVariableListAdapter();
@@ -175,16 +179,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createProgramVariableAdapter();
       }
       @Override
-      public Adapter caseStatementSequence(StatementSequence object)
-      {
-        return createStatementSequenceAdapter();
-      }
-      @Override
-      public Adapter caseCompoundStatement(CompoundStatement object)
-      {
-        return createCompoundStatementAdapter();
-      }
-      @Override
       public Adapter caseTimeoutFunction(TimeoutFunction object)
       {
         return createTimeoutFunctionAdapter();
@@ -195,9 +189,44 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createTimeAmountOrRefAdapter();
       }
       @Override
+      public Adapter caseFunction(Function object)
+      {
+        return createFunctionAdapter();
+      }
+      @Override
+      public Adapter casePort(Port object)
+      {
+        return createPortAdapter();
+      }
+      @Override
+      public Adapter caseConst(Const object)
+      {
+        return createConstAdapter();
+      }
+      @Override
+      public Adapter caseEnum(ru.iaie.reflex.reflex.Enum object)
+      {
+        return createEnumAdapter();
+      }
+      @Override
+      public Adapter caseEnumMember(EnumMember object)
+      {
+        return createEnumMemberAdapter();
+      }
+      @Override
       public Adapter caseStatement(Statement object)
       {
         return createStatementAdapter();
+      }
+      @Override
+      public Adapter caseStatementSequence(StatementSequence object)
+      {
+        return createStatementSequenceAdapter();
+      }
+      @Override
+      public Adapter caseCompoundStatement(CompoundStatement object)
+      {
+        return createCompoundStatementAdapter();
       }
       @Override
       public Adapter caseIfElseStat(IfElseStat object)
@@ -245,29 +274,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createSetStateStatAdapter();
       }
       @Override
-      public Adapter caseFunction(Function object)
+      public Adapter caseIdReference(IdReference object)
       {
-        return createFunctionAdapter();
-      }
-      @Override
-      public Adapter casePort(Port object)
-      {
-        return createPortAdapter();
-      }
-      @Override
-      public Adapter caseConst(Const object)
-      {
-        return createConstAdapter();
-      }
-      @Override
-      public Adapter caseEnum(ru.iaie.reflex.reflex.Enum object)
-      {
-        return createEnumAdapter();
-      }
-      @Override
-      public Adapter caseEnumMember(EnumMember object)
-      {
-        return createEnumMemberAdapter();
+        return createIdReferenceAdapter();
       }
       @Override
       public Adapter caseInfixOp(InfixOp object)
@@ -283,11 +292,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFunctionCall(FunctionCall object)
       {
         return createFunctionCallAdapter();
-      }
-      @Override
-      public Adapter caseIdReference(IdReference object)
-      {
-        return createIdReferenceAdapter();
       }
       @Override
       public Adapter caseCheckStateExpression(CheckStateExpression object)
@@ -370,16 +374,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseTime(Time object)
-      {
-        return createTimeAdapter();
-      }
-      @Override
-      public Adapter caseAnnotation(Annotation object)
-      {
-        return createAnnotationAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -457,6 +451,21 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Annotation <em>Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Annotation
+   * @generated
+   */
+  public Adapter createAnnotationAdapter()
   {
     return null;
   }
@@ -552,36 +561,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StatementSequence <em>Statement Sequence</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.StatementSequence
-   * @generated
-   */
-  public Adapter createStatementSequenceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.CompoundStatement <em>Compound Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.CompoundStatement
-   * @generated
-   */
-  public Adapter createCompoundStatementAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.TimeoutFunction <em>Timeout Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -612,6 +591,81 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Function <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Function
+   * @generated
+   */
+  public Adapter createFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Port <em>Port</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Port
+   * @generated
+   */
+  public Adapter createPortAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Const <em>Const</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Const
+   * @generated
+   */
+  public Adapter createConstAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Enum <em>Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.Enum
+   * @generated
+   */
+  public Adapter createEnumAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.EnumMember <em>Enum Member</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.EnumMember
+   * @generated
+   */
+  public Adapter createEnumMemberAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Statement <em>Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -622,6 +676,36 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.StatementSequence <em>Statement Sequence</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.StatementSequence
+   * @generated
+   */
+  public Adapter createStatementSequenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.CompoundStatement <em>Compound Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.CompoundStatement
+   * @generated
+   */
+  public Adapter createCompoundStatementAdapter()
   {
     return null;
   }
@@ -762,76 +846,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Function <em>Function</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.IdReference <em>Id Reference</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Function
+   * @see ru.iaie.reflex.reflex.IdReference
    * @generated
    */
-  public Adapter createFunctionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Port <em>Port</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Port
-   * @generated
-   */
-  public Adapter createPortAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Const <em>Const</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Const
-   * @generated
-   */
-  public Adapter createConstAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Enum <em>Enum</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Enum
-   * @generated
-   */
-  public Adapter createEnumAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.EnumMember <em>Enum Member</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.EnumMember
-   * @generated
-   */
-  public Adapter createEnumMemberAdapter()
+  public Adapter createIdReferenceAdapter()
   {
     return null;
   }
@@ -877,21 +901,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunctionCallAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.IdReference <em>Id Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.IdReference
-   * @generated
-   */
-  public Adapter createIdReferenceAdapter()
   {
     return null;
   }
@@ -1132,36 +1141,6 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Time <em>Time</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Time
-   * @generated
-   */
-  public Adapter createTimeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Annotation <em>Annotation</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Annotation
-   * @generated
-   */
-  public Adapter createAnnotationAdapter()
   {
     return null;
   }

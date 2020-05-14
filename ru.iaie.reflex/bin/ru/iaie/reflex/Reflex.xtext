@@ -31,6 +31,12 @@ State:
 	stateFunction=StatementSequence
 	(timeoutFunction=TimeoutFunction)?
 	"}";
+	
+Annotation:
+	key=AnnotationKey ":" value=STRING | key=AnnotationKey;
+
+AnnotationKey:
+	ID "." ID | ID;
 
 ImportedVariableList:
 	"shared" (variables+=[ProcessVariable] ("," variables+=[ProcessVariable])*) "from" "process" process=[Process];
@@ -50,22 +56,43 @@ PortMapping:
 ProgramVariable:
 	type=Type name=ID;
 
-StatementSequence:
-	{StatementSequence} statements+=Statement*;
-
-CompoundStatement:
-	{CompoundStatement} "{" statements+=Statement* "}";
 
 TimeoutFunction:
 	"timeout" (TimeAmountOrRef | "(" TimeAmountOrRef ")") body=Statement;
 
 fragment TimeAmountOrRef:
-	time=Time | ref=[IdReference];
+	time=TIME | intTime = INTEGER | ref=[IdReference];
+
+Function:
+	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+
+Port:
+	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
+
+enum PortType:
+	INPUT='input' | OUTPUT='output';
+
+Const:
+	"const" type=Type name=ID "=" value=Expression ";";
+
+Enum:
+	"enum" identifier=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
+
+EnumMember:
+	name=ID ("=" value=Expression)?;
+
+// Statements
 
 Statement:
 	{Statement} ";" | CompoundStatement |
 	StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
 	| SetStateStat | IfElseStat | SwitchStat | Expression ";";
+
+StatementSequence:
+	{StatementSequence} statements+=Statement*;
+
+CompoundStatement:
+	{CompoundStatement} "{" statements+=Statement* "}";
 
 IfElseStat:
 	"if" "(" cond=Expression ")"
@@ -99,23 +126,10 @@ ResetStat:
 SetStateStat:
 	{SetStateStat} "set" ((next?="next" "state") | ("state" state=[State])) ";";
 
-Function:
-	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+IdReference:
+	PhysicalVariable | ProgramVariable | EnumMember | Const;
 
-enum PortType:
-	INPUT='input' | OUTPUT='output';
-
-Port:
-	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
-
-Const:
-	"const" type=Type name=ID "=" value=Expression ";";
-
-Enum:
-	"enum" identifier=ID "{" enumMembers+=EnumMember (',' enumMembers+=EnumMember)* "}";
-
-EnumMember:
-	name=ID ("=" value=Expression)?;
+// Expressions
 
 InfixOp:
 	op=InfixPostfixOp ref=[IdReference];
@@ -126,8 +140,6 @@ PostfixOp:
 FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
 
-IdReference:
-	PhysicalVariable | ProgramVariable | EnumMember | Const;
 
 CheckStateExpression:
 	"process" process=[Process] "in" "state" qualfier=StateQualifier;
@@ -137,7 +149,7 @@ enum StateQualifier:
 
 PrimaryExpression:
 	reference=[IdReference] | {PrimaryExpression} integer=INTEGER | {PrimaryExpression} floating=FLOAT |
-	{PrimaryExpression} bool=BOOL_LITERAL | "(" nestedExpr=Expression ")";
+	{PrimaryExpression} bool=BOOL_LITERAL | {PrimaryExpression} time=TIME | "(" nestedExpr=Expression ")";
 
 UnaryExpression:
 	PrimaryExpression |
@@ -211,22 +223,6 @@ enum AdditiveOp:
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
 
-terminal BOOL_LITERAL returns ecore::EBooleanObject:
-	"true" | "false";
-
-//	Type:
-//	(sign=TypeSignSpec)? name=Types;
-
-//enum Types:
-//	VOID_C_TYPE="void" | FLOAT_C_TYPE="float" | DOUBLE_C_TYPE="double" | SHORT_C_TYPE="short" | INT_C_TYPE="int" |
-//	LONG_C_TYPE="long" | BOOL_TYPE="bool";
-//
-//enum TypeSignSpec:
-//	SIGNED="signed" | UNSIGNED="unsigned";
-//	
-enum Type:
-	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" |
-	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool";
 
 terminal LOGICAL_OR:
 	"||";
@@ -243,7 +239,14 @@ terminal BIT_XOR:
 terminal BIT_AND:
 	"&";
 
-	// LITERALS
+// Types
+
+enum Type:
+	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" |
+	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool" | TIME="time";
+
+// Literals
+
 terminal INTEGER:
 	SIGN? (HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
 
@@ -283,9 +286,6 @@ terminal fragment HEX:
 terminal fragment HEX_PREFIX:
 	'0' ('x' | 'X');
 
-Time:
-	ticks=INTEGER;
-
 terminal fragment LONG:
 	"L" | "l";
 
@@ -295,30 +295,23 @@ terminal fragment FLOAT_SUFFIX:
 terminal fragment UNSIGNED:
 	"U" | "u";
 
-Annotation:
-	key=AnnotationKey ":" value=STRING | key=AnnotationKey;
+terminal TIME:
+("0t" | "0T") (DECIMAL DAY)? (DECIMAL HOUR)? (DECIMAL MINUTE)? (DECIMAL SECOND)? (DECIMAL MILLISECOND)?;
 
-AnnotationKey:
-	ID "." ID | ID;
+terminal fragment DAY:
+	"D" | "d";
 
-	//	{Time} ("0t" | "0T") (isDay?=DAY (days=DECIMAL))? (isHour?=HOUR (hours=DECIMAL))?; //(MINUTE minutes=DECIMAL)?(SECOND seconds=DECIMAL)?(MILISECOND milis=DECIMAL)?(MICROSECOND micros=DECIMAL)?(NANOSECOND nanos=DECIMAL)?;
-//terminal fragment DAY:
-//	"D" | "d";
-//
-//terminal fragment HOUR:
-//	"H" | "h";
-//
-//terminal fragment MINUTE:
-//	"M" | "m";
-//
-//terminal fragment SECOND:
-//	"S" | "s";
-//
-//terminal fragment MILISECOND:
-//	"MS" | "ms";
-//
-//terminal fragment MICROSECOND:
-//	"US" | "us";
-//
-//terminal fragment NANOSECOND:
-//	"NS" | "ns";
+terminal fragment HOUR:
+	"H" | "h";
+
+terminal fragment MINUTE:
+	"M" | "m";
+
+terminal fragment SECOND:
+	"S" | "s";
+
+terminal fragment MILLISECOND:
+	"MS" | "ms";
+
+terminal BOOL_LITERAL returns ecore::EBooleanObject:
+	"true" | "false";

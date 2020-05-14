@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getTime <em>Time</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getIntTime <em>Int Time</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getRef <em>Ref</em>}</li>
  * </ul>
  *
@@ -25,26 +26,48 @@ import org.eclipse.emf.ecore.EObject;
 public interface TimeAmountOrRef extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Time</b></em>' containment reference.
+   * Returns the value of the '<em><b>Time</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Time</em>' containment reference.
-   * @see #setTime(Time)
+   * @return the value of the '<em>Time</em>' attribute.
+   * @see #setTime(String)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getTimeAmountOrRef_Time()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  Time getTime();
+  String getTime();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getTime <em>Time</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getTime <em>Time</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Time</em>' containment reference.
+   * @param value the new value of the '<em>Time</em>' attribute.
    * @see #getTime()
    * @generated
    */
-  void setTime(Time value);
+  void setTime(String value);
+
+  /**
+   * Returns the value of the '<em><b>Int Time</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Int Time</em>' attribute.
+   * @see #setIntTime(String)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getTimeAmountOrRef_IntTime()
+   * @model
+   * @generated
+   */
+  String getIntTime();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.TimeAmountOrRef#getIntTime <em>Int Time</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Int Time</em>' attribute.
+   * @see #getIntTime()
+   * @generated
+   */
+  void setIntTime(String value);
 
   /**
    * Returns the value of the '<em><b>Ref</b></em>' reference.

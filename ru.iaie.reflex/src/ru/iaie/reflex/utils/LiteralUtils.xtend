@@ -19,4 +19,8 @@ class LiteralUtils {
 	def static hasLongModifier(String literal) {
 		return literal.endsWith("U") || literal.endsWith("u") 
 	}
+//	
+//	def static long parseTime(String literal) {
+//		
+//	}
 }
