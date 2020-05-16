@@ -139,7 +139,7 @@ class ReflexModelUtil {
 	}
 	
 	def static Type getSuitableTypeForPort(Port p) {
-		switch (LiteralUtils.parseInteger(p.size)) {
+		switch (LiteralUtils.parseInteger(p.size).intValue) {
 			case 8: return Type.INT8
 			case 16: return Type.INT16
 			default: throw new IllegalStateException()

@@ -198,19 +198,15 @@ public class ReflexModelUtil {
   }
   
   public static Type getSuitableTypeForPort(final Port p) {
-    long _parseInteger = LiteralUtils.parseInteger(p.getSize());
-    boolean _matched = false;
-    if (Objects.equal(_parseInteger, 8)) {
-      _matched=true;
-      return Type.INT8;
-    }
-    if (!_matched) {
-      if (Objects.equal(_parseInteger, 16)) {
-        _matched=true;
+    int _intValue = Long.valueOf(LiteralUtils.parseInteger(p.getSize())).intValue();
+    switch (_intValue) {
+      case 8:
+        return Type.INT8;
+      case 16:
         return Type.INT16;
-      }
+      default:
+        throw new IllegalStateException();
     }
-    throw new IllegalStateException();
   }
   
   public static boolean containsReferencesOfType(final EObject context, final EObject target, final EReference refType) {
