@@ -1,24 +1,24 @@
 program PuffinCrossing
 {
-clock 10; 
+clock 0t10ms; 
 const bool ON=true;
 const bool OFF=false;
-const int8 SECOND=100;
-const int8 THIRTY_SECONDS=30*SECOND;
-const int8 MINUTE=60*SECOND;
+const int32 SECOND=100;
+const int32 THIRTY_SECONDS=30*SECOND;
+const int32 MINUTE=60*SECOND;
 
-const int8 BA_FPGA1_U1=0XA110; /* INPUT */
-const int8 BA_FPGA3_U1=0XA910; /* OUTPUT */
+const int32 BA_FPGA1_U1=0XA110; /* INPUT */
+const int32 BA_FPGA3_U1=0XA910; /* OUTPUT */
 
 input  INPUTS 0 0 8; 
 output OUTPUTS 0 0 8; 
 
 
 process WaitingButton{ 
-	bool I_BUTTON = INPUTS[0] shared;
-	bool O_CROSSWALK = OUTPUTS[0] shared;
+	bool I_BUTTON = INPUTS[1] shared;
+	bool O_CROSSWALK = OUTPUTS[1] shared;
   	state Begin {
-    	O_CROSSWALK = 1;
+    	O_CROSSWALK = ON;
     	set next state;
   	}
   	state CheckButton looped {

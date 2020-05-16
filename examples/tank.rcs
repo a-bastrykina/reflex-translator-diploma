@@ -1,6 +1,6 @@
 program TankController {
 
-clock 50;
+clock 0t50ms;
 const float T_H = 0.1;
 const float X_MIN = 0.1;
 const float X_MAX = 0.5;
@@ -104,6 +104,7 @@ process CONTROLLER {
 		U = K_P * E + K_I * Sum * T_H;		
 		
 		if (U > U_MAX) U = U_MAX; 
+		true + false;
 		if (U < 0) U = 0.0;		
 		if (X >= X_MAX) set state Overflow; 
 		else if (X < X_MIN) set state LowLevel;
@@ -163,7 +164,7 @@ process WRITE_DAC {
 
 process Info {
 	state Idiling {
-		timeout 50 {		
+		timeout (0t50s) {		
 			/*SendMsgFloatParamGUI(CA2GUI_X_LEVEL, X); */
 			SendMsgFloatParamGUI(CA2GUI_U_LEVEL, U); 
 			set state Idiling;

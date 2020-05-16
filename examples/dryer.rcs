@@ -1,14 +1,15 @@
 program Dryer {
+	clock 0t10ms;
 	input inp 0x01 0x02 8;
  	output out 0x03 0x04 16;
   	
-  	const bool ON = 1;
-  	const bool OFF = 0;
+  	const bool ON = true;
+  	const bool OFF = false;
   	  	
-  	const int8 TIMEOUT = 6;
+  	const time TIMEOUT = 0t1s1ms;
   	
 	process Dryer {
-		bool hands_under_dryer = inp[1];
+		int16 hands_under_dryer = inp[];
 		bool dryer_control = out[1];
 		state Wait {		
 			if (hands_under_dryer) {
