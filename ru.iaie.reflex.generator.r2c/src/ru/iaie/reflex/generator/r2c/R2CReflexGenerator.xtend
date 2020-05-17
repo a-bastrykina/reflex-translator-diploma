@@ -1,6 +1,5 @@
 package ru.iaie.reflex.generator.r2c
 
-import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
@@ -52,26 +51,12 @@ import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PortType
 import ru.iaie.reflex.reflex.PortMapping
 
-// TODO: abstract class with same doGenerate and abstract
-// 		generateVariables(resource, fsa, context)
-//		generateConstants(resource, fsa, context)
-//		generateProcessImplementations(resource, fsa, context)
-//		generateMain(resource, fsa, context)
-//
-//
 class R2CReflexGenerator extends AbstractGenerator {
 
-// TODO: move to singleton with configuration
 	IReflexCachedIdentifiersHelper identifiersHelper = new ReflexIdentifiersHelper;
-// AST root element
+    
+    // AST root element
 	Program program;
-
-// These files are common, they are just need to be copied to target c-code dir 
-// TODO: replace with reading config
-// TODO: move to singleton with configuration
-	List<String> commonResources = newArrayList("usr/usr.c", "usr/usr.h",
-		"lib/r_cnst.h", "lib/r_io.c", "lib/r_io.h", "lib/r_lib.c", "lib/r_lib.h", "lib/r_main.h",
-		"generated/ext.h", "generated/io.h")
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		program = resource.getProgram()
@@ -94,7 +79,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def copyResources(String fileNamePrefix, IFileSystemAccess2 fsa) {
-		for (resource : commonResources) {
+		for (resource : R2CResourceProvider.COMMON_RESOURCES) {
 			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
 		}
 	}

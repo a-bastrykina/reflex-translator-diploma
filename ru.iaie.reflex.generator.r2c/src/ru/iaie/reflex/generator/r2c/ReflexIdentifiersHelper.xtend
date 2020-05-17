@@ -19,13 +19,13 @@ import ru.iaie.reflex.reflex.PortType
 
 class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 
-	Map<String, String> procIdentifiers = newHashMap()
-	Map<String, Map<String, String>> stateIdentifiers = newHashMap()
-	Map<String, Map<String, String>> procVarIdentifiers = newHashMap()
-	Map<String, String> globalVarIdentifiers = newHashMap()
-	Map<String, String> constIdentifiers = newHashMap()
-	Map<String, String> portIdentifiers = newHashMap()
-	Map<String, String> enumIdentifiers = newHashMap()
+	val Map<String, String> procIdentifiers = newHashMap()
+	val Map<String, Map<String, String>> stateIdentifiers = newHashMap()
+	val Map<String, Map<String, String>> procVarIdentifiers = newHashMap()
+	val Map<String, String> globalVarIdentifiers = newHashMap()
+	val Map<String, String> constIdentifiers = newHashMap()
+	val Map<String, String> portIdentifiers = newHashMap()
+	val Map<String, String> enumIdentifiers = newHashMap()
 
 	override getProcessFuncId(Process proc) {
 		return '''_p_«proc.name»'''

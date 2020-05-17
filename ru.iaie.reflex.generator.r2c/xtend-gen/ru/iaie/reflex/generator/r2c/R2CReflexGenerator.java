@@ -2,7 +2,6 @@ package ru.iaie.reflex.generator.r2c;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -17,6 +16,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.R2CResourceProvider;
 import ru.iaie.reflex.generator.r2c.ReflexIdentifiersHelper;
 import ru.iaie.reflex.reflex.AdditiveExpression;
 import ru.iaie.reflex.reflex.AdditiveOp;
@@ -79,10 +79,6 @@ public class R2CReflexGenerator extends AbstractGenerator {
   
   private Program program;
   
-  private List<String> commonResources = CollectionLiterals.<String>newArrayList("usr/usr.c", "usr/usr.h", 
-    "lib/r_cnst.h", "lib/r_io.c", "lib/r_io.h", "lib/r_lib.c", "lib/r_lib.h", "lib/r_main.h", 
-    "generated/ext.h", "generated/io.h");
-  
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.program = ReflexModelUtil.getProgram(resource);
@@ -107,7 +103,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
   }
   
   public void copyResources(final String fileNamePrefix, final IFileSystemAccess2 fsa) {
-    for (final String resource : this.commonResources) {
+    for (final String resource : R2CResourceProvider.COMMON_RESOURCES) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("c-code/");
       _builder.append(resource);
