@@ -20,19 +20,19 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
-  private Map<String, String> procIdentifiers = CollectionLiterals.<String, String>newHashMap();
+  private final Map<String, String> procIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, Map<String, String>> stateIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
+  private final Map<String, Map<String, String>> stateIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
   
-  private Map<String, Map<String, String>> procVarIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
+  private final Map<String, Map<String, String>> procVarIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
   
-  private Map<String, String> globalVarIdentifiers = CollectionLiterals.<String, String>newHashMap();
+  private final Map<String, String> globalVarIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> constIdentifiers = CollectionLiterals.<String, String>newHashMap();
+  private final Map<String, String> constIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> portIdentifiers = CollectionLiterals.<String, String>newHashMap();
+  private final Map<String, String> portIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
-  private Map<String, String> enumIdentifiers = CollectionLiterals.<String, String>newHashMap();
+  private final Map<String, String> enumIdentifiers = CollectionLiterals.<String, String>newHashMap();
   
   @Override
   public String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc) {

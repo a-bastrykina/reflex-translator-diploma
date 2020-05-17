@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.generator;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
@@ -18,11 +17,9 @@ import ru.iaie.reflex.generator.xmi.XMIReflexGenerator;
  */
 @SuppressWarnings("all")
 public class ReflexGenerator extends AbstractGenerator {
-  @Inject
-  private R2CReflexGenerator r2cGen;
+  private R2CReflexGenerator r2cGen = new R2CReflexGenerator();
   
-  @Inject
-  private XMIReflexGenerator xmiGen;
+  private XMIReflexGenerator xmiGen = new XMIReflexGenerator();
   
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
