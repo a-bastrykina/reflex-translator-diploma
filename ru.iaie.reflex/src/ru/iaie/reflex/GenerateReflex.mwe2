@@ -47,6 +47,7 @@ Workflow {
 				generateXtendStub = true
 			}
 			generator = {
+				generateJavaMain = true
 				generateXtendStub = true
 			}
 			junitSupport = {

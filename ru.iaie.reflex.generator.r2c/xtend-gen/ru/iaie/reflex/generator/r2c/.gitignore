@@ -3,3 +3,13 @@
 /.R2CReflexGenerator.java._trace
 /.R2CResourceProvider.java._trace
 /.ReflexIdentifiersHelper.java._trace
+/.IReflexCachedIdentifiersHelper.xtendbin
+/.OldStyleReflexIdentifiersHelper.xtendbin
+/.R2CReflexGenerator.xtendbin
+/.R2CResourceProvider.xtendbin
+/.ReflexIdentifiersHelper.xtendbin
+/IReflexCachedIdentifiersHelper.java
+/OldStyleReflexIdentifiersHelper.java
+/R2CReflexGenerator.java
+/R2CResourceProvider.java
+/ReflexIdentifiersHelper.java

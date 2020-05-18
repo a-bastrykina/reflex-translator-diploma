@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.generator.r2c/xtend-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.ide/src"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.ide/src-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.tests/src-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.tests/xtend-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.ui.tests/src-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.ui/src"/>
+	<classpathentry kind="src" path="ru.iaie.reflex.ui/src-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex/src"/>
+	<classpathentry kind="src" path="ru.iaie.reflex/src-gen"/>
+	<classpathentry kind="src" path="ru.iaie.reflex/xtend-gen"/>
+	<classpathentry kind="lib" path="dsm-support.jar"/>
+	<classpathentry kind="lib" path="reflex-core.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/bin/reflex-core.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/lib/dsm-support.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/lib/reflex-core.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/target/classes/dsm-support.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/target/classes/reflex-core.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex.generator.r2c/target/r2c-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="ru.iaie.reflex/.antlr-generator-3.2.0-patch.jar"/>
+	<classpathentry kind="output" path="ru.iaie.reflex/bin"/>
+</classpath>
