@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.Annotation;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.Function;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.Program;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Tact;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import ru.iaie.reflex.reflex.Tact;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getTicks <em>Ticks</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getClock <em>Clock</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.ProgramImpl#getFunctions <em>Functions</em>}</li>
@@ -82,14 +82,14 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getTicks() <em>Ticks</em>}' containment reference.
+   * The cached value of the '{@link #getClock() <em>Clock</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTicks()
+   * @see #getClock()
    * @generated
    * @ordered
    */
-  protected Tact ticks;
+  protected ClockDefinition clock;
 
   /**
    * The cached value of the '{@link #getConsts() <em>Consts</em>}' containment reference list.
@@ -218,9 +218,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    */
   @Override
-  public Tact getTicks()
+  public ClockDefinition getClock()
   {
-    return ticks;
+    return clock;
   }
 
   /**
@@ -228,13 +228,13 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTicks(Tact newTicks, NotificationChain msgs)
+  public NotificationChain basicSetClock(ClockDefinition newClock, NotificationChain msgs)
   {
-    Tact oldTicks = ticks;
-    ticks = newTicks;
+    ClockDefinition oldClock = clock;
+    clock = newClock;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__TICKS, oldTicks, newTicks);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__CLOCK, oldClock, newClock);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -246,20 +246,20 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    */
   @Override
-  public void setTicks(Tact newTicks)
+  public void setClock(ClockDefinition newClock)
   {
-    if (newTicks != ticks)
+    if (newClock != clock)
     {
       NotificationChain msgs = null;
-      if (ticks != null)
-        msgs = ((InternalEObject)ticks).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__TICKS, null, msgs);
-      if (newTicks != null)
-        msgs = ((InternalEObject)newTicks).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__TICKS, null, msgs);
-      msgs = basicSetTicks(newTicks, msgs);
+      if (clock != null)
+        msgs = ((InternalEObject)clock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__CLOCK, null, msgs);
+      if (newClock != null)
+        msgs = ((InternalEObject)newClock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.PROGRAM__CLOCK, null, msgs);
+      msgs = basicSetClock(newClock, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__TICKS, newTicks, newTicks));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.PROGRAM__CLOCK, newClock, newClock));
   }
 
   /**
@@ -364,8 +364,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
     {
       case ReflexPackage.PROGRAM__ANNOTATIONS:
         return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
-      case ReflexPackage.PROGRAM__TICKS:
-        return basicSetTicks(null, msgs);
+      case ReflexPackage.PROGRAM__CLOCK:
+        return basicSetClock(null, msgs);
       case ReflexPackage.PROGRAM__CONSTS:
         return ((InternalEList<?>)getConsts()).basicRemove(otherEnd, msgs);
       case ReflexPackage.PROGRAM__ENUMS:
@@ -396,8 +396,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return getAnnotations();
       case ReflexPackage.PROGRAM__NAME:
         return getName();
-      case ReflexPackage.PROGRAM__TICKS:
-        return getTicks();
+      case ReflexPackage.PROGRAM__CLOCK:
+        return getClock();
       case ReflexPackage.PROGRAM__CONSTS:
         return getConsts();
       case ReflexPackage.PROGRAM__ENUMS:
@@ -432,8 +432,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__NAME:
         setName((String)newValue);
         return;
-      case ReflexPackage.PROGRAM__TICKS:
-        setTicks((Tact)newValue);
+      case ReflexPackage.PROGRAM__CLOCK:
+        setClock((ClockDefinition)newValue);
         return;
       case ReflexPackage.PROGRAM__CONSTS:
         getConsts().clear();
@@ -479,8 +479,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
       case ReflexPackage.PROGRAM__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReflexPackage.PROGRAM__TICKS:
-        setTicks((Tact)null);
+      case ReflexPackage.PROGRAM__CLOCK:
+        setClock((ClockDefinition)null);
         return;
       case ReflexPackage.PROGRAM__CONSTS:
         getConsts().clear();
@@ -518,8 +518,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         return annotations != null && !annotations.isEmpty();
       case ReflexPackage.PROGRAM__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReflexPackage.PROGRAM__TICKS:
-        return ticks != null;
+      case ReflexPackage.PROGRAM__CLOCK:
+        return clock != null;
       case ReflexPackage.PROGRAM__CONSTS:
         return consts != null && !consts.isEmpty();
       case ReflexPackage.PROGRAM__ENUMS:

@@ -39,8 +39,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cTicksAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cTicksTactParserRuleCall_4_0 = (RuleCall)cTicksAssignment_4.eContents().get(0);
+		private final Assignment cClockAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cClockClockDefinitionParserRuleCall_4_0 = (RuleCall)cClockAssignment_4.eContents().get(0);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
 		private final Assignment cConstsAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
 		private final RuleCall cConstsConstParserRuleCall_5_0_0 = (RuleCall)cConstsAssignment_5_0.eContents().get(0);
@@ -59,13 +59,13 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//Program:
 		//	("[" annotations+=Annotation "]")*
 		//	"program" name=ID "{"
-		//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
+		//	clock=ClockDefinition (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
 		//	processes+=Process)*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("[" annotations+=Annotation "]")* "program" name=ID "{" ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function
-		//| globalVars+=GlobalVariable | ports+=Port | processes+=Process)* "}"
+		//("[" annotations+=Annotation "]")* "program" name=ID "{" clock=ClockDefinition (consts+=Const | enums+=Enum |
+		//functions+=Function | globalVars+=GlobalVariable | ports+=Port | processes+=Process)* "}"
 		public Group getGroup() { return cGroup; }
 		
 		//("[" annotations+=Annotation "]")*
@@ -95,11 +95,11 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//ticks=Tact?
-		public Assignment getTicksAssignment_4() { return cTicksAssignment_4; }
+		//clock=ClockDefinition
+		public Assignment getClockAssignment_4() { return cClockAssignment_4; }
 		
-		//Tact
-		public RuleCall getTicksTactParserRuleCall_4_0() { return cTicksTactParserRuleCall_4_0; }
+		//ClockDefinition
+		public RuleCall getClockClockDefinitionParserRuleCall_4_0() { return cClockClockDefinitionParserRuleCall_4_0; }
 		
 		//(consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port | processes+=Process)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
@@ -143,8 +143,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
-	public class TactElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.Tact");
+	public class ClockDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.ClockDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cClockKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -154,7 +154,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTimeValueTIMETerminalRuleCall_1_1_0 = (RuleCall)cTimeValueAssignment_1_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//Tact:
+		//ClockDefinition:
 		//	"clock" (intValue=INTEGER | timeValue=TIME) ";";
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2869,7 +2869,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final ProgramElements pProgram;
-	private final TactElements pTact;
+	private final ClockDefinitionElements pClockDefinition;
 	private final ProcessElements pProcess;
 	private final StateElements pState;
 	private final AnnotationElements pAnnotation;
@@ -2970,7 +2970,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pProgram = new ProgramElements();
-		this.pTact = new TactElements();
+		this.pClockDefinition = new ClockDefinitionElements();
 		this.pProcess = new ProcessElements();
 		this.pState = new StateElements();
 		this.pAnnotation = new AnnotationElements();
@@ -3092,7 +3092,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	//Program:
 	//	("[" annotations+=Annotation "]")*
 	//	"program" name=ID "{"
-	//	ticks=Tact? (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
+	//	clock=ClockDefinition (consts+=Const | enums+=Enum | functions+=Function | globalVars+=GlobalVariable | ports+=Port |
 	//	processes+=Process)*
 	//	"}";
 	public ProgramElements getProgramAccess() {
@@ -3103,14 +3103,14 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		return getProgramAccess().getRule();
 	}
 	
-	//Tact:
+	//ClockDefinition:
 	//	"clock" (intValue=INTEGER | timeValue=TIME) ";";
-	public TactElements getTactAccess() {
-		return pTact;
+	public ClockDefinitionElements getClockDefinitionAccess() {
+		return pClockDefinition;
 	}
 	
-	public ParserRule getTactRule() {
-		return getTactAccess().getRule();
+	public ParserRule getClockDefinitionRule() {
+		return getClockDefinitionAccess().getRule();
 	}
 	
 	//Process:

@@ -27,6 +27,7 @@ import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Port
 import ru.iaie.reflex.utils.LiteralUtils
+import ru.iaie.reflex.reflex.ClockDefinition
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -136,6 +137,10 @@ class ReflexModelUtil {
 				// TODO: decide which type must enum members have
 				return Type.INT32_U
 		}
+	}
+	
+	def static boolean hasTimeFormat(ClockDefinition clck) {
+		return clck.timeValue !== null
 	}
 	
 	def static Type getSuitableTypeForPort(Port p) {

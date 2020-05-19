@@ -87,13 +87,13 @@ public interface ReflexPackage extends EPackage
   int PROGRAM__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Ticks</b></em>' containment reference.
+   * The feature id for the '<em><b>Clock</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROGRAM__TICKS = 2;
+  int PROGRAM__CLOCK = 2;
 
   /**
    * The feature id for the '<em><b>Consts</b></em>' containment reference list.
@@ -159,14 +159,14 @@ public interface ReflexPackage extends EPackage
   int PROGRAM_FEATURE_COUNT = 9;
 
   /**
-   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.TactImpl <em>Tact</em>}' class.
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ClockDefinitionImpl <em>Clock Definition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ru.iaie.reflex.reflex.impl.TactImpl
-   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTact()
+   * @see ru.iaie.reflex.reflex.impl.ClockDefinitionImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getClockDefinition()
    * @generated
    */
-  int TACT = 1;
+  int CLOCK_DEFINITION = 1;
 
   /**
    * The feature id for the '<em><b>Int Value</b></em>' attribute.
@@ -175,7 +175,7 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TACT__INT_VALUE = 0;
+  int CLOCK_DEFINITION__INT_VALUE = 0;
 
   /**
    * The feature id for the '<em><b>Time Value</b></em>' attribute.
@@ -184,16 +184,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TACT__TIME_VALUE = 1;
+  int CLOCK_DEFINITION__TIME_VALUE = 1;
 
   /**
-   * The number of structural features of the '<em>Tact</em>' class.
+   * The number of structural features of the '<em>Clock Definition</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TACT_FEATURE_COUNT = 2;
+  int CLOCK_DEFINITION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.ProcessImpl <em>Process</em>}' class.
@@ -2772,15 +2772,15 @@ public interface ReflexPackage extends EPackage
   EAttribute getProgram_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}'.
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.Program#getClock <em>Clock</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Ticks</em>'.
-   * @see ru.iaie.reflex.reflex.Program#getTicks()
+   * @return the meta object for the containment reference '<em>Clock</em>'.
+   * @see ru.iaie.reflex.reflex.Program#getClock()
    * @see #getProgram()
    * @generated
    */
-  EReference getProgram_Ticks();
+  EReference getProgram_Clock();
 
   /**
    * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}'.
@@ -2849,36 +2849,36 @@ public interface ReflexPackage extends EPackage
   EReference getProgram_Processes();
 
   /**
-   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Tact <em>Tact</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.ClockDefinition <em>Clock Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Tact</em>'.
-   * @see ru.iaie.reflex.reflex.Tact
+   * @return the meta object for class '<em>Clock Definition</em>'.
+   * @see ru.iaie.reflex.reflex.ClockDefinition
    * @generated
    */
-  EClass getTact();
+  EClass getClockDefinition();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ClockDefinition#getIntValue <em>Int Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Int Value</em>'.
-   * @see ru.iaie.reflex.reflex.Tact#getIntValue()
-   * @see #getTact()
+   * @see ru.iaie.reflex.reflex.ClockDefinition#getIntValue()
+   * @see #getClockDefinition()
    * @generated
    */
-  EAttribute getTact_IntValue();
+  EAttribute getClockDefinition_IntValue();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}'.
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.ClockDefinition#getTimeValue <em>Time Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Time Value</em>'.
-   * @see ru.iaie.reflex.reflex.Tact#getTimeValue()
-   * @see #getTact()
+   * @see ru.iaie.reflex.reflex.ClockDefinition#getTimeValue()
+   * @see #getClockDefinition()
    * @generated
    */
-  EAttribute getTact_TimeValue();
+  EAttribute getClockDefinition_TimeValue();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.Process <em>Process</em>}'.
@@ -4433,12 +4433,12 @@ public interface ReflexPackage extends EPackage
     EAttribute PROGRAM__NAME = eINSTANCE.getProgram_Name();
 
     /**
-     * The meta object literal for the '<em><b>Ticks</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Clock</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROGRAM__TICKS = eINSTANCE.getProgram_Ticks();
+    EReference PROGRAM__CLOCK = eINSTANCE.getProgram_Clock();
 
     /**
      * The meta object literal for the '<em><b>Consts</b></em>' containment reference list feature.
@@ -4489,14 +4489,14 @@ public interface ReflexPackage extends EPackage
     EReference PROGRAM__PROCESSES = eINSTANCE.getProgram_Processes();
 
     /**
-     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.TactImpl <em>Tact</em>}' class.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ClockDefinitionImpl <em>Clock Definition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ru.iaie.reflex.reflex.impl.TactImpl
-     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getTact()
+     * @see ru.iaie.reflex.reflex.impl.ClockDefinitionImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getClockDefinition()
      * @generated
      */
-    EClass TACT = eINSTANCE.getTact();
+    EClass CLOCK_DEFINITION = eINSTANCE.getClockDefinition();
 
     /**
      * The meta object literal for the '<em><b>Int Value</b></em>' attribute feature.
@@ -4504,7 +4504,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TACT__INT_VALUE = eINSTANCE.getTact_IntValue();
+    EAttribute CLOCK_DEFINITION__INT_VALUE = eINSTANCE.getClockDefinition_IntValue();
 
     /**
      * The meta object literal for the '<em><b>Time Value</b></em>' attribute feature.
@@ -4512,7 +4512,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TACT__TIME_VALUE = eINSTANCE.getTact_TimeValue();
+    EAttribute CLOCK_DEFINITION__TIME_VALUE = eINSTANCE.getClockDefinition_TimeValue();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.ProcessImpl <em>Process</em>}' class.

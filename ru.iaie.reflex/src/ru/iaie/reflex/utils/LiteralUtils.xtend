@@ -33,14 +33,14 @@ class LiteralUtils {
 		if ((index = rest.indexOf("d")) > 0) {
 			val dayCount = parseInteger(rest.substring(0, index))
 			millis += dayCount * MILLIS_PER_DAY;
-			if (index == rest.length - 1) return millis;
+			if(index == rest.length - 1) return millis;
 			rest = rest.substring(index + 1, rest.length)
 		}
 
 		if ((index = rest.indexOf("h")) > 0) {
 			val dayCount = parseInteger(rest.substring(0, index))
 			millis += dayCount * MILLIS_PER_DAY;
-			if (index == rest.length - 1) return millis;
+			if(index == rest.length - 1) return millis;
 			rest = rest.substring(index + 1, rest.length)
 		}
 
@@ -48,16 +48,18 @@ class LiteralUtils {
 			if (index != rest.length - 1 && !rest.charAt(index + 1).toString.equals("s")) {
 				val minCount = parseInteger(rest.substring(0, index))
 				millis += minCount * MILLIS_PER_MINUTE;
-				if (index == rest.length - 1) return millis;
+				if(index == rest.length - 1) return millis;
 				rest = rest.substring(index + 1, rest.length)
 			}
 		}
 
 		if ((index = rest.indexOf("s")) > 0) {
-			val secCount = parseInteger(rest.substring(0, index))
-			millis += secCount * MILLIS_PER_SECOND;
-			if (index == rest.length - 1) return millis;
-			rest = rest.substring(index + 1, rest.length)
+			if (!rest.charAt(index - 1).toString.equals("m")) {
+				val secCount = parseInteger(rest.substring(0, index))
+				millis += secCount * MILLIS_PER_SECOND;
+				if(index == rest.length - 1) return millis;
+				rest = rest.substring(index + 1, rest.length)
+			}
 		}
 
 		if ((index = rest.indexOf("ms")) > 0) {

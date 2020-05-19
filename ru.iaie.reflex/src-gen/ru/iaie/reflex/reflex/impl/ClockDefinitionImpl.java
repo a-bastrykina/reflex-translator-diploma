@@ -10,24 +10,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.Tact;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Tact</b></em>'.
+ * An implementation of the model object '<em><b>Clock Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TactImpl#getIntValue <em>Int Value</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.TactImpl#getTimeValue <em>Time Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ClockDefinitionImpl#getIntValue <em>Int Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.ClockDefinitionImpl#getTimeValue <em>Time Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TactImpl extends MinimalEObjectImpl.Container implements Tact
+public class ClockDefinitionImpl extends MinimalEObjectImpl.Container implements ClockDefinition
 {
   /**
    * The default value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
@@ -74,7 +74,7 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TactImpl()
+  protected ClockDefinitionImpl()
   {
     super();
   }
@@ -87,7 +87,7 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   @Override
   protected EClass eStaticClass()
   {
-    return ReflexPackage.Literals.TACT;
+    return ReflexPackage.Literals.CLOCK_DEFINITION;
   }
 
   /**
@@ -112,7 +112,7 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
     String oldIntValue = intValue;
     intValue = newIntValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TACT__INT_VALUE, oldIntValue, intValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CLOCK_DEFINITION__INT_VALUE, oldIntValue, intValue));
   }
 
   /**
@@ -137,7 +137,7 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
     String oldTimeValue = timeValue;
     timeValue = newTimeValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.TACT__TIME_VALUE, oldTimeValue, timeValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CLOCK_DEFINITION__TIME_VALUE, oldTimeValue, timeValue));
   }
 
   /**
@@ -150,9 +150,9 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__INT_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__INT_VALUE:
         return getIntValue();
-      case ReflexPackage.TACT__TIME_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__TIME_VALUE:
         return getTimeValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -168,10 +168,10 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__INT_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__INT_VALUE:
         setIntValue((String)newValue);
         return;
-      case ReflexPackage.TACT__TIME_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__TIME_VALUE:
         setTimeValue((String)newValue);
         return;
     }
@@ -188,10 +188,10 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__INT_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__INT_VALUE:
         setIntValue(INT_VALUE_EDEFAULT);
         return;
-      case ReflexPackage.TACT__TIME_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__TIME_VALUE:
         setTimeValue(TIME_VALUE_EDEFAULT);
         return;
     }
@@ -208,9 +208,9 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
   {
     switch (featureID)
     {
-      case ReflexPackage.TACT__INT_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__INT_VALUE:
         return INT_VALUE_EDEFAULT == null ? intValue != null : !INT_VALUE_EDEFAULT.equals(intValue);
-      case ReflexPackage.TACT__TIME_VALUE:
+      case ReflexPackage.CLOCK_DEFINITION__TIME_VALUE:
         return TIME_VALUE_EDEFAULT == null ? timeValue != null : !TIME_VALUE_EDEFAULT.equals(timeValue);
     }
     return super.eIsSet(featureID);
@@ -235,4 +235,4 @@ public class TactImpl extends MinimalEObjectImpl.Container implements Tact
     return result.toString();
   }
 
-} //TactImpl
+} //ClockDefinitionImpl

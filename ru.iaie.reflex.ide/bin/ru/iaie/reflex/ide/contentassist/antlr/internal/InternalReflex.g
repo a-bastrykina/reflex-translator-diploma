@@ -75,25 +75,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleTact
-entryRuleTact
+// Entry rule entryRuleClockDefinition
+entryRuleClockDefinition
 :
-{ before(grammarAccess.getTactRule()); }
-	 ruleTact
-{ after(grammarAccess.getTactRule()); } 
+{ before(grammarAccess.getClockDefinitionRule()); }
+	 ruleClockDefinition
+{ after(grammarAccess.getClockDefinitionRule()); } 
 	 EOF 
 ;
 
-// Rule Tact
-ruleTact 
+// Rule ClockDefinition
+ruleClockDefinition 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getTactAccess().getGroup()); }
-		(rule__Tact__Group__0)
-		{ after(grammarAccess.getTactAccess().getGroup()); }
+		{ before(grammarAccess.getClockDefinitionAccess().getGroup()); }
+		(rule__ClockDefinition__Group__0)
+		{ after(grammarAccess.getClockDefinitionAccess().getGroup()); }
 	)
 ;
 finally {
@@ -1538,21 +1538,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Alternatives_1
+rule__ClockDefinition__Alternatives_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTactAccess().getIntValueAssignment_1_0()); }
-		(rule__Tact__IntValueAssignment_1_0)
-		{ after(grammarAccess.getTactAccess().getIntValueAssignment_1_0()); }
+		{ before(grammarAccess.getClockDefinitionAccess().getIntValueAssignment_1_0()); }
+		(rule__ClockDefinition__IntValueAssignment_1_0)
+		{ after(grammarAccess.getClockDefinitionAccess().getIntValueAssignment_1_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getTactAccess().getTimeValueAssignment_1_1()); }
-		(rule__Tact__TimeValueAssignment_1_1)
-		{ after(grammarAccess.getTactAccess().getTimeValueAssignment_1_1()); }
+		{ before(grammarAccess.getClockDefinitionAccess().getTimeValueAssignment_1_1()); }
+		(rule__ClockDefinition__TimeValueAssignment_1_1)
+		{ after(grammarAccess.getClockDefinitionAccess().getTimeValueAssignment_1_1()); }
 	)
 ;
 finally {
@@ -2447,9 +2447,9 @@ rule__Program__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getProgramAccess().getTicksAssignment_4()); }
-	(rule__Program__TicksAssignment_4)?
-	{ after(grammarAccess.getProgramAccess().getTicksAssignment_4()); }
+	{ before(grammarAccess.getProgramAccess().getClockAssignment_4()); }
+	(rule__Program__ClockAssignment_4)
+	{ after(grammarAccess.getProgramAccess().getClockAssignment_4()); }
 )
 ;
 finally {
@@ -2591,80 +2591,80 @@ finally {
 }
 
 
-rule__Tact__Group__0
+rule__ClockDefinition__Group__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Tact__Group__0__Impl
-	rule__Tact__Group__1
+	rule__ClockDefinition__Group__0__Impl
+	rule__ClockDefinition__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Group__0__Impl
+rule__ClockDefinition__Group__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getTactAccess().getClockKeyword_0()); }
+	{ before(grammarAccess.getClockDefinitionAccess().getClockKeyword_0()); }
 	'clock'
-	{ after(grammarAccess.getTactAccess().getClockKeyword_0()); }
+	{ after(grammarAccess.getClockDefinitionAccess().getClockKeyword_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Group__1
+rule__ClockDefinition__Group__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Tact__Group__1__Impl
-	rule__Tact__Group__2
+	rule__ClockDefinition__Group__1__Impl
+	rule__ClockDefinition__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Group__1__Impl
+rule__ClockDefinition__Group__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getTactAccess().getAlternatives_1()); }
-	(rule__Tact__Alternatives_1)
-	{ after(grammarAccess.getTactAccess().getAlternatives_1()); }
+	{ before(grammarAccess.getClockDefinitionAccess().getAlternatives_1()); }
+	(rule__ClockDefinition__Alternatives_1)
+	{ after(grammarAccess.getClockDefinitionAccess().getAlternatives_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Group__2
+rule__ClockDefinition__Group__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Tact__Group__2__Impl
+	rule__ClockDefinition__Group__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__Group__2__Impl
+rule__ClockDefinition__Group__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getTactAccess().getSemicolonKeyword_2()); }
+	{ before(grammarAccess.getClockDefinitionAccess().getSemicolonKeyword_2()); }
 	';'
-	{ after(grammarAccess.getTactAccess().getSemicolonKeyword_2()); }
+	{ after(grammarAccess.getClockDefinitionAccess().getSemicolonKeyword_2()); }
 )
 ;
 finally {
@@ -9263,15 +9263,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Program__TicksAssignment_4
+rule__Program__ClockAssignment_4
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getProgramAccess().getTicksTactParserRuleCall_4_0()); }
-		ruleTact
-		{ after(grammarAccess.getProgramAccess().getTicksTactParserRuleCall_4_0()); }
+		{ before(grammarAccess.getProgramAccess().getClockClockDefinitionParserRuleCall_4_0()); }
+		ruleClockDefinition
+		{ after(grammarAccess.getProgramAccess().getClockClockDefinitionParserRuleCall_4_0()); }
 	)
 ;
 finally {
@@ -9368,30 +9368,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__IntValueAssignment_1_0
+rule__ClockDefinition__IntValueAssignment_1_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); }
+		{ before(grammarAccess.getClockDefinitionAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); }
 		RULE_INTEGER
-		{ after(grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); }
+		{ after(grammarAccess.getClockDefinitionAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Tact__TimeValueAssignment_1_1
+rule__ClockDefinition__TimeValueAssignment_1_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); }
+		{ before(grammarAccess.getClockDefinitionAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); }
 		RULE_TIME
-		{ after(grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); }
+		{ after(grammarAccess.getClockDefinitionAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); }
 	)
 ;
 finally {

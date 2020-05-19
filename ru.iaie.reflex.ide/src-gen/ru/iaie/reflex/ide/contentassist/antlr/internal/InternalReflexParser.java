@@ -260,23 +260,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleProgram"
 
 
-    // $ANTLR start "entryRuleTact"
-    // InternalReflex.g:79:1: entryRuleTact : ruleTact EOF ;
-    public final void entryRuleTact() throws RecognitionException {
+    // $ANTLR start "entryRuleClockDefinition"
+    // InternalReflex.g:79:1: entryRuleClockDefinition : ruleClockDefinition EOF ;
+    public final void entryRuleClockDefinition() throws RecognitionException {
         try {
-            // InternalReflex.g:80:1: ( ruleTact EOF )
-            // InternalReflex.g:81:1: ruleTact EOF
+            // InternalReflex.g:80:1: ( ruleClockDefinition EOF )
+            // InternalReflex.g:81:1: ruleClockDefinition EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactRule()); 
+               before(grammarAccess.getClockDefinitionRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleTact();
+            ruleClockDefinition();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactRule()); 
+               after(grammarAccess.getClockDefinitionRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -291,30 +291,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleTact"
+    // $ANTLR end "entryRuleClockDefinition"
 
 
-    // $ANTLR start "ruleTact"
-    // InternalReflex.g:88:1: ruleTact : ( ( rule__Tact__Group__0 ) ) ;
-    public final void ruleTact() throws RecognitionException {
+    // $ANTLR start "ruleClockDefinition"
+    // InternalReflex.g:88:1: ruleClockDefinition : ( ( rule__ClockDefinition__Group__0 ) ) ;
+    public final void ruleClockDefinition() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:92:2: ( ( ( rule__Tact__Group__0 ) ) )
-            // InternalReflex.g:93:2: ( ( rule__Tact__Group__0 ) )
+            // InternalReflex.g:92:2: ( ( ( rule__ClockDefinition__Group__0 ) ) )
+            // InternalReflex.g:93:2: ( ( rule__ClockDefinition__Group__0 ) )
             {
-            // InternalReflex.g:93:2: ( ( rule__Tact__Group__0 ) )
-            // InternalReflex.g:94:3: ( rule__Tact__Group__0 )
+            // InternalReflex.g:93:2: ( ( rule__ClockDefinition__Group__0 ) )
+            // InternalReflex.g:94:3: ( rule__ClockDefinition__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getGroup()); 
+               before(grammarAccess.getClockDefinitionAccess().getGroup()); 
             }
-            // InternalReflex.g:95:3: ( rule__Tact__Group__0 )
-            // InternalReflex.g:95:4: rule__Tact__Group__0
+            // InternalReflex.g:95:3: ( rule__ClockDefinition__Group__0 )
+            // InternalReflex.g:95:4: rule__ClockDefinition__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Tact__Group__0();
+            rule__ClockDefinition__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -322,7 +322,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getGroup()); 
+               after(grammarAccess.getClockDefinitionAccess().getGroup()); 
             }
 
             }
@@ -342,7 +342,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleTact"
+    // $ANTLR end "ruleClockDefinition"
 
 
     // $ANTLR start "entryRuleProcess"
@@ -5233,14 +5233,14 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Program__Alternatives_5"
 
 
-    // $ANTLR start "rule__Tact__Alternatives_1"
-    // InternalReflex.g:1541:1: rule__Tact__Alternatives_1 : ( ( ( rule__Tact__IntValueAssignment_1_0 ) ) | ( ( rule__Tact__TimeValueAssignment_1_1 ) ) );
-    public final void rule__Tact__Alternatives_1() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Alternatives_1"
+    // InternalReflex.g:1541:1: rule__ClockDefinition__Alternatives_1 : ( ( ( rule__ClockDefinition__IntValueAssignment_1_0 ) ) | ( ( rule__ClockDefinition__TimeValueAssignment_1_1 ) ) );
+    public final void rule__ClockDefinition__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:1545:1: ( ( ( rule__Tact__IntValueAssignment_1_0 ) ) | ( ( rule__Tact__TimeValueAssignment_1_1 ) ) )
+            // InternalReflex.g:1545:1: ( ( ( rule__ClockDefinition__IntValueAssignment_1_0 ) ) | ( ( rule__ClockDefinition__TimeValueAssignment_1_1 ) ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -5259,19 +5259,19 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // InternalReflex.g:1546:2: ( ( rule__Tact__IntValueAssignment_1_0 ) )
+                    // InternalReflex.g:1546:2: ( ( rule__ClockDefinition__IntValueAssignment_1_0 ) )
                     {
-                    // InternalReflex.g:1546:2: ( ( rule__Tact__IntValueAssignment_1_0 ) )
-                    // InternalReflex.g:1547:3: ( rule__Tact__IntValueAssignment_1_0 )
+                    // InternalReflex.g:1546:2: ( ( rule__ClockDefinition__IntValueAssignment_1_0 ) )
+                    // InternalReflex.g:1547:3: ( rule__ClockDefinition__IntValueAssignment_1_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTactAccess().getIntValueAssignment_1_0()); 
+                       before(grammarAccess.getClockDefinitionAccess().getIntValueAssignment_1_0()); 
                     }
-                    // InternalReflex.g:1548:3: ( rule__Tact__IntValueAssignment_1_0 )
-                    // InternalReflex.g:1548:4: rule__Tact__IntValueAssignment_1_0
+                    // InternalReflex.g:1548:3: ( rule__ClockDefinition__IntValueAssignment_1_0 )
+                    // InternalReflex.g:1548:4: rule__ClockDefinition__IntValueAssignment_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Tact__IntValueAssignment_1_0();
+                    rule__ClockDefinition__IntValueAssignment_1_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -5279,7 +5279,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTactAccess().getIntValueAssignment_1_0()); 
+                       after(grammarAccess.getClockDefinitionAccess().getIntValueAssignment_1_0()); 
                     }
 
                     }
@@ -5288,19 +5288,19 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalReflex.g:1552:2: ( ( rule__Tact__TimeValueAssignment_1_1 ) )
+                    // InternalReflex.g:1552:2: ( ( rule__ClockDefinition__TimeValueAssignment_1_1 ) )
                     {
-                    // InternalReflex.g:1552:2: ( ( rule__Tact__TimeValueAssignment_1_1 ) )
-                    // InternalReflex.g:1553:3: ( rule__Tact__TimeValueAssignment_1_1 )
+                    // InternalReflex.g:1552:2: ( ( rule__ClockDefinition__TimeValueAssignment_1_1 ) )
+                    // InternalReflex.g:1553:3: ( rule__ClockDefinition__TimeValueAssignment_1_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTactAccess().getTimeValueAssignment_1_1()); 
+                       before(grammarAccess.getClockDefinitionAccess().getTimeValueAssignment_1_1()); 
                     }
-                    // InternalReflex.g:1554:3: ( rule__Tact__TimeValueAssignment_1_1 )
-                    // InternalReflex.g:1554:4: rule__Tact__TimeValueAssignment_1_1
+                    // InternalReflex.g:1554:3: ( rule__ClockDefinition__TimeValueAssignment_1_1 )
+                    // InternalReflex.g:1554:4: rule__ClockDefinition__TimeValueAssignment_1_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Tact__TimeValueAssignment_1_1();
+                    rule__ClockDefinition__TimeValueAssignment_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -5308,7 +5308,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTactAccess().getTimeValueAssignment_1_1()); 
+                       after(grammarAccess.getClockDefinitionAccess().getTimeValueAssignment_1_1()); 
                     }
 
                     }
@@ -5330,7 +5330,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Alternatives_1"
+    // $ANTLR end "rule__ClockDefinition__Alternatives_1"
 
 
     // $ANTLR start "rule__Process__Alternatives_4_0"
@@ -5446,11 +5446,16 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
             if ( (LA4_0==RULE_ID) ) {
                 switch ( input.LA(2) ) {
+                case 94:
+                    {
+                    alt4=1;
+                    }
+                    break;
                 case 95:
                     {
-                    int LA4_2 = input.LA(3);
+                    int LA4_3 = input.LA(3);
 
-                    if ( (LA4_2==RULE_ID) ) {
+                    if ( (LA4_3==RULE_ID) ) {
                         int LA4_5 = input.LA(4);
 
                         if ( (LA4_5==94) ) {
@@ -5470,15 +5475,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 4, 2, input);
+                            new NoViableAltException("", 4, 3, input);
 
                         throw nvae;
                     }
-                    }
-                    break;
-                case 94:
-                    {
-                    alt4=1;
                     }
                     break;
                 case EOF:
@@ -5593,11 +5593,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             if ( (LA5_0==RULE_ID) ) {
                 int LA5_1 = input.LA(2);
 
-                if ( (LA5_1==EOF||LA5_1==89||LA5_1==94) ) {
-                    alt5=2;
-                }
-                else if ( (LA5_1==95) ) {
+                if ( (LA5_1==95) ) {
                     alt5=1;
+                }
+                else if ( (LA5_1==EOF||LA5_1==89||LA5_1==94) ) {
+                    alt5=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -6781,17 +6781,6 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             case RULE_ID:
                 {
                 switch ( input.LA(2) ) {
-                case 45:
-                case 46:
-                    {
-                    alt13=3;
-                    }
-                    break;
-                case 100:
-                    {
-                    alt13=2;
-                    }
-                    break;
                 case EOF:
                 case RULE_BIT_AND:
                 case RULE_BIT_XOR:
@@ -6817,6 +6806,17 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                 case 101:
                     {
                     alt13=1;
+                    }
+                    break;
+                case 45:
+                case 46:
+                    {
+                    alt13=3;
+                    }
+                    break;
+                case 100:
+                    {
+                    alt13=2;
                     }
                     break;
                 default:
@@ -7016,11 +7016,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             else if ( (LA14_0==100) ) {
                 int LA14_2 = input.LA(2);
 
-                if ( ((LA14_2>=72 && LA14_2<=84)) ) {
-                    alt14=2;
-                }
-                else if ( (LA14_2==RULE_ID||(LA14_2>=RULE_INTEGER && LA14_2<=RULE_TIME)||(LA14_2>=RULE_FLOAT && LA14_2<=RULE_BOOL_LITERAL)||(LA14_2>=45 && LA14_2<=46)||(LA14_2>=57 && LA14_2<=60)||LA14_2==92||LA14_2==100) ) {
+                if ( (LA14_2==RULE_ID||(LA14_2>=RULE_INTEGER && LA14_2<=RULE_TIME)||(LA14_2>=RULE_FLOAT && LA14_2<=RULE_BOOL_LITERAL)||(LA14_2>=45 && LA14_2<=46)||(LA14_2>=57 && LA14_2<=60)||LA14_2==92||LA14_2==100) ) {
                     alt14=1;
+                }
+                else if ( ((LA14_2>=72 && LA14_2<=84)) ) {
+                    alt14=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -9381,7 +9381,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2436:1: ( rule__Program__Group__4__Impl rule__Program__Group__5 )
             // InternalReflex.g:2437:2: rule__Program__Group__4__Impl rule__Program__Group__5
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_8);
             rule__Program__Group__4__Impl();
 
             state._fsp--;
@@ -9410,45 +9410,34 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__4__Impl"
-    // InternalReflex.g:2444:1: rule__Program__Group__4__Impl : ( ( rule__Program__TicksAssignment_4 )? ) ;
+    // InternalReflex.g:2444:1: rule__Program__Group__4__Impl : ( ( rule__Program__ClockAssignment_4 ) ) ;
     public final void rule__Program__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:2448:1: ( ( ( rule__Program__TicksAssignment_4 )? ) )
-            // InternalReflex.g:2449:1: ( ( rule__Program__TicksAssignment_4 )? )
+            // InternalReflex.g:2448:1: ( ( ( rule__Program__ClockAssignment_4 ) ) )
+            // InternalReflex.g:2449:1: ( ( rule__Program__ClockAssignment_4 ) )
             {
-            // InternalReflex.g:2449:1: ( ( rule__Program__TicksAssignment_4 )? )
-            // InternalReflex.g:2450:2: ( rule__Program__TicksAssignment_4 )?
+            // InternalReflex.g:2449:1: ( ( rule__Program__ClockAssignment_4 ) )
+            // InternalReflex.g:2450:2: ( rule__Program__ClockAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProgramAccess().getTicksAssignment_4()); 
+               before(grammarAccess.getProgramAccess().getClockAssignment_4()); 
             }
-            // InternalReflex.g:2451:2: ( rule__Program__TicksAssignment_4 )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalReflex.g:2451:2: ( rule__Program__ClockAssignment_4 )
+            // InternalReflex.g:2451:3: rule__Program__ClockAssignment_4
+            {
+            pushFollow(FOLLOW_2);
+            rule__Program__ClockAssignment_4();
 
-            if ( (LA28_0==90) ) {
-                alt28=1;
-            }
-            switch (alt28) {
-                case 1 :
-                    // InternalReflex.g:2451:3: rule__Program__TicksAssignment_4
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Program__TicksAssignment_4();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
+            state._fsp--;
+            if (state.failed) return ;
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProgramAccess().getTicksAssignment_4()); 
+               after(grammarAccess.getProgramAccess().getClockAssignment_4()); 
             }
 
             }
@@ -9481,7 +9470,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2463:1: ( rule__Program__Group__5__Impl rule__Program__Group__6 )
             // InternalReflex.g:2464:2: rule__Program__Group__5__Impl rule__Program__Group__6
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_8);
             rule__Program__Group__5__Impl();
 
             state._fsp--;
@@ -9526,21 +9515,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProgramAccess().getAlternatives_5()); 
             }
             // InternalReflex.g:2478:2: ( rule__Program__Alternatives_5 )*
-            loop29:
+            loop28:
             do {
-                int alt29=2;
-                int LA29_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( ((LA29_0>=39 && LA29_0<=40)||(LA29_0>=72 && LA29_0<=84)||LA29_0==88||LA29_0==92||(LA29_0>=102 && LA29_0<=103)) ) {
-                    alt29=1;
+                if ( ((LA28_0>=39 && LA28_0<=40)||(LA28_0>=72 && LA28_0<=84)||LA28_0==88||LA28_0==92||(LA28_0>=102 && LA28_0<=103)) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt29) {
+                switch (alt28) {
             	case 1 :
             	    // InternalReflex.g:2478:3: rule__Program__Alternatives_5
             	    {
-            	    pushFollow(FOLLOW_8);
+            	    pushFollow(FOLLOW_9);
             	    rule__Program__Alternatives_5();
 
             	    state._fsp--;
@@ -9550,7 +9539,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop29;
+            	    break loop28;
                 }
             } while (true);
 
@@ -9741,7 +9730,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2544:1: ( rule__Program__Group_0__1__Impl rule__Program__Group_0__2 )
             // InternalReflex.g:2545:2: rule__Program__Group_0__1__Impl rule__Program__Group_0__2
             {
-            pushFollow(FOLLOW_9);
+            pushFollow(FOLLOW_10);
             rule__Program__Group_0__1__Impl();
 
             state._fsp--;
@@ -9894,23 +9883,23 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Program__Group_0__2__Impl"
 
 
-    // $ANTLR start "rule__Tact__Group__0"
-    // InternalReflex.g:2594:1: rule__Tact__Group__0 : rule__Tact__Group__0__Impl rule__Tact__Group__1 ;
-    public final void rule__Tact__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__0"
+    // InternalReflex.g:2594:1: rule__ClockDefinition__Group__0 : rule__ClockDefinition__Group__0__Impl rule__ClockDefinition__Group__1 ;
+    public final void rule__ClockDefinition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:2598:1: ( rule__Tact__Group__0__Impl rule__Tact__Group__1 )
-            // InternalReflex.g:2599:2: rule__Tact__Group__0__Impl rule__Tact__Group__1
+            // InternalReflex.g:2598:1: ( rule__ClockDefinition__Group__0__Impl rule__ClockDefinition__Group__1 )
+            // InternalReflex.g:2599:2: rule__ClockDefinition__Group__0__Impl rule__ClockDefinition__Group__1
             {
-            pushFollow(FOLLOW_10);
-            rule__Tact__Group__0__Impl();
+            pushFollow(FOLLOW_11);
+            rule__ClockDefinition__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Tact__Group__1();
+            rule__ClockDefinition__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9929,12 +9918,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__0"
+    // $ANTLR end "rule__ClockDefinition__Group__0"
 
 
-    // $ANTLR start "rule__Tact__Group__0__Impl"
-    // InternalReflex.g:2606:1: rule__Tact__Group__0__Impl : ( 'clock' ) ;
-    public final void rule__Tact__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__0__Impl"
+    // InternalReflex.g:2606:1: rule__ClockDefinition__Group__0__Impl : ( 'clock' ) ;
+    public final void rule__ClockDefinition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9946,11 +9935,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2612:2: 'clock'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getClockKeyword_0()); 
+               before(grammarAccess.getClockDefinitionAccess().getClockKeyword_0()); 
             }
             match(input,90,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getClockKeyword_0()); 
+               after(grammarAccess.getClockDefinitionAccess().getClockKeyword_0()); 
             }
 
             }
@@ -9970,26 +9959,26 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__0__Impl"
+    // $ANTLR end "rule__ClockDefinition__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Tact__Group__1"
-    // InternalReflex.g:2621:1: rule__Tact__Group__1 : rule__Tact__Group__1__Impl rule__Tact__Group__2 ;
-    public final void rule__Tact__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__1"
+    // InternalReflex.g:2621:1: rule__ClockDefinition__Group__1 : rule__ClockDefinition__Group__1__Impl rule__ClockDefinition__Group__2 ;
+    public final void rule__ClockDefinition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:2625:1: ( rule__Tact__Group__1__Impl rule__Tact__Group__2 )
-            // InternalReflex.g:2626:2: rule__Tact__Group__1__Impl rule__Tact__Group__2
+            // InternalReflex.g:2625:1: ( rule__ClockDefinition__Group__1__Impl rule__ClockDefinition__Group__2 )
+            // InternalReflex.g:2626:2: rule__ClockDefinition__Group__1__Impl rule__ClockDefinition__Group__2
             {
-            pushFollow(FOLLOW_11);
-            rule__Tact__Group__1__Impl();
+            pushFollow(FOLLOW_12);
+            rule__ClockDefinition__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__Tact__Group__2();
+            rule__ClockDefinition__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10008,30 +9997,30 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__1"
+    // $ANTLR end "rule__ClockDefinition__Group__1"
 
 
-    // $ANTLR start "rule__Tact__Group__1__Impl"
-    // InternalReflex.g:2633:1: rule__Tact__Group__1__Impl : ( ( rule__Tact__Alternatives_1 ) ) ;
-    public final void rule__Tact__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__1__Impl"
+    // InternalReflex.g:2633:1: rule__ClockDefinition__Group__1__Impl : ( ( rule__ClockDefinition__Alternatives_1 ) ) ;
+    public final void rule__ClockDefinition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:2637:1: ( ( ( rule__Tact__Alternatives_1 ) ) )
-            // InternalReflex.g:2638:1: ( ( rule__Tact__Alternatives_1 ) )
+            // InternalReflex.g:2637:1: ( ( ( rule__ClockDefinition__Alternatives_1 ) ) )
+            // InternalReflex.g:2638:1: ( ( rule__ClockDefinition__Alternatives_1 ) )
             {
-            // InternalReflex.g:2638:1: ( ( rule__Tact__Alternatives_1 ) )
-            // InternalReflex.g:2639:2: ( rule__Tact__Alternatives_1 )
+            // InternalReflex.g:2638:1: ( ( rule__ClockDefinition__Alternatives_1 ) )
+            // InternalReflex.g:2639:2: ( rule__ClockDefinition__Alternatives_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getAlternatives_1()); 
+               before(grammarAccess.getClockDefinitionAccess().getAlternatives_1()); 
             }
-            // InternalReflex.g:2640:2: ( rule__Tact__Alternatives_1 )
-            // InternalReflex.g:2640:3: rule__Tact__Alternatives_1
+            // InternalReflex.g:2640:2: ( rule__ClockDefinition__Alternatives_1 )
+            // InternalReflex.g:2640:3: rule__ClockDefinition__Alternatives_1
             {
             pushFollow(FOLLOW_2);
-            rule__Tact__Alternatives_1();
+            rule__ClockDefinition__Alternatives_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10039,7 +10028,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getAlternatives_1()); 
+               after(grammarAccess.getClockDefinitionAccess().getAlternatives_1()); 
             }
 
             }
@@ -10059,21 +10048,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__1__Impl"
+    // $ANTLR end "rule__ClockDefinition__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Tact__Group__2"
-    // InternalReflex.g:2648:1: rule__Tact__Group__2 : rule__Tact__Group__2__Impl ;
-    public final void rule__Tact__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__2"
+    // InternalReflex.g:2648:1: rule__ClockDefinition__Group__2 : rule__ClockDefinition__Group__2__Impl ;
+    public final void rule__ClockDefinition__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:2652:1: ( rule__Tact__Group__2__Impl )
-            // InternalReflex.g:2653:2: rule__Tact__Group__2__Impl
+            // InternalReflex.g:2652:1: ( rule__ClockDefinition__Group__2__Impl )
+            // InternalReflex.g:2653:2: rule__ClockDefinition__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Tact__Group__2__Impl();
+            rule__ClockDefinition__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10092,12 +10081,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__2"
+    // $ANTLR end "rule__ClockDefinition__Group__2"
 
 
-    // $ANTLR start "rule__Tact__Group__2__Impl"
-    // InternalReflex.g:2659:1: rule__Tact__Group__2__Impl : ( ';' ) ;
-    public final void rule__Tact__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__Group__2__Impl"
+    // InternalReflex.g:2659:1: rule__ClockDefinition__Group__2__Impl : ( ';' ) ;
+    public final void rule__ClockDefinition__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -10109,11 +10098,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2665:2: ';'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getSemicolonKeyword_2()); 
+               before(grammarAccess.getClockDefinitionAccess().getSemicolonKeyword_2()); 
             }
             match(input,91,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getSemicolonKeyword_2()); 
+               after(grammarAccess.getClockDefinitionAccess().getSemicolonKeyword_2()); 
             }
 
             }
@@ -10133,7 +10122,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__Group__2__Impl"
+    // $ANTLR end "rule__ClockDefinition__Group__2__Impl"
 
 
     // $ANTLR start "rule__Process__Group__0"
@@ -10146,7 +10135,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2679:1: ( rule__Process__Group__0__Impl rule__Process__Group__1 )
             // InternalReflex.g:2680:2: rule__Process__Group__0__Impl rule__Process__Group__1
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_13);
             rule__Process__Group__0__Impl();
 
             state._fsp--;
@@ -10191,17 +10180,17 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProcessAccess().getGroup_0()); 
             }
             // InternalReflex.g:2694:2: ( rule__Process__Group_0__0 )*
-            loop30:
+            loop29:
             do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
+                int alt29=2;
+                int LA29_0 = input.LA(1);
 
-                if ( (LA30_0==88) ) {
-                    alt30=1;
+                if ( (LA29_0==88) ) {
+                    alt29=1;
                 }
 
 
-                switch (alt30) {
+                switch (alt29) {
             	case 1 :
             	    // InternalReflex.g:2694:3: rule__Process__Group_0__0
             	    {
@@ -10215,7 +10204,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop30;
+            	    break loop29;
                 }
             } while (true);
 
@@ -10421,7 +10410,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2760:1: ( rule__Process__Group__3__Impl rule__Process__Group__4 )
             // InternalReflex.g:2761:2: rule__Process__Group__3__Impl rule__Process__Group__4
             {
-            pushFollow(FOLLOW_13);
+            pushFollow(FOLLOW_14);
             rule__Process__Group__3__Impl();
 
             state._fsp--;
@@ -10500,7 +10489,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2787:1: ( rule__Process__Group__4__Impl rule__Process__Group__5 )
             // InternalReflex.g:2788:2: rule__Process__Group__4__Impl rule__Process__Group__5
             {
-            pushFollow(FOLLOW_13);
+            pushFollow(FOLLOW_14);
             rule__Process__Group__4__Impl();
 
             state._fsp--;
@@ -10545,21 +10534,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProcessAccess().getGroup_4()); 
             }
             // InternalReflex.g:2802:2: ( rule__Process__Group_4__0 )*
-            loop31:
+            loop30:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( ((LA31_0>=72 && LA31_0<=84)||LA31_0==96) ) {
-                    alt31=1;
+                if ( ((LA30_0>=72 && LA30_0<=84)||LA30_0==96) ) {
+                    alt30=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt30) {
             	case 1 :
             	    // InternalReflex.g:2802:3: rule__Process__Group_4__0
             	    {
-            	    pushFollow(FOLLOW_14);
+            	    pushFollow(FOLLOW_15);
             	    rule__Process__Group_4__0();
 
             	    state._fsp--;
@@ -10569,7 +10558,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop30;
                 }
             } while (true);
 
@@ -10607,7 +10596,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2814:1: ( rule__Process__Group__5__Impl rule__Process__Group__6 )
             // InternalReflex.g:2815:2: rule__Process__Group__5__Impl rule__Process__Group__6
             {
-            pushFollow(FOLLOW_13);
+            pushFollow(FOLLOW_14);
             rule__Process__Group__5__Impl();
 
             state._fsp--;
@@ -10652,21 +10641,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProcessAccess().getStatesAssignment_5()); 
             }
             // InternalReflex.g:2829:2: ( rule__Process__StatesAssignment_5 )*
-            loop32:
+            loop31:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA32_0==88||LA32_0==93) ) {
-                    alt32=1;
+                if ( (LA31_0==88||LA31_0==93) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt31) {
             	case 1 :
             	    // InternalReflex.g:2829:3: rule__Process__StatesAssignment_5
             	    {
-            	    pushFollow(FOLLOW_15);
+            	    pushFollow(FOLLOW_16);
             	    rule__Process__StatesAssignment_5();
 
             	    state._fsp--;
@@ -10676,7 +10665,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop31;
                 }
             } while (true);
 
@@ -10867,7 +10856,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2895:1: ( rule__Process__Group_0__1__Impl rule__Process__Group_0__2 )
             // InternalReflex.g:2896:2: rule__Process__Group_0__1__Impl rule__Process__Group_0__2
             {
-            pushFollow(FOLLOW_9);
+            pushFollow(FOLLOW_10);
             rule__Process__Group_0__1__Impl();
 
             state._fsp--;
@@ -11030,7 +11019,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:2949:1: ( rule__Process__Group_4__0__Impl rule__Process__Group_4__1 )
             // InternalReflex.g:2950:2: rule__Process__Group_4__0__Impl rule__Process__Group_4__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Process__Group_4__0__Impl();
 
             state._fsp--;
@@ -11193,7 +11182,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3003:1: ( rule__State__Group__0__Impl rule__State__Group__1 )
             // InternalReflex.g:3004:2: rule__State__Group__0__Impl rule__State__Group__1
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_17);
             rule__State__Group__0__Impl();
 
             state._fsp--;
@@ -11238,17 +11227,17 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStateAccess().getGroup_0()); 
             }
             // InternalReflex.g:3018:2: ( rule__State__Group_0__0 )*
-            loop33:
+            loop32:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA33_0==88) ) {
-                    alt33=1;
+                if ( (LA32_0==88) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt32) {
             	case 1 :
             	    // InternalReflex.g:3018:3: rule__State__Group_0__0
             	    {
@@ -11262,7 +11251,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop32;
                 }
             } while (true);
 
@@ -11379,7 +11368,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3057:1: ( rule__State__Group__2__Impl rule__State__Group__3 )
             // InternalReflex.g:3058:2: rule__State__Group__2__Impl rule__State__Group__3
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_18);
             rule__State__Group__2__Impl();
 
             state._fsp--;
@@ -11468,7 +11457,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3084:1: ( rule__State__Group__3__Impl rule__State__Group__4 )
             // InternalReflex.g:3085:2: rule__State__Group__3__Impl rule__State__Group__4
             {
-            pushFollow(FOLLOW_17);
+            pushFollow(FOLLOW_18);
             rule__State__Group__3__Impl();
 
             state._fsp--;
@@ -11513,13 +11502,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStateAccess().getLoopedAssignment_3()); 
             }
             // InternalReflex.g:3099:2: ( rule__State__LoopedAssignment_3 )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA34_0==115) ) {
-                alt34=1;
+            if ( (LA33_0==115) ) {
+                alt33=1;
             }
-            switch (alt34) {
+            switch (alt33) {
                 case 1 :
                     // InternalReflex.g:3099:3: rule__State__LoopedAssignment_3
                     {
@@ -11568,7 +11557,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3111:1: ( rule__State__Group__4__Impl rule__State__Group__5 )
             // InternalReflex.g:3112:2: rule__State__Group__4__Impl rule__State__Group__5
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__State__Group__4__Impl();
 
             state._fsp--;
@@ -11647,7 +11636,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3138:1: ( rule__State__Group__5__Impl rule__State__Group__6 )
             // InternalReflex.g:3139:2: rule__State__Group__5__Impl rule__State__Group__6
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_20);
             rule__State__Group__5__Impl();
 
             state._fsp--;
@@ -11736,7 +11725,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3165:1: ( rule__State__Group__6__Impl rule__State__Group__7 )
             // InternalReflex.g:3166:2: rule__State__Group__6__Impl rule__State__Group__7
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_20);
             rule__State__Group__6__Impl();
 
             state._fsp--;
@@ -11781,13 +11770,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStateAccess().getTimeoutFunctionAssignment_6()); 
             }
             // InternalReflex.g:3180:2: ( rule__State__TimeoutFunctionAssignment_6 )?
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA35_0==99) ) {
-                alt35=1;
+            if ( (LA34_0==99) ) {
+                alt34=1;
             }
-            switch (alt35) {
+            switch (alt34) {
                 case 1 :
                     // InternalReflex.g:3180:3: rule__State__TimeoutFunctionAssignment_6
                     {
@@ -11989,7 +11978,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3246:1: ( rule__State__Group_0__1__Impl rule__State__Group_0__2 )
             // InternalReflex.g:3247:2: rule__State__Group_0__1__Impl rule__State__Group_0__2
             {
-            pushFollow(FOLLOW_9);
+            pushFollow(FOLLOW_10);
             rule__State__Group_0__1__Impl();
 
             state._fsp--;
@@ -12152,7 +12141,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3300:1: ( rule__Annotation__Group_0__0__Impl rule__Annotation__Group_0__1 )
             // InternalReflex.g:3301:2: rule__Annotation__Group_0__0__Impl rule__Annotation__Group_0__1
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_21);
             rule__Annotation__Group_0__0__Impl();
 
             state._fsp--;
@@ -12241,7 +12230,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3327:1: ( rule__Annotation__Group_0__1__Impl rule__Annotation__Group_0__2 )
             // InternalReflex.g:3328:2: rule__Annotation__Group_0__1__Impl rule__Annotation__Group_0__2
             {
-            pushFollow(FOLLOW_21);
+            pushFollow(FOLLOW_22);
             rule__Annotation__Group_0__1__Impl();
 
             state._fsp--;
@@ -12404,7 +12393,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3381:1: ( rule__AnnotationKey__Group_0__0__Impl rule__AnnotationKey__Group_0__1 )
             // InternalReflex.g:3382:2: rule__AnnotationKey__Group_0__0__Impl rule__AnnotationKey__Group_0__1
             {
-            pushFollow(FOLLOW_22);
+            pushFollow(FOLLOW_23);
             rule__AnnotationKey__Group_0__0__Impl();
 
             state._fsp--;
@@ -12715,7 +12704,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3489:1: ( rule__ImportedVariableList__Group__1__Impl rule__ImportedVariableList__Group__2 )
             // InternalReflex.g:3490:2: rule__ImportedVariableList__Group__1__Impl rule__ImportedVariableList__Group__2
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__ImportedVariableList__Group__1__Impl();
 
             state._fsp--;
@@ -12804,7 +12793,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3516:1: ( rule__ImportedVariableList__Group__2__Impl rule__ImportedVariableList__Group__3 )
             // InternalReflex.g:3517:2: rule__ImportedVariableList__Group__2__Impl rule__ImportedVariableList__Group__3
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__ImportedVariableList__Group__2__Impl();
 
             state._fsp--;
@@ -13046,7 +13035,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3597:1: ( rule__ImportedVariableList__Group_1__0__Impl rule__ImportedVariableList__Group_1__1 )
             // InternalReflex.g:3598:2: rule__ImportedVariableList__Group_1__0__Impl rule__ImportedVariableList__Group_1__1
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_26);
             rule__ImportedVariableList__Group_1__0__Impl();
 
             state._fsp--;
@@ -13175,21 +13164,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getImportedVariableListAccess().getGroup_1_1()); 
             }
             // InternalReflex.g:3638:2: ( rule__ImportedVariableList__Group_1_1__0 )*
-            loop36:
+            loop35:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( (LA36_0==98) ) {
-                    alt36=1;
+                if ( (LA35_0==98) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt35) {
             	case 1 :
             	    // InternalReflex.g:3638:3: rule__ImportedVariableList__Group_1_1__0
             	    {
-            	    pushFollow(FOLLOW_26);
+            	    pushFollow(FOLLOW_27);
             	    rule__ImportedVariableList__Group_1_1__0();
 
             	    state._fsp--;
@@ -13199,7 +13188,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop35;
                 }
             } while (true);
 
@@ -13400,7 +13389,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3705:1: ( rule__ProcessVariable__Group__0__Impl rule__ProcessVariable__Group__1 )
             // InternalReflex.g:3706:2: rule__ProcessVariable__Group__0__Impl rule__ProcessVariable__Group__1
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__ProcessVariable__Group__0__Impl();
 
             state._fsp--;
@@ -13529,13 +13518,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProcessVariableAccess().getSharedAssignment_1()); 
             }
             // InternalReflex.g:3746:2: ( rule__ProcessVariable__SharedAssignment_1 )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( (LA37_0==96) ) {
-                alt37=1;
+            if ( (LA36_0==96) ) {
+                alt36=1;
             }
-            switch (alt37) {
+            switch (alt36) {
                 case 1 :
                     // InternalReflex.g:3746:3: rule__ProcessVariable__SharedAssignment_1
                     {
@@ -13584,7 +13573,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3759:1: ( rule__GlobalVariable__Group__0__Impl rule__GlobalVariable__Group__1 )
             // InternalReflex.g:3760:2: rule__GlobalVariable__Group__0__Impl rule__GlobalVariable__Group__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__GlobalVariable__Group__0__Impl();
 
             state._fsp--;
@@ -13836,7 +13825,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3840:1: ( rule__PhysicalVariable__Group__1__Impl rule__PhysicalVariable__Group__2 )
             // InternalReflex.g:3841:2: rule__PhysicalVariable__Group__1__Impl rule__PhysicalVariable__Group__2
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_29);
             rule__PhysicalVariable__Group__1__Impl();
 
             state._fsp--;
@@ -14088,7 +14077,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3921:1: ( rule__PortMapping__Group__0__Impl rule__PortMapping__Group__1 )
             // InternalReflex.g:3922:2: rule__PortMapping__Group__0__Impl rule__PortMapping__Group__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__PortMapping__Group__0__Impl();
 
             state._fsp--;
@@ -14177,7 +14166,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3948:1: ( rule__PortMapping__Group__1__Impl rule__PortMapping__Group__2 )
             // InternalReflex.g:3949:2: rule__PortMapping__Group__1__Impl rule__PortMapping__Group__2
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_31);
             rule__PortMapping__Group__1__Impl();
 
             state._fsp--;
@@ -14256,7 +14245,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:3975:1: ( rule__PortMapping__Group__2__Impl rule__PortMapping__Group__3 )
             // InternalReflex.g:3976:2: rule__PortMapping__Group__2__Impl rule__PortMapping__Group__3
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_31);
             rule__PortMapping__Group__2__Impl();
 
             state._fsp--;
@@ -14301,13 +14290,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPortMappingAccess().getBitAssignment_2()); 
             }
             // InternalReflex.g:3990:2: ( rule__PortMapping__BitAssignment_2 )?
-            int alt38=2;
-            int LA38_0 = input.LA(1);
+            int alt37=2;
+            int LA37_0 = input.LA(1);
 
-            if ( (LA38_0==RULE_INTEGER) ) {
-                alt38=1;
+            if ( (LA37_0==RULE_INTEGER) ) {
+                alt37=1;
             }
-            switch (alt38) {
+            switch (alt37) {
                 case 1 :
                     // InternalReflex.g:3990:3: rule__PortMapping__BitAssignment_2
                     {
@@ -14603,7 +14592,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4083:1: ( rule__TimeoutFunction__Group__0__Impl rule__TimeoutFunction__Group__1 )
             // InternalReflex.g:4084:2: rule__TimeoutFunction__Group__0__Impl rule__TimeoutFunction__Group__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_32);
             rule__TimeoutFunction__Group__0__Impl();
 
             state._fsp--;
@@ -14682,7 +14671,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4110:1: ( rule__TimeoutFunction__Group__1__Impl rule__TimeoutFunction__Group__2 )
             // InternalReflex.g:4111:2: rule__TimeoutFunction__Group__1__Impl rule__TimeoutFunction__Group__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__TimeoutFunction__Group__1__Impl();
 
             state._fsp--;
@@ -14855,7 +14844,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4164:1: ( rule__TimeoutFunction__Group_1_1__0__Impl rule__TimeoutFunction__Group_1_1__1 )
             // InternalReflex.g:4165:2: rule__TimeoutFunction__Group_1_1__0__Impl rule__TimeoutFunction__Group_1_1__1
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_33);
             rule__TimeoutFunction__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -14934,7 +14923,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4191:1: ( rule__TimeoutFunction__Group_1_1__1__Impl rule__TimeoutFunction__Group_1_1__2 )
             // InternalReflex.g:4192:2: rule__TimeoutFunction__Group_1_1__1__Impl rule__TimeoutFunction__Group_1_1__2
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__TimeoutFunction__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -15180,7 +15169,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4272:1: ( rule__Function__Group__1__Impl rule__Function__Group__2 )
             // InternalReflex.g:4273:2: rule__Function__Group__1__Impl rule__Function__Group__2
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__Function__Group__1__Impl();
 
             state._fsp--;
@@ -15269,7 +15258,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4299:1: ( rule__Function__Group__2__Impl rule__Function__Group__3 )
             // InternalReflex.g:4300:2: rule__Function__Group__2__Impl rule__Function__Group__3
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__Function__Group__2__Impl();
 
             state._fsp--;
@@ -15348,7 +15337,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4326:1: ( rule__Function__Group__3__Impl rule__Function__Group__4 )
             // InternalReflex.g:4327:2: rule__Function__Group__3__Impl rule__Function__Group__4
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             rule__Function__Group__3__Impl();
 
             state._fsp--;
@@ -15437,7 +15426,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4353:1: ( rule__Function__Group__4__Impl rule__Function__Group__5 )
             // InternalReflex.g:4354:2: rule__Function__Group__4__Impl rule__Function__Group__5
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             rule__Function__Group__4__Impl();
 
             state._fsp--;
@@ -15482,21 +15471,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFunctionAccess().getGroup_4()); 
             }
             // InternalReflex.g:4368:2: ( rule__Function__Group_4__0 )*
-            loop39:
+            loop38:
             do {
-                int alt39=2;
-                int LA39_0 = input.LA(1);
+                int alt38=2;
+                int LA38_0 = input.LA(1);
 
-                if ( (LA39_0==98) ) {
-                    alt39=1;
+                if ( (LA38_0==98) ) {
+                    alt38=1;
                 }
 
 
-                switch (alt39) {
+                switch (alt38) {
             	case 1 :
             	    // InternalReflex.g:4368:3: rule__Function__Group_4__0
             	    {
-            	    pushFollow(FOLLOW_26);
+            	    pushFollow(FOLLOW_27);
             	    rule__Function__Group_4__0();
 
             	    state._fsp--;
@@ -15506,7 +15495,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop39;
+            	    break loop38;
                 }
             } while (true);
 
@@ -15544,7 +15533,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4380:1: ( rule__Function__Group__5__Impl rule__Function__Group__6 )
             // InternalReflex.g:4381:2: rule__Function__Group__5__Impl rule__Function__Group__6
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Function__Group__5__Impl();
 
             state._fsp--;
@@ -15697,7 +15686,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4434:1: ( rule__Function__Group_4__0__Impl rule__Function__Group_4__1 )
             // InternalReflex.g:4435:2: rule__Function__Group_4__0__Impl rule__Function__Group_4__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__Function__Group_4__0__Impl();
 
             state._fsp--;
@@ -15949,7 +15938,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4515:1: ( rule__Port__Group__1__Impl rule__Port__Group__2 )
             // InternalReflex.g:4516:2: rule__Port__Group__1__Impl rule__Port__Group__2
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__Port__Group__1__Impl();
 
             state._fsp--;
@@ -16038,7 +16027,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4542:1: ( rule__Port__Group__2__Impl rule__Port__Group__3 )
             // InternalReflex.g:4543:2: rule__Port__Group__2__Impl rule__Port__Group__3
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__Port__Group__2__Impl();
 
             state._fsp--;
@@ -16127,7 +16116,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4569:1: ( rule__Port__Group__3__Impl rule__Port__Group__4 )
             // InternalReflex.g:4570:2: rule__Port__Group__3__Impl rule__Port__Group__4
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__Port__Group__3__Impl();
 
             state._fsp--;
@@ -16216,7 +16205,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4596:1: ( rule__Port__Group__4__Impl rule__Port__Group__5 )
             // InternalReflex.g:4597:2: rule__Port__Group__4__Impl rule__Port__Group__5
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Port__Group__4__Impl();
 
             state._fsp--;
@@ -16379,7 +16368,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4650:1: ( rule__Const__Group__0__Impl rule__Const__Group__1 )
             // InternalReflex.g:4651:2: rule__Const__Group__0__Impl rule__Const__Group__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__Const__Group__0__Impl();
 
             state._fsp--;
@@ -16547,7 +16536,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4704:1: ( rule__Const__Group__2__Impl rule__Const__Group__3 )
             // InternalReflex.g:4705:2: rule__Const__Group__2__Impl rule__Const__Group__3
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_29);
             rule__Const__Group__2__Impl();
 
             state._fsp--;
@@ -16636,7 +16625,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4731:1: ( rule__Const__Group__3__Impl rule__Const__Group__4 )
             // InternalReflex.g:4732:2: rule__Const__Group__3__Impl rule__Const__Group__4
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__Const__Group__3__Impl();
 
             state._fsp--;
@@ -16715,7 +16704,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4758:1: ( rule__Const__Group__4__Impl rule__Const__Group__5 )
             // InternalReflex.g:4759:2: rule__Const__Group__4__Impl rule__Const__Group__5
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Const__Group__4__Impl();
 
             state._fsp--;
@@ -17125,7 +17114,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4893:1: ( rule__Enum__Group__3__Impl rule__Enum__Group__4 )
             // InternalReflex.g:4894:2: rule__Enum__Group__3__Impl rule__Enum__Group__4
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__Enum__Group__3__Impl();
 
             state._fsp--;
@@ -17214,7 +17203,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:4920:1: ( rule__Enum__Group__4__Impl rule__Enum__Group__5 )
             // InternalReflex.g:4921:2: rule__Enum__Group__4__Impl rule__Enum__Group__5
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__Enum__Group__4__Impl();
 
             state._fsp--;
@@ -17259,21 +17248,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getEnumAccess().getGroup_4()); 
             }
             // InternalReflex.g:4935:2: ( rule__Enum__Group_4__0 )*
-            loop40:
+            loop39:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt39=2;
+                int LA39_0 = input.LA(1);
 
-                if ( (LA40_0==98) ) {
-                    alt40=1;
+                if ( (LA39_0==98) ) {
+                    alt39=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt39) {
             	case 1 :
             	    // InternalReflex.g:4935:3: rule__Enum__Group_4__0
             	    {
-            	    pushFollow(FOLLOW_26);
+            	    pushFollow(FOLLOW_27);
             	    rule__Enum__Group_4__0();
 
             	    state._fsp--;
@@ -17283,7 +17272,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop39;
                 }
             } while (true);
 
@@ -17558,7 +17547,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5028:1: ( rule__EnumMember__Group__0__Impl rule__EnumMember__Group__1 )
             // InternalReflex.g:5029:2: rule__EnumMember__Group__0__Impl rule__EnumMember__Group__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_29);
             rule__EnumMember__Group__0__Impl();
 
             state._fsp--;
@@ -17687,13 +17676,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getEnumMemberAccess().getGroup_1()); 
             }
             // InternalReflex.g:5069:2: ( rule__EnumMember__Group_1__0 )?
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            int alt40=2;
+            int LA40_0 = input.LA(1);
 
-            if ( (LA41_0==47) ) {
-                alt41=1;
+            if ( (LA40_0==47) ) {
+                alt40=1;
             }
-            switch (alt41) {
+            switch (alt40) {
                 case 1 :
                     // InternalReflex.g:5069:3: rule__EnumMember__Group_1__0
                     {
@@ -17742,7 +17731,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5082:1: ( rule__EnumMember__Group_1__0__Impl rule__EnumMember__Group_1__1 )
             // InternalReflex.g:5083:2: rule__EnumMember__Group_1__0__Impl rule__EnumMember__Group_1__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__EnumMember__Group_1__0__Impl();
 
             state._fsp--;
@@ -17905,7 +17894,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5136:1: ( rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1 )
             // InternalReflex.g:5137:2: rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Statement__Group_0__0__Impl();
 
             state._fsp--;
@@ -18058,7 +18047,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5190:1: ( rule__Statement__Group_10__0__Impl rule__Statement__Group_10__1 )
             // InternalReflex.g:5191:2: rule__Statement__Group_10__0__Impl rule__Statement__Group_10__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__Statement__Group_10__0__Impl();
 
             state._fsp--;
@@ -18215,7 +18204,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5244:1: ( rule__StatementSequence__Group__0__Impl rule__StatementSequence__Group__1 )
             // InternalReflex.g:5245:2: rule__StatementSequence__Group__0__Impl rule__StatementSequence__Group__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__StatementSequence__Group__0__Impl();
 
             state._fsp--;
@@ -18334,21 +18323,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStatementSequenceAccess().getStatementsAssignment_1()); 
             }
             // InternalReflex.g:5285:2: ( rule__StatementSequence__StatementsAssignment_1 )*
-            loop42:
+            loop41:
             do {
-                int alt42=2;
-                int LA42_0 = input.LA(1);
+                int alt41=2;
+                int LA41_0 = input.LA(1);
 
-                if ( (LA42_0==RULE_ID||(LA42_0>=RULE_INTEGER && LA42_0<=RULE_TIME)||(LA42_0>=RULE_FLOAT && LA42_0<=RULE_BOOL_LITERAL)||(LA42_0>=43 && LA42_0<=46)||(LA42_0>=57 && LA42_0<=60)||LA42_0==86||(LA42_0>=91 && LA42_0<=92)||LA42_0==100||LA42_0==104||LA42_0==106||(LA42_0>=109 && LA42_0<=111)||LA42_0==113) ) {
-                    alt42=1;
+                if ( (LA41_0==RULE_ID||(LA41_0>=RULE_INTEGER && LA41_0<=RULE_TIME)||(LA41_0>=RULE_FLOAT && LA41_0<=RULE_BOOL_LITERAL)||(LA41_0>=43 && LA41_0<=46)||(LA41_0>=57 && LA41_0<=60)||LA41_0==86||(LA41_0>=91 && LA41_0<=92)||LA41_0==100||LA41_0==104||LA41_0==106||(LA41_0>=109 && LA41_0<=111)||LA41_0==113) ) {
+                    alt41=1;
                 }
 
 
-                switch (alt42) {
+                switch (alt41) {
             	case 1 :
             	    // InternalReflex.g:5285:3: rule__StatementSequence__StatementsAssignment_1
             	    {
-            	    pushFollow(FOLLOW_39);
+            	    pushFollow(FOLLOW_40);
             	    rule__StatementSequence__StatementsAssignment_1();
 
             	    state._fsp--;
@@ -18358,7 +18347,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop42;
+            	    break loop41;
                 }
             } while (true);
 
@@ -18475,7 +18464,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5325:1: ( rule__CompoundStatement__Group__1__Impl rule__CompoundStatement__Group__2 )
             // InternalReflex.g:5326:2: rule__CompoundStatement__Group__1__Impl rule__CompoundStatement__Group__2
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__CompoundStatement__Group__1__Impl();
 
             state._fsp--;
@@ -18554,7 +18543,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5352:1: ( rule__CompoundStatement__Group__2__Impl rule__CompoundStatement__Group__3 )
             // InternalReflex.g:5353:2: rule__CompoundStatement__Group__2__Impl rule__CompoundStatement__Group__3
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__CompoundStatement__Group__2__Impl();
 
             state._fsp--;
@@ -18599,21 +18588,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getCompoundStatementAccess().getStatementsAssignment_2()); 
             }
             // InternalReflex.g:5367:2: ( rule__CompoundStatement__StatementsAssignment_2 )*
-            loop43:
+            loop42:
             do {
-                int alt43=2;
-                int LA43_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( (LA43_0==RULE_ID||(LA43_0>=RULE_INTEGER && LA43_0<=RULE_TIME)||(LA43_0>=RULE_FLOAT && LA43_0<=RULE_BOOL_LITERAL)||(LA43_0>=43 && LA43_0<=46)||(LA43_0>=57 && LA43_0<=60)||LA43_0==86||(LA43_0>=91 && LA43_0<=92)||LA43_0==100||LA43_0==104||LA43_0==106||(LA43_0>=109 && LA43_0<=111)||LA43_0==113) ) {
-                    alt43=1;
+                if ( (LA42_0==RULE_ID||(LA42_0>=RULE_INTEGER && LA42_0<=RULE_TIME)||(LA42_0>=RULE_FLOAT && LA42_0<=RULE_BOOL_LITERAL)||(LA42_0>=43 && LA42_0<=46)||(LA42_0>=57 && LA42_0<=60)||LA42_0==86||(LA42_0>=91 && LA42_0<=92)||LA42_0==100||LA42_0==104||LA42_0==106||(LA42_0>=109 && LA42_0<=111)||LA42_0==113) ) {
+                    alt42=1;
                 }
 
 
-                switch (alt43) {
+                switch (alt42) {
             	case 1 :
             	    // InternalReflex.g:5367:3: rule__CompoundStatement__StatementsAssignment_2
             	    {
-            	    pushFollow(FOLLOW_39);
+            	    pushFollow(FOLLOW_40);
             	    rule__CompoundStatement__StatementsAssignment_2();
 
             	    state._fsp--;
@@ -18623,7 +18612,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop43;
+            	    break loop42;
                 }
             } while (true);
 
@@ -18735,7 +18724,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5406:1: ( rule__IfElseStat__Group__0__Impl rule__IfElseStat__Group__1 )
             // InternalReflex.g:5407:2: rule__IfElseStat__Group__0__Impl rule__IfElseStat__Group__1
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__IfElseStat__Group__0__Impl();
 
             state._fsp--;
@@ -18814,7 +18803,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5433:1: ( rule__IfElseStat__Group__1__Impl rule__IfElseStat__Group__2 )
             // InternalReflex.g:5434:2: rule__IfElseStat__Group__1__Impl rule__IfElseStat__Group__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__IfElseStat__Group__1__Impl();
 
             state._fsp--;
@@ -18893,7 +18882,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5460:1: ( rule__IfElseStat__Group__2__Impl rule__IfElseStat__Group__3 )
             // InternalReflex.g:5461:2: rule__IfElseStat__Group__2__Impl rule__IfElseStat__Group__3
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__IfElseStat__Group__2__Impl();
 
             state._fsp--;
@@ -18982,7 +18971,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5487:1: ( rule__IfElseStat__Group__3__Impl rule__IfElseStat__Group__4 )
             // InternalReflex.g:5488:2: rule__IfElseStat__Group__3__Impl rule__IfElseStat__Group__4
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__IfElseStat__Group__3__Impl();
 
             state._fsp--;
@@ -19061,7 +19050,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5514:1: ( rule__IfElseStat__Group__4__Impl rule__IfElseStat__Group__5 )
             // InternalReflex.g:5515:2: rule__IfElseStat__Group__4__Impl rule__IfElseStat__Group__5
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_42);
             rule__IfElseStat__Group__4__Impl();
 
             state._fsp--;
@@ -19190,17 +19179,17 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getIfElseStatAccess().getGroup_5()); 
             }
             // InternalReflex.g:5555:2: ( rule__IfElseStat__Group_5__0 )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA44_0==105) ) {
-                int LA44_1 = input.LA(2);
+            if ( (LA43_0==105) ) {
+                int LA43_1 = input.LA(2);
 
-                if ( (synpred91_InternalReflex()) ) {
-                    alt44=1;
+                if ( (synpred90_InternalReflex()) ) {
+                    alt43=1;
                 }
             }
-            switch (alt44) {
+            switch (alt43) {
                 case 1 :
                     // InternalReflex.g:5555:3: rule__IfElseStat__Group_5__0
                     {
@@ -19249,7 +19238,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5568:1: ( rule__IfElseStat__Group_5__0__Impl rule__IfElseStat__Group_5__1 )
             // InternalReflex.g:5569:2: rule__IfElseStat__Group_5__0__Impl rule__IfElseStat__Group_5__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__IfElseStat__Group_5__0__Impl();
 
             state._fsp--;
@@ -19418,7 +19407,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5622:1: ( rule__SwitchStat__Group__0__Impl rule__SwitchStat__Group__1 )
             // InternalReflex.g:5623:2: rule__SwitchStat__Group__0__Impl rule__SwitchStat__Group__1
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__SwitchStat__Group__0__Impl();
 
             state._fsp--;
@@ -19497,7 +19486,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5649:1: ( rule__SwitchStat__Group__1__Impl rule__SwitchStat__Group__2 )
             // InternalReflex.g:5650:2: rule__SwitchStat__Group__1__Impl rule__SwitchStat__Group__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__SwitchStat__Group__1__Impl();
 
             state._fsp--;
@@ -19576,7 +19565,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5676:1: ( rule__SwitchStat__Group__2__Impl rule__SwitchStat__Group__3 )
             // InternalReflex.g:5677:2: rule__SwitchStat__Group__2__Impl rule__SwitchStat__Group__3
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__SwitchStat__Group__2__Impl();
 
             state._fsp--;
@@ -19744,7 +19733,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5730:1: ( rule__SwitchStat__Group__4__Impl rule__SwitchStat__Group__5 )
             // InternalReflex.g:5731:2: rule__SwitchStat__Group__4__Impl rule__SwitchStat__Group__5
             {
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_43);
             rule__SwitchStat__Group__4__Impl();
 
             state._fsp--;
@@ -19823,7 +19812,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5757:1: ( rule__SwitchStat__Group__5__Impl rule__SwitchStat__Group__6 )
             // InternalReflex.g:5758:2: rule__SwitchStat__Group__5__Impl rule__SwitchStat__Group__6
             {
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_43);
             rule__SwitchStat__Group__5__Impl();
 
             state._fsp--;
@@ -19868,21 +19857,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getSwitchStatAccess().getOptionsAssignment_5()); 
             }
             // InternalReflex.g:5772:2: ( rule__SwitchStat__OptionsAssignment_5 )*
-            loop45:
+            loop44:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA45_0==107) ) {
-                    alt45=1;
+                if ( (LA44_0==107) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt44) {
             	case 1 :
             	    // InternalReflex.g:5772:3: rule__SwitchStat__OptionsAssignment_5
             	    {
-            	    pushFollow(FOLLOW_43);
+            	    pushFollow(FOLLOW_44);
             	    rule__SwitchStat__OptionsAssignment_5();
 
             	    state._fsp--;
@@ -19892,7 +19881,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop44;
                 }
             } while (true);
 
@@ -20004,7 +19993,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5811:1: ( rule__CaseStat__Group__0__Impl rule__CaseStat__Group__1 )
             // InternalReflex.g:5812:2: rule__CaseStat__Group__0__Impl rule__CaseStat__Group__1
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__CaseStat__Group__0__Impl();
 
             state._fsp--;
@@ -20083,7 +20072,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5838:1: ( rule__CaseStat__Group__1__Impl rule__CaseStat__Group__2 )
             // InternalReflex.g:5839:2: rule__CaseStat__Group__1__Impl rule__CaseStat__Group__2
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_21);
             rule__CaseStat__Group__1__Impl();
 
             state._fsp--;
@@ -20172,7 +20161,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5865:1: ( rule__CaseStat__Group__2__Impl rule__CaseStat__Group__3 )
             // InternalReflex.g:5866:2: rule__CaseStat__Group__2__Impl rule__CaseStat__Group__3
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__CaseStat__Group__2__Impl();
 
             state._fsp--;
@@ -20251,7 +20240,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5892:1: ( rule__CaseStat__Group__3__Impl rule__CaseStat__Group__4 )
             // InternalReflex.g:5893:2: rule__CaseStat__Group__3__Impl rule__CaseStat__Group__4
             {
-            pushFollow(FOLLOW_44);
+            pushFollow(FOLLOW_45);
             rule__CaseStat__Group__3__Impl();
 
             state._fsp--;
@@ -20340,7 +20329,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5919:1: ( rule__CaseStat__Group__4__Impl rule__CaseStat__Group__5 )
             // InternalReflex.g:5920:2: rule__CaseStat__Group__4__Impl rule__CaseStat__Group__5
             {
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_46);
             rule__CaseStat__Group__4__Impl();
 
             state._fsp--;
@@ -20503,7 +20492,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:5973:1: ( rule__BreakStat__Group__0__Impl rule__BreakStat__Group__1 )
             // InternalReflex.g:5974:2: rule__BreakStat__Group__0__Impl rule__BreakStat__Group__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__BreakStat__Group__0__Impl();
 
             state._fsp--;
@@ -20656,7 +20645,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6027:1: ( rule__StartProcStat__Group__0__Impl rule__StartProcStat__Group__1 )
             // InternalReflex.g:6028:2: rule__StartProcStat__Group__0__Impl rule__StartProcStat__Group__1
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__StartProcStat__Group__0__Impl();
 
             state._fsp--;
@@ -20814,7 +20803,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6081:1: ( rule__StartProcStat__Group__2__Impl rule__StartProcStat__Group__3 )
             // InternalReflex.g:6082:2: rule__StartProcStat__Group__2__Impl rule__StartProcStat__Group__3
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__StartProcStat__Group__2__Impl();
 
             state._fsp--;
@@ -20977,7 +20966,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6135:1: ( rule__StopProcStat__Group__0__Impl rule__StopProcStat__Group__1 )
             // InternalReflex.g:6136:2: rule__StopProcStat__Group__0__Impl rule__StopProcStat__Group__1
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_47);
             rule__StopProcStat__Group__0__Impl();
 
             state._fsp--;
@@ -21056,7 +21045,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6162:1: ( rule__StopProcStat__Group__1__Impl rule__StopProcStat__Group__2 )
             // InternalReflex.g:6163:2: rule__StopProcStat__Group__1__Impl rule__StopProcStat__Group__2
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_48);
             rule__StopProcStat__Group__1__Impl();
 
             state._fsp--;
@@ -21135,7 +21124,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6189:1: ( rule__StopProcStat__Group__2__Impl rule__StopProcStat__Group__3 )
             // InternalReflex.g:6190:2: rule__StopProcStat__Group__2__Impl rule__StopProcStat__Group__3
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_48);
             rule__StopProcStat__Group__2__Impl();
 
             state._fsp--;
@@ -21180,13 +21169,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStopProcStatAccess().getGroup_2()); 
             }
             // InternalReflex.g:6204:2: ( rule__StopProcStat__Group_2__0 )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA46_0==92) ) {
-                alt46=1;
+            if ( (LA45_0==92) ) {
+                alt45=1;
             }
-            switch (alt46) {
+            switch (alt45) {
                 case 1 :
                     // InternalReflex.g:6204:3: rule__StopProcStat__Group_2__0
                     {
@@ -21472,7 +21461,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6297:1: ( rule__ErrorStat__Group__0__Impl rule__ErrorStat__Group__1 )
             // InternalReflex.g:6298:2: rule__ErrorStat__Group__0__Impl rule__ErrorStat__Group__1
             {
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_49);
             rule__ErrorStat__Group__0__Impl();
 
             state._fsp--;
@@ -21551,7 +21540,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6324:1: ( rule__ErrorStat__Group__1__Impl rule__ErrorStat__Group__2 )
             // InternalReflex.g:6325:2: rule__ErrorStat__Group__1__Impl rule__ErrorStat__Group__2
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_48);
             rule__ErrorStat__Group__1__Impl();
 
             state._fsp--;
@@ -21630,7 +21619,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6351:1: ( rule__ErrorStat__Group__2__Impl rule__ErrorStat__Group__3 )
             // InternalReflex.g:6352:2: rule__ErrorStat__Group__2__Impl rule__ErrorStat__Group__3
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_48);
             rule__ErrorStat__Group__2__Impl();
 
             state._fsp--;
@@ -21675,13 +21664,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getErrorStatAccess().getGroup_2()); 
             }
             // InternalReflex.g:6366:2: ( rule__ErrorStat__Group_2__0 )?
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA47_0==92) ) {
-                alt47=1;
+            if ( (LA46_0==92) ) {
+                alt46=1;
             }
-            switch (alt47) {
+            switch (alt46) {
                 case 1 :
                     // InternalReflex.g:6366:3: rule__ErrorStat__Group_2__0
                     {
@@ -21967,7 +21956,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6459:1: ( rule__RestartStat__Group__0__Impl rule__RestartStat__Group__1 )
             // InternalReflex.g:6460:2: rule__RestartStat__Group__0__Impl rule__RestartStat__Group__1
             {
-            pushFollow(FOLLOW_49);
+            pushFollow(FOLLOW_50);
             rule__RestartStat__Group__0__Impl();
 
             state._fsp--;
@@ -22046,7 +22035,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6486:1: ( rule__RestartStat__Group__1__Impl rule__RestartStat__Group__2 )
             // InternalReflex.g:6487:2: rule__RestartStat__Group__1__Impl rule__RestartStat__Group__2
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__RestartStat__Group__1__Impl();
 
             state._fsp--;
@@ -22199,7 +22188,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6540:1: ( rule__ResetStat__Group__0__Impl rule__ResetStat__Group__1 )
             // InternalReflex.g:6541:2: rule__ResetStat__Group__0__Impl rule__ResetStat__Group__1
             {
-            pushFollow(FOLLOW_50);
+            pushFollow(FOLLOW_51);
             rule__ResetStat__Group__0__Impl();
 
             state._fsp--;
@@ -22278,7 +22267,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6567:1: ( rule__ResetStat__Group__1__Impl rule__ResetStat__Group__2 )
             // InternalReflex.g:6568:2: rule__ResetStat__Group__1__Impl rule__ResetStat__Group__2
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_52);
             rule__ResetStat__Group__1__Impl();
 
             state._fsp--;
@@ -22357,7 +22346,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6594:1: ( rule__ResetStat__Group__2__Impl rule__ResetStat__Group__3 )
             // InternalReflex.g:6595:2: rule__ResetStat__Group__2__Impl rule__ResetStat__Group__3
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__ResetStat__Group__2__Impl();
 
             state._fsp--;
@@ -22510,7 +22499,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6648:1: ( rule__SetStateStat__Group__0__Impl rule__SetStateStat__Group__1 )
             // InternalReflex.g:6649:2: rule__SetStateStat__Group__0__Impl rule__SetStateStat__Group__1
             {
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_53);
             rule__SetStateStat__Group__0__Impl();
 
             state._fsp--;
@@ -22589,7 +22578,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6675:1: ( rule__SetStateStat__Group__1__Impl rule__SetStateStat__Group__2 )
             // InternalReflex.g:6676:2: rule__SetStateStat__Group__1__Impl rule__SetStateStat__Group__2
             {
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_54);
             rule__SetStateStat__Group__1__Impl();
 
             state._fsp--;
@@ -22668,7 +22657,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6702:1: ( rule__SetStateStat__Group__2__Impl rule__SetStateStat__Group__3 )
             // InternalReflex.g:6703:2: rule__SetStateStat__Group__2__Impl rule__SetStateStat__Group__3
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_12);
             rule__SetStateStat__Group__2__Impl();
 
             state._fsp--;
@@ -22831,7 +22820,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6756:1: ( rule__SetStateStat__Group_2_0__0__Impl rule__SetStateStat__Group_2_0__1 )
             // InternalReflex.g:6757:2: rule__SetStateStat__Group_2_0__0__Impl rule__SetStateStat__Group_2_0__1
             {
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_55);
             rule__SetStateStat__Group_2_0__0__Impl();
 
             state._fsp--;
@@ -23330,7 +23319,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6918:1: ( rule__PostfixOp__Group__0__Impl rule__PostfixOp__Group__1 )
             // InternalReflex.g:6919:2: rule__PostfixOp__Group__0__Impl rule__PostfixOp__Group__1
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_56);
             rule__PostfixOp__Group__0__Impl();
 
             state._fsp--;
@@ -23503,7 +23492,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6972:1: ( rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1 )
             // InternalReflex.g:6973:2: rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__FunctionCall__Group__0__Impl();
 
             state._fsp--;
@@ -23592,7 +23581,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:6999:1: ( rule__FunctionCall__Group__1__Impl rule__FunctionCall__Group__2 )
             // InternalReflex.g:7000:2: rule__FunctionCall__Group__1__Impl rule__FunctionCall__Group__2
             {
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_57);
             rule__FunctionCall__Group__1__Impl();
 
             state._fsp--;
@@ -23671,7 +23660,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7026:1: ( rule__FunctionCall__Group__2__Impl rule__FunctionCall__Group__3 )
             // InternalReflex.g:7027:2: rule__FunctionCall__Group__2__Impl rule__FunctionCall__Group__3
             {
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_57);
             rule__FunctionCall__Group__2__Impl();
 
             state._fsp--;
@@ -23716,13 +23705,13 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFunctionCallAccess().getGroup_2()); 
             }
             // InternalReflex.g:7041:2: ( rule__FunctionCall__Group_2__0 )?
-            int alt48=2;
-            int LA48_0 = input.LA(1);
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA48_0==RULE_ID||(LA48_0>=RULE_INTEGER && LA48_0<=RULE_TIME)||(LA48_0>=RULE_FLOAT && LA48_0<=RULE_BOOL_LITERAL)||(LA48_0>=45 && LA48_0<=46)||(LA48_0>=57 && LA48_0<=60)||LA48_0==92||LA48_0==100) ) {
-                alt48=1;
+            if ( (LA47_0==RULE_ID||(LA47_0>=RULE_INTEGER && LA47_0<=RULE_TIME)||(LA47_0>=RULE_FLOAT && LA47_0<=RULE_BOOL_LITERAL)||(LA47_0>=45 && LA47_0<=46)||(LA47_0>=57 && LA47_0<=60)||LA47_0==92||LA47_0==100) ) {
+                alt47=1;
             }
-            switch (alt48) {
+            switch (alt47) {
                 case 1 :
                     // InternalReflex.g:7041:3: rule__FunctionCall__Group_2__0
                     {
@@ -23845,7 +23834,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7080:1: ( rule__FunctionCall__Group_2__0__Impl rule__FunctionCall__Group_2__1 )
             // InternalReflex.g:7081:2: rule__FunctionCall__Group_2__0__Impl rule__FunctionCall__Group_2__1
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_26);
             rule__FunctionCall__Group_2__0__Impl();
 
             state._fsp--;
@@ -23974,21 +23963,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFunctionCallAccess().getGroup_2_1()); 
             }
             // InternalReflex.g:7121:2: ( rule__FunctionCall__Group_2_1__0 )*
-            loop49:
+            loop48:
             do {
-                int alt49=2;
-                int LA49_0 = input.LA(1);
+                int alt48=2;
+                int LA48_0 = input.LA(1);
 
-                if ( (LA49_0==98) ) {
-                    alt49=1;
+                if ( (LA48_0==98) ) {
+                    alt48=1;
                 }
 
 
-                switch (alt49) {
+                switch (alt48) {
             	case 1 :
             	    // InternalReflex.g:7121:3: rule__FunctionCall__Group_2_1__0
             	    {
-            	    pushFollow(FOLLOW_26);
+            	    pushFollow(FOLLOW_27);
             	    rule__FunctionCall__Group_2_1__0();
 
             	    state._fsp--;
@@ -23998,7 +23987,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop49;
+            	    break loop48;
                 }
             } while (true);
 
@@ -24036,7 +24025,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7134:1: ( rule__FunctionCall__Group_2_1__0__Impl rule__FunctionCall__Group_2_1__1 )
             // InternalReflex.g:7135:2: rule__FunctionCall__Group_2_1__0__Impl rule__FunctionCall__Group_2_1__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__FunctionCall__Group_2_1__0__Impl();
 
             state._fsp--;
@@ -24278,7 +24267,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7215:1: ( rule__CheckStateExpression__Group__1__Impl rule__CheckStateExpression__Group__2 )
             // InternalReflex.g:7216:2: rule__CheckStateExpression__Group__1__Impl rule__CheckStateExpression__Group__2
             {
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_58);
             rule__CheckStateExpression__Group__1__Impl();
 
             state._fsp--;
@@ -24367,7 +24356,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7242:1: ( rule__CheckStateExpression__Group__2__Impl rule__CheckStateExpression__Group__3 )
             // InternalReflex.g:7243:2: rule__CheckStateExpression__Group__2__Impl rule__CheckStateExpression__Group__3
             {
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_55);
             rule__CheckStateExpression__Group__2__Impl();
 
             state._fsp--;
@@ -24446,7 +24435,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7269:1: ( rule__CheckStateExpression__Group__3__Impl rule__CheckStateExpression__Group__4 )
             // InternalReflex.g:7270:2: rule__CheckStateExpression__Group__3__Impl rule__CheckStateExpression__Group__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_59);
             rule__CheckStateExpression__Group__3__Impl();
 
             state._fsp--;
@@ -24609,7 +24598,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7323:1: ( rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 )
             // InternalReflex.g:7324:2: rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__PrimaryExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -24772,7 +24761,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7377:1: ( rule__PrimaryExpression__Group_2__0__Impl rule__PrimaryExpression__Group_2__1 )
             // InternalReflex.g:7378:2: rule__PrimaryExpression__Group_2__0__Impl rule__PrimaryExpression__Group_2__1
             {
-            pushFollow(FOLLOW_59);
+            pushFollow(FOLLOW_60);
             rule__PrimaryExpression__Group_2__0__Impl();
 
             state._fsp--;
@@ -24935,7 +24924,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7431:1: ( rule__PrimaryExpression__Group_3__0__Impl rule__PrimaryExpression__Group_3__1 )
             // InternalReflex.g:7432:2: rule__PrimaryExpression__Group_3__0__Impl rule__PrimaryExpression__Group_3__1
             {
-            pushFollow(FOLLOW_60);
+            pushFollow(FOLLOW_61);
             rule__PrimaryExpression__Group_3__0__Impl();
 
             state._fsp--;
@@ -25098,7 +25087,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7485:1: ( rule__PrimaryExpression__Group_4__0__Impl rule__PrimaryExpression__Group_4__1 )
             // InternalReflex.g:7486:2: rule__PrimaryExpression__Group_4__0__Impl rule__PrimaryExpression__Group_4__1
             {
-            pushFollow(FOLLOW_61);
+            pushFollow(FOLLOW_62);
             rule__PrimaryExpression__Group_4__0__Impl();
 
             state._fsp--;
@@ -25261,7 +25250,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7539:1: ( rule__PrimaryExpression__Group_5__0__Impl rule__PrimaryExpression__Group_5__1 )
             // InternalReflex.g:7540:2: rule__PrimaryExpression__Group_5__0__Impl rule__PrimaryExpression__Group_5__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__PrimaryExpression__Group_5__0__Impl();
 
             state._fsp--;
@@ -25340,7 +25329,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7566:1: ( rule__PrimaryExpression__Group_5__1__Impl rule__PrimaryExpression__Group_5__2 )
             // InternalReflex.g:7567:2: rule__PrimaryExpression__Group_5__1__Impl rule__PrimaryExpression__Group_5__2
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__PrimaryExpression__Group_5__1__Impl();
 
             state._fsp--;
@@ -25503,7 +25492,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7620:1: ( rule__UnaryExpression__Group_4__0__Impl rule__UnaryExpression__Group_4__1 )
             // InternalReflex.g:7621:2: rule__UnaryExpression__Group_4__0__Impl rule__UnaryExpression__Group_4__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__UnaryExpression__Group_4__0__Impl();
 
             state._fsp--;
@@ -25676,7 +25665,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7674:1: ( rule__CastExpression__Group_1__0__Impl rule__CastExpression__Group_1__1 )
             // InternalReflex.g:7675:2: rule__CastExpression__Group_1__0__Impl rule__CastExpression__Group_1__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__CastExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -25755,7 +25744,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7701:1: ( rule__CastExpression__Group_1__1__Impl rule__CastExpression__Group_1__2 )
             // InternalReflex.g:7702:2: rule__CastExpression__Group_1__1__Impl rule__CastExpression__Group_1__2
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__CastExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -25844,7 +25833,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7728:1: ( rule__CastExpression__Group_1__2__Impl rule__CastExpression__Group_1__3 )
             // InternalReflex.g:7729:2: rule__CastExpression__Group_1__2__Impl rule__CastExpression__Group_1__3
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__CastExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -26007,7 +25996,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7782:1: ( rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 )
             // InternalReflex.g:7783:2: rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1
             {
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_63);
             rule__MultiplicativeExpression__Group__0__Impl();
 
             state._fsp--;
@@ -26130,21 +26119,21 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getMultiplicativeExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:7823:2: ( rule__MultiplicativeExpression__Group_1__0 )*
-            loop50:
+            loop49:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt49=2;
+                int LA49_0 = input.LA(1);
 
-                if ( ((LA50_0>=69 && LA50_0<=71)) ) {
-                    alt50=1;
+                if ( ((LA49_0>=69 && LA49_0<=71)) ) {
+                    alt49=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt49) {
             	case 1 :
             	    // InternalReflex.g:7823:3: rule__MultiplicativeExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_63);
+            	    pushFollow(FOLLOW_64);
             	    rule__MultiplicativeExpression__Group_1__0();
 
             	    state._fsp--;
@@ -26154,7 +26143,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop49;
                 }
             } while (true);
 
@@ -26192,7 +26181,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7836:1: ( rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 )
             // InternalReflex.g:7837:2: rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1
             {
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_63);
             rule__MultiplicativeExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -26271,7 +26260,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7863:1: ( rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 )
             // InternalReflex.g:7864:2: rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__MultiplicativeExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -26444,7 +26433,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7917:1: ( rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 )
             // InternalReflex.g:7918:2: rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1
             {
-            pushFollow(FOLLOW_64);
+            pushFollow(FOLLOW_65);
             rule__AdditiveExpression__Group__0__Impl();
 
             state._fsp--;
@@ -26567,36 +26556,36 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAdditiveExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:7958:2: ( rule__AdditiveExpression__Group_1__0 )*
-            loop51:
+            loop50:
             do {
-                int alt51=2;
-                int LA51_0 = input.LA(1);
+                int alt50=2;
+                int LA50_0 = input.LA(1);
 
-                if ( (LA51_0==57) ) {
-                    int LA51_2 = input.LA(2);
+                if ( (LA50_0==57) ) {
+                    int LA50_2 = input.LA(2);
 
-                    if ( (synpred98_InternalReflex()) ) {
-                        alt51=1;
+                    if ( (synpred97_InternalReflex()) ) {
+                        alt50=1;
                     }
 
 
                 }
-                else if ( (LA51_0==58) ) {
-                    int LA51_3 = input.LA(2);
+                else if ( (LA50_0==58) ) {
+                    int LA50_3 = input.LA(2);
 
-                    if ( (synpred98_InternalReflex()) ) {
-                        alt51=1;
+                    if ( (synpred97_InternalReflex()) ) {
+                        alt50=1;
                     }
 
 
                 }
 
 
-                switch (alt51) {
+                switch (alt50) {
             	case 1 :
             	    // InternalReflex.g:7958:3: rule__AdditiveExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_65);
+            	    pushFollow(FOLLOW_66);
             	    rule__AdditiveExpression__Group_1__0();
 
             	    state._fsp--;
@@ -26606,7 +26595,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop51;
+            	    break loop50;
                 }
             } while (true);
 
@@ -26644,7 +26633,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7971:1: ( rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 )
             // InternalReflex.g:7972:2: rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1
             {
-            pushFollow(FOLLOW_64);
+            pushFollow(FOLLOW_65);
             rule__AdditiveExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -26723,7 +26712,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:7998:1: ( rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 )
             // InternalReflex.g:7999:2: rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__AdditiveExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -26896,7 +26885,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8052:1: ( rule__ShiftExpression__Group__0__Impl rule__ShiftExpression__Group__1 )
             // InternalReflex.g:8053:2: rule__ShiftExpression__Group__0__Impl rule__ShiftExpression__Group__1
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_67);
             rule__ShiftExpression__Group__0__Impl();
 
             state._fsp--;
@@ -27019,36 +27008,36 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getShiftExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8093:2: ( rule__ShiftExpression__Group_1__0 )*
-            loop52:
+            loop51:
             do {
-                int alt52=2;
-                int LA52_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA52_0==67) ) {
-                    int LA52_2 = input.LA(2);
+                if ( (LA51_0==67) ) {
+                    int LA51_2 = input.LA(2);
 
-                    if ( (synpred99_InternalReflex()) ) {
-                        alt52=1;
+                    if ( (synpred98_InternalReflex()) ) {
+                        alt51=1;
                     }
 
 
                 }
-                else if ( (LA52_0==68) ) {
-                    int LA52_3 = input.LA(2);
+                else if ( (LA51_0==68) ) {
+                    int LA51_3 = input.LA(2);
 
-                    if ( (synpred99_InternalReflex()) ) {
-                        alt52=1;
+                    if ( (synpred98_InternalReflex()) ) {
+                        alt51=1;
                     }
 
 
                 }
 
 
-                switch (alt52) {
+                switch (alt51) {
             	case 1 :
             	    // InternalReflex.g:8093:3: rule__ShiftExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_67);
+            	    pushFollow(FOLLOW_68);
             	    rule__ShiftExpression__Group_1__0();
 
             	    state._fsp--;
@@ -27058,7 +27047,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop51;
                 }
             } while (true);
 
@@ -27096,7 +27085,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8106:1: ( rule__ShiftExpression__Group_1__0__Impl rule__ShiftExpression__Group_1__1 )
             // InternalReflex.g:8107:2: rule__ShiftExpression__Group_1__0__Impl rule__ShiftExpression__Group_1__1
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_67);
             rule__ShiftExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -27175,7 +27164,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8133:1: ( rule__ShiftExpression__Group_1__1__Impl rule__ShiftExpression__Group_1__2 )
             // InternalReflex.g:8134:2: rule__ShiftExpression__Group_1__1__Impl rule__ShiftExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__ShiftExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -27348,7 +27337,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8187:1: ( rule__CompareExpression__Group_1__0__Impl rule__CompareExpression__Group_1__1 )
             // InternalReflex.g:8188:2: rule__CompareExpression__Group_1__0__Impl rule__CompareExpression__Group_1__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_69);
             rule__CompareExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -27471,16 +27460,16 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getCompareExpressionAccess().getGroup_1_1()); 
             }
             // InternalReflex.g:8228:2: ( rule__CompareExpression__Group_1_1__0 )*
-            loop53:
+            loop52:
             do {
-                int alt53=2;
+                int alt52=2;
                 switch ( input.LA(1) ) {
                 case 61:
                     {
-                    int LA53_2 = input.LA(2);
+                    int LA52_2 = input.LA(2);
 
-                    if ( (synpred100_InternalReflex()) ) {
-                        alt53=1;
+                    if ( (synpred99_InternalReflex()) ) {
+                        alt52=1;
                     }
 
 
@@ -27488,10 +27477,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     break;
                 case 62:
                     {
-                    int LA53_3 = input.LA(2);
+                    int LA52_3 = input.LA(2);
 
-                    if ( (synpred100_InternalReflex()) ) {
-                        alt53=1;
+                    if ( (synpred99_InternalReflex()) ) {
+                        alt52=1;
                     }
 
 
@@ -27499,10 +27488,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     break;
                 case 63:
                     {
-                    int LA53_4 = input.LA(2);
+                    int LA52_4 = input.LA(2);
 
-                    if ( (synpred100_InternalReflex()) ) {
-                        alt53=1;
+                    if ( (synpred99_InternalReflex()) ) {
+                        alt52=1;
                     }
 
 
@@ -27510,10 +27499,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                     break;
                 case 64:
                     {
-                    int LA53_5 = input.LA(2);
+                    int LA52_5 = input.LA(2);
 
-                    if ( (synpred100_InternalReflex()) ) {
-                        alt53=1;
+                    if ( (synpred99_InternalReflex()) ) {
+                        alt52=1;
                     }
 
 
@@ -27522,11 +27511,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
                 }
 
-                switch (alt53) {
+                switch (alt52) {
             	case 1 :
             	    // InternalReflex.g:8228:3: rule__CompareExpression__Group_1_1__0
             	    {
-            	    pushFollow(FOLLOW_69);
+            	    pushFollow(FOLLOW_70);
             	    rule__CompareExpression__Group_1_1__0();
 
             	    state._fsp--;
@@ -27536,7 +27525,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop52;
                 }
             } while (true);
 
@@ -27574,7 +27563,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8241:1: ( rule__CompareExpression__Group_1_1__0__Impl rule__CompareExpression__Group_1_1__1 )
             // InternalReflex.g:8242:2: rule__CompareExpression__Group_1_1__0__Impl rule__CompareExpression__Group_1_1__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_69);
             rule__CompareExpression__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -27653,7 +27642,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8268:1: ( rule__CompareExpression__Group_1_1__1__Impl rule__CompareExpression__Group_1_1__2 )
             // InternalReflex.g:8269:2: rule__CompareExpression__Group_1_1__1__Impl rule__CompareExpression__Group_1_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__CompareExpression__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -27826,7 +27815,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8322:1: ( rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 )
             // InternalReflex.g:8323:2: rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_71);
             rule__EqualityExpression__Group__0__Impl();
 
             state._fsp--;
@@ -27949,36 +27938,36 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getEqualityExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8363:2: ( rule__EqualityExpression__Group_1__0 )*
-            loop54:
+            loop53:
             do {
-                int alt54=2;
-                int LA54_0 = input.LA(1);
+                int alt53=2;
+                int LA53_0 = input.LA(1);
 
-                if ( (LA54_0==65) ) {
-                    int LA54_2 = input.LA(2);
+                if ( (LA53_0==65) ) {
+                    int LA53_2 = input.LA(2);
 
-                    if ( (synpred101_InternalReflex()) ) {
-                        alt54=1;
+                    if ( (synpred100_InternalReflex()) ) {
+                        alt53=1;
                     }
 
 
                 }
-                else if ( (LA54_0==66) ) {
-                    int LA54_3 = input.LA(2);
+                else if ( (LA53_0==66) ) {
+                    int LA53_3 = input.LA(2);
 
-                    if ( (synpred101_InternalReflex()) ) {
-                        alt54=1;
+                    if ( (synpred100_InternalReflex()) ) {
+                        alt53=1;
                     }
 
 
                 }
 
 
-                switch (alt54) {
+                switch (alt53) {
             	case 1 :
             	    // InternalReflex.g:8363:3: rule__EqualityExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_71);
+            	    pushFollow(FOLLOW_72);
             	    rule__EqualityExpression__Group_1__0();
 
             	    state._fsp--;
@@ -27988,7 +27977,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop54;
+            	    break loop53;
                 }
             } while (true);
 
@@ -28026,7 +28015,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8376:1: ( rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 )
             // InternalReflex.g:8377:2: rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_71);
             rule__EqualityExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -28105,7 +28094,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8403:1: ( rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 )
             // InternalReflex.g:8404:2: rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__EqualityExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -28278,7 +28267,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8457:1: ( rule__BitAndExpression__Group__0__Impl rule__BitAndExpression__Group__1 )
             // InternalReflex.g:8458:2: rule__BitAndExpression__Group__0__Impl rule__BitAndExpression__Group__1
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_73);
             rule__BitAndExpression__Group__0__Impl();
 
             state._fsp--;
@@ -28401,27 +28390,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBitAndExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8498:2: ( rule__BitAndExpression__Group_1__0 )*
-            loop55:
+            loop54:
             do {
-                int alt55=2;
-                int LA55_0 = input.LA(1);
+                int alt54=2;
+                int LA54_0 = input.LA(1);
 
-                if ( (LA55_0==RULE_BIT_AND) ) {
-                    int LA55_2 = input.LA(2);
+                if ( (LA54_0==RULE_BIT_AND) ) {
+                    int LA54_2 = input.LA(2);
 
-                    if ( (synpred102_InternalReflex()) ) {
-                        alt55=1;
+                    if ( (synpred101_InternalReflex()) ) {
+                        alt54=1;
                     }
 
 
                 }
 
 
-                switch (alt55) {
+                switch (alt54) {
             	case 1 :
             	    // InternalReflex.g:8498:3: rule__BitAndExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_73);
+            	    pushFollow(FOLLOW_74);
             	    rule__BitAndExpression__Group_1__0();
 
             	    state._fsp--;
@@ -28431,7 +28420,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop55;
+            	    break loop54;
                 }
             } while (true);
 
@@ -28469,7 +28458,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8511:1: ( rule__BitAndExpression__Group_1__0__Impl rule__BitAndExpression__Group_1__1 )
             // InternalReflex.g:8512:2: rule__BitAndExpression__Group_1__0__Impl rule__BitAndExpression__Group_1__1
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_73);
             rule__BitAndExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -28548,7 +28537,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8538:1: ( rule__BitAndExpression__Group_1__1__Impl rule__BitAndExpression__Group_1__2 )
             // InternalReflex.g:8539:2: rule__BitAndExpression__Group_1__1__Impl rule__BitAndExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__BitAndExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -28711,7 +28700,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8592:1: ( rule__BitXorExpression__Group__0__Impl rule__BitXorExpression__Group__1 )
             // InternalReflex.g:8593:2: rule__BitXorExpression__Group__0__Impl rule__BitXorExpression__Group__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_75);
             rule__BitXorExpression__Group__0__Impl();
 
             state._fsp--;
@@ -28834,27 +28823,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBitXorExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8633:2: ( rule__BitXorExpression__Group_1__0 )*
-            loop56:
+            loop55:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA56_0==RULE_BIT_XOR) ) {
-                    int LA56_2 = input.LA(2);
+                if ( (LA55_0==RULE_BIT_XOR) ) {
+                    int LA55_2 = input.LA(2);
 
-                    if ( (synpred103_InternalReflex()) ) {
-                        alt56=1;
+                    if ( (synpred102_InternalReflex()) ) {
+                        alt55=1;
                     }
 
 
                 }
 
 
-                switch (alt56) {
+                switch (alt55) {
             	case 1 :
             	    // InternalReflex.g:8633:3: rule__BitXorExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_75);
+            	    pushFollow(FOLLOW_76);
             	    rule__BitXorExpression__Group_1__0();
 
             	    state._fsp--;
@@ -28864,7 +28853,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop55;
                 }
             } while (true);
 
@@ -28902,7 +28891,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8646:1: ( rule__BitXorExpression__Group_1__0__Impl rule__BitXorExpression__Group_1__1 )
             // InternalReflex.g:8647:2: rule__BitXorExpression__Group_1__0__Impl rule__BitXorExpression__Group_1__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_75);
             rule__BitXorExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -28981,7 +28970,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8673:1: ( rule__BitXorExpression__Group_1__1__Impl rule__BitXorExpression__Group_1__2 )
             // InternalReflex.g:8674:2: rule__BitXorExpression__Group_1__1__Impl rule__BitXorExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__BitXorExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -29144,7 +29133,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8727:1: ( rule__BitOrExpression__Group__0__Impl rule__BitOrExpression__Group__1 )
             // InternalReflex.g:8728:2: rule__BitOrExpression__Group__0__Impl rule__BitOrExpression__Group__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_77);
             rule__BitOrExpression__Group__0__Impl();
 
             state._fsp--;
@@ -29267,27 +29256,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBitOrExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8768:2: ( rule__BitOrExpression__Group_1__0 )*
-            loop57:
+            loop56:
             do {
-                int alt57=2;
-                int LA57_0 = input.LA(1);
+                int alt56=2;
+                int LA56_0 = input.LA(1);
 
-                if ( (LA57_0==RULE_BIT_OR) ) {
-                    int LA57_2 = input.LA(2);
+                if ( (LA56_0==RULE_BIT_OR) ) {
+                    int LA56_2 = input.LA(2);
 
-                    if ( (synpred104_InternalReflex()) ) {
-                        alt57=1;
+                    if ( (synpred103_InternalReflex()) ) {
+                        alt56=1;
                     }
 
 
                 }
 
 
-                switch (alt57) {
+                switch (alt56) {
             	case 1 :
             	    // InternalReflex.g:8768:3: rule__BitOrExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_77);
+            	    pushFollow(FOLLOW_78);
             	    rule__BitOrExpression__Group_1__0();
 
             	    state._fsp--;
@@ -29297,7 +29286,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop57;
+            	    break loop56;
                 }
             } while (true);
 
@@ -29335,7 +29324,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8781:1: ( rule__BitOrExpression__Group_1__0__Impl rule__BitOrExpression__Group_1__1 )
             // InternalReflex.g:8782:2: rule__BitOrExpression__Group_1__0__Impl rule__BitOrExpression__Group_1__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_77);
             rule__BitOrExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -29414,7 +29403,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8808:1: ( rule__BitOrExpression__Group_1__1__Impl rule__BitOrExpression__Group_1__2 )
             // InternalReflex.g:8809:2: rule__BitOrExpression__Group_1__1__Impl rule__BitOrExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__BitOrExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -29577,7 +29566,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8862:1: ( rule__LogicalAndExpression__Group__0__Impl rule__LogicalAndExpression__Group__1 )
             // InternalReflex.g:8863:2: rule__LogicalAndExpression__Group__0__Impl rule__LogicalAndExpression__Group__1
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_79);
             rule__LogicalAndExpression__Group__0__Impl();
 
             state._fsp--;
@@ -29700,27 +29689,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getLogicalAndExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:8903:2: ( rule__LogicalAndExpression__Group_1__0 )*
-            loop58:
+            loop57:
             do {
-                int alt58=2;
-                int LA58_0 = input.LA(1);
+                int alt57=2;
+                int LA57_0 = input.LA(1);
 
-                if ( (LA58_0==RULE_LOGICAL_AND) ) {
-                    int LA58_2 = input.LA(2);
+                if ( (LA57_0==RULE_LOGICAL_AND) ) {
+                    int LA57_2 = input.LA(2);
 
-                    if ( (synpred105_InternalReflex()) ) {
-                        alt58=1;
+                    if ( (synpred104_InternalReflex()) ) {
+                        alt57=1;
                     }
 
 
                 }
 
 
-                switch (alt58) {
+                switch (alt57) {
             	case 1 :
             	    // InternalReflex.g:8903:3: rule__LogicalAndExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_79);
+            	    pushFollow(FOLLOW_80);
             	    rule__LogicalAndExpression__Group_1__0();
 
             	    state._fsp--;
@@ -29730,7 +29719,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop58;
+            	    break loop57;
                 }
             } while (true);
 
@@ -29768,7 +29757,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8916:1: ( rule__LogicalAndExpression__Group_1__0__Impl rule__LogicalAndExpression__Group_1__1 )
             // InternalReflex.g:8917:2: rule__LogicalAndExpression__Group_1__0__Impl rule__LogicalAndExpression__Group_1__1
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_79);
             rule__LogicalAndExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -29847,7 +29836,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8943:1: ( rule__LogicalAndExpression__Group_1__1__Impl rule__LogicalAndExpression__Group_1__2 )
             // InternalReflex.g:8944:2: rule__LogicalAndExpression__Group_1__1__Impl rule__LogicalAndExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__LogicalAndExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -30010,7 +29999,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:8997:1: ( rule__LogicalOrExpression__Group__0__Impl rule__LogicalOrExpression__Group__1 )
             // InternalReflex.g:8998:2: rule__LogicalOrExpression__Group__0__Impl rule__LogicalOrExpression__Group__1
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_81);
             rule__LogicalOrExpression__Group__0__Impl();
 
             state._fsp--;
@@ -30133,27 +30122,27 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getLogicalOrExpressionAccess().getGroup_1()); 
             }
             // InternalReflex.g:9038:2: ( rule__LogicalOrExpression__Group_1__0 )*
-            loop59:
+            loop58:
             do {
-                int alt59=2;
-                int LA59_0 = input.LA(1);
+                int alt58=2;
+                int LA58_0 = input.LA(1);
 
-                if ( (LA59_0==RULE_LOGICAL_OR) ) {
-                    int LA59_2 = input.LA(2);
+                if ( (LA58_0==RULE_LOGICAL_OR) ) {
+                    int LA58_2 = input.LA(2);
 
-                    if ( (synpred106_InternalReflex()) ) {
-                        alt59=1;
+                    if ( (synpred105_InternalReflex()) ) {
+                        alt58=1;
                     }
 
 
                 }
 
 
-                switch (alt59) {
+                switch (alt58) {
             	case 1 :
             	    // InternalReflex.g:9038:3: rule__LogicalOrExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_81);
+            	    pushFollow(FOLLOW_82);
             	    rule__LogicalOrExpression__Group_1__0();
 
             	    state._fsp--;
@@ -30163,7 +30152,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop59;
+            	    break loop58;
                 }
             } while (true);
 
@@ -30201,7 +30190,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9051:1: ( rule__LogicalOrExpression__Group_1__0__Impl rule__LogicalOrExpression__Group_1__1 )
             // InternalReflex.g:9052:2: rule__LogicalOrExpression__Group_1__0__Impl rule__LogicalOrExpression__Group_1__1
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_81);
             rule__LogicalOrExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -30280,7 +30269,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9078:1: ( rule__LogicalOrExpression__Group_1__1__Impl rule__LogicalOrExpression__Group_1__2 )
             // InternalReflex.g:9079:2: rule__LogicalOrExpression__Group_1__1__Impl rule__LogicalOrExpression__Group_1__2
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__LogicalOrExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -30443,7 +30432,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9132:1: ( rule__AssignmentExpression__Group__0__Impl rule__AssignmentExpression__Group__1 )
             // InternalReflex.g:9133:2: rule__AssignmentExpression__Group__0__Impl rule__AssignmentExpression__Group__1
             {
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_19);
             rule__AssignmentExpression__Group__0__Impl();
 
             state._fsp--;
@@ -30488,17 +30477,17 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAssignmentExpressionAccess().getGroup_0()); 
             }
             // InternalReflex.g:9147:2: ( rule__AssignmentExpression__Group_0__0 )?
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            int alt59=2;
+            int LA59_0 = input.LA(1);
 
-            if ( (LA60_0==RULE_ID) ) {
-                int LA60_1 = input.LA(2);
+            if ( (LA59_0==RULE_ID) ) {
+                int LA59_1 = input.LA(2);
 
-                if ( ((LA60_1>=47 && LA60_1<=56)) ) {
-                    alt60=1;
+                if ( ((LA59_1>=47 && LA59_1<=56)) ) {
+                    alt59=1;
                 }
             }
-            switch (alt60) {
+            switch (alt59) {
                 case 1 :
                     // InternalReflex.g:9147:3: rule__AssignmentExpression__Group_0__0
                     {
@@ -30631,7 +30620,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9186:1: ( rule__AssignmentExpression__Group_0__0__Impl rule__AssignmentExpression__Group_0__1 )
             // InternalReflex.g:9187:2: rule__AssignmentExpression__Group_0__0__Impl rule__AssignmentExpression__Group_0__1
             {
-            pushFollow(FOLLOW_82);
+            pushFollow(FOLLOW_83);
             rule__AssignmentExpression__Group_0__0__Impl();
 
             state._fsp--;
@@ -30880,29 +30869,29 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Program__NameAssignment_2"
 
 
-    // $ANTLR start "rule__Program__TicksAssignment_4"
-    // InternalReflex.g:9266:1: rule__Program__TicksAssignment_4 : ( ruleTact ) ;
-    public final void rule__Program__TicksAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__Program__ClockAssignment_4"
+    // InternalReflex.g:9266:1: rule__Program__ClockAssignment_4 : ( ruleClockDefinition ) ;
+    public final void rule__Program__ClockAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReflex.g:9270:1: ( ( ruleTact ) )
-            // InternalReflex.g:9271:2: ( ruleTact )
+            // InternalReflex.g:9270:1: ( ( ruleClockDefinition ) )
+            // InternalReflex.g:9271:2: ( ruleClockDefinition )
             {
-            // InternalReflex.g:9271:2: ( ruleTact )
-            // InternalReflex.g:9272:3: ruleTact
+            // InternalReflex.g:9271:2: ( ruleClockDefinition )
+            // InternalReflex.g:9272:3: ruleClockDefinition
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProgramAccess().getTicksTactParserRuleCall_4_0()); 
+               before(grammarAccess.getProgramAccess().getClockClockDefinitionParserRuleCall_4_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleTact();
+            ruleClockDefinition();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProgramAccess().getTicksTactParserRuleCall_4_0()); 
+               after(grammarAccess.getProgramAccess().getClockClockDefinitionParserRuleCall_4_0()); 
             }
 
             }
@@ -30922,7 +30911,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Program__TicksAssignment_4"
+    // $ANTLR end "rule__Program__ClockAssignment_4"
 
 
     // $ANTLR start "rule__Program__ConstsAssignment_5_0"
@@ -31195,9 +31184,9 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Program__ProcessesAssignment_5_5"
 
 
-    // $ANTLR start "rule__Tact__IntValueAssignment_1_0"
-    // InternalReflex.g:9371:1: rule__Tact__IntValueAssignment_1_0 : ( RULE_INTEGER ) ;
-    public final void rule__Tact__IntValueAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__IntValueAssignment_1_0"
+    // InternalReflex.g:9371:1: rule__ClockDefinition__IntValueAssignment_1_0 : ( RULE_INTEGER ) ;
+    public final void rule__ClockDefinition__IntValueAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -31209,11 +31198,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9377:3: RULE_INTEGER
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); 
+               before(grammarAccess.getClockDefinitionAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); 
             }
             match(input,RULE_INTEGER,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); 
+               after(grammarAccess.getClockDefinitionAccess().getIntValueINTEGERTerminalRuleCall_1_0_0()); 
             }
 
             }
@@ -31233,12 +31222,12 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__IntValueAssignment_1_0"
+    // $ANTLR end "rule__ClockDefinition__IntValueAssignment_1_0"
 
 
-    // $ANTLR start "rule__Tact__TimeValueAssignment_1_1"
-    // InternalReflex.g:9386:1: rule__Tact__TimeValueAssignment_1_1 : ( RULE_TIME ) ;
-    public final void rule__Tact__TimeValueAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ClockDefinition__TimeValueAssignment_1_1"
+    // InternalReflex.g:9386:1: rule__ClockDefinition__TimeValueAssignment_1_1 : ( RULE_TIME ) ;
+    public final void rule__ClockDefinition__TimeValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -31250,11 +31239,11 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             // InternalReflex.g:9392:3: RULE_TIME
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); 
+               before(grammarAccess.getClockDefinitionAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); 
             }
             match(input,RULE_TIME,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); 
+               after(grammarAccess.getClockDefinitionAccess().getTimeValueTIMETerminalRuleCall_1_1_0()); 
             }
 
             }
@@ -31274,7 +31263,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Tact__TimeValueAssignment_1_1"
+    // $ANTLR end "rule__ClockDefinition__TimeValueAssignment_1_1"
 
 
     // $ANTLR start "rule__Process__AnnotationsAssignment_0_1"
@@ -35701,8 +35690,8 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__AssignmentExpression__ExprAssignment_1"
 
-    // $ANTLR start synpred91_InternalReflex
-    public final void synpred91_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred90_InternalReflex
+    public final void synpred90_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:5555:3: ( rule__IfElseStat__Group_5__0 )
         // InternalReflex.g:5555:3: rule__IfElseStat__Group_5__0
         {
@@ -35714,10 +35703,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred91_InternalReflex
+    // $ANTLR end synpred90_InternalReflex
 
-    // $ANTLR start synpred98_InternalReflex
-    public final void synpred98_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred97_InternalReflex
+    public final void synpred97_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:7958:3: ( rule__AdditiveExpression__Group_1__0 )
         // InternalReflex.g:7958:3: rule__AdditiveExpression__Group_1__0
         {
@@ -35729,10 +35718,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred98_InternalReflex
+    // $ANTLR end synpred97_InternalReflex
 
-    // $ANTLR start synpred99_InternalReflex
-    public final void synpred99_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred98_InternalReflex
+    public final void synpred98_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8093:3: ( rule__ShiftExpression__Group_1__0 )
         // InternalReflex.g:8093:3: rule__ShiftExpression__Group_1__0
         {
@@ -35744,10 +35733,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred99_InternalReflex
+    // $ANTLR end synpred98_InternalReflex
 
-    // $ANTLR start synpred100_InternalReflex
-    public final void synpred100_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred99_InternalReflex
+    public final void synpred99_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8228:3: ( rule__CompareExpression__Group_1_1__0 )
         // InternalReflex.g:8228:3: rule__CompareExpression__Group_1_1__0
         {
@@ -35759,10 +35748,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred100_InternalReflex
+    // $ANTLR end synpred99_InternalReflex
 
-    // $ANTLR start synpred101_InternalReflex
-    public final void synpred101_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred100_InternalReflex
+    public final void synpred100_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8363:3: ( rule__EqualityExpression__Group_1__0 )
         // InternalReflex.g:8363:3: rule__EqualityExpression__Group_1__0
         {
@@ -35774,10 +35763,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred101_InternalReflex
+    // $ANTLR end synpred100_InternalReflex
 
-    // $ANTLR start synpred102_InternalReflex
-    public final void synpred102_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred101_InternalReflex
+    public final void synpred101_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8498:3: ( rule__BitAndExpression__Group_1__0 )
         // InternalReflex.g:8498:3: rule__BitAndExpression__Group_1__0
         {
@@ -35789,10 +35778,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred102_InternalReflex
+    // $ANTLR end synpred101_InternalReflex
 
-    // $ANTLR start synpred103_InternalReflex
-    public final void synpred103_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred102_InternalReflex
+    public final void synpred102_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8633:3: ( rule__BitXorExpression__Group_1__0 )
         // InternalReflex.g:8633:3: rule__BitXorExpression__Group_1__0
         {
@@ -35804,10 +35793,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred103_InternalReflex
+    // $ANTLR end synpred102_InternalReflex
 
-    // $ANTLR start synpred104_InternalReflex
-    public final void synpred104_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred103_InternalReflex
+    public final void synpred103_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8768:3: ( rule__BitOrExpression__Group_1__0 )
         // InternalReflex.g:8768:3: rule__BitOrExpression__Group_1__0
         {
@@ -35819,10 +35808,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred104_InternalReflex
+    // $ANTLR end synpred103_InternalReflex
 
-    // $ANTLR start synpred105_InternalReflex
-    public final void synpred105_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred104_InternalReflex
+    public final void synpred104_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:8903:3: ( rule__LogicalAndExpression__Group_1__0 )
         // InternalReflex.g:8903:3: rule__LogicalAndExpression__Group_1__0
         {
@@ -35834,10 +35823,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred105_InternalReflex
+    // $ANTLR end synpred104_InternalReflex
 
-    // $ANTLR start synpred106_InternalReflex
-    public final void synpred106_InternalReflex_fragment() throws RecognitionException {   
+    // $ANTLR start synpred105_InternalReflex
+    public final void synpred105_InternalReflex_fragment() throws RecognitionException {   
         // InternalReflex.g:9038:3: ( rule__LogicalOrExpression__Group_1__0 )
         // InternalReflex.g:9038:3: rule__LogicalOrExpression__Group_1__0
         {
@@ -35849,24 +35838,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred106_InternalReflex
+    // $ANTLR end synpred105_InternalReflex
 
     // Delegated rules
 
-    public final boolean synpred91_InternalReflex() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred91_InternalReflex_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred105_InternalReflex() {
         state.backtracking++;
         int start = input.mark();
@@ -35895,6 +35870,20 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred97_InternalReflex() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred97_InternalReflex_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred98_InternalReflex() {
         state.backtracking++;
         int start = input.mark();
@@ -35914,20 +35903,6 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         int start = input.mark();
         try {
             synpred104_InternalReflex_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred106_InternalReflex() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred106_InternalReflex_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35984,6 +35959,20 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         int start = input.mark();
         try {
             synpred101_InternalReflex_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred90_InternalReflex() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred90_InternalReflex_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36052,10 +36041,10 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_7s = "\21\uffff";
-    static final String dfa_8s = "\16\uffff\1\20\2\uffff";
+    static final String dfa_8s = "\16\uffff\1\17\2\uffff";
     static final String dfa_9s = "\1\110\15\4\1\57\2\uffff";
     static final String dfa_10s = "\1\124\15\4\1\140\2\uffff";
-    static final String dfa_11s = "\17\uffff\1\1\1\2";
+    static final String dfa_11s = "\17\uffff\1\2\1\1";
     static final String dfa_12s = "\21\uffff}>";
     static final String[] dfa_13s = {
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15",
@@ -36072,7 +36061,7 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             "\1\16",
             "\1\16",
             "\1\16",
-            "\1\17\53\uffff\1\20\4\uffff\1\20",
+            "\1\20\53\uffff\1\17\4\uffff\1\17",
             "",
             ""
     };
@@ -36103,7 +36092,8 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_14s = "\1\124\15\4\1\133\2\uffff";
-    static final String[] dfa_15s = {
+    static final String dfa_15s = "\17\uffff\1\1\1\2";
+    static final String[] dfa_16s = {
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15",
             "\1\16",
             "\1\16",
@@ -36123,7 +36113,8 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             ""
     };
     static final char[] dfa_14 = DFA.unpackEncodedStringToUnsignedChars(dfa_14s);
-    static final short[][] dfa_15 = unpackEncodedStringArray(dfa_15s);
+    static final short[] dfa_15 = DFA.unpackEncodedString(dfa_15s);
+    static final short[][] dfa_16 = unpackEncodedStringArray(dfa_16s);
 
     class DFA7 extends DFA {
 
@@ -36134,9 +36125,9 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
             this.eof = dfa_7;
             this.min = dfa_9;
             this.max = dfa_14;
-            this.accept = dfa_11;
+            this.accept = dfa_15;
             this.special = dfa_12;
-            this.transition = dfa_15;
+            this.transition = dfa_16;
         }
         public String getDescription() {
             return "1646:1: rule__GlobalVariable__Alternatives_0 : ( ( rulePhysicalVariable ) | ( ruleProgramVariable ) );";
@@ -36150,81 +36141,82 @@ public class InternalReflexParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000018000000000L,0x000000C0159FFF00L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000018000000002L,0x000000C0111FFF00L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000C00L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000018000000000L,0x000000C0111FFF00L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000000L,0x00000001219FFF00L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000002L,0x00000001001FFF00L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000000002L,0x0000000021000000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000000L,0x0000000021000000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000000L,0x0008000000400000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E51018400000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000000000000L,0x0000000800800000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000400L,0x0000000002000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000C10L,0x0000001000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000C10L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000000L,0x00000000001FFF00L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000000L,0x0000002400000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000000L,0x0000000400800000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x1E00780000006C12L,0x0002E51018400000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E51018C00000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000000L,0x0000080000800000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000000L,0x0000000018000000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000000L,0x0010000020000000L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000600000000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E53018400000L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000000000000000L,0x0004000000000000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x00001E0000000000L});
-    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000000L,0x00000000000000E0L});
-    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000E0L});
-    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0600000000000000L});
-    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0600000000000002L});
-    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000018L});
-    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000018L});
-    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_69 = new BitSet(new long[]{0xE000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000006L});
-    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000006L});
-    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000000000082L});
-    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_79 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x01FF800000000000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000018000000000L,0x000000C0119FFF00L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000018000000002L,0x000000C0111FFF00L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000C00L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000018000000000L,0x000000C0111FFF00L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000000L,0x00000001219FFF00L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000000002L,0x00000001001FFF00L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000002L,0x0000000021000000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000000L,0x0000000021000000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000000000L,0x0008000000400000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E51018400000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000000L,0x0000000800800000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000400L,0x0000000002000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000C10L,0x0000001000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000C10L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000000L,0x00000000001FFF00L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000000L,0x0000002400000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000000L,0x0000000400800000L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x1E00780000006C12L,0x0002E51018400000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E51018C00000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000000L,0x0000080000800000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000018000000L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000000000000L,0x0010000020000000L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000600000000000L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x1E00780000006C10L,0x0002E53018400000L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000000L,0x0004000000000000L});
+    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x00001E0000000000L});
+    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0600000000000000L});
+    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0600000000000002L});
+    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000018L});
+    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000018L});
+    public static final BitSet FOLLOW_69 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0xE000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000006L});
+    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000006L});
+    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x0000000000000082L});
+    public static final BitSet FOLLOW_79 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x01FF800000000000L});
 
 }

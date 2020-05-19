@@ -23,6 +23,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
@@ -55,7 +56,6 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
-import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
 import ru.iaie.reflex.services.ReflexGrammarAccess;
@@ -100,6 +100,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.CHECK_STATE_EXPRESSION:
 				sequence_CheckStateExpression(context, (CheckStateExpression) semanticObject); 
+				return; 
+			case ReflexPackage.CLOCK_DEFINITION:
+				sequence_ClockDefinition(context, (ClockDefinition) semanticObject); 
 				return; 
 			case ReflexPackage.COMPARE_EXPRESSION:
 				sequence_CompareExpression(context, (CompareExpression) semanticObject); 
@@ -217,9 +220,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.SWITCH_STAT:
 				sequence_SwitchStat(context, (SwitchStat) semanticObject); 
-				return; 
-			case ReflexPackage.TACT:
-				sequence_Tact(context, (Tact) semanticObject); 
 				return; 
 			case ReflexPackage.TIMEOUT_FUNCTION:
 				sequence_TimeAmountOrRef_TimeoutFunction(context, (TimeoutFunction) semanticObject); 
@@ -479,6 +479,18 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getProcessProcessIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS, false));
 		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getQualfierStateQualifierEnumRuleCall_4_0(), semanticObject.getQualfier());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ClockDefinition returns ClockDefinition
+	 *
+	 * Constraint:
+	 *     (intValue=INTEGER | timeValue=TIME)
+	 */
+	protected void sequence_ClockDefinition(ISerializationContext context, ClockDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1052,7 +1064,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         annotations+=Annotation* 
 	 *         name=ID 
-	 *         ticks=Tact? 
+	 *         clock=ClockDefinition 
 	 *         (
 	 *             consts+=Const | 
 	 *             enums+=Enum | 
@@ -1223,18 +1235,6 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (expr=Expression options+=CaseStat*)
 	 */
 	protected void sequence_SwitchStat(ISerializationContext context, SwitchStat semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Tact returns Tact
-	 *
-	 * Constraint:
-	 *     (intValue=INTEGER | timeValue=TIME)
-	 */
-	protected void sequence_Tact(ISerializationContext context, Tact semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

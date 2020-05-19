@@ -16,6 +16,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -195,6 +196,11 @@ public class ReflexModelUtil {
       }
     }
     return null;
+  }
+  
+  public static boolean hasTimeFormat(final ClockDefinition clck) {
+    String _timeValue = clck.getTimeValue();
+    return (_timeValue != null);
   }
   
   public static Type getSuitableTypeForPort(final Port p) {

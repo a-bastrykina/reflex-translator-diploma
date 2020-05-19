@@ -17,6 +17,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
@@ -53,7 +54,6 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
-import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
@@ -128,10 +128,10 @@ public class ReflexSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReflexPackage.TACT:
+      case ReflexPackage.CLOCK_DEFINITION:
       {
-        Tact tact = (Tact)theEObject;
-        T result = caseTact(tact);
+        ClockDefinition clockDefinition = (ClockDefinition)theEObject;
+        T result = caseClockDefinition(clockDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -634,17 +634,17 @@ public class ReflexSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Tact</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Clock Definition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Tact</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Clock Definition</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTact(Tact object)
+  public T caseClockDefinition(ClockDefinition object)
   {
     return null;
   }

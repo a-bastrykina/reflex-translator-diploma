@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Tact</b></em>'.
+ * A representation of the model object '<em><b>Clock Definition</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ClockDefinition#getIntValue <em>Int Value</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.ClockDefinition#getTimeValue <em>Time Value</em>}</li>
  * </ul>
  *
- * @see ru.iaie.reflex.reflex.ReflexPackage#getTact()
+ * @see ru.iaie.reflex.reflex.ReflexPackage#getClockDefinition()
  * @model
  * @generated
  */
-public interface Tact extends EObject
+public interface ClockDefinition extends EObject
 {
   /**
    * Returns the value of the '<em><b>Int Value</b></em>' attribute.
@@ -30,14 +30,14 @@ public interface Tact extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Int Value</em>' attribute.
    * @see #setIntValue(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTact_IntValue()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getClockDefinition_IntValue()
    * @model
    * @generated
    */
   String getIntValue();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Tact#getIntValue <em>Int Value</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ClockDefinition#getIntValue <em>Int Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Int Value</em>' attribute.
@@ -52,14 +52,14 @@ public interface Tact extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Time Value</em>' attribute.
    * @see #setTimeValue(String)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getTact_TimeValue()
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getClockDefinition_TimeValue()
    * @model
    * @generated
    */
   String getTimeValue();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Tact#getTimeValue <em>Time Value</em>}' attribute.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.ClockDefinition#getTimeValue <em>Time Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Time Value</em>' attribute.
@@ -68,4 +68,4 @@ public interface Tact extends EObject
    */
   void setTimeValue(String value);
 
-} // Tact
+} // ClockDefinition

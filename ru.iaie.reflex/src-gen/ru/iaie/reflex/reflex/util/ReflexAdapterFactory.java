@@ -19,6 +19,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
@@ -55,7 +56,6 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
-import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.UnaryExpression;
@@ -129,9 +129,9 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
         return createProgramAdapter();
       }
       @Override
-      public Adapter caseTact(Tact object)
+      public Adapter caseClockDefinition(ClockDefinition object)
       {
-        return createTactAdapter();
+        return createClockDefinitionAdapter();
       }
       @Override
       public Adapter caseProcess(ru.iaie.reflex.reflex.Process object)
@@ -411,16 +411,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.Tact <em>Tact</em>}'.
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.ClockDefinition <em>Clock Definition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ru.iaie.reflex.reflex.Tact
+   * @see ru.iaie.reflex.reflex.ClockDefinition
    * @generated
    */
-  public Adapter createTactAdapter()
+  public Adapter createClockDefinitionAdapter()
   {
     return null;
   }

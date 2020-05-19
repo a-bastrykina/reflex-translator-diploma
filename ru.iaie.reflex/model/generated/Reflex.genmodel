@@ -79,7 +79,7 @@
     <genClasses ecoreClass="Reflex.ecore#//Program">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/annotations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Program/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/ticks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/clock"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/consts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/enums"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/functions"/>
@@ -87,9 +87,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/ports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Program/processes"/>
     </genClasses>
-    <genClasses ecoreClass="Reflex.ecore#//Tact">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/intValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//Tact/timeValue"/>
+    <genClasses ecoreClass="Reflex.ecore#//ClockDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ClockDefinition/intValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//ClockDefinition/timeValue"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//Process">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//Process/annotations"/>

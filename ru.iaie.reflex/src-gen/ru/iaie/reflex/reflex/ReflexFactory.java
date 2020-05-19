@@ -33,13 +33,13 @@ public interface ReflexFactory extends EFactory
   Program createProgram();
 
   /**
-   * Returns a new object of class '<em>Tact</em>'.
+   * Returns a new object of class '<em>Clock Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Tact</em>'.
+   * @return a new object of class '<em>Clock Definition</em>'.
    * @generated
    */
-  Tact createTact();
+  ClockDefinition createClockDefinition();
 
   /**
    * Returns a new object of class '<em>Process</em>'.

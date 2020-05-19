@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getName <em>Name</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.Program#getClock <em>Clock</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getConsts <em>Consts</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getEnums <em>Enums</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.Program#getFunctions <em>Functions</em>}</li>
@@ -68,26 +68,26 @@ public interface Program extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Ticks</b></em>' containment reference.
+   * Returns the value of the '<em><b>Clock</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ticks</em>' containment reference.
-   * @see #setTicks(Tact)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Ticks()
+   * @return the value of the '<em>Clock</em>' containment reference.
+   * @see #setClock(ClockDefinition)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getProgram_Clock()
    * @model containment="true"
    * @generated
    */
-  Tact getTicks();
+  ClockDefinition getClock();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.Program#getTicks <em>Ticks</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.Program#getClock <em>Clock</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ticks</em>' containment reference.
-   * @see #getTicks()
+   * @param value the new value of the '<em>Clock</em>' containment reference.
+   * @see #getClock()
    * @generated
    */
-  void setTicks(Tact value);
+  void setClock(ClockDefinition value);
 
   /**
    * Returns the value of the '<em><b>Consts</b></em>' containment reference list.

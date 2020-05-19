@@ -135,22 +135,22 @@ ruleProgram returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProgramAccess().getTicksTactParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getProgramAccess().getClockClockDefinitionParserRuleCall_4_0());
 				}
-				lv_ticks_6_0=ruleTact
+				lv_clock_6_0=ruleClockDefinition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProgramRule());
 					}
 					set(
 						$current,
-						"ticks",
-						lv_ticks_6_0,
-						"ru.iaie.reflex.Reflex.Tact");
+						"clock",
+						lv_clock_6_0,
+						"ru.iaie.reflex.Reflex.ClockDefinition");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)
 		(
 			(
 				(
@@ -279,15 +279,15 @@ ruleProgram returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTact
-entryRuleTact returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTactRule()); }
-	iv_ruleTact=ruleTact
-	{ $current=$iv_ruleTact.current; }
+// Entry rule entryRuleClockDefinition
+entryRuleClockDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClockDefinitionRule()); }
+	iv_ruleClockDefinition=ruleClockDefinition
+	{ $current=$iv_ruleClockDefinition.current; }
 	EOF;
 
-// Rule Tact
-ruleTact returns [EObject current=null]
+// Rule ClockDefinition
+ruleClockDefinition returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -297,18 +297,18 @@ ruleTact returns [EObject current=null]
 	(
 		otherlv_0='clock'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getTactAccess().getClockKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getClockDefinitionAccess().getClockKeyword_0());
 		}
 		(
 			(
 				(
 					lv_intValue_1_0=RULE_INTEGER
 					{
-						newLeafNode(lv_intValue_1_0, grammarAccess.getTactAccess().getIntValueINTEGERTerminalRuleCall_1_0_0());
+						newLeafNode(lv_intValue_1_0, grammarAccess.getClockDefinitionAccess().getIntValueINTEGERTerminalRuleCall_1_0_0());
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTactRule());
+							$current = createModelElement(grammarAccess.getClockDefinitionRule());
 						}
 						setWithLastConsumed(
 							$current,
@@ -323,11 +323,11 @@ ruleTact returns [EObject current=null]
 				(
 					lv_timeValue_2_0=RULE_TIME
 					{
-						newLeafNode(lv_timeValue_2_0, grammarAccess.getTactAccess().getTimeValueTIMETerminalRuleCall_1_1_0());
+						newLeafNode(lv_timeValue_2_0, grammarAccess.getClockDefinitionAccess().getTimeValueTIMETerminalRuleCall_1_1_0());
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTactRule());
+							$current = createModelElement(grammarAccess.getClockDefinitionRule());
 						}
 						setWithLastConsumed(
 							$current,
@@ -340,7 +340,7 @@ ruleTact returns [EObject current=null]
 		)
 		otherlv_3=';'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getTactAccess().getSemicolonKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getClockDefinitionAccess().getSemicolonKeyword_2());
 		}
 	)
 ;

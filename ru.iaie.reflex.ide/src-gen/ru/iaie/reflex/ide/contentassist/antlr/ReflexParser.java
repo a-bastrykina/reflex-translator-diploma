@@ -32,7 +32,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, ReflexGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getProgramAccess().getAlternatives_5(), "rule__Program__Alternatives_5");
-			builder.put(grammarAccess.getTactAccess().getAlternatives_1(), "rule__Tact__Alternatives_1");
+			builder.put(grammarAccess.getClockDefinitionAccess().getAlternatives_1(), "rule__ClockDefinition__Alternatives_1");
 			builder.put(grammarAccess.getProcessAccess().getAlternatives_4_0(), "rule__Process__Alternatives_4_0");
 			builder.put(grammarAccess.getAnnotationAccess().getAlternatives(), "rule__Annotation__Alternatives");
 			builder.put(grammarAccess.getAnnotationKeyAccess().getAlternatives(), "rule__AnnotationKey__Alternatives");
@@ -60,7 +60,7 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 			builder.put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 			builder.put(grammarAccess.getProgramAccess().getGroup_0(), "rule__Program__Group_0__0");
-			builder.put(grammarAccess.getTactAccess().getGroup(), "rule__Tact__Group__0");
+			builder.put(grammarAccess.getClockDefinitionAccess().getGroup(), "rule__ClockDefinition__Group__0");
 			builder.put(grammarAccess.getProcessAccess().getGroup(), "rule__Process__Group__0");
 			builder.put(grammarAccess.getProcessAccess().getGroup_0(), "rule__Process__Group_0__0");
 			builder.put(grammarAccess.getProcessAccess().getGroup_4(), "rule__Process__Group_4__0");
@@ -142,15 +142,15 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAssignmentExpressionAccess().getGroup_0(), "rule__AssignmentExpression__Group_0__0");
 			builder.put(grammarAccess.getProgramAccess().getAnnotationsAssignment_0_1(), "rule__Program__AnnotationsAssignment_0_1");
 			builder.put(grammarAccess.getProgramAccess().getNameAssignment_2(), "rule__Program__NameAssignment_2");
-			builder.put(grammarAccess.getProgramAccess().getTicksAssignment_4(), "rule__Program__TicksAssignment_4");
+			builder.put(grammarAccess.getProgramAccess().getClockAssignment_4(), "rule__Program__ClockAssignment_4");
 			builder.put(grammarAccess.getProgramAccess().getConstsAssignment_5_0(), "rule__Program__ConstsAssignment_5_0");
 			builder.put(grammarAccess.getProgramAccess().getEnumsAssignment_5_1(), "rule__Program__EnumsAssignment_5_1");
 			builder.put(grammarAccess.getProgramAccess().getFunctionsAssignment_5_2(), "rule__Program__FunctionsAssignment_5_2");
 			builder.put(grammarAccess.getProgramAccess().getGlobalVarsAssignment_5_3(), "rule__Program__GlobalVarsAssignment_5_3");
 			builder.put(grammarAccess.getProgramAccess().getPortsAssignment_5_4(), "rule__Program__PortsAssignment_5_4");
 			builder.put(grammarAccess.getProgramAccess().getProcessesAssignment_5_5(), "rule__Program__ProcessesAssignment_5_5");
-			builder.put(grammarAccess.getTactAccess().getIntValueAssignment_1_0(), "rule__Tact__IntValueAssignment_1_0");
-			builder.put(grammarAccess.getTactAccess().getTimeValueAssignment_1_1(), "rule__Tact__TimeValueAssignment_1_1");
+			builder.put(grammarAccess.getClockDefinitionAccess().getIntValueAssignment_1_0(), "rule__ClockDefinition__IntValueAssignment_1_0");
+			builder.put(grammarAccess.getClockDefinitionAccess().getTimeValueAssignment_1_1(), "rule__ClockDefinition__TimeValueAssignment_1_1");
 			builder.put(grammarAccess.getProcessAccess().getAnnotationsAssignment_0_1(), "rule__Process__AnnotationsAssignment_0_1");
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_2(), "rule__Process__NameAssignment_2");
 			builder.put(grammarAccess.getProcessAccess().getImportsAssignment_4_0_0(), "rule__Process__ImportsAssignment_4_0_0");

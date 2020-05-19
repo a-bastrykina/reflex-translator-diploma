@@ -14,6 +14,7 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.generator.r2c.R2CResourceProvider;
@@ -28,6 +29,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
@@ -98,6 +100,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     this.generateProcessDefinitions(resource, fsa, context);
     this.generateProcessImplementations(resource, fsa, context);
     this.generateIO(resource, fsa, context);
+    this.generatePlatformFile(resource, fsa, context);
     this.generateMain(resource, fsa, context);
     this.generateCMake(resource, fsa, context);
   }
@@ -133,7 +136,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("add_executable(");
     String _lowerCase_1 = this.program.getName().toLowerCase();
     _builder.append(_lowerCase_1);
-    _builder.append(" generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c)");
+    _builder.append(" generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)");
     _builder.newLineIfNotEmpty();
     String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
@@ -159,13 +162,26 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include \"xvar.h\"");
     _builder.newLine();
-    _builder.append("#include \"../lib/r_cnst.h\"\t");
+    _builder.append("#include \"../lib/r_cnst.h\"");
     _builder.newLine();
-    _builder.append("#include \"stdio.h\"");
+    _builder.append("#include \"../lib/platform.h\"");
     _builder.newLine();
     _builder.newLine();
     _builder.append("void Input(void) {");
     _builder.newLine();
+    {
+      final Function1<Port, Boolean> _function_1 = (Port it) -> {
+        PortType _type = it.getType();
+        return Boolean.valueOf(Objects.equal(_type, PortType.INPUT));
+      };
+      Iterable<Port> _filter = IterableExtensions.<Port>filter(this.program.getPorts(), _function_1);
+      for(final Port inPort : _filter) {
+        _builder.append("\t");
+        String _translateInputPortReading = this.translateInputPortReading(inPort);
+        _builder.append(_translateInputPortReading, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     {
       for(final PhysicalVariable physVar : inputVars) {
         _builder.append("    ");
@@ -174,7 +190,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("}  /* Reading IO func */");
+    _builder.append("}");
     _builder.newLine();
     _builder.newLine();
     _builder.append("void Output(void) {");
@@ -187,15 +203,146 @@ public class R2CReflexGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("    ");
-    _builder.append("printf(\"output\\n\");");
-    _builder.newLine();
-    _builder.append("} /* Writing IO func */");
+    {
+      final Function1<Port, Boolean> _function_2 = (Port it) -> {
+        PortType _type = it.getType();
+        return Boolean.valueOf(Objects.equal(_type, PortType.OUTPUT));
+      };
+      Iterable<Port> _filter_1 = IterableExtensions.<Port>filter(this.program.getPorts(), _function_2);
+      for(final Port outPort : _filter_1) {
+        String _translateOutputPortWriting = this.translateOutputPortWriting(outPort);
+        _builder.append(_translateOutputPortWriting);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("c-code/generated/io.c");
     fsa.generateFile(_builder_1.toString(), fileContent);
+  }
+  
+  public void generatePlatformFile(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("#include <sys/time.h>");
+    _builder.newLine();
+    _builder.append("#include <stdio.h>");
+    _builder.newLine();
+    _builder.append("#include \"../lib/platform.h\"");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("// Dummy realizations when no target platform is specified");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("INT32_U Get_Time() {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("struct timeval time;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("gettimeofday(&time, NULL);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("return time.tv_sec * 1000 + time.tv_usec / 1000;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("INT8 Read_Input8(int addr1, int addr2) {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("INT8 result;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"Enter value for %d %d: \", addr1, addr2);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("scanf(\"%c\", &result);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"\\n\");");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("return result;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("int Write_Output8(int addr1, int addr2, INT8 data) {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"Value for %d %d: %c\\n\", addr1, addr2, data);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("INT16 Read_Input16(int addr1, int addr2) {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("INT16 result;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"Enter value for %d %d: \", addr1, addr2);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("scanf(\"%hd\", &result);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"\\n\");");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("return result;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("int Write_Output16(int addr1, int addr2, INT16 data) {");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("printf(\"Value for %d %d: %hd\\n\", addr1, addr2, data);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String fileContent = _builder.toString();
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("c-code/generated/platform.c");
+    fsa.generateFile(_builder_1.toString(), fileContent);
+  }
+  
+  public String translateInputPortReading(final Port port) {
+    final String portId = this.identifiersHelper.getPortId(port);
+    final long portSize = LiteralUtils.parseInteger(port.getSize());
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(portId);
+    _builder.append(" = Read_Input");
+    _builder.append(portSize);
+    _builder.append("(");
+    String _addr1 = port.getAddr1();
+    _builder.append(_addr1);
+    _builder.append(", ");
+    String _addr2 = port.getAddr2();
+    _builder.append(_addr2);
+    _builder.append(");");
+    return _builder.toString();
+  }
+  
+  public String translateOutputPortWriting(final Port port) {
+    final String portId = this.identifiersHelper.getPortId(port);
+    final long portSize = LiteralUtils.parseInteger(port.getSize());
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Write_Output");
+    _builder.append(portSize);
+    _builder.append("(");
+    String _addr1 = port.getAddr1();
+    _builder.append(_addr1);
+    _builder.append(", ");
+    String _addr2 = port.getAddr2();
+    _builder.append(_addr2);
+    _builder.append(", ");
+    _builder.append(portId);
+    _builder.append(");");
+    return _builder.toString();
   }
   
   public String translateReadingFromInput(final PhysicalVariable v) {
@@ -304,12 +451,32 @@ public class R2CReflexGenerator extends AbstractGenerator {
     String _generateEnums = this.generateEnums(resource);
     _builder.append(_generateEnums);
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    String _generateClockConst = this.generateClockConst(resource);
+    _builder.append(_generateClockConst);
+    _builder.newLineIfNotEmpty();
     _builder.append("#endif");
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("c-code/generated/cnst.h");
     fsa.generateFile(_builder_1.toString(), fileContent);
+  }
+  
+  public String generateClockConst(final Resource resource) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("#define _r_CLOCK ");
+    String _translateClockDefinition = this.translateClockDefinition(this.program.getClock());
+    _builder.append(_translateClockDefinition);
+    return _builder.toString();
+  }
+  
+  public String translateClockDefinition(final ClockDefinition clock) {
+    boolean _hasTimeFormat = ReflexModelUtil.hasTimeFormat(clock);
+    if (_hasTimeFormat) {
+      return this.translateTime(clock.getTimeValue());
+    }
+    return clock.getIntValue();
   }
   
   public String generateConstants(final Resource resource) {
@@ -485,7 +652,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
             _builder.append("extern ");
           }
         }
-        _builder.append("char ");
+        String _translateType = this.translateType(ReflexModelUtil.getSuitableTypeForPort(reg));
+        _builder.append(_translateType);
+        _builder.append(" ");
         String _portId = this.identifiersHelper.getPortId(reg);
         _builder.append(_portId);
         _builder.append(";");
@@ -560,6 +729,8 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include \"io.h\"    /* Scan-input/output functions */");
     _builder.newLine();
+    _builder.append("#include \"../lib/platform.h\"");
+    _builder.newLine();
     _builder.append("#include \"../lib/r_main.h\"  /* Code of the main-function that calls Control_Loop */");
     _builder.newLine();
     _builder.newLine();
@@ -571,7 +742,19 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);");
     _builder.newLine();
     _builder.append("\t");
+    _builder.append("INT32_U cur_time = 0, prev_time = 0;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("for (;;) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("cur_time = Get_Time();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (cur_time - prev_time < _r_CLOCK) continue;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("prev_time = cur_time;");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("Input();");

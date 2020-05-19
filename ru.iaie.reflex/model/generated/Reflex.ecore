@@ -5,7 +5,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ticks" eType="#//Tact"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clock" eType="#//ClockDefinition"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="consts" upperBound="-1"
         eType="#//Const" containment="true"/>
@@ -20,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
         eType="#//Process" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Tact">
+  <eClassifiers xsi:type="ecore:EClass" name="ClockDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

@@ -1,28 +1,21 @@
 ﻿/*
-*    Файл обеспечивает реализацию системной независимости
-*    и межплатформенной переносимости (портируемости) программ
-*    уровня процессов (запуск процесса, останов, перевод в состояние ошибки,
-*    организация перехода из состояния в состояние и пр.)
-*    Коррекция файла проводится в случае перехода с одной платформы на другую
-*    Например, при смене архитектуры процессора или (реже) при смене
-*    операционной системы
+    Util functions for translation support
 */
 
 #ifndef _R_LIB_H
 #define _R_LIB_H 1
 
-//#pragma pack (1)
-
 #include "../generated/proc.h"
 
-struct St_Word
+
+struct Process
 {
-    INT32_U TimeInState;  /* время нахождения в текущем состоянии обнуляется Старт и Set_State*/
-    INT8_U cur_state;     /* текущее состояние */
+    INT32_U cur_time;  /* Time in current state    */
+    INT8_U cur_state;     /* Current state identifier */
 };
 
-extern struct St_Word *Pr_States;                          /* Указатель для связи с R_LIB.C */
-extern struct St_Word Original_Pr_States[PROCESS_Nn + 1];  /* место под структуры PSW */
+extern struct Process *Pr_States;                          /* Указатель для связи с R_LIB.C */
+extern struct Process Original_Pr_States[PROCESS_Nn + 1];  /* место под структуры PSW */
 
 
 /*================ Set State Of Process ===================*/

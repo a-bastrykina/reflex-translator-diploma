@@ -22,6 +22,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
@@ -66,7 +67,6 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
-import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
@@ -93,7 +93,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tactEClass = null;
+  private EClass clockDefinitionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -610,7 +610,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getProgram_Ticks()
+  public EReference getProgram_Clock()
   {
     return (EReference)programEClass.getEStructuralFeatures().get(2);
   }
@@ -687,9 +687,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EClass getTact()
+  public EClass getClockDefinition()
   {
-    return tactEClass;
+    return clockDefinitionEClass;
   }
 
   /**
@@ -698,9 +698,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getTact_IntValue()
+  public EAttribute getClockDefinition_IntValue()
   {
-    return (EAttribute)tactEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)clockDefinitionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -709,9 +709,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getTact_TimeValue()
+  public EAttribute getClockDefinition_TimeValue()
   {
-    return (EAttribute)tactEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)clockDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2310,7 +2310,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     programEClass = createEClass(PROGRAM);
     createEReference(programEClass, PROGRAM__ANNOTATIONS);
     createEAttribute(programEClass, PROGRAM__NAME);
-    createEReference(programEClass, PROGRAM__TICKS);
+    createEReference(programEClass, PROGRAM__CLOCK);
     createEReference(programEClass, PROGRAM__CONSTS);
     createEReference(programEClass, PROGRAM__ENUMS);
     createEReference(programEClass, PROGRAM__FUNCTIONS);
@@ -2318,9 +2318,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     createEReference(programEClass, PROGRAM__PORTS);
     createEReference(programEClass, PROGRAM__PROCESSES);
 
-    tactEClass = createEClass(TACT);
-    createEAttribute(tactEClass, TACT__INT_VALUE);
-    createEAttribute(tactEClass, TACT__TIME_VALUE);
+    clockDefinitionEClass = createEClass(CLOCK_DEFINITION);
+    createEAttribute(clockDefinitionEClass, CLOCK_DEFINITION__INT_VALUE);
+    createEAttribute(clockDefinitionEClass, CLOCK_DEFINITION__TIME_VALUE);
 
     processEClass = createEClass(PROCESS);
     createEReference(processEClass, PROCESS__ANNOTATIONS);
@@ -2585,7 +2585,7 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProgram_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgram_Ticks(), this.getTact(), null, "ticks", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Clock(), this.getClockDefinition(), null, "clock", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Consts(), this.getConst(), null, "consts", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Enums(), this.getEnum(), null, "enums", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Functions(), this.getFunction(), null, "functions", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2593,9 +2593,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEReference(getProgram_Ports(), this.getPort(), null, "ports", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Processes(), this.getProcess(), null, "processes", null, 0, -1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tactEClass, Tact.class, "Tact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTact_IntValue(), ecorePackage.getEString(), "intValue", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTact_TimeValue(), ecorePackage.getEString(), "timeValue", null, 0, 1, Tact.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(clockDefinitionEClass, ClockDefinition.class, "ClockDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getClockDefinition_IntValue(), ecorePackage.getEString(), "intValue", null, 0, 1, ClockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getClockDefinition_TimeValue(), ecorePackage.getEString(), "timeValue", null, 0, 1, ClockDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processEClass, ru.iaie.reflex.reflex.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcess_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, ru.iaie.reflex.reflex.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

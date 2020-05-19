@@ -23,6 +23,7 @@ import ru.iaie.reflex.reflex.BitXorExpression;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CastExpression;
 import ru.iaie.reflex.reflex.CheckStateExpression;
+import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareEqOp;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
@@ -67,7 +68,6 @@ import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
-import ru.iaie.reflex.reflex.Tact;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
@@ -127,7 +127,7 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
     switch (eClass.getClassifierID())
     {
       case ReflexPackage.PROGRAM: return createProgram();
-      case ReflexPackage.TACT: return createTact();
+      case ReflexPackage.CLOCK_DEFINITION: return createClockDefinition();
       case ReflexPackage.PROCESS: return createProcess();
       case ReflexPackage.STATE: return createState();
       case ReflexPackage.ANNOTATION: return createAnnotation();
@@ -273,10 +273,10 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
    * @generated
    */
   @Override
-  public Tact createTact()
+  public ClockDefinition createClockDefinition()
   {
-    TactImpl tact = new TactImpl();
-    return tact;
+    ClockDefinitionImpl clockDefinition = new ClockDefinitionImpl();
+    return clockDefinition;
   }
 
   /**

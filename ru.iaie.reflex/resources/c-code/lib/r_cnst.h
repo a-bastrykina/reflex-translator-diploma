@@ -47,7 +47,6 @@
 #define MASK16_S16 0x8000
 
 #define BUFFER_LENGTH 128
-#define DEBUG_FLAG
 
 typedef int8_t     BOOL;      /* Logical data type (TRUE or FALSE)   */
 typedef uint8_t    INT8_U;    /* Unsigned  8 bit value               */

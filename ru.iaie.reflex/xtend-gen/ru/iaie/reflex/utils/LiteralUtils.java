@@ -78,16 +78,20 @@ public class LiteralUtils {
       }
     }
     if (((index = rest.indexOf("s")) > 0)) {
-      final long secCount = LiteralUtils.parseInteger(rest.substring(0, index));
-      long _millis_3 = millis;
-      millis = (_millis_3 + (secCount * LiteralUtils.MILLIS_PER_SECOND));
-      int _length_3 = rest.length();
-      int _minus_3 = (_length_3 - 1);
-      boolean _equals_3 = (index == _minus_3);
-      if (_equals_3) {
-        return millis;
+      boolean _equals_3 = Character.valueOf(rest.charAt((index - 1))).toString().equals("m");
+      boolean _not = (!_equals_3);
+      if (_not) {
+        final long secCount = LiteralUtils.parseInteger(rest.substring(0, index));
+        long _millis_3 = millis;
+        millis = (_millis_3 + (secCount * LiteralUtils.MILLIS_PER_SECOND));
+        int _length_3 = rest.length();
+        int _minus_3 = (_length_3 - 1);
+        boolean _equals_4 = (index == _minus_3);
+        if (_equals_4) {
+          return millis;
+        }
+        rest = rest.substring((index + 1), rest.length());
       }
-      rest = rest.substring((index + 1), rest.length());
     }
     if (((index = rest.indexOf("ms")) > 0)) {
       final long msCount = LiteralUtils.parseInteger(rest.substring(0, index));
