@@ -28,6 +28,7 @@ import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Port
 import ru.iaie.reflex.utils.LiteralUtils
 import ru.iaie.reflex.reflex.ClockDefinition
+import ru.iaie.reflex.reflex.SwitchStat
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -56,6 +57,10 @@ class ReflexModelUtil {
 
 	def static boolean hasTimeout(State s) {
 		return s.timeoutFunction !== null
+	}
+	
+	def static boolean hasDefaultOption(SwitchStat s) {
+		return s.defaultOption !== null
 	}
 
 	def static boolean isShared(ProcessVariable v) {

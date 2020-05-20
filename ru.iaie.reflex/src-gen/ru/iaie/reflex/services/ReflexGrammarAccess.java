@@ -1197,13 +1197,15 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cOptionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cOptionsCaseStatParserRuleCall_5_0 = (RuleCall)cOptionsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cDefaultOptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cDefaultOptionDefaultStatParserRuleCall_6_0 = (RuleCall)cDefaultOptionAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//SwitchStat:
-		//	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
+		//	"switch" "(" expr=Expression ")" "{" options+=CaseStat* defaultOption=DefaultStat? "}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}"
+		//"switch" "(" expr=Expression ")" "{" options+=CaseStat* defaultOption=DefaultStat? "}"
 		public Group getGroup() { return cGroup; }
 		
 		//"switch"
@@ -1230,55 +1232,111 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		//CaseStat
 		public RuleCall getOptionsCaseStatParserRuleCall_5_0() { return cOptionsCaseStatParserRuleCall_5_0; }
 		
+		//defaultOption=DefaultStat?
+		public Assignment getDefaultOptionAssignment_6() { return cDefaultOptionAssignment_6; }
+		
+		//DefaultStat
+		public RuleCall getDefaultOptionDefaultStatParserRuleCall_6_0() { return cDefaultOptionDefaultStatParserRuleCall_6_0; }
+		
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class CaseStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.CaseStat");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCaseKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cOptionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOptionINTEGERTerminalRuleCall_1_0 = (RuleCall)cOptionAssignment_1.eContents().get(0);
+		private final RuleCall cOptionExpressionParserRuleCall_1_0 = (RuleCall)cOptionAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBodyStatementSequenceParserRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
-		private final Assignment cHasBreakAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cHasBreakBreakStatParserRuleCall_4_0 = (RuleCall)cHasBreakAssignment_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//CaseStat:
-		//	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
+		//	"case" option=Expression ":" "{" SwitchOptionStatSequence "}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}"
+		//"case" option=Expression ":" "{" SwitchOptionStatSequence "}"
 		public Group getGroup() { return cGroup; }
 		
 		//"case"
 		public Keyword getCaseKeyword_0() { return cCaseKeyword_0; }
 		
-		//option=INTEGER
+		//option=Expression
 		public Assignment getOptionAssignment_1() { return cOptionAssignment_1; }
 		
-		//INTEGER
-		public RuleCall getOptionINTEGERTerminalRuleCall_1_0() { return cOptionINTEGERTerminalRuleCall_1_0; }
+		//Expression
+		public RuleCall getOptionExpressionParserRuleCall_1_0() { return cOptionExpressionParserRuleCall_1_0; }
 		
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//body=StatementSequence
-		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//StatementSequence
-		public RuleCall getBodyStatementSequenceParserRuleCall_3_0() { return cBodyStatementSequenceParserRuleCall_3_0; }
-		
-		//hasBreak?=BreakStat
-		public Assignment getHasBreakAssignment_4() { return cHasBreakAssignment_4; }
-		
-		//BreakStat
-		public RuleCall getHasBreakBreakStatParserRuleCall_4_0() { return cHasBreakBreakStatParserRuleCall_4_0; }
+		//SwitchOptionStatSequence
+		public RuleCall getSwitchOptionStatSequenceParserRuleCall_4() { return cSwitchOptionStatSequenceParserRuleCall_4; }
 		
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class DefaultStatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.DefaultStat");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDefaultKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//DefaultStat:
+		//	"default" ":" "{" SwitchOptionStatSequence "}";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"default" ":" "{" SwitchOptionStatSequence "}"
+		public Group getGroup() { return cGroup; }
+		
+		//"default"
+		public Keyword getDefaultKeyword_0() { return cDefaultKeyword_0; }
+		
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//SwitchOptionStatSequence
+		public RuleCall getSwitchOptionStatSequenceParserRuleCall_3() { return cSwitchOptionStatSequenceParserRuleCall_3; }
+		
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class SwitchOptionStatSequenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.SwitchOptionStatSequence");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cStatementsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_0_0 = (RuleCall)cStatementsAssignment_0.eContents().get(0);
+		private final Assignment cHasBreakAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cHasBreakBreakStatParserRuleCall_1_0 = (RuleCall)cHasBreakAssignment_1.eContents().get(0);
+		
+		//fragment SwitchOptionStatSequence:
+		//	statements+=Statement* hasBreak?=BreakStat?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//statements+=Statement* hasBreak?=BreakStat?
+		public Group getGroup() { return cGroup; }
+		
+		//statements+=Statement*
+		public Assignment getStatementsAssignment_0() { return cStatementsAssignment_0; }
+		
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_0_0() { return cStatementsStatementParserRuleCall_0_0; }
+		
+		//hasBreak?=BreakStat?
+		public Assignment getHasBreakAssignment_1() { return cHasBreakAssignment_1; }
+		
+		//BreakStat
+		public RuleCall getHasBreakBreakStatParserRuleCall_1_0() { return cHasBreakBreakStatParserRuleCall_1_0; }
 	}
 	public class BreakStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflex.Reflex.BreakStat");
@@ -2894,6 +2952,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	private final IfElseStatElements pIfElseStat;
 	private final SwitchStatElements pSwitchStat;
 	private final CaseStatElements pCaseStat;
+	private final DefaultStatElements pDefaultStat;
+	private final SwitchOptionStatSequenceElements pSwitchOptionStatSequence;
 	private final BreakStatElements pBreakStat;
 	private final StartProcStatElements pStartProcStat;
 	private final StopProcStatElements pStopProcStat;
@@ -2995,6 +3055,8 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 		this.pIfElseStat = new IfElseStatElements();
 		this.pSwitchStat = new SwitchStatElements();
 		this.pCaseStat = new CaseStatElements();
+		this.pDefaultStat = new DefaultStatElements();
+		this.pSwitchOptionStatSequence = new SwitchOptionStatSequenceElements();
 		this.pBreakStat = new BreakStatElements();
 		this.pStartProcStat = new StartProcStatElements();
 		this.pStopProcStat = new StopProcStatElements();
@@ -3344,7 +3406,7 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SwitchStat:
-	//	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
+	//	"switch" "(" expr=Expression ")" "{" options+=CaseStat* defaultOption=DefaultStat? "}";
 	public SwitchStatElements getSwitchStatAccess() {
 		return pSwitchStat;
 	}
@@ -3354,13 +3416,33 @@ public class ReflexGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CaseStat:
-	//	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
+	//	"case" option=Expression ":" "{" SwitchOptionStatSequence "}";
 	public CaseStatElements getCaseStatAccess() {
 		return pCaseStat;
 	}
 	
 	public ParserRule getCaseStatRule() {
 		return getCaseStatAccess().getRule();
+	}
+	
+	//DefaultStat:
+	//	"default" ":" "{" SwitchOptionStatSequence "}";
+	public DefaultStatElements getDefaultStatAccess() {
+		return pDefaultStat;
+	}
+	
+	public ParserRule getDefaultStatRule() {
+		return getDefaultStatAccess().getRule();
+	}
+	
+	//fragment SwitchOptionStatSequence:
+	//	statements+=Statement* hasBreak?=BreakStat?;
+	public SwitchOptionStatSequenceElements getSwitchOptionStatSequenceAccess() {
+		return pSwitchOptionStatSequence;
+	}
+	
+	public ParserRule getSwitchOptionStatSequenceRule() {
+		return getSwitchOptionStatSequenceAccess().getRule();
 	}
 	
 	//BreakStat:

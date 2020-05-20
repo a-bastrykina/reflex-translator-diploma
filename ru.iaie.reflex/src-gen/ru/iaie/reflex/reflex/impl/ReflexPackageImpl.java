@@ -28,6 +28,7 @@ import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -66,6 +67,7 @@ import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchOptionStatSequence;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -248,6 +250,20 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   private EClass caseStatEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass defaultStatEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass switchOptionStatSequenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1490,6 +1506,17 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
+  public EReference getSwitchStat_DefaultOption()
+  {
+    return (EReference)switchStatEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getCaseStat()
   {
     return caseStatEClass;
@@ -1501,9 +1528,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getCaseStat_Option()
+  public EReference getCaseStat_Option()
   {
-    return (EAttribute)caseStatEClass.getEStructuralFeatures().get(0);
+    return (EReference)caseStatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1512,9 +1539,9 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EReference getCaseStat_Body()
+  public EClass getDefaultStat()
   {
-    return (EReference)caseStatEClass.getEStructuralFeatures().get(1);
+    return defaultStatEClass;
   }
 
   /**
@@ -1523,9 +1550,31 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
    * @generated
    */
   @Override
-  public EAttribute getCaseStat_HasBreak()
+  public EClass getSwitchOptionStatSequence()
   {
-    return (EAttribute)caseStatEClass.getEStructuralFeatures().get(2);
+    return switchOptionStatSequenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSwitchOptionStatSequence_Statements()
+  {
+    return (EReference)switchOptionStatSequenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSwitchOptionStatSequence_HasBreak()
+  {
+    return (EAttribute)switchOptionStatSequenceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2412,11 +2461,16 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     switchStatEClass = createEClass(SWITCH_STAT);
     createEReference(switchStatEClass, SWITCH_STAT__EXPR);
     createEReference(switchStatEClass, SWITCH_STAT__OPTIONS);
+    createEReference(switchStatEClass, SWITCH_STAT__DEFAULT_OPTION);
 
     caseStatEClass = createEClass(CASE_STAT);
-    createEAttribute(caseStatEClass, CASE_STAT__OPTION);
-    createEReference(caseStatEClass, CASE_STAT__BODY);
-    createEAttribute(caseStatEClass, CASE_STAT__HAS_BREAK);
+    createEReference(caseStatEClass, CASE_STAT__OPTION);
+
+    defaultStatEClass = createEClass(DEFAULT_STAT);
+
+    switchOptionStatSequenceEClass = createEClass(SWITCH_OPTION_STAT_SEQUENCE);
+    createEReference(switchOptionStatSequenceEClass, SWITCH_OPTION_STAT_SEQUENCE__STATEMENTS);
+    createEAttribute(switchOptionStatSequenceEClass, SWITCH_OPTION_STAT_SEQUENCE__HAS_BREAK);
 
     startProcStatEClass = createEClass(START_PROC_STAT);
     createEReference(startProcStatEClass, START_PROC_STAT__PROCESS);
@@ -2556,6 +2610,8 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     compoundStatementEClass.getESuperTypes().add(this.getStatement());
     ifElseStatEClass.getESuperTypes().add(this.getStatement());
     switchStatEClass.getESuperTypes().add(this.getStatement());
+    caseStatEClass.getESuperTypes().add(this.getSwitchOptionStatSequence());
+    defaultStatEClass.getESuperTypes().add(this.getSwitchOptionStatSequence());
     startProcStatEClass.getESuperTypes().add(this.getStatement());
     stopProcStatEClass.getESuperTypes().add(this.getStatement());
     errorStatEClass.getESuperTypes().add(this.getStatement());
@@ -2687,11 +2743,16 @@ public class ReflexPackageImpl extends EPackageImpl implements ReflexPackage
     initEClass(switchStatEClass, SwitchStat.class, "SwitchStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSwitchStat_Expr(), this.getExpression(), null, "expr", null, 0, 1, SwitchStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSwitchStat_Options(), this.getCaseStat(), null, "options", null, 0, -1, SwitchStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSwitchStat_DefaultOption(), this.getDefaultStat(), null, "defaultOption", null, 0, 1, SwitchStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(caseStatEClass, CaseStat.class, "CaseStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCaseStat_Option(), ecorePackage.getEString(), "option", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCaseStat_Body(), this.getStatementSequence(), null, "body", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCaseStat_HasBreak(), ecorePackage.getEBoolean(), "hasBreak", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCaseStat_Option(), this.getExpression(), null, "option", null, 0, 1, CaseStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(defaultStatEClass, DefaultStat.class, "DefaultStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(switchOptionStatSequenceEClass, SwitchOptionStatSequence.class, "SwitchOptionStatSequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSwitchOptionStatSequence_Statements(), this.getStatement(), null, "statements", null, 0, -1, SwitchOptionStatSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSwitchOptionStatSequence_HasBreak(), ecorePackage.getEBoolean(), "hasBreak", null, 0, 1, SwitchOptionStatSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(startProcStatEClass, StartProcStat.class, "StartProcStat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStartProcStat_Process(), this.getProcess(), null, "process", null, 0, 1, StartProcStat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

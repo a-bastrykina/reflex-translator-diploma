@@ -94,6 +94,8 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIfElseStatAccess().getGroup_5(), "rule__IfElseStat__Group_5__0");
 			builder.put(grammarAccess.getSwitchStatAccess().getGroup(), "rule__SwitchStat__Group__0");
 			builder.put(grammarAccess.getCaseStatAccess().getGroup(), "rule__CaseStat__Group__0");
+			builder.put(grammarAccess.getDefaultStatAccess().getGroup(), "rule__DefaultStat__Group__0");
+			builder.put(grammarAccess.getSwitchOptionStatSequenceAccess().getGroup(), "rule__SwitchOptionStatSequence__Group__0");
 			builder.put(grammarAccess.getBreakStatAccess().getGroup(), "rule__BreakStat__Group__0");
 			builder.put(grammarAccess.getStartProcStatAccess().getGroup(), "rule__StartProcStat__Group__0");
 			builder.put(grammarAccess.getStopProcStatAccess().getGroup(), "rule__StopProcStat__Group__0");
@@ -203,9 +205,10 @@ public class ReflexParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIfElseStatAccess().getElseAssignment_5_1(), "rule__IfElseStat__ElseAssignment_5_1");
 			builder.put(grammarAccess.getSwitchStatAccess().getExprAssignment_2(), "rule__SwitchStat__ExprAssignment_2");
 			builder.put(grammarAccess.getSwitchStatAccess().getOptionsAssignment_5(), "rule__SwitchStat__OptionsAssignment_5");
+			builder.put(grammarAccess.getSwitchStatAccess().getDefaultOptionAssignment_6(), "rule__SwitchStat__DefaultOptionAssignment_6");
 			builder.put(grammarAccess.getCaseStatAccess().getOptionAssignment_1(), "rule__CaseStat__OptionAssignment_1");
-			builder.put(grammarAccess.getCaseStatAccess().getBodyAssignment_3(), "rule__CaseStat__BodyAssignment_3");
-			builder.put(grammarAccess.getCaseStatAccess().getHasBreakAssignment_4(), "rule__CaseStat__HasBreakAssignment_4");
+			builder.put(grammarAccess.getSwitchOptionStatSequenceAccess().getStatementsAssignment_0(), "rule__SwitchOptionStatSequence__StatementsAssignment_0");
+			builder.put(grammarAccess.getSwitchOptionStatSequenceAccess().getHasBreakAssignment_1(), "rule__SwitchOptionStatSequence__HasBreakAssignment_1");
 			builder.put(grammarAccess.getStartProcStatAccess().getProcessAssignment_2(), "rule__StartProcStat__ProcessAssignment_2");
 			builder.put(grammarAccess.getStopProcStatAccess().getProcessAssignment_2_1(), "rule__StopProcStat__ProcessAssignment_2_1");
 			builder.put(grammarAccess.getErrorStatAccess().getProcessAssignment_2_1(), "rule__ErrorStat__ProcessAssignment_2_1");

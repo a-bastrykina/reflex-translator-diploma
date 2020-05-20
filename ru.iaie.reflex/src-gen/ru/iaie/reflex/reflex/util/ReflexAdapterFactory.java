@@ -23,6 +23,7 @@ import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -55,6 +56,7 @@ import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchOptionStatSequence;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -242,6 +244,16 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCaseStat(CaseStat object)
       {
         return createCaseStatAdapter();
+      }
+      @Override
+      public Adapter caseDefaultStat(DefaultStat object)
+      {
+        return createDefaultStatAdapter();
+      }
+      @Override
+      public Adapter caseSwitchOptionStatSequence(SwitchOptionStatSequence object)
+      {
+        return createSwitchOptionStatSequenceAdapter();
       }
       @Override
       public Adapter caseStartProcStat(StartProcStat object)
@@ -751,6 +763,36 @@ public class ReflexAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCaseStatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.DefaultStat <em>Default Stat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.DefaultStat
+   * @generated
+   */
+  public Adapter createDefaultStatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ru.iaie.reflex.reflex.SwitchOptionStatSequence <em>Switch Option Stat Sequence</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ru.iaie.reflex.reflex.SwitchOptionStatSequence
+   * @generated
+   */
+  public Adapter createSwitchOptionStatSequenceAdapter()
   {
     return null;
   }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.iaie.reflex.reflex.CaseStat;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.ReflexPackage;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -33,6 +34,7 @@ import ru.iaie.reflex.reflex.SwitchStat;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.SwitchStatImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.impl.SwitchStatImpl#getOptions <em>Options</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.impl.SwitchStatImpl#getDefaultOption <em>Default Option</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +60,16 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
    * @ordered
    */
   protected EList<CaseStat> options;
+
+  /**
+   * The cached value of the '{@link #getDefaultOption() <em>Default Option</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDefaultOption()
+   * @generated
+   * @ordered
+   */
+  protected DefaultStat defaultOption;
 
   /**
    * <!-- begin-user-doc -->
@@ -151,6 +163,56 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
    * @generated
    */
   @Override
+  public DefaultStat getDefaultOption()
+  {
+    return defaultOption;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDefaultOption(DefaultStat newDefaultOption, NotificationChain msgs)
+  {
+    DefaultStat oldDefaultOption = defaultOption;
+    defaultOption = newDefaultOption;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.SWITCH_STAT__DEFAULT_OPTION, oldDefaultOption, newDefaultOption);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDefaultOption(DefaultStat newDefaultOption)
+  {
+    if (newDefaultOption != defaultOption)
+    {
+      NotificationChain msgs = null;
+      if (defaultOption != null)
+        msgs = ((InternalEObject)defaultOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.SWITCH_STAT__DEFAULT_OPTION, null, msgs);
+      if (newDefaultOption != null)
+        msgs = ((InternalEObject)newDefaultOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.SWITCH_STAT__DEFAULT_OPTION, null, msgs);
+      msgs = basicSetDefaultOption(newDefaultOption, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.SWITCH_STAT__DEFAULT_OPTION, newDefaultOption, newDefaultOption));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -159,6 +221,8 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
         return basicSetExpr(null, msgs);
       case ReflexPackage.SWITCH_STAT__OPTIONS:
         return ((InternalEList<?>)getOptions()).basicRemove(otherEnd, msgs);
+      case ReflexPackage.SWITCH_STAT__DEFAULT_OPTION:
+        return basicSetDefaultOption(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -177,6 +241,8 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
         return getExpr();
       case ReflexPackage.SWITCH_STAT__OPTIONS:
         return getOptions();
+      case ReflexPackage.SWITCH_STAT__DEFAULT_OPTION:
+        return getDefaultOption();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -199,6 +265,9 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
         getOptions().clear();
         getOptions().addAll((Collection<? extends CaseStat>)newValue);
         return;
+      case ReflexPackage.SWITCH_STAT__DEFAULT_OPTION:
+        setDefaultOption((DefaultStat)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -219,6 +288,9 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
       case ReflexPackage.SWITCH_STAT__OPTIONS:
         getOptions().clear();
         return;
+      case ReflexPackage.SWITCH_STAT__DEFAULT_OPTION:
+        setDefaultOption((DefaultStat)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -237,6 +309,8 @@ public class SwitchStatImpl extends StatementImpl implements SwitchStat
         return expr != null;
       case ReflexPackage.SWITCH_STAT__OPTIONS:
         return options != null && !options.isEmpty();
+      case ReflexPackage.SWITCH_STAT__DEFAULT_OPTION:
+        return defaultOption != null;
     }
     return super.eIsSet(featureID);
   }

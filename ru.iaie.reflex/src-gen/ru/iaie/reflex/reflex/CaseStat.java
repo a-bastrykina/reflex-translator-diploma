@@ -3,7 +3,6 @@
  */
 package ru.iaie.reflex.reflex;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,80 +14,34 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.CaseStat#getBody <em>Body</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat()
  * @model
  * @generated
  */
-public interface CaseStat extends EObject
+public interface CaseStat extends SwitchOptionStatSequence
 {
   /**
-   * Returns the value of the '<em><b>Option</b></em>' attribute.
+   * Returns the value of the '<em><b>Option</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Option</em>' attribute.
-   * @see #setOption(String)
+   * @return the value of the '<em>Option</em>' containment reference.
+   * @see #setOption(Expression)
    * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_Option()
-   * @model
-   * @generated
-   */
-  String getOption();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Option</em>' attribute.
-   * @see #getOption()
-   * @generated
-   */
-  void setOption(String value);
-
-  /**
-   * Returns the value of the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Body</em>' containment reference.
-   * @see #setBody(StatementSequence)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_Body()
    * @model containment="true"
    * @generated
    */
-  StatementSequence getBody();
+  Expression getOption();
 
   /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getBody <em>Body</em>}' containment reference.
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Body</em>' containment reference.
-   * @see #getBody()
+   * @param value the new value of the '<em>Option</em>' containment reference.
+   * @see #getOption()
    * @generated
    */
-  void setBody(StatementSequence value);
-
-  /**
-   * Returns the value of the '<em><b>Has Break</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Has Break</em>' attribute.
-   * @see #setHasBreak(boolean)
-   * @see ru.iaie.reflex.reflex.ReflexPackage#getCaseStat_HasBreak()
-   * @model
-   * @generated
-   */
-  boolean isHasBreak();
-
-  /**
-   * Sets the value of the '{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Has Break</em>' attribute.
-   * @see #isHasBreak()
-   * @generated
-   */
-  void setHasBreak(boolean value);
+  void setOption(Expression value);
 
 } // CaseStat

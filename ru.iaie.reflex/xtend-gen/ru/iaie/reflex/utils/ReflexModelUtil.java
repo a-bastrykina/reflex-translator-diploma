@@ -19,6 +19,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.ErrorStat;
 import ru.iaie.reflex.reflex.Expression;
@@ -35,6 +36,7 @@ import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeoutFunction;
 import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.utils.LiteralUtils;
@@ -73,6 +75,11 @@ public class ReflexModelUtil {
   public static boolean hasTimeout(final State s) {
     TimeoutFunction _timeoutFunction = s.getTimeoutFunction();
     return (_timeoutFunction != null);
+  }
+  
+  public static boolean hasDefaultOption(final SwitchStat s) {
+    DefaultStat _defaultOption = s.getDefaultOption();
+    return (_defaultOption != null);
   }
   
   public static boolean isShared(final ProcessVariable v) {

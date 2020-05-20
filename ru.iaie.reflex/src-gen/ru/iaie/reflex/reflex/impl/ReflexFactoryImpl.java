@@ -29,6 +29,7 @@ import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompareOp;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -67,6 +68,7 @@ import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchOptionStatSequence;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -150,6 +152,8 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
       case ReflexPackage.IF_ELSE_STAT: return createIfElseStat();
       case ReflexPackage.SWITCH_STAT: return createSwitchStat();
       case ReflexPackage.CASE_STAT: return createCaseStat();
+      case ReflexPackage.DEFAULT_STAT: return createDefaultStat();
+      case ReflexPackage.SWITCH_OPTION_STAT_SEQUENCE: return createSwitchOptionStatSequence();
       case ReflexPackage.START_PROC_STAT: return createStartProcStat();
       case ReflexPackage.STOP_PROC_STAT: return createStopProcStat();
       case ReflexPackage.ERROR_STAT: return createErrorStat();
@@ -541,6 +545,30 @@ public class ReflexFactoryImpl extends EFactoryImpl implements ReflexFactory
   {
     CaseStatImpl caseStat = new CaseStatImpl();
     return caseStat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DefaultStat createDefaultStat()
+  {
+    DefaultStatImpl defaultStat = new DefaultStatImpl();
+    return defaultStat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SwitchOptionStatSequence createSwitchOptionStatSequence()
+  {
+    SwitchOptionStatSequenceImpl switchOptionStatSequence = new SwitchOptionStatSequenceImpl();
+    return switchOptionStatSequence;
   }
 
   /**

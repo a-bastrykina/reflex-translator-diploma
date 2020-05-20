@@ -136,11 +136,17 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="options" upperBound="-1"
         eType="#//CaseStat" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CaseStat">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="option" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//StatementSequence"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultOption" eType="#//DefaultStat"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CaseStat" eSuperTypes="#//SwitchOptionStatSequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="option" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultStat" eSuperTypes="#//SwitchOptionStatSequence"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchOptionStatSequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasBreak" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StartProcStat" eSuperTypes="#//Statement">

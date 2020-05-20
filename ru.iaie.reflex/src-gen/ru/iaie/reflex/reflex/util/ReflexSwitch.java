@@ -21,6 +21,7 @@ import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -53,6 +54,7 @@ import ru.iaie.reflex.reflex.State;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StatementSequence;
 import ru.iaie.reflex.reflex.StopProcStat;
+import ru.iaie.reflex.reflex.SwitchOptionStatSequence;
 import ru.iaie.reflex.reflex.SwitchStat;
 import ru.iaie.reflex.reflex.TimeAmountOrRef;
 import ru.iaie.reflex.reflex.TimeoutFunction;
@@ -298,6 +300,22 @@ public class ReflexSwitch<T> extends Switch<T>
       {
         CaseStat caseStat = (CaseStat)theEObject;
         T result = caseCaseStat(caseStat);
+        if (result == null) result = caseSwitchOptionStatSequence(caseStat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.DEFAULT_STAT:
+      {
+        DefaultStat defaultStat = (DefaultStat)theEObject;
+        T result = caseDefaultStat(defaultStat);
+        if (result == null) result = caseSwitchOptionStatSequence(defaultStat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReflexPackage.SWITCH_OPTION_STAT_SEQUENCE:
+      {
+        SwitchOptionStatSequence switchOptionStatSequence = (SwitchOptionStatSequence)theEObject;
+        T result = caseSwitchOptionStatSequence(switchOptionStatSequence);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -997,6 +1015,38 @@ public class ReflexSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCaseStat(CaseStat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Default Stat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Default Stat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDefaultStat(DefaultStat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Switch Option Stat Sequence</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Switch Option Stat Sequence</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSwitchOptionStatSequence(SwitchOptionStatSequence object)
   {
     return null;
   }

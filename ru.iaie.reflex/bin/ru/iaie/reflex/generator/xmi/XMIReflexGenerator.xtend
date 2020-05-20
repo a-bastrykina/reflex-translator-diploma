@@ -19,7 +19,7 @@ class XMIReflexGenerator extends AbstractGenerator {
 	def exportXMI(String fileName, Resource resource, IFileSystemAccess2 fsa) {
 		val outputURI = fsa.getURI('''«fileName».xmi''').toPlatformString(true)
 		val resourceSet = resource.resourceSet
-		if(resourceSet === null) throw new IllegalStateException("enclosing resourceSet not found")
+		if (resourceSet === null) throw new IllegalStateException("enclosing resourceSet not found")
 		val xmiResource = resourceSet.createResource(URI.createURI(outputURI)); // default is XMI resource
 		xmiResource.getContents().add(resource.getContents().get(0));
 		try {
@@ -28,5 +28,5 @@ class XMIReflexGenerator extends AbstractGenerator {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

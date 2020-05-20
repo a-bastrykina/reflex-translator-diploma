@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.SwitchStat#getExpr <em>Expr</em>}</li>
  *   <li>{@link ru.iaie.reflex.reflex.SwitchStat#getOptions <em>Options</em>}</li>
+ *   <li>{@link ru.iaie.reflex.reflex.SwitchStat#getDefaultOption <em>Default Option</em>}</li>
  * </ul>
  *
  * @see ru.iaie.reflex.reflex.ReflexPackage#getSwitchStat()
@@ -57,5 +58,27 @@ public interface SwitchStat extends Statement
    * @generated
    */
   EList<CaseStat> getOptions();
+
+  /**
+   * Returns the value of the '<em><b>Default Option</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Default Option</em>' containment reference.
+   * @see #setDefaultOption(DefaultStat)
+   * @see ru.iaie.reflex.reflex.ReflexPackage#getSwitchStat_DefaultOption()
+   * @model containment="true"
+   * @generated
+   */
+  DefaultStat getDefaultOption();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflex.reflex.SwitchStat#getDefaultOption <em>Default Option</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Default Option</em>' containment reference.
+   * @see #getDefaultOption()
+   * @generated
+   */
+  void setDefaultOption(DefaultStat value);
 
 } // SwitchStat

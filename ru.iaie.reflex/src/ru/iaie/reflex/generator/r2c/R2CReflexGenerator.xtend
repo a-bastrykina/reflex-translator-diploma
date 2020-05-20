@@ -521,10 +521,20 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''
 			switch («translateExpr(stat.expr)») {
 				«FOR variant : stat.options»
-				case («variant.option»):
-					«translateStatement(proc, state, stat)»
+				case («translateExpr(variant.option)»): {
+					«FOR statement: variant.statements» 
+						«translateStatement(proc, state, statement)»
+					«ENDFOR»
 					«IF variant.hasBreak»break;«ENDIF»
+					}
 				«ENDFOR»
+				«IF stat.hasDefaultOption»default: {
+					«FOR statement: stat.defaultOption.statements» 
+						«translateStatement(proc, state, statement)»
+					«ENDFOR»
+					«IF stat.defaultOption.hasBreak»break;«ENDIF»
+				}
+				«ENDIF»
 			}
 		'''
 	}

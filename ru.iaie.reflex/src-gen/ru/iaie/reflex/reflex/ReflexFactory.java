@@ -240,6 +240,24 @@ public interface ReflexFactory extends EFactory
   CaseStat createCaseStat();
 
   /**
+   * Returns a new object of class '<em>Default Stat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Default Stat</em>'.
+   * @generated
+   */
+  DefaultStat createDefaultStat();
+
+  /**
+   * Returns a new object of class '<em>Switch Option Stat Sequence</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Switch Option Stat Sequence</em>'.
+   * @generated
+   */
+  SwitchOptionStatSequence createSwitchOptionStatSequence();
+
+  /**
    * Returns a new object of class '<em>Start Proc Stat</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

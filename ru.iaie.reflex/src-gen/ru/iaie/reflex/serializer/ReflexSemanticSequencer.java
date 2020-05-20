@@ -27,6 +27,7 @@ import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompareExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
+import ru.iaie.reflex.reflex.DefaultStat;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.EqualityExpression;
 import ru.iaie.reflex.reflex.ErrorStat;
@@ -93,7 +94,7 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_BitXorExpression(context, (BitXorExpression) semanticObject); 
 				return; 
 			case ReflexPackage.CASE_STAT:
-				sequence_CaseStat(context, (CaseStat) semanticObject); 
+				sequence_CaseStat_SwitchOptionStatSequence(context, (CaseStat) semanticObject); 
 				return; 
 			case ReflexPackage.CAST_EXPRESSION:
 				sequence_CastExpression(context, (CastExpression) semanticObject); 
@@ -112,6 +113,9 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case ReflexPackage.CONST:
 				sequence_Const(context, (Const) semanticObject); 
+				return; 
+			case ReflexPackage.DEFAULT_STAT:
+				sequence_SwitchOptionStatSequence(context, (DefaultStat) semanticObject); 
 				return; 
 			case ReflexPackage.ENUM:
 				sequence_Enum(context, (ru.iaie.reflex.reflex.Enum) semanticObject); 
@@ -388,22 +392,10 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     CaseStat returns CaseStat
 	 *
 	 * Constraint:
-	 *     (option=INTEGER body=StatementSequence hasBreak?=BreakStat)
+	 *     (option=Expression statements+=Statement* hasBreak?=BreakStat?)
 	 */
-	protected void sequence_CaseStat(ISerializationContext context, CaseStat semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CASE_STAT__OPTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CASE_STAT__OPTION));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CASE_STAT__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CASE_STAT__BODY));
-			if (transientValues.isValueTransient(semanticObject, ReflexPackage.Literals.CASE_STAT__HAS_BREAK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexPackage.Literals.CASE_STAT__HAS_BREAK));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCaseStatAccess().getOptionINTEGERTerminalRuleCall_1_0(), semanticObject.getOption());
-		feeder.accept(grammarAccess.getCaseStatAccess().getBodyStatementSequenceParserRuleCall_3_0(), semanticObject.getBody());
-		feeder.accept(grammarAccess.getCaseStatAccess().getHasBreakBreakStatParserRuleCall_4_0(), semanticObject.isHasBreak());
-		feeder.finish();
+	protected void sequence_CaseStat_SwitchOptionStatSequence(ISerializationContext context, CaseStat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1228,11 +1220,23 @@ public class ReflexSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     DefaultStat returns DefaultStat
+	 *
+	 * Constraint:
+	 *     (statements+=Statement* hasBreak?=BreakStat?)
+	 */
+	protected void sequence_SwitchOptionStatSequence(ISerializationContext context, DefaultStat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Statement returns SwitchStat
 	 *     SwitchStat returns SwitchStat
 	 *
 	 * Constraint:
-	 *     (expr=Expression options+=CaseStat*)
+	 *     (expr=Expression options+=CaseStat* defaultOption=DefaultStat?)
 	 */
 	protected void sequence_SwitchStat(ISerializationContext context, SwitchStat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

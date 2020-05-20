@@ -178,11 +178,15 @@
     <genClasses ecoreClass="Reflex.ecore#//SwitchStat">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//SwitchStat/expr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//SwitchStat/options"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//SwitchStat/defaultOption"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//CaseStat">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CaseStat/option"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CaseStat/body"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//CaseStat/hasBreak"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//CaseStat/option"/>
+    </genClasses>
+    <genClasses ecoreClass="Reflex.ecore#//DefaultStat"/>
+    <genClasses ecoreClass="Reflex.ecore#//SwitchOptionStatSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Reflex.ecore#//SwitchOptionStatSequence/statements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Reflex.ecore#//SwitchOptionStatSequence/hasBreak"/>
     </genClasses>
     <genClasses ecoreClass="Reflex.ecore#//StartProcStat">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Reflex.ecore#//StartProcStat/process"/>

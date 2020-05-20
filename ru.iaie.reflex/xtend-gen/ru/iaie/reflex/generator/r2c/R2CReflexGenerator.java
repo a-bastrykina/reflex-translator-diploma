@@ -1122,15 +1122,20 @@ public class R2CReflexGenerator extends AbstractGenerator {
       for(final CaseStat variant : _options) {
         _builder.append("\t");
         _builder.append("case (");
-        String _option = variant.getOption();
-        _builder.append(_option, "\t");
-        _builder.append("):");
+        String _translateExpr_1 = this.translateExpr(variant.getOption());
+        _builder.append(_translateExpr_1, "\t");
+        _builder.append("): {");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        String _translateStatement = this.translateStatement(proc, state, stat);
-        _builder.append(_translateStatement, "\t\t");
-        _builder.newLineIfNotEmpty();
+        {
+          EList<Statement> _statements = variant.getStatements();
+          for(final Statement statement : _statements) {
+            _builder.append("\t");
+            _builder.append("\t");
+            String _translateStatement = this.translateStatement(proc, state, statement);
+            _builder.append(_translateStatement, "\t\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
         _builder.append("\t");
         _builder.append("\t");
         {
@@ -1140,6 +1145,40 @@ public class R2CReflexGenerator extends AbstractGenerator {
           }
         }
         _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    {
+      boolean _hasDefaultOption = ReflexModelUtil.hasDefaultOption(stat);
+      if (_hasDefaultOption) {
+        _builder.append("default: {");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Statement> _statements_1 = stat.getDefaultOption().getStatements();
+          for(final Statement statement_1 : _statements_1) {
+            _builder.append("\t");
+            _builder.append("\t");
+            String _translateStatement_1 = this.translateStatement(proc, state, statement_1);
+            _builder.append(_translateStatement_1, "\t\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t");
+        _builder.append("\t");
+        {
+          boolean _isHasBreak_1 = stat.getDefaultOption().isHasBreak();
+          if (_isHasBreak_1) {
+            _builder.append("break;");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
       }
     }
     _builder.append("}");

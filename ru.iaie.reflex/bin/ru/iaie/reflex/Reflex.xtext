@@ -31,7 +31,7 @@ State:
 	stateFunction=StatementSequence
 	(timeoutFunction=TimeoutFunction)?
 	"}";
-	
+
 Annotation:
 	key=AnnotationKey ":" value=STRING | key=AnnotationKey;
 
@@ -56,12 +56,11 @@ PortMapping:
 ProgramVariable:
 	type=Type name=ID;
 
-
 TimeoutFunction:
 	"timeout" (TimeAmountOrRef | "(" TimeAmountOrRef ")") body=Statement;
 
 fragment TimeAmountOrRef:
-	time=TIME | intTime = INTEGER | ref=[IdReference];
+	time=TIME | intTime=INTEGER | ref=[IdReference];
 
 Function:
 	returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
@@ -81,8 +80,7 @@ Enum:
 EnumMember:
 	name=ID ("=" value=Expression)?;
 
-// Statements
-
+	// Statements
 Statement:
 	{Statement} ";" | CompoundStatement |
 	StartProcStat | StopProcStat | ErrorStat | RestartStat | ResetStat
@@ -100,10 +98,16 @@ IfElseStat:
 	(=> "else" else=Statement)?;
 
 SwitchStat:
-	"switch" "(" expr=Expression ")" "{" options+=CaseStat* "}";
+	"switch" "(" expr=Expression ")" "{" options+=CaseStat* defaultOption=DefaultStat? "}";
 
 CaseStat:
-	"case" option=INTEGER ":" body=StatementSequence hasBreak?=BreakStat "}";
+	"case" option=Expression ":" "{" SwitchOptionStatSequence "}";
+
+DefaultStat:
+	"default" ":" "{" SwitchOptionStatSequence "}";
+
+fragment SwitchOptionStatSequence:
+	statements+=Statement* hasBreak?=BreakStat?;
 
 BreakStat:
 	"break" ";";
@@ -129,8 +133,7 @@ SetStateStat:
 IdReference:
 	PhysicalVariable | ProgramVariable | EnumMember | Const;
 
-// Expressions
-
+	// Expressions
 InfixOp:
 	op=InfixPostfixOp ref=[IdReference];
 
@@ -139,7 +142,6 @@ PostfixOp:
 
 FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
-
 
 CheckStateExpression:
 	"process" process=[Process] "in" "state" qualfier=StateQualifier;
@@ -223,7 +225,6 @@ enum AdditiveOp:
 enum MultiplicativeOp:
 	MUL="*" | DIV="/" | MOD="%";
 
-
 terminal LOGICAL_OR:
 	"||";
 
@@ -239,14 +240,12 @@ terminal BIT_XOR:
 terminal BIT_AND:
 	"&";
 
-// Types
-
+	// Types
 enum Type:
 	VOID_C_TYPE="void" | FLOAT="float" | DOUBLE="double" | INT8="int8" | INT8_U="uint8" | INT16="int16" |
 	INT16_U="uint16" | INT32="int32" | INT32_U="uint32" | INT64="int64" | INT64_U="uint64" | BOOL="bool" | TIME="time";
 
-// Literals
-
+	// Literals
 terminal INTEGER:
 	SIGN? (HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
 
@@ -296,7 +295,7 @@ terminal fragment UNSIGNED:
 	"U" | "u";
 
 terminal TIME:
-("0t" | "0T") (DECIMAL DAY)? (DECIMAL HOUR)? (DECIMAL MINUTE)? (DECIMAL SECOND)? (DECIMAL MILLISECOND)?;
+	("0t" | "0T") (DECIMAL DAY)? (DECIMAL HOUR)? (DECIMAL MINUTE)? (DECIMAL SECOND)? (DECIMAL MILLISECOND)?;
 
 terminal fragment DAY:
 	"D" | "d";

@@ -792,7 +792,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getIdReference()
    * @generated
    */
-  int ID_REFERENCE = 30;
+  int ID_REFERENCE = 32;
 
   /**
    * The number of structural features of the '<em>Id Reference</em>' class.
@@ -1073,13 +1073,59 @@ public interface ReflexPackage extends EPackage
   int SWITCH_STAT__OPTIONS = STATEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Default Option</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SWITCH_STAT__DEFAULT_OPTION = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Switch Stat</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SWITCH_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+  int SWITCH_STAT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.SwitchOptionStatSequenceImpl <em>Switch Option Stat Sequence</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.SwitchOptionStatSequenceImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getSwitchOptionStatSequence()
+   * @generated
+   */
+  int SWITCH_OPTION_STAT_SEQUENCE = 25;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SWITCH_OPTION_STAT_SEQUENCE__STATEMENTS = 0;
+
+  /**
+   * The feature id for the '<em><b>Has Break</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SWITCH_OPTION_STAT_SEQUENCE__HAS_BREAK = 1;
+
+  /**
+   * The number of structural features of the '<em>Switch Option Stat Sequence</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SWITCH_OPTION_STAT_SEQUENCE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.CaseStatImpl <em>Case Stat</em>}' class.
@@ -1092,22 +1138,13 @@ public interface ReflexPackage extends EPackage
   int CASE_STAT = 23;
 
   /**
-   * The feature id for the '<em><b>Option</b></em>' attribute.
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CASE_STAT__OPTION = 0;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CASE_STAT__BODY = 1;
+  int CASE_STAT__STATEMENTS = SWITCH_OPTION_STAT_SEQUENCE__STATEMENTS;
 
   /**
    * The feature id for the '<em><b>Has Break</b></em>' attribute.
@@ -1116,7 +1153,16 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CASE_STAT__HAS_BREAK = 2;
+  int CASE_STAT__HAS_BREAK = SWITCH_OPTION_STAT_SEQUENCE__HAS_BREAK;
+
+  /**
+   * The feature id for the '<em><b>Option</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASE_STAT__OPTION = SWITCH_OPTION_STAT_SEQUENCE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Case Stat</em>' class.
@@ -1125,7 +1171,44 @@ public interface ReflexPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CASE_STAT_FEATURE_COUNT = 3;
+  int CASE_STAT_FEATURE_COUNT = SWITCH_OPTION_STAT_SEQUENCE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.DefaultStatImpl <em>Default Stat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ru.iaie.reflex.reflex.impl.DefaultStatImpl
+   * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getDefaultStat()
+   * @generated
+   */
+  int DEFAULT_STAT = 24;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_STAT__STATEMENTS = SWITCH_OPTION_STAT_SEQUENCE__STATEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Has Break</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_STAT__HAS_BREAK = SWITCH_OPTION_STAT_SEQUENCE__HAS_BREAK;
+
+  /**
+   * The number of structural features of the '<em>Default Stat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_STAT_FEATURE_COUNT = SWITCH_OPTION_STAT_SEQUENCE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.impl.StartProcStatImpl <em>Start Proc Stat</em>}' class.
@@ -1135,7 +1218,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStartProcStat()
    * @generated
    */
-  int START_PROC_STAT = 24;
+  int START_PROC_STAT = 26;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1163,7 +1246,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStopProcStat()
    * @generated
    */
-  int STOP_PROC_STAT = 25;
+  int STOP_PROC_STAT = 27;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1191,7 +1274,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getErrorStat()
    * @generated
    */
-  int ERROR_STAT = 26;
+  int ERROR_STAT = 28;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1219,7 +1302,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getRestartStat()
    * @generated
    */
-  int RESTART_STAT = 27;
+  int RESTART_STAT = 29;
 
   /**
    * The number of structural features of the '<em>Restart Stat</em>' class.
@@ -1238,7 +1321,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getResetStat()
    * @generated
    */
-  int RESET_STAT = 28;
+  int RESET_STAT = 30;
 
   /**
    * The number of structural features of the '<em>Reset Stat</em>' class.
@@ -1257,7 +1340,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getSetStateStat()
    * @generated
    */
-  int SET_STATE_STAT = 29;
+  int SET_STATE_STAT = 31;
 
   /**
    * The feature id for the '<em><b>Next</b></em>' attribute.
@@ -1294,7 +1377,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLogicalOrExpression()
    * @generated
    */
-  int LOGICAL_OR_EXPRESSION = 47;
+  int LOGICAL_OR_EXPRESSION = 49;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1331,7 +1414,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getLogicalAndExpression()
    * @generated
    */
-  int LOGICAL_AND_EXPRESSION = 46;
+  int LOGICAL_AND_EXPRESSION = 48;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1368,7 +1451,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitOrExpression()
    * @generated
    */
-  int BIT_OR_EXPRESSION = 45;
+  int BIT_OR_EXPRESSION = 47;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1405,7 +1488,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitXorExpression()
    * @generated
    */
-  int BIT_XOR_EXPRESSION = 44;
+  int BIT_XOR_EXPRESSION = 46;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1442,7 +1525,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getBitAndExpression()
    * @generated
    */
-  int BIT_AND_EXPRESSION = 43;
+  int BIT_AND_EXPRESSION = 45;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1479,7 +1562,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getEqualityExpression()
    * @generated
    */
-  int EQUALITY_EXPRESSION = 42;
+  int EQUALITY_EXPRESSION = 44;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1525,7 +1608,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareExpression()
    * @generated
    */
-  int COMPARE_EXPRESSION = 41;
+  int COMPARE_EXPRESSION = 43;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1580,7 +1663,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftExpression()
    * @generated
    */
-  int SHIFT_EXPRESSION = 40;
+  int SHIFT_EXPRESSION = 42;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1644,7 +1727,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveExpression()
    * @generated
    */
-  int ADDITIVE_EXPRESSION = 39;
+  int ADDITIVE_EXPRESSION = 41;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1717,7 +1800,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeExpression()
    * @generated
    */
-  int MULTIPLICATIVE_EXPRESSION = 38;
+  int MULTIPLICATIVE_EXPRESSION = 40;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1799,7 +1882,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCastExpression()
    * @generated
    */
-  int CAST_EXPRESSION = 37;
+  int CAST_EXPRESSION = 39;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1890,7 +1973,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 36;
+  int UNARY_EXPRESSION = 38;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1990,7 +2073,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixOp()
    * @generated
    */
-  int INFIX_OP = 31;
+  int INFIX_OP = 33;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2108,7 +2191,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPostfixOp()
    * @generated
    */
-  int POSTFIX_OP = 32;
+  int POSTFIX_OP = 34;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2226,7 +2309,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 33;
+  int FUNCTION_CALL = 35;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2344,7 +2427,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCheckStateExpression()
    * @generated
    */
-  int CHECK_STATE_EXPRESSION = 34;
+  int CHECK_STATE_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2417,7 +2500,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPrimaryExpression()
    * @generated
    */
-  int PRIMARY_EXPRESSION = 35;
+  int PRIMARY_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2571,7 +2654,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 49;
+  int EXPRESSION = 51;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -2590,7 +2673,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignmentExpression()
    * @generated
    */
-  int ASSIGNMENT_EXPRESSION = 48;
+  int ASSIGNMENT_EXPRESSION = 50;
 
   /**
    * The feature id for the '<em><b>Assign Var</b></em>' reference.
@@ -2636,7 +2719,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getPortType()
    * @generated
    */
-  int PORT_TYPE = 50;
+  int PORT_TYPE = 52;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.StateQualifier <em>State Qualifier</em>}' enum.
@@ -2646,7 +2729,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getStateQualifier()
    * @generated
    */
-  int STATE_QUALIFIER = 51;
+  int STATE_QUALIFIER = 53;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.InfixPostfixOp <em>Infix Postfix Op</em>}' enum.
@@ -2656,7 +2739,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getInfixPostfixOp()
    * @generated
    */
-  int INFIX_POSTFIX_OP = 52;
+  int INFIX_POSTFIX_OP = 54;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AssignOperator <em>Assign Operator</em>}' enum.
@@ -2666,7 +2749,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAssignOperator()
    * @generated
    */
-  int ASSIGN_OPERATOR = 53;
+  int ASSIGN_OPERATOR = 55;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.UnaryOp <em>Unary Op</em>}' enum.
@@ -2676,7 +2759,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getUnaryOp()
    * @generated
    */
-  int UNARY_OP = 54;
+  int UNARY_OP = 56;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareOp <em>Compare Op</em>}' enum.
@@ -2686,7 +2769,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareOp()
    * @generated
    */
-  int COMPARE_OP = 55;
+  int COMPARE_OP = 57;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.CompareEqOp <em>Compare Eq Op</em>}' enum.
@@ -2696,7 +2779,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getCompareEqOp()
    * @generated
    */
-  int COMPARE_EQ_OP = 56;
+  int COMPARE_EQ_OP = 58;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.ShiftOp <em>Shift Op</em>}' enum.
@@ -2706,7 +2789,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getShiftOp()
    * @generated
    */
-  int SHIFT_OP = 57;
+  int SHIFT_OP = 59;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.AdditiveOp <em>Additive Op</em>}' enum.
@@ -2716,7 +2799,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getAdditiveOp()
    * @generated
    */
-  int ADDITIVE_OP = 58;
+  int ADDITIVE_OP = 60;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
@@ -2726,7 +2809,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getMultiplicativeOp()
    * @generated
    */
-  int MULTIPLICATIVE_OP = 59;
+  int MULTIPLICATIVE_OP = 61;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflex.reflex.Type <em>Type</em>}' enum.
@@ -2736,7 +2819,7 @@ public interface ReflexPackage extends EPackage
    * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getType()
    * @generated
    */
-  int TYPE = 60;
+  int TYPE = 62;
 
 
   /**
@@ -3630,6 +3713,17 @@ public interface ReflexPackage extends EPackage
   EReference getSwitchStat_Options();
 
   /**
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.SwitchStat#getDefaultOption <em>Default Option</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Default Option</em>'.
+   * @see ru.iaie.reflex.reflex.SwitchStat#getDefaultOption()
+   * @see #getSwitchStat()
+   * @generated
+   */
+  EReference getSwitchStat_DefaultOption();
+
+  /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.CaseStat <em>Case Stat</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3640,37 +3734,57 @@ public interface ReflexPackage extends EPackage
   EClass getCaseStat();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}'.
+   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.CaseStat#getOption <em>Option</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Option</em>'.
+   * @return the meta object for the containment reference '<em>Option</em>'.
    * @see ru.iaie.reflex.reflex.CaseStat#getOption()
    * @see #getCaseStat()
    * @generated
    */
-  EAttribute getCaseStat_Option();
+  EReference getCaseStat_Option();
 
   /**
-   * Returns the meta object for the containment reference '{@link ru.iaie.reflex.reflex.CaseStat#getBody <em>Body</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.DefaultStat <em>Default Stat</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Body</em>'.
-   * @see ru.iaie.reflex.reflex.CaseStat#getBody()
-   * @see #getCaseStat()
+   * @return the meta object for class '<em>Default Stat</em>'.
+   * @see ru.iaie.reflex.reflex.DefaultStat
    * @generated
    */
-  EReference getCaseStat_Body();
+  EClass getDefaultStat();
 
   /**
-   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.CaseStat#isHasBreak <em>Has Break</em>}'.
+   * Returns the meta object for class '{@link ru.iaie.reflex.reflex.SwitchOptionStatSequence <em>Switch Option Stat Sequence</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Switch Option Stat Sequence</em>'.
+   * @see ru.iaie.reflex.reflex.SwitchOptionStatSequence
+   * @generated
+   */
+  EClass getSwitchOptionStatSequence();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link ru.iaie.reflex.reflex.SwitchOptionStatSequence#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see ru.iaie.reflex.reflex.SwitchOptionStatSequence#getStatements()
+   * @see #getSwitchOptionStatSequence()
+   * @generated
+   */
+  EReference getSwitchOptionStatSequence_Statements();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflex.reflex.SwitchOptionStatSequence#isHasBreak <em>Has Break</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Has Break</em>'.
-   * @see ru.iaie.reflex.reflex.CaseStat#isHasBreak()
-   * @see #getCaseStat()
+   * @see ru.iaie.reflex.reflex.SwitchOptionStatSequence#isHasBreak()
+   * @see #getSwitchOptionStatSequence()
    * @generated
    */
-  EAttribute getCaseStat_HasBreak();
+  EAttribute getSwitchOptionStatSequence_HasBreak();
 
   /**
    * Returns the meta object for class '{@link ru.iaie.reflex.reflex.StartProcStat <em>Start Proc Stat</em>}'.
@@ -5117,6 +5231,14 @@ public interface ReflexPackage extends EPackage
     EReference SWITCH_STAT__OPTIONS = eINSTANCE.getSwitchStat_Options();
 
     /**
+     * The meta object literal for the '<em><b>Default Option</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SWITCH_STAT__DEFAULT_OPTION = eINSTANCE.getSwitchStat_DefaultOption();
+
+    /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.CaseStatImpl <em>Case Stat</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5127,20 +5249,40 @@ public interface ReflexPackage extends EPackage
     EClass CASE_STAT = eINSTANCE.getCaseStat();
 
     /**
-     * The meta object literal for the '<em><b>Option</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Option</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CASE_STAT__OPTION = eINSTANCE.getCaseStat_Option();
+    EReference CASE_STAT__OPTION = eINSTANCE.getCaseStat_Option();
 
     /**
-     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.DefaultStatImpl <em>Default Stat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.DefaultStatImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getDefaultStat()
+     * @generated
+     */
+    EClass DEFAULT_STAT = eINSTANCE.getDefaultStat();
+
+    /**
+     * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.SwitchOptionStatSequenceImpl <em>Switch Option Stat Sequence</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ru.iaie.reflex.reflex.impl.SwitchOptionStatSequenceImpl
+     * @see ru.iaie.reflex.reflex.impl.ReflexPackageImpl#getSwitchOptionStatSequence()
+     * @generated
+     */
+    EClass SWITCH_OPTION_STAT_SEQUENCE = eINSTANCE.getSwitchOptionStatSequence();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CASE_STAT__BODY = eINSTANCE.getCaseStat_Body();
+    EReference SWITCH_OPTION_STAT_SEQUENCE__STATEMENTS = eINSTANCE.getSwitchOptionStatSequence_Statements();
 
     /**
      * The meta object literal for the '<em><b>Has Break</b></em>' attribute feature.
@@ -5148,7 +5290,7 @@ public interface ReflexPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CASE_STAT__HAS_BREAK = eINSTANCE.getCaseStat_HasBreak();
+    EAttribute SWITCH_OPTION_STAT_SEQUENCE__HAS_BREAK = eINSTANCE.getSwitchOptionStatSequence_HasBreak();
 
     /**
      * The meta object literal for the '{@link ru.iaie.reflex.reflex.impl.StartProcStatImpl <em>Start Proc Stat</em>}' class.

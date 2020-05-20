@@ -10,11 +10,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.iaie.reflex.reflex.CaseStat;
+import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.ReflexPackage;
-import ru.iaie.reflex.reflex.StatementSequence;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,63 +24,21 @@ import ru.iaie.reflex.reflex.StatementSequence;
  * </p>
  * <ul>
  *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#getOption <em>Option</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#getBody <em>Body</em>}</li>
- *   <li>{@link ru.iaie.reflex.reflex.impl.CaseStatImpl#isHasBreak <em>Has Break</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseStat
+public class CaseStatImpl extends SwitchOptionStatSequenceImpl implements CaseStat
 {
   /**
-   * The default value of the '{@link #getOption() <em>Option</em>}' attribute.
+   * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOption()
    * @generated
    * @ordered
    */
-  protected static final String OPTION_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getOption() <em>Option</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOption()
-   * @generated
-   * @ordered
-   */
-  protected String option = OPTION_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBody()
-   * @generated
-   * @ordered
-   */
-  protected StatementSequence body;
-
-  /**
-   * The default value of the '{@link #isHasBreak() <em>Has Break</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isHasBreak()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean HAS_BREAK_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isHasBreak() <em>Has Break</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isHasBreak()
-   * @generated
-   * @ordered
-   */
-  protected boolean hasBreak = HAS_BREAK_EDEFAULT;
+  protected Expression option;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +67,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    */
   @Override
-  public String getOption()
+  public Expression getOption()
   {
     return option;
   }
@@ -120,38 +77,13 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setOption(String newOption)
+  public NotificationChain basicSetOption(Expression newOption, NotificationChain msgs)
   {
-    String oldOption = option;
+    Expression oldOption = option;
     option = newOption;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, oldOption, option));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public StatementSequence getBody()
-  {
-    return body;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetBody(StatementSequence newBody, NotificationChain msgs)
-  {
-    StatementSequence oldBody = body;
-    body = newBody;
-    if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__BODY, oldBody, newBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, oldOption, newOption);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -163,45 +95,20 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
    * @generated
    */
   @Override
-  public void setBody(StatementSequence newBody)
+  public void setOption(Expression newOption)
   {
-    if (newBody != body)
+    if (newOption != option)
     {
       NotificationChain msgs = null;
-      if (body != null)
-        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__BODY, null, msgs);
-      if (newBody != null)
-        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__BODY, null, msgs);
-      msgs = basicSetBody(newBody, msgs);
+      if (option != null)
+        msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__OPTION, null, msgs);
+      if (newOption != null)
+        msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReflexPackage.CASE_STAT__OPTION, null, msgs);
+      msgs = basicSetOption(newOption, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__BODY, newBody, newBody));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isHasBreak()
-  {
-    return hasBreak;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setHasBreak(boolean newHasBreak)
-  {
-    boolean oldHasBreak = hasBreak;
-    hasBreak = newHasBreak;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__HAS_BREAK, oldHasBreak, hasBreak));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexPackage.CASE_STAT__OPTION, newOption, newOption));
   }
 
   /**
@@ -214,8 +121,8 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
   {
     switch (featureID)
     {
-      case ReflexPackage.CASE_STAT__BODY:
-        return basicSetBody(null, msgs);
+      case ReflexPackage.CASE_STAT__OPTION:
+        return basicSetOption(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -232,10 +139,6 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     {
       case ReflexPackage.CASE_STAT__OPTION:
         return getOption();
-      case ReflexPackage.CASE_STAT__BODY:
-        return getBody();
-      case ReflexPackage.CASE_STAT__HAS_BREAK:
-        return isHasBreak();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -251,13 +154,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        setOption((String)newValue);
-        return;
-      case ReflexPackage.CASE_STAT__BODY:
-        setBody((StatementSequence)newValue);
-        return;
-      case ReflexPackage.CASE_STAT__HAS_BREAK:
-        setHasBreak((Boolean)newValue);
+        setOption((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -274,13 +171,7 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        setOption(OPTION_EDEFAULT);
-        return;
-      case ReflexPackage.CASE_STAT__BODY:
-        setBody((StatementSequence)null);
-        return;
-      case ReflexPackage.CASE_STAT__HAS_BREAK:
-        setHasBreak(HAS_BREAK_EDEFAULT);
+        setOption((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -297,32 +188,9 @@ public class CaseStatImpl extends MinimalEObjectImpl.Container implements CaseSt
     switch (featureID)
     {
       case ReflexPackage.CASE_STAT__OPTION:
-        return OPTION_EDEFAULT == null ? option != null : !OPTION_EDEFAULT.equals(option);
-      case ReflexPackage.CASE_STAT__BODY:
-        return body != null;
-      case ReflexPackage.CASE_STAT__HAS_BREAK:
-        return hasBreak != HAS_BREAK_EDEFAULT;
+        return option != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (option: ");
-    result.append(option);
-    result.append(", hasBreak: ");
-    result.append(hasBreak);
-    result.append(')');
-    return result.toString();
   }
 
 } //CaseStatImpl
