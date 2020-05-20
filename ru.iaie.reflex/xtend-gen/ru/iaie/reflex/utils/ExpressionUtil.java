@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import ru.iaie.reflex.reflex.AdditiveExpression;
@@ -30,24 +31,13 @@ import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.reflex.ShiftExpression;
 import ru.iaie.reflex.reflex.Type;
 import ru.iaie.reflex.reflex.UnaryExpression;
+import ru.iaie.reflex.reflex.UnaryOp;
 import ru.iaie.reflex.typing.TypeUtils;
 import ru.iaie.reflex.typing.TypeWarning;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ExpressionUtil {
-  public enum ExpressionType {
-    ARITHMETIC,
-    
-    LOGICAL,
-    
-    BIT,
-    
-    COMPARE,
-    
-    EQ;
-  }
-  
   public static boolean hasAssignment(final AssignmentExpression e) {
     IdReference _assignVar = e.getAssignVar();
     return (_assignVar != null);
@@ -147,7 +137,20 @@ public class ExpressionUtil {
     if (!_matched) {
       if (expr instanceof UnaryExpression) {
         _matched=true;
-        return ExpressionUtil.resolveExprType(((UnaryExpression)expr).getRight(), warnings);
+        final Type exprType = ExpressionUtil.resolveExprType(((UnaryExpression)expr).getRight(), warnings);
+        try {
+          TypeUtils.doUnaryTypeChecking(ExpressionUtil.getOperationType(((UnaryExpression)expr)), exprType);
+        } catch (final Throwable _t) {
+          if (_t instanceof TypeUtils.TypeIssue) {
+            final TypeUtils.TypeIssue i = (TypeUtils.TypeIssue)_t;
+            String _message = i.getMessage();
+            TypeWarning _typeWarning = new TypeWarning(_message, expr);
+            warnings.add(_typeWarning);
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        return exprType;
       }
     }
     if (!_matched) {
@@ -208,20 +211,20 @@ public class ExpressionUtil {
   private static Type resolveBinaryExprType(final EObject expr, final List<TypeWarning> warnings) {
     EObject left = null;
     EObject right = null;
-    ExpressionUtil.ExpressionType exprType = null;
+    TypeUtils.OperationType exprOpType = null;
     boolean _matched = false;
     if (expr instanceof MultiplicativeExpression) {
       _matched=true;
       left = ((MultiplicativeExpression)expr).getLeft();
       right = ((MultiplicativeExpression)expr).getRight();
-      exprType = ExpressionUtil.ExpressionType.ARITHMETIC;
+      exprOpType = TypeUtils.OperationType.ARITHMETIC;
     }
     if (!_matched) {
       if (expr instanceof AdditiveExpression) {
         _matched=true;
         left = ((AdditiveExpression)expr).getLeft();
         right = ((AdditiveExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.ARITHMETIC;
+        exprOpType = TypeUtils.OperationType.ARITHMETIC;
       }
     }
     if (!_matched) {
@@ -229,7 +232,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((ShiftExpression)expr).getLeft();
         right = ((ShiftExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.BIT;
+        exprOpType = TypeUtils.OperationType.BIT;
       }
     }
     if (!_matched) {
@@ -237,7 +240,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((CompareExpression)expr).getLeft();
         right = ((CompareExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.COMPARE;
+        exprOpType = TypeUtils.OperationType.COMPARE;
       }
     }
     if (!_matched) {
@@ -245,7 +248,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((EqualityExpression)expr).getLeft();
         right = ((EqualityExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.EQ;
+        exprOpType = TypeUtils.OperationType.EQ;
       }
     }
     if (!_matched) {
@@ -253,7 +256,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitAndExpression)expr).getLeft();
         right = ((BitAndExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.BIT;
+        exprOpType = TypeUtils.OperationType.BIT;
       }
     }
     if (!_matched) {
@@ -261,7 +264,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitXorExpression)expr).getLeft();
         right = ((BitXorExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.BIT;
+        exprOpType = TypeUtils.OperationType.BIT;
       }
     }
     if (!_matched) {
@@ -269,7 +272,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((BitOrExpression)expr).getLeft();
         right = ((BitOrExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.BIT;
+        exprOpType = TypeUtils.OperationType.BIT;
       }
     }
     if (!_matched) {
@@ -277,7 +280,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((LogicalAndExpression)expr).getLeft();
         right = ((LogicalAndExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.LOGICAL;
+        exprOpType = TypeUtils.OperationType.LOGICAL;
       }
     }
     if (!_matched) {
@@ -285,7 +288,7 @@ public class ExpressionUtil {
         _matched=true;
         left = ((LogicalOrExpression)expr).getLeft();
         right = ((LogicalOrExpression)expr).getRight();
-        exprType = ExpressionUtil.ExpressionType.LOGICAL;
+        exprOpType = TypeUtils.OperationType.LOGICAL;
       }
     }
     if (((left == null) || (right == null))) {
@@ -293,7 +296,19 @@ public class ExpressionUtil {
     }
     final Type leftType = ExpressionUtil.resolveExprType(left, warnings);
     final Type rightType = ExpressionUtil.resolveExprType(right, warnings);
-    return leftType;
+    try {
+      TypeUtils.doBinaryTypeChecking(exprOpType, leftType, rightType);
+    } catch (final Throwable _t) {
+      if (_t instanceof TypeUtils.TypeIssue) {
+        final TypeUtils.TypeIssue i = (TypeUtils.TypeIssue)_t;
+        String _message = i.getMessage();
+        TypeWarning _typeWarning = new TypeWarning(_message, expr);
+        warnings.add(_typeWarning);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    return TypeUtils.max(leftType, rightType);
   }
   
   public static Type resolveType(final Expression expr, final List<TypeWarning> warnings) {
@@ -302,5 +317,24 @@ public class ExpressionUtil {
   
   public static Type resolveType(final Expression expr) {
     return ExpressionUtil.resolveExprType(expr, CollectionLiterals.<TypeWarning>newArrayList());
+  }
+  
+  public static TypeUtils.OperationType getOperationType(final UnaryExpression e) {
+    UnaryOp _unaryOp = e.getUnaryOp();
+    if (_unaryOp != null) {
+      switch (_unaryOp) {
+        case BIT_NOT:
+          return TypeUtils.OperationType.BIT;
+        case LOGICAL_NOT:
+          return TypeUtils.OperationType.LOGICAL;
+        case MINUS:
+          return TypeUtils.OperationType.ARITHMETIC;
+        case PLUS:
+          return TypeUtils.OperationType.ARITHMETIC;
+        default:
+          break;
+      }
+    }
+    return null;
   }
 }

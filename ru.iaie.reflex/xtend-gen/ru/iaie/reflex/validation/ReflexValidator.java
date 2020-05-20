@@ -552,9 +552,9 @@ public class ReflexValidator extends AbstractReflexValidator {
   @Check
   public void checkEnumMemberAssignType(final EnumMember em) {
     final Type assignType = ExpressionUtil.resolveType(em.getValue());
-    Type _defaultType = TypeUtils.getDefaultType(em);
-    boolean _notEquals = (!Objects.equal(assignType, _defaultType));
-    if (_notEquals) {
+    boolean _canBeSafelyCastedTo = TypeUtils.canBeSafelyCastedTo(assignType, TypeUtils.getDefaultType(em));
+    boolean _not = (!_canBeSafelyCastedTo);
+    if (_not) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Enum member type ");
       _builder.append(Type.INT32_U);

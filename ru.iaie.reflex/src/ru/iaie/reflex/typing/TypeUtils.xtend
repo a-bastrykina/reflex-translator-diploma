@@ -51,7 +51,7 @@ class TypeUtils {
 	}
 	
 	def static boolean isBoolType(Type type) {
-		return FLOAT_TYPES.contains(type)
+		return type == Type.BOOL
 	}
 	
 	def static int getSize(Type type) {
@@ -107,6 +107,53 @@ class TypeUtils {
 		
 	def static isCompitableInLogicalExpression(Type t1, Type t2) {
 		return true;
+	}
+	
+	enum OperationType {
+		ARITHMETIC, LOGICAL, BIT, COMPARE, EQ
+	}
+	
+	static def doUnaryTypeChecking(OperationType opType, Type type) {
+		switch opType {
+			case ARITHMETIC: {
+				type.isBoolType throw new TypeIssue("Arithmetic operation on boolean type")
+			}
+			case LOGICAL: {}
+			case BIT: {}
+			case COMPARE: {}
+			case EQ: {}
+		}
+	}
+
+	static def doBinaryTypeChecking(OperationType opType, Type type1, Type type2) {
+		switch opType {
+			case ARITHMETIC: {
+				if (type1.isBoolType || type2.isBoolType) { 
+					throw new TypeIssue("Arithmetic operation on boolean type")
+				}
+				if ((type1.isIntType && type2.isFloatType) || (type2.isIntType && type1.isFloatType)) { 
+					throw new TypeIssue("Arithmetic operation between float and integer type")
+				}
+			}
+			case COMPARE: {
+				if (type1.isBoolType || type2.isBoolType) { 
+					throw new TypeIssue("Comparison operation on boolean type")
+				}
+			}
+			case EQ: {
+				if ((type1.isIntType && type2.isFloatType) || (type2.isIntType && type1.isFloatType)) { 
+					throw new TypeIssue("Equality operation between float and integer type")
+				}
+			}
+			case LOGICAL: {}
+			case BIT: {}
+		}
+	}
+	
+	static class TypeIssue extends Exception {
+		new (String message) {
+			super(message)
+		}	
 	}
 	
 }

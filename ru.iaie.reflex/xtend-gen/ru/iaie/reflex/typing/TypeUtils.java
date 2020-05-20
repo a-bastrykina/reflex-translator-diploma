@@ -1,15 +1,35 @@
 package ru.iaie.reflex.typing;
 
+import com.google.common.base.Objects;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.Type;
 
 @SuppressWarnings("all")
 public class TypeUtils {
+  public enum OperationType {
+    ARITHMETIC,
+    
+    LOGICAL,
+    
+    BIT,
+    
+    COMPARE,
+    
+    EQ;
+  }
+  
+  public static class TypeIssue extends Exception {
+    public TypeIssue(final String message) {
+      super(message);
+    }
+  }
+  
   private static final Set<Type> UNSIGNED_TYPES = CollectionLiterals.<Type>newHashSet(Type.INT8_U, Type.INT16_U, Type.INT32_U, Type.INT64_U);
   
   private static final Set<Type> INT_TYPES = CollectionLiterals.<Type>newHashSet(Type.INT8_U, Type.INT16_U, Type.INT32_U, Type.INT64_U, Type.INT8, 
@@ -55,7 +75,7 @@ public class TypeUtils {
   }
   
   public static boolean isBoolType(final Type type) {
-    return TypeUtils.FLOAT_TYPES.contains(type);
+    return Objects.equal(type, Type.BOOL);
   }
   
   public static int getSize(final Type type) {
@@ -143,5 +163,74 @@ public class TypeUtils {
   
   public static boolean isCompitableInLogicalExpression(final Type t1, final Type t2) {
     return true;
+  }
+  
+  public static Object doUnaryTypeChecking(final TypeUtils.OperationType opType, final Type type) {
+    try {
+      Object _switchResult = null;
+      if (opType != null) {
+        switch (opType) {
+          case ARITHMETIC:
+            TypeUtils.isBoolType(type);
+            throw new TypeUtils.TypeIssue("Arithmetic operation on boolean type");
+          case LOGICAL:
+            _switchResult = null;
+            break;
+          case BIT:
+            _switchResult = null;
+            break;
+          case COMPARE:
+            _switchResult = null;
+            break;
+          case EQ:
+            _switchResult = null;
+            break;
+          default:
+            break;
+        }
+      }
+      return _switchResult;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static Object doBinaryTypeChecking(final TypeUtils.OperationType opType, final Type type1, final Type type2) {
+    try {
+      Object _switchResult = null;
+      if (opType != null) {
+        switch (opType) {
+          case ARITHMETIC:
+            if ((TypeUtils.isBoolType(type1) || TypeUtils.isBoolType(type2))) {
+              throw new TypeUtils.TypeIssue("Arithmetic operation on boolean type");
+            }
+            if (((TypeUtils.isIntType(type1) && TypeUtils.isFloatType(type2)) || (TypeUtils.isIntType(type2) && TypeUtils.isFloatType(type1)))) {
+              throw new TypeUtils.TypeIssue("Arithmetic operation between float and integer type");
+            }
+            break;
+          case COMPARE:
+            if ((TypeUtils.isBoolType(type1) || TypeUtils.isBoolType(type2))) {
+              throw new TypeUtils.TypeIssue("Comparison operation on boolean type");
+            }
+            break;
+          case EQ:
+            if (((TypeUtils.isIntType(type1) && TypeUtils.isFloatType(type2)) || (TypeUtils.isIntType(type2) && TypeUtils.isFloatType(type1)))) {
+              throw new TypeUtils.TypeIssue("Equality operation between float and integer type");
+            }
+            break;
+          case LOGICAL:
+            _switchResult = null;
+            break;
+          case BIT:
+            _switchResult = null;
+            break;
+          default:
+            break;
+        }
+      }
+      return _switchResult;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

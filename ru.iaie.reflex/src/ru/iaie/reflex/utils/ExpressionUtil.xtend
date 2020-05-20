@@ -30,6 +30,8 @@ import ru.iaie.reflex.reflex.BitXorExpression
 import ru.iaie.reflex.reflex.BitOrExpression
 import ru.iaie.reflex.reflex.LogicalAndExpression
 import ru.iaie.reflex.reflex.LogicalOrExpression
+import ru.iaie.reflex.typing.TypeUtils.OperationType
+import ru.iaie.reflex.typing.TypeUtils.TypeIssue
 
 class ExpressionUtil {
 	static def boolean hasAssignment(AssignmentExpression e) {
@@ -55,7 +57,7 @@ class ExpressionUtil {
 	static def boolean isFloating(PrimaryExpression e) {
 		return e.floating !== null
 	}
-	
+
 	static def boolean isTime(PrimaryExpression e) {
 		return e.time !== null
 	}
@@ -94,8 +96,15 @@ class ExpressionUtil {
 					return Type.FLOAT
 				}
 			}
-			UnaryExpression:
-				return resolveExprType(expr.right, warnings)
+			UnaryExpression: {
+				val exprType = resolveExprType(expr.right, warnings)
+				try {
+					doUnaryTypeChecking(expr.operationType, exprType)
+				} catch (TypeIssue i) {
+					warnings.add(new TypeWarning(i.message, expr))
+				}
+				return exprType
+			}
 			CastExpression: {
 				// Allow all casts for now
 				val fromType = resolveExprType(expr.right, warnings)
@@ -128,57 +137,57 @@ class ExpressionUtil {
 	private static def Type resolveBinaryExprType(EObject expr, List<TypeWarning> warnings) {
 		var EObject left
 		var EObject right
-		var ExpressionType exprType
+		var OperationType exprOpType
 		switch (expr) {
 			MultiplicativeExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.ARITHMETIC
+				exprOpType = OperationType.ARITHMETIC
 			}
 			AdditiveExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.ARITHMETIC
+				exprOpType = OperationType.ARITHMETIC
 			}
 			ShiftExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.BIT
+				exprOpType = OperationType.BIT
 			}
 			CompareExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.COMPARE
+				exprOpType = OperationType.COMPARE
 			}
 			EqualityExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.EQ
+				exprOpType = OperationType.EQ
 			}
 			BitAndExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.BIT
+				exprOpType = OperationType.BIT
 			}
 			BitXorExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.BIT
+				exprOpType = OperationType.BIT
 			}
 			BitOrExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.BIT
+				exprOpType = OperationType.BIT
 			}
 			LogicalAndExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.LOGICAL
+				exprOpType = OperationType.LOGICAL
 			}
 			LogicalOrExpression: {
 				left = expr.left
 				right = expr.right
-				exprType = ExpressionType.LOGICAL
+				exprOpType = OperationType.LOGICAL
 			}
 		}
 		if (left === null || right === null) {
@@ -188,12 +197,13 @@ class ExpressionUtil {
 		}
 		val leftType = resolveExprType(left, warnings)
 		val rightType = resolveExprType(right, warnings)
-		
-//		switch (exprType)
-//		
-//		if (leftType != rightType)
-//			warnings.add(new TypeWarning('''Incompitable types in expression: «leftType» and «rightType»''', expr))
-		return leftType
+		try {
+			doBinaryTypeChecking(exprOpType, leftType, rightType)
+		} catch (TypeIssue i) {
+			warnings.add(new TypeWarning(i.message, expr))
+		}
+
+		return max(leftType, rightType)
 	}
 
 	static def Type resolveType(Expression expr, List<TypeWarning> warnings) {
@@ -203,8 +213,22 @@ class ExpressionUtil {
 	static def Type resolveType(Expression expr) {
 		return resolveExprType(expr, newArrayList())
 	}
-	
-	enum ExpressionType {
-		ARITHMETIC, LOGICAL, BIT, COMPARE, EQ
+
+	static def OperationType getOperationType(UnaryExpression e) {
+		switch (e.unaryOp) {
+			case BIT_NOT: {
+				return OperationType.BIT
+			}
+			case LOGICAL_NOT: {
+				return OperationType.LOGICAL
+			}
+			case MINUS: {
+				return OperationType.ARITHMETIC
+			}
+			case PLUS: {
+				return OperationType.ARITHMETIC
+			}
+		}
 	}
+
 }
