@@ -136,7 +136,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("add_executable(");
     String _lowerCase_1 = this.program.getName().toLowerCase();
     _builder.append(_lowerCase_1);
-    _builder.append(" generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)");
+    _builder.append(" generated/main.c generated/proc.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)");
     _builder.newLineIfNotEmpty();
     String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
@@ -252,19 +252,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("INT8 Read_Input8(int addr1, int addr2) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("INT8 result;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("printf(\"Enter value for %d %d: \", addr1, addr2);");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("scanf(\"%c\", &result);");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("printf(\"\\n\");");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return result;");
+    _builder.append("return 1;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -272,7 +260,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("int Write_Output8(int addr1, int addr2, INT8 data) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("printf(\"Value for %d %d: %c\\n\", addr1, addr2, data);");
+    _builder.append("printf(\"Value for %d %d: %d\\n\", addr1, addr2, data);");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -280,19 +268,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.append("INT16 Read_Input16(int addr1, int addr2) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("INT16 result;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("printf(\"Enter value for %d %d: \", addr1, addr2);");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("scanf(\"%hd\", &result);");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("printf(\"\\n\");");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return result;");
+    _builder.append("return 1;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -463,6 +439,26 @@ public class R2CReflexGenerator extends AbstractGenerator {
     fsa.generateFile(_builder_1.toString(), fileContent);
   }
   
+  public String generateTimeVariableDefinitions(final boolean extern) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if (extern) {
+        _builder.append("extern ");
+      }
+    }
+    _builder.append("INT32_U _r_cur_time;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t  ");
+    {
+      if (extern) {
+        _builder.append("extern ");
+      }
+    }
+    _builder.append("INT32_U _r_next_act_time;");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
+  }
+  
   public String generateClockConst(final Resource resource) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#define _r_CLOCK ");
@@ -542,6 +538,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include \"../lib/r_cnst.h\"");
     _builder.newLine();
+    String _generateTimeVariableDefinitions = this.generateTimeVariableDefinitions(false);
+    _builder.append(_generateTimeVariableDefinitions);
+    _builder.newLineIfNotEmpty();
     String _generateVariables = this.generateVariables(resource, false);
     _builder.append(_generateVariables);
     _builder.newLineIfNotEmpty();
@@ -563,6 +562,9 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder_2.newLine();
     _builder_2.append("#include \"../lib/r_cnst.h\"");
     _builder_2.newLine();
+    String _generateTimeVariableDefinitions_1 = this.generateTimeVariableDefinitions(true);
+    _builder_2.append(_generateTimeVariableDefinitions_1);
+    _builder_2.newLineIfNotEmpty();
     String _generateVariables_1 = this.generateVariables(resource, true);
     _builder_2.append(_generateVariables_1);
     _builder_2.newLineIfNotEmpty();
@@ -733,50 +735,84 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("#include \"../lib/r_main.h\"  /* Code of the main-function that calls Control_Loop */");
     _builder.newLine();
+    _builder.append("#include <stdio.h>");
     _builder.newLine();
-    _builder.append("void Control_Loop (void)    /* Control algorithm */");
+    _builder.append("#include <unistd.h>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("void Init_Time() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("_r_cur_time = 0;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("_r_next_act_time = 0;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("void Control_Loop(void)    /* Control algorithm */");
     _builder.newLine();
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);");
+    _builder.append("Init_Processes();");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("INT32_U cur_time = 0, prev_time = 0;");
+    _builder.append("Init_Time();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("for (;;) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("cur_time = Get_Time();");
+    _builder.append("_r_cur_time = Get_Time();");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("if (cur_time - prev_time < _r_CLOCK) continue;");
+    _builder.append("if (_r_next_act_time <= _r_cur_time) {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("prev_time = cur_time;");
+    _builder.append("\t\t\t");
+    _builder.append("printf(\"Activating\\n\");");
     _builder.newLine();
-    _builder.append("\t\t");
+    _builder.append("\t\t\t");
     _builder.append("Input();");
     _builder.newLine();
     {
       EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
       for(final ru.iaie.reflex.reflex.Process proc : _processes) {
-        _builder.append("\t\t");
+        _builder.append("\t\t\t");
         String _processFuncId = this.identifiersHelper.getProcessFuncId(proc);
-        _builder.append(_processFuncId, "\t\t");
+        _builder.append(_processFuncId, "\t\t\t");
         _builder.append("(); /* Process ");
         String _name = proc.getName();
-        _builder.append(_name, "\t\t");
+        _builder.append(_name, "\t\t\t");
         _builder.append(" */");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t");
+    _builder.append("\t\t\t");
     _builder.append("Output();");
     _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("// Find next activation time");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("if (_r_next_act_time + _r_CLOCK <= _r_cur_time) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("_r_next_act_time = _r_cur_time + _r_CLOCK;");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("} else {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("_r_next_act_time += _r_CLOCK;");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("Prepare_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
@@ -786,7 +822,7 @@ public class R2CReflexGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("int main() {");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t");
     _builder.append("Control_Loop();");
     _builder.newLine();
     _builder.append("}");

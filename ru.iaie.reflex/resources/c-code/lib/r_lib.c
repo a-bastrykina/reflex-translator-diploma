@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+#include "../generated/xvar.h"
+
 #include "r_cnst.h"
 #include "r_lib.h"
 
-struct Process *Pr_States;
-struct Process Original_Pr_States[PROCESS_Nn + 1];
-
+struct Process Pr_States[PROCESS_Nn + 1];
 
 /*================ Set State Of Process ===================*/
 void Set_State (INT16_U pr_num, INT8_U st_num)
 {
     Pr_States[pr_num].cur_state   = (INT8_U)st_num;
-    Pr_States[pr_num].cur_time = (INT32_U)0;
+    Pr_States[pr_num].state_start_time = _r_cur_time;
 }
 
 /*================ Set Stop Of Process ===================*/
@@ -31,25 +31,25 @@ void Set_Error (INT16_U pr_num)
 void Set_Start (INT16_U pr_num)
 {
     Pr_States[pr_num].cur_state = (INT8_U)0;
-    Pr_States[pr_num].cur_time = (INT32_U)0;
+    Pr_States[pr_num].state_start_time = _r_cur_time;
 }
 
 /*================ Reset Process Timer ====================*/
 void Reset_Timer (INT16_U pr_num)
 {
-    Pr_States[pr_num].cur_time = (INT32_U)0;
+    Pr_States[pr_num].state_start_time = _r_cur_time;
 }
 
 /*================ Get Current State Of Process ===================*/
 INT16_U Check_State (INT16_U pr_num)
 {
-    return((INT16_U)Pr_States[pr_num].cur_state);
+    return ((INT16_U)Pr_States[pr_num].cur_state);
 }
 
-INT16_U Timeout (INT16_U pr_num, INT32_U timeout_value)
+BOOL Timeout(INT16_U pr_num, INT32_U timeout)
 {
-    if (Pr_States[pr_num].cur_time >= timeout_value) return(!NULL);
-    return((INT16_U)NULL);
+    if (_r_cur_time - Pr_States[pr_num].state_start_time < timeout) return TRUE;
+    return FALSE;
 }
 
 INT16_U Is_Error(INT16_U pr_num)
@@ -70,27 +70,22 @@ INT8_U  Is_Inactive(INT16_U pr_num) {
     return Is_Stop(pr_num) || Is_Error(pr_num);
 }
 
-/*================ Initialization Of Process State Words ===================*/
-void Init_PSW (INT16_U FirstProc, INT16_U LastProc)
+/*================ Initialization Of Processes ===================*/
+void Init_Processes()
 {
     register INT16_U i;
-
-    Pr_States = Original_Pr_States;
-
-    Set_Start(FirstProc);
-    for (i = (FirstProc + 1); i <= LastProc; i++) {
+    Set_Start(PROCESS_N1);
+    for (i = (PROCESS_N1 + 1); i <= PROCESS_Nn; i++) {
         Set_Stop(i);
     }
 }
 
-/*=========== Prepare Of Process State Words For Next Tact =============*/
-void Prepare_PSW (INT16_U FirstProc, INT16_U LastProc)
-{
-    register INT16_U i;
-#ifdef DEBUG_FLAG
-   // Debug();
-#endif
-    for (i = FirstProc; i <= LastProc; i++)
-         Pr_States[i].cur_time ++;
-}
+// /*=========== Prepare Processes For Next Tact =============*/
+// void Update_Processes(INT16_U first, INT16_U last, INT32_U increment)
+// {
+//    register INT16_U i;
+//    for (i = first; i <= last; i++) {
+//        Pr_States[i].cur_time += increment;
+//    }
+// }
  

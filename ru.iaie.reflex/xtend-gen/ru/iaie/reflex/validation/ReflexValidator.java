@@ -551,16 +551,24 @@ public class ReflexValidator extends AbstractReflexValidator {
   
   @Check
   public void checkEnumMemberAssignType(final EnumMember em) {
-    final Type assignType = ExpressionUtil.resolveType(em.getValue());
-    boolean _canBeSafelyCastedTo = TypeUtils.canBeSafelyCastedTo(assignType, TypeUtils.getDefaultType(em));
-    boolean _not = (!_canBeSafelyCastedTo);
-    if (_not) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Enum member type ");
-      _builder.append(Type.INT32_U);
-      _builder.append(" is not compitable with assigned value type ");
-      _builder.append(assignType);
-      this.warning(_builder.toString(), ReflexValidator.ePackage.getEnumMember_Name());
+    try {
+      final Type assignType = ExpressionUtil.resolveType(em.getValue());
+      boolean _canBeSafelyCastedTo = TypeUtils.canBeSafelyCastedTo(assignType, TypeUtils.getDefaultType(em));
+      boolean _not = (!_canBeSafelyCastedTo);
+      if (_not) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Enum member type ");
+        _builder.append(Type.INT32_U);
+        _builder.append(" is not compitable with assigned value type ");
+        _builder.append(assignType);
+        this.warning(_builder.toString(), 
+          ReflexValidator.ePackage.getEnumMember_Name());
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof IllegalStateException) {
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   

@@ -96,7 +96,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			set(CMAKE_C_STANDARD 99)
 			set(CMAKE_C_FLAGS "-Wall")
 			
-			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)
+			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)
 		'''
 		fsa.generateFile('''c-code/CMakeLists.txt''', fileContent)
 	}
@@ -151,23 +151,15 @@ class R2CReflexGenerator extends AbstractGenerator {
 		}
 		
 		INT8 Read_Input8(int addr1, int addr2) {
-		    INT8 result;
-		    printf("Enter value for %d %d: ", addr1, addr2);
-		    scanf("%c", &result);
-		    printf("\n");
-		    return result;
+		    return 1;
 		}
 		
 		int Write_Output8(int addr1, int addr2, INT8 data) {
-		    printf("Value for %d %d: %c\n", addr1, addr2, data);
+		    printf("Value for %d %d: %d\n", addr1, addr2, data);
 		}
 		
 		INT16 Read_Input16(int addr1, int addr2) {
-		    INT16 result;
-		    printf("Enter value for %d %d: ", addr1, addr2);
-		    scanf("%hd", &result);
-		    printf("\n");
-		    return result;
+		    return 1;
 		}
 		
 		int Write_Output16(int addr1, int addr2, INT16 data) {
@@ -246,6 +238,12 @@ class R2CReflexGenerator extends AbstractGenerator {
 		fsa.generateFile('''c-code/generated/cnst.h''', fileContent)
 	}
 	
+	def generateTimeVariableDefinitions(boolean extern) {
+		return '''«IF extern»extern «ENDIF»INT32_U _r_cur_time;
+				  «IF extern»extern «ENDIF»INT32_U _r_next_act_time;
+				'''
+	}
+	
 	def generateClockConst(Resource resource) {
 		return '''#define _r_CLOCK «translateClockDefinition(program.clock)»'''
 	}
@@ -258,7 +256,6 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def generateConstants(Resource resource) {
-		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
 			#define «identifiersHelper.getConstantId(constant)» «translateExpr(constant.value)» 
@@ -284,6 +281,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#ifndef _gvar_h
 			#define _gvar_h 1
 			#include "../lib/r_cnst.h"
+			«generateTimeVariableDefinitions(false)»
 			«generateVariables(resource, false)»
 			«generatePorts(resource, false)»
 			#endif
@@ -294,6 +292,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#ifndef _xvar_h
 			#define _xvar_h 1
 			#include "../lib/r_cnst.h"
+			«generateTimeVariableDefinitions(true)»
 			«generateVariables(resource, true)»
 			«generatePorts(resource, true)»
 			#endif
@@ -364,34 +363,48 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateMain(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
-			/* MAIN FILE OF THE PROJECT */
-			#include "ext.h" /* Common files for all generated c-files */
-			#include "proc.h"  /* Process-functions desription */
-			#include "gvar.h"  /* Project variables images */
-			#include "io.h"    /* Scan-input/output functions */
-			#include "../lib/platform.h"
-			#include "../lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
-			
-			void Control_Loop (void)    /* Control algorithm */
-			{
-				Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
-				INT32_U cur_time = 0, prev_time = 0;
-				for (;;) {
-					cur_time = Get_Time();
-					if (cur_time - prev_time < _r_CLOCK) continue;
-					prev_time = cur_time;
+		/* MAIN FILE OF THE PROJECT */
+		#include "ext.h" /* Common files for all generated c-files */
+		#include "proc.h"  /* Process-functions desription */
+		#include "gvar.h"  /* Project variables images */
+		#include "io.h"    /* Scan-input/output functions */
+		#include "../lib/platform.h"
+		#include "../lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
+		#include <stdio.h>
+		#include <unistd.h>
+
+		void Init_Time() {
+			_r_cur_time = 0;
+			_r_next_act_time = 0;
+		}
+
+		void Control_Loop(void)    /* Control algorithm */
+		{
+			Init_Processes();
+			Init_Time();
+			for (;;) {
+				_r_cur_time = Get_Time();
+				if (_r_next_act_time <= _r_cur_time) {
+					printf("Activating\n");
 					Input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
 					«ENDFOR»
 					Output();
-					Prepare_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
+
+					// Find next activation time
+					if (_r_next_act_time + _r_CLOCK <= _r_cur_time) {
+						_r_next_act_time = _r_cur_time + _r_CLOCK;
+					} else {
+						_r_next_act_time += _r_CLOCK;
+					}
 				}
 			}
-			
-			int main() {
-			    Control_Loop();
-			}
+		}
+
+		int main() {
+			Control_Loop();
+		}
 		'''
 
 		fsa.generateFile('''c-code/generated/main.c''', fileContent)

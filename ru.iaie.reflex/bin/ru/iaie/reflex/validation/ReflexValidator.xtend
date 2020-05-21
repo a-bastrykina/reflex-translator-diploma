@@ -324,10 +324,16 @@ class ReflexValidator extends AbstractReflexValidator {
 	}
 	
 	@Check def void checkEnumMemberAssignType(EnumMember em) {
-		val assignType = em.value.resolveType
-		if (!assignType.canBeSafelyCastedTo(em.defaultType)) {
-			warning('''Enum member type «Type.INT32_U» is not compitable with assigned value type «assignType»''', ePackage.enumMember_Name)
+		try {
+			val assignType = em.value.resolveType
+			if (!assignType.canBeSafelyCastedTo(em.defaultType)) {
+				warning('''Enum member type «Type.INT32_U» is not compitable with assigned value type «assignType»''',
+					ePackage.enumMember_Name)
+			}
+		} catch (IllegalStateException e) {
+			// Ignore
 		}
+
 	}
 	
 	@Check def void checkPhysicalVariableType(PhysicalVariable physVar) {
