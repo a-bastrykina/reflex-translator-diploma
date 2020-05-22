@@ -35,16 +35,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-  	<dependency>
-  		<groupId>org.eclipse.emf</groupId>
-  		<artifactId>ecore</artifactId>
-  		<version>2.2.3</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.eclipse.xtext</groupId>
-  		<artifactId>org.eclipse.xtext</artifactId>
-  		<version>2.20.0</version>
-  	</dependency>
-  </dependencies>
 </project>

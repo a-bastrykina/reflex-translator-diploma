@@ -8,7 +8,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import ru.iaie.reflex.generator.ISourceBuilder;
 import ru.iaie.reflex.generator.ITranslationStrategy;
-import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.ProcessVariable;
@@ -17,8 +16,6 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class ImperativeLangGenerator extends AbstractGenerator {
-  private IReflexCachedIdentifiersHelper identifiersHelper;
-  
   private ITranslationStrategy strategy;
   
   private ISourceBuilder builder;
@@ -32,7 +29,6 @@ public class ImperativeLangGenerator extends AbstractGenerator {
   
   @Override
   public void afterGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.identifiersHelper.clearCaches();
   }
   
   @Override

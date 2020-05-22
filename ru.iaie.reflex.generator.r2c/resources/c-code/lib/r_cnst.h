@@ -8,14 +8,12 @@
 
 #include <stdint.h>
 
-#define MASK_OF_INACTIVITY 0x80 /* если в ячейке с текущим состоянием 1-ца в ст.разряде - процесс неактивен */
 #define STATE_OF_ERROR      254 /* Reserved state of error */
 #define STATE_OF_STOP       255 /* Reserved state of stop */
 
 #ifndef NULL
 #define NULL 0
 #endif
-#define ZERO 0
 #define TRUE 1
 #define FALSE 0
 
@@ -45,9 +43,6 @@
 #define MASK14_S16 0x2000
 #define MASK15_S16 0x4000
 #define MASK16_S16 0x8000
-
-#define BUFFER_LENGTH 128
-#define DEBUG_FLAG
 
 typedef int8_t     BOOL;      /* Logical data type (TRUE or FALSE)   */
 typedef uint8_t    INT8_U;    /* Unsigned  8 bit value               */

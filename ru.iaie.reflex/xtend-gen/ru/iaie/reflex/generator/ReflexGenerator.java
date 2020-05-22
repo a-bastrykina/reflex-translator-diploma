@@ -3,12 +3,16 @@
  */
 package ru.iaie.reflex.generator;
 
+import java.util.List;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import ru.iaie.reflex.generator.r2c.R2CReflexGenerator;
-import ru.iaie.reflex.generator.xmi.XMIReflexGenerator;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import ru.iaie.reflex.generator.IReflexGenerator;
 
 /**
  * Generates code from your model files on save.
@@ -16,26 +20,50 @@ import ru.iaie.reflex.generator.xmi.XMIReflexGenerator;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 @SuppressWarnings("all")
-public class ReflexGenerator extends AbstractGenerator {
-  private R2CReflexGenerator r2cGen = new R2CReflexGenerator();
+public class ReflexGenerator implements IReflexGenerator {
+  private static final String GENERATOR_ID = "ru.iaie.reflex.reflex_generator";
   
-  private XMIReflexGenerator xmiGen = new XMIReflexGenerator();
+  private static final List<IReflexGenerator> availableGenerators = CollectionLiterals.<IReflexGenerator>newArrayList();
+  
+  public static void initGenerators() {
+    try {
+      IExtensionRegistry registry = Platform.getExtensionRegistry();
+      IConfigurationElement[] config = registry.getConfigurationElementsFor(ReflexGenerator.GENERATOR_ID);
+      for (final IConfigurationElement el : config) {
+        {
+          final Object obj = el.createExecutableExtension("class");
+          if ((obj instanceof IReflexGenerator)) {
+            ReflexGenerator.availableGenerators.add(((IReflexGenerator)obj));
+          }
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
   
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.r2cGen.beforeGenerate(resource, fsa, context);
-    this.xmiGen.beforeGenerate(resource, fsa, context);
+    boolean _isEmpty = ReflexGenerator.availableGenerators.isEmpty();
+    if (_isEmpty) {
+      ReflexGenerator.initGenerators();
+    }
+    for (final IReflexGenerator gen : ReflexGenerator.availableGenerators) {
+      gen.beforeGenerate(resource, fsa, context);
+    }
   }
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.r2cGen.doGenerate(resource, fsa, context);
-    this.xmiGen.doGenerate(resource, fsa, context);
+    for (final IReflexGenerator gen : ReflexGenerator.availableGenerators) {
+      gen.doGenerate(resource, fsa, context);
+    }
   }
   
   @Override
   public void afterGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    this.r2cGen.afterGenerate(resource, fsa, context);
-    this.xmiGen.afterGenerate(resource, fsa, context);
+    for (final IReflexGenerator gen : ReflexGenerator.availableGenerators) {
+      gen.afterGenerate(resource, fsa, context);
+    }
   }
 }

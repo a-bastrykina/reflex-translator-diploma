@@ -4,37 +4,46 @@
 package ru.iaie.reflex.generator
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.AbstractGenerator
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import ru.iaie.reflex.generator.r2c.R2CReflexGenerator
-import ru.iaie.reflex.generator.xmi.XMIReflexGenerator
+import java.util.List
 
 /**
  * Generates code from your model files on save.
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
-class ReflexGenerator extends AbstractGenerator {
-
-	R2CReflexGenerator r2cGen = new R2CReflexGenerator
+class ReflexGenerator implements IReflexGenerator {
 	
-	XMIReflexGenerator xmiGen = new XMIReflexGenerator
+	static final String GENERATOR_ID =
+            "ru.iaie.reflex.reflex_generator";
+            
+    static final List<IReflexGenerator> availableGenerators = newArrayList()
+    
+    static def initGenerators() {
+    	var registry = Platform.extensionRegistry
+    	var config = registry.getConfigurationElementsFor(GENERATOR_ID);
+    	for (el : config) {
+    		val obj = el.createExecutableExtension("class")
+    		if (obj instanceof IReflexGenerator) {
+    			availableGenerators.add(obj)
+    		}
+    	}
+    }
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		r2cGen.beforeGenerate(resource, fsa, context)
-		xmiGen.beforeGenerate(resource, fsa, context)
+		if (availableGenerators.empty) initGenerators()
+		for (gen : availableGenerators) gen.beforeGenerate(resource, fsa, context)
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		r2cGen.doGenerate(resource, fsa, context)
-		xmiGen.doGenerate(resource, fsa, context)
+		for (gen : availableGenerators) gen.doGenerate(resource, fsa, context)
 	}
 	
 		
 	override void afterGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		r2cGen.afterGenerate(resource, fsa, context)
-		xmiGen.afterGenerate(resource, fsa, context)
+		for (gen : availableGenerators) gen.afterGenerate(resource, fsa, context)
 	}
 	
 }

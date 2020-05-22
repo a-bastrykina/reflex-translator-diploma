@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="ru.iaie.reflex.reflex_generator">
+      <client
+            class="ru.iaie.reflex.generator.r2c.R2CReflexGenerator"></client>
+   </extension>
+
+</plugin>

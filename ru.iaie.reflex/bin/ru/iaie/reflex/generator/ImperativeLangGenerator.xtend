@@ -7,7 +7,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 
-import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper
+//import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper
 import ru.iaie.reflex.reflex.Program
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.Process
@@ -17,7 +17,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 
 class ImperativeLangGenerator extends AbstractGenerator {
 	
-	IReflexCachedIdentifiersHelper identifiersHelper;
+//	IReflexCachedIdentifiersHelper identifiersHelper;
 	ITranslationStrategy strategy;
 	ISourceBuilder builder;
 	// AST root element
@@ -28,7 +28,7 @@ class ImperativeLangGenerator extends AbstractGenerator {
 	}
 
 	override void afterGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		identifiersHelper.clearCaches()
+//		identifiersHelper.clearCaches()
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {

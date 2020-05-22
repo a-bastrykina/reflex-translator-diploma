@@ -50,8 +50,12 @@ import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PortType
 import ru.iaie.reflex.reflex.PortMapping
+import ru.iaie.reflex.reflex.Port
+import ru.iaie.reflex.utils.LiteralUtils
+import ru.iaie.reflex.reflex.ClockDefinition
+import ru.iaie.reflex.generator.IReflexGenerator
 
-class R2CReflexGenerator extends AbstractGenerator {
+class R2CReflexGenerator implements IReflexGenerator {
 
 	IReflexCachedIdentifiersHelper identifiersHelper = new ReflexIdentifiersHelper;
     
@@ -74,6 +78,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 		generateProcessDefinitions(resource, fsa, context)
 		generateProcessImplementations(resource, fsa, context)
 		generateIO(resource, fsa, context)
+		generatePlatformFile(resource, fsa, context)
 		generateMain(resource, fsa, context)
 		generateCMake(resource, fsa, context)
 	}
@@ -92,7 +97,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			set(CMAKE_C_STANDARD 99)
 			set(CMAKE_C_FLAGS "-Wall")
 			
-			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_io.c lib/r_lib.c usr/usr.c generated/io.c)
+			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)
 		'''
 		fsa.generateFile('''c-code/CMakeLists.txt''', fileContent)
 	}
@@ -108,23 +113,74 @@ class R2CReflexGenerator extends AbstractGenerator {
 		val fileContent = '''
 		#include "io.h"
 		#include "xvar.h"
-		#include "../lib/r_cnst.h"	
-		#include "stdio.h"
+		#include "../lib/r_cnst.h"
+		#include "../lib/platform.h"
 		
 		void Input(void) {
+			«FOR inPort: program.ports.filter[type == PortType.INPUT]»
+				«translateInputPortReading(inPort)»
+			«ENDFOR»
 		    «FOR physVar : inputVars»
 		    	«translateReadingFromInput(physVar)»
 		    «ENDFOR»
-		}  /* Reading IO func */
+		}
 		
 		void Output(void) {
 			«FOR physVar : outputVars»
 			    «translateReadingFromOutput(physVar)»
 		    «ENDFOR»
-		    printf("output\n");
-		} /* Writing IO func */
+		    «FOR outPort: program.ports.filter[type == PortType.OUTPUT]»
+		 		«translateOutputPortWriting(outPort)»
+		    «ENDFOR»
+		}
 		'''
 		fsa.generateFile('''c-code/generated/io.c''', fileContent)
+	}
+	
+	def generatePlatformFile(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val fileContent = '''
+		#include <sys/time.h>
+		#include <stdio.h>
+		#include "../lib/platform.h"
+		
+		// Dummy realizations when no target platform is specified
+		
+		INT32_U Get_Time() {
+		    struct timeval time;
+		    gettimeofday(&time, NULL);
+		    return time.tv_sec * 1000 + time.tv_usec / 1000;
+		}
+		
+		INT8 Read_Input8(int addr1, int addr2) {
+		    return 1;
+		}
+		
+		int Write_Output8(int addr1, int addr2, INT8 data) {
+		    printf("Value for %d %d: %d\n", addr1, addr2, data);
+		}
+		
+		INT16 Read_Input16(int addr1, int addr2) {
+		    return 1;
+		}
+		
+		int Write_Output16(int addr1, int addr2, INT16 data) {
+		    printf("Value for %d %d: %hd\n", addr1, addr2, data);
+		}
+		'''
+
+		fsa.generateFile('''c-code/generated/platform.c''', fileContent)
+	}
+	
+	def translateInputPortReading(Port port) {
+		val portId = identifiersHelper.getPortId(port)
+		val portSize = LiteralUtils.parseInteger(port.size)
+		return '''«portId» = Read_Input«portSize»(«port.addr1», «port.addr2»);'''
+	}
+	
+	def translateOutputPortWriting(Port port) {
+		val portId = identifiersHelper.getPortId(port)
+		val portSize = LiteralUtils.parseInteger(port.size)
+		return '''Write_Output«portSize»(«port.addr1», «port.addr2», «portId»);'''
 	}
 	
 	def translateReadingFromInput(PhysicalVariable v) {
@@ -168,7 +224,6 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''MASK«mapping.bit»_S«mapping.port.size»'''
 	}
 
-// TODO: rename
 	def generateConstantsFile(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
 			#ifndef _cnst_h
@@ -177,13 +232,31 @@ class R2CReflexGenerator extends AbstractGenerator {
 			«generateConstants(resource)»
 			/*                Enums                    */
 			«generateEnums(resource)»
+			
+			«generateClockConst(resource)»
 			#endif
 		'''
 		fsa.generateFile('''c-code/generated/cnst.h''', fileContent)
 	}
+	
+	def generateTimeVariableDefinitions(boolean extern) {
+		return '''«IF extern»extern «ENDIF»INT32_U _r_cur_time;
+				  «IF extern»extern «ENDIF»INT32_U _r_next_act_time;
+				'''
+	}
+	
+	def generateClockConst(Resource resource) {
+		return '''#define _r_CLOCK «translateClockDefinition(program.clock)»'''
+	}
+	
+	def translateClockDefinition(ClockDefinition clock) {
+		if (clock.hasTimeFormat) {
+			return translateTime(clock.timeValue)
+		} 
+		return clock.intValue
+	}
 
 	def generateConstants(Resource resource) {
-		// TODO: check for const expr
 		return '''
 			«FOR constant : program.consts»
 			#define «identifiersHelper.getConstantId(constant)» «translateExpr(constant.value)» 
@@ -209,6 +282,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#ifndef _gvar_h
 			#define _gvar_h 1
 			#include "../lib/r_cnst.h"
+			«generateTimeVariableDefinitions(false)»
 			«generateVariables(resource, false)»
 			«generatePorts(resource, false)»
 			#endif
@@ -219,6 +293,7 @@ class R2CReflexGenerator extends AbstractGenerator {
 			#ifndef _xvar_h
 			#define _xvar_h 1
 			#include "../lib/r_cnst.h"
+			«generateTimeVariableDefinitions(true)»
 			«generateVariables(resource, true)»
 			«generatePorts(resource, true)»
 			#endif
@@ -254,10 +329,9 @@ class R2CReflexGenerator extends AbstractGenerator {
 	}
 
 	def generatePorts(Resource resource, boolean externDef) {
-		// TODO: specify port type
 		return '''
 			«FOR reg : program.ports»
-			«IF externDef»extern «ENDIF»char «identifiersHelper.getPortId(reg)»;
+			«IF externDef»extern «ENDIF»«translateType(reg.suitableTypeForPort)» «identifiersHelper.getPortId(reg)»;
 			«ENDFOR»
 		'''
 	}
@@ -290,29 +364,48 @@ class R2CReflexGenerator extends AbstractGenerator {
 
 	def generateMain(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val fileContent = '''
-			/* MAIN FILE OF THE PROJECT */
-			#include "ext.h" /* Common files for all generated c-files */
-			#include "proc.h"  /* Process-functions desription */
-			#include "gvar.h"  /* Project variables images */
-			#include "io.h"    /* Scan-input/output functions */
-			#include "../lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
-			
-			void Control_Loop (void)    /* Control algorithm */
-			{
-				Init_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
-				for (;;) {
+		/* MAIN FILE OF THE PROJECT */
+		#include "ext.h" /* Common files for all generated c-files */
+		#include "proc.h"  /* Process-functions desription */
+		#include "gvar.h"  /* Project variables images */
+		#include "io.h"    /* Scan-input/output functions */
+		#include "../lib/platform.h"
+		#include "../lib/r_main.h"  /* Code of the main-function that calls Control_Loop */
+		#include <stdio.h>
+		#include <unistd.h>
+
+		void Init_Time() {
+			_r_cur_time = 0;
+			_r_next_act_time = 0;
+		}
+
+		void Control_Loop(void)    /* Control algorithm */
+		{
+			Init_Processes();
+			Init_Time();
+			for (;;) {
+				_r_cur_time = Get_Time();
+				if (_r_next_act_time <= _r_cur_time) {
+					printf("Activating\n");
 					Input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
 					«ENDFOR»
 					Output();
-					Prepare_PSW((INT16)(PROCESS_N1), (INT16)PROCESS_Nn);
+
+					// Find next activation time
+					if (_r_next_act_time + _r_CLOCK <= _r_cur_time) {
+						_r_next_act_time = _r_cur_time + _r_CLOCK;
+					} else {
+						_r_next_act_time += _r_CLOCK;
+					}
 				}
 			}
-			
-			int main() {
-			    Control_Loop();
-			}
+		}
+
+		int main() {
+			Control_Loop();
+		}
 		'''
 
 		fsa.generateFile('''c-code/generated/main.c''', fileContent)
@@ -442,10 +535,20 @@ class R2CReflexGenerator extends AbstractGenerator {
 		return '''
 			switch («translateExpr(stat.expr)») {
 				«FOR variant : stat.options»
-				case («variant.option»):
-					«translateStatement(proc, state, stat)»
+				case («translateExpr(variant.option)»): {
+					«FOR statement: variant.statements» 
+						«translateStatement(proc, state, statement)»
+					«ENDFOR»
 					«IF variant.hasBreak»break;«ENDIF»
+					}
 				«ENDFOR»
+				«IF stat.hasDefaultOption»default: {
+					«FOR statement: stat.defaultOption.statements» 
+						«translateStatement(proc, state, statement)»
+					«ENDFOR»
+					«IF stat.defaultOption.hasBreak»break;«ENDIF»
+				}
+				«ENDIF»
 			}
 		'''
 	}
