@@ -40,7 +40,6 @@ class ReflexGenerator implements IReflexGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (gen : availableGenerators) gen.doGenerate(resource, fsa, context)
 	}
-	
 		
 	override void afterGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (gen : availableGenerators) gen.afterGenerate(resource, fsa, context)

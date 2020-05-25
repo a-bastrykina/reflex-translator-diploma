@@ -13,7 +13,7 @@ struct Process
     INT8_U  cur_state;          /*  Current state identifier      */
 };
 
-extern struct Process Pr_States[PROCESS_Nn + 1];
+extern struct Process Processes[PROCESS_Nn + 1];
 
 /*================ Set State Of Process ===================*/
 void Set_State(INT16_U, INT8_U);
