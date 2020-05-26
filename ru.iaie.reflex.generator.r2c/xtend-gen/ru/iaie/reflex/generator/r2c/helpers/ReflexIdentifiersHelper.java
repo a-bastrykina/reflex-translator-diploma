@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.helpers;
 
 import com.google.common.base.Objects;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
@@ -19,11 +19,7 @@ import ru.iaie.reflex.reflex.ProgramVariable;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
-public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
-  private final Map<String, String> procIdentifiers = CollectionLiterals.<String, String>newHashMap();
-  
-  private final Map<String, Map<String, String>> stateIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
-  
+public class ReflexIdentifiersHelper implements IReflexIdentifiersHelper {
   private final Map<String, Map<String, String>> procVarIdentifiers = CollectionLiterals.<String, Map<String, String>>newHashMap();
   
   private final Map<String, String> globalVarIdentifiers = CollectionLiterals.<String, String>newHashMap();
@@ -182,16 +178,5 @@ public class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
       return this.getEnumMemberId(((EnumMember)ref));
     }
     return null;
-  }
-  
-  @Override
-  public void clearCaches() {
-    this.procIdentifiers.clear();
-    this.stateIdentifiers.clear();
-    this.procVarIdentifiers.clear();
-    this.constIdentifiers.clear();
-    this.portIdentifiers.clear();
-    this.enumIdentifiers.clear();
-    this.globalVarIdentifiers.clear();
   }
 }

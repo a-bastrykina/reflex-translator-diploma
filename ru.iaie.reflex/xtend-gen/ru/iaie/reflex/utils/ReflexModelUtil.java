@@ -104,6 +104,10 @@ public class ReflexModelUtil {
     return IterableExtensions.<ProcessVariable>toList(Iterables.<ProcessVariable>concat(ListExtensions.<ImportedVariableList, EList<ProcessVariable>>map(p.getImports(), _function)));
   }
   
+  public static ru.iaie.reflex.reflex.Process getProcess(final ProcessVariable v) {
+    return EcoreUtil2.<ru.iaie.reflex.reflex.Process>getContainerOfType(v, ru.iaie.reflex.reflex.Process.class);
+  }
+  
   public static Type getType(final ProcessVariable v) {
     if ((v instanceof PhysicalVariable)) {
       return ((PhysicalVariable)v).getType();

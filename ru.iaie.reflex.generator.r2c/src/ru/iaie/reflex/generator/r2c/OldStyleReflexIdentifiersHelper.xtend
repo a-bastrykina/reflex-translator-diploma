@@ -15,13 +15,12 @@ import ru.iaie.reflex.reflex.GlobalVariable
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.ProcessVariable
+import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
 
 @Deprecated
-class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
+class OldStyleReflexIdentifiersHelper implements IReflexIdentifiersHelper {
 
 	// TODO: final
-	Map<String, String> procIdentifiers = new HashMap
-	Map<String, Map<String, String>> stateIdentifiers = new HashMap
 	Map<String, Map<String, String>> varIdentifiers = new HashMap
 	Map<String, String> globalVarIdentifiers = new HashMap
 	Map<String, String> constIdentifiers = new HashMap
@@ -34,27 +33,27 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 	private def dispatch getKey(Process proc) {
 		return proc.name
 	}
-	
+
 	private def dispatch getKey(State state) {
 		return state.name
 	}
-	
+
 	private def dispatch getKey(PhysicalVariable v) {
 		return v.name
 	}
-	
+
 	private def dispatch getKey(ProgramVariable v) {
 		return v.name
 	}
-	
+
 	private def dispatch getKey(Const c) {
 		return c.name
 	}
-	
+
 	private def dispatch getKey(Port r) {
 		return r.name
 	}
-	
+
 	private def dispatch getKey(Enum en) {
 		return en.identifier
 	}
@@ -102,17 +101,7 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 	override getProcessFuncId(Process proc) {
 		return '''P«proc.index»'''
 	}
-	
-	override clearCaches() {
-		procIdentifiers.clear
-		stateIdentifiers.clear
-		varIdentifiers.clear
-		constIdentifiers.clear
-		portIdentifiers.clear
-		enumIdentifiers.clear
-		globalVarIdentifiers.clear
-	}
-	
+
 	override getEnumId(Enum en) {
 		val key = getKey(en)
 		if (enumIdentifiers.containsKey(key)) {
@@ -135,7 +124,7 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 			return value
 		}
 	}
-	
+
 	override getGlobalVariableId(GlobalVariable v) {
 		val key = getKey(v)
 		if (globalVarIdentifiers.containsKey(key)) {
@@ -147,10 +136,9 @@ class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper 
 			return value
 		}
 	}
-	
+
 	override getMapping(IdReference original) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub") 
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
 
 }

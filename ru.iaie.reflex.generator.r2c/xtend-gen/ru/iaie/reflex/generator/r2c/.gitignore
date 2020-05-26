@@ -13,3 +13,13 @@
 /R2CReflexGenerator.java
 /R2CResourceProvider.java
 /ReflexIdentifiersHelper.java
+/.ExpressionGenerator.java._trace
+/.StatementGenerator.java._trace
+/.ProcessGenerator.java._trace
+/.IFileGenerator.java._trace
+/.R2CFileGenerator.java._trace
+/.LiteralGenerationUtil.java._trace
+/.PortGenerationHelper.java._trace
+/.VariableGenerationHelper.java._trace
+/.ConstantGenerationHelper.java._trace
+/.IReflexIdentifiersHelper.java._trace

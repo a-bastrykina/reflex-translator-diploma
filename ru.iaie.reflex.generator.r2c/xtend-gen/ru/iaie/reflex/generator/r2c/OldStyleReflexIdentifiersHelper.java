@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
 import ru.iaie.reflex.reflex.GlobalVariable;
@@ -19,11 +19,7 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @Deprecated
 @SuppressWarnings("all")
-public class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
-  private Map<String, String> procIdentifiers = new HashMap<String, String>();
-  
-  private Map<String, Map<String, String>> stateIdentifiers = new HashMap<String, Map<String, String>>();
-  
+public class OldStyleReflexIdentifiersHelper implements IReflexIdentifiersHelper {
   private Map<String, Map<String, String>> varIdentifiers = new HashMap<String, Map<String, String>>();
   
   private Map<String, String> globalVarIdentifiers = new HashMap<String, String>();
@@ -137,17 +133,6 @@ public class OldStyleReflexIdentifiersHelper implements IReflexCachedIdentifiers
     int _index = ReflexModelUtil.getIndex(proc);
     _builder.append(_index);
     return _builder.toString();
-  }
-  
-  @Override
-  public void clearCaches() {
-    this.procIdentifiers.clear();
-    this.stateIdentifiers.clear();
-    this.varIdentifiers.clear();
-    this.constIdentifiers.clear();
-    this.portIdentifiers.clear();
-    this.enumIdentifiers.clear();
-    this.globalVarIdentifiers.clear();
   }
   
   @Override

@@ -62,7 +62,7 @@ INT16_U Is_Stop(INT16_U pr_num)
     return (INT16_U)(Check_State(pr_num) == STATE_OF_STOP);
 }
 
-INT16_U Is_Active(INT16_U pr_num) {
+INT8_U Is_Active(INT16_U pr_num) {
     return !Is_Stop(pr_num) && !Is_Error(pr_num);
 }
 

@@ -76,6 +76,10 @@ class ReflexModelUtil {
 	def static List<ProcessVariable> getImportedVariables(Process p) {
 		return p.imports.map[variables].flatten.toList
 	}
+	
+	def static Process getProcess(ProcessVariable v) {
+		return v.getContainerOfType(Process)
+	}
 
 	def static Type getType(ProcessVariable v) {
 		if(v instanceof PhysicalVariable) return v.type

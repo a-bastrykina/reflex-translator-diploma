@@ -33,6 +33,10 @@ void Set_Start(INT16_U);
 /*================ Work Up Current State Of Process       ===================*/
 INT16_U Check_State(INT16_U);
 
+INT8_U Is_Active(INT16_U pr_num);
+
+INT8_U Is_Inactive(INT16_U pr_num);
+
 /*=========== Prepare Processes For Next Tact   =============*/
 void Update_Processes(INT16_U, INT16_U, INT32_U);
 

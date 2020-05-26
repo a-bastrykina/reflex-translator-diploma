@@ -1,6 +1,5 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.helpers
 
-import ru.iaie.reflex.generator.r2c.IReflexCachedIdentifiersHelper
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Enum
@@ -16,11 +15,9 @@ import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.ProgramVariable
 import ru.iaie.reflex.reflex.Port
 import ru.iaie.reflex.reflex.PortType
+import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
 
-class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
-
-	val Map<String, String> procIdentifiers = newHashMap()
-	val Map<String, Map<String, String>> stateIdentifiers = newHashMap()
+class ReflexIdentifiersHelper implements IReflexIdentifiersHelper {
 	val Map<String, Map<String, String>> procVarIdentifiers = newHashMap()
 	val Map<String, String> globalVarIdentifiers = newHashMap()
 	val Map<String, String> constIdentifiers = newHashMap()
@@ -110,16 +107,6 @@ class ReflexIdentifiersHelper implements IReflexCachedIdentifiersHelper {
 		}
 		if (ref instanceof Const) return getConstantId(ref)
 		if (ref instanceof EnumMember) return getEnumMemberId(ref)
-	}
-
-	override clearCaches() {
-		procIdentifiers.clear
-		stateIdentifiers.clear
-		procVarIdentifiers.clear
-		constIdentifiers.clear
-		portIdentifiers.clear
-		enumIdentifiers.clear
-		globalVarIdentifiers.clear
 	}
 
 }

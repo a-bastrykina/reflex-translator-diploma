@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.interfaces;
 
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -8,7 +8,7 @@ import ru.iaie.reflex.reflex.Port;
 import ru.iaie.reflex.reflex.ProcessVariable;
 
 @SuppressWarnings("all")
-public interface IReflexCachedIdentifiersHelper {
+public interface IReflexIdentifiersHelper {
   public abstract String getProcessFuncId(final ru.iaie.reflex.reflex.Process proc);
   
   public abstract String getProcessVariableId(final ru.iaie.reflex.reflex.Process proc, final ProcessVariable v);
@@ -24,6 +24,4 @@ public interface IReflexCachedIdentifiersHelper {
   public abstract String getGlobalVariableId(final GlobalVariable v);
   
   public abstract String getMapping(final IdReference original);
-  
-  public abstract void clearCaches();
 }
