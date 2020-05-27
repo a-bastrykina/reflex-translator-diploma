@@ -3,11 +3,10 @@ package ru.iaie.reflex.generator.r2c;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import ru.iaie.reflex.generator.r2c.ExpressionGenerator;
 import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil;
+import ru.iaie.reflex.generator.r2c.helpers.ExpressionGenerationHelper;
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
 import ru.iaie.reflex.reflex.CaseStat;
-import ru.iaie.reflex.reflex.CheckStateExpression;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Expression;
 import ru.iaie.reflex.reflex.IfElseStat;
@@ -16,7 +15,6 @@ import ru.iaie.reflex.reflex.RestartStat;
 import ru.iaie.reflex.reflex.SetStateStat;
 import ru.iaie.reflex.reflex.StartProcStat;
 import ru.iaie.reflex.reflex.State;
-import ru.iaie.reflex.reflex.StateQualifier;
 import ru.iaie.reflex.reflex.Statement;
 import ru.iaie.reflex.reflex.StopProcStat;
 import ru.iaie.reflex.reflex.SwitchStat;
@@ -29,13 +27,13 @@ public class ProcessGenerator {
   
   private IReflexIdentifiersHelper identifiersHelper;
   
-  private ExpressionGenerator expressionGenerator;
+  private ExpressionGenerationHelper expressionGenerator;
   
   public ProcessGenerator(final ru.iaie.reflex.reflex.Process process, final IReflexIdentifiersHelper identifiersHelper) {
     this.proc = process;
     this.identifiersHelper = identifiersHelper;
-    ExpressionGenerator _expressionGenerator = new ExpressionGenerator(identifiersHelper);
-    this.expressionGenerator = _expressionGenerator;
+    ExpressionGenerationHelper _expressionGenerationHelper = new ExpressionGenerationHelper(identifiersHelper);
+    this.expressionGenerator = _expressionGenerationHelper;
   }
   
   public String generate() {
@@ -164,8 +162,8 @@ public class ProcessGenerator {
       if (statement instanceof Expression) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        String _generate = this.expressionGenerator.generate(statement);
-        _builder.append(_generate);
+        String _translateExpr = this.expressionGenerator.translateExpr(statement);
+        _builder.append(_translateExpr);
         _builder.append(";");
         return _builder.toString();
       }
@@ -387,44 +385,5 @@ public class ProcessGenerator {
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
-  }
-  
-  public String translateCheckStateExpression(final CheckStateExpression cse) {
-    StateQualifier _qualfier = cse.getQualfier();
-    if (_qualfier != null) {
-      switch (_qualfier) {
-        case STOP:
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Is_Stop(");
-          int _index = ReflexModelUtil.getIndex(cse.getProcess());
-          _builder.append(_index);
-          _builder.append(")");
-          return _builder.toString();
-        case ERROR:
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("Is_Error(");
-          int _index_1 = ReflexModelUtil.getIndex(cse.getProcess());
-          _builder_1.append(_index_1);
-          _builder_1.append(")");
-          return _builder_1.toString();
-        case ACTIVE:
-          StringConcatenation _builder_2 = new StringConcatenation();
-          _builder_2.append("Is_Active(");
-          int _index_2 = ReflexModelUtil.getIndex(cse.getProcess());
-          _builder_2.append(_index_2);
-          _builder_2.append(")");
-          return _builder_2.toString();
-        case INACTIVE:
-          StringConcatenation _builder_3 = new StringConcatenation();
-          _builder_3.append("Is_Inactive(");
-          int _index_3 = ReflexModelUtil.getIndex(cse.getProcess());
-          _builder_3.append(_index_3);
-          _builder_3.append(")");
-          return _builder_3.toString();
-        default:
-          break;
-      }
-    }
-    return null;
   }
 }

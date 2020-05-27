@@ -33,6 +33,8 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class R2CFileGenerator implements IFileGenerator {
+  private static final String C_STANDART = "99";
+  
   private static final String ROOT_DIR_NAME = "c-code";
   
   private static final String GENERATED_DIR_NAME = "generated";
@@ -63,6 +65,23 @@ public class R2CFileGenerator implements IFileGenerator {
   }
   
   @Override
+  public void prepareForGeneration() {
+    for (final String resource : R2CResourceProvider.COMMON_RESOURCES) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(R2CFileGenerator.ROOT_DIR_NAME);
+      _builder.append("/");
+      _builder.append(resource);
+      Class<? extends R2CFileGenerator> _class = this.getClass();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("/resources/");
+      _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+      _builder_1.append("/");
+      _builder_1.append(resource);
+      this.fsa.generateFile(_builder.toString(), _class.getResourceAsStream(_builder_1.toString()));
+    }
+  }
+  
+  @Override
   public void generateBuildFiles() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("cmake_minimum_required(VERSION 3.15)");
@@ -73,8 +92,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append(")");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("set(CMAKE_C_STANDARD 99)");
-    _builder.newLine();
+    _builder.append("set(CMAKE_C_STANDARD ");
+    _builder.append(R2CFileGenerator.C_STANDART);
+    _builder.append(")");
+    _builder.newLineIfNotEmpty();
     _builder.append("set(CMAKE_C_FLAGS \"-Wall\")");
     _builder.newLine();
     _builder.newLine();

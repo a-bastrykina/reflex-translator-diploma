@@ -1,6 +1,7 @@
 package ru.iaie.reflex.generator.r2c.interfaces;
 
 interface IFileGenerator {
+	def void prepareForGeneration()
 	def void generateVariableDefinitions()
 	def void generateConstantDefinitions()
 	def void generateProcessDefinitions()

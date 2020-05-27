@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.helpers;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -40,15 +40,11 @@ import ru.iaie.reflex.utils.ExpressionUtil;
 import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
-public class ExpressionGenerator {
+public class ExpressionGenerationHelper {
   private final IReflexIdentifiersHelper identifiersHelper;
   
-  public ExpressionGenerator(final IReflexIdentifiersHelper ih) {
+  public ExpressionGenerationHelper(final IReflexIdentifiersHelper ih) {
     this.identifiersHelper = ih;
-  }
-  
-  public String generate(final EObject expr) {
-    return this.translateExpr(expr);
   }
   
   public String translateExpr(final EObject expr) {

@@ -4,15 +4,14 @@ import ru.iaie.reflex.reflex.Const
 import ru.iaie.reflex.reflex.Enum
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
-import ru.iaie.reflex.generator.r2c.ExpressionGenerator
 
 class ConstantGenerationHelper {
 	IReflexIdentifiersHelper identifiersHelper
-	ExpressionGenerator expressionGenerator
+	ExpressionGenerationHelper expressionGenerator
 	
 	new(IReflexIdentifiersHelper ih) {
 		this.identifiersHelper = ih 
-		this.expressionGenerator = new ExpressionGenerator(identifiersHelper)
+		this.expressionGenerator = new ExpressionGenerationHelper(identifiersHelper)
 	}
 	
 	def generateConstantDefinition(Const c) {

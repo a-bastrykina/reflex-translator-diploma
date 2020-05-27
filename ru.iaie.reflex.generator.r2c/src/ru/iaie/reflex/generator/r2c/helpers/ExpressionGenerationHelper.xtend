@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.helpers
 
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
@@ -25,19 +25,16 @@ import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
+import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil
 
-class ExpressionGenerator {
-		val IReflexIdentifiersHelper identifiersHelper
-		
-		new(IReflexIdentifiersHelper ih) {
-			this.identifiersHelper = ih;
-		}
-		
-		def generate(EObject expr) {
-			return translateExpr(expr)
-		}
-		 
-		def String translateExpr(EObject expr) {
+class ExpressionGenerationHelper {
+	val IReflexIdentifiersHelper identifiersHelper
+
+	new(IReflexIdentifiersHelper ih) {
+		this.identifiersHelper = ih;
+	}
+
+	def String translateExpr(EObject expr) {
 		switch (expr) {
 			InfixOp:
 				return '''«expr.op» «identifiersHelper.getMapping(expr.ref)»'''
@@ -48,7 +45,7 @@ class ExpressionGenerator {
 			IdReference:
 				return '''«identifiersHelper.getMapping(expr)»'''
 			PrimaryExpression: {
-				if (expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
+				if(expr.isNestedExpr) return '''(«translateExpr(expr.nestedExpr)»)'''
 				if (expr.isBoolean) {
 					return LiteralGenerationUtil.translateBoolLiteral(expr.bool)
 				}
@@ -93,7 +90,7 @@ class ExpressionGenerator {
 			}
 		}
 	}
-	
+
 	def translateCheckStateExpression(CheckStateExpression cse) {
 		switch (cse.qualfier) {
 			case STOP:

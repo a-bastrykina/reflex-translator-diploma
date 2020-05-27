@@ -2,7 +2,7 @@ package ru.iaie.reflex.generator.r2c.helpers;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import ru.iaie.reflex.generator.r2c.ExpressionGenerator;
+import ru.iaie.reflex.generator.r2c.helpers.ExpressionGenerationHelper;
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.EnumMember;
@@ -12,12 +12,12 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 public class ConstantGenerationHelper {
   private IReflexIdentifiersHelper identifiersHelper;
   
-  private ExpressionGenerator expressionGenerator;
+  private ExpressionGenerationHelper expressionGenerator;
   
   public ConstantGenerationHelper(final IReflexIdentifiersHelper ih) {
     this.identifiersHelper = ih;
-    ExpressionGenerator _expressionGenerator = new ExpressionGenerator(this.identifiersHelper);
-    this.expressionGenerator = _expressionGenerator;
+    ExpressionGenerationHelper _expressionGenerationHelper = new ExpressionGenerationHelper(this.identifiersHelper);
+    this.expressionGenerator = _expressionGenerationHelper;
   }
   
   public String generateConstantDefinition(final Const c) {

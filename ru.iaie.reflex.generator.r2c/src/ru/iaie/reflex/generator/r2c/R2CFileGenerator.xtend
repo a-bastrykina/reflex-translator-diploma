@@ -17,6 +17,7 @@ import ru.iaie.reflex.generator.r2c.helpers.ReflexIdentifiersHelper
 
 class R2CFileGenerator implements IFileGenerator {
 	
+	static val String C_STANDART = "99";
 	static val String ROOT_DIR_NAME = "c-code"
 	static val String GENERATED_DIR_NAME = "generated"
 	 
@@ -38,12 +39,18 @@ class R2CFileGenerator implements IFileGenerator {
 		varGenerationHelper = new VariableGenerationHelper(identifiersHelper)
 	}
 	
+	override prepareForGeneration() {
+		for (resource : R2CResourceProvider.COMMON_RESOURCES) {
+			fsa.generateFile('''«ROOT_DIR_NAME»/«resource»''', class.getResourceAsStream('''/resources/«ROOT_DIR_NAME»/«resource»'''))
+		}
+	}
+
 	override generateBuildFiles() {
 		var fileContent = '''
 			cmake_minimum_required(VERSION 3.15)
 			project(«program.name.toLowerCase»)
 			
-			set(CMAKE_C_STANDARD 99)
+			set(CMAKE_C_STANDARD «C_STANDART»)
 			set(CMAKE_C_FLAGS "-Wall")
 			
 			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)
@@ -251,4 +258,5 @@ class R2CFileGenerator implements IFileGenerator {
 				  «IF extern»extern «ENDIF»INT32_U _r_next_act_time;
 				'''
 	}
+	
 }

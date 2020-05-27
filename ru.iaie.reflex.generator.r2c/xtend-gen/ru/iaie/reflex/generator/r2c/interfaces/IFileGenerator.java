@@ -2,6 +2,8 @@ package ru.iaie.reflex.generator.r2c.interfaces;
 
 @SuppressWarnings("all")
 public interface IFileGenerator {
+  public abstract void prepareForGeneration();
+  
   public abstract void generateVariableDefinitions();
   
   public abstract void generateConstantDefinitions();

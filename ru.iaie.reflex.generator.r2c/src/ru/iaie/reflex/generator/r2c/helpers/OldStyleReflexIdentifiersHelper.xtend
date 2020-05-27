@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.helpers
 
 import ru.iaie.reflex.reflex.Process
 import ru.iaie.reflex.reflex.State

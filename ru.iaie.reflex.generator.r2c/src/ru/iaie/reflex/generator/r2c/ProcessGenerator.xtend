@@ -15,20 +15,20 @@ import ru.iaie.reflex.reflex.TimeoutFunction
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 
-import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
+import ru.iaie.reflex.generator.r2c.helpers.ExpressionGenerationHelper
 
 class ProcessGenerator {
 
 	Process proc
 	IReflexIdentifiersHelper identifiersHelper
-	ExpressionGenerator expressionGenerator
+	ExpressionGenerationHelper expressionGenerator
 	
 	new(Process process, IReflexIdentifiersHelper identifiersHelper) {
 		this.proc = process
 		this.identifiersHelper = identifiersHelper
-		expressionGenerator = new ExpressionGenerator(identifiersHelper)
+		expressionGenerator = new ExpressionGenerationHelper(identifiersHelper)
 	}
 
 	def generate() {
@@ -69,8 +69,6 @@ class ProcessGenerator {
 		if(func.isReferencedTimeout) identifiersHelper.getMapping(func.ref);
 	}
 
-
-
 	def String translateStatement(State state, EObject statement) {
 		switch statement {
 			StopProcStat:
@@ -80,7 +78,7 @@ class ProcessGenerator {
 			IfElseStat:
 				return translateIfElseStat(state, statement)
 			Expression:
-				return '''«expressionGenerator.generate(statement)»;'''
+				return '''«expressionGenerator.translateExpr(statement)»;'''
 			SwitchStat:
 				return translateSwitchCaseStat(state, statement)
 			StartProcStat:
@@ -160,18 +158,5 @@ class ProcessGenerator {
 		return '''
 			Set_Start(«proc.index»);
 		'''
-	}
-
-	def translateCheckStateExpression(CheckStateExpression cse) {
-		switch (cse.qualfier) {
-			case STOP:
-				return '''Is_Stop(«cse.process.index»)'''
-			case ERROR:
-				return '''Is_Error(«cse.process.index»)'''
-			case ACTIVE:
-				return '''Is_Active(«cse.process.index»)'''
-			case INACTIVE:
-				return '''Is_Inactive(«cse.process.index»)'''
-		}
 	}
 }

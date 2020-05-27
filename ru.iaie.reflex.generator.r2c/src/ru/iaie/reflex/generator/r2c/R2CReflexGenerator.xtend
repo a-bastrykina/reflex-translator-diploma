@@ -18,7 +18,7 @@ class R2CReflexGenerator implements IReflexGenerator {
 	override void afterGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {}
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		copyResources(fsa)
+		fileGen.prepareForGeneration()
 		fileGen.generateVariableDefinitions()
 		fileGen.generateConstantDefinitions()
 		fileGen.generateProcessDefinitions()
@@ -27,11 +27,5 @@ class R2CReflexGenerator implements IReflexGenerator {
 		fileGen.generatePlatformImplementations()
 		fileGen.generateMain()
 		fileGen.generateBuildFiles()
-	}
-
-	def copyResources(IFileSystemAccess2 fsa) {
-		for (resource : R2CResourceProvider.COMMON_RESOURCES) {
-			fsa.generateFile('''c-code/«resource»''', class.getResourceAsStream('''/resources/c-code/«resource»'''))
-		}
 	}
 }
