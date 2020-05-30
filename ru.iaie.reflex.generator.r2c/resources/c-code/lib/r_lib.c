@@ -48,8 +48,8 @@ INT16_U Check_State (INT16_U pr_num)
 
 BOOL Timeout(INT16_U pr_num, INT32_U timeout)
 {
-    if (_r_cur_time - Pr_States[pr_num].state_start_time < timeout) return TRUE;
-    return FALSE;
+    if (_r_cur_time - Pr_States[pr_num].state_start_time < timeout) return FALSE;
+    return TRUE;
 }
 
 INT16_U Is_Error(INT16_U pr_num)
