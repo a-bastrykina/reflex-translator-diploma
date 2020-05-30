@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ASCII"?>
+<reflex:Program xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reflex="http://www.iaie.ru/reflex/Reflex" name="Dryer">
+  <clock timeValue="0t10ms"/>
+  <consts type="bool" name="ON">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" bool="true"/>
+    </value>
+  </consts>
+  <consts type="bool" name="OFF">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" bool="false"/>
+    </value>
+  </consts>
+  <consts type="time" name="TIMEOUT">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" time="0t1s1ms"/>
+    </value>
+  </consts>
+  <ports name="inp" addr1="0x01" addr2="0x02" size="8"/>
+  <ports type="output" name="out" addr1="0x03" addr2="0x04" size="8"/>
+  <processes name="Dryer">
+    <variables xsi:type="reflex:PhysicalVariable" type="int8" name="hands_under_dryer">
+      <mapping port="//@ports.0"/>
+    </variables>
+    <variables xsi:type="reflex:PhysicalVariable" type="bool" name="dryer_control">
+      <mapping port="//@ports.1" bit="1"/>
+    </variables>
+    <states name="Wait">
+      <stateFunction>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@processes.0/@variables.0"/>
+          </cond>
+          <then xsi:type="reflex:CompoundStatement">
+            <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.0"/>
+            </statements>
+            <statements xsi:type="reflex:SetStateStat" state="//@processes.0/@states.1"/>
+          </then>
+        </statements>
+      </stateFunction>
+    </states>
+    <states name="Work">
+      <stateFunction>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@processes.0/@variables.0"/>
+          </cond>
+          <then xsi:type="reflex:ResetStat"/>
+        </statements>
+      </stateFunction>
+      <timeoutFunction ref="//@consts.2">
+        <body xsi:type="reflex:CompoundStatement">
+          <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.1"/>
+          </statements>
+          <statements xsi:type="reflex:SetStateStat" state="//@processes.0/@states.0"/>
+        </body>
+      </timeoutFunction>
+    </states>
+  </processes>
+</reflex:Program>

@@ -1,0 +1,42 @@
+program TrafficLight {
+	clock 0t12ms;
+	
+	// Atmega 368s:
+	// 0x00 0x00 - for port B
+	// 0x00 0x01 - for port C
+	// 0x00 0x02 - for port D
+	output inp 0x00 0x01 8;
+	
+	const bool ON = true;
+	const bool OFF = false;
+	
+	process LightCycle {
+		bool red_control = inp[1];
+		bool yellow_control = inp[2];
+		bool green_control = inp[3];
+		
+		state Green {
+			green_control = ON;
+			timeout (0t5s) {
+				green_control = OFF;
+				set next state;
+			}
+		}
+		
+		state Yellow {
+			yellow_control = ON;
+			timeout (0t500ms) {
+				yellow_control = OFF;
+				set next state;
+			}
+		}
+		
+		state Red {
+			red_control = ON;
+			timeout (0t5s) {
+				red_control = OFF;
+				set state Green;
+			}
+		}
+	}
+}

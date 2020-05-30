@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ASCII"?>
+<reflex:Program xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reflex="http://www.iaie.ru/reflex/Reflex" name="PuffinCrossing">
+  <clock timeValue="0t10ms"/>
+  <consts type="bool" name="ON">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" bool="true"/>
+    </value>
+  </consts>
+  <consts type="bool" name="OFF">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" bool="false"/>
+    </value>
+  </consts>
+  <consts type="int32" name="SECOND">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" integer="100"/>
+    </value>
+  </consts>
+  <consts type="int32" name="THIRTY_SECONDS">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:MultiplicativeExpression">
+        <left xsi:type="reflex:PrimaryExpression" integer="30"/>
+        <right xsi:type="reflex:PrimaryExpression" reference="//@consts.2"/>
+      </expr>
+    </value>
+  </consts>
+  <consts type="int32" name="MINUTE">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:MultiplicativeExpression">
+        <left xsi:type="reflex:PrimaryExpression" integer="60"/>
+        <right xsi:type="reflex:PrimaryExpression" reference="//@consts.2"/>
+      </expr>
+    </value>
+  </consts>
+  <consts type="int32" name="BA_FPGA1_U1">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" integer="0XA110"/>
+    </value>
+  </consts>
+  <consts type="int32" name="BA_FPGA3_U1">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" integer="0XA910"/>
+    </value>
+  </consts>
+  <ports name="INPUTS" addr1="0" addr2="0" size="8"/>
+  <ports type="output" name="OUTPUTS" addr1="0" addr2="0" size="8"/>
+  <processes name="WaitingButton">
+    <variables xsi:type="reflex:PhysicalVariable" shared="true" type="bool" name="I_BUTTON">
+      <mapping port="//@ports.0" bit="1"/>
+    </variables>
+    <variables xsi:type="reflex:PhysicalVariable" shared="true" type="bool" name="O_CROSSWALK">
+      <mapping port="//@ports.1" bit="1"/>
+    </variables>
+    <states name="Begin">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.0"/>
+        </statements>
+        <statements xsi:type="reflex:SetStateStat" next="true"/>
+      </stateFunction>
+    </states>
+    <states name="CheckButton" looped="true">
+      <stateFunction>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@processes.0/@variables.0"/>
+          </cond>
+          <then xsi:type="reflex:CompoundStatement">
+            <statements xsi:type="reflex:IfElseStat">
+              <cond xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:CheckStateExpression" process="//@processes.1" qualfier="inactive"/>
+              </cond>
+              <then xsi:type="reflex:StartProcStat" process="//@processes.1"/>
+            </statements>
+          </then>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="TrafficLightCycle">
+    <imports variables="//@processes.0/@variables.1" process="//@processes.0"/>
+    <states name="Pause1min">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.0"/>
+        </statements>
+      </stateFunction>
+      <timeoutFunction ref="//@consts.4">
+        <body xsi:type="reflex:SetStateStat" next="true"/>
+      </timeoutFunction>
+    </states>
+    <states name="LetCrossWalking30sec">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.0"/>
+        </statements>
+      </stateFunction>
+      <timeoutFunction ref="//@consts.3">
+        <body xsi:type="reflex:CompoundStatement">
+          <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.0/@variables.1">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.1"/>
+          </statements>
+          <statements xsi:type="reflex:StopProcStat"/>
+        </body>
+      </timeoutFunction>
+    </states>
+  </processes>
+</reflex:Program>

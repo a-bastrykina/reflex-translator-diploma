@@ -1,22 +1,22 @@
 program Dryer {
 	clock 0t10ms;
-	input inp 0x01 0x02 8;
- 	output out 0x03 0x04 16;
+	input inp 0x00 0x00 8;
+ 	output out 0x00 0x01 8;
   	
   	const bool ON = true;
   	const bool OFF = false;
   	  	
-  	const time TIMEOUT = 0t1s1ms;
-  	
+  	const time TIMEOUT = 0t3s;
+
 	process Dryer {
-		int16 hands_under_dryer = inp[];
+		bool hands_under_dryer = inp[1];
 		bool dryer_control = out[1];
-		state Wait {		
+		state Wait {	
 			if (hands_under_dryer) {
 				dryer_control = ON;
-				set state Work;	
+				set state Work;
 			}	
-		} 
+		}
 		state Work {
 			if (hands_under_dryer) reset timer;
 			timeout (TIMEOUT) {

@@ -10,6 +10,7 @@ const float U_MAX = 15.0;
 const float DELTA_U = 3.0;
 const float K_P  = 31.2634; 
 const float K_I   = 0.4016;
+
 //
 enum  COM2CA { COM2CA_XD=1 }
 enum CA2GUI { CA2GUI_X_LEVEL=0,
@@ -104,7 +105,6 @@ process CONTROLLER {
 		U = K_P * E + K_I * Sum * T_H;		
 		
 		if (U > U_MAX) U = U_MAX; 
-		true + false;
 		if (U < 0) U = 0.0;		
 		if (X >= X_MAX) set state Overflow; 
 		else if (X < X_MIN) set state LowLevel;
@@ -143,7 +143,7 @@ process Filter {
 				U = U_Prev - DELTA_U;
 			}
 		}
-		U_Prev = U;	
+		U_Prev = U;
 	}
 }
 

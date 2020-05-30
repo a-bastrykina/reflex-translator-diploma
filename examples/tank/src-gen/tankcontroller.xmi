@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="ASCII"?>
+<reflex:Program xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reflex="http://www.iaie.ru/reflex/Reflex" name="TankController">
+  <clock timeValue="0t50ms"/>
+  <consts type="float" name="T_H">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.1"/>
+    </value>
+  </consts>
+  <consts type="float" name="X_MIN">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.1"/>
+    </value>
+  </consts>
+  <consts type="float" name="X_MAX">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.5"/>
+    </value>
+  </consts>
+  <consts type="float" name="H">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.6"/>
+    </value>
+  </consts>
+  <consts type="float" name="U_MIN">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.0"/>
+    </value>
+  </consts>
+  <consts type="float" name="U_MAX">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="15.0"/>
+    </value>
+  </consts>
+  <consts type="float" name="DELTA_U">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="3.0"/>
+    </value>
+  </consts>
+  <consts type="float" name="K_P">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="31.2634"/>
+    </value>
+  </consts>
+  <consts type="float" name="K_I">
+    <value xsi:type="reflex:AssignmentExpression">
+      <expr xsi:type="reflex:PrimaryExpression" floating="0.4016"/>
+    </value>
+  </consts>
+  <enums identifier="COM2CA">
+    <enumMembers name="COM2CA_XD">
+      <value xsi:type="reflex:AssignmentExpression">
+        <expr xsi:type="reflex:PrimaryExpression" integer="1"/>
+      </value>
+    </enumMembers>
+  </enums>
+  <enums identifier="CA2GUI">
+    <enumMembers name="CA2GUI_X_LEVEL">
+      <value xsi:type="reflex:AssignmentExpression">
+        <expr xsi:type="reflex:PrimaryExpression" integer="0"/>
+      </value>
+    </enumMembers>
+    <enumMembers name="CA2GUI_U_LEVEL">
+      <value xsi:type="reflex:AssignmentExpression">
+        <expr xsi:type="reflex:PrimaryExpression" integer="1"/>
+      </value>
+    </enumMembers>
+  </enums>
+  <functions returnType="int8" name="GetNextMsgGUI">
+    <argTypes>void</argTypes>
+  </functions>
+  <functions returnType="int8" name="GetMsgGUICode">
+    <argTypes>void</argTypes>
+  </functions>
+  <functions returnType="float" name="GetFloatParamGUI">
+    <argTypes>void</argTypes>
+  </functions>
+  <functions returnType="float" name="PortsToFloat">
+    <argTypes>int32</argTypes>
+    <argTypes>int32</argTypes>
+    <argTypes>int32</argTypes>
+    <argTypes>int32</argTypes>
+  </functions>
+  <functions returnType="int8" name="GetBit">
+    <argTypes>float</argTypes>
+    <argTypes>int32</argTypes>
+  </functions>
+  <functions returnType="int8" name="SendMsgFloatParamGUI">
+    <argTypes>int32</argTypes>
+    <argTypes>float</argTypes>
+  </functions>
+  <functions returnType="int8" name="SendMsgIntParamGUI">
+    <argTypes>int32</argTypes>
+    <argTypes>int32</argTypes>
+  </functions>
+  <globalVars xsi:type="reflex:ProgramVariable" type="float" name="U"/>
+  <globalVars xsi:type="reflex:ProgramVariable" type="float" name="X"/>
+  <globalVars xsi:type="reflex:ProgramVariable" type="float" name="XD"/>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="X_BIT0">
+    <mapping port="//@ports.0"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="X_BIT1">
+    <mapping port="//@ports.1"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="X_BIT2">
+    <mapping port="//@ports.2"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="X_BIT3">
+    <mapping port="//@ports.3"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="U_BIT0">
+    <mapping port="//@ports.4"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="U_BIT1">
+    <mapping port="//@ports.5"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="U_BIT2">
+    <mapping port="//@ports.6"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:PhysicalVariable" type="int8" name="U_BIT3">
+    <mapping port="//@ports.7"/>
+  </globalVars>
+  <globalVars xsi:type="reflex:ProgramVariable" type="int8" name="msg_code"/>
+  <ports name="X_BIT0_PORT" addr1="0" addr2="0" size="8"/>
+  <ports name="X_BIT1_PORT" addr1="0" addr2="1" size="8"/>
+  <ports name="X_BIT2_PORT" addr1="0" addr2="2" size="8"/>
+  <ports name="X_BIT3_PORT" addr1="0" addr2="3" size="8"/>
+  <ports type="output" name="U_BIT0_PORT" addr1="1" addr2="0" size="8"/>
+  <ports type="output" name="U_BIT1_PORT" addr1="1" addr2="1" size="8"/>
+  <ports type="output" name="U_BIT2_PORT" addr1="1" addr2="2" size="8"/>
+  <ports type="output" name="U_BIT3_PORT" addr1="1" addr2="3" size="8"/>
+  <processes name="INIT">
+    <states name="InitialSetup">
+      <stateFunction>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.2"/>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.5"/>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.3"/>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.4"/>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.1"/>
+        <statements xsi:type="reflex:StartProcStat" process="//@processes.6"/>
+        <statements xsi:type="reflex:StopProcStat"/>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="ReadInputMsgs">
+    <states name="StartReading" looped="true">
+      <stateFunction>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:FunctionCall" function="//@functions.0"/>
+          </cond>
+          <then xsi:type="reflex:CompoundStatement">
+            <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.11">
+              <expr xsi:type="reflex:FunctionCall" function="//@functions.1"/>
+            </statements>
+            <statements xsi:type="reflex:IfElseStat">
+              <cond xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:EqualityExpression">
+                  <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.11"/>
+                  <right xsi:type="reflex:PrimaryExpression" reference="//@enums.0/@enumMembers.0"/>
+                </expr>
+              </cond>
+              <then xsi:type="reflex:CompoundStatement">
+                <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.2">
+                  <expr xsi:type="reflex:FunctionCall" function="//@functions.2"/>
+                </statements>
+              </then>
+            </statements>
+          </then>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="READ_ADC">
+    <states name="READ" looped="true">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.1">
+          <expr xsi:type="reflex:FunctionCall" function="//@functions.3">
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.3"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.4"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.5"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.6"/>
+            </args>
+          </expr>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="CONTROLLER">
+    <variables xsi:type="reflex:ProgramVariable" type="float" name="Sum"/>
+    <variables xsi:type="reflex:ProgramVariable" type="float" name="E"/>
+    <states name="Init">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.3/@variables.0">
+          <expr xsi:type="reflex:PrimaryExpression" floating="0.0"/>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.3/@variables.1">
+          <expr xsi:type="reflex:PrimaryExpression" floating="0.0"/>
+        </statements>
+        <statements xsi:type="reflex:SetStateStat" next="true"/>
+      </stateFunction>
+    </states>
+    <states name="NormalPIControl">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.3/@variables.1">
+          <expr xsi:type="reflex:AdditiveExpression" addOp="-">
+            <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.2"/>
+            <right xsi:type="reflex:PrimaryExpression" reference="//@globalVars.1"/>
+          </expr>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.3/@variables.0" assignOp="+=">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@processes.3/@variables.1"/>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+          <expr xsi:type="reflex:AdditiveExpression">
+            <left xsi:type="reflex:MultiplicativeExpression">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@consts.7"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@processes.3/@variables.1"/>
+            </left>
+            <right xsi:type="reflex:MultiplicativeExpression">
+              <left xsi:type="reflex:MultiplicativeExpression">
+                <left xsi:type="reflex:PrimaryExpression" reference="//@consts.8"/>
+                <right xsi:type="reflex:PrimaryExpression" reference="//@processes.3/@variables.0"/>
+              </left>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@consts.0"/>
+            </right>
+          </expr>
+        </statements>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression" cmpOp=">">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@consts.5"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+            <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.5"/>
+          </then>
+        </statements>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+              <right xsi:type="reflex:PrimaryExpression" integer="0"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+            <expr xsi:type="reflex:PrimaryExpression" floating="0.0"/>
+          </then>
+        </statements>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression" cmpOp=">=">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.1"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@consts.2"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:SetStateStat" state="//@processes.3/@states.2"/>
+          <else xsi:type="reflex:IfElseStat">
+            <cond xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:CompareExpression">
+                <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.1"/>
+                <right xsi:type="reflex:PrimaryExpression" reference="//@consts.1"/>
+              </expr>
+            </cond>
+            <then xsi:type="reflex:SetStateStat" state="//@processes.3/@states.3"/>
+          </else>
+        </statements>
+      </stateFunction>
+    </states>
+    <states name="Overflow">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+          <expr xsi:type="reflex:PrimaryExpression" integer="0"/>
+        </statements>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.1"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@consts.2"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:SetStateStat" state="//@processes.3/@states.0"/>
+        </statements>
+      </stateFunction>
+    </states>
+    <states name="LowLevel">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.5"/>
+        </statements>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression" cmpOp=">">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.1"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@consts.1"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:SetStateStat" state="//@processes.3/@states.0"/>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="Filter">
+    <variables xsi:type="reflex:ProgramVariable" type="float" name="U_Prev"/>
+    <states name="Init">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.4/@variables.0">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@consts.4"/>
+        </statements>
+        <statements xsi:type="reflex:SetStateStat" next="true"/>
+      </stateFunction>
+    </states>
+    <states name="Filtering" looped="true">
+      <stateFunction>
+        <statements xsi:type="reflex:IfElseStat">
+          <cond xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:CompareExpression" cmpOp=">=">
+              <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+              <right xsi:type="reflex:PrimaryExpression" reference="//@processes.4/@variables.0"/>
+            </expr>
+          </cond>
+          <then xsi:type="reflex:CompoundStatement">
+            <statements xsi:type="reflex:IfElseStat">
+              <cond xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:CompareExpression" cmpOp=">">
+                  <left xsi:type="reflex:AdditiveExpression" addOp="-">
+                    <left xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+                    <right xsi:type="reflex:PrimaryExpression" reference="//@processes.4/@variables.0"/>
+                  </left>
+                  <right xsi:type="reflex:PrimaryExpression" reference="//@consts.6"/>
+                </expr>
+              </cond>
+              <then xsi:type="reflex:CompoundStatement">
+                <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+                  <expr xsi:type="reflex:AdditiveExpression">
+                    <left xsi:type="reflex:PrimaryExpression" reference="//@processes.4/@variables.0"/>
+                    <right xsi:type="reflex:PrimaryExpression" reference="//@consts.6"/>
+                  </expr>
+                </statements>
+              </then>
+            </statements>
+          </then>
+          <else xsi:type="reflex:CompoundStatement">
+            <statements xsi:type="reflex:IfElseStat">
+              <cond xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:CompareExpression" cmpOp=">">
+                  <left xsi:type="reflex:AdditiveExpression" addOp="-">
+                    <left xsi:type="reflex:PrimaryExpression" reference="//@processes.4/@variables.0"/>
+                    <right xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+                  </left>
+                  <right xsi:type="reflex:PrimaryExpression" reference="//@consts.6"/>
+                </expr>
+              </cond>
+              <then xsi:type="reflex:CompoundStatement">
+                <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.0">
+                  <expr xsi:type="reflex:AdditiveExpression" addOp="-">
+                    <left xsi:type="reflex:PrimaryExpression" reference="//@processes.4/@variables.0"/>
+                    <right xsi:type="reflex:PrimaryExpression" reference="//@consts.6"/>
+                  </expr>
+                </statements>
+              </then>
+            </statements>
+          </else>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@processes.4/@variables.0">
+          <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="WRITE_DAC">
+    <states name="WRITE" looped="true">
+      <stateFunction>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.7">
+          <expr xsi:type="reflex:FunctionCall" function="//@functions.4">
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" integer="0"/>
+            </args>
+          </expr>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.8">
+          <expr xsi:type="reflex:FunctionCall" function="//@functions.4">
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" integer="1"/>
+            </args>
+          </expr>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.9">
+          <expr xsi:type="reflex:FunctionCall" function="//@functions.4">
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" integer="2"/>
+            </args>
+          </expr>
+        </statements>
+        <statements xsi:type="reflex:AssignmentExpression" assignVar="//@globalVars.10">
+          <expr xsi:type="reflex:FunctionCall" function="//@functions.4">
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+            </args>
+            <args xsi:type="reflex:AssignmentExpression">
+              <expr xsi:type="reflex:PrimaryExpression" integer="3"/>
+            </args>
+          </expr>
+        </statements>
+      </stateFunction>
+    </states>
+  </processes>
+  <processes name="Info">
+    <states name="Idiling">
+      <stateFunction/>
+      <timeoutFunction time="0t50s">
+        <body xsi:type="reflex:CompoundStatement">
+          <statements xsi:type="reflex:AssignmentExpression">
+            <expr xsi:type="reflex:FunctionCall" function="//@functions.5">
+              <args xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:PrimaryExpression" reference="//@enums.1/@enumMembers.1"/>
+              </args>
+              <args xsi:type="reflex:AssignmentExpression">
+                <expr xsi:type="reflex:PrimaryExpression" reference="//@globalVars.0"/>
+              </args>
+            </expr>
+          </statements>
+          <statements xsi:type="reflex:SetStateStat" state="//@processes.6/@states.0"/>
+        </body>
+      </timeoutFunction>
+    </states>
+  </processes>
+</reflex:Program>

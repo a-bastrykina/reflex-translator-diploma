@@ -11,7 +11,7 @@ const int32 BA_FPGA1_U1=0XA110; /* INPUT */
 const int32 BA_FPGA3_U1=0XA910; /* OUTPUT */
 
 input  INPUTS 0 0 8; 
-output OUTPUTS 0 0 8; 
+output OUTPUTS 0 0 8;
 
 
 process WaitingButton{ 
@@ -35,7 +35,7 @@ process TrafficLightCycle {
     O_CROSSWALK = ON;
     timeout MINUTE set next state;
   }
-  state LetCrossWalking30sec{
+  state LetCrossWalking30sec {
     O_CROSSWALK = ON;
     timeout (THIRTY_SECONDS) { 
       O_CROSSWALK = OFF; /* let highway traffic */

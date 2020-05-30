@@ -1,0 +1,24 @@
+program Blink {
+	clock 0t2ms;
+	
+	output out 0x00 0x01 8;
+	
+	process Blink {
+		bool light_control = out[1];
+		
+		state Lighting {
+			light_control = true;
+			timeout (0t1s) {
+				set next state;
+			}
+		}
+		
+		state Waiting {
+			light_control = false;
+			timeout (0t1s) {
+				set state Lighting;
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,29 @@
+#ifndef _gvar_h
+#define _gvar_h 1
+#include "../lib/r_cnst.h"
+INT32_U _r_cur_time;
+INT32_U _r_next_act_time;
+FLOAT _g_U;
+FLOAT _g_X;
+FLOAT _g_XD;
+INT8 _g_X_BIT0;
+INT8 _g_X_BIT1;
+INT8 _g_X_BIT2;
+INT8 _g_X_BIT3;
+INT8 _g_U_BIT0;
+INT8 _g_U_BIT1;
+INT8 _g_U_BIT2;
+INT8 _g_U_BIT3;
+INT8 _g_msg_code;
+FLOAT _p_CONTROLLER_v_Sum;
+FLOAT _p_CONTROLLER_v_E;
+FLOAT _p_Filter_v_U_Prev;
+INT8 _i_X_BIT0_PORT;
+INT8 _i_X_BIT1_PORT;
+INT8 _i_X_BIT2_PORT;
+INT8 _i_X_BIT3_PORT;
+INT8 _o_U_BIT0_PORT;
+INT8 _o_U_BIT1_PORT;
+INT8 _o_U_BIT2_PORT;
+INT8 _o_U_BIT3_PORT;
+#endif
