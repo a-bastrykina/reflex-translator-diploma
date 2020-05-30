@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.common
 
 import java.util.List
 
@@ -14,6 +14,10 @@ class R2CResourceProvider {
 		#include "../lib/platform.h"
 		
 		// Dummy realizations when no target platform is specified
+		
+		void Init_Time() {}
+		
+		void Init_IO() {}
 		
 		INT32_U Get_Time() {
 		    struct timeval time;

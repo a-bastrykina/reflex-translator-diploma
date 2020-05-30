@@ -4,7 +4,7 @@ import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.ProcessVariable
 import ru.iaie.reflex.reflex.GlobalVariable
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil
 
 class VariableGenerationHelper {
 	IReflexIdentifiersHelper identifiersHelper

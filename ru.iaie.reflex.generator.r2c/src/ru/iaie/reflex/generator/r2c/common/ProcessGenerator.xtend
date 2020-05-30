@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.common
 
 import org.eclipse.emf.ecore.EObject
 import ru.iaie.reflex.reflex.Expression
@@ -18,6 +18,7 @@ import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.CompoundStatement
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
 import ru.iaie.reflex.generator.r2c.helpers.ExpressionGenerationHelper
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil
 
 class ProcessGenerator {
 

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <sys/time.h>
-
 #include "../generated/xvar.h"
 
 #include "r_cnst.h"

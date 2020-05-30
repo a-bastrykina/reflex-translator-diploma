@@ -6,7 +6,7 @@ import ru.iaie.reflex.utils.LiteralUtils
 import ru.iaie.reflex.reflex.PhysicalVariable
 import ru.iaie.reflex.reflex.PortMapping
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil
 
 class PortGenerationHelper {
 	IReflexIdentifiersHelper identifiersHelper

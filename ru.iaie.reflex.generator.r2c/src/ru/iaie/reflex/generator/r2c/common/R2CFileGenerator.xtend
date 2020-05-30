@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.common
 
 import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
@@ -14,22 +14,29 @@ import ru.iaie.reflex.generator.r2c.helpers.PortGenerationHelper
 import ru.iaie.reflex.generator.r2c.helpers.ConstantGenerationHelper
 import ru.iaie.reflex.generator.r2c.helpers.VariableGenerationHelper
 import ru.iaie.reflex.generator.r2c.helpers.ReflexIdentifiersHelper
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil
 
 class R2CFileGenerator implements IFileGenerator {
-	
-	static val String C_STANDART = "99";
-	static val String ROOT_DIR_NAME = "c-code"
-	static val String GENERATED_DIR_NAME = "generated"
+	protected String C_STANDART = "99";
+	protected String GENERATED_DIR_NAME = "generated"
 	 
 	// AST root 
-	Program program
-	IFileSystemAccess2 fsa
-	IReflexIdentifiersHelper identifiersHelper
+	protected Program program
+	protected IFileSystemAccess2 fsa
 	
+	IReflexIdentifiersHelper identifiersHelper
 	PortGenerationHelper portGenerationHelper
 	ConstantGenerationHelper constGenerationHelper
 	VariableGenerationHelper varGenerationHelper
+
+	protected static String CLOCK_CONST_NAME = "_r_CLOCK" 
+	protected static String CUR_TIME_NAME = "_r_cur_time" 
+	protected static String NEXT_TIME_NAME = "_r_next_act_time" 
 	
+	def String getRootDirName() {
+		return "c-code"
+	}
+
 	new(Resource resource, IFileSystemAccess2 fsa) {
 		program = resource.getProgram()
 		this.fsa = fsa
@@ -41,7 +48,7 @@ class R2CFileGenerator implements IFileGenerator {
 	
 	override prepareForGeneration() {
 		for (resource : R2CResourceProvider.COMMON_RESOURCES) {
-			fsa.generateFile('''«ROOT_DIR_NAME»/«resource»''', class.getResourceAsStream('''/resources/«ROOT_DIR_NAME»/«resource»'''))
+			fsa.generateFile('''«rootDirName»/«resource»''', class.getResourceAsStream('''/resources/«resource»'''))
 		}
 	}
 
@@ -55,7 +62,7 @@ class R2CFileGenerator implements IFileGenerator {
 			
 			add_executable(«program.name.toLowerCase» generated/main.c generated/proc.c lib/r_lib.c usr/usr.c generated/io.c generated/platform.c)
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/CMakeLists.txt''', fileContent)
+		fsa.generateFile('''«rootDirName»/CMakeLists.txt''', fileContent)
 	}
 
 	override generateIOFiles() {
@@ -90,31 +97,30 @@ class R2CFileGenerator implements IFileGenerator {
 		    «ENDFOR»
 		}
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/io.c''', fileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/io.c''', fileContent)
 	}
 	
 	override generatePlatformImplementations() {
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/platform.c''', R2CResourceProvider.DUMMY_PLATFORM_IMPL)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/platform.c''', R2CResourceProvider.DUMMY_PLATFORM_IMPL)
 	}
 
 	override generateConstantDefinitions() {
 		val fileContent = '''
 			#ifndef _cnst_h
 			#define _cnst_h 1
-			/*           Constant definitions          */
+
 			«generateConstants()»
-			/*                Enums                    */
+
 			«generateEnums()»
 			
 			«generateClockConst()»
 			#endif
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/cnst.h''', fileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/cnst.h''', fileContent)
 	}
 
 	override generateVariableDefinitions() {
 		val fileContent = '''
-			/* GVAR.H = Global Variables Image-File. */
 			#ifndef _gvar_h
 			#define _gvar_h 1
 			#include "../lib/r_cnst.h"
@@ -123,9 +129,8 @@ class R2CFileGenerator implements IFileGenerator {
 			«generatePorts(false)»
 			#endif
 		'''
-		fsa.generateFile('''c-code/generated/gvar.h''', fileContent)
+		fsa.generateFile('''«rootDirName»/generated/gvar.h''', fileContent)
 		val externFileContent = '''
-			/* xvar.h = Extern Variables Image-File. */
 			#ifndef _xvar_h
 			#define _xvar_h 1
 			#include "../lib/r_cnst.h"
@@ -134,7 +139,7 @@ class R2CFileGenerator implements IFileGenerator {
 			«generatePorts(true)»
 			#endif
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/xvar.h''', externFileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/xvar.h''', externFileContent)
 	}
 	
 
@@ -149,7 +154,7 @@ class R2CFileGenerator implements IFileGenerator {
 			#define PROCESS_N1 0
 			#endif
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/proc.h''', fileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/proc.h''', fileContent)
 	}
 
 	override generateProcessImplementations() {
@@ -162,7 +167,7 @@ class R2CFileGenerator implements IFileGenerator {
 			«gen.generate()»
 			«ENDFOR»
 		'''
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/proc.c''', fileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/proc.c''', fileContent)
 	}
 	
 	override generateMain() {
@@ -172,34 +177,25 @@ class R2CFileGenerator implements IFileGenerator {
 		#include "gvar.h"  /* Project variables images */
 		#include "io.h"    /* Scan-input/output functions */
 		#include "../lib/platform.h"
-		#include <stdio.h>
-		#include <unistd.h>
-
-		void Init_Time() {
-			_r_cur_time = 0;
-			_r_next_act_time = 0;
-		}
 
 		void Control_Loop(void)    /* Control algorithm */
 		{
 			Init_Processes();
 			Init_Time();
+			Init_IO();
 			for (;;) {
-				_r_cur_time = Get_Time();
-				if (_r_next_act_time <= _r_cur_time) {
-					printf("Activating\n");
+				«CUR_TIME_NAME» = Get_Time();
+				if («CUR_TIME_NAME» - «NEXT_TIME_NAME» >= 0) {
+					// Find next activation time
+					«NEXT_TIME_NAME» += «CLOCK_CONST_NAME»;
+					if («NEXT_TIME_NAME» - «CUR_TIME_NAME» > _r_CLOCK) {
+						«NEXT_TIME_NAME» = «CUR_TIME_NAME» + _r_CLOCK;
+					}
 					Input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
 					«ENDFOR»
 					Output();
-
-					// Find next activation time
-					if (_r_next_act_time + _r_CLOCK <= _r_cur_time) {
-						_r_next_act_time = _r_cur_time + _r_CLOCK;
-					} else {
-						_r_next_act_time += _r_CLOCK;
-					}
 				}
 			}
 		}
@@ -209,8 +205,9 @@ class R2CFileGenerator implements IFileGenerator {
 		}
 		'''
 
-		fsa.generateFile('''«ROOT_DIR_NAME»/«GENERATED_DIR_NAME»/main.c''', fileContent)
+		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/main.c''', fileContent)
 	}
+	
 	
 	def generateVariables(boolean externDef) {
 		return '''
@@ -234,7 +231,7 @@ class R2CFileGenerator implements IFileGenerator {
 	}
 	
 	def generateClockConst() {
-		return '''#define _r_CLOCK «LiteralGenerationUtil.translateClockDefinition(program.clock)»'''
+		return '''#define «CLOCK_CONST_NAME» «LiteralGenerationUtil.translateClockDefinition(program.clock)»'''
 	}
 
 	def generateConstants() {
@@ -254,9 +251,10 @@ class R2CFileGenerator implements IFileGenerator {
 	}
 	
 	def generateTimeVariableDefinitions(boolean extern) {
-		return '''«IF extern»extern «ENDIF»INT32_U _r_cur_time;
-				  «IF extern»extern «ENDIF»INT32_U _r_next_act_time;
-				'''
+		return '''
+		«IF extern»extern «ENDIF»INT32_U «CUR_TIME_NAME»;
+		«IF extern»extern «ENDIF»INT32_U «NEXT_TIME_NAME»;
+		'''
 	}
 	
 }

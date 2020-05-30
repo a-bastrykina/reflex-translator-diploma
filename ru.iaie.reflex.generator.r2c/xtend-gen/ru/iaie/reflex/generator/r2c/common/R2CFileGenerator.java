@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.common;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;
@@ -13,15 +13,15 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil;
-import ru.iaie.reflex.generator.r2c.ProcessGenerator;
-import ru.iaie.reflex.generator.r2c.R2CResourceProvider;
+import ru.iaie.reflex.generator.r2c.common.ProcessGenerator;
+import ru.iaie.reflex.generator.r2c.common.R2CResourceProvider;
 import ru.iaie.reflex.generator.r2c.helpers.ConstantGenerationHelper;
 import ru.iaie.reflex.generator.r2c.helpers.PortGenerationHelper;
 import ru.iaie.reflex.generator.r2c.helpers.ReflexIdentifiersHelper;
 import ru.iaie.reflex.generator.r2c.helpers.VariableGenerationHelper;
 import ru.iaie.reflex.generator.r2c.interfaces.IFileGenerator;
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil;
 import ru.iaie.reflex.reflex.Const;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.PhysicalVariable;
@@ -33,15 +33,13 @@ import ru.iaie.reflex.utils.ReflexModelUtil;
 
 @SuppressWarnings("all")
 public class R2CFileGenerator implements IFileGenerator {
-  private static final String C_STANDART = "99";
+  protected String C_STANDART = "99";
   
-  private static final String ROOT_DIR_NAME = "c-code";
+  protected String GENERATED_DIR_NAME = "generated";
   
-  private static final String GENERATED_DIR_NAME = "generated";
+  protected Program program;
   
-  private Program program;
-  
-  private IFileSystemAccess2 fsa;
+  protected IFileSystemAccess2 fsa;
   
   private IReflexIdentifiersHelper identifiersHelper;
   
@@ -50,6 +48,16 @@ public class R2CFileGenerator implements IFileGenerator {
   private ConstantGenerationHelper constGenerationHelper;
   
   private VariableGenerationHelper varGenerationHelper;
+  
+  protected static String CLOCK_CONST_NAME = "_r_CLOCK";
+  
+  protected static String CUR_TIME_NAME = "_r_cur_time";
+  
+  protected static String NEXT_TIME_NAME = "_r_next_act_time";
+  
+  public String getRootDirName() {
+    return "c-code";
+  }
   
   public R2CFileGenerator(final Resource resource, final IFileSystemAccess2 fsa) {
     this.program = ReflexModelUtil.getProgram(resource);
@@ -68,14 +76,13 @@ public class R2CFileGenerator implements IFileGenerator {
   public void prepareForGeneration() {
     for (final String resource : R2CResourceProvider.COMMON_RESOURCES) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append(R2CFileGenerator.ROOT_DIR_NAME);
+      String _rootDirName = this.getRootDirName();
+      _builder.append(_rootDirName);
       _builder.append("/");
       _builder.append(resource);
       Class<? extends R2CFileGenerator> _class = this.getClass();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("/resources/");
-      _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
-      _builder_1.append("/");
       _builder_1.append(resource);
       this.fsa.generateFile(_builder.toString(), _class.getResourceAsStream(_builder_1.toString()));
     }
@@ -93,7 +100,7 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("set(CMAKE_C_STANDARD ");
-    _builder.append(R2CFileGenerator.C_STANDART);
+    _builder.append(this.C_STANDART);
     _builder.append(")");
     _builder.newLineIfNotEmpty();
     _builder.append("set(CMAKE_C_FLAGS \"-Wall\")");
@@ -106,7 +113,8 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLineIfNotEmpty();
     String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/CMakeLists.txt");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -187,9 +195,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/");
-    _builder_1.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_1.append(this.GENERATED_DIR_NAME);
     _builder_1.append("/io.c");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -197,9 +206,10 @@ public class R2CFileGenerator implements IFileGenerator {
   @Override
   public void generatePlatformImplementations() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder.append(_rootDirName);
     _builder.append("/");
-    _builder.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder.append(this.GENERATED_DIR_NAME);
     _builder.append("/platform.c");
     this.fsa.generateFile(_builder.toString(), R2CResourceProvider.DUMMY_PLATFORM_IMPL);
   }
@@ -211,12 +221,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     _builder.append("#define _cnst_h 1");
     _builder.newLine();
-    _builder.append("/*           Constant definitions          */");
     _builder.newLine();
     String _generateConstants = this.generateConstants();
     _builder.append(_generateConstants);
     _builder.newLineIfNotEmpty();
-    _builder.append("/*                Enums                    */");
     _builder.newLine();
     String _generateEnums = this.generateEnums();
     _builder.append(_generateEnums);
@@ -229,9 +237,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/");
-    _builder_1.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_1.append(this.GENERATED_DIR_NAME);
     _builder_1.append("/cnst.h");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -239,8 +248,6 @@ public class R2CFileGenerator implements IFileGenerator {
   @Override
   public void generateVariableDefinitions() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/* GVAR.H = Global Variables Image-File. */");
-    _builder.newLine();
     _builder.append("#ifndef _gvar_h");
     _builder.newLine();
     _builder.append("#define _gvar_h 1");
@@ -260,11 +267,11 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("c-code/generated/gvar.h");
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
+    _builder_1.append("/generated/gvar.h");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("/* xvar.h = Extern Variables Image-File. */");
-    _builder_2.newLine();
     _builder_2.append("#ifndef _xvar_h");
     _builder_2.newLine();
     _builder_2.append("#define _xvar_h 1");
@@ -284,9 +291,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder_2.newLine();
     final String externFileContent = _builder_2.toString();
     StringConcatenation _builder_3 = new StringConcatenation();
-    _builder_3.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName_1 = this.getRootDirName();
+    _builder_3.append(_rootDirName_1);
     _builder_3.append("/");
-    _builder_3.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_3.append(this.GENERATED_DIR_NAME);
     _builder_3.append("/xvar.h");
     this.fsa.generateFile(_builder_3.toString(), externFileContent);
   }
@@ -319,9 +327,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/");
-    _builder_1.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_1.append(this.GENERATED_DIR_NAME);
     _builder_1.append("/proc.h");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -348,9 +357,10 @@ public class R2CFileGenerator implements IFileGenerator {
     }
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/");
-    _builder_1.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_1.append(this.GENERATED_DIR_NAME);
     _builder_1.append("/proc.c");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -368,21 +378,6 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     _builder.append("#include \"../lib/platform.h\"");
     _builder.newLine();
-    _builder.append("#include <stdio.h>");
-    _builder.newLine();
-    _builder.append("#include <unistd.h>");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("void Init_Time() {");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("_r_cur_time = 0;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("_r_next_act_time = 0;");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
     _builder.newLine();
     _builder.append("void Control_Loop(void)    /* Control algorithm */");
     _builder.newLine();
@@ -395,16 +390,46 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("Init_Time();");
     _builder.newLine();
     _builder.append("\t");
+    _builder.append("Init_IO();");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("for (;;) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("_r_cur_time = Get_Time();");
-    _builder.newLine();
+    _builder.append(R2CFileGenerator.CUR_TIME_NAME, "\t\t");
+    _builder.append(" = Get_Time();");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("if (_r_next_act_time <= _r_cur_time) {");
+    _builder.append("if (");
+    _builder.append(R2CFileGenerator.CUR_TIME_NAME, "\t\t");
+    _builder.append(" - ");
+    _builder.append(R2CFileGenerator.NEXT_TIME_NAME, "\t\t");
+    _builder.append(" >= 0) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("// Find next activation time");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("printf(\"Activating\\n\");");
+    _builder.append(R2CFileGenerator.NEXT_TIME_NAME, "\t\t\t");
+    _builder.append(" += ");
+    _builder.append(R2CFileGenerator.CLOCK_CONST_NAME, "\t\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("if (");
+    _builder.append(R2CFileGenerator.NEXT_TIME_NAME, "\t\t\t");
+    _builder.append(" - ");
+    _builder.append(R2CFileGenerator.CUR_TIME_NAME, "\t\t\t");
+    _builder.append(" > _r_CLOCK) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append(R2CFileGenerator.NEXT_TIME_NAME, "\t\t\t\t");
+    _builder.append(" = ");
+    _builder.append(R2CFileGenerator.CUR_TIME_NAME, "\t\t\t\t");
+    _builder.append(" + _r_CLOCK;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("Input();");
@@ -425,25 +450,6 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("\t\t\t");
     _builder.append("Output();");
     _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("// Find next activation time");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("if (_r_next_act_time + _r_CLOCK <= _r_cur_time) {");
-    _builder.newLine();
-    _builder.append("\t\t\t\t");
-    _builder.append("_r_next_act_time = _r_cur_time + _r_CLOCK;");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("} else {");
-    _builder.newLine();
-    _builder.append("\t\t\t\t");
-    _builder.append("_r_next_act_time += _r_CLOCK;");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("}");
-    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
     _builder.newLine();
@@ -462,9 +468,10 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.newLine();
     final String fileContent = _builder.toString();
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(R2CFileGenerator.ROOT_DIR_NAME);
+    String _rootDirName = this.getRootDirName();
+    _builder_1.append(_rootDirName);
     _builder_1.append("/");
-    _builder_1.append(R2CFileGenerator.GENERATED_DIR_NAME);
+    _builder_1.append(this.GENERATED_DIR_NAME);
     _builder_1.append("/main.c");
     this.fsa.generateFile(_builder_1.toString(), fileContent);
   }
@@ -528,7 +535,9 @@ public class R2CFileGenerator implements IFileGenerator {
   
   public String generateClockConst() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("#define _r_CLOCK ");
+    _builder.append("#define ");
+    _builder.append(R2CFileGenerator.CLOCK_CONST_NAME);
+    _builder.append(" ");
     String _translateClockDefinition = LiteralGenerationUtil.translateClockDefinition(this.program.getClock());
     _builder.append(_translateClockDefinition);
     return _builder.toString();
@@ -567,15 +576,18 @@ public class R2CFileGenerator implements IFileGenerator {
         _builder.append("extern ");
       }
     }
-    _builder.append("INT32_U _r_cur_time;");
+    _builder.append("INT32_U ");
+    _builder.append(R2CFileGenerator.CUR_TIME_NAME);
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t\t  ");
     {
       if (extern) {
         _builder.append("extern ");
       }
     }
-    _builder.append("INT32_U _r_next_act_time;");
+    _builder.append("INT32_U ");
+    _builder.append(R2CFileGenerator.NEXT_TIME_NAME);
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
   }

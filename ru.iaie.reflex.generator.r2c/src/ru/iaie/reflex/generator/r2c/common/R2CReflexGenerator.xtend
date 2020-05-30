@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.common
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess2
@@ -9,7 +9,7 @@ import ru.iaie.reflex.generator.r2c.interfaces.IFileGenerator
 
 class R2CReflexGenerator implements IReflexGenerator {
 
-	IFileGenerator fileGen;
+	protected IFileGenerator fileGen;
 
 	override void beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fileGen = new R2CFileGenerator(resource, fsa)

@@ -25,7 +25,7 @@ import static extension ru.iaie.reflex.utils.ReflexModelUtil.*
 import ru.iaie.reflex.reflex.IdReference
 import ru.iaie.reflex.reflex.CheckStateExpression
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil
 
 class ExpressionGenerationHelper {
 	val IReflexIdentifiersHelper identifiersHelper

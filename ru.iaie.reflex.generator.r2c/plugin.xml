@@ -2,9 +2,17 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         name="r2c-common"
          point="ru.iaie.reflex.reflex_generator">
       <client
-            class="ru.iaie.reflex.generator.r2c.R2CReflexGenerator"></client>
+            class="ru.iaie.reflex.generator.r2c.common.R2CReflexGenerator"></client>
+   </extension>
+   <extension
+         name="r2c-arduino"
+         point="ru.iaie.reflex.reflex_generator">
+      <client
+            class="ru.iaie.reflex.generator.r2c.arduino.ArduinoReflexGenerator">
+      </client>
    </extension>
 
 </plugin>

@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.common;
 
 import java.util.List;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -23,6 +23,12 @@ public class R2CResourceProvider {
       _builder.newLine();
       _builder.newLine();
       _builder.append("// Dummy realizations when no target platform is specified");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("void Init_Time() {}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("void Init_IO() {}");
       _builder.newLine();
       _builder.newLine();
       _builder.append("INT32_U Get_Time() {");

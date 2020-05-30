@@ -1,11 +1,11 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.common;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil;
 import ru.iaie.reflex.generator.r2c.helpers.ExpressionGenerationHelper;
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil;
 import ru.iaie.reflex.reflex.CaseStat;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Expression;

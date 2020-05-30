@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c;
+package ru.iaie.reflex.generator.r2c.util;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
 import ru.iaie.reflex.reflex.ClockDefinition;

@@ -1,8 +1,8 @@
 package ru.iaie.reflex.generator.r2c.helpers;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
-import ru.iaie.reflex.generator.r2c.LiteralGenerationUtil;
 import ru.iaie.reflex.generator.r2c.interfaces.IReflexIdentifiersHelper;
+import ru.iaie.reflex.generator.r2c.util.LiteralGenerationUtil;
 import ru.iaie.reflex.reflex.GlobalVariable;
 import ru.iaie.reflex.reflex.ProcessVariable;
 import ru.iaie.reflex.utils.ReflexModelUtil;

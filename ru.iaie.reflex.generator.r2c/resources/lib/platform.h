@@ -3,6 +3,9 @@
 
 #include "r_cnst.h"
 
+void Init_Time();
+void Init_IO();
+
 INT32_U Get_Time();
 
 INT8 Read_Input8(int, int);

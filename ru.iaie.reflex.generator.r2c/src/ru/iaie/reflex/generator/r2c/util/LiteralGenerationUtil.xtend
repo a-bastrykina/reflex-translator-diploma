@@ -1,4 +1,4 @@
-package ru.iaie.reflex.generator.r2c
+package ru.iaie.reflex.generator.r2c.util
 
 import ru.iaie.reflex.utils.LiteralUtils
 import ru.iaie.reflex.reflex.Type
