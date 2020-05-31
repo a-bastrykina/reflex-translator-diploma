@@ -10,7 +10,12 @@ import com.google.inject.Injector;
  */
 public class ReflexStandaloneSetup extends ReflexStandaloneSetupGenerated {
 
-	public static Injector doSetup() {
-		return (new ReflexStandaloneSetup()).createInjectorAndDoEMFRegistration();
+	private static ReflexStandaloneSetup INSTANCE;
+	
+	public static Injector getInjector() {
+		if (INSTANCE == null) {
+			INSTANCE = new ReflexStandaloneSetup();
+		}
+		return INSTANCE.createInjectorAndDoEMFRegistration();
 	}
 }

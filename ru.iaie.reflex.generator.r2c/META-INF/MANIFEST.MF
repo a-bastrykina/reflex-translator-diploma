@@ -4,8 +4,7 @@ Bundle-Name: R2c
 Bundle-SymbolicName: ru.iaie.reflex.generator.r2c;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: ru.iaie.reflex.generator.r2c
-Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.21.0",
- org.eclipse.xtext;bundle-version="2.20.0",
+Require-Bundle: org.eclipse.xtext;bundle-version="2.20.0",
  org.eclipse.xtext.xbase,
  ru.iaie.reflex;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
