@@ -25,13 +25,13 @@ public class R2CResourceProvider {
       _builder.append("// Dummy realizations when no target platform is specified");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("void Init_Time() {}");
+      _builder.append("void init_time() {}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("void Init_IO() {}");
+      _builder.append("void init_io() {}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("INT32_U Get_Time() {");
+      _builder.append("INT32_U get_time() {");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("struct timeval time;");
@@ -45,7 +45,7 @@ public class R2CResourceProvider {
       _builder.append("}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("INT8 Read_Input8(int addr1, int addr2) {");
+      _builder.append("INT8 read_byte(int addr1, int addr2) {");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("return 1;");
@@ -53,7 +53,7 @@ public class R2CResourceProvider {
       _builder.append("}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("int Write_Output8(int addr1, int addr2, INT8 data) {");
+      _builder.append("int write_byte(int addr1, int addr2, INT8 data) {");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("printf(\"Value for %d %d: %d\\n\", addr1, addr2, data);");
@@ -61,7 +61,7 @@ public class R2CResourceProvider {
       _builder.append("}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("INT16 Read_Input16(int addr1, int addr2) {");
+      _builder.append("INT16 read_word(int addr1, int addr2) {");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("return 1;");
@@ -69,7 +69,7 @@ public class R2CResourceProvider {
       _builder.append("}");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("int Write_Output16(int addr1, int addr2, INT16 data) {");
+      _builder.append("int write_word(int addr1, int addr2, INT16 data) {");
       _builder.newLine();
       _builder.append("    ");
       _builder.append("printf(\"Value for %d %d: %hd\\n\", addr1, addr2, data);");

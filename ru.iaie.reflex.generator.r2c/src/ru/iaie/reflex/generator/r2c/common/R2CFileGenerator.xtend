@@ -79,7 +79,7 @@ class R2CFileGenerator implements IFileGenerator {
 		#include "../lib/r_cnst.h"
 		#include "../lib/platform.h"
 		
-		void Input(void) {
+		void input(void) {
 			«FOR inPort: program.ports.filter[type == PortType.INPUT]»
 				«portGenerationHelper.translateInputPortReading(inPort)»
 			«ENDFOR»
@@ -88,13 +88,13 @@ class R2CFileGenerator implements IFileGenerator {
 		    «ENDFOR»
 		}
 		
-		void Output(void) {
+		void output(void) {
 			«FOR physVar : outputVars»
-			    «portGenerationHelper.translateReadingFromOutput(physVar)»
+				«portGenerationHelper.translateWritingToOutput(physVar)»
 		    «ENDFOR»
-		    «FOR outPort: program.ports.filter[type == PortType.OUTPUT]»
-		 		«portGenerationHelper.translateOutputPortWriting(outPort)»
-		    «ENDFOR»
+			«FOR outPort: program.ports.filter[type == PortType.OUTPUT]»
+				«portGenerationHelper.translateOutputPortWriting(outPort)»
+			«ENDFOR»
 		}
 		'''
 		fsa.generateFile('''«rootDirName»/«GENERATED_DIR_NAME»/io.c''', fileContent)
@@ -178,30 +178,30 @@ class R2CFileGenerator implements IFileGenerator {
 		#include "io.h"    /* Scan-input/output functions */
 		#include "../lib/platform.h"
 
-		void Control_Loop(void)    /* Control algorithm */
+		void control_loop(void)    /* Control algorithm */
 		{
-			Init_Processes();
-			Init_Time();
-			Init_IO();
+			init_processes();
+			init_time();
+			init_io();
 			for (;;) {
-				«CUR_TIME_NAME» = Get_Time();
+				«CUR_TIME_NAME» = get_time();
 				if («CUR_TIME_NAME» - «NEXT_TIME_NAME» >= 0) {
 					// Find next activation time
 					«NEXT_TIME_NAME» += «CLOCK_CONST_NAME»;
 					if («NEXT_TIME_NAME» - «CUR_TIME_NAME» > _r_CLOCK) {
 						«NEXT_TIME_NAME» = «CUR_TIME_NAME» + _r_CLOCK;
 					}
-					Input();
+					input();
 					«FOR proc : program.processes»
 					«identifiersHelper.getProcessFuncId(proc)»(); /* Process «proc.name» */
 					«ENDFOR»
-					Output();
+					output();
 				}
 			}
 		}
 
 		int main() {
-			Control_Loop();
+			control_loop();
 		}
 		'''
 

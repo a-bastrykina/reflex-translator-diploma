@@ -21,14 +21,14 @@ class PortGenerationHelper {
 	
 	def translateInputPortReading(Port port) {
 		val portId = identifiersHelper.getPortId(port)
-		val portSize = LiteralUtils.parseInteger(port.size)
-		return '''«portId» = Read_Input«portSize»(«port.addr1», «port.addr2»);'''
+		val funcName = LiteralUtils.parseInteger(port.size) == 8 ? "read_byte" : "read_word"
+		return '''«portId» = «funcName»(«port.addr1», «port.addr2»);'''
 	}
 	
 	def translateOutputPortWriting(Port port) {
 		val portId = identifiersHelper.getPortId(port)
-		val portSize = LiteralUtils.parseInteger(port.size)
-		return '''Write_Output«portSize»(«port.addr1», «port.addr2», «portId»);'''
+		val funcName = LiteralUtils.parseInteger(port.size) == 8 ? "write_byte" : "write_word"
+		return '''«funcName»(«port.addr1», «port.addr2», «portId»);'''
 	}
 	
 	def translateReadingFromInput(PhysicalVariable v) {
@@ -49,7 +49,7 @@ class PortGenerationHelper {
 		}
 	}
 	
-	def translateReadingFromOutput(PhysicalVariable v) {
+	def translateWritingToOutput(PhysicalVariable v) {
 		val mapping = v.mapping
 		val portVariableName = identifiersHelper.getPortId(mapping.port)
 		val varName = identifiersHelper.getMapping(v)

@@ -143,7 +143,7 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("#include \"../lib/platform.h\"");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("void Input(void) {");
+    _builder.append("void input(void) {");
     _builder.newLine();
     {
       final Function1<Port, Boolean> _function_1 = (Port it) -> {
@@ -169,13 +169,13 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("void Output(void) {");
+    _builder.append("void output(void) {");
     _builder.newLine();
     {
       for(final PhysicalVariable physVar_1 : outputVars) {
         _builder.append("\t");
-        String _translateReadingFromOutput = this.portGenerationHelper.translateReadingFromOutput(physVar_1);
-        _builder.append(_translateReadingFromOutput, "\t");
+        String _translateWritingToOutput = this.portGenerationHelper.translateWritingToOutput(physVar_1);
+        _builder.append(_translateWritingToOutput, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -186,8 +186,9 @@ public class R2CFileGenerator implements IFileGenerator {
       };
       Iterable<Port> _filter_1 = IterableExtensions.<Port>filter(this.program.getPorts(), _function_2);
       for(final Port outPort : _filter_1) {
+        _builder.append("\t");
         String _translateOutputPortWriting = this.portGenerationHelper.translateOutputPortWriting(outPort);
-        _builder.append(_translateOutputPortWriting);
+        _builder.append(_translateOutputPortWriting, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -379,25 +380,25 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("#include \"../lib/platform.h\"");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("void Control_Loop(void)    /* Control algorithm */");
+    _builder.append("void control_loop(void)    /* Control algorithm */");
     _builder.newLine();
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Init_Processes();");
+    _builder.append("init_processes();");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Init_Time();");
+    _builder.append("init_time();");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Init_IO();");
+    _builder.append("init_io();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("for (;;) {");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append(R2CFileGenerator.CUR_TIME_NAME, "\t\t");
-    _builder.append(" = Get_Time();");
+    _builder.append(" = get_time();");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("if (");
@@ -432,7 +433,7 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("Input();");
+    _builder.append("input();");
     _builder.newLine();
     {
       EList<ru.iaie.reflex.reflex.Process> _processes = this.program.getProcesses();
@@ -448,7 +449,7 @@ public class R2CFileGenerator implements IFileGenerator {
       }
     }
     _builder.append("\t\t\t");
-    _builder.append("Output();");
+    _builder.append("output();");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
@@ -462,7 +463,7 @@ public class R2CFileGenerator implements IFileGenerator {
     _builder.append("int main() {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Control_Loop();");
+    _builder.append("control_loop();");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

@@ -29,6 +29,8 @@ import ru.iaie.reflex.reflex.Port
 import ru.iaie.reflex.utils.LiteralUtils
 import ru.iaie.reflex.reflex.ClockDefinition
 import ru.iaie.reflex.reflex.SwitchStat
+import java.util.Map
+import ru.iaie.reflex.reflex.Annotation
 
 class ReflexModelUtil {
 	def static Program getProgram(Resource resource) {
@@ -171,5 +173,26 @@ class ReflexModelUtil {
 		findCrossReferences(context, targetSet, acceptor)
 		return !refered.empty
 	}
+		
+	def static Map<String, String> collectNamespaceAnnotations(Program prog, String ns) {
+		return prog.annotations.collectAnnotationsOfNamespace(ns)
+	}	
 
+	private def static Map<String, String> collectAnnotationsOfNamespace(List<Annotation> annotations, String ns) {
+		return annotations.map[a | 
+			val nsName = parseAnnotationKey(a.key)
+			if (nsName.key.equals(ns)) {
+				return nsName.value -> a.value
+			}
+		].toMap([p | p.key],[p | p.value])
+	}
+
+	private def static Pair<String, String> parseAnnotationKey(String key) {
+		val splitted = key.split('\\.');
+		if (splitted.size == 1) {
+			return splitted.get(0) -> null
+		} else {
+			return splitted.get(0) -> splitted.get(1)
+		}
+	}
 }

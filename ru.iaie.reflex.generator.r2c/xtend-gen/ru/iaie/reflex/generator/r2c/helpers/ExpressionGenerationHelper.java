@@ -320,28 +320,28 @@ public class ExpressionGenerationHelper {
       switch (_qualfier) {
         case STOP:
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Is_Stop(");
+          _builder.append("is_stop(");
           int _index = ReflexModelUtil.getIndex(cse.getProcess());
           _builder.append(_index);
           _builder.append(")");
           return _builder.toString();
         case ERROR:
           StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("Is_Error(");
+          _builder_1.append("is_error(");
           int _index_1 = ReflexModelUtil.getIndex(cse.getProcess());
           _builder_1.append(_index_1);
           _builder_1.append(")");
           return _builder_1.toString();
         case ACTIVE:
           StringConcatenation _builder_2 = new StringConcatenation();
-          _builder_2.append("Is_Active(");
+          _builder_2.append("is_active(");
           int _index_2 = ReflexModelUtil.getIndex(cse.getProcess());
           _builder_2.append(_index_2);
           _builder_2.append(")");
           return _builder_2.toString();
         case INACTIVE:
           StringConcatenation _builder_3 = new StringConcatenation();
-          _builder_3.append("Is_Inactive(");
+          _builder_3.append("is_inactive(");
           int _index_3 = ReflexModelUtil.getIndex(cse.getProcess());
           _builder_3.append(_index_3);
           _builder_3.append(")");

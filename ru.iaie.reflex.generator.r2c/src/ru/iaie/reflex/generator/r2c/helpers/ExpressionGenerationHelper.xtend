@@ -94,13 +94,13 @@ class ExpressionGenerationHelper {
 	def translateCheckStateExpression(CheckStateExpression cse) {
 		switch (cse.qualfier) {
 			case STOP:
-				return '''Is_Stop(«cse.process.index»)'''
+				return '''is_stop(«cse.process.index»)'''
 			case ERROR:
-				return '''Is_Error(«cse.process.index»)'''
+				return '''is_error(«cse.process.index»)'''
 			case ACTIVE:
-				return '''Is_Active(«cse.process.index»)'''
+				return '''is_active(«cse.process.index»)'''
 			case INACTIVE:
-				return '''Is_Inactive(«cse.process.index»)'''
+				return '''is_inactive(«cse.process.index»)'''
 		}
 	}
 }

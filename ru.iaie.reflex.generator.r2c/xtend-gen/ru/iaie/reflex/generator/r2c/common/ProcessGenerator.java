@@ -47,7 +47,7 @@ public class ProcessGenerator {
     _builder.append(" */");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("switch (Check_State(");
+    _builder.append("switch (check_state(");
     int _index = ReflexModelUtil.getIndex(this.proc);
     _builder.append(_index, "\t");
     _builder.append(")) {");
@@ -108,7 +108,7 @@ public class ProcessGenerator {
   
   public String translateTimeoutFunction(final ru.iaie.reflex.reflex.Process proc, final State state, final TimeoutFunction func) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("if (Timeout(");
+    _builder.append("if (timeout(");
     int _index = ReflexModelUtil.getIndex(proc);
     _builder.append(_index);
     _builder.append(", ");
@@ -317,7 +317,7 @@ public class ProcessGenerator {
   
   public String translateResetTimer() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Reset_Timer(");
+    _builder.append("reset_timer(");
     int _index = ReflexModelUtil.getIndex(this.proc);
     _builder.append(_index);
     _builder.append(");");
@@ -328,7 +328,7 @@ public class ProcessGenerator {
     boolean _isNext = sss.isNext();
     if (_isNext) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Set_State(");
+      _builder.append("set_state(");
       int _index = ReflexModelUtil.getIndex(this.proc);
       _builder.append(_index);
       _builder.append(", ");
@@ -339,7 +339,7 @@ public class ProcessGenerator {
       return _builder.toString();
     }
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Set_State(");
+    _builder_1.append("set_state(");
     int _index_2 = ReflexModelUtil.getIndex(this.proc);
     _builder_1.append(_index_2);
     _builder_1.append(", ");
@@ -359,7 +359,7 @@ public class ProcessGenerator {
     }
     final ru.iaie.reflex.reflex.Process procToStop = _xifexpression;
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Set_Stop(");
+    _builder.append("set_stop(");
     int _index = ReflexModelUtil.getIndex(procToStop);
     _builder.append(_index);
     _builder.append(");");
@@ -369,7 +369,7 @@ public class ProcessGenerator {
   
   public String translateStartProcStat(final StartProcStat sps) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Set_Start(");
+    _builder.append("set_start(");
     int _index = ReflexModelUtil.getIndex(sps.getProcess());
     _builder.append(_index);
     _builder.append(");");
@@ -379,7 +379,7 @@ public class ProcessGenerator {
   
   public String translateRestartProcStat() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Set_Start(");
+    _builder.append("set_start(");
     int _index = ReflexModelUtil.getIndex(this.proc);
     _builder.append(_index);
     _builder.append(");");

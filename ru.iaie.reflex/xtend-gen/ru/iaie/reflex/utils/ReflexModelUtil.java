@@ -5,6 +5,7 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -16,6 +17,8 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Pair;
+import ru.iaie.reflex.reflex.Annotation;
 import ru.iaie.reflex.reflex.ClockDefinition;
 import ru.iaie.reflex.reflex.CompoundStatement;
 import ru.iaie.reflex.reflex.Const;
@@ -239,5 +242,43 @@ public class ReflexModelUtil {
     EcoreUtil2.findCrossReferences(context, targetSet, acceptor);
     boolean _isEmpty = refered.isEmpty();
     return (!_isEmpty);
+  }
+  
+  public static Map<String, String> collectNamespaceAnnotations(final Program prog, final String ns) {
+    return ReflexModelUtil.collectAnnotationsOfNamespace(prog.getAnnotations(), ns);
+  }
+  
+  private static Map<String, String> collectAnnotationsOfNamespace(final List<Annotation> annotations, final String ns) {
+    final Function1<Annotation, Pair<String, String>> _function = (Annotation a) -> {
+      final Pair<String, String> nsName = ReflexModelUtil.parseAnnotationKey(a.getKey());
+      boolean _equals = nsName.getKey().equals(ns);
+      if (_equals) {
+        String _value = nsName.getValue();
+        String _value_1 = a.getValue();
+        return Pair.<String, String>of(_value, _value_1);
+      }
+      return null;
+    };
+    final Function1<Pair<String, String>, String> _function_1 = (Pair<String, String> p) -> {
+      return p.getKey();
+    };
+    final Function1<Pair<String, String>, String> _function_2 = (Pair<String, String> p) -> {
+      return p.getValue();
+    };
+    return IterableExtensions.<Pair<String, String>, String, String>toMap(ListExtensions.<Annotation, Pair<String, String>>map(annotations, _function), _function_1, _function_2);
+  }
+  
+  private static Pair<String, String> parseAnnotationKey(final String key) {
+    final String[] splitted = key.split("\\.");
+    int _size = ((List<String>)Conversions.doWrapArray(splitted)).size();
+    boolean _equals = (_size == 1);
+    if (_equals) {
+      String _get = splitted[0];
+      return Pair.<String, String>of(_get, null);
+    } else {
+      String _get_1 = splitted[0];
+      String _get_2 = splitted[1];
+      return Pair.<String, String>of(_get_1, _get_2);
+    }
   }
 }

@@ -15,29 +15,29 @@ class R2CResourceProvider {
 		
 		// Dummy realizations when no target platform is specified
 		
-		void Init_Time() {}
+		void init_time() {}
 		
-		void Init_IO() {}
+		void init_io() {}
 		
-		INT32_U Get_Time() {
+		INT32_U get_time() {
 		    struct timeval time;
 		    gettimeofday(&time, NULL);
 		    return time.tv_sec * 1000 + time.tv_usec / 1000;
 		}
 		
-		INT8 Read_Input8(int addr1, int addr2) {
+		INT8 read_byte(int addr1, int addr2) {
 		    return 1;
 		}
 		
-		int Write_Output8(int addr1, int addr2, INT8 data) {
+		int write_byte(int addr1, int addr2, INT8 data) {
 		    printf("Value for %d %d: %d\n", addr1, addr2, data);
 		}
 		
-		INT16 Read_Input16(int addr1, int addr2) {
+		INT16 read_word(int addr1, int addr2) {
 		    return 1;
 		}
 		
-		int Write_Output16(int addr1, int addr2, INT16 data) {
+		int write_word(int addr1, int addr2, INT16 data) {
 		    printf("Value for %d %d: %hd\n", addr1, addr2, data);
 		}
 	'''  

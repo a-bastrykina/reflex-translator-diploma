@@ -29,11 +29,19 @@ public class PortGenerationHelper {
   
   public String translateInputPortReading(final Port port) {
     final String portId = this.identifiersHelper.getPortId(port);
-    final long portSize = LiteralUtils.parseInteger(port.getSize());
+    String _xifexpression = null;
+    long _parseInteger = LiteralUtils.parseInteger(port.getSize());
+    boolean _equals = (_parseInteger == 8);
+    if (_equals) {
+      _xifexpression = "read_byte";
+    } else {
+      _xifexpression = "read_word";
+    }
+    final String funcName = _xifexpression;
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(portId);
-    _builder.append(" = Read_Input");
-    _builder.append(portSize);
+    _builder.append(" = ");
+    _builder.append(funcName);
     _builder.append("(");
     String _addr1 = port.getAddr1();
     _builder.append(_addr1);
@@ -46,10 +54,17 @@ public class PortGenerationHelper {
   
   public String translateOutputPortWriting(final Port port) {
     final String portId = this.identifiersHelper.getPortId(port);
-    final long portSize = LiteralUtils.parseInteger(port.getSize());
+    String _xifexpression = null;
+    long _parseInteger = LiteralUtils.parseInteger(port.getSize());
+    boolean _equals = (_parseInteger == 8);
+    if (_equals) {
+      _xifexpression = "write_byte";
+    } else {
+      _xifexpression = "write_word";
+    }
+    final String funcName = _xifexpression;
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Write_Output");
-    _builder.append(portSize);
+    _builder.append(funcName);
     _builder.append("(");
     String _addr1 = port.getAddr1();
     _builder.append(_addr1);
@@ -102,7 +117,7 @@ public class PortGenerationHelper {
     }
   }
   
-  public String translateReadingFromOutput(final PhysicalVariable v) {
+  public String translateWritingToOutput(final PhysicalVariable v) {
     final PortMapping mapping = v.getMapping();
     final String portVariableName = this.identifiersHelper.getPortId(mapping.getPort());
     final String varName = this.identifiersHelper.getMapping(v);

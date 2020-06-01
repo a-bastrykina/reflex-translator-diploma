@@ -35,7 +35,7 @@ class ProcessGenerator {
 	def generate() {
 		return '''
 			void «identifiersHelper.getProcessFuncId(proc)»() { /* Process: «proc.name» */
-				switch (Check_State(«proc.index»)) {
+				switch (check_state(«proc.index»)) {
 					«FOR state : proc.states»
 						«translateState(state)»
 					«ENDFOR»
@@ -60,7 +60,7 @@ class ProcessGenerator {
 
 	def translateTimeoutFunction(Process proc, State state, TimeoutFunction func) {
 		return '''
-			if (Timeout(«proc.index», «translateTimeout(func)»))
+			if (timeout(«proc.index», «translateTimeout(func)»))
 				«translateStatement(state, func.body)»
 		'''
 	}
@@ -132,32 +132,32 @@ class ProcessGenerator {
 	}
 
 	def translateResetTimer() {
-		return '''Reset_Timer(«proc.index»);'''
+		return '''reset_timer(«proc.index»);'''
 	}
 
 	def translateSetStateStat(State state, SetStateStat sss) {
 		if (sss.isNext) {
-			return '''Set_State(«proc.index», «state.index + 1»);'''
+			return '''set_state(«proc.index», «state.index + 1»);'''
 		}
-		return '''Set_State(«proc.index», «sss.state.index»);'''
+		return '''set_state(«proc.index», «sss.state.index»);'''
 	}
 
 	def translateStopProcStat(StopProcStat sps) {
 		val procToStop = sps.selfStop ? proc : sps.process
 		return '''
-			Set_Stop(«procToStop.index»);
+			set_stop(«procToStop.index»);
 		'''
 	}
 
 	def translateStartProcStat(StartProcStat sps) {
 		return '''
-			Set_Start(«sps.process.index»);
+			set_start(«sps.process.index»);
 		'''
 	}
 
 	def translateRestartProcStat() {
 		return '''
-			Set_Start(«proc.index»);
+			set_start(«proc.index»);
 		'''
 	}
 }
